@@ -1,0 +1,437 @@
+{
+  "globalStartDate": "1999-12-01",
+  "providers": {
+    "Binance": {
+      "type": "http",
+      "baseUrl": "https://api.binance.com",
+      "overrideStartDate": "2017-08-01",
+      "auth": null,
+      "requestsPerSecond": 2,
+      "maxRetries": 3,
+      "pagination": {
+        "strategy": "time-cursor",
+        "limitParam": "limit",
+        "maxLimit": 1000,
+        "startParam": "startTime",
+        "endParam": "endTime",
+        "cursorExtractPath": "last_item_index_6",
+        "cursorModifier": "add_1ms",
+        "dateExtractPath": 0,
+        "dateFormat": "unix-ms"
+      }
+    },
+    "FiscalData": {
+      "type": "http",
+      "baseUrl": "https://api.fiscaldata.treasury.gov/services/api/fiscal_service",
+      "auth": null,
+      "responseExtractPath": "data",
+      "pagination": {
+        "strategy": "page-number",
+        "limitParam": "page[size]",
+        "maxLimit": 10000,
+        "pageParam": "page[number]",
+        "startPage": 1,
+        "incrementalFilterParam": "filter",
+        "incrementalFilterTemplate": "record_date:gte:{date}",
+        "dateExtractPath": "record_date",
+        "dateFormat": "YYYY-MM-DD"
+      }
+    },
+    "FRED": {
+      "type": "http",
+      "baseUrl": "https://api.stlouisfed.org",
+      "auth": {
+        "type": "query",
+        "key": "api_key",
+        "envVar": "FRED_API_KEY"
+      },
+      "responseExtractPath": "observations",
+      "pagination": {
+        "strategy": "date-range",
+        "limitParam": "limit",
+        "maxLimit": 100000,
+        "startParam": "observation_start",
+        "endParam": "observation_end",
+        "dateExtractPath": "date",
+        "dateFormat": "YYYY-MM-DD"
+      }
+    },
+    "Tiingo": {
+      "type": "http",
+      "baseUrl": "https://api.tiingo.com",
+      "auth": {
+        "type": "header",
+        "key": "Authorization",
+        "prefix": "Token ",
+        "envVar": "TIINGO_API_KEY"
+      },
+      "pagination": {
+        "strategy": "date-range",
+        "startParam": "startDate",
+        "endParam": "endDate",
+        "dateExtractPath": "date",
+        "dateFormat": "YYYY-MM-DD"
+      }
+    },
+    "YahooFinance": {
+      "type": "package",
+      "pagination": {
+        "strategy": "package-internal",
+        "startParam": "period1",
+        "dateExtractPath": "date",
+        "dateFormat": "YYYY-MM-DD"
+      }
+    }
+  },
+  "tasks": [
+    {
+      "id": "binance_btc_daily",
+      "provider": "Binance",
+      "endpoint": "/api/v3/klines",
+      "params": {
+        "symbol": "BTCUSDT",
+        "interval": "1d"
+      },
+      "dbKey": "binance.BTCUSDT"
+    },
+    {
+      "id": "fiscaldata_tga",
+      "provider": "FiscalData",
+      "endpoint": "/v1/accounting/dts/operating_cash_balance",
+      "params": {
+        "sort": "-record_date"
+      },
+      "dbKey": "fiscaldata.TGA"
+    },
+    {
+      "id": "fiscaldata_auctions",
+      "provider": "FiscalData",
+      "endpoint": "/v1/accounting/od/auctions_query",
+      "params": {
+        "sort": "-record_date"
+      },
+      "dbKey": "fiscaldata.Auctions"
+    },
+    {
+      "id": "fiscaldata_buybacks",
+      "provider": "FiscalData",
+      "endpoint": "/v1/accounting/od/buybacks_operations",
+      "params": {
+        "sort": "-operation_date"
+      },
+      "incrementalFilterTemplate": "operation_date:gte:{date}",
+      "dbKey": "fiscaldata.Buybacks"
+    },
+    {
+      "id": "fred_walcl",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "WALCL",
+        "file_type": "json"
+      },
+      "dbKey": "fred.WALCL"
+    },
+    {
+      "id": "fred_rrpontsyd",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "RRPONTSYD",
+        "file_type": "json"
+      },
+      "dbKey": "fred.RRPONTSYD"
+    },
+    {
+      "id": "fred_dfii10",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "DFII10",
+        "file_type": "json"
+      },
+      "dbKey": "fred.DFII10"
+    },
+    {
+      "id": "fred_t10y2y",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "T10Y2Y",
+        "file_type": "json"
+      },
+      "dbKey": "fred.T10Y2Y"
+    },
+    {
+      "id": "fred_totresns",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "TOTRESNS",
+        "file_type": "json"
+      },
+      "dbKey": "fred.TOTRESNS"
+    },
+    {
+      "id": "fred_wlcfll",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "WLCFLL",
+        "file_type": "json"
+      },
+      "dbKey": "fred.WLCFLL"
+    },
+    {
+      "id": "fred_borrow",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "BORROW",
+        "file_type": "json"
+      },
+      "dbKey": "fred.BORROW"
+    },
+    {
+      "id": "fred_loans",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "LOANS",
+        "file_type": "json"
+      },
+      "dbKey": "fred.LOANS"
+    },
+    {
+      "id": "fred_woral",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "WORAL",
+        "file_type": "json"
+      },
+      "dbKey": "fred.WORAL"
+    },
+    {
+      "id": "fred_nfci",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "NFCI",
+        "file_type": "json"
+      },
+      "dbKey": "fred.NFCI"
+    },
+    {
+      "id": "tiingo_spy_daily",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/SPY/prices",
+      "params": {},
+      "dbKey": "tiingo.SPY_daily"
+    },
+    {
+      "id": "tiingo_qqq_daily",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/QQQ/prices",
+      "params": {},
+      "dbKey": "tiingo.QQQ_daily"
+    },
+    {
+      "id": "tiingo_tlt_daily",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/TLT/prices",
+      "params": {},
+      "dbKey": "tiingo.TLT_daily"
+    },
+    {
+      "id": "yahoo_dxy",
+      "provider": "YahooFinance",
+      "ticker": "DX-Y.NYB",
+      "method": "chart",
+      "options": {},
+      "dbKey": "yahoo.DXY"
+    },
+    {
+      "id": "yahoo_gold",
+      "provider": "YahooFinance",
+      "ticker": "GC=F",
+      "method": "chart",
+      "options": {},
+      "dbKey": "yahoo.Gold"
+    },
+    {
+      "id": "yahoo_copper",
+      "provider": "YahooFinance",
+      "ticker": "HG=F",
+      "method": "chart",
+      "options": {},
+      "dbKey": "yahoo.Copper"
+    },
+    {
+      "id": "yahoo_hyg",
+      "provider": "YahooFinance",
+      "ticker": "HYG",
+      "method": "chart",
+      "options": {},
+      "dbKey": "yahoo.HYG"
+    },
+    {
+      "id": "fred_ecbassetsw",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "ECBASSETSW",
+        "file_type": "json"
+      },
+      "dbKey": "fred.ECBASSETSW"
+    },
+    {
+      "id": "fred_jpnassets",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "JPNASSETS",
+        "file_type": "json"
+      },
+      "dbKey": "fred.JPNASSETS"
+    },
+    {
+      "id": "fred_sahmrealtime",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "SAHMREALTIME",
+        "file_type": "json"
+      },
+      "dbKey": "fred.SAHMREALTIME"
+    },
+    {
+      "id": "fred_icsa",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "ICSA",
+        "file_type": "json"
+      },
+      "dbKey": "fred.ICSA"
+    },
+    {
+      "id": "yahoo_vix",
+      "provider": "YahooFinance",
+      "ticker": "^VIX",
+      "method": "chart",
+      "options": {},
+      "dbKey": "yahoo.VIX"
+    },
+    {
+      "id": "fred_permit",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "PERMIT",
+        "file_type": "json"
+      },
+      "dbKey": "fred.PERMIT"
+    },
+    {
+      "id": "fred_m2sl",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "M2SL",
+        "file_type": "json"
+      },
+      "dbKey": "fred.M2SL"
+    },
+    {
+      "id": "fred_umcsent",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "UMCSENT",
+        "file_type": "json"
+      },
+      "dbKey": "fred.UMCSENT"
+    },
+    {
+      "id": "fred_cpiaucsl",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "CPIAUCSL",
+        "file_type": "json"
+      },
+      "dbKey": "fred.CPIAUCSL"
+    },
+    {
+      "id": "fred_indpro",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "INDPRO",
+        "file_type": "json"
+      },
+      "dbKey": "fred.INDPRO"
+    },
+    {
+      "id": "fred_cp",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "CP",
+        "file_type": "json"
+      },
+      "dbKey": "fred.CP"
+    },
+    {
+      "id": "fred_t10yie",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "T10YIE",
+        "file_type": "json"
+      },
+      "dbKey": "fred.T10YIE"
+    },
+    {
+      "id": "fred_drcc",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "DRCCLACBS",
+        "file_type": "json"
+      },
+      "dbKey": "fred.DRCCLACBS"
+    },
+    {
+      "id": "fred_drcl",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "DRCLACBS",
+        "file_type": "json"
+      },
+      "dbKey": "fred.DRCLACBS"
+    },
+    {
+      "id": "fred_receipts",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "MTSR133FMS",
+        "file_type": "json"
+      },
+      "dbKey": "fred.MTSR133FMS"
+    },
+    {
+      "id": "fred_interest",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "A091RC1Q027SBEA",
+        "file_type": "json"
+      },
+      "dbKey": "fred.A091RC1Q027SBEA"
+    }
+  ]
+}

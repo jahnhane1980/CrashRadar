@@ -1,0 +1,42 @@
+name: Daily Data Fetcher
+
+on:
+  schedule:
+    # 01:00 UTC (ca. 02:00 / 03:00 Uhr nachts deutscher Zeit), Dienstag bis Samstag.
+    # Zu dieser Zeit sind die US-Märkte sicher geschlossen, abgerechnet und die FRED/TGA-Daten 
+    # des vergangenen Tages sind definitiv von den Behörden publiziert.
+    - cron: '0 1 * * 2-6'
+  
+  # Erlaubt es dir, den Workflow jederzeit manuell über einen Button auf GitHub zu starten!
+  workflow_dispatch: 
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  fetch-and-analyze:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          # Notwendig, damit der Bot später die aktualisierte Datenbank zurück pushen darf
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: ⚙️ Setup Node.js (22.x)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: npm ci
+
+      - name: 🚀 Run Fetcher & Indicator Analysis
+        # Hier werden die API Keys sicher aus den GitHub Secrets geladen
+        env:
+          TIINGO_API_KEY: ${{ secrets.TIINGO_API_KEY }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: node index.js
+
