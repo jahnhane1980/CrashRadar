@@ -54,7 +54,7 @@ describe('Fetcher Class', () => {
           type: "http", baseUrl: "http://date.com", auth: null,
           pagination: { strategy: "date-range", limitParam: "limit", maxLimit: 5, dateFormat: "YYYY-MM-DD", dateExtractPath: "date" }
         },
-        "YahooFinance": { type: "package" }
+        "YahooFinance": { type: "package", responseExtractPath: "quotes" }
       },
       tasks: []
     };
@@ -66,7 +66,7 @@ describe('Fetcher Class', () => {
 
   it('sollte einen Package Task (YahooFinance) erfolgreich ausführen', async () => {
     mockConfig.tasks.push({ id: "t1", provider: "YahooFinance", ticker: "AAPL", method: "historical", dbKey: "db.aapl" });
-    const mockData = [{ date: '2020', close: 100 }];
+    const mockData = { quotes: [{ date: '2020', close: 100 }] };
     mockHistorical.mockResolvedValue(mockData);
     
     const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
@@ -75,8 +75,8 @@ describe('Fetcher Class', () => {
     expect(mockHistorical).toHaveBeenCalledWith('AAPL', { period1: '1999-12-01' });
     expect(mockStorage.insertDataAndState).toHaveBeenCalledWith(
       expect.objectContaining({ id: 't1' }),
-      mockData,
-      mockData[0]
+      mockData.quotes,
+      mockData.quotes[0]
     );
   });
 

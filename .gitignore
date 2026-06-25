@@ -111,6 +111,6 @@ dist
 Thumbs.db
 
 
-data
+./data
 temp_*.sqlite
 coverage

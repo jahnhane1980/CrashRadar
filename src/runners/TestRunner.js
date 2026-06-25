@@ -6,19 +6,17 @@ export class TestRunner extends StandardRunner {
     return super.run();
   }
 
-  getDatabaseUrl() {
+  static getDatabaseUrl() {
     const testUrl = process.env.DATABASE_URL_TEST;
     if (!testUrl) {
       console.warn('[Warn] DATABASE_URL_TEST nicht gefunden. Verwende reguläre DATABASE_URL als Fallback!');
       return process.env.DATABASE_URL;
     }
-    console.log('[INFO] Verwende TEST Datenbank:', testUrl.split('@')[1] || testUrl); // Versteckt das Passwort im Log
+    console.log('[INFO] Verwende TEST Datenbank:', testUrl.split('@')[1] || testUrl);
     return testUrl;
   }
 
-  loadFetcherConfig() {
-    const config = super.loadFetcherConfig();
-    
+  static applyTestConfigOverrides(config) {
     const threeDaysAgo = new Date();
     threeDaysAgo.setUTCDate(threeDaysAgo.getUTCDate() - 3);
     config.globalStartDate = threeDaysAgo.toISOString().split('T')[0];
@@ -40,7 +38,6 @@ export class TestRunner extends StandardRunner {
          if (task.overrideStartDate) task.overrideStartDate = config.globalStartDate;
        }
     }
-
     return config;
   }
 }

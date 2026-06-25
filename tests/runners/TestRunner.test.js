@@ -6,7 +6,7 @@ describe('TestRunner', () => {
   let runner;
 
   beforeEach(() => {
-    runner = new TestRunner();
+    runner = new TestRunner({ config: {}, storage: {}, fetcher: { runAllTasks: vi.fn() }, maturityWallBuilder: { build: vi.fn(), close: vi.fn() } });
     vi.spyOn(console, 'log').mockImplementation(() => {});
     vi.spyOn(console, 'warn').mockImplementation(() => {});
   });
@@ -31,7 +31,7 @@ describe('TestRunner', () => {
     it('should return DATABASE_URL_TEST if set', () => {
       process.env.DATABASE_URL_TEST = 'mysql://test_dummy';
       
-      const url = runner.getDatabaseUrl();
+      const url = TestRunner.getDatabaseUrl();
       
       expect(url).toBe('mysql://test_dummy');
       expect(console.log).toHaveBeenCalledWith('[INFO] Verwende TEST Datenbank:', 'mysql://test_dummy');
@@ -41,14 +41,14 @@ describe('TestRunner', () => {
       delete process.env.DATABASE_URL_TEST;
       process.env.DATABASE_URL = 'mysql://dummy';
       
-      const url = runner.getDatabaseUrl();
+      const url = TestRunner.getDatabaseUrl();
       
       expect(url).toBe('mysql://dummy');
       expect(console.warn).toHaveBeenCalledWith('[Warn] DATABASE_URL_TEST nicht gefunden. Verwende reguläre DATABASE_URL als Fallback!');
     });
   });
 
-  describe('loadFetcherConfig', () => {
+  describe('applyTestConfigOverrides', () => {
     beforeEach(() => {
       vi.useFakeTimers();
       vi.setSystemTime(new Date('2026-06-24T12:00:00Z'));
@@ -59,76 +59,45 @@ describe('TestRunner', () => {
     });
 
     it('should set globalStartDate to 3 days ago', () => {
-      vi.spyOn(StandardRunner.prototype, 'loadFetcherConfig').mockReturnValue({});
-      
-      const config = runner.loadFetcherConfig();
-      
-      // 3 days before 2026-06-24 is 2026-06-21
+      const config = TestRunner.applyTestConfigOverrides({});
       expect(config.globalStartDate).toBe('2026-06-21');
     });
 
     it('should update maxLimit if provider has pagination and maxLimit > 5', () => {
-      vi.spyOn(StandardRunner.prototype, 'loadFetcherConfig').mockReturnValue({
-        providers: {
-          testProvider: {
-            pagination: { maxLimit: 10 }
-          }
-        }
+      const config = TestRunner.applyTestConfigOverrides({
+        providers: { testProvider: { pagination: { maxLimit: 10 } } }
       });
-      
-      const config = runner.loadFetcherConfig();
-      
       expect(config.providers.testProvider.pagination.maxLimit).toBe(5);
     });
 
     it('should keep maxLimit if provider has pagination and maxLimit <= 5', () => {
-      vi.spyOn(StandardRunner.prototype, 'loadFetcherConfig').mockReturnValue({
-        providers: {
-          testProvider: {
-            pagination: { maxLimit: 3 }
-          }
-        }
+      const config = TestRunner.applyTestConfigOverrides({
+        providers: { testProvider: { pagination: { maxLimit: 3 } } }
       });
-      
-      const config = runner.loadFetcherConfig();
-      
       expect(config.providers.testProvider.pagination.maxLimit).toBe(3);
     });
 
     it('should not throw if provider pagination is missing', () => {
-      vi.spyOn(StandardRunner.prototype, 'loadFetcherConfig').mockReturnValue({
-        providers: {
-          testProvider: {}
-        }
+      const config = TestRunner.applyTestConfigOverrides({
+        providers: { testProvider: {} }
       });
-      
-      const config = runner.loadFetcherConfig();
-      
       expect(config.providers.testProvider).toEqual({});
     });
 
     it('should update provider overrideStartDate', () => {
-      vi.spyOn(StandardRunner.prototype, 'loadFetcherConfig').mockReturnValue({
-        providers: {
-          testProvider: { overrideStartDate: '2026-01-01' }
-        }
+      const config = TestRunner.applyTestConfigOverrides({
+        providers: { testProvider: { overrideStartDate: '2026-01-01' } }
       });
-      
-      const config = runner.loadFetcherConfig();
-      
       expect(config.providers.testProvider.overrideStartDate).toBe('2026-06-21');
     });
 
     it('should update task overrideStartDate', () => {
-      vi.spyOn(StandardRunner.prototype, 'loadFetcherConfig').mockReturnValue({
+      const config = TestRunner.applyTestConfigOverrides({
         tasks: [
           { overrideStartDate: '2026-01-01' },
           { name: 'no-override' }
         ]
       });
-      
-      const config = runner.loadFetcherConfig();
-      
       expect(config.tasks[0].overrideStartDate).toBe('2026-06-21');
       expect(config.tasks[1].overrideStartDate).toBeUndefined();
     });

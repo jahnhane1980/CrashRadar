@@ -125,10 +125,8 @@ export class Fetcher {
       console.log(`[YahooFinance] Fetching ${task.method} for ${task.ticker} with options`, options);
       try {
         const result = await yahooFinance[task.method](task.ticker, options);
-        let newData = result;
-        if (task.method === YAHOO_FINANCE_DEFAULTS.METHOD_CHART && result && result.quotes) {
-           newData = result.quotes;
-        }
+        const newData = this.extractData(result, provider);
+        
         if (newData && newData.length > 0) {
           const newLastRecord = newData[newData.length - 1];
           await this.storage.insertDataAndState(task, newData, newLastRecord);

@@ -1,10 +1,20 @@
 import 'dotenv/config';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { program } from 'commander';
 import { StandardRunner } from './src/runners/StandardRunner.js';
 import { TestRunner } from './src/runners/TestRunner.js';
 import { FinanceExpert } from './src/services/FinanceExpert.js';
 import { IndicatorEngine } from './src/analysis/IndicatorEngine.js';
 import { NtfyService } from './src/services/NtfyService.js';
+import { Storage } from './src/core/Storage.js';
+import { RequestManager } from './src/core/RequestManager.js';
+import { Fetcher } from './src/services/Fetcher.js';
+import { MaturityWallBuilder } from './src/services/MaturityWallBuilder.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 let activeRunner = null;
 
@@ -54,11 +64,29 @@ program
         process.exit(0);
       }
 
-      if (options.test) {
-        activeRunner = new TestRunner();
-      } else {
-        activeRunner = new StandardRunner();
+      const isTest = options.test;
+      const dbUrl = isTest ? TestRunner.getDatabaseUrl() : process.env.DATABASE_URL;
+      
+      if (!dbUrl) throw new Error("Missing DATABASE_URL in environment.");
+
+      const configPath = path.resolve(__dirname, 'config/Database-Fetcher-Config.json');
+      if (!fs.existsSync(configPath)) {
+        throw new Error(`Critical Config not found at ${configPath}. Exiting.`);
       }
+      const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+
+      if (isTest) {
+        TestRunner.applyTestConfigOverrides(config);
+      }
+
+      const storage = new Storage({ databaseUrl: dbUrl });
+      const requestManager = new RequestManager(config);
+      const fetcher = new Fetcher(config, storage, requestManager);
+      const maturityWallBuilder = new MaturityWallBuilder(dbUrl);
+
+      const runnerArgs = { config, storage, fetcher, maturityWallBuilder };
+      activeRunner = isTest ? new TestRunner(runnerArgs) : new StandardRunner(runnerArgs);
+      
       await activeRunner.run();
     } catch (error) {
       console.error(error);

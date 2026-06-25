@@ -91,7 +91,7 @@ describe('Storage Class (MySQL)', () => {
 
   it('sollte Daten für Tiingo mappen', async () => {
     const storage = new Storage({});
-    const task = { id: 'tiingo_spy', provider: 'Tiingo', dbKey: 'tiingo.SPY_daily' };
+    const task = { id: 'tiingo_spy', provider: 'Tiingo', ticker: 'SPY', resolution: 'daily' };
     const mockData = [{ date: '2020-01-01T00:00:00.000Z', open: 100, high: 110, low: 90, close: 105, volume: 1000 }];
     
     await storage.insertDataAndState(task, mockData, mockData[0]);
@@ -155,14 +155,14 @@ describe('Storage Class (MySQL)', () => {
   it('sollte bei fehlendem dbKey für Tiingo einen Fehler werfen', async () => {
     const storage = new Storage({});
     const task = { id: 'tiingo_fail', provider: 'Tiingo' };
-    await expect(storage.insertDataAndState(task, [{}], {})).rejects.toThrow(/Invalid or missing dbKey/i);
+    await expect(storage.insertDataAndState(task, [{}], {})).rejects.toThrow(/Invalid or missing ticker/i);
     expect(mockConnection.rollback).toHaveBeenCalled();
   });
 
   it('sollte bei fehlerhaftem dbKey für Tiingo einen Fehler werfen', async () => {
     const storage = new Storage({});
-    const task = { id: 'tiingo_fail2', provider: 'Tiingo', dbKey: 'invalidkey' };
-    await expect(storage.insertDataAndState(task, [{}], {})).rejects.toThrow(/Invalid dbKey format/i);
+    const task = { id: 'tiingo_fail2', provider: 'Tiingo', ticker: 123 };
+    await expect(storage.insertDataAndState(task, [{}], {})).rejects.toThrow(/Invalid or missing ticker/i);
   });
 
   it('sollte bei fehlendem series_id für FRED einen Fehler werfen', async () => {
@@ -195,7 +195,7 @@ describe('Storage Class (MySQL)', () => {
   
   it('sollte bei Tiingo daily als Fallback-Resolution verwenden', async () => {
     const storage = new Storage({});
-    const task = { id: 'tiingo_spy', provider: 'Tiingo', dbKey: 'tiingo.SPY' }; // Ohne _daily
+    const task = { id: 'tiingo_spy', provider: 'Tiingo', ticker: 'SPY' }; // Ohne resolution
     const mockData = [{ date: '2020-01-01T00:00:00.000Z', open: 1 }];
     await storage.insertDataAndState(task, mockData, mockData[0]);
     expect(mockConnection.query.mock.calls[0][1][0][0][2]).toBe('daily');

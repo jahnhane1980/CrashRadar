@@ -80,7 +80,8 @@
         "startParam": "period1",
         "dateExtractPath": "date",
         "dateFormat": "YYYY-MM-DD"
-      }
+      },
+      "responseExtractPath": "quotes"
     }
   },
   "tasks": [
@@ -91,8 +92,7 @@
       "params": {
         "symbol": "BTCUSDT",
         "interval": "1d"
-      },
-      "dbKey": "binance.BTCUSDT"
+      }
     },
     {
       "id": "fiscaldata_tga",
@@ -100,8 +100,7 @@
       "endpoint": "/v1/accounting/dts/operating_cash_balance",
       "params": {
         "sort": "-record_date"
-      },
-      "dbKey": "fiscaldata.TGA"
+      }
     },
     {
       "id": "fiscaldata_auctions",
@@ -109,8 +108,7 @@
       "endpoint": "/v1/accounting/od/auctions_query",
       "params": {
         "sort": "-record_date"
-      },
-      "dbKey": "fiscaldata.Auctions"
+      }
     },
     {
       "id": "fiscaldata_buybacks",
@@ -119,8 +117,7 @@
       "params": {
         "sort": "-operation_date"
       },
-      "incrementalFilterTemplate": "operation_date:gte:{date}",
-      "dbKey": "fiscaldata.Buybacks"
+      "incrementalFilterTemplate": "operation_date:gte:{date}"
     },
     {
       "id": "fred_walcl",
@@ -129,8 +126,7 @@
       "params": {
         "series_id": "WALCL",
         "file_type": "json"
-      },
-      "dbKey": "fred.WALCL"
+      }
     },
     {
       "id": "fred_rrpontsyd",
@@ -139,8 +135,7 @@
       "params": {
         "series_id": "RRPONTSYD",
         "file_type": "json"
-      },
-      "dbKey": "fred.RRPONTSYD"
+      }
     },
     {
       "id": "fred_dfii10",
@@ -149,8 +144,7 @@
       "params": {
         "series_id": "DFII10",
         "file_type": "json"
-      },
-      "dbKey": "fred.DFII10"
+      }
     },
     {
       "id": "fred_t10y2y",
@@ -159,8 +153,7 @@
       "params": {
         "series_id": "T10Y2Y",
         "file_type": "json"
-      },
-      "dbKey": "fred.T10Y2Y"
+      }
     },
     {
       "id": "fred_totresns",
@@ -169,8 +162,7 @@
       "params": {
         "series_id": "TOTRESNS",
         "file_type": "json"
-      },
-      "dbKey": "fred.TOTRESNS"
+      }
     },
     {
       "id": "fred_wlcfll",
@@ -179,8 +171,7 @@
       "params": {
         "series_id": "WLCFLL",
         "file_type": "json"
-      },
-      "dbKey": "fred.WLCFLL"
+      }
     },
     {
       "id": "fred_borrow",
@@ -189,8 +180,7 @@
       "params": {
         "series_id": "BORROW",
         "file_type": "json"
-      },
-      "dbKey": "fred.BORROW"
+      }
     },
     {
       "id": "fred_loans",
@@ -199,8 +189,7 @@
       "params": {
         "series_id": "LOANS",
         "file_type": "json"
-      },
-      "dbKey": "fred.LOANS"
+      }
     },
     {
       "id": "fred_woral",
@@ -209,8 +198,7 @@
       "params": {
         "series_id": "WORAL",
         "file_type": "json"
-      },
-      "dbKey": "fred.WORAL"
+      }
     },
     {
       "id": "fred_nfci",
@@ -219,61 +207,59 @@
       "params": {
         "series_id": "NFCI",
         "file_type": "json"
-      },
-      "dbKey": "fred.NFCI"
+      }
     },
     {
       "id": "tiingo_spy_daily",
       "provider": "Tiingo",
       "endpoint": "/tiingo/daily/SPY/prices",
       "params": {},
-      "dbKey": "tiingo.SPY_daily"
+      "resolution": "daily",
+      "ticker": "SPY"
     },
     {
       "id": "tiingo_qqq_daily",
       "provider": "Tiingo",
       "endpoint": "/tiingo/daily/QQQ/prices",
       "params": {},
-      "dbKey": "tiingo.QQQ_daily"
+      "resolution": "daily",
+      "ticker": "QQQ"
     },
     {
       "id": "tiingo_tlt_daily",
       "provider": "Tiingo",
       "endpoint": "/tiingo/daily/TLT/prices",
       "params": {},
-      "dbKey": "tiingo.TLT_daily"
+      "resolution": "daily",
+      "ticker": "TLT"
     },
     {
       "id": "yahoo_dxy",
       "provider": "YahooFinance",
       "ticker": "DX-Y.NYB",
       "method": "chart",
-      "options": {},
-      "dbKey": "yahoo.DXY"
+      "options": {}
     },
     {
       "id": "yahoo_gold",
       "provider": "YahooFinance",
       "ticker": "GC=F",
       "method": "chart",
-      "options": {},
-      "dbKey": "yahoo.Gold"
+      "options": {}
     },
     {
       "id": "yahoo_copper",
       "provider": "YahooFinance",
       "ticker": "HG=F",
       "method": "chart",
-      "options": {},
-      "dbKey": "yahoo.Copper"
+      "options": {}
     },
     {
       "id": "yahoo_hyg",
       "provider": "YahooFinance",
       "ticker": "HYG",
       "method": "chart",
-      "options": {},
-      "dbKey": "yahoo.HYG"
+      "options": {}
     },
     {
       "id": "fred_ecbassetsw",
@@ -282,8 +268,7 @@
       "params": {
         "series_id": "ECBASSETSW",
         "file_type": "json"
-      },
-      "dbKey": "fred.ECBASSETSW"
+      }
     },
     {
       "id": "fred_jpnassets",
@@ -292,8 +277,7 @@
       "params": {
         "series_id": "JPNASSETS",
         "file_type": "json"
-      },
-      "dbKey": "fred.JPNASSETS"
+      }
     },
     {
       "id": "fred_sahmrealtime",
@@ -302,8 +286,7 @@
       "params": {
         "series_id": "SAHMREALTIME",
         "file_type": "json"
-      },
-      "dbKey": "fred.SAHMREALTIME"
+      }
     },
     {
       "id": "fred_icsa",
@@ -312,16 +295,14 @@
       "params": {
         "series_id": "ICSA",
         "file_type": "json"
-      },
-      "dbKey": "fred.ICSA"
+      }
     },
     {
       "id": "yahoo_vix",
       "provider": "YahooFinance",
       "ticker": "^VIX",
       "method": "chart",
-      "options": {},
-      "dbKey": "yahoo.VIX"
+      "options": {}
     },
     {
       "id": "fred_permit",
@@ -330,8 +311,7 @@
       "params": {
         "series_id": "PERMIT",
         "file_type": "json"
-      },
-      "dbKey": "fred.PERMIT"
+      }
     },
     {
       "id": "fred_m2sl",
@@ -340,8 +320,7 @@
       "params": {
         "series_id": "M2SL",
         "file_type": "json"
-      },
-      "dbKey": "fred.M2SL"
+      }
     },
     {
       "id": "fred_umcsent",
@@ -350,8 +329,7 @@
       "params": {
         "series_id": "UMCSENT",
         "file_type": "json"
-      },
-      "dbKey": "fred.UMCSENT"
+      }
     },
     {
       "id": "fred_cpiaucsl",
@@ -360,8 +338,7 @@
       "params": {
         "series_id": "CPIAUCSL",
         "file_type": "json"
-      },
-      "dbKey": "fred.CPIAUCSL"
+      }
     },
     {
       "id": "fred_indpro",
@@ -370,8 +347,7 @@
       "params": {
         "series_id": "INDPRO",
         "file_type": "json"
-      },
-      "dbKey": "fred.INDPRO"
+      }
     },
     {
       "id": "fred_cp",
@@ -380,8 +356,7 @@
       "params": {
         "series_id": "CP",
         "file_type": "json"
-      },
-      "dbKey": "fred.CP"
+      }
     },
     {
       "id": "fred_t10yie",
@@ -390,8 +365,7 @@
       "params": {
         "series_id": "T10YIE",
         "file_type": "json"
-      },
-      "dbKey": "fred.T10YIE"
+      }
     },
     {
       "id": "fred_drcc",
@@ -400,8 +374,7 @@
       "params": {
         "series_id": "DRCCLACBS",
         "file_type": "json"
-      },
-      "dbKey": "fred.DRCCLACBS"
+      }
     },
     {
       "id": "fred_drcl",
@@ -410,8 +383,7 @@
       "params": {
         "series_id": "DRCLACBS",
         "file_type": "json"
-      },
-      "dbKey": "fred.DRCLACBS"
+      }
     },
     {
       "id": "fred_receipts",
@@ -420,8 +392,7 @@
       "params": {
         "series_id": "MTSR133FMS",
         "file_type": "json"
-      },
-      "dbKey": "fred.MTSR133FMS"
+      }
     },
     {
       "id": "fred_interest",
@@ -430,8 +401,7 @@
       "params": {
         "series_id": "A091RC1Q027SBEA",
         "file_type": "json"
-      },
-      "dbKey": "fred.A091RC1Q027SBEA"
+      }
     }
   ]
 }

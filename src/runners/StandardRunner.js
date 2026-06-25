@@ -1,54 +1,19 @@
-import { Fetcher } from '../services/Fetcher.js';
-import { Storage } from '../core/Storage.js';
-import { RequestManager } from '../core/RequestManager.js';
-import { MaturityWallBuilder } from '../services/MaturityWallBuilder.js';
-import path from 'path';
-import fs from 'fs';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const rootDir = path.resolve(__dirname, '../../');
-
 export class StandardRunner {
-  constructor() {
-    this.globalStorage = null;
-  }
-
-  getDatabaseUrl() {
-    return process.env.DATABASE_URL;
-  }
-
-  loadFetcherConfig() {
-    const configPath = path.resolve(rootDir, 'config/Database-Fetcher-Config.json');
-    if (!fs.existsSync(configPath)) {
-      throw new Error(`Critical Config not found at ${configPath}. Exiting.`);
-    }
-    const rawConfig = fs.readFileSync(configPath, 'utf8');
-    return JSON.parse(rawConfig);
+  constructor({ config, storage, fetcher, maturityWallBuilder }) {
+    this.config = config;
+    this.storage = storage;
+    this.fetcher = fetcher;
+    this.maturityWallBuilder = maturityWallBuilder;
   }
 
   async run() {
     try {
-      const dbUrl = this.getDatabaseUrl();
-      if (!dbUrl) {
-        throw new Error("Missing DATABASE_URL in environment.");
-      }
-      
-      this.globalStorage = new Storage({ databaseUrl: dbUrl });
-
-      const config = this.loadFetcherConfig();
-
-      const requestManager = new RequestManager(config);
-      const fetcher = new Fetcher(config, this.globalStorage, requestManager);
-
       console.log('Starting fetch jobs...');
-      await fetcher.runAllTasks();
+      await this.fetcher.runAllTasks();
       
       console.log('Updating Maturity Wall...');
-      const mwBuilder = new MaturityWallBuilder(dbUrl);
-      await mwBuilder.build(config.globalStartDate || '2015-01-01');
-      await mwBuilder.close();
+      await this.maturityWallBuilder.build(this.config.globalStartDate || '2015-01-01');
+      await this.maturityWallBuilder.close();
 
       console.log('All jobs completed.');
     } catch (error) {
@@ -60,10 +25,10 @@ export class StandardRunner {
   }
 
   async cleanup() {
-    if (this.globalStorage) {
-      await this.globalStorage.close();
+    if (this.storage) {
+      await this.storage.close();
       console.log('Database connection closed.');
-      this.globalStorage = null;
+      this.storage = null;
     }
   }
 }
