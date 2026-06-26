@@ -1,6 +1,5 @@
-import YahooFinance from 'yahoo-finance2';
-const yahooFinance = new YahooFinance();
-
+import { PaginationStrategies } from './PaginationStrategies.js';
+import { FetchAdapterFactory } from '../core/adapters/fetch/FetchAdapterFactory.js';
 const CONFIG_DEFAULTS = Object.freeze({
   CONCURRENCY: 10,
   FALLBACK_START_DATE: '1999-12-01',
@@ -11,9 +10,6 @@ const PROVIDER_TYPES = Object.freeze({
   HTTP: 'http',
 });
 
-const PROVIDER_NAMES = Object.freeze({
-  YAHOO_FINANCE: 'YahooFinance',
-});
 
 const DATE_FORMATS = Object.freeze({
   UNIX_MS: 'unix-ms',
@@ -25,20 +21,8 @@ const AUTH_TYPES = Object.freeze({
   QUERY: 'query',
 });
 
-const PAGINATION_STRATEGIES = Object.freeze({
-  TIME_CURSOR: 'time-cursor',
-  PAGE_NUMBER: 'page-number',
-  DATE_RANGE: 'date-range',
-});
 
-const SPECIAL_EXTRACT_PATHS = Object.freeze({
-  LAST_ITEM_INDEX_6: 'last_item_index_6',
-});
 
-const YAHOO_FINANCE_DEFAULTS = Object.freeze({
-  START_PARAM: 'period1',
-  METHOD_CHART: 'chart',
-});
 
 const API_STATUS = Object.freeze({
   ERROR: 'error',
@@ -114,17 +98,16 @@ export class Fetcher {
   }
 
   async fetchViaPackage(task, provider) {
-    if (provider.type === PROVIDER_TYPES.PACKAGE && task.provider === PROVIDER_NAMES.YAHOO_FINANCE) {
+    if (provider.type === PROVIDER_TYPES.PACKAGE) {
       const syncState = await this.storage.getSyncState(task.id);
       const lastRecord = syncState && syncState.cursor_data ? JSON.parse(syncState.cursor_data) : null;
       
       const startValue = this.getStartDate(task, provider, lastRecord);
-      const options = task.options || {};
-      options[provider.pagination?.startParam || YAHOO_FINANCE_DEFAULTS.START_PARAM] = startValue;
+      const adapter = FetchAdapterFactory.get(task.provider);
       
-      console.log(`[YahooFinance] Fetching ${task.method} for ${task.ticker} with options`, options);
+      console.log(`[PackageFetcher] Fetching ${task.method || 'default'} for ${task.ticker || task.id}`);
       try {
-        const result = await yahooFinance[task.method](task.ticker, options);
+        const result = await adapter.fetch(task, provider, startValue);
         const newData = this.extractData(result, provider);
         
         if (newData && newData.length > 0) {
@@ -132,7 +115,8 @@ export class Fetcher {
           await this.storage.insertDataAndState(task, newData, newLastRecord);
         }
       } catch (error) {
-        console.error(`[YahooFinance] Error fetching ${task.ticker}:`, error.message);
+        console.error(`[PackageFetcher Error] Task ${task.id}:`, error.message);
+        throw error;
       }
     }
   }
@@ -204,111 +188,21 @@ export class Fetcher {
         }
       }
     } else {
-      if (pagination.strategy === PAGINATION_STRATEGIES.TIME_CURSOR || pagination.strategy === PAGINATION_STRATEGIES.DATE_RANGE) {
-        searchParams.set(pagination.startParam, startValue);
-      } else if (pagination.strategy === PAGINATION_STRATEGIES.PAGE_NUMBER && pagination.incrementalFilterParam) {
-        const template = task.incrementalFilterTemplate || pagination.incrementalFilterTemplate;
-        const filterStr = template.replace('{date}', startValue);
-        searchParams.set(pagination.incrementalFilterParam, filterStr);
+      const strategyFn = PaginationStrategies[pagination.strategy];
+      if (!strategyFn) {
+        throw new Error(`Unknown pagination strategy: ${pagination.strategy}`);
       }
-
-      if (pagination.strategy === PAGINATION_STRATEGIES.TIME_CURSOR) {
-        let currentStartTime = startValue;
-        while (true) {
-          if (currentStartTime !== undefined && currentStartTime !== null) {
-            searchParams.set(pagination.startParam, currentStartTime);
-          }
-          searchParams.set(pagination.limitParam, pagination.maxLimit);
-          
-          const response = await this.requestManager.fetch(url, task.provider, { searchParams, headers });
-          let data;
-          try {
-            data = this.extractData(response, provider);
-          } catch(e) {
-            console.error(`[API Error] Task ${task.id}:`, e.message);
-            break;
-          }
-          if (!Array.isArray(data) || data.length === 0) break;
-          
-          const newLastRecord = data[data.length - 1];
-          try {
-            await this.storage.insertDataAndState(task, data, newLastRecord);
-          } catch(e) {
-            console.error(`[Storage] Error inserting data for task ${task.id}:`, e.message);
-            break;
-          }
-          
-          if (data.length < pagination.maxLimit) break;
-          
-          if (pagination.cursorExtractPath === SPECIAL_EXTRACT_PATHS.LAST_ITEM_INDEX_6) {
-            const nextTime = newLastRecord[6] + 1;
-            if (nextTime === currentStartTime || isNaN(nextTime)) {
-              console.warn(`[Warning] Infinite loop detected for ${task.id}: currentStartTime not advancing.`);
-              break;
-            }
-            currentStartTime = nextTime;
-          } else {
-            break;
-          }
-        }
-      } else if (pagination.strategy === PAGINATION_STRATEGIES.PAGE_NUMBER) {
-        let currentPage = pagination.startPage || 1;
-        let lastDataHash = null;
-        while (true) {
-          searchParams.set(pagination.pageParam, currentPage);
-          searchParams.set(pagination.limitParam, pagination.maxLimit);
-          
-          const response = await this.requestManager.fetch(url, task.provider, { searchParams, headers });
-          let actualData;
-          try {
-            actualData = this.extractData(response, provider);
-          } catch(e) {
-            console.error(`[API Error] Task ${task.id}:`, e.message);
-            break;
-          }
-          
-          if (!Array.isArray(actualData) || actualData.length === 0) break;
-          
-          const currentDataHash = JSON.stringify(actualData);
-          if (currentDataHash === lastDataHash) {
-            console.warn(`[Warning] Infinite loop detected for ${task.id}: identical page returned.`);
-            break;
-          }
-          lastDataHash = currentDataHash;
-
-          const newLastRecord = actualData[actualData.length - 1];
-          try {
-            await this.storage.insertDataAndState(task, actualData, newLastRecord);
-          } catch(e) {
-            console.error(`[Storage] Error inserting data for task ${task.id}:`, e.message);
-            break;
-          }
-
-          if (actualData.length < pagination.maxLimit) break;
-          currentPage++;
-        }
-      } else if (pagination.strategy === PAGINATION_STRATEGIES.DATE_RANGE) {
-        if (pagination.limitParam) {
-          searchParams.set(pagination.limitParam, pagination.maxLimit);
-        }
-        const response = await this.requestManager.fetch(url, task.provider, { searchParams, headers });
-        let finalData;
-        try {
-          finalData = this.extractData(response, provider);
-        } catch(e) {
-          console.error(`[API Error] Task ${task.id}:`, e.message);
-          return;
-        }
-        
-        if (finalData.length > 0) {
-          try {
-            const newLastRecord = finalData[finalData.length - 1];
-            await this.storage.insertDataAndState(task, finalData, newLastRecord);
-          } catch(e) {
-            console.error(`[Storage] Error inserting data for task ${task.id}:`, e.message);
-          }
-        }
-      }
+      
+      await strategyFn({
+        fetcher: this,
+        task,
+        provider,
+        url,
+        headers,
+        searchParams,
+        startValue,
+        pagination
+      });
     }
   }
 }

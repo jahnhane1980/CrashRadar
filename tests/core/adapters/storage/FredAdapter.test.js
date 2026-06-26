@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { FredAdapter } from '../../../src/core/adapters/FredAdapter.js';
+import { FredAdapter } from '../../../../src/core/adapters/storage/FredAdapter.js';
 
 describe('FredAdapter', () => {
   const adapter = new FredAdapter();

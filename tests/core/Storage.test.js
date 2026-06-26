@@ -206,4 +206,25 @@ describe('Storage Class (MySQL)', () => {
     await storage.close();
     expect(mockPool.end).toHaveBeenCalled();
   });
+
+  it('sollte einen Fehler werfen und Rollback durchführen, wenn der Provider unbekannt ist', async () => {
+    const storage = new Storage({});
+    const task = { id: 'unknown_task', provider: 'GhostProvider' };
+    await expect(storage.insertDataAndState(task, [{ id: 1 }], { id: 1 })).rejects.toThrow(/No storage adapter found/);
+    expect(mockConnection.rollback).toHaveBeenCalled();
+    expect(mockConnection.release).toHaveBeenCalled();
+  });
+
+  it('sollte Rollback durchführen, wenn der SyncState-Insert fehlschlägt', async () => {
+    const storage = new Storage({});
+    const task = { id: 'binance_btc', provider: 'Binance', params: { symbol: 'BTCUSDT', interval: '1d' } };
+    const mockData = [ [1600000000, 10, 12, 9, 11, 100, 1600086400, 1100, 50, 40, 440, 0] ];
+    
+    // Die erste Query (Daten-Insert) geht durch, die zweite (State-Insert) schlägt fehl
+    mockConnection.query.mockResolvedValueOnce().mockRejectedValueOnce(new Error('State Insert Failed'));
+    
+    await expect(storage.insertDataAndState(task, mockData, mockData[0])).rejects.toThrow('State Insert Failed');
+    expect(mockConnection.rollback).toHaveBeenCalled();
+    expect(mockConnection.release).toHaveBeenCalled();
+  });
 });

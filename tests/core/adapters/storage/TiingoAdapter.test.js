@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { TiingoAdapter } from '../../../src/core/adapters/TiingoAdapter.js';
+import { TiingoAdapter } from '../../../../src/core/adapters/storage/TiingoAdapter.js';
 
 describe('TiingoAdapter', () => {
   const adapter = new TiingoAdapter();

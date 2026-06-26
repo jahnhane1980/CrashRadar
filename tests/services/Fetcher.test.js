@@ -103,7 +103,7 @@ describe('Fetcher Class', () => {
     const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
     await fetcher.runAllTasks();
     
-    expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[YahooFinance] Error fetching AAPL:'), 'Yahoo error');
+    expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[PackageFetcher Error] Task t1:'), 'Yahoo error');
     expect(mockStorage.insertDataAndState).not.toHaveBeenCalled();
   });
 
@@ -418,6 +418,41 @@ describe('Fetcher Class', () => {
     const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
     await fetcher.runAllTasks();
     expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[Storage] Error inserting data for task t_err7:'), 'DB Error DR');
+  });
+
+  it('sollte bei einem Netzwerk-Fehler in fetchViaHttp den Task komplett abbrechen', async () => {
+    mockConfig.tasks.push({ id: "t_err8", provider: "TimeCursor", endpoint: "/time", params: {}, dbKey: "db.time" });
+    mockRequestManager.fetch.mockRejectedValue(new Error('Network Crash'));
+    const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
+    await fetcher.runAllTasks();
+    expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[Error] Task t_err8 failed entirely:'), 'Network Crash');
+    expect(mockStorage.insertDataAndState).not.toHaveBeenCalled();
+  });
+
+  it('sollte einen Fehler werfen bei unbekannter Pagination-Strategie', async () => {
+    mockConfig.providers.TimeCursor.pagination.strategy = 'alien-strategy';
+    mockConfig.tasks.push({ id: "t_alien", provider: "TimeCursor", endpoint: "/time", params: {}, dbKey: "db.time" });
+    const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
+    await fetcher.runAllTasks();
+    expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[Error] Task t_alien failed entirely:'), 'Unknown pagination strategy: alien-strategy');
+  });
+
+  it('sollte Fehler abfangen und loggen, wenn insertDataAndState in Package Tasks fehlschlägt', async () => {
+    mockConfig.tasks.push({ id: "t_pkg_err", provider: "YahooFinance", ticker: "AAPL", method: "historical" });
+    const mockData = { quotes: [{ date: '2020', close: 100 }] };
+    mockHistorical.mockResolvedValueOnce(mockData);
+    mockStorage.insertDataAndState.mockRejectedValue(new Error('DB Failed on Package'));
+    
+    const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
+    await fetcher.runAllTasks();
+    
+    expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[PackageFetcher Error] Task t_pkg_err:'), 'DB Failed on Package');
+  });
+
+  it('sollte extractData mit .data oder .observations Arrays korrekt verarbeiten', () => {
+    const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
+    expect(fetcher.extractData({ data: [1, 2] }, {})).toEqual([1, 2]);
+    expect(fetcher.extractData({ observations: [3, 4] }, {})).toEqual([3, 4]);
   });
 });
 

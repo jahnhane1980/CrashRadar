@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { YahooFinanceAdapter } from '../../../src/core/adapters/YahooFinanceAdapter.js';
+import { YahooFinanceAdapter } from '../../../../src/core/adapters/storage/YahooFinanceAdapter.js';
 
 describe('YahooFinanceAdapter', () => {
   const adapter = new YahooFinanceAdapter();

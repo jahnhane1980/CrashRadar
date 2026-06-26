@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { FiscalDataAdapter } from '../../../src/core/adapters/FiscalDataAdapter.js';
+import { FiscalDataAdapter } from '../../../../src/core/adapters/storage/FiscalDataAdapter.js';
 
 describe('FiscalDataAdapter', () => {
   const adapter = new FiscalDataAdapter();

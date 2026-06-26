@@ -1,5 +1,5 @@
 import mysql from 'mysql2/promise';
-import { StorageAdapterFactory } from './adapters/StorageAdapterFactory.js';
+import { StorageAdapterFactory } from './adapters/storage/StorageAdapterFactory.js';
 
 export class Storage {
   constructor(config = {}) {

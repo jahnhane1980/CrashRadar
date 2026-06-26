@@ -45,28 +45,27 @@ export class RequestManager {
         return response;
       } catch (error) {
         console.error(`[RequestManager] Final error fetching ${url}:`, error.message);
-        return [];
+        throw error;
       }
     };
 
     // Die eigentliche Ausführung in die Queue einhängen
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       this.queues[providerId] = this.queues[providerId].then(async () => {
         try {
           const result = await execute();
           resolve(result);
         } catch (e) {
-          /* v8 ignore next */
-          resolve([]); // Fallback
+          reject(e);
         }
         
         // Proaktives Throttling (Warten) vor dem nächsten Request
         if (delayMs > 0) {
           await new Promise(r => setTimeout(r, delayMs));
         }
-      }).catch(() => {
-        /* v8 ignore next */
-        resolve([]);
+      }).catch(e => {
+        // Verhindere, dass die Queue durch einen unhandled rejection komplett stoppt
+        console.error(`[RequestManager Queue Error] ${e.message}`);
       });
     });
   }

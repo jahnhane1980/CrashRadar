@@ -50,16 +50,14 @@ describe('RequestManager Class', () => {
     expect(kyExtendMock.get).toHaveBeenCalledWith('http://fast.com');
   });
 
-  it('sollte Fehler abfangen und ein leeres Array zurückgeben (z.B. 404, 429 nach allen Retries)', async () => {
+  it('sollte Fehler werfen (z.B. 404, 429 nach allen Retries)', async () => {
     const manager = new RequestManager(config);
     const kyExtendMock = ky.extend();
     kyExtendMock.get.mockReturnValue({
       json: vi.fn().mockRejectedValue(new Error('Not Found'))
     });
     
-    const result = await manager.fetch('http://error.com', 'FastProv');
-    
-    expect(result).toEqual([]);
+    await expect(manager.fetch('http://error.com', 'FastProv')).rejects.toThrow('Not Found');
     expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[RequestManager] Final error fetching http://error.com:'), 'Not Found');
   });
 
@@ -99,18 +97,66 @@ describe('RequestManager Class', () => {
     expect(console.warn).toHaveBeenCalledWith(expect.stringContaining('[RequestManager] Retrying (1) http://retry.com due to Timeout'));
   });
 
-  it('sollte die Promise-Chain nicht abbrechen, wenn eine unerwartete Exception auftritt', async () => {
+  it('sollte die Queue nicht blockieren, wenn eine unerwartete Exception auftritt', async () => {
     const manager = new RequestManager(config);
     const kyExtendMock = ky.extend();
     
-    // Simulieren, dass die Methode komplett crasht (throw anstatt Promise-Reject)
-    kyExtendMock.get.mockImplementation(() => { throw new Error('Hard Crash') });
+    // Erste Anfrage crasht hart
+    kyExtendMock.get.mockImplementationOnce(() => { throw new Error('Hard Crash') });
+    // Zweite Anfrage funktioniert
+    kyExtendMock.get.mockImplementationOnce(() => ({ json: vi.fn().mockResolvedValue({ ok: true }) }));
     
-    const result1 = await manager.fetch('http://crash.com', 'FastProv');
+    await expect(manager.fetch('http://crash.com', 'FastProv')).rejects.toThrow('Hard Crash');
+    
     const result2 = await manager.fetch('http://crash.com/2', 'FastProv');
     
-    expect(result1).toEqual([]);
-    expect(result2).toEqual([]);
-    expect(console.error).toHaveBeenCalledTimes(2);
+    expect(result2).toEqual({ ok: true });
+    expect(console.error).toHaveBeenCalledTimes(1);
+  });
+
+  it('sollte Anfragen ohne Absturz ausführen, wenn Config oder Provider fehlen', async () => {
+    const emptyManager = new RequestManager(null);
+    const kyExtendMock = ky.extend();
+    kyExtendMock.get.mockReturnValue({ json: vi.fn().mockResolvedValue({ default: true }) });
+    
+    const result = await emptyManager.fetch('http://noconfig.com', 'UnknownProv');
+    expect(result).toEqual({ default: true });
+    
+    // Default Retry Limit von 3 sollte verwendet werden
+    const extendArgs = ky.extend.mock.calls[ky.extend.mock.calls.length - 1][0];
+    expect(extendArgs.retry.limit).toBe(3);
+  });
+
+  it('sollte searchParams im Konsolen-Log korrekt anhängen', async () => {
+    const manager = new RequestManager(config);
+    const kyExtendMock = ky.extend();
+    kyExtendMock.get.mockReturnValue({ json: vi.fn().mockResolvedValue({ ok: true }) });
+    
+    const consoleLogSpy = vi.spyOn(console, 'log');
+    const searchParams = new URLSearchParams({ test: '123', abc: 'xyz' });
+    
+    await manager.fetch('http://log.com', 'FastProv', { searchParams });
+    
+    expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('[HTTP GET] http://log.com?test=123&abc=xyz'));
+  });
+
+  it('sollte delayMs auch nach einem Error abwarten, um die Queue nicht zu überfluten', async () => {
+    const manager = new RequestManager(config);
+    const kyExtendMock = ky.extend();
+    
+    // Die erste Anfrage crasht, ist aber für einen SlowProvider (100ms Delay)
+    kyExtendMock.get.mockReturnValueOnce({ json: vi.fn().mockRejectedValue(new Error('Slow Crash')) });
+    kyExtendMock.get.mockReturnValueOnce({ json: vi.fn().mockResolvedValue({ ok: true }) });
+    
+    const start = Date.now();
+    const p1 = manager.fetch('http://slow-crash.com', 'SlowProv');
+    const p2 = manager.fetch('http://slow-crash.com/2', 'SlowProv');
+    
+    await expect(p1).rejects.toThrow('Slow Crash');
+    await p2;
+    const end = Date.now();
+    
+    // Auch wenn p1 fehlschlägt, MUSS das Throttling (100ms) für p2 greifen
+    expect(end - start).toBeGreaterThanOrEqual(95);
   });
 });

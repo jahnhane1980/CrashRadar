@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { BinanceAdapter } from '../../../src/core/adapters/BinanceAdapter.js';
+import { BinanceAdapter } from '../../../../src/core/adapters/storage/BinanceAdapter.js';
 
 describe('BinanceAdapter', () => {
   const adapter = new BinanceAdapter();

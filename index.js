@@ -2,7 +2,7 @@ import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { program } from 'commander';
+import { Command } from 'commander';
 import { StandardRunner } from './src/runners/StandardRunner.js';
 import { TestRunner } from './src/runners/TestRunner.js';
 import { FinanceExpert } from './src/services/FinanceExpert.js';
@@ -30,14 +30,18 @@ process.on('SIGTERM', () => {
   process.exit(0);
 });
 
-program
-  .name('fetcher')
-  .description('Database Fetcher Application');
+export async function runCLI(argv) {
+  const program = new Command();
+  
+  program
+    .name('fetcher')
+    .description('Database Fetcher Application');
 
-program
-  .option('-t, --test', 'Run the fetcher in test mode')
-  .option('-c, --check-indikator', 'Run the macro financial indicator analysis')
-  .action(async (options) => {
+  program
+    .option('-t, --test', 'Run the fetcher in test mode')
+    .option('-c, --check-indikator', 'Run the macro financial indicator analysis');
+
+  program.action(async (options) => {
     try {
       if (options.checkIndikator) {
         console.log('[Analysis] Lade historische Daten aus lokaler Datenbank...');
@@ -61,7 +65,7 @@ program
         }
 
         await expert.close();
-        process.exit(0);
+        return; // Statt process.exit(0) für bessere Testbarkeit
       }
 
       const isTest = options.test;
@@ -90,8 +94,18 @@ program
       await activeRunner.run();
     } catch (error) {
       console.error(error);
-      process.exit(1);
+      throw error; // Statt process.exit(1) werfen wir den Fehler weiter
     }
   });
 
-program.parse(process.argv);
+  await program.parseAsync(argv);
+}
+
+// Nur ausführen, wenn die Datei direkt per "node index.js" gestartet wird
+if (process.argv[1] === __filename) {
+  runCLI(process.argv).then(() => {
+    process.exit(0);
+  }).catch((err) => {
+    process.exit(1);
+  });
+}
