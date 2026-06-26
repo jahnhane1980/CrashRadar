@@ -39,6 +39,12 @@ describe('StandardRunner', () => {
       expect(mockStorage.close).toHaveBeenCalled();
     });
 
+    it('should fallback to 2015-01-01 if globalStartDate is missing', async () => {
+      runner.config = {};
+      await runner.run();
+      expect(mockMwBuilder.build).toHaveBeenCalledWith('2015-01-01');
+    });
+
     it('should catch error, log it, exit, and cleanup', async () => {
       const error = new Error('Test Error');
       mockFetcher.runAllTasks.mockRejectedValue(error);

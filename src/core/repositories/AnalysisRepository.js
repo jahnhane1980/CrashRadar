@@ -7,6 +7,7 @@ export const TABLES = Object.freeze({
   FRED: 'econ_fred',
   TGA: 'fiscal_tga',
   MATURITY_WALL: 'macro_maturity_wall',
+  FUND_SEC: 'fund_sec_edgar',
 });
 
 export const SYMBOLS = Object.freeze({
@@ -19,6 +20,8 @@ export const SYMBOLS = Object.freeze({
   COPPER: 'HG=F',
   VIX: '^VIX',
   HYG: 'HYG',
+  BIZD: 'BIZD',
+  BKLN: 'BKLN',
 });
 
 export const FRED_SERIES = Object.freeze({
@@ -72,8 +75,8 @@ export class AnalysisRepository {
     const [yahoo] = await this.pool.query(`
       SELECT symbol, record_date as date, close 
       FROM ${TABLES.YAHOO} 
-      WHERE symbol IN (?, ?, ?, ?, ?) AND record_date >= ?
-    `, [SYMBOLS.DXY, SYMBOLS.GOLD, SYMBOLS.COPPER, SYMBOLS.VIX, SYMBOLS.HYG, startDate]);
+      WHERE symbol IN (?, ?, ?, ?, ?, ?, ?) AND record_date >= ?
+    `, [SYMBOLS.DXY, SYMBOLS.GOLD, SYMBOLS.COPPER, SYMBOLS.VIX, SYMBOLS.HYG, SYMBOLS.BIZD, SYMBOLS.BKLN, startDate]);
 
     const [fred] = await this.pool.query(`
       SELECT series_id, observation_date as date, value 
@@ -93,7 +96,13 @@ export class AnalysisRepository {
       WHERE record_date >= ?
     `, [startDate]);
 
-    return { btc, tiingo, yahoo, fred, tga, mw };
+    const [sec] = await this.pool.query(`
+      SELECT ticker, record_date as date, interest_expense, total_assets, net_income
+      FROM ${TABLES.FUND_SEC}
+      WHERE record_date >= ?
+    `, [startDate]);
+
+    return { btc, tiingo, yahoo, fred, tga, mw, sec };
   }
 
   async getInitialState(startDate) {
@@ -113,6 +122,8 @@ export class AnalysisRepository {
     const initialCopper = await getLastBefore(TABLES.YAHOO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.COPPER]);
     const initialVix = await getLastBefore(TABLES.YAHOO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.VIX]);
     const initialHyg = await getLastBefore(TABLES.YAHOO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.HYG]);
+    const initialBizd = await getLastBefore(TABLES.YAHOO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.BIZD]);
+    const initialBkln = await getLastBefore(TABLES.YAHOO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.BKLN]);
 
     const getFredBefore = async (seriesId) => await getLastBefore(TABLES.FRED, 'observation_date', 'value', "AND series_id = ?", [seriesId]);
 
@@ -135,14 +146,21 @@ export class AnalysisRepository {
       return null;
     };
 
+    const initialArccInterest = await getLastBefore(TABLES.FUND_SEC, 'record_date', 'interest_expense', "AND ticker = ?", ['ARCC']);
+    const initialArccAssets = await getLastBefore(TABLES.FUND_SEC, 'record_date', 'total_assets', "AND ticker = ?", ['ARCC']);
+    const initialArccIncome = await getLastBefore(TABLES.FUND_SEC, 'record_date', 'net_income', "AND ticker = ?", ['ARCC']);
+
     return {
       BTC: initialBtc, SPY: initialSpy, QQQ: initialQqq, TLT: initialTlt, DXY: initialDxy, Gold: initialGold, Copper: initialCopper,
-      VIX: initialVix, HYG: initialHyg,
+      VIX: initialVix, HYG: initialHyg, BIZD: initialBizd, BKLN: initialBkln,
       WALCL: await parseFred(FRED_SERIES.WALCL, true), TGA: initialTga, RRPONTSYD: await parseFred(FRED_SERIES.RRPONTSYD, false),
       DFII10: await parseFred(FRED_SERIES.DFII10, false), NFCI: await parseFred(FRED_SERIES.NFCI, false), TOTRESNS: await parseFred(FRED_SERIES.TOTRESNS, false), BORROW: await parseFred(FRED_SERIES.BORROW, false), T10Y2Y: await parseFred(FRED_SERIES.T10Y2Y, false),
       ECBASSETSW: await parseFred(FRED_SERIES.ECBASSETSW, false), M2SL: await parseFred(FRED_SERIES.M2SL, false), PERMIT: await parseFred(FRED_SERIES.PERMIT, false), UMCSENT: await parseFred(FRED_SERIES.UMCSENT, false),
       CP: await parseFred(FRED_SERIES.CP, false), ICSA: await parseFred(FRED_SERIES.ICSA, false), SAHMREALTIME: await parseFred(FRED_SERIES.SAHMREALTIME, false), T10YIE: await parseFred(FRED_SERIES.T10YIE, false), INDPRO: await parseFred(FRED_SERIES.INDPRO, false),
-      MaturityWall90d: initialMw
+      MaturityWall90d: initialMw,
+      ARCC_InterestExpense: initialArccInterest,
+      ARCC_TotalAssets: initialArccAssets,
+      ARCC_NetIncome: initialArccIncome
     };
   }
 }

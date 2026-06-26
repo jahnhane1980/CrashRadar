@@ -76,9 +76,10 @@ export class Fetcher {
           const timestamp = parseInt(lastDateRaw, 10);
           if (!isNaN(timestamp)) return timestamp + 1; // Nächste Millisekunde
         } else if (dateFormat === DATE_FORMATS.YYYY_MM_DD) {
-          const d = new Date(lastDateRaw);
+          // Strict string parsing to avoid Timezone offsets
+          const d = new Date(lastDateRaw + 'T00:00:00.000Z');
           if (!isNaN(d.getTime())) {
-            d.setUTCDate(d.getUTCDate() + 1); // Nächster Tag
+            d.setUTCDate(d.getUTCDate() + 1);
             return d.toISOString().split('T')[0];
           }
         }
@@ -88,10 +89,10 @@ export class Fetcher {
     // Fallback: Global oder Provider Override
     const fallbackStr = task.overrideStartDate || provider.overrideStartDate || this.config.globalStartDate || CONFIG_DEFAULTS.FALLBACK_START_DATE;
     if (dateFormat === DATE_FORMATS.UNIX_MS) {
-      const timestamp = new Date(fallbackStr).getTime();
+      const timestamp = new Date(fallbackStr + 'T00:00:00.000Z').getTime();
       return isNaN(timestamp) ? Date.now() : timestamp;
     } else if (dateFormat === DATE_FORMATS.YYYY_MM_DD) {
-      const d = new Date(fallbackStr);
+      const d = new Date(fallbackStr + 'T00:00:00.000Z');
       return isNaN(d.getTime()) ? CONFIG_DEFAULTS.FALLBACK_START_DATE : d.toISOString().split('T')[0];
     }
     return fallbackStr;
@@ -153,7 +154,7 @@ export class Fetcher {
     const endpoint = task.endpoint;
     const url = `${baseUrl}${endpoint}`;
     
-    let headers = {};
+    let headers = provider.headers ? { ...provider.headers } : {};
     let searchParams = new URLSearchParams(task.params);
     
     if (provider.auth) {
@@ -182,7 +183,22 @@ export class Fetcher {
       }
       if (allNewData.length > 0) {
         try {
-          await this.storage.insertDataAndState(task, allNewData, allNewData[allNewData.length - 1]);
+          const lastItem = allNewData[allNewData.length - 1];
+          // Cursor Extraktor: Verhindern, dass gigantische Payloads (wie SEC Edgar) 
+          // als Cursor gespeichert werden und die MySQL TEXT-Spalte (65KB Limit) sprengen.
+          let cursorToSave = {};
+          if (typeof lastItem === 'object' && lastItem !== null) {
+              const keysToKeep = ['date', 'record_date', 'observation_date', 'id', 'symbol', 'ticker', 'open_time'];
+              for (const k of keysToKeep) {
+                  if (lastItem[k] !== undefined) cursorToSave[k] = lastItem[k];
+              }
+              if (Object.keys(cursorToSave).length === 0) {
+                  cursorToSave = { updated: new Date().toISOString() };
+              }
+          } else {
+              cursorToSave = { updated: new Date().toISOString() };
+          }
+          await this.storage.insertDataAndState(task, allNewData, cursorToSave);
         } catch (e) {
           console.error(`[Storage] Error inserting data for task ${task.id}:`, e.message);
         }

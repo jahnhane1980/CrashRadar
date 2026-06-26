@@ -15,6 +15,8 @@ describe('IndicatorEngine', () => {
         VIX: 20,
         HYG: 100,
         Gold: 2000,
+        BIZD: 100,
+        BKLN: 100,
         ...overrides.assets
       },
       macroGroups: {
@@ -266,6 +268,139 @@ describe('IndicatorEngine', () => {
       timeline[34].assets.HYG = 98;
       const res = engine.indicators.find(i => i.name.includes('HYG')).evaluate(timeline);
       expect(res.status).toBe('WARNING');
+    });
+  });
+
+  describe('BIZD (Private Credit Stress)', () => {
+    it('sollte CRITICAL triggern bei perf <= -5.0%', () => {
+      const timeline = generateTimeline(35);
+      timeline[5].assets.BIZD = 100;
+      timeline[34].assets.BIZD = 94;
+      const res = engine.indicators.find(i => i.name.includes('BIZD')).evaluate(timeline);
+      expect(res.status).toBe('CRITICAL');
+    });
+
+    it('sollte WARNING triggern bei perf <= -2.5%', () => {
+      const timeline = generateTimeline(35);
+      timeline[5].assets.BIZD = 100;
+      timeline[34].assets.BIZD = 97;
+      const res = engine.indicators.find(i => i.name.includes('BIZD')).evaluate(timeline);
+      expect(res.status).toBe('WARNING');
+    });
+
+    it('sollte UNKNOWN abfangen wenn Daten fehlen', () => {
+      const timeline = generateTimeline(10);
+      const res = engine.indicators.find(i => i.name.includes('BIZD')).evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+    });
+  });
+
+  describe('BKLN (Floating Rate Stress)', () => {
+    it('sollte CRITICAL triggern bei perf <= -2.0%', () => {
+      const timeline = generateTimeline(35);
+      timeline[5].assets.BKLN = 100;
+      timeline[34].assets.BKLN = 97.5;
+      const res = engine.indicators.find(i => i.name.includes('BKLN')).evaluate(timeline);
+      expect(res.status).toBe('CRITICAL');
+    });
+
+    it('sollte WARNING triggern bei perf <= -1.0%', () => {
+      const timeline = generateTimeline(35);
+      timeline[5].assets.BKLN = 100;
+      timeline[34].assets.BKLN = 98.5;
+      const res = engine.indicators.find(i => i.name.includes('BKLN')).evaluate(timeline);
+      expect(res.status).toBe('WARNING');
+    });
+  });
+  describe('Schattenbanken Zinslast (ARCC)', () => {
+    it('sollte CRITICAL triggern bei >= 15% Wachstum', () => {
+      const timeline = generateTimeline(95);
+      timeline[5].macroGroups.Fundamentals = { ARCC_InterestExpense: 100000000 };
+      timeline[94].macroGroups.Fundamentals = { ARCC_InterestExpense: 120000000 }; // +20%
+      const res = engine.indicators.find(i => i.name.includes('ARCC')).evaluate(timeline);
+      expect(res.status).toBe('CRITICAL');
+    });
+
+    it('sollte WARNING triggern bei >= 5% Wachstum', () => {
+      const timeline = generateTimeline(95);
+      timeline[5].macroGroups.Fundamentals = { ARCC_InterestExpense: 100000000 };
+      timeline[94].macroGroups.Fundamentals = { ARCC_InterestExpense: 105000000 }; // +5%
+      const res = engine.indicators.find(i => i.name.includes('ARCC')).evaluate(timeline);
+      expect(res.status).toBe('WARNING');
+    });
+
+    it('sollte OK triggern bei < 5% Wachstum', () => {
+      const timeline = generateTimeline(95);
+      timeline[5].macroGroups.Fundamentals = { ARCC_InterestExpense: 100000000 };
+      timeline[94].macroGroups.Fundamentals = { ARCC_InterestExpense: 101000000 }; // +1%
+      const res = engine.indicators.find(i => i.name.includes('ARCC')).evaluate(timeline);
+      expect(res.status).toBe('OK');
+    });
+
+    it('sollte UNKNOWN sein, wenn keine Daten vorhanden', () => {
+      const timeline = generateTimeline(95);
+      // Keine Fundamentals gesetzt
+      const res = engine.indicators.find(i => i.name.includes('ARCC')).evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+    });
+  });
+
+  describe('getAlerts()', () => {
+    it('sollte null zurückgeben, wenn es keine Warnungen gibt', () => {
+      const timeline = generateTimeline(95); // alles OK
+      const alerts = engine.getAlerts(timeline);
+      expect(alerts).toBeNull();
+    });
+
+    it('sollte nur Warnungen aggregieren', () => {
+      const timeline = generateTimeline(95);
+      // Erzeuge ein WARNING
+      timeline[5].macroGroups.Fundamentals = { ARCC_InterestExpense: 100000000 };
+      timeline[94].macroGroups.Fundamentals = { ARCC_InterestExpense: 105000000 }; // +5%
+      
+      const alerts = engine.getAlerts(timeline);
+      expect(alerts).not.toBeNull();
+      expect(alerts.priority).toBe('high');
+      expect(alerts.message).toContain('WARNING: Schattenbanken Zinslast');
+      expect(alerts.message).not.toContain('CRITICAL');
+    });
+
+    it('sollte höchste Priorität (urgent) annehmen wenn es CRITICAL gibt', () => {
+      const timeline = generateTimeline(95);
+      // Erzeuge ein CRITICAL
+      timeline[94].macroGroups.BankingHealth.TotalReserves = 2000;
+      
+      const alerts = engine.getAlerts(timeline);
+      expect(alerts).not.toBeNull();
+      expect(alerts.priority).toBe('urgent');
+      expect(alerts.message).toContain('CRITICAL: Bankreserven');
+    });
+
+    it('sollte die Priorität bei einem zweiten Warning nicht überschreiben', () => {
+      const timeline = generateTimeline(95);
+      // Erzeuge zwei WARNINGS
+      timeline[94].macroGroups.BankingHealth.TotalReserves = 2900; // Warning 1
+      timeline[5].macroGroups.Fundamentals = { ARCC_InterestExpense: 100000000 };
+      timeline[94].macroGroups.Fundamentals = { ARCC_InterestExpense: 105000000 }; // Warning 2
+      
+      const alerts = engine.getAlerts(timeline);
+      expect(alerts).not.toBeNull();
+      expect(alerts.priority).toBe('high');
+      expect(alerts.message).toContain('WARNING: Bankreserven');
+      expect(alerts.message).toContain('WARNING: Schattenbanken Zinslast');
+    });
+  });
+
+  describe('generateReport()', () => {
+    it('sollte einen sauberen Text generieren ohne ANSI Farben', () => {
+      const timeline = generateTimeline(35);
+      // setze ein paar status values
+      timeline[34].macroGroups.BankingHealth.TotalReserves = 2900; // WARNING
+      const report = engine.generateReport(timeline, true);
+      
+      expect(report).toContain('[WARNING] Bankreserven');
+      expect(report).toContain('[OK] Sahm Rule');
+      expect(report).not.toContain('\x1b'); // Keine ANSI Escape codes
     });
   });
 });

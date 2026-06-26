@@ -23,8 +23,17 @@ export class FinanceExpert {
   async getDailyGroupedData(startDate) {
     if (!startDate) throw new Error("startDate is required");
 
+    // Memory Guard: Lade maximal 1.5 Jahre an Daten in den RAM, um OOM 
+    // bei sehr weit zurückliegenden globalStartDates (z.B. 1999) zu verhindern.
+    const d = new Date();
+    d.setFullYear(d.getFullYear() - 1);
+    d.setMonth(d.getMonth() - 6);
+    const limitDateStr = d.toISOString().split('T')[0];
+    
+    const actualStartDate = startDate < limitDateStr ? limitDateStr : startDate;
+
     // 1. Raw-Daten holen
-    const rawData = await this.repo.getAllRawData(startDate);
+    const rawData = await this.repo.getAllRawData(actualStartDate);
 
     // 2. Timeline aufbauen
     const timeline = TimeSeriesService.buildTimeline(rawData);
@@ -57,7 +66,9 @@ export class FinanceExpert {
           Gold: state.Gold,
           Copper: state.Copper,
           VIX: state.VIX,
-          HYG: state.HYG
+          HYG: state.HYG,
+          BIZD: state.BIZD,
+          BKLN: state.BKLN
         },
         macroGroups: {
           NetLiquidity: {
@@ -91,6 +102,11 @@ export class FinanceExpert {
           Contemporaneous: {
             IndustrialProduction: state.INDPRO,
             InitialClaims: state.ICSA
+          },
+          Fundamentals: {
+            ARCC_InterestExpense: state.ARCC_InterestExpense,
+            ARCC_TotalAssets: state.ARCC_TotalAssets,
+            ARCC_NetIncome: state.ARCC_NetIncome
           }
         }
       });

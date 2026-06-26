@@ -35,6 +35,7 @@ vi.mock('../src/analysis/IndicatorEngine.js', () => {
     IndicatorEngine: vi.fn(function() {
       this.run = vi.fn();
       this.generateReport = vi.fn().mockReturnValue('report');
+      this.getAlerts = vi.fn().mockReturnValue({ priority: 'high', message: 'alert' });
     })
   };
 });
@@ -49,19 +50,19 @@ vi.mock('../src/services/NtfyService.js', () => {
 
 // Zusätzliche Mocks, damit absolut kein DB-Pool oder HTTP-Manager initialisiert wird
 vi.mock('../src/core/Storage.js', () => ({
-  Storage: vi.fn().mockImplementation(() => ({}))
+  Storage: vi.fn(function() { return {}; })
 }));
 
 vi.mock('../src/core/RequestManager.js', () => ({
-  RequestManager: vi.fn().mockImplementation(() => ({}))
+  RequestManager: vi.fn(function() { return {}; })
 }));
 
 vi.mock('../src/services/Fetcher.js', () => ({
-  Fetcher: vi.fn().mockImplementation(() => ({}))
+  Fetcher: vi.fn(function() { return {}; })
 }));
 
 vi.mock('../src/services/MaturityWallBuilder.js', () => ({
-  MaturityWallBuilder: vi.fn().mockImplementation(() => ({}))
+  MaturityWallBuilder: vi.fn(function() { return {}; })
 }));
 
 // Avoid executing fs operations completely
@@ -69,7 +70,8 @@ vi.mock('fs', () => {
   return {
     default: {
       existsSync: vi.fn().mockReturnValue(true),
-      readFileSync: vi.fn().mockReturnValue(JSON.stringify({ providers: {}, tasks: [] }))
+      readFileSync: vi.fn().mockReturnValue(JSON.stringify({ providers: {}, tasks: [] })),
+      writeFileSync: vi.fn()
     }
   };
 });
@@ -131,7 +133,7 @@ describe('CLI Entrypoint (index.js)', () => {
     process.env.DATABASE_URL = 'mysql://prod';
     process.env.NTFY_TOPIC = 'testtopic';
     await runCLI(['node', 'index.js', '-c']);
-    expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Sende Ntfy Alert...'));
+    expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Sende Ntfy Push-Alarm...'));
   });
 
   it('sollte Ntfy Alert überspringen, wenn kein Topic gesetzt ist', async () => {

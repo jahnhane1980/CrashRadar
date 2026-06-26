@@ -124,10 +124,13 @@ Diese Indikatoren drehen, bevor der Aktienmarkt fällt. Sie warnen uns, Gewinne 
 * **Zinsstrukturkurve (10Y-2Y Spread):** Ein rapider Anstieg (Un-Inverting) nach langer inverser Phase läutet das Ende des Bullenmarktes ein.
 * **Chicago Fed Stress Index (NFCI):** Ein stetiger Anstieg in Richtung der Null-Linie zeigt an, dass Risse im Finanzsystem entstehen.
 * **Sahm Rule (Arbeitsmarkt):** Löst aus (>0.50), wenn eine tiefgreifende Wirtschaftsrezession anrollt.
+* **Schattenbanken Zinslast (ARCC - Fundamental):** BDCs (Business Development Companies) vergeben hochverzinsliche Kredite an mittelständische Unternehmen. Ares Capital (ARCC) dient als der ultimative "Bellwether" (Leitwolf) der Branche. Wenn die Zinsausgaben von ARCC im Quartalsbericht (SEC EDGAR) plötzlich rasant steigen (z.B. >15% QoQ), zeigt dies systemischen Kreditstress an, noch bevor kleinere BDCs umkippen. Wir pflegen *keine* Liste aller BDCs, da ARCC als Proxy (mit über 13 Mrd. $ Marktkapitalisierung) ausreicht, um das absolute Fundament der Schattenbanken auf Risse zu prüfen.
 
 #### 2. Akut-Indikatoren / Trigger (Contemporaneous) - *Markieren den Startschuss*
 Diese Metriken stürzen ab exakt am gleichen Tag wie der S&P 500 und dienen als harter Verkaufsauslöser.
 * **High Yield Spreads (Proxy: HYG ETF):** Sobald der Crash losgeht, wird der HYG ETF gnadenlos abverkauft. Fällt der HYG gemeinsam mit dem S&P 500, brennt der Kreditmarkt.
+* **Private Credit Stress (BIZD ETF):** Dieser ETF bündelt den BDC-Sektor. Anstatt hunderte illiquide Kredite oder Einzelaktien zu tracken, fungiert BIZD als unser "Fieberthermometer". Wenn das "Smart Money" aus Private Credit flieht, fällt BIZD massiv. (Teil des hybriden Ansatzes in Kombination mit ARCC).
+* **Floating Rate Stress (BKLN ETF):** Verfolgt variabel verzinsliche Kredite (Leveraged Loans). Wenn Unternehmen die Zinslast nicht mehr tragen können und Kredite platzen, crasht BKLN. Liefert ein extrem schnelles, unmanipuliertes Preissignal.
 
 #### 3. Boden-Indikatoren (Trough) - *Markieren das Ende des Crashes*
 Diese Metriken geben uns das harte Signal: "Das Schlimmste ist vorbei, jetzt Aktien kaufen!"

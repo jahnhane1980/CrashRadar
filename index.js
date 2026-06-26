@@ -54,12 +54,29 @@ export async function runCLI(argv) {
         // 1. Ausgabe im Terminal (mit Farben)
         engine.run(groupedData);
 
-        // 2. Ntfy Alerting (ohne Farben)
+        // 2. Ntfy Alerting (nur Warnungen & Kritisch)
         if (process.env.NTFY_TOPIC) {
-          console.log('\n[Alerting] Sende Ntfy Alert...');
-          const ntfy = new NtfyService(process.env.NTFY_TOPIC);
-          const cleanReport = engine.generateReport(groupedData, true);
-          await ntfy.send('Makro-Finanz Analyse', cleanReport);
+          const alertHistoryPath = path.resolve(__dirname, 'config/alert_history.json');
+          let alertHistory = {};
+          if (fs.existsSync(alertHistoryPath)) {
+            try {
+              alertHistory = JSON.parse(fs.readFileSync(alertHistoryPath, 'utf8'));
+            } catch (e) {
+              console.warn("[Alerting] Konnte alert_history.json nicht parsen, starte neu.");
+            }
+          }
+
+          const alerts = engine.getAlerts(groupedData, alertHistory);
+          if (alerts) {
+            console.log('\n[Alerting] Sende Ntfy Push-Alarm...');
+            const ntfy = new NtfyService(process.env.NTFY_TOPIC);
+            await ntfy.send('CrashRadar Alarm!', alerts.message, alerts.priority, 'warning');
+            
+            // History speichern (Debouncing greift)
+            fs.writeFileSync(alertHistoryPath, JSON.stringify(alerts.updatedHistory, null, 2), 'utf8');
+          } else {
+            console.log('\n[Alerting] Keine Warnungen. Überspringe Ntfy Push (alles im grünen Bereich oder bereits benachrichtigt).');
+          }
         } else {
           console.log('\n[Alerting] NTFY_TOPIC nicht gesetzt. Überspringe Ntfy Push.');
         }

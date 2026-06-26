@@ -3,6 +3,7 @@ import { TiingoAdapter } from './TiingoAdapter.js';
 import { FredAdapter } from './FredAdapter.js';
 import { FiscalDataAdapter } from './FiscalDataAdapter.js';
 import { YahooFinanceAdapter } from './YahooFinanceAdapter.js';
+import { SecEdgarAdapter } from './SecEdgarAdapter.js';
 
 const adapters = {
   'Binance': new BinanceAdapter(),
@@ -10,6 +11,7 @@ const adapters = {
   'FRED': new FredAdapter(),
   'FiscalData': new FiscalDataAdapter(),
   'YahooFinance': new YahooFinanceAdapter(),
+  'SecEdgar': new SecEdgarAdapter(),
 };
 
 export class StorageAdapterFactory {

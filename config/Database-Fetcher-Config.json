@@ -82,6 +82,14 @@
         "dateFormat": "YYYY-MM-DD"
       },
       "responseExtractPath": "quotes"
+    },
+    "SecEdgar": {
+      "type": "http",
+      "baseUrl": "https://data.sec.gov/api/xbrl",
+      "auth": null,
+      "headers": {
+        "User-Agent": "CrashRadar/1.0 (research@example.com)"
+      }
     }
   },
   "tasks": [
@@ -262,6 +270,20 @@
       "options": {}
     },
     {
+      "id": "yahoo_bizd",
+      "provider": "YahooFinance",
+      "ticker": "BIZD",
+      "method": "chart",
+      "options": {}
+    },
+    {
+      "id": "yahoo_bkln",
+      "provider": "YahooFinance",
+      "ticker": "BKLN",
+      "method": "chart",
+      "options": {}
+    },
+    {
       "id": "fred_ecbassetsw",
       "provider": "FRED",
       "endpoint": "/fred/series/observations",
@@ -402,6 +424,13 @@
         "series_id": "A091RC1Q027SBEA",
         "file_type": "json"
       }
+    },
+    {
+      "id": "sec_edgar_arcc",
+      "provider": "SecEdgar",
+      "ticker": "ARCC",
+      "endpoint": "/companyfacts/CIK0001287750.json",
+      "params": {}
     }
   ]
 }

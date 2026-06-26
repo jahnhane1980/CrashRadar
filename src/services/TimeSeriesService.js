@@ -18,6 +18,8 @@ export class TimeSeriesService {
       if (r.symbol === SYMBOLS.COPPER) addToTimeline(r.date, 'Copper', r.close);
       if (r.symbol === SYMBOLS.VIX) addToTimeline(r.date, 'VIX', r.close);
       if (r.symbol === SYMBOLS.HYG) addToTimeline(r.date, 'HYG', r.close);
+      if (r.symbol === SYMBOLS.BIZD) addToTimeline(r.date, 'BIZD', r.close);
+      if (r.symbol === SYMBOLS.BKLN) addToTimeline(r.date, 'BKLN', r.close);
     });
     
     tga.forEach(r => {
@@ -41,6 +43,14 @@ export class TimeSeriesService {
         addToTimeline(r.date, r.series_id, numVal);
       }
     });
+
+    if (rawData.sec) {
+      rawData.sec.forEach(r => {
+        if (r.interest_expense !== null) addToTimeline(r.date, `${r.ticker}_InterestExpense`, Number(r.interest_expense));
+        if (r.total_assets !== null) addToTimeline(r.date, `${r.ticker}_TotalAssets`, Number(r.total_assets));
+        if (r.net_income !== null) addToTimeline(r.date, `${r.ticker}_NetIncome`, Number(r.net_income));
+      });
+    }
 
     return timeline;
   }

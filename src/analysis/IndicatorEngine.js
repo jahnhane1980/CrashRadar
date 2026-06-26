@@ -16,7 +16,13 @@ export class IndicatorEngine {
       VIX_WARNING: 35,
       VIX_CRUSH_PCT: 0.8,
       VIX_CRUSH_WARNING_PCT: 0.85,
-      GOLD_BREAKOUT_PCT: 1.02
+      GOLD_BREAKOUT_PCT: 1.02,
+      BIZD_CRITICAL: -5.0,
+      BIZD_WARNING: -2.5,
+      BKLN_CRITICAL: -2.0,
+      BKLN_WARNING: -1.0,
+      ARCC_INTEREST_GROWTH_CRITICAL: 15.0,
+      ARCC_INTEREST_GROWTH_WARNING: 5.0
     };
 
     this.indicators = [
@@ -107,6 +113,28 @@ export class IndicatorEngine {
           return { status: 'OK', value: current.toFixed(2), message: 'Keine Rezession im Gange.' };
         }
       },
+      {
+        name: 'Schattenbanken Zinslast (ARCC)',
+        category: 'LEADING',
+        evaluate: (timeline) => {
+          if (timeline.length < 90) return { status: 'UNKNOWN', message: 'Zu wenig Daten (< 90 Tage)' };
+          const currentDay = timeline[timeline.length - 1];
+          const pastDay = timeline[timeline.length - 90];
+          
+          const currentInterest = currentDay.macroGroups.Fundamentals?.ARCC_InterestExpense;
+          const pastInterest = pastDay.macroGroups.Fundamentals?.ARCC_InterestExpense;
+          
+          if (!currentInterest || !pastInterest) return { status: 'UNKNOWN', message: 'Keine Fundamentaldaten' };
+          
+          const growth = ((currentInterest - pastInterest) / pastInterest) * 100;
+          if (growth >= THRESHOLDS.ARCC_INTEREST_GROWTH_CRITICAL) {
+            return { status: 'CRITICAL', value: `+${growth.toFixed(1)}%`, message: `Zinslast der BDCs explodiert! (>=${THRESHOLDS.ARCC_INTEREST_GROWTH_CRITICAL}% QoQ). Kreditausfälle drohen.` };
+          } else if (growth >= THRESHOLDS.ARCC_INTEREST_GROWTH_WARNING) {
+            return { status: 'WARNING', value: `+${growth.toFixed(1)}%`, message: 'Zinsbelastung der Schattenbanken steigt deutlich.' };
+          }
+          return { status: 'OK', value: (growth > 0 ? '+' : '') + growth.toFixed(1) + '%', message: 'Zinslast unter Kontrolle.' };
+        }
+      },
 
       // 🟡 CONTEMPORANEOUS (Akut)
       {
@@ -163,6 +191,42 @@ export class IndicatorEngine {
             return { status: 'WARNING', value: `${perf.toFixed(1)}%`, message: 'Kreditmarkt zeigt Schwäche.' };
           }
           return { status: 'OK', value: `${perf.toFixed(1)}%`, message: 'Kreditmarkt gesund.' };
+        }
+      },
+      {
+        name: 'Private Credit Stress (BIZD)',
+        category: 'TRIGGER',
+        evaluate: (timeline) => {
+          if (timeline.length < 30) return { status: 'UNKNOWN', message: 'Zu wenig Daten (< 30 Tage)' };
+          const current = timeline[timeline.length - 1].assets.BIZD;
+          const past30 = timeline[timeline.length - 30].assets.BIZD;
+          if (current === null || past30 === null) return { status: 'UNKNOWN', message: 'Keine Daten' };
+          
+          const perf = ((current - past30) / past30) * 100;
+          if (perf <= THRESHOLDS.BIZD_CRITICAL) {
+            return { status: 'CRITICAL', value: `${perf.toFixed(1)}%`, message: `Smart Money Exit! BDC Sektor bricht ein (<=${THRESHOLDS.BIZD_CRITICAL}% in 30d).` };
+          } else if (perf <= THRESHOLDS.BIZD_WARNING) {
+            return { status: 'WARNING', value: `${perf.toFixed(1)}%`, message: 'Schattenbanken unter Druck.' };
+          }
+          return { status: 'OK', value: `${perf.toFixed(1)}%`, message: 'Private Credit Sektor stabil.' };
+        }
+      },
+      {
+        name: 'Floating Rate Stress (BKLN)',
+        category: 'TRIGGER',
+        evaluate: (timeline) => {
+          if (timeline.length < 30) return { status: 'UNKNOWN', message: 'Zu wenig Daten (< 30 Tage)' };
+          const current = timeline[timeline.length - 1].assets.BKLN;
+          const past30 = timeline[timeline.length - 30].assets.BKLN;
+          if (current === null || past30 === null) return { status: 'UNKNOWN', message: 'Keine Daten' };
+          
+          const perf = ((current - past30) / past30) * 100;
+          if (perf <= THRESHOLDS.BKLN_CRITICAL) {
+            return { status: 'CRITICAL', value: `${perf.toFixed(1)}%`, message: `Leveraged Loans crashen (<=${THRESHOLDS.BKLN_CRITICAL}% in 30d). Zinslast erdrückt Kreditnehmer!` };
+          } else if (perf <= THRESHOLDS.BKLN_WARNING) {
+            return { status: 'WARNING', value: `${perf.toFixed(1)}%`, message: 'Schwäche bei variabel verzinslichen Firmenkrediten.' };
+          }
+          return { status: 'OK', value: `${perf.toFixed(1)}%`, message: 'Leveraged Loans stabil.' };
         }
       },
 
@@ -275,5 +339,46 @@ export class IndicatorEngine {
     const report = this.generateReport(groupedData, false);
     // Wir entfernen das letzte \n vom report, da console.log eh eins anhängt
     console.log('\n' + report.trimEnd());
+  }
+
+  getAlerts(groupedData, alertHistory = {}, debounceDays = 14) {
+    if (!groupedData || groupedData.length === 0) return null;
+    
+    let highestPriority = 'default';
+    const alerts = [];
+    const now = Date.now();
+    const debounceMs = debounceDays * 24 * 60 * 60 * 1000;
+
+    this.indicators.forEach(ind => {
+      const result = ind.evaluate(groupedData);
+      if (result.status === 'CRITICAL' || result.status === 'WARNING') {
+        
+        // Debounce-Check: Wurde für diesen Indikator (mit diesem Status) in letzter Zeit schon gewarnt?
+        const historyKey = `${ind.name}_${result.status}`;
+        const lastSent = alertHistory[historyKey];
+        if (lastSent && (now - lastSent) < debounceMs) {
+            return; // Zu früh, überspringen (Spam-Schutz)
+        }
+
+        // Wir merken uns, dass wir ihn jetzt (bzw. gleich) senden
+        alertHistory[historyKey] = now;
+
+        if (result.status === 'CRITICAL') {
+          highestPriority = 'urgent'; // Ntfy max priority
+          alerts.push(`🚨 CRITICAL: ${ind.name} - ${result.message} (${result.value})`);
+        } else if (result.status === 'WARNING') {
+          if (highestPriority === 'default') highestPriority = 'high';
+          alerts.push(`⚠️ WARNING: ${ind.name} - ${result.message} (${result.value})`);
+        }
+      }
+    });
+
+    if (alerts.length === 0) return null;
+
+    return {
+      priority: highestPriority,
+      message: alerts.join('\n\n'),
+      updatedHistory: alertHistory
+    };
   }
 }

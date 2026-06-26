@@ -454,5 +454,37 @@ describe('Fetcher Class', () => {
     expect(fetcher.extractData({ data: [1, 2] }, {})).toEqual([1, 2]);
     expect(fetcher.extractData({ observations: [3, 4] }, {})).toEqual([3, 4]);
   });
+
+  it('sollte bei HTTP auth type QUERY den Parameter in searchParams setzen', async () => {
+    mockConfig.providers.QueryAuth = {
+      type: "http", baseUrl: "http://query.com",
+      auth: { type: "query", key: "apiKey", envVar: "TEST_KEY" }
+    };
+    mockConfig.tasks.push({ id: "t_query_auth", provider: "QueryAuth", endpoint: "/data", params: {} });
+    mockRequestManager.fetch.mockResolvedValue([{ id: 1 }]);
+    
+    const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
+    await fetcher.runAllTasks();
+    
+    const fetchCall = mockRequestManager.fetch.mock.calls[0][2];
+    expect(fetchCall.searchParams.get('apiKey')).toBe('secret123');
+  });
+
+  it('sollte bei riesigen Payloads (>50000 chars) den Cursor einkürzen, um MySQL-TEXT-Limit nicht zu sprengen', async () => {
+    mockConfig.tasks.push({ id: "t_huge", provider: "Simple", endpoint: "/data", params: {} });
+    
+    const hugeString = 'A'.repeat(50001);
+    const mockData = [{ id: 1, text: hugeString }];
+    mockRequestManager.fetch.mockResolvedValue(mockData);
+    
+    const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
+    await fetcher.runAllTasks();
+    
+    expect(mockStorage.insertDataAndState).toHaveBeenCalledWith(
+      expect.objectContaining({ id: 't_huge' }),
+      mockData,
+      expect.objectContaining({ id: 1 }) // Eingekürzter Cursor (id extrahiert)
+    );
+  });
 });
 
