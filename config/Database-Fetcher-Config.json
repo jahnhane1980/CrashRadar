@@ -153,6 +153,15 @@
       }
     },
     {
+      "id": "fred_dff",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "DFF",
+        "file_type": "json"
+      }
+    },
+    {
       "id": "fred_rrpontsyd",
       "provider": "FRED",
       "endpoint": "/fred/series/observations",
@@ -258,6 +267,14 @@
       "ticker": "TLT"
     },
     {
+      "id": "tiingo_gdx_daily",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/GDX/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "GDX"
+    },
+    {
       "id": "yahoo_dxy",
       "provider": "YahooFinance",
       "ticker": "DX-Y.NYB",
@@ -268,6 +285,13 @@
       "id": "yahoo_gold",
       "provider": "YahooFinance",
       "ticker": "GC=F",
+      "method": "chart",
+      "options": {}
+    },
+    {
+      "id": "yahoo_oil",
+      "provider": "YahooFinance",
+      "ticker": "CL=F",
       "method": "chart",
       "options": {}
     },

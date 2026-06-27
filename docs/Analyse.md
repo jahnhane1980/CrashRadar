@@ -40,6 +40,10 @@ Kupfer gilt als Fieberthermometer der Weltwirtschaft, während Gold traditionell
   * *Buying Climax:* Extreme Volumenspikes (>20x) bei gleichzeitig steigendem Goldpreis wie in unserer 2026er Simulation sind das finale Zeichen einer "Everything Bubble" (Panik-Käufe aus Angst vor Entwertung/Systemrisiko).
 * **Fazit:** Wenn Gold aufhört zu fallen und einen Aufwärtstrend ausbildet, signalisiert dies, dass der Liquiditätsengpass im System behoben wurde. Es ist der verlässlichste Indikator dafür, dass der Aktienmarkt bald seinen Tiefpunkt ("Boden") findet. Der "Volume Climax" bestätigt uns hingegen in Echtzeit, ob gerade absolute Panik oder "Blow-Off"-FOMO herrscht.
 
+### GDX (Gold Miners) vs. Öl (CL=F) im Gold-Bullenmarkt
+* **Die Top-Bildung (GDX als Vorläufer):** Historisch ist GDX (der Goldminen-ETF) ein exzellenter Vorläufer für das Ende eines Gold-Bullenmarktes. In 13 massiven Gold-Rallyes toppte der GDX in 6 Fällen zwischen 1 und 11 Tagen *vor* dem physischen Gold. Das "Smart Money" nimmt bei den gehebelten, riskanten Minen zuerst Gewinne mit. Fällt der GDX, während Gold noch steigt, steht das Gold-Top unmittelbar bevor.
+* **Der Öl-Mythos (Die Miner-Margen):** Es gibt den Mythos, dass ein steigender Ölpreis die Margen der Goldminen auffrisst und sie dem Goldpreis hinterherhinken lässt. Unsere Daten strafen das Lügen: Wenn Gold in einen Bullenrun (>10%) übergeht und Öl *fällt*, performt GDX das Gold um durchschnittlich +9,42% aus. Wenn Öl im selben Zeitraum massiv *steigt* (>20%), performt GDX das Gold immer noch um +8,90% aus. Fazit: Wenn die absolute Gold-FOMO kickt, ignorieren Investoren die Bagger-Kosten komplett. GDX wird ausschließlich als Hebel auf Gold gehandelt.
+
 ### Makro-Einzelindikatoren als Frühwarnsystem (-3 Monate vor dem Crash)
 Die Analyse der entbündelten FED- und Fiscal-Parameter (isoliert betrachtet, nicht im "Net Liquidity"-Mix) liefert extrem scharfe Frühwarnsignale in den 3 Monaten, *bevor* ein Crash seinen Höhepunkt erreicht:
 
