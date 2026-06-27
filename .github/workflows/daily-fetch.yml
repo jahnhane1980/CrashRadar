@@ -39,6 +39,7 @@ jobs:
         # Hier werden die API Keys sicher aus den GitHub Secrets geladen
         env:
           TIINGO_API_KEY: ${{ secrets.TIINGO_API_KEY }}
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: node index.js
 
