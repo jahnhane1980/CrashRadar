@@ -93,6 +93,7 @@ export class FinanceExpert {
           Leading: {
             SahmRule: state.SAHMREALTIME,
             MaturityWallPct: maturityWallPct,
+            MarginDebt: state.MarginDebt,
             BuildingPermits: state.PERMIT,
             ConsumerSentiment: state.UMCSENT,
             M2: state.M2SL,

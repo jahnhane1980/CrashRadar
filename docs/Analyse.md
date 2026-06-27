@@ -52,6 +52,12 @@ Die Analyse der entbündelten FED- und Fiscal-Parameter (isoliert betrachtet, ni
   * *Aktueller Crash 2025:* Der Indikator löste 6 Monate vor dem Peak (mit 0.57) eine lupenreine Rezessionswarnung aus, bevor der Markt 2025 abstürzte.
 * **Globale Liquidität (EZB Bilanz):** Wenn globale Zentralbanken Geld abpumpen, fallen Aktien.
   * *Aktueller Crash 2025:* Die Bilanz der EZB schrumpfte in den 6 Monaten vor dem Crash um -1.25%. Die weltweite Geldmenge nahm ab, was den Tech-Crash begünstigte.
+* **Margin Debt (FINRA Wertpapierkredite):** Das absolut reinste Fieberthermometer für "Gier und Hebel" im US-Aktienmarkt. Margin Debt misst, wie viel Geld sich Anleger auf Pump leihen, um Aktien zu kaufen.
+  * *Signal (Top):* Margin Debt erreicht immer ein historisches Allzeithoch und dreht (stagniert oder fällt) **2 bis 6 Monate bevor** der S&P 500 seinen absoluten Höhepunkt erreicht. Das "Smart Money" und die Kreditlinien sind erschöpft, bevor der Retail-Markt sein finales Blow-Off-Top bildet. Da dieser Vorlauf sehr groß ist, stellt die ca. 3-wöchige Veröffentlichungsverzögerung der FINRA hier kein Problem dar.
+  * *Beispiele:* DotCom (Margin toppte Feb 2000, SPY Aug 2000), Finanzkrise (Margin toppte Jun 2007, SPY Okt 2007), Bärenmarkt 2022 (Margin toppte Sep 2021, SPY Dez 2021).
+  * *Ausnahme Flash Crashes:* Bei unvorhersehbaren "Black Swan" Events (Covid 2020) gibt es keine Vorwarnzeit durch Margin Debt, da die Wirtschaft über Nacht stillsteht.
+  * *Signal (Bottom / Deleveraging):* Im Crash kommt es zu brutalen Margin Calls. Wenn das Margin Debt aufhört zu fallen (oft nach 35% bis 55% Zerstörung des Hebels), ist das "Deleveraging" abgeschlossen. 
+  * ⚠️ **Achtung (Timing-Falle am Boden):** Das Margin Debt markiert seinen Tiefpunkt zwar oft im exakt gleichen Monat wie der Aktienmarkt, jedoch wird dieser Datenpunkt durch FINRA erst 3 Wochen später veröffentlicht. Wer auf dieses Signal für den Kauf wartet, verpasst die ersten 15% bis 20% der Erholung. Margin Debt darf daher **niemals als tagesgenauer Trigger** für den Boden genutzt werden, sondern dient rein als Makro-Kontext (z.B. "Der Hebel ist um 40% gesunken, das Deleveraging ist tief genug für einen Boden"). Für das echte punktgenaue Timing nutzen wir ausschließlich die tagesaktuellen VIX/CBOE/RSI-Daten.
 
 ### VIX: Kein Frühindikator, sondern der ultimative "Kapitulations-Boden"
 Der VIX ("Angst-Barometer") ist historisch gesehen **absolut nutzlos** als Vorwarnsystem. 

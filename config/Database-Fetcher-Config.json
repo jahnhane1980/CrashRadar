@@ -98,6 +98,14 @@
         "dateExtractPath": "record_date",
         "dateFormat": "YYYY-MM-DD"
       }
+    },
+    "Finra": {
+      "type": "package",
+      "pagination": {
+        "strategy": "custom",
+        "dateExtractPath": "record_date",
+        "dateFormat": "YYYY-MM-DD"
+      }
     }
   },
   "tasks": [
@@ -494,6 +502,10 @@
       "id": "cboe_qqq_options",
       "provider": "Cboe",
       "ticker": "QQQ"
+    },
+    {
+      "id": "finra_margin_debt",
+      "provider": "Finra"
     }
   ]
 }

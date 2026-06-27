@@ -5,6 +5,7 @@ import { FiscalDataAdapter } from './FiscalDataAdapter.js';
 import { YahooFinanceAdapter } from './YahooFinanceAdapter.js';
 import { SecEdgarAdapter } from './SecEdgarAdapter.js';
 import { CboeAdapter } from './CboeAdapter.js';
+import { FinraAdapter } from './FinraAdapter.js';
 
 const adapters = {
   'Binance': new BinanceAdapter(),
@@ -14,6 +15,7 @@ const adapters = {
   'YahooFinance': new YahooFinanceAdapter(),
   'SecEdgar': new SecEdgarAdapter(),
   'Cboe': new CboeAdapter(),
+  'Finra': new FinraAdapter(),
 };
 
 export class StorageAdapterFactory {

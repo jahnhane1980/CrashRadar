@@ -8,6 +8,7 @@ export const TABLES = Object.freeze({
   TGA: 'fiscal_tga',
   MATURITY_WALL: 'macro_maturity_wall',
   FUND_SEC: 'fund_sec_edgar',
+  FINRA: 'macro_margin_debt',
 });
 
 export const SYMBOLS = Object.freeze({
@@ -108,7 +109,13 @@ export class AnalysisRepository {
       WHERE symbol = 'SPY' AND record_date >= ?
     `, [startDate]);
 
-    return { btc, tiingo, yahoo, fred, tga, mw, sec, cboe };
+    const [finra] = await this.pool.query(`
+      SELECT record_date as date, margin_debt as MarginDebt 
+      FROM ${TABLES.FINRA} 
+      WHERE record_date >= ?
+    `, [startDate]);
+
+    return { btc, tiingo, yahoo, fred, tga, mw, sec, cboe, finra };
   }
 
   async getInitialState(startDate) {
@@ -143,6 +150,7 @@ export class AnalysisRepository {
     }
 
     const initialMw = await getLastBefore(TABLES.MATURITY_WALL, 'record_date', 'maturing_90d_billions', "", []);
+    const initialMarginDebt = await getLastBefore(TABLES.FINRA, 'record_date', 'margin_debt', "", []);
 
     const parseFred = async (seriesId, isWalcl) => {
       let v = await getFredBefore(seriesId);
@@ -167,7 +175,8 @@ export class AnalysisRepository {
       MaturityWall90d: initialMw,
       ARCC_InterestExpense: initialArccInterest,
       ARCC_TotalAssets: initialArccAssets,
-      ARCC_NetIncome: initialArccIncome
+      ARCC_NetIncome: initialArccIncome,
+      MarginDebt: initialMarginDebt
     };
   }
 }
