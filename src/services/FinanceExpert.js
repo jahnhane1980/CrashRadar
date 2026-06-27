@@ -64,6 +64,9 @@ export class FinanceExpert {
           BTC: state.BTC,
           TLT: state.TLT,
           Gold: state.Gold,
+          Gold_Volume: state.Gold_Volume,
+          GDX: state.GDX,
+          GDX_Volume: state.GDX_Volume,
           Copper: state.Copper,
           VIX: state.VIX,
           HYG: state.HYG,
@@ -81,6 +84,7 @@ export class FinanceExpert {
           FinancialConditions: {
             DXY: state.DXY,
             RealYield10y: state.DFII10,
+            FedFundsRate: state.DFF,
             ChicagoFedIndex: state.NFCI
           },
           BankingHealth: {

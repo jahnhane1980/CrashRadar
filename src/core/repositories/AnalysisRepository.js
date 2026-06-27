@@ -42,6 +42,7 @@ export const FRED_SERIES = Object.freeze({
   SAHMREALTIME: 'SAHMREALTIME',
   T10YIE: 'T10YIE',
   INDPRO: 'INDPRO',
+  DFF: 'DFF',
 });
 
 export class AnalysisRepository {
@@ -74,7 +75,7 @@ export class AnalysisRepository {
     `, [SYMBOLS.SPY, SYMBOLS.QQQ, SYMBOLS.TLT, startDate]);
 
     const [yahoo] = await this.pool.query(`
-      SELECT symbol, record_date as date, close 
+      SELECT symbol, record_date as date, close, volume
       FROM ${TABLES.YAHOO} 
       WHERE symbol IN (?, ?, ?, ?, ?, ?, ?) AND record_date >= ?
     `, [SYMBOLS.DXY, SYMBOLS.GOLD, SYMBOLS.COPPER, SYMBOLS.VIX, SYMBOLS.HYG, SYMBOLS.BIZD, SYMBOLS.BKLN, startDate]);
@@ -132,6 +133,7 @@ export class AnalysisRepository {
     
     const initialDxy = await getLastBefore(TABLES.YAHOO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.DXY]);
     const initialGold = await getLastBefore(TABLES.YAHOO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.GOLD]);
+    const initialGoldVol = await getLastBefore(TABLES.YAHOO, 'record_date', 'volume', "AND symbol = ?", [SYMBOLS.GOLD]);
     const initialCopper = await getLastBefore(TABLES.YAHOO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.COPPER]);
     const initialVix = await getLastBefore(TABLES.YAHOO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.VIX]);
     const initialHyg = await getLastBefore(TABLES.YAHOO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.HYG]);
@@ -166,10 +168,10 @@ export class AnalysisRepository {
     const initialArccIncome = await getLastBefore(TABLES.FUND_SEC, 'record_date', 'net_income', "AND ticker = ?", ['ARCC']);
 
     return {
-      BTC: initialBtc, SPY: initialSpy, QQQ: initialQqq, TLT: initialTlt, DXY: initialDxy, Gold: initialGold, Copper: initialCopper,
+      BTC: initialBtc, SPY: initialSpy, QQQ: initialQqq, TLT: initialTlt, DXY: initialDxy, Gold: initialGold, Gold_Volume: initialGoldVol, Copper: initialCopper,
       VIX: initialVix, HYG: initialHyg, BIZD: initialBizd, BKLN: initialBkln, CBOE_SPY: initialCboeSpy,
       WALCL: await parseFred(FRED_SERIES.WALCL, true), TGA: initialTga, RRPONTSYD: await parseFred(FRED_SERIES.RRPONTSYD, false),
-      DFII10: await parseFred(FRED_SERIES.DFII10, false), NFCI: await parseFred(FRED_SERIES.NFCI, false), TOTRESNS: await parseFred(FRED_SERIES.TOTRESNS, false), BORROW: await parseFred(FRED_SERIES.BORROW, false), T10Y2Y: await parseFred(FRED_SERIES.T10Y2Y, false),
+      DFII10: await parseFred(FRED_SERIES.DFII10, false), DFF: await parseFred(FRED_SERIES.DFF, false), NFCI: await parseFred(FRED_SERIES.NFCI, false), TOTRESNS: await parseFred(FRED_SERIES.TOTRESNS, false), BORROW: await parseFred(FRED_SERIES.BORROW, false), T10Y2Y: await parseFred(FRED_SERIES.T10Y2Y, false),
       ECBASSETSW: await parseFred(FRED_SERIES.ECBASSETSW, false), M2SL: await parseFred(FRED_SERIES.M2SL, false), PERMIT: await parseFred(FRED_SERIES.PERMIT, false), UMCSENT: await parseFred(FRED_SERIES.UMCSENT, false),
       CP: await parseFred(FRED_SERIES.CP, false), ICSA: await parseFred(FRED_SERIES.ICSA, false), SAHMREALTIME: await parseFred(FRED_SERIES.SAHMREALTIME, false), T10YIE: await parseFred(FRED_SERIES.T10YIE, false), INDPRO: await parseFred(FRED_SERIES.INDPRO, false),
       MaturityWall90d: initialMw,

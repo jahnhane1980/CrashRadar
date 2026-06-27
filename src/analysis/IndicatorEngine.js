@@ -25,7 +25,10 @@ export class IndicatorEngine {
       ARCC_INTEREST_GROWTH_WARNING: 5.0,
       GOLD_CLIMAX_VOL_MULTIPLIER: 5.0,
       GOLD_CLIMAX_PRICE_DROP: -2.0,
-      GOLD_CLIMAX_PRICE_RISE: 2.0
+      GOLD_CLIMAX_PRICE_RISE: 2.0,
+      GDX_CLIMAX_VOL_MULTIPLIER: 3.0,
+      GDX_CLIMAX_PRICE_DROP: -5.0,
+      GDX_CLIMAX_PRICE_RISE: 5.0
     };
 
     this.indicators = [
@@ -223,6 +226,116 @@ export class IndicatorEngine {
           }
           
           return { status: 'OK', value: `${volRatio.toFixed(1)}x Vol`, message: 'Normales Gold-Handelsvolumen.' };
+        }
+      },
+      {
+        name: 'GDX Selling Climax (Boden-Suche)',
+        category: 'CONTEMPORANEOUS',
+        evaluate: (timeline) => {
+          if (timeline.length < 50) return { status: 'UNKNOWN', message: 'Zu wenig Daten (< 50 Tage)' };
+          
+          const currentDay = timeline[timeline.length - 1];
+          const prevDay = timeline[timeline.length - 2];
+          
+          const currentVol = currentDay.assets.GDX_Volume;
+          const currentPrice = currentDay.assets.GDX;
+          const prevPrice = prevDay.assets.GDX;
+          
+          if (!currentVol || !currentPrice || !prevPrice) return { status: 'UNKNOWN', message: 'Keine Volumen/Preis-Daten für GDX' };
+          
+          // 50-Tage Durchschnittsvolumen
+          let sumVol = 0;
+          let count = 0;
+          for (let i = timeline.length - 50; i < timeline.length; i++) {
+            const v = timeline[i].assets.GDX_Volume;
+            if (v && v > 0) {
+              sumVol += v;
+              count++;
+            }
+          }
+          
+          if (count === 0) return { status: 'UNKNOWN', message: 'Keine gültigen Volumendaten' };
+          const avgVol = sumVol / count;
+          const volRatio = currentVol / avgVol;
+          const priceChangePct = ((currentPrice - prevPrice) / prevPrice) * 100;
+          
+          if (volRatio >= THRESHOLDS.GDX_CLIMAX_VOL_MULTIPLIER && priceChangePct <= THRESHOLDS.GDX_CLIMAX_PRICE_DROP) {
+            return { status: 'CRITICAL', value: `${volRatio.toFixed(1)}x Vol, ${priceChangePct.toFixed(1)}%`, message: 'GDX SELLING CLIMAX! Miner-Kapitulation. Smart Money sammelt ein (V-Shape Boden).' };
+          }
+          
+          return { status: 'OK', value: `${volRatio.toFixed(1)}x Vol`, message: 'Kein Selling Climax.' };
+        }
+      },
+      {
+        name: 'GDX Buying Climax (Top-Gefahr)',
+        category: 'CONTEMPORANEOUS',
+        evaluate: (timeline) => {
+          if (timeline.length < 50) return { status: 'UNKNOWN', message: 'Zu wenig Daten (< 50 Tage)' };
+          
+          const currentDay = timeline[timeline.length - 1];
+          const prevDay = timeline[timeline.length - 2];
+          
+          const currentVol = currentDay.assets.GDX_Volume;
+          const currentPrice = currentDay.assets.GDX;
+          const prevPrice = prevDay.assets.GDX;
+          
+          if (!currentVol || !currentPrice || !prevPrice) return { status: 'UNKNOWN', message: 'Keine Volumen/Preis-Daten für GDX' };
+          
+          let sumVol = 0, count = 0;
+          for (let i = timeline.length - 50; i < timeline.length; i++) {
+            const v = timeline[i].assets.GDX_Volume;
+            if (v && v > 0) { sumVol += v; count++; }
+          }
+          
+          if (count === 0) return { status: 'UNKNOWN', message: 'Keine gültigen Volumendaten' };
+          const avgVol = sumVol / count;
+          const volRatio = currentVol / avgVol;
+          const priceChangePct = ((currentPrice - prevPrice) / prevPrice) * 100;
+          
+          if (volRatio >= THRESHOLDS.GDX_CLIMAX_VOL_MULTIPLIER && priceChangePct >= THRESHOLDS.GDX_CLIMAX_PRICE_RISE) {
+            return { status: 'WARNING', value: `${volRatio.toFixed(1)}x Vol, +${priceChangePct.toFixed(1)}%`, message: 'GDX BUYING CLIMAX! Extreme FOMO bei den Minern. Smart Money verkauft in Liquidität (Bullenfalle).' };
+          }
+          
+          return { status: 'OK', value: `${volRatio.toFixed(1)}x Vol`, message: 'Kein Buying Climax.' };
+        }
+      },
+      {
+        name: 'GDX vs Gold Divergenz',
+        category: 'LEADING',
+        evaluate: (timeline) => {
+          if (timeline.length < 30) return { status: 'UNKNOWN', message: 'Zu wenig Daten (< 30 Tage)' };
+          
+          const currentGold = timeline[timeline.length - 1].assets.Gold;
+          const currentGdx = timeline[timeline.length - 1].assets.GDX;
+          
+          if (!currentGold || !currentGdx) return { status: 'UNKNOWN', message: 'Keine Daten' };
+          
+          // Finde Hochpunkte der letzten 30 Tage für Gold und GDX
+          let goldMax30 = 0, goldMaxIdx = 0;
+          let gdxMax30 = 0, gdxMaxIdx = 0;
+          
+          for (let i = timeline.length - 30; i < timeline.length; i++) {
+            const g = timeline[i].assets.Gold;
+            if (g && g > goldMax30) { goldMax30 = g; goldMaxIdx = i; }
+            
+            const gdx = timeline[i].assets.GDX;
+            if (gdx && gdx > gdxMax30) { gdxMax30 = gdx; gdxMaxIdx = i; }
+          }
+          
+          // Wenn Gold in den letzten 5 Tagen sein 30-Tage-Hoch gemacht hat
+          const isGoldAtTop = goldMaxIdx >= (timeline.length - 5);
+          
+          // Aber GDX schon vor mehr als 10 Tagen sein Hoch hatte und seitdem fällt
+          const isGdxDiverging = gdxMaxIdx <= (timeline.length - 10);
+          
+          // Prüfen, ob GDX signifikant vom 30-Tage Hoch abgefallen ist (z.B. > 3% gefallen)
+          const gdxDrawdown = ((currentGdx - gdxMax30) / gdxMax30) * 100;
+          
+          if (isGoldAtTop && isGdxDiverging && gdxDrawdown <= -3.0) {
+            return { status: 'WARNING', value: `GDX ${gdxDrawdown.toFixed(1)}% vom Hoch`, message: 'GDX toppt vor Gold! Smart Money nimmt bei Minen bereits Gewinne mit, während Gold noch steigt. Gold-Top steht unmittelbar bevor.' };
+          }
+          
+          return { status: 'OK', value: '-', message: 'Keine GDX/Gold Divergenz.' };
         }
       },
 

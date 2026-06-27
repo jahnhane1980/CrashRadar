@@ -28,4 +28,30 @@ describe('AnalysisRepository', () => {
     expect(() => new AnalysisRepository()).toThrow('No database URL provided for AnalysisRepository.');
     process.env.DATABASE_URL = originalEnv;
   });
+
+  it('sollte close() mehrfach aufrufen können (pool is null)', async () => {
+    const repo = new AnalysisRepository('mysql://dummy');
+    await repo.close();
+    await expect(repo.close()).resolves.not.toThrow();
+  });
+
+  it('sollte TGA korrekt verarbeiten wenn close_balance "null" ist', async () => {
+    // Override mock just for this test
+    const mockQuery = vi.fn().mockImplementation(async (sql) => {
+        if (sql.includes('fiscal_tga')) {
+            return [[{ open_balance: '1234000', close_balance: 'null' }]];
+        }
+        return [[{ val: null }]];
+    });
+    
+    const mockPool = { query: mockQuery, end: vi.fn() };
+    const mysql = (await import('mysql2/promise')).default;
+    mysql.createPool.mockReturnValueOnce(mockPool);
+    
+    const repo = new AnalysisRepository('mysql://dummy');
+    const state = await repo.getInitialState('2023-01-01');
+    
+    expect(state.TGA).toBe(1234); // 1234000 / 1000
+    await repo.close();
+  });
 });

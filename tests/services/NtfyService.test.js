@@ -18,4 +18,15 @@ describe('NtfyService', () => {
     await service.send('Titel', 'Nachricht');
     expect(ky.post).toHaveBeenCalledWith('https://ntfy.sh/test-topic', expect.any(Object));
   });
+
+  it('sollte einen Fehler abfangen, wenn ky.post fehlschlägt', async () => {
+    ky.post.mockRejectedValueOnce(new Error('Network error'));
+    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const service = new NtfyService('test-topic');
+    
+    await service.send('Titel', 'Nachricht');
+    
+    expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining('[Ntfy] Fehler beim Senden an'), 'Network error');
+    consoleSpy.mockRestore();
+  });
 });

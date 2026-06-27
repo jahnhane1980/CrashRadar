@@ -185,4 +185,18 @@ describe('FinanceExpert', () => {
     await expert.close();
     expect(mockPool.end).toHaveBeenCalled();
   });
+
+  it('sollte init mit repository instanz akzeptieren', async () => {
+    const mockRepo = { close: vi.fn() };
+    const e = new FinanceExpert(mockRepo);
+    expect(e.repo).toBe(mockRepo);
+    await e.close();
+    expect(mockRepo.close).toHaveBeenCalled();
+  });
+
+  it('sollte close() nicht crashen wenn repo null ist', async () => {
+    const e = new FinanceExpert('mysql://dummy');
+    e.repo = null;
+    await expect(e.close()).resolves.not.toThrow();
+  });
 });

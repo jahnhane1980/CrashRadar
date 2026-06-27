@@ -15,6 +15,8 @@ describe('IndicatorEngine', () => {
         VIX: 20,
         HYG: 100,
         Gold: 2000,
+        GDX: 30,
+        GDX_Volume: 1000000,
         BIZD: 100,
         BKLN: 100,
         ...overrides.assets
@@ -230,6 +232,227 @@ describe('IndicatorEngine', () => {
       const timeline = generateTimeline(55);
       for(let i=5; i<55; i++) timeline[i].assets.Gold = null;
       const res = engine.indicators.find(i => i.name === 'Gold (SMA 50 Ausbruch)').evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+    });
+
+    it('sollte UNKNOWN sein, wenn zu wenig Daten (< 50)', () => {
+      const timeline = generateTimeline(40);
+      const res = engine.indicators.find(i => i.name === 'Gold (SMA 50 Ausbruch)').evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+    });
+
+    it('sollte OK sein, wenn Gold unter dem SMA50 ist', () => {
+      const timeline = generateTimeline(55);
+      // setze SMA sehr hoch
+      for(let i=5; i<55; i++) timeline[i].assets.Gold = 2500;
+      timeline[54].assets.Gold = 2000;
+      const res = engine.indicators.find(i => i.name === 'Gold (SMA 50 Ausbruch)').evaluate(timeline);
+      expect(res.status).toBe('OK');
+    });
+  });
+
+  describe('Gold Volume Climax', () => {
+    it('sollte CRITICAL triggern bei SELLING CLIMAX (Volumen > 5x, Preis <= -2%)', () => {
+      const timeline = generateTimeline(55);
+      // Normales Volumen
+      for(let i=5; i<54; i++) {
+          timeline[i].assets.Gold_Volume = 1000;
+      }
+      timeline[53].assets.Gold = 2000; 
+      timeline[54].assets.Gold = 1950; // -2.5%
+      timeline[54].assets.Gold_Volume = 6000; // 6x Volumen
+      
+      const res = engine.indicators.find(i => i.name.includes('Gold Volume Climax')).evaluate(timeline);
+      expect(res.status).toBe('CRITICAL');
+      expect(res.message).toContain('SELLING CLIMAX');
+    });
+
+    it('sollte CRITICAL triggern bei BUYING CLIMAX (Volumen > 5x, Preis >= +2%)', () => {
+      const timeline = generateTimeline(55);
+      for(let i=5; i<54; i++) {
+          timeline[i].assets.Gold_Volume = 1000;
+      }
+      timeline[53].assets.Gold = 2000; 
+      timeline[54].assets.Gold = 2050; // +2.5%
+      timeline[54].assets.Gold_Volume = 6000; // 6x Volumen
+      
+      const res = engine.indicators.find(i => i.name.includes('Gold Volume Climax')).evaluate(timeline);
+      expect(res.status).toBe('CRITICAL');
+      expect(res.message).toContain('BUYING CLIMAX');
+    });
+
+    it('sollte OK sein bei normalem Volumen', () => {
+      const timeline = generateTimeline(55);
+      for(let i=5; i<54; i++) {
+          timeline[i].assets.Gold_Volume = 1000;
+      }
+      timeline[54].assets.Gold_Volume = 1000;
+      
+      const res = engine.indicators.find(i => i.name.includes('Gold Volume Climax')).evaluate(timeline);
+      expect(res.status).toBe('OK');
+    });
+
+    it('sollte OK sein bei hohem Volumen aber kaum Preisbewegung', () => {
+        const timeline = generateTimeline(55);
+        for(let i=5; i<54; i++) {
+            timeline[i].assets.Gold_Volume = 1000;
+        }
+        timeline[53].assets.Gold = 2000; 
+        timeline[54].assets.Gold = 2010; // +0.5%
+        timeline[54].assets.Gold_Volume = 6000; // 6x Volumen
+        
+        const res = engine.indicators.find(i => i.name.includes('Gold Volume Climax')).evaluate(timeline);
+        expect(res.status).toBe('OK');
+    });
+
+    it('sollte UNKNOWN sein bei zu wenig Daten (< 50)', () => {
+      const timeline = generateTimeline(40);
+      const res = engine.indicators.find(i => i.name.includes('Gold Volume Climax')).evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+    });
+
+    it('sollte UNKNOWN sein wenn Volumendaten fehlen', () => {
+      const timeline = generateTimeline(55);
+      timeline[54].assets.Gold_Volume = null;
+      const res = engine.indicators.find(i => i.name.includes('Gold Volume Climax')).evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+    });
+
+    it('sollte UNKNOWN sein wenn avgVol 0 ist (Division by Zero)', () => {
+      const timeline = generateTimeline(55);
+      for(let i=5; i<55; i++) timeline[i].assets.Gold_Volume = 0;
+      const res = engine.indicators.find(i => i.name.includes('Gold Volume Climax')).evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+    });
+  });
+
+  describe('GDX Selling Climax', () => {
+    it('sollte CRITICAL triggern bei Volumen > 3x und Preis <= -5%', () => {
+      const timeline = generateTimeline(55);
+      timeline[53].assets.GDX = 30; // Vorheriger Preis
+      timeline[54].assets.GDX = 28.5; // -5% (30 * 0.95 = 28.5)
+      timeline[54].assets.GDX_Volume = 3500000; // > 3x avg (1000000)
+      
+      const res = engine.indicators.find(i => i.name.includes('GDX Selling Climax')).evaluate(timeline);
+      expect(res.status).toBe('CRITICAL');
+    });
+
+    it('sollte OK sein, wenn Volumen groß ist, aber Preis nicht stark genug fällt', () => {
+      const timeline = generateTimeline(55);
+      timeline[53].assets.GDX = 30;
+      timeline[54].assets.GDX = 29.1; // -3% (30 * 0.97 = 29.1)
+      timeline[54].assets.GDX_Volume = 3500000; // > 3x avg
+      
+      const res = engine.indicators.find(i => i.name.includes('GDX Selling Climax')).evaluate(timeline);
+      expect(res.status).toBe('OK');
+    });
+
+    it('sollte UNKNOWN sein bei zu wenig Daten (< 50)', () => {
+      const timeline = generateTimeline(40);
+      const res = engine.indicators.find(i => i.name.includes('GDX Selling Climax')).evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+    });
+
+    it('sollte UNKNOWN sein wenn GDX Daten fehlen (Edge Case)', () => {
+      const timeline = generateTimeline(55);
+      timeline[54].assets.GDX = null;
+      const res = engine.indicators.find(i => i.name.includes('GDX Selling Climax')).evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+    });
+    
+    it('sollte null/0 Divisionen abfangen wenn avgVol 0 ist (Edge Case)', () => {
+      const timeline = generateTimeline(55);
+      for(let i=5; i<55; i++) timeline[i].assets.GDX_Volume = 0;
+      const res = engine.indicators.find(i => i.name.includes('GDX Selling Climax')).evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+    });
+  });
+
+  describe('GDX Buying Climax', () => {
+    it('sollte WARNING triggern bei Volumen > 3x und Preis >= +5%', () => {
+      const timeline = generateTimeline(55);
+      timeline[53].assets.GDX = 30; 
+      timeline[54].assets.GDX = 31.5; // +5% (30 * 1.05 = 31.5)
+      timeline[54].assets.GDX_Volume = 3500000; // > 3x avg 
+      
+      const res = engine.indicators.find(i => i.name.includes('GDX Buying Climax')).evaluate(timeline);
+      expect(res.status).toBe('WARNING');
+    });
+
+    it('sollte OK sein, wenn Volumen groß ist, aber Preis nicht stark genug steigt', () => {
+      const timeline = generateTimeline(55);
+      timeline[53].assets.GDX = 30;
+      timeline[54].assets.GDX = 31.0; // +3.3% 
+      timeline[54].assets.GDX_Volume = 3500000; 
+      
+      const res = engine.indicators.find(i => i.name.includes('GDX Buying Climax')).evaluate(timeline);
+      expect(res.status).toBe('OK');
+    });
+    
+    it('sollte UNKNOWN sein wenn GDX_Volume fehlt', () => {
+      const timeline = generateTimeline(55);
+      timeline[54].assets.GDX_Volume = null;
+      const res = engine.indicators.find(i => i.name.includes('GDX Buying Climax')).evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+    });
+  });
+
+  describe('GDX vs Gold Divergenz', () => {
+    it('sollte WARNING triggern, wenn Gold am Top ist und GDX divergiert (Drawdown > 3%)', () => {
+      const timeline = generateTimeline(35);
+      
+      // Gold Top an Tag 34 (1 Tag her)
+      for(let i=5; i<35; i++) timeline[i].assets.Gold = 2000;
+      timeline[33].assets.Gold = 2050; // Höchster Punkt
+      timeline[34].assets.Gold = 2045; // Leicht darunter, aber im 5 Tage Fenster
+      
+      // GDX Top an Tag 20 (vor 15 Tagen) -> divergiert!
+      for(let i=5; i<35; i++) timeline[i].assets.GDX = 30;
+      timeline[19].assets.GDX = 35; // GDX Hochpunkt
+      timeline[34].assets.GDX = 33.5; // -4.2% vom Hoch (35 * 0.958)
+      
+      const res = engine.indicators.find(i => i.name.includes('GDX vs Gold Divergenz')).evaluate(timeline);
+      expect(res.status).toBe('WARNING');
+      expect(res.message).toContain('GDX toppt vor Gold');
+    });
+
+    it('sollte OK sein, wenn Gold am Top ist, aber GDX auch gerade sein Hoch macht', () => {
+      const timeline = generateTimeline(35);
+      
+      for(let i=5; i<35; i++) timeline[i].assets.Gold = 2000;
+      timeline[34].assets.Gold = 2050; 
+      
+      for(let i=5; i<35; i++) timeline[i].assets.GDX = 30;
+      timeline[34].assets.GDX = 35; 
+      
+      const res = engine.indicators.find(i => i.name.includes('GDX vs Gold Divergenz')).evaluate(timeline);
+      expect(res.status).toBe('OK');
+    });
+
+    it('sollte OK sein, wenn GDX fällt, aber Gold sein Hoch schon vor langer Zeit hatte (>5 Tage)', () => {
+      const timeline = generateTimeline(35);
+      
+      for(let i=5; i<35; i++) timeline[i].assets.Gold = 2000;
+      timeline[10].assets.Gold = 2050; // Hochpunkt schon sehr lange her
+      
+      for(let i=5; i<35; i++) timeline[i].assets.GDX = 30;
+      timeline[10].assets.GDX = 35; // GDX auch lange her
+      timeline[34].assets.GDX = 30; // Deutlicher Drawdown
+      
+      const res = engine.indicators.find(i => i.name.includes('GDX vs Gold Divergenz')).evaluate(timeline);
+      expect(res.status).toBe('OK');
+    });
+
+    it('sollte UNKNOWN sein, wenn Daten (< 30 Tage)', () => {
+      const timeline = generateTimeline(20);
+      const res = engine.indicators.find(i => i.name.includes('GDX vs Gold Divergenz')).evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+    });
+    
+    it('sollte UNKNOWN sein, wenn GDX oder Gold Daten fehlen', () => {
+      const timeline = generateTimeline(35);
+      timeline[34].assets.Gold = null;
+      const res = engine.indicators.find(i => i.name.includes('GDX vs Gold Divergenz')).evaluate(timeline);
       expect(res.status).toBe('UNKNOWN');
     });
   });

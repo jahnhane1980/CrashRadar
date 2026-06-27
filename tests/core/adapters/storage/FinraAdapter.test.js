@@ -25,4 +25,11 @@ describe('FinraAdapter', () => {
     expect(result.values[0]).toEqual(['2025-10-01', 1183654, null, null]);
     expect(result.values[1]).toEqual(['2025-11-01', 1214321, null, null]);
   });
+
+  it('should return null if data is empty', () => {
+    const result = adapter.getInsertQueryAndValues({ id: 'finra' }, []);
+    expect(result).toBeNull();
+    const result2 = adapter.getInsertQueryAndValues({ id: 'finra' }, null);
+    expect(result2).toBeNull();
+  });
 });

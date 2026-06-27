@@ -11,10 +11,18 @@ export class TimeSeriesService {
     };
 
     btc.forEach(r => addToTimeline(r.date, 'BTC', r.close));
-    tiingo.forEach(r => addToTimeline(r.date, r.symbol, r.close));
+    tiingo.forEach(r => {
+      addToTimeline(r.date, r.symbol, r.close);
+      if (r.volume !== undefined && r.volume !== null) {
+        addToTimeline(r.date, `${r.symbol}_Volume`, r.volume);
+      }
+    });
     yahoo.forEach(r => {
       if (r.symbol === SYMBOLS.DXY) addToTimeline(r.date, 'DXY', r.close);
-      if (r.symbol === SYMBOLS.GOLD) addToTimeline(r.date, 'Gold', r.close);
+      if (r.symbol === SYMBOLS.GOLD) {
+        addToTimeline(r.date, 'Gold', r.close);
+        addToTimeline(r.date, 'Gold_Volume', r.volume);
+      }
       if (r.symbol === SYMBOLS.COPPER) addToTimeline(r.date, 'Copper', r.close);
       if (r.symbol === SYMBOLS.VIX) addToTimeline(r.date, 'VIX', r.close);
       if (r.symbol === SYMBOLS.HYG) addToTimeline(r.date, 'HYG', r.close);
