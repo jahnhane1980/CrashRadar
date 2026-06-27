@@ -215,24 +215,80 @@ describe('IndicatorEngine', () => {
     it('sollte CRITICAL bei starkem Breakout triggern', () => {
       const timeline = generateTimeline(55);
       timeline[54].assets.Gold = 2100;
-      const res = engine.indicators.find(i => i.name.includes('Gold')).evaluate(timeline);
+      const res = engine.indicators.find(i => i.name === 'Gold (SMA 50 Ausbruch)').evaluate(timeline);
       expect(res.status).toBe('CRITICAL');
     });
 
     it('sollte WARNING bei leichtem Breakout triggern', () => {
       const timeline = generateTimeline(55);
       timeline[54].assets.Gold = 2010;
-      const res = engine.indicators.find(i => i.name.includes('Gold')).evaluate(timeline);
+      const res = engine.indicators.find(i => i.name === 'Gold (SMA 50 Ausbruch)').evaluate(timeline);
       expect(res.status).toBe('WARNING');
     });
 
     it('sollte UNKNOWN sein, wenn count 0 ist (nur null werte in SMA range)', () => {
       const timeline = generateTimeline(55);
       for(let i=5; i<55; i++) timeline[i].assets.Gold = null;
-      const res = engine.indicators.find(i => i.name.includes('Gold')).evaluate(timeline);
+      const res = engine.indicators.find(i => i.name === 'Gold (SMA 50 Ausbruch)').evaluate(timeline);
       expect(res.status).toBe('UNKNOWN');
     });
   });
+
+  describe('Central Bank Policy Error', () => {
+    it('sollte CRITICAL triggern wenn DFF sinkt, T10YIE steigt und DXY flach ist', () => {
+      const timeline = generateTimeline(65);
+      timeline[5].macroGroups.FinancialConditions.FedFundsRate = 5.0;
+      timeline[64].macroGroups.FinancialConditions.FedFundsRate = 4.5; // -0.5%
+      
+      timeline[5].macroGroups.Leading.BreakevenInflation = 2.0;
+      timeline[64].macroGroups.Leading.BreakevenInflation = 2.2; // +0.2%
+
+      timeline[5].macroGroups.FinancialConditions.DXY = 100.0;
+      timeline[64].macroGroups.FinancialConditions.DXY = 101.0; // +1.0% (<= 2.0%)
+
+      const res = engine.indicators.find(i => i.name.includes('Policy Error')).evaluate(timeline);
+      expect(res.status).toBe('CRITICAL');
+    });
+
+    it('sollte WARNING triggern wenn DXY stark steigt (Ausbruch blockiert)', () => {
+      const timeline = generateTimeline(65);
+      timeline[5].macroGroups.FinancialConditions.FedFundsRate = 5.0;
+      timeline[64].macroGroups.FinancialConditions.FedFundsRate = 4.5;
+      
+      timeline[5].macroGroups.Leading.BreakevenInflation = 2.0;
+      timeline[64].macroGroups.Leading.BreakevenInflation = 2.2;
+
+      timeline[5].macroGroups.FinancialConditions.DXY = 100.0;
+      timeline[64].macroGroups.FinancialConditions.DXY = 105.0; // +5.0% (> 2.0%)
+
+      const res = engine.indicators.find(i => i.name.includes('Policy Error')).evaluate(timeline);
+      expect(res.status).toBe('WARNING');
+    });
+
+    it('sollte OK sein wenn es keine Divergenz gibt', () => {
+      const timeline = generateTimeline(65);
+      timeline[5].macroGroups.FinancialConditions.FedFundsRate = 5.0;
+      timeline[64].macroGroups.FinancialConditions.FedFundsRate = 4.9;
+      
+      timeline[5].macroGroups.Leading.BreakevenInflation = 2.0;
+      timeline[64].macroGroups.Leading.BreakevenInflation = 1.9;
+
+      timeline[5].macroGroups.FinancialConditions.DXY = 100.0;
+      timeline[64].macroGroups.FinancialConditions.DXY = 100.0;
+
+      const res = engine.indicators.find(i => i.name.includes('Policy Error')).evaluate(timeline);
+      expect(res.status).toBe('OK');
+    });
+
+    it('sollte UNKNOWN zurückgeben wenn Daten fehlen', () => {
+      const timeline = generateTimeline(65);
+      timeline[64].macroGroups.FinancialConditions.FedFundsRate = null;
+      
+      const res = engine.indicators.find(i => i.name.includes('Policy Error')).evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+    });
+  });
+
 
   describe('Rate Shock', () => {
     it('sollte CRITICAL triggern (diff >= 0.5)', () => {

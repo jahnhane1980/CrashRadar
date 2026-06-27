@@ -22,7 +22,10 @@ export class IndicatorEngine {
       BKLN_CRITICAL: -2.0,
       BKLN_WARNING: -1.0,
       ARCC_INTEREST_GROWTH_CRITICAL: 15.0,
-      ARCC_INTEREST_GROWTH_WARNING: 5.0
+      ARCC_INTEREST_GROWTH_WARNING: 5.0,
+      GOLD_CLIMAX_VOL_MULTIPLIER: 5.0,
+      GOLD_CLIMAX_PRICE_DROP: -2.0,
+      GOLD_CLIMAX_PRICE_RISE: 2.0
     };
 
     this.indicators = [
@@ -180,6 +183,48 @@ export class IndicatorEngine {
           return { status: 'OK', value: current.toFixed(2), message: `Kein Systemstress (<=${THRESHOLDS.NFCI_CRITICAL}).` };
         }
       },
+      {
+        name: 'Gold Volume Climax (Panik/FOMO)',
+        category: 'CONTEMPORANEOUS',
+        evaluate: (timeline) => {
+          if (timeline.length < 50) return { status: 'UNKNOWN', message: 'Zu wenig Daten (< 50 Tage)' };
+          
+          const currentDay = timeline[timeline.length - 1];
+          const prevDay = timeline[timeline.length - 2];
+          
+          const currentVol = currentDay.assets.Gold_Volume;
+          const currentPrice = currentDay.assets.Gold;
+          const prevPrice = prevDay.assets.Gold;
+          
+          if (!currentVol || !currentPrice || !prevPrice) return { status: 'UNKNOWN', message: 'Keine Volumen/Preis-Daten für Gold' };
+          
+          // 50-Tage Durchschnittsvolumen
+          let sumVol = 0;
+          let count = 0;
+          for (let i = timeline.length - 50; i < timeline.length; i++) {
+            const v = timeline[i].assets.Gold_Volume;
+            if (v && v > 0) {
+              sumVol += v;
+              count++;
+            }
+          }
+          
+          if (count === 0) return { status: 'UNKNOWN', message: 'Keine gültigen Volumendaten' };
+          const avgVol = sumVol / count;
+          const volRatio = currentVol / avgVol;
+          const priceChangePct = ((currentPrice - prevPrice) / prevPrice) * 100;
+          
+          if (volRatio >= THRESHOLDS.GOLD_CLIMAX_VOL_MULTIPLIER) {
+            if (priceChangePct <= THRESHOLDS.GOLD_CLIMAX_PRICE_DROP) {
+              return { status: 'CRITICAL', value: `${volRatio.toFixed(1)}x Vol, ${priceChangePct.toFixed(1)}%`, message: 'SELLING CLIMAX! Gold crasht unter extremem Volumen (Margin Call Liquidations!).' };
+            } else if (priceChangePct >= THRESHOLDS.GOLD_CLIMAX_PRICE_RISE) {
+              return { status: 'CRITICAL', value: `${volRatio.toFixed(1)}x Vol, +${priceChangePct.toFixed(1)}%`, message: 'BUYING CLIMAX! Gold explodiert unter extremem Volumen (Panik-Flucht in Sicherheit!).' };
+            }
+          }
+          
+          return { status: 'OK', value: `${volRatio.toFixed(1)}x Vol`, message: 'Normales Gold-Handelsvolumen.' };
+        }
+      },
 
       // 🔴 TRIGGER (Verkaufssignale)
       {
@@ -256,6 +301,61 @@ export class IndicatorEngine {
             return { status: 'WARNING', value: `${perf.toFixed(1)}%`, message: 'Schwäche bei variabel verzinslichen Firmenkrediten.' };
           }
           return { status: 'OK', value: `${perf.toFixed(1)}%`, message: 'Leveraged Loans stabil.' };
+        }
+      },
+      {
+        name: 'Central Bank Policy Error (DFF vs T10YIE vs DXY)',
+        category: 'TRIGGER',
+        evaluate: (timeline) => {
+          // Wir brauchen 60 Handelstage (~3 Monate)
+          if (timeline.length < 60) return { status: 'UNKNOWN', message: 'Zu wenig Daten (< 60 Tage)' };
+          
+          const current = timeline[timeline.length - 1];
+          const past = timeline[timeline.length - 60];
+          
+          const currentDFF = current.macroGroups?.FinancialConditions?.FedFundsRate;
+          const pastDFF = past.macroGroups?.FinancialConditions?.FedFundsRate;
+          
+          const currentT10YIE = current.macroGroups?.Leading?.BreakevenInflation;
+          const pastT10YIE = past.macroGroups?.Leading?.BreakevenInflation;
+
+          const currentDXY = current.macroGroups?.FinancialConditions?.DXY;
+          const pastDXY = past.macroGroups?.FinancialConditions?.DXY;
+
+          if (currentDFF === undefined || pastDFF === undefined || currentDFF === null || pastDFF === null ||
+              currentT10YIE === undefined || pastT10YIE === undefined || currentT10YIE === null || pastT10YIE === null ||
+              currentDXY === undefined || pastDXY === undefined || currentDXY === null || pastDXY === null) {
+            return { status: 'UNKNOWN', message: 'Keine Daten für FED Funds Rate, Inflation oder DXY' };
+          }
+
+          const dffChange = currentDFF - pastDFF;
+          const t10yieChange = currentT10YIE - pastT10YIE;
+          const dxyReturn = ((currentDXY - pastDXY) / pastDXY) * 100;
+
+          // THRESHOLD: Leitzins sinkt um > 0.25%, Inflation steigt um > 0.10%
+          if (dffChange < -0.25 && t10yieChange > 0.10) {
+            // FILTER: Ein starker Dollar (> +2%) erstickt die Gold-Rallye
+            if (dxyReturn > 2.0) {
+                return { 
+                  status: 'WARNING', 
+                  value: `DFF ${dffChange.toFixed(2)}% / T10YIE +${t10yieChange.toFixed(2)}% / DXY +${dxyReturn.toFixed(1)}%`, 
+                  message: `Policy Error erkannt, ABER starker US-Dollar blockiert Gold-Ausbruch.` 
+                };
+            }
+            return { 
+              status: 'CRITICAL', 
+              value: `DFF ${dffChange.toFixed(2)}% / T10YIE +${t10yieChange.toFixed(2)}% / DXY ${dxyReturn.toFixed(1)}%`, 
+              message: `SYSTEM-ALARM: FED senkt Zinsen panisch, aber Markt erwartet wieder Inflation! Schwacher Dollar befeuert Fiat-Flucht in Gold.` 
+            };
+          } else if (dffChange < -0.10 && t10yieChange > 0.05) {
+            return { 
+              status: 'WARNING', 
+              value: `DFF ${dffChange.toFixed(2)}% / T10YIE +${t10yieChange.toFixed(2)}%`, 
+              message: 'FED Zinsen sinken, während Inflationserwartung leicht steigt. Vertrauensverlust droht.' 
+            };
+          }
+          
+          return { status: 'OK', value: `DFF ${dffChange.toFixed(2)}%`, message: 'Geldpolitik im Einklang mit Inflationserwartungen.' };
         }
       },
 
