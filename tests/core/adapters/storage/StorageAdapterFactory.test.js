@@ -5,11 +5,13 @@ import { TiingoAdapter } from '../../../../src/core/adapters/storage/TiingoAdapt
 
 describe('StorageAdapterFactory', () => {
   it('should return correct adapter for existing providers', () => {
-    const binanceAdapter = StorageAdapterFactory.getAdapter('Binance');
-    expect(binanceAdapter).toBeInstanceOf(BinanceAdapter);
-
-    const tiingoAdapter = StorageAdapterFactory.getAdapter('Tiingo');
-    expect(tiingoAdapter).toBeInstanceOf(TiingoAdapter);
+    expect(StorageAdapterFactory.getAdapter('Binance')).toBeInstanceOf(BinanceAdapter);
+    expect(StorageAdapterFactory.getAdapter('Tiingo')).toBeInstanceOf(TiingoAdapter);
+    expect(StorageAdapterFactory.getAdapter('FRED')).toBeDefined();
+    expect(StorageAdapterFactory.getAdapter('FiscalData')).toBeDefined();
+    expect(StorageAdapterFactory.getAdapter('YahooFinance')).toBeDefined();
+    expect(StorageAdapterFactory.getAdapter('SecEdgar')).toBeDefined();
+    expect(StorageAdapterFactory.getAdapter('Cboe')).toBeDefined();
   });
 
   it('should throw error for unknown provider (edge case)', () => {

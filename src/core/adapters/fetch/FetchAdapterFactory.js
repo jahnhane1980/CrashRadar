@@ -1,7 +1,9 @@
 import { YahooFinanceFetchAdapter } from './YahooFinanceFetchAdapter.js';
+import { CboeFetchAdapter } from './CboeFetchAdapter.js';
 
 const adapters = {
   'YahooFinance': new YahooFinanceFetchAdapter(),
+  'Cboe': new CboeFetchAdapter(),
 };
 
 export class FetchAdapterFactory {

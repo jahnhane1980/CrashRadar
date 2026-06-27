@@ -68,7 +68,8 @@ export class FinanceExpert {
           VIX: state.VIX,
           HYG: state.HYG,
           BIZD: state.BIZD,
-          BKLN: state.BKLN
+          BKLN: state.BKLN,
+          CBOE_SPY: state.CBOE_SPY
         },
         macroGroups: {
           NetLiquidity: {

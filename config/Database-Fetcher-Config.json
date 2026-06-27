@@ -90,6 +90,14 @@
       "headers": {
         "User-Agent": "CrashRadar/1.0 (research@example.com)"
       }
+    },
+    "Cboe": {
+      "type": "package",
+      "pagination": {
+        "strategy": "custom",
+        "dateExtractPath": "record_date",
+        "dateFormat": "YYYY-MM-DD"
+      }
     }
   },
   "tasks": [
@@ -431,6 +439,61 @@
       "ticker": "ARCC",
       "endpoint": "/companyfacts/CIK0001287750.json",
       "params": {}
+    },
+    {
+      "id": "tiingo_mara_daily",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/MARA/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "MARA"
+    },
+    {
+      "id": "tiingo_mstr_daily",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/MSTR/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "MSTR"
+    },
+    {
+      "id": "tiingo_coin_daily",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/COIN/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "COIN"
+    },
+    {
+      "id": "yahoo_cpc",
+      "provider": "YahooFinance",
+      "ticker": "^CPC",
+      "method": "chart",
+      "options": {}
+    },
+    {
+      "id": "yahoo_cpce",
+      "provider": "YahooFinance",
+      "ticker": "^CPCE",
+      "method": "chart",
+      "options": {}
+    },
+    {
+      "id": "yahoo_cpci",
+      "provider": "YahooFinance",
+      "ticker": "^CPCI",
+      "method": "chart",
+      "options": {}
+    },
+    {
+      "id": "cboe_spy_options",
+      "provider": "Cboe",
+      "ticker": "SPY"
+    },
+    {
+      "id": "cboe_qqq_options",
+      "provider": "Cboe",
+      "ticker": "QQQ"
     }
   ]
 }

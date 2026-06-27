@@ -102,7 +102,13 @@ export class AnalysisRepository {
       WHERE record_date >= ?
     `, [startDate]);
 
-    return { btc, tiingo, yahoo, fred, tga, mw, sec };
+    const [cboe] = await this.pool.query(`
+      SELECT record_date as date, volume 
+      FROM market_data_cboe 
+      WHERE symbol = 'SPY' AND record_date >= ?
+    `, [startDate]);
+
+    return { btc, tiingo, yahoo, fred, tga, mw, sec, cboe };
   }
 
   async getInitialState(startDate) {
@@ -124,6 +130,7 @@ export class AnalysisRepository {
     const initialHyg = await getLastBefore(TABLES.YAHOO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.HYG]);
     const initialBizd = await getLastBefore(TABLES.YAHOO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.BIZD]);
     const initialBkln = await getLastBefore(TABLES.YAHOO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.BKLN]);
+    const initialCboeSpy = await getLastBefore('market_data_cboe', 'record_date', 'volume', "AND symbol = ?", [SYMBOLS.SPY]);
 
     const getFredBefore = async (seriesId) => await getLastBefore(TABLES.FRED, 'observation_date', 'value', "AND series_id = ?", [seriesId]);
 
@@ -152,7 +159,7 @@ export class AnalysisRepository {
 
     return {
       BTC: initialBtc, SPY: initialSpy, QQQ: initialQqq, TLT: initialTlt, DXY: initialDxy, Gold: initialGold, Copper: initialCopper,
-      VIX: initialVix, HYG: initialHyg, BIZD: initialBizd, BKLN: initialBkln,
+      VIX: initialVix, HYG: initialHyg, BIZD: initialBizd, BKLN: initialBkln, CBOE_SPY: initialCboeSpy,
       WALCL: await parseFred(FRED_SERIES.WALCL, true), TGA: initialTga, RRPONTSYD: await parseFred(FRED_SERIES.RRPONTSYD, false),
       DFII10: await parseFred(FRED_SERIES.DFII10, false), NFCI: await parseFred(FRED_SERIES.NFCI, false), TOTRESNS: await parseFred(FRED_SERIES.TOTRESNS, false), BORROW: await parseFred(FRED_SERIES.BORROW, false), T10Y2Y: await parseFred(FRED_SERIES.T10Y2Y, false),
       ECBASSETSW: await parseFred(FRED_SERIES.ECBASSETSW, false), M2SL: await parseFred(FRED_SERIES.M2SL, false), PERMIT: await parseFred(FRED_SERIES.PERMIT, false), UMCSENT: await parseFred(FRED_SERIES.UMCSENT, false),
