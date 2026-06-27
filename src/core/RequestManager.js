@@ -40,11 +40,22 @@ export class RequestManager {
       });
 
       try {
-        console.log(`[HTTP GET] ${url}?${options.searchParams?.toString() || ''}`);
-        const response = await kyInstance.get(url).json();
+        let paramsString = '';
+        if (options.searchParams) {
+            paramsString = new URLSearchParams(options.searchParams).toString();
+        }
+        console.log(`[HTTP GET] ${url}${paramsString ? '?' + paramsString : ''}`);
+        
+        const responseType = options.responseType || 'json';
+        const response = await kyInstance.get(url)[responseType]();
         return response;
       } catch (error) {
-        console.error(`[RequestManager] Final error fetching ${url}:`, error.message);
+        if (error.response && (error.response.status === 403 || error.response.status === 404)) {
+            // Minimal logging for expected 403/404s (holidays, weekends)
+            console.log(`[RequestManager] Skipping ${url} (Status: ${error.response.status})`);
+        } else {
+            console.error(`[RequestManager] Final error fetching ${url}:`, error.message);
+        }
         throw error;
       }
     };

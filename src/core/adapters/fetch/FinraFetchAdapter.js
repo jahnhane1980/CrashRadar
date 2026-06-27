@@ -5,21 +5,74 @@ import path from 'path';
 
 export class FinraFetchAdapter {
     constructor() {
-        this.api = ky.create({
-            timeout: 30000,
-            headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-                'Accept-Language': 'en-US,en;q=0.5'
-            }
-        });
     }
 
-    async fetch(task, state, startDate, endDate) {
+    async fetch(task, provider, startDate, requestManager) {
+        if (task.dataset === 'short_volume') {
+            console.log(`[FINRA] Hole Daily Short Volume für ${task.ticker} (Zeitraum ab: ${startDate})`);
+            const records = [];
+            const startStr = startDate || '2025-01-01';
+            const endStr = new Date().toISOString().split('T')[0];
+            const start = new Date(startStr);
+            const end = new Date(endStr);
+            
+            for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+                if (d.getDay() === 0 || d.getDay() === 6) continue; // Skip weekends
+                
+                const dateStr = d.toISOString().split('T')[0].replace(/-/g, '');
+                const formattedDate = d.toISOString().split('T')[0];
+                const url = `https://cdn.finra.org/equity/regsho/daily/CNMSshvol${dateStr}.txt`;
+                
+                try {
+                    const text = await requestManager.fetch(url, task.provider, {
+                        responseType: 'text',
+                        headers: {
+                            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+                            'Accept-Language': 'en-US,en;q=0.5'
+                        }
+                    });
+                    const lines = text.split('\n');
+                    for (const line of lines) {
+                        const parts = line.split('|');
+                        // Date|Symbol|ShortVolume|ShortExemptVolume|TotalVolume|Market
+                        if (parts.length >= 5 && parts[1] === task.ticker) {
+                            const shortVol = parseInt(parts[2], 10);
+                            const totalVol = parseInt(parts[4], 10);
+                            if (totalVol > 0) {
+                                records.push({
+                                    symbol: task.ticker,
+                                    record_date: formattedDate,
+                                    short_volume: shortVol,
+                                    total_volume: totalVol,
+                                    short_volume_ratio: shortVol / totalVol
+                                });
+                            }
+                            break;
+                        }
+                    }
+                } catch(e) {
+                    if (e.response && (e.response.status === 404 || e.response.status === 403)) {
+                        // Dateiformat existiert an Feiertagen etc. nicht (AWS S3 gibt 403 statt 404)
+                        continue;
+                    }
+                    console.error(`[FinraFetchAdapter] Fehler beim Abruf von Short Volume ${dateStr}: ${e.message}`);
+                }
+            }
+            return records;
+        }
+
         console.log(`[FINRA] Hole Margin Statistics für Task: ${task.id}`);
         try {
             // 1. Hole die HTML Seite
-            const html = await this.api.get('https://www.finra.org/investors/learn-to-invest/advanced-investing/margin-statistics').text();
+            const html = await requestManager.fetch('https://www.finra.org/investors/learn-to-invest/advanced-investing/margin-statistics', task.provider, {
+                responseType: 'text',
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+                    'Accept-Language': 'en-US,en;q=0.5'
+                }
+            });
             
             // 2. Extrahiere den Excel Link
             const regex = /href=[\"'](\/sites\/default\/files\/.*?margin-statistics\.xlsx)[\"']/i;
@@ -32,7 +85,14 @@ export class FinraFetchAdapter {
             console.log(`[FINRA] Excel Datei gefunden: ${fileUrl}`);
 
             // 3. Lade die Excel Datei herunter
-            const buffer = await this.api.get(fileUrl).arrayBuffer();
+            const buffer = await requestManager.fetch(fileUrl, task.provider, {
+                responseType: 'arrayBuffer',
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+                    'Accept-Language': 'en-US,en;q=0.5'
+                }
+            });
             
             // 4. Parse das Excel im Speicher
             const workbook = xlsx.read(buffer, { type: 'array' });
@@ -61,9 +121,6 @@ export class FinraFetchAdapter {
                     if (startDate && recordDate < startDate) {
                         continue;
                     }
-                    if (endDate && recordDate > endDate) {
-                        continue;
-                    }
 
                     parsedRecords.push({
                         record_date: recordDate,
@@ -83,11 +140,12 @@ export class FinraFetchAdapter {
                 if (!fs.existsSync(dir)) {
                     fs.mkdirSync(dir, { recursive: true });
                 }
-                const fileName = `MarginDebt_${startDate}_to_${endDate}.csv`;
+                const currentDateStr = new Date().toISOString().split('T')[0];
+                const fileName = `MarginDebt_${startDate}_to_${currentDateStr}.csv`;
                 fs.writeFileSync(path.join(dir, fileName), csvHeader + csvBody);
                 console.log(`[FINRA] CSV gesichert unter: ${path.join(dir, fileName)}`);
             } else {
-                console.log(`[FINRA] Keine neuen Daten für den Zeitraum (${startDate} bis ${endDate}) gefunden.`);
+                console.log(`[FINRA] Keine neuen Daten für den Zeitraum seit ${startDate} gefunden.`);
             }
 
             return parsedRecords.sort((a, b) => a.record_date.localeCompare(b.record_date));

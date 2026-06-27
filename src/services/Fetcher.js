@@ -107,8 +107,8 @@ export class Fetcher {
       const adapter = FetchAdapterFactory.get(task.provider);
       
       console.log(`[PackageFetcher] Fetching ${task.method || 'default'} for ${task.ticker || task.id}`);
-      try {
-        const result = await adapter.fetch(task, provider, startValue);
+        try {
+        const result = await adapter.fetch(task, provider, startValue, this.requestManager);
         const newData = this.extractData(result, provider);
         
         if (newData && newData.length > 0) {
