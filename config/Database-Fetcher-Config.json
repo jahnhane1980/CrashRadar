@@ -3,7 +3,7 @@
   "providers": {
     "Binance": {
       "type": "http",
-      "baseUrl": "https://api.binance.com",
+      "baseUrl": "https://api.binance.us",
       "overrideStartDate": "2017-08-01",
       "auth": null,
       "requestsPerSecond": 2,
@@ -495,27 +495,6 @@
       "params": {},
       "resolution": "daily",
       "ticker": "COIN"
-    },
-    {
-      "id": "yahoo_cpc",
-      "provider": "YahooFinance",
-      "ticker": "^CPC",
-      "method": "chart",
-      "options": {}
-    },
-    {
-      "id": "yahoo_cpce",
-      "provider": "YahooFinance",
-      "ticker": "^CPCE",
-      "method": "chart",
-      "options": {}
-    },
-    {
-      "id": "yahoo_cpci",
-      "provider": "YahooFinance",
-      "ticker": "^CPCI",
-      "method": "chart",
-      "options": {}
     },
     {
       "id": "cboe_spy_options",
