@@ -821,6 +821,52 @@ export class IndicatorEngine {
             }
           }
         }
+      },
+      {
+        name: 'ML Regime Radar (Makro)',
+        category: 'LEADING',
+        evaluate: (timeline) => {
+          if (timeline.length < 1) return { status: 'UNKNOWN', message: 'Zu wenig Daten' };
+          const mlRegime = timeline[timeline.length - 1].mlRegime;
+          if (!mlRegime) return { status: 'UNKNOWN', message: 'Keine ML Prognose vorhanden' };
+          
+          const { phase, confidence } = mlRegime;
+          const confPct = (confidence * 100).toFixed(1) + '%';
+          
+          if (phase === 'MACRO_TOP') {
+            return { status: 'CRITICAL', value: `TOP (${confPct})`, message: 'KI-ALARM! Absolute Makro-Euphorie erkannt. Extremes Absturzrisiko für alle Risiko-Assets.' };
+          } else if (phase === 'DOWNTREND' && confidence > 0.6) {
+             return { status: 'WARNING', value: `DOWNTREND (${confPct})`, message: 'KI-Warnung! Bärenmarkt-Struktur aktiv. Liquidität sinkt.' };
+          } else if (phase === 'MACRO_BOTTOM') {
+            return { status: 'CRITICAL', value: `BOTTOM (${confPct})`, message: 'KI-SIGNAL! Das makroökonomische Tal der Tränen (Kapitulation) ist erreicht.' };
+          } else if (phase === 'UPTREND') {
+            return { status: 'OK', value: `UPTREND (${confPct})`, message: 'Gesunde Bullenmarkt-Struktur (Higher Highs).' };
+          }
+          return { status: 'OK', value: `${phase} (${confPct})`, message: 'Neutrales Regime.' };
+        }
+      },
+      {
+        name: 'ML Regime Radar (Krypto)',
+        category: 'LEADING',
+        evaluate: (timeline) => {
+          if (timeline.length < 1) return { status: 'UNKNOWN', message: 'Zu wenig Daten' };
+          const mlRegime = timeline[timeline.length - 1].mlRegime;
+          if (!mlRegime) return { status: 'UNKNOWN', message: 'Keine ML Prognose vorhanden' };
+          
+          const { phase, confidence } = mlRegime;
+          const confPct = (confidence * 100).toFixed(1) + '%';
+          
+          if (phase === 'MACRO_TOP') {
+            return { status: 'CRITICAL', value: `TOP (${confPct})`, message: 'KRYPTO-ZYKLUSENDE! Verteilungsphase (Distribution) im vollen Gange. Gewinne sichern!' };
+          } else if (phase === 'DOWNTREND' && confidence > 0.6) {
+             return { status: 'WARNING', value: `DOWNTREND (${confPct})`, message: 'KRYPTO-WINTER: Bärenmarkt aktiv. Jeder Pump ist eine Bullenfalle (Dead Cat Bounce).' };
+          } else if (phase === 'MACRO_BOTTOM') {
+            return { status: 'CRITICAL', value: `BOTTOM (${confPct})`, message: 'KRYPTO-BODEN! Historische Kaufgelegenheit im Bitcoin.' };
+          } else if (phase === 'UPTREND') {
+            return { status: 'OK', value: `UPTREND (${confPct})`, message: 'Bitcoin im stabilen Aufwärtstrend.' };
+          }
+          return { status: 'OK', value: `${phase} (${confPct})`, message: 'Neutrales Krypto-Regime.' };
+        }
       }
     ];
   }

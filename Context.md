@@ -49,7 +49,7 @@ Das ML-Modell soll künftig nicht als isoliertes Skript, sondern als aktiver Ker
 
 ### 6. Datei- und Asset-Referenz (PoC Sandbox)
 Damit die Überführung in das Live-System reibungslos klappt, hier die exakten Pfade der erstellten PoC-Assets:
-* **Rohdaten & Labels:** `data/ml/btc_historical.csv` und `data/ml/btc_labeled.csv`
+* **Rohdaten (Veraltet):** Historische CSV-Dateien wurden entfernt, da wir jetzt 100% nativ auf die TiDB zugreifen.
 * **Gespeichertes Modell:** `data/ml/models/btc_regime_v1/` (Enthält `weights.json` und `stats.json`)
 * **Die PoC-Skripte (im `scratch/` Ordner):**
   1. `scratch/ml_data_pipeline.js`: Zieht die Yahoo-Finance Rohdaten ab 2014.
@@ -57,7 +57,21 @@ Damit die Überführung in das Live-System reibungslos klappt, hier die exakten 
   3. `scratch/train_model.js`: Das eigentliche TensorFlow LSTM Training mit Custom-IO Speicher-Logik.
   4. `scratch/simulate_live_inference.js`: Der Live-Test-Simulator (Zeitreise).
 
-### Nächste Entwicklungsschritte
-- [ ] **Modell Migration:** Überführung der ML-Logik aus `scratch/` in die `src/` Kernarchitektur (Erstellung eines `MLRegimeService`).
-- [ ] **TiDB Anbindung:** Der `MLRegimeService` wird so konfiguriert, dass er nicht mehr aus CSV, sondern aus der TiDB-Datenbank liest.
-- [ ] **Signal-Fusion:** Verknüpfung der klassischen CrashRadar-Indikatoren mit den Ampel-Signalen des neuronalen Netzes zur finalen Risikobewertung.
+### Nächste Entwicklungsschritte (Aktualisierter, detaillierter Fahrplan)
+
+**Phase 1: Konfiguration & Architektur**
+- [x] **Auslagerung der Labels:** Anlage der `config/ML-Cycles-Config.json`, um das Hardcoded Ground-Truth-Lexikon (Zyklen) aus dem Skript zu lösen.
+- [x] **Service-Erstellung:** Anlage des `src/services/MLRegimeService.js`. Dieser übernimmt zwei Aufgaben:
+      1. *Live-Inferenz:* Laden der `weights.json`, RAM-Normalisierung (RSI, MACD) der aktuellen TiDB-Tagesdaten, Prognose-Rückgabe.
+      2. *Training:* Logik für das Neulernen des Netzwerks.
+
+**Phase 2: Der Retrain-Prozess & Automatisierung**
+- [x] **Runner-Erstellung:** Anlage des `src/runners/MLRetrainRunner.js`. Zieht alle Historien-Daten aus der TiDB, wendet die Labels an, trainiert das Modell und speichert es in `data/ml/models/`.
+- [x] **NPM Skript:** Eintrag `"ml:retrain": "node src/runners/MLRetrainRunner.js"` in die `package.json` hinzufügen.
+- [x] **GitHub Action (Yearly Retrain & Auto-Commit):** Anlage der `.github/workflows/yearly-retrain.yml`. 
+      *Trigger:* Läuft 1x jährlich per Cron (z. B. am 1. Januar) **oder** bei Bedarf manuell per Knopfdruck (`workflow_dispatch`), wenn wir die Config geupdatet haben.
+      *Ablauf:* Zieht TiDB-Daten -> Führt `npm run ml:retrain` aus -> Führt `git commit` und `git push` für das Verzeichnis `data/ml/models/` aus. So sichert sich das Repository seine Gehirn-Updates selbst.
+
+**Phase 3: Live-Integration**
+- [x] **TiDB Live-Feed:** Anpassung der Inferenz, sodass der Service täglich performant die letzen 14 Zeilen aus `market_data_binance` liest.
+- [x] **Signal-Fusion:** Verknüpfung des ML-Regime-Outputs mit der `IndicatorEngine.js` (z. B. Blockieren von Fake-Kaufsignalen, wenn ML auf `DOWNTREND` steht).

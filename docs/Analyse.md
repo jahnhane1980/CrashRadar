@@ -161,6 +161,17 @@ Die These "Der Bullenmarkt stirbt mit dem letzten Bären" besagt, dass ein Markt
   * **Das fehlende Puzzleteil (PCR-Filter):** Um diese Melt-Up-Fehlalarme auszufiltern, ist das **CBOE Total Put/Call Ratio (PCR)** entscheidend. Eine Auswertung der Fehlalarme zeigte, dass das PCR an diesen Tagen zwischen **0.89 und 1.00** lag. Das bedeutet: Obwohl die Leerverkäufer kapitulierten (Short Ratio niedrig) und das Smart Money sich absicherte (SKEW extrem hoch), haben die Optionshändler weiterhin kräftig Puts gekauft. Es herrschte noch keine "bedingungslose Euphorie". Ein echter Crash erfordert das Aussterben *aller* Bären, messbar durch ein extrem niedriges PCR (z.B. **PCR < 0.75**). Nur wenn alle drei Bedingungen (SKEW > 145, Short < 45%, PCR < 0.75) zusammentreffen, ist der Markt reif für den Crash.
   * **Datengewinnung (Der hybride Ansatz):** Da die CBOE-API historische Abfragen häufig blockiert (Cloudflare 403), haben wir eine robuste Lösung implementiert: Für das Backtesting greifen wir auf ein lokales Archiv der CBOE-Werte zurück. Für die Live-Beobachtung parst der Bot vollautomatisch die tagesaktuellen SPY-Optionsketten über Yahoo Finance und berechnet das Put/Call Ratio (Summe Puts / Summe Calls) selbst.
 
+### 10. Machine Learning: Das LSTM Regime Radar (KI-Signal)
+Um das ständige Rauschen der traditionellen Indikatoren zu glätten, nutzt CrashRadar als übergeordneten Kompass ein neuronales Netz (TensorFlow LSTM). Es sagt keine absoluten Preise voraus, sondern berechnet Wahrscheinlichkeiten für fundamentale Marktstrukturen (Regimes).
+* **Das Setup (Stationäre Features):** Das Modell wird niemals mit rohen Preisen gefüttert (Overfitting-Gefahr). Es analysiert 14-Tage-Sequenzen aus prozentualen Tagesrenditen sowie dynamisch normalisierten MACD- und RSI-Werten.
+* **Ground Truth (Lexikon-Ansatz):** Das Netzwerk lernt aus einem manuell gepflegten Lexikon verifizierter historischer Makro-Zyklen (z. B. dem FTX-Crash oder dem 2021er Top). Es unterscheidet vier Phasen:
+  1. `MACRO_TOP`: Absolute Euphorie- und Verteilungsphasen.
+  2. `MACRO_BOTTOM`: Das Tal der Tränen / Kapitulationsphasen.
+  3. `UPTREND`: Gesunde Bullenmarkt-Struktur (Höhere Hochs).
+  4. `DOWNTREND`: Bärenmärkte.
+* **Der Filter-Effekt:** Im Live-Betrieb fungiert das Modell als Wächter. Es warnt z. B. präzise vor "Dead Cat Bounces" (Fake-Rallyes im Abwärtstrend), wenn die Signatur weiterhin auf einem dominanten `DOWNTREND` steht. Es warnt davor, in fallende Messer zu greifen, bis das Netz einen `MACRO_BOTTOM` bestätigt.
+* **Autonomes Training:** Das Modell wird nicht durch Rauschen verwirrt, sondern trainiert sich einmal jährlich (oder bei Updates des Lexikons) via GitHub Actions vollautomatisch auf Basis der TiDB-Historie neu.
+
 ### 🚦 Die große Indikator-Klassifizierung (Zusammenfassung)
 
 Um Crashs systematisch zu navigieren, stützen wir uns in der automatisierten Engine aktiv auf 3 Phasen, während andere Metriken bewusst ausgefiltert werden:

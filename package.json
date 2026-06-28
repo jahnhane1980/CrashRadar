@@ -7,6 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
+    "ml:retrain": "node src/runners/MLRetrainRunner.js",
     "test": "vitest run -c ./config/vitest.config.js",
     "test:watch": "vitest -c ./config/vitest.config.js",
     "coverage": "vitest run --coverage -c ./config/vitest.config.js"

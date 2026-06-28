@@ -1,0 +1,44 @@
+name: ML Model Yearly Retrain
+
+on:
+  schedule:
+    # Jeden 1. Januar um 02:00 Uhr UTC
+    - cron: '0 2 1 1 *'
+  workflow_dispatch:
+    # Erlaubt manuellen Start (z.B. nach Anpassung der ML-Cycles-Config.json)
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  retrain-and-commit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: ⚙️ Setup Node.js (22.x)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: npm ci
+
+      - name: 🧠 Run ML Retrain Pipeline
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: npm run ml:retrain
+
+      - name: 💾 Commit and Push Updated Model
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/ml/models/
+          git diff --staged --quiet || (git commit -m "chore(ml): update lstm model weights [skip ci]" && git push)

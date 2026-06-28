@@ -7,6 +7,7 @@ import { StandardRunner } from './src/runners/StandardRunner.js';
 import { TestRunner } from './src/runners/TestRunner.js';
 import { FinanceExpert } from './src/services/FinanceExpert.js';
 import { IndicatorEngine } from './src/analysis/IndicatorEngine.js';
+import { MLRegimeService } from './src/services/MLRegimeService.js';
 import { NtfyService } from './src/services/NtfyService.js';
 import { Storage } from './src/core/Storage.js';
 import { RequestManager } from './src/core/RequestManager.js';
@@ -48,6 +49,24 @@ export async function runCLI(argv) {
         const dbUrl = options.test ? (process.env.DATABASE_URL_TEST || process.env.DATABASE_URL) : process.env.DATABASE_URL;
         const expert = new FinanceExpert(dbUrl);
         const groupedData = await expert.getDailyGroupedData('2015-01-01');
+        
+        // --- ML Regime Integration ---
+        try {
+            const mlService = new MLRegimeService();
+            const btcCandles = groupedData.map(d => ({
+              date: d.date,
+              close: d.assets.BTC,
+              volume: d.assets.BTC_Volume || 0
+            })).filter(c => c.close !== null && c.close !== undefined);
+            
+            if (btcCandles.length >= 50) {
+              const mlPrediction = await mlService.predict(btcCandles);
+              groupedData[groupedData.length - 1].mlRegime = mlPrediction;
+            }
+        } catch(e) {
+            console.error("[Analysis] Fehler bei der ML-Prognose:", e.message);
+        }
+        // -----------------------------
         
         const engine = new IndicatorEngine();
         

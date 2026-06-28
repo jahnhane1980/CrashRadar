@@ -48,6 +48,8 @@
     "GDX Buying Climax (Top-Gefahr)": "GOLD",
     "GDX vs Gold Divergenz": "GOLD",
     "Gold (SMA 50 Ausbruch)": "GOLD",
-    "Tech-Zyklus Radar (SMH vs IGV)": "TECH"
+    "Tech-Zyklus Radar (SMH vs IGV)": "TECH",
+    "ML Regime Radar (Makro)": "MACRO",
+    "ML Regime Radar (Krypto)": "CRYPTO"
   }
 }
