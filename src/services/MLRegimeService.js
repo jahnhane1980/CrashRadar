@@ -7,10 +7,11 @@ import { RSI, MACD } from 'technicalindicators';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const MODELS_DIR = path.join(__dirname, '..', '..', 'data', 'ml', 'models', 'btc_regime_v1');
 
 export class MLRegimeService {
-  constructor() {
+  constructor(modelName = 'btc_regime_v1') {
+    this.modelName = modelName;
+    this.modelDir = path.join(__dirname, '..', '..', 'data', 'ml', 'models', this.modelName);
     this.model = null;
     this.stats = null;
     this.labels = ['MACRO_TOP', 'MACRO_BOTTOM', 'UPTREND', 'DOWNTREND'];
@@ -23,8 +24,8 @@ export class MLRegimeService {
     if (this.model) return;
     
     try {
-      const statsPath = path.join(MODELS_DIR, 'stats.json');
-      const weightsPath = path.join(MODELS_DIR, 'weights.json');
+      const statsPath = path.join(this.modelDir, 'stats.json');
+      const weightsPath = path.join(this.modelDir, 'weights.json');
       
       this.stats = JSON.parse(await fs.readFile(statsPath, 'utf8'));
       const weightsArrays = JSON.parse(await fs.readFile(weightsPath, 'utf8'));
@@ -181,15 +182,15 @@ export class MLRegimeService {
       }
     });
 
-    console.log(`💾 Speichere Modell-Gewichte in ${MODELS_DIR}...`);
-    if (!fsSync.existsSync(MODELS_DIR)) {
-      await fs.mkdir(MODELS_DIR, { recursive: true });
+    console.log(`💾 Speichere Modell-Gewichte in ${this.modelDir}...`);
+    if (!fsSync.existsSync(this.modelDir)) {
+      await fs.mkdir(this.modelDir, { recursive: true });
     }
     
     const weights = this.model.getWeights().map(w => w.arraySync());
-    await fs.writeFile(path.join(MODELS_DIR, 'weights.json'), JSON.stringify(weights), 'utf-8');
-    await fs.writeFile(path.join(MODELS_DIR, 'stats.json'), JSON.stringify(this.stats), 'utf-8');
+    await fs.writeFile(path.join(this.modelDir, 'weights.json'), JSON.stringify(weights), 'utf-8');
+    await fs.writeFile(path.join(this.modelDir, 'stats.json'), JSON.stringify(this.stats), 'utf-8');
     
-    console.log('🎉 Retraining erfolgreich abgeschlossen!');
+    console.log(`🎉 Retraining für ${this.modelName} erfolgreich abgeschlossen!`);
   }
 }

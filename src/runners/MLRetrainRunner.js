@@ -20,40 +20,52 @@ function getLabelForDate(dateStr, cycles) {
 }
 
 async function run() {
-  console.log('🚀 Starte ML Retraining Pipeline...');
+  console.log('🚀 Starte ML Retraining Pipeline für alle konfigurierten Zyklen...');
   const repo = new AnalysisRepository();
   
   try {
-    const mlService = new MLRegimeService();
-    
-    console.log('📥 Lade historische Kerzen aus der TiDB (market_data_binance)...');
-    // Wir ziehen ab 2014, da das der Beginn unserer Cycles-Config ist
-    const data = await repo.getAllRawData('2014-01-01');
-    const btcCandles = data.btc;
-    
-    if (!btcCandles || btcCandles.length === 0) {
-        throw new Error('Keine BTC Daten in der Datenbank gefunden!');
-    }
-    
-    // Zwingend chronologisch sortieren (Alt -> Neu) für sauberes LSTM Sequencing
-    btcCandles.sort((a, b) => new Date(a.date) - new Date(b.date));
-    
-    console.log('🏷️  Mappe Ground-Truth Zyklen auf die Daten...');
     const configData = JSON.parse(await fs.readFile(CONFIG_PATH, 'utf-8'));
     
-    const labeledData = btcCandles.map(candle => {
-        return {
-            ...candle,
-            label: getLabelForDate(candle.date, configData.cycles)
-        };
-    });
+    console.log('📥 Lade historische Kerzen aus der TiDB ab 1999...');
+    // Wir ziehen ab 1999, da die QQQ Historie so weit zurückreicht
+    const data = await repo.getAllRawData('1999-01-01');
     
-    const labeledCount = labeledData.filter(d => d.label !== 'UNKNOWN').length;
-    console.log(`📊 Gefunden: ${btcCandles.length} Kerzen. Davon gelabelt: ${labeledCount}.`);
+    // 1. Trainiere BTC Modell
+    if (configData.cycles.btc && data.btc && data.btc.length > 0) {
+      console.log('\n--- 🧠 Starte Training: btc_regime_v1 ---');
+      const btcCandles = data.btc;
+      btcCandles.sort((a, b) => new Date(a.date) - new Date(b.date));
+      const labeledBtc = btcCandles.map(candle => ({
+        ...candle,
+        label: getLabelForDate(candle.date, configData.cycles.btc)
+      }));
+      const labeledCount = labeledBtc.filter(d => d.label !== 'UNKNOWN').length;
+      console.log(`📊 Gefunden: ${btcCandles.length} Kerzen. Davon gelabelt: ${labeledCount}.`);
+      
+      const mlBtc = new MLRegimeService('btc_regime_v1');
+      await mlBtc.retrain(labeledBtc);
+    }
+
+    // 2. Trainiere QQQ Modell
+    if (configData.cycles.qqq && data.tiingo) {
+      console.log('\n--- 🧠 Starte Training: qqq_regime_v1 ---');
+      const qqqCandles = data.tiingo
+        .filter(d => d.symbol === 'QQQ' && d.close !== null)
+        .map(d => ({ date: d.date, close: d.close }));
+        
+      qqqCandles.sort((a, b) => new Date(a.date) - new Date(b.date));
+      const labeledQqq = qqqCandles.map(candle => ({
+        ...candle,
+        label: getLabelForDate(candle.date, configData.cycles.qqq)
+      }));
+      const labeledCount = labeledQqq.filter(d => d.label !== 'UNKNOWN').length;
+      console.log(`📊 Gefunden: ${qqqCandles.length} Kerzen. Davon gelabelt: ${labeledCount}.`);
+      
+      const mlQqq = new MLRegimeService('qqq_regime_v1');
+      await mlQqq.retrain(labeledQqq);
+    }
     
-    await mlService.retrain(labeledData);
-    
-    console.log('✅ ML Retraining Runner beendet.');
+    console.log('\n✅ ML Retraining Runner erfolgreich beendet.');
     process.exit(0);
   } catch (err) {
     console.error('❌ Fehler beim ML Retraining:', err);
