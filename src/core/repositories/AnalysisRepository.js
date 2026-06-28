@@ -24,6 +24,8 @@ export const SYMBOLS = Object.freeze({
   BIZD: 'BIZD',
   BKLN: 'BKLN',
   SKEW: '^SKEW',
+  MSTR: 'MSTR',
+  COIN: 'COIN',
 });
 
 export const FRED_SERIES = Object.freeze({
@@ -64,16 +66,16 @@ export class AnalysisRepository {
 
   async getAllRawData(startDate) {
     const [btc] = await this.pool.query(`
-      SELECT DATE_FORMAT(FROM_UNIXTIME(open_time/1000), '%Y-%m-%d') as date, close 
+      SELECT DATE_FORMAT(FROM_UNIXTIME(open_time/1000), '%Y-%m-%d') as date, close, volume 
       FROM ${TABLES.BINANCE} 
       WHERE symbol = ? AND interval_type = '1d' AND DATE_FORMAT(FROM_UNIXTIME(open_time/1000), '%Y-%m-%d') >= ?
     `, [SYMBOLS.BTC, startDate]);
 
     const [tiingo] = await this.pool.query(`
-      SELECT symbol, record_date as date, close 
+      SELECT symbol, record_date as date, close, volume 
       FROM ${TABLES.TIINGO} 
-      WHERE symbol IN (?, ?, ?) AND record_date >= ?
-    `, [SYMBOLS.SPY, SYMBOLS.QQQ, SYMBOLS.TLT, startDate]);
+      WHERE symbol IN (?, ?, ?, ?, ?) AND record_date >= ?
+    `, [SYMBOLS.SPY, SYMBOLS.QQQ, SYMBOLS.TLT, SYMBOLS.MSTR, SYMBOLS.COIN, startDate]);
 
     const [yahoo] = await this.pool.query(`
       SELECT symbol, record_date as date, close, volume
@@ -140,9 +142,12 @@ export class AnalysisRepository {
     };
 
     const initialBtc = await getLastBefore(TABLES.BINANCE, "DATE_FORMAT(FROM_UNIXTIME(open_time/1000), '%Y-%m-%d')", 'close', "AND symbol = ? AND interval_type = '1d'", [SYMBOLS.BTC]);
+    const initialBtcVol = await getLastBefore(TABLES.BINANCE, "DATE_FORMAT(FROM_UNIXTIME(open_time/1000), '%Y-%m-%d')", 'volume', "AND symbol = ? AND interval_type = '1d'", [SYMBOLS.BTC]);
     const initialSpy = await getLastBefore(TABLES.TIINGO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.SPY]);
     const initialQqq = await getLastBefore(TABLES.TIINGO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.QQQ]);
     const initialTlt = await getLastBefore(TABLES.TIINGO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.TLT]);
+    const initialMstr = await getLastBefore(TABLES.TIINGO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.MSTR]);
+    const initialCoin = await getLastBefore(TABLES.TIINGO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.COIN]);
     
     const initialDxy = await getLastBefore(TABLES.YAHOO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.DXY]);
     const initialGold = await getLastBefore(TABLES.YAHOO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.GOLD]);
@@ -184,7 +189,7 @@ export class AnalysisRepository {
     const initialArccIncome = await getLastBefore(TABLES.FUND_SEC, 'record_date', 'net_income', "AND ticker = ?", ['ARCC']);
 
     return {
-      BTC: initialBtc, SPY: initialSpy, QQQ: initialQqq, TLT: initialTlt, DXY: initialDxy, Gold: initialGold, Gold_Volume: initialGoldVol, Copper: initialCopper,
+      BTC: initialBtc, BTC_Volume: initialBtcVol, MSTR: initialMstr, COIN: initialCoin, SPY: initialSpy, QQQ: initialQqq, TLT: initialTlt, DXY: initialDxy, Gold: initialGold, Gold_Volume: initialGoldVol, Copper: initialCopper,
       VIX: initialVix, HYG: initialHyg, BIZD: initialBizd, BKLN: initialBkln, SKEW: initialSkew, CBOE_SPY: initialCboeSpy, SPY_ShortVolumeRatio: initialSpyShortVol, TotalPCR: initialPcr,
       WALCL: await parseFred(FRED_SERIES.WALCL, true), TGA: initialTga, RRPONTSYD: await parseFred(FRED_SERIES.RRPONTSYD, false),
       DFII10: await parseFred(FRED_SERIES.DFII10, false), DFF: await parseFred(FRED_SERIES.DFF, false), NFCI: await parseFred(FRED_SERIES.NFCI, false), TOTRESNS: await parseFred(FRED_SERIES.TOTRESNS, false), BORROW: await parseFred(FRED_SERIES.BORROW, false), T10Y2Y: await parseFred(FRED_SERIES.T10Y2Y, false),

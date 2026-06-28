@@ -185,6 +185,62 @@ export class IndicatorEngine {
           return { status: 'OK', value: (growth > 0 ? '+' : '') + growth.toFixed(1) + '%', message: 'Zinslast unter Kontrolle.' };
         }
       },
+      {
+        name: 'Bitcoin Divergenz (Makro-Liquidität)',
+        category: 'LEADING',
+        evaluate: (timeline) => {
+          if (timeline.length < 30) return { status: 'UNKNOWN', message: 'Zu wenig Daten (< 30 Tage)' };
+          
+          const currentSpy = timeline[timeline.length - 1].assets.SPY;
+          const currentBtc = timeline[timeline.length - 1].assets.BTC;
+          if (!currentSpy || !currentBtc) return { status: 'UNKNOWN', message: 'Keine Daten' };
+          
+          let spyMax30 = 0, btcMax30 = 0;
+          for (let i = timeline.length - 30; i < timeline.length; i++) {
+            if (timeline[i].assets.SPY > spyMax30) spyMax30 = timeline[i].assets.SPY;
+            if (timeline[i].assets.BTC > btcMax30) btcMax30 = timeline[i].assets.BTC;
+          }
+          
+          const spyDrawdown = ((currentSpy - spyMax30) / spyMax30) * 100;
+          const btcDrawdown = ((currentBtc - btcMax30) / btcMax30) * 100;
+          
+          if (spyDrawdown >= -2.0 && btcDrawdown <= -10.0) {
+            return { status: 'WARNING', value: `SPY ${spyDrawdown.toFixed(1)}%, BTC ${btcDrawdown.toFixed(1)}%`, message: 'Liquiditäts-Staubsauger aktiv! SPY nahe Allzeithoch, aber BTC stürzt ab (TGA-Sog).' };
+          }
+          return { status: 'OK', value: '-', message: 'Keine gefährliche Liquiditäts-Divergenz.' };
+        }
+      },
+      {
+        name: 'Krypto Zyklus-Divergenz (MSTR/COIN)',
+        category: 'LEADING',
+        evaluate: (timeline) => {
+          if (timeline.length < 30) return { status: 'UNKNOWN', message: 'Zu wenig Daten (< 30 Tage)' };
+          
+          const currentBtc = timeline[timeline.length - 1].assets.BTC;
+          const currentMstr = timeline[timeline.length - 1].assets.MSTR;
+          const currentCoin = timeline[timeline.length - 1].assets.COIN;
+          
+          if (!currentBtc || (!currentMstr && !currentCoin)) return { status: 'UNKNOWN', message: 'Keine Proxy-Daten' };
+          
+          let btcMax30 = 0, mstrMax30 = 0, coinMax30 = 0;
+          for (let i = timeline.length - 30; i < timeline.length; i++) {
+            if (timeline[i].assets.BTC > btcMax30) btcMax30 = timeline[i].assets.BTC;
+            if (timeline[i].assets.MSTR && timeline[i].assets.MSTR > mstrMax30) mstrMax30 = timeline[i].assets.MSTR;
+            if (timeline[i].assets.COIN && timeline[i].assets.COIN > coinMax30) coinMax30 = timeline[i].assets.COIN;
+          }
+          
+          const btcDrawdown = ((currentBtc - btcMax30) / btcMax30) * 100;
+          const mstrDrawdown = mstrMax30 > 0 ? ((currentMstr - mstrMax30) / mstrMax30) * 100 : 0;
+          const coinDrawdown = coinMax30 > 0 ? ((currentCoin - coinMax30) / coinMax30) * 100 : 0;
+          
+          const proxyDrawdown = Math.min(mstrMax30 > 0 ? mstrDrawdown : 0, coinMax30 > 0 ? coinDrawdown : 0);
+          
+          if (btcDrawdown >= -2.0 && proxyDrawdown <= -15.0) {
+            return { status: 'WARNING', value: `BTC ${btcDrawdown.toFixed(1)}%, Proxy ${proxyDrawdown.toFixed(1)}%`, message: 'Zyklus-Warnung! BTC stark, aber MSTR/COIN bluten aus (Liquidität fehlt).' };
+          }
+          return { status: 'OK', value: '-', message: 'Krypto-Proxies intakt.' };
+        }
+      },
 
       // 🟡 CONTEMPORANEOUS (Akut)
       {
@@ -649,6 +705,38 @@ export class IndicatorEngine {
             return { status: 'WARNING', value: current.toFixed(0), message: 'Gold kämpft am SMA 50. Beobachten.' };
           }
           return { status: 'OK', value: current.toFixed(0), message: 'Gold im Abwärtstrend (unter SMA 50).' };
+        }
+      },
+      {
+        name: 'Bitcoin Selling Climax (Panik/Boden)',
+        category: 'TROUGH',
+        evaluate: (timeline) => {
+          if (timeline.length < 30) return { status: 'UNKNOWN', message: 'Zu wenig Daten' };
+          
+          const currentDay = timeline[timeline.length - 1];
+          const prevDay = timeline[timeline.length - 2];
+          
+          const currentBtc = currentDay.assets.BTC;
+          const prevBtc = prevDay.assets.BTC;
+          const currentBtcVol = currentDay.assets.BTC_Volume;
+          
+          if (!currentBtc || !prevBtc || !currentBtcVol) return { status: 'UNKNOWN', message: 'Keine Volumen/Preis-Daten für BTC' };
+          
+          let sumVol = 0, count = 0;
+          for (let i = timeline.length - 30; i < timeline.length; i++) {
+            const v = timeline[i].assets.BTC_Volume;
+            if (v && v > 0) { sumVol += v; count++; }
+          }
+          
+          if (count === 0) return { status: 'UNKNOWN', message: 'Keine gültigen Volumendaten' };
+          const avgVol = sumVol / count;
+          const volRatio = currentBtcVol / avgVol;
+          const priceChangePct = ((currentBtc - prevBtc) / prevBtc) * 100;
+          
+          if (volRatio >= 4.0 && priceChangePct <= -5.0) {
+             return { status: 'CRITICAL', value: `${volRatio.toFixed(1)}x Vol, ${priceChangePct.toFixed(1)}%`, message: 'BTC SELLING CLIMAX! Gigantischer Flush-Out. Makro-Liquiditäts-Tiefpunkt erreicht!' };
+          }
+          return { status: 'OK', value: `${volRatio.toFixed(1)}x Vol`, message: 'Kein Krypto-Ausverkauf.' };
         }
       }
     ];

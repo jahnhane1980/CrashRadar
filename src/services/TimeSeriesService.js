@@ -10,7 +10,12 @@ export class TimeSeriesService {
       timeline[date][key] = value;
     };
 
-    btc?.forEach(r => addToTimeline(r.date, 'BTC', r.close));
+    btc?.forEach(r => {
+      addToTimeline(r.date, 'BTC', r.close);
+      if (r.volume !== undefined && r.volume !== null) {
+        addToTimeline(r.date, 'BTC_Volume', Number(r.volume));
+      }
+    });
     tiingo?.forEach(r => {
       addToTimeline(r.date, r.symbol, r.close);
       if (r.volume !== undefined && r.volume !== null) {
