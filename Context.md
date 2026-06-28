@@ -40,3 +40,4 @@ Um diese Euphorie und Kapitulation quantifizierbar zu machen, haben wir folgende
       * Für das **Backtesting** haben wir die historischen CBOE-Daten in `data/archive/cboe/pcr.csv` gespeichert.
       * Für den **Live-Betrieb** greift der Fetcher per `yahoo-finance2` auf die tagesaktuelle Optionskette (Puts & Calls) des SPY zu und berechnet das Put/Call Ratio autonom und zukunftssicher selbst.
   - [x] 6. Übernahme der finalen, momentum-gefilterten Erkenntnisse in die `IndicatorEngine` als "Red Alert (Bullenmarkt-Stirbt-Signal)".
+  - [ ] 7. **TODO: Ntfy-Benachrichtigung testen.** Prüfen, ob bei Auslösen des "Red Alert" (SKEW > 145, Short < 45%, PCR < 0.75) auch verlässlich eine Push-Benachrichtigung über den `NtfyService` auf das Handy gesendet wird.
