@@ -23,6 +23,7 @@ export const SYMBOLS = Object.freeze({
   HYG: 'HYG',
   BIZD: 'BIZD',
   BKLN: 'BKLN',
+  SKEW: '^SKEW',
 });
 
 export const FRED_SERIES = Object.freeze({
@@ -77,8 +78,8 @@ export class AnalysisRepository {
     const [yahoo] = await this.pool.query(`
       SELECT symbol, record_date as date, close, volume
       FROM ${TABLES.YAHOO} 
-      WHERE symbol IN (?, ?, ?, ?, ?, ?, ?) AND record_date >= ?
-    `, [SYMBOLS.DXY, SYMBOLS.GOLD, SYMBOLS.COPPER, SYMBOLS.VIX, SYMBOLS.HYG, SYMBOLS.BIZD, SYMBOLS.BKLN, startDate]);
+      WHERE symbol IN (?, ?, ?, ?, ?, ?, ?, ?) AND record_date >= ?
+    `, [SYMBOLS.DXY, SYMBOLS.GOLD, SYMBOLS.COPPER, SYMBOLS.VIX, SYMBOLS.HYG, SYMBOLS.BIZD, SYMBOLS.BKLN, SYMBOLS.SKEW, startDate]);
 
     const [fred] = await this.pool.query(`
       SELECT series_id, observation_date as date, value 
@@ -116,7 +117,19 @@ export class AnalysisRepository {
       WHERE record_date >= ?
     `, [startDate]);
 
-    return { btc, tiingo, yahoo, fred, tga, mw, sec, cboe, finra };
+    const [shortVolume] = await this.pool.query(`
+      SELECT symbol, record_date as date, short_volume_ratio 
+      FROM market_data_short_volume 
+      WHERE symbol = 'SPY' AND record_date >= ?
+    `, [startDate]);
+
+    const [pcr] = await this.pool.query(`
+      SELECT record_date as date, total_pcr 
+      FROM market_data_pcr 
+      WHERE record_date >= ?
+    `, [startDate]);
+
+    return { btc, tiingo, yahoo, fred, tga, mw, sec, cboe, finra, shortVolume, pcr };
   }
 
   async getInitialState(startDate) {
@@ -139,7 +152,10 @@ export class AnalysisRepository {
     const initialHyg = await getLastBefore(TABLES.YAHOO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.HYG]);
     const initialBizd = await getLastBefore(TABLES.YAHOO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.BIZD]);
     const initialBkln = await getLastBefore(TABLES.YAHOO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.BKLN]);
+    const initialSkew = await getLastBefore(TABLES.YAHOO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.SKEW]);
     const initialCboeSpy = await getLastBefore('market_data_cboe', 'record_date', 'volume', "AND symbol = ?", [SYMBOLS.SPY]);
+    const initialSpyShortVol = await getLastBefore('market_data_short_volume', 'record_date', 'short_volume_ratio', "AND symbol = ?", [SYMBOLS.SPY]);
+    const initialPcr = await getLastBefore('market_data_pcr', 'record_date', 'total_pcr', "", []);
 
     const getFredBefore = async (seriesId) => await getLastBefore(TABLES.FRED, 'observation_date', 'value', "AND series_id = ?", [seriesId]);
 
@@ -169,7 +185,7 @@ export class AnalysisRepository {
 
     return {
       BTC: initialBtc, SPY: initialSpy, QQQ: initialQqq, TLT: initialTlt, DXY: initialDxy, Gold: initialGold, Gold_Volume: initialGoldVol, Copper: initialCopper,
-      VIX: initialVix, HYG: initialHyg, BIZD: initialBizd, BKLN: initialBkln, CBOE_SPY: initialCboeSpy,
+      VIX: initialVix, HYG: initialHyg, BIZD: initialBizd, BKLN: initialBkln, SKEW: initialSkew, CBOE_SPY: initialCboeSpy, SPY_ShortVolumeRatio: initialSpyShortVol, TotalPCR: initialPcr,
       WALCL: await parseFred(FRED_SERIES.WALCL, true), TGA: initialTga, RRPONTSYD: await parseFred(FRED_SERIES.RRPONTSYD, false),
       DFII10: await parseFred(FRED_SERIES.DFII10, false), DFF: await parseFred(FRED_SERIES.DFF, false), NFCI: await parseFred(FRED_SERIES.NFCI, false), TOTRESNS: await parseFred(FRED_SERIES.TOTRESNS, false), BORROW: await parseFred(FRED_SERIES.BORROW, false), T10Y2Y: await parseFred(FRED_SERIES.T10Y2Y, false),
       ECBASSETSW: await parseFred(FRED_SERIES.ECBASSETSW, false), M2SL: await parseFred(FRED_SERIES.M2SL, false), PERMIT: await parseFred(FRED_SERIES.PERMIT, false), UMCSENT: await parseFred(FRED_SERIES.UMCSENT, false),

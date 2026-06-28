@@ -53,4 +53,53 @@ describe('CboeFetchAdapter', () => {
         expect(result).toEqual([]);
         expect(fs.writeFileSync).not.toHaveBeenCalled();
     });
+
+    describe('dataset === pcr (Melt-Up Filter)', () => {
+        it('sollte das lokale Archiv lesen und YahooFinance für neue Daten aufrufen (Happy Path)', async () => {
+            fs.existsSync.mockImplementation((pathStr) => pathStr.includes('pcr.csv'));
+            fs.readFileSync.mockReturnValue(`record_date,total_pcr\n2024-01-01,0.95`);
+            
+            const { default: yahooFinance } = await import('yahoo-finance2');
+            yahooFinance.options = vi.fn().mockResolvedValue({
+                options: [{
+                    expirationDate: '2024-01-02',
+                    puts: [{ volume: 1500 }],
+                    calls: [{ volume: 2000 }]
+                }]
+            });
+
+            const result = await adapter.fetch({ dataset: 'pcr' }, {}, '2024-01-01', mockRequestManager);
+            
+            // Should contain 1 from CSV and 1 from Yahoo (1500/2000 = 0.75)
+            expect(result).toHaveLength(2);
+            expect(result[0].record_date).toBe('2024-01-01');
+            expect(result[0].total_pcr).toBe(0.95);
+            
+            expect(result[1].total_pcr).toBe(0.75); // 1500/2000
+        });
+
+        it('sollte fehlende YahooFinance Daten sicher abfangen (Fehlerbehandlung)', async () => {
+            fs.existsSync.mockImplementation((pathStr) => pathStr.includes('pcr.csv'));
+            fs.readFileSync.mockReturnValue(`record_date,total_pcr\n2024-01-01,0.95`);
+            
+            const { default: yahooFinance } = await import('yahoo-finance2');
+            yahooFinance.options = vi.fn().mockRejectedValue(new Error('Yahoo down'));
+
+            const result = await adapter.fetch({ dataset: 'pcr' }, {}, '2024-01-01', mockRequestManager);
+            
+            expect(result).toHaveLength(1);
+            expect(result[0].record_date).toBe('2024-01-01');
+            expect(result[0].total_pcr).toBe(0.95);
+        });
+
+        it('sollte leeres Array zurückgeben, wenn Archiv fehlt und Yahoo fehlschlägt (Grenzfall)', async () => {
+            fs.existsSync.mockReturnValue(false);
+            
+            const { default: yahooFinance } = await import('yahoo-finance2');
+            yahooFinance.options = vi.fn().mockResolvedValue(null);
+
+            const result = await adapter.fetch({ dataset: 'pcr' }, {}, '2024-01-01', mockRequestManager);
+            expect(result).toHaveLength(0);
+        });
+    });
 });

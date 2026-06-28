@@ -747,6 +747,63 @@ describe('IndicatorEngine', () => {
     });
   });
 
+  describe('Red Alert (Bullenmarkt-Stirbt-Signal)', () => {
+    it('sollte UNKNOWN sein, wenn SKEW oder ShortRatio fehlen', () => {
+      const timeline = generateTimeline(1);
+      const res = engine.indicators.find(i => i.name.includes('Red Alert')).evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+      expect(res.message).toContain('Keine SKEW oder Short-Ratio Daten');
+    });
+
+    it('sollte OK sein, wenn Werte normal sind', () => {
+      const timeline = generateTimeline(1);
+      timeline[0].assets.SKEW = 130;
+      timeline[0].SPY_ShortVolumeRatio = 0.55;
+      timeline[0].TotalPCR = 0.90;
+      const res = engine.indicators.find(i => i.name.includes('Red Alert')).evaluate(timeline);
+      expect(res.status).toBe('OK');
+    });
+
+    it('sollte WARNING triggern bei Aufbau von Spannung (SKEW > 140, Short < 0.50)', () => {
+      const timeline = generateTimeline(1);
+      timeline[0].assets.SKEW = 142;
+      timeline[0].SPY_ShortVolumeRatio = 0.48;
+      const res = engine.indicators.find(i => i.name.includes('Red Alert')).evaluate(timeline);
+      expect(res.status).toBe('WARNING');
+      expect(res.message).toContain('Spannung baut sich auf');
+    });
+
+    it('sollte WARNING triggern (Melt-Up aktiv), wenn SKEW > 145 und Short < 0.45, ABER PCR > 0.75', () => {
+      const timeline = generateTimeline(1);
+      timeline[0].assets.SKEW = 150;
+      timeline[0].SPY_ShortVolumeRatio = 0.40;
+      timeline[0].TotalPCR = 0.95;
+      const res = engine.indicators.find(i => i.name.includes('Red Alert')).evaluate(timeline);
+      expect(res.status).toBe('WARNING');
+      expect(res.message).toContain('Melt-Up Phase ist noch aktiv (PCR > 0.75)');
+    });
+
+    it('sollte WARNING triggern (Melt-Up aktiv), wenn PCR fehlt (Fallback = 1.0)', () => {
+      const timeline = generateTimeline(1);
+      timeline[0].assets.SKEW = 150;
+      timeline[0].SPY_ShortVolumeRatio = 0.40;
+      // Kein PCR definiert -> Fallback 1.0
+      const res = engine.indicators.find(i => i.name.includes('Red Alert')).evaluate(timeline);
+      expect(res.status).toBe('WARNING');
+      expect(res.value).toContain('Kein PCR');
+    });
+
+    it('sollte CRITICAL triggern, wenn SKEW > 145, Short < 0.45 UND PCR < 0.75 (Perfekter Sturm)', () => {
+      const timeline = generateTimeline(1);
+      timeline[0].assets.SKEW = 150;
+      timeline[0].SPY_ShortVolumeRatio = 0.40;
+      timeline[0].TotalPCR = 0.65;
+      const res = engine.indicators.find(i => i.name.includes('Red Alert')).evaluate(timeline);
+      expect(res.status).toBe('CRITICAL');
+      expect(res.message).toContain('MAXIMALER ALARM');
+    });
+  });
+
   describe('generateReport()', () => {
     it('sollte einen sauberen Text generieren ohne ANSI Farben', () => {
       const timeline = generateTimeline(35);

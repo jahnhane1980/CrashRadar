@@ -12,20 +12,15 @@ export class CboeFetchAdapter {
         const toDateStr = new Date().toISOString().split('T')[0];
 
         if (task.dataset === 'pcr') {
-            console.log(`[CBOE] Hole PCR Daten für den Markt (Zeitraum: ${fromDateStr} bis ${toDateStr})`);
-            try {
-                // Versuche die offizielle Daily Market Statistics CSV der CBOE zu laden (meist nur der aktuelle/letzte Handelstag)
-                const url = 'https://cdn.cboe.com/data/us/options/market_statistics/daily/Cboe_Daily_Market_Statistics.csv';
-                const text = await requestManager.fetch(url, task.provider, {
-                    responseType: 'text',
-                    headers: {
-                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
-                        'Origin': 'https://www.cboe.com',
-                        'Referer': 'https://www.cboe.com/us/options/market_statistics/historical_data/'
-                    }
-                });
-                
-                // Parse CSV - dies ist nur ein Stub für die tägliche Datei, da CBOE keine offizielle Bulk-API für historische PCR anbietet
+            console.log(`[CBOE/Yahoo] Hole PCR Daten für den Markt (Zeitraum: ${fromDateStr} bis ${toDateStr})`);
+            
+            const results = [];
+
+            // 1. Lokales Archiv lesen (Backtesting Historie)
+            const archivePath = path.resolve(process.cwd(), 'data/archive/cboe/pcr.csv');
+            if (fs.existsSync(archivePath)) {
+                console.log(`[CBOE] Lese historische PCR-Daten aus lokalem Archiv: ${archivePath}`);
+                const text = fs.readFileSync(archivePath, 'utf8');
                 const recordsObj = parse(text, {
                     columns: true,
                     skip_empty_lines: true,
@@ -33,26 +28,46 @@ export class CboeFetchAdapter {
                 });
                 
                 if (recordsObj.length > 0) {
-                   // Das Format variiert, oft steht das Total PCR in einer bestimmten Zelle.
-                   // Wir mappen das hier erst einmal blind als Platzhalter und erwarten, dass der Test fehlschlägt,
-                   // wenn das Format nicht exakt passt, damit wir es analysieren können.
-                   const latestDate = new Date().toISOString().split('T')[0]; // Fallback
-                   return [{
-                       record_date: latestDate,
-                       total_pcr: parseFloat(recordsObj[0]['TOTAL_PCR'] || 0.8),
-                       equity_pcr: parseFloat(recordsObj[0]['EQUITY_PCR'] || 0.6),
-                       index_pcr: parseFloat(recordsObj[0]['INDEX_PCR'] || 1.1)
-                   }];
+                    const parsedRecords = recordsObj.map(row => ({
+                        record_date: row['record_date'] || row['Date'] || row['date'],
+                        total_pcr: parseFloat(row['total_pcr'] || row['Total'] || row['value'] || row['Ratio'] || 0)
+                    })).filter(r => r.record_date && !isNaN(r.total_pcr));
+                    results.push(...parsedRecords);
                 }
-                return [];
-            } catch(e) {
-                if (e.response && (e.response.status === 404 || e.response.status === 403)) {
-                    console.log(`[CBOE] Keine PCR Daten gefunden (Feiertag/Wochenende).`);
-                    return [];
-                }
-                console.error(`[CboeFetchAdapter] Fehler beim Abruf von PCR: ${e.message}`);
-                return [];
             }
+
+            // 2. Live Daten über Yahoo Finance Optionskette (Future-Proof Proxy)
+            try {
+                console.log(`[YahooOptions] Berechne tagesaktuelles SPY Put/Call Ratio...`);
+                // Dynamischer Import, um Abhängigkeiten sauber zu halten
+                const yahooFinance = (await import('yahoo-finance2')).default;
+                
+                const optionResult = await yahooFinance.options('SPY');
+                if (optionResult && optionResult.options && optionResult.options.length > 0) {
+                    let totalPutVol = 0;
+                    let totalCallVol = 0;
+                    
+                    // Wir summieren über die Optionen des ersten Verfallsdatums (oder wir könnten über alle summieren, aber options() liefert standardmäßig das nächste)
+                    optionResult.options[0].puts.forEach(p => totalPutVol += (p.volume || 0));
+                    optionResult.options[0].calls.forEach(c => totalCallVol += (c.volume || 0));
+
+                    if (totalCallVol > 0) {
+                        const calculatedPcr = totalPutVol / totalCallVol;
+                        const latestDate = new Date().toISOString().split('T')[0];
+                        console.log(`[YahooOptions] SPY PCR berechnet: ${calculatedPcr.toFixed(2)} (Puts: ${totalPutVol}, Calls: ${totalCallVol})`);
+                        results.push({
+                            record_date: latestDate,
+                            total_pcr: calculatedPcr,
+                            equity_pcr: calculatedPcr,
+                            index_pcr: calculatedPcr
+                        });
+                    }
+                }
+            } catch(e) {
+                console.error(`[YahooOptions] Fehler bei der PCR-Berechnung: ${e.message}`);
+            }
+
+            return results;
         }
 
         const url = 'https://www.cboe.com/us/options/market_statistics/historical_data/download/class/';
