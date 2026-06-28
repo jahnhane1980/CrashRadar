@@ -40,7 +40,8 @@ export class CboeFetchAdapter {
             try {
                 console.log(`[YahooOptions] Berechne tagesaktuelles SPY Put/Call Ratio...`);
                 // Dynamischer Import, um Abhängigkeiten sauber zu halten
-                const yahooFinance = (await import('yahoo-finance2')).default;
+                const YahooFinance = (await import('yahoo-finance2')).default;
+                const yahooFinance = new YahooFinance();
                 
                 const optionResult = await yahooFinance.options('SPY');
                 if (optionResult && optionResult.options && optionResult.options.length > 0) {
