@@ -473,6 +473,22 @@ describe('IndicatorEngine', () => {
       expect(res.status).toBe('CRITICAL');
     });
 
+    it('sollte WARNING triggern wenn DFF leicht sinkt und T10YIE leicht steigt', () => {
+      const timeline = generateTimeline(65);
+      timeline[5].macroGroups.FinancialConditions.FedFundsRate = 5.0;
+      timeline[64].macroGroups.FinancialConditions.FedFundsRate = 4.85; // -0.15% (zwischen -0.10 und -0.25)
+      
+      timeline[5].macroGroups.Leading.BreakevenInflation = 2.0;
+      timeline[64].macroGroups.Leading.BreakevenInflation = 2.06; // +0.06% (über 0.05 aber unter 0.10)
+
+      timeline[5].macroGroups.FinancialConditions.DXY = 100.0;
+      timeline[64].macroGroups.FinancialConditions.DXY = 100.0; // DXY Daten setzen, sonst UNKNOWN
+      
+      const res = engine.indicators.find(i => i.name.includes('Policy Error')).evaluate(timeline);
+      expect(res.status).toBe('WARNING');
+      expect(res.message).toContain('FED Zinsen sinken');
+    });
+
     it('sollte WARNING triggern wenn DXY stark steigt (Ausbruch blockiert)', () => {
       const timeline = generateTimeline(65);
       timeline[5].macroGroups.FinancialConditions.FedFundsRate = 5.0;
@@ -667,6 +683,19 @@ describe('IndicatorEngine', () => {
       expect(alerts.notifications[0].message).toContain('WARNING: Bankreserven');
       expect(alerts.notifications[0].message).toContain('WARNING: Schattenbanken Zinslast');
     });
+    it('sollte Spam via Debounce-Logik blockieren', () => {
+      const timeline = generateTimeline(95);
+      timeline[5].macroGroups.Fundamentals = { ARCC_InterestExpense: 100000000 };
+      timeline[94].macroGroups.Fundamentals = { ARCC_InterestExpense: 105000000 };
+      
+      // Erster Aufruf: Notification sollte da sein
+      const alerts1 = engine.getAlerts(timeline);
+      expect(alerts1.notifications).not.toBeNull();
+      
+      // Zweiter Aufruf (sofort danach): Notification sollte null sein (Debounce)
+      const alerts2 = engine.getAlerts(timeline, alerts1.updatedHistory);
+      expect(alerts2.notifications).toBeNull();
+    });
   });
 
 
@@ -801,6 +830,277 @@ describe('IndicatorEngine', () => {
       const res = engine.indicators.find(i => i.name.includes('Red Alert')).evaluate(timeline);
       expect(res.status).toBe('CRITICAL');
       expect(res.message).toContain('MAXIMALER ALARM');
+    });
+  });
+
+  describe('Bitcoin Divergenz (Makro-Liquidität)', () => {
+    it('sollte UNKNOWN sein, wenn zu wenig Daten vorhanden sind', () => {
+      const res = engine.indicators.find(i => i.name.includes('Bitcoin Divergenz')).evaluate(generateTimeline(29));
+      expect(res.status).toBe('UNKNOWN');
+    });
+
+    it('sollte UNKNOWN sein, wenn SPY oder BTC Daten fehlen', () => {
+      const timeline = generateTimeline(35);
+      timeline.forEach(t => t.assets = { SPY: 5000 }); // BTC fehlt
+      const res = engine.indicators.find(i => i.name.includes('Bitcoin Divergenz')).evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+    });
+
+    it('sollte WARNING triggern, wenn SPY stark ist, aber BTC abstürzt', () => {
+      const timeline = generateTimeline(35);
+      // Base: Maxima setzen
+      timeline.forEach(t => t.assets = { SPY: 500, BTC: 100000 });
+      // Aktueller Tag: SPY stabil (0%), BTC Crash (-15%)
+      timeline[34].assets = { SPY: 495, BTC: 85000 };
+      
+      const res = engine.indicators.find(i => i.name.includes('Bitcoin Divergenz')).evaluate(timeline);
+      expect(res.status).toBe('WARNING');
+      expect(res.message).toContain('Liquiditäts-Staubsauger aktiv');
+    });
+
+    it('sollte OK sein, wenn keine Divergenz vorliegt', () => {
+      const timeline = generateTimeline(35);
+      // Base: Alles steigt
+      for (let i = 0; i < 35; i++) {
+        timeline[i].assets = { SPY: 400 + i, BTC: 90000 + (i*100) };
+      }
+      
+      const res = engine.indicators.find(i => i.name.includes('Bitcoin Divergenz')).evaluate(timeline);
+      expect(res.status).toBe('OK');
+    });
+  });
+
+  describe('Krypto Zyklus-Divergenz (MSTR/COIN)', () => {
+    it('sollte UNKNOWN sein, wenn zu wenig Daten vorhanden sind', () => {
+      const res = engine.indicators.find(i => i.name.includes('Krypto Zyklus-Divergenz')).evaluate(generateTimeline(29));
+      expect(res.status).toBe('UNKNOWN');
+    });
+
+    it('sollte UNKNOWN sein, wenn BTC oder Proxy Daten fehlen', () => {
+      const timeline = generateTimeline(35);
+      timeline.forEach(t => t.assets = { BTC: 50000 }); // MSTR und COIN fehlen
+      const res = engine.indicators.find(i => i.name.includes('Krypto Zyklus-Divergenz')).evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+    });
+
+    it('sollte WARNING triggern, wenn BTC stark ist, aber MSTR oder COIN abverkaufen', () => {
+      const timeline = generateTimeline(35);
+      
+      // Base: Maxima setzen
+      timeline.forEach(t => t.assets = { BTC: 100000, MSTR: 200, COIN: 200 });
+      
+      // Aktueller Tag: BTC kaum verändert (-1%), aber Proxies crashen (-20%)
+      timeline[34].assets = { BTC: 99000, MSTR: 160, COIN: 160 }; // -20% Drawdown
+      
+      const res = engine.indicators.find(i => i.name.includes('Krypto Zyklus-Divergenz')).evaluate(timeline);
+      expect(res.status).toBe('WARNING');
+      expect(res.message).toContain('Zyklus-Warnung! BTC stark, aber MSTR/COIN bluten aus');
+    });
+
+    it('sollte OK sein, wenn Krypto-Proxies intakt sind', () => {
+      const timeline = generateTimeline(35);
+      
+      // Base: Alles steigt synchron
+      for (let i = 0; i < 35; i++) {
+        timeline[i].assets = { BTC: 100000 + (i*10), MSTR: 200 + i, COIN: 200 + i };
+      }
+      
+      const res = engine.indicators.find(i => i.name.includes('Krypto Zyklus-Divergenz')).evaluate(timeline);
+      expect(res.status).toBe('OK');
+    });
+  });
+
+  describe('Bitcoin Selling Climax (Panik/Boden)', () => {
+    it('sollte UNKNOWN sein, wenn Daten (< 30 Tage) fehlen', () => {
+      const res = engine.indicators.find(i => i.name.includes('Bitcoin Selling Climax')).evaluate(generateTimeline(29));
+      expect(res.status).toBe('UNKNOWN');
+    });
+
+    it('sollte UNKNOWN sein, wenn BTC Daten oder Volumen fehlen', () => {
+      const timeline = generateTimeline(35);
+      const res = engine.indicators.find(i => i.name.includes('Bitcoin Selling Climax')).evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+    });
+
+    it('sollte UNKNOWN sein, wenn avgVol 0 ist', () => {
+      const timeline = generateTimeline(35);
+      timeline.forEach(t => t.assets = { BTC: 50000, BTC_Volume: 0 }); 
+      // Negative Volumen passieren den ersten Check (falsy), aber fliegen im Loop (v > 0) raus
+      timeline[34].assets.BTC_Volume = -1;
+      
+      const res = engine.indicators.find(i => i.name.includes('Bitcoin Selling Climax')).evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+      expect(res.message).toContain('Keine gültigen Volumendaten');
+    });
+
+    it('sollte CRITICAL triggern bei riesigem Volumen und Preissturz', () => {
+      const timeline = generateTimeline(35);
+      // Base
+      for(let i=0; i<34; i++) {
+        timeline[i].assets = { BTC: 60000, BTC_Volume: 1000 };
+      }
+      // Climax Tag
+      timeline[34].assets = { BTC: 50000, BTC_Volume: 5000 }; // Vol 5x, Preis -16%
+
+      const res = engine.indicators.find(i => i.name.includes('Bitcoin Selling Climax')).evaluate(timeline);
+      expect(res.status).toBe('CRITICAL');
+      expect(res.message).toContain('BTC SELLING CLIMAX');
+    });
+
+    it('sollte OK sein bei normalem Verhalten', () => {
+      const timeline = generateTimeline(35);
+      for(let i=0; i<35; i++) {
+        timeline[i].assets = { BTC: 60000, BTC_Volume: 1000 };
+      }
+      const res = engine.indicators.find(i => i.name.includes('Bitcoin Selling Climax')).evaluate(timeline);
+      expect(res.status).toBe('OK');
+    });
+  });
+
+  describe('Tech-Zyklus Radar (SMH vs IGV)', () => {
+    it('sollte UNKNOWN zurückgeben, wenn weniger als 100 Datenpunkte vorhanden sind', () => {
+      const timeline = generateTimeline(99);
+      const res = engine.indicators.find(i => i.name.includes('Tech-Zyklus Radar')).evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+      expect(res.message).toContain('Zu wenig Daten');
+    });
+
+    it('sollte HARDWARE START (Golden Cross) erkennen', () => {
+      const timeline = generateTimeline(100);
+      timeline.forEach(t => t.assets = { SMH: 100, IGV: 100, SPY: 100, CIBR: 100 });
+      
+      // Prev Short < Prev Long
+      for (let i = 45; i < 95; i++) {
+        timeline[i].assets.SMH = 90;
+      }
+      // Current Short > Current Long
+      for (let i = 95; i < 100; i++) {
+        timeline[i].assets.SMH = 150;
+      }
+
+      const res = engine.indicators.find(i => i.name.includes('Tech-Zyklus Radar')).evaluate(timeline);
+      expect(res.status).toBe('CRITICAL');
+      expect(res.value).toBe('HARDWARE START');
+    });
+
+    it('sollte DISTRIBUTION bei wackelndem Hardware-Zyklus und CIBR Flucht erkennen', () => {
+      const timeline = generateTimeline(100);
+      timeline.forEach(t => t.assets = { SMH: 120, IGV: 100, SPY: 100, CIBR: 100 });
+      
+      // Hardware war extrem dominant
+      for (let i = 80; i < 95; i++) {
+        timeline[i].assets.SMH = 150;
+      }
+      // Current Short flacht ab
+      for (let i = 95; i < 100; i++) {
+        timeline[i].assets.SMH = 125;
+        timeline[i].assets.CIBR = 110; 
+      }
+      timeline[84].assets.CIBR = 100; // Past reference (index 84 is timeline.length - 1 - 15)
+
+      const res = engine.indicators.find(i => i.name.includes('Tech-Zyklus Radar')).evaluate(timeline);
+      expect(res.status).toBe('WARNING');
+      expect(res.value).toBe('DISTRIBUTION');
+      expect(res.message).toContain('Cybersecurity (CIBR Momentum');
+    });
+
+    it('sollte SOFTWARE START (Death Cross) erkennen', () => {
+      const timeline = generateTimeline(100);
+      timeline.forEach(t => t.assets = { SMH: 100, IGV: 100, SPY: 100, CIBR: 100 });
+      
+      for (let i = 80; i < 95; i++) {
+        timeline[i].assets.SMH = 120;
+      }
+      for (let i = 95; i < 100; i++) {
+        timeline[i].assets.SMH = 50; 
+      }
+
+      const res = engine.indicators.find(i => i.name.includes('Tech-Zyklus Radar')).evaluate(timeline);
+      expect(res.status).toBe('CRITICAL');
+      expect(res.value).toBe('SOFTWARE START');
+    });
+
+    it('sollte UNKNOWN zurückgeben, wenn SMH oder IGV Daten fehlen', () => {
+      const timeline = generateTimeline(100);
+      // Timeline hat standardmäßig keine Assets
+      const res = engine.indicators.find(i => i.name.includes('Tech-Zyklus Radar')).evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+      expect(res.message).toContain('Keine SMH oder IGV Daten');
+    });
+
+    it('sollte HARDWARE DOMINANZ (OK) erkennen, wenn Hardware weiter steigt', () => {
+      const timeline = generateTimeline(100);
+      timeline.forEach(t => t.assets = { SMH: 100, IGV: 100, SPY: 100, CIBR: 100 });
+      
+      // Prev Short > Prev Long (Hardware war dominant)
+      for (let i = 80; i < 95; i++) {
+        timeline[i].assets.SMH = 120;
+      }
+      // Current Short noch höher (Momentum > 0)
+      for (let i = 95; i < 100; i++) {
+        timeline[i].assets.SMH = 150; 
+      }
+
+      const res = engine.indicators.find(i => i.name.includes('Tech-Zyklus Radar')).evaluate(timeline);
+      expect(res.status).toBe('OK');
+      expect(res.value).toBe('HARDWARE DOMINANZ');
+    });
+
+    it('sollte SOFTWARE DOMINANZ (OK) erkennen, wenn Software intakt ist', () => {
+      const timeline = generateTimeline(100);
+      timeline.forEach(t => t.assets = { SMH: 100, IGV: 100, SPY: 100, CIBR: 100 });
+      
+      // Software dominiert (Ratio < 1)
+      for (let i = 80; i < 95; i++) {
+        timeline[i].assets.SMH = 80;
+      }
+      // Weiterer Fall von SMH (Ratio sinkt = Software Momentum positiv) -> für unser Script: shortMaMomentum < 0
+      for (let i = 95; i < 100; i++) {
+        timeline[i].assets.SMH = 50; 
+      }
+
+      const res = engine.indicators.find(i => i.name.includes('Tech-Zyklus Radar')).evaluate(timeline);
+      expect(res.status).toBe('OK');
+      expect(res.value).toBe('SOFTWARE DOMINANZ');
+    });
+
+    it('sollte ACCUMULATION erkennen, wenn Software dominiert aber Hardware Momentum sammelt', () => {
+      const timeline = generateTimeline(100);
+      timeline.forEach(t => t.assets = { SMH: 100, IGV: 100, SPY: 100, CIBR: 100 });
+      
+      // Software dominiert stark
+      for (let i = 80; i < 95; i++) {
+        timeline[i].assets.SMH = 50;
+      }
+      // Hardware erholt sich leicht (Ratio steigt, Momentum > 0, aber Short < Long)
+      for (let i = 95; i < 100; i++) {
+        timeline[i].assets.SMH = 80; 
+      }
+
+      const res = engine.indicators.find(i => i.name.includes('Tech-Zyklus Radar')).evaluate(timeline);
+      expect(res.status).toBe('WARNING');
+      expect(res.value).toBe('ACCUMULATION');
+      expect(res.message).toContain('Vorwarnung');
+    });
+  });
+
+  describe('getDailyStatusReport()', () => {
+    it('sollte null zurückgeben, wenn keine Daten vorhanden sind', () => {
+      expect(engine.getDailyStatusReport([])).toBeNull();
+      expect(engine.getDailyStatusReport(null)).toBeNull();
+    });
+
+    it('sollte einen aggregierten Daily Report erstellen', () => {
+      const timeline = generateTimeline(100);
+      // Alles OK = Report OK
+      const reportOK = engine.getDailyStatusReport(timeline);
+      expect(reportOK.title).toContain('OK');
+      
+      // Einen Critical triggern
+      timeline[99].macroGroups.BankingHealth.TotalReserves = 1000;
+      const reportCrit = engine.getDailyStatusReport(timeline);
+      expect(reportCrit.title).toContain('CRITICAL');
+      expect(reportCrit.message).toContain('🚨 Kritisch');
     });
   });
 

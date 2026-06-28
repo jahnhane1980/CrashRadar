@@ -19,6 +19,11 @@
       "title": "CrashRadar: Makro-Liquidität",
       "icon": "bank",
       "priority": "default"
+    },
+    "TECH": {
+      "title": "CrashRadar: Tech-Flow Radar",
+      "icon": "computer",
+      "priority": "high"
     }
   },
   "indicators": {
@@ -42,6 +47,7 @@
     "GDX Selling Climax (Boden-Suche)": "GOLD",
     "GDX Buying Climax (Top-Gefahr)": "GOLD",
     "GDX vs Gold Divergenz": "GOLD",
-    "Gold (SMA 50 Ausbruch)": "GOLD"
+    "Gold (SMA 50 Ausbruch)": "GOLD",
+    "Tech-Zyklus Radar (SMH vs IGV)": "TECH"
   }
 }

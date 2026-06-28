@@ -549,6 +549,150 @@
       "id": "cboe_total_pcr",
       "provider": "Cboe",
       "dataset": "pcr"
+    },
+    {
+      "id": "tiingo_xlf_macro",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/XLF/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "XLF",
+      "overrideStartDate": "2007-01-01"
+    },
+    {
+      "id": "tiingo_xly_macro",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/XLY/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "XLY",
+      "overrideStartDate": "2007-01-01"
+    },
+    {
+      "id": "tiingo_xlre_macro",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/XLRE/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "XLRE",
+      "overrideStartDate": "2007-01-01"
+    },
+    {
+      "id": "tiingo_xlk_macro",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/XLK/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "XLK",
+      "overrideStartDate": "2007-01-01"
+    },
+    {
+      "id": "tiingo_xlc_macro",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/XLC/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "XLC",
+      "overrideStartDate": "2007-01-01"
+    },
+    {
+      "id": "tiingo_xlb_macro",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/XLB/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "XLB",
+      "overrideStartDate": "2007-01-01"
+    },
+    {
+      "id": "tiingo_xle_macro",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/XLE/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "XLE",
+      "overrideStartDate": "2007-01-01"
+    },
+    {
+      "id": "tiingo_xlv_macro",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/XLV/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "XLV",
+      "overrideStartDate": "2007-01-01"
+    },
+    {
+      "id": "tiingo_xlu_macro",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/XLU/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "XLU",
+      "overrideStartDate": "2007-01-01"
+    },
+    {
+      "id": "tiingo_xlp_macro",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/XLP/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "XLP",
+      "overrideStartDate": "2007-01-01"
+    },
+    {
+      "id": "tiingo_igv_sub",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/IGV/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "IGV",
+      "overrideStartDate": "2001-01-01"
+    },
+    {
+      "id": "tiingo_cibr_sub",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/CIBR/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "CIBR",
+      "overrideStartDate": "2015-01-01"
+    },
+    {
+      "id": "tiingo_fdn_sub",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/FDN/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "FDN",
+      "overrideStartDate": "2015-01-01"
+    },
+    {
+      "id": "tiingo_ipay_sub",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/IPAY/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "IPAY",
+      "overrideStartDate": "2015-01-01"
+    },
+    {
+      "id": "tiingo_tdiv_sub",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/TDIV/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "TDIV",
+      "overrideStartDate": "2015-01-01"
+    },
+    {
+      "id": "tiingo_arkk_sub",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/ARKK/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "ARKK",
+      "overrideStartDate": "2015-01-01"
     }
   ]
 }

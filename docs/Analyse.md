@@ -47,6 +47,15 @@ Kupfer gilt als Fieberthermometer der Weltwirtschaft, während Gold traditionell
   * *Selling Climax (Kaufsignal/Boden):* Wenn GDX an einem Tag massiv einbricht (≤ -5%) UND das Volumen auf über das 3-fache des 50-Tage-Schnitts explodiert, kapitulieren Kleinanleger. Smart Money sammelt ein. Resultat: Ein aggressives V-Shape Reversal.
   * *Buying Climax (Warnsignal/Top):* Wenn GDX extrem steil ansteigt (≥ +5%) UND das Volumen auf über das 3-fache explodiert, kaufen Kleinanleger aus FOMO (Fear Of Missing Out). Smart Money verkauft in die Liquidität hinein. Resultat: Ein brutales lokales Top und darauffolgende Abverkäufe.
 
+### Die Tech-Sektor Rotation (Hardware vs. Software)
+Der Technologie-Sektor (QQQ) bewegt sich nicht als Monolith, sondern in internen Rotations-Zyklen. Wir tracken den Fluss des Kapitals zwischen dem Aufbau von Infrastruktur (Hardware) und der späteren Monetarisierung (Software).
+* **Der Ansatz (SMH vs. IGV):** Wir analysieren das Ratio zwischen dem Halbleiter-ETF (SMH) und dem Software-ETF (IGV). Um Signale zu glätten, nutzen wir ein Crossover-System aus einem kurzfristigen (15 Tage) und einem langfristigen (50 Tage) gleitenden Durchschnitt dieses Ratios.
+* **Warum keine separate Engine?** Wir haben uns bewusst gegen eine isolierte `TechCycleEngine` entschieden und den "Tech-Zyklus Radar" in die bestehende `IndicatorEngine` integriert. Das verhindert Fragmentierung und erlaubt es der zentralen Engine, Benachrichtigungen, Debouncing (Spam-Schutz) und Priorisierungen global über alle Anlageklassen hinweg zu steuern.
+* **Erkenntnisse aus dem Zyklus:**
+  * *Hardware Start (Golden Cross):* Der schnelle MA kreuzt den langsamen MA nach oben. Ein neuer Infrastruktur/KI-Zyklus beginnt. Hardware dominiert den Markt.
+  * *Software Start (Death Cross):* Der schnelle MA fällt unter den langsamen MA. Das Infrastruktur-Thema ist eingepreist, das Kapital rotiert in SaaS- und Monetarisierungs-Modelle.
+* **Aktuelle Beobachtung (Der CIBR Bunker):** Ein wackelnder Hardware-Zyklus führt nicht zwingend zu einem sofortigen Crash. Oft flüchtet das Kapital zunächst in defensive Nischen. Hierbei fungiert der **Cybersecurity-Sektor (CIBR)** als unser Radar. Wenn der Hardware-Trend abflacht (Distribution) UND CIBR gleichzeitig signifikantes Momentum (> +2,0% gegenüber SPY auf 15 Tage) aufbaut, werten wir dies als klare Bestätigung einer Gewinnmitnahme-Welle und Flucht in "sichere Häfen" der Tech-Welt.
+
 ### Makro-Einzelindikatoren als Frühwarnsystem (-3 Monate vor dem Crash)
 Die Analyse der entbündelten FED- und Fiscal-Parameter (isoliert betrachtet, nicht im "Net Liquidity"-Mix) liefert extrem scharfe Frühwarnsignale in den 3 Monaten, *bevor* ein Crash seinen Höhepunkt erreicht:
 
