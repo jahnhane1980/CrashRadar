@@ -54,7 +54,7 @@ export async function runCLI(argv) {
         // 1. Ausgabe im Terminal (mit Farben)
         engine.run(groupedData);
 
-        // 2. Ntfy Alerting (nur Warnungen & Kritisch)
+        // 2. Ntfy Alerting (Warnungen & Kritisch sowie Daily Status)
         if (process.env.NTFY_TOPIC) {
           const alertHistoryPath = path.resolve(__dirname, 'config/alert_history.json');
           let alertHistory = {};
@@ -66,16 +66,25 @@ export async function runCLI(argv) {
             }
           }
 
-          const alerts = engine.getAlerts(groupedData, alertHistory);
-          if (alerts) {
-            console.log('\n[Alerting] Sende Ntfy Push-Alarm...');
-            const ntfy = new NtfyService(process.env.NTFY_TOPIC);
-            await ntfy.send('CrashRadar Alarm!', alerts.message, alerts.priority, 'warning');
+          const ntfy = new NtfyService(process.env.NTFY_TOPIC);
+          const alertResult = engine.getAlerts(groupedData, alertHistory);
+          
+          if (alertResult && alertResult.notifications) {
+            console.log(`\n[Alerting] Sende ${alertResult.notifications.length} spezifische Ntfy Push-Alarme...`);
+            for (const notif of alertResult.notifications) {
+               await ntfy.send(notif.title, notif.message, notif.priority, notif.tags);
+            }
             
             // History speichern (Debouncing greift)
-            fs.writeFileSync(alertHistoryPath, JSON.stringify(alerts.updatedHistory, null, 2), 'utf8');
+            fs.writeFileSync(alertHistoryPath, JSON.stringify(alertResult.updatedHistory, null, 2), 'utf8');
           } else {
-            console.log('\n[Alerting] Keine Warnungen. Überspringe Ntfy Push (alles im grünen Bereich oder bereits benachrichtigt).');
+            console.log('\n[Alerting] Keine akuten Warnungen (alles im grünen Bereich oder bereits benachrichtigt).');
+          }
+          
+          console.log('\n[Alerting] Sende Daily Status Report...');
+          const daily = engine.getDailyStatusReport(groupedData);
+          if (daily) {
+             await ntfy.send(daily.title, daily.message, daily.priority, daily.tags);
           }
         } else {
           console.log('\n[Alerting] NTFY_TOPIC nicht gesetzt. Überspringe Ntfy Push.');

@@ -35,7 +35,8 @@ vi.mock('../src/analysis/IndicatorEngine.js', () => {
     IndicatorEngine: vi.fn(function() {
       this.run = vi.fn();
       this.generateReport = vi.fn().mockReturnValue('report');
-      this.getAlerts = vi.fn().mockReturnValue({ priority: 'high', message: 'alert' });
+      this.getAlerts = vi.fn().mockReturnValue({ notifications: [{ priority: 'high', message: 'alert' }] });
+      this.getDailyStatusReport = vi.fn().mockReturnValue({ priority: 'default', message: 'daily' });
     })
   };
 });
@@ -133,7 +134,7 @@ describe('CLI Entrypoint (index.js)', () => {
     process.env.DATABASE_URL = 'mysql://prod';
     process.env.NTFY_TOPIC = 'testtopic';
     await runCLI(['node', 'index.js', '-c']);
-    expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Sende Ntfy Push-Alarm...'));
+    expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('spezifische Ntfy Push-Alarme'));
   });
 
   it('sollte Ntfy Alert überspringen, wenn kein Topic gesetzt ist', async () => {

@@ -4,6 +4,15 @@ import fs from 'fs';
 
 // Mock fs to avoid writing actual files during tests
 vi.mock('fs');
+vi.mock('yahoo-finance2', () => {
+    const mockOptions = vi.fn();
+    const mockConstructor = function() {
+        return { options: mockOptions };
+    };
+    mockConstructor.options = mockOptions;
+    return { default: mockConstructor };
+});
+import yahooFinance from 'yahoo-finance2';
 
 describe('CboeFetchAdapter', () => {
     let adapter;
@@ -59,8 +68,7 @@ describe('CboeFetchAdapter', () => {
             fs.existsSync.mockImplementation((pathStr) => pathStr.includes('pcr.csv'));
             fs.readFileSync.mockReturnValue(`record_date,total_pcr\n2024-01-01,0.95`);
             
-            const { default: yahooFinance } = await import('yahoo-finance2');
-            yahooFinance.options = vi.fn().mockResolvedValue({
+            yahooFinance.options.mockResolvedValue({
                 options: [{
                     expirationDate: '2024-01-02',
                     puts: [{ volume: 1500 }],
@@ -82,8 +90,7 @@ describe('CboeFetchAdapter', () => {
             fs.existsSync.mockImplementation((pathStr) => pathStr.includes('pcr.csv'));
             fs.readFileSync.mockReturnValue(`record_date,total_pcr\n2024-01-01,0.95`);
             
-            const { default: yahooFinance } = await import('yahoo-finance2');
-            yahooFinance.options = vi.fn().mockRejectedValue(new Error('Yahoo down'));
+            yahooFinance.options.mockRejectedValue(new Error('Yahoo down'));
 
             const result = await adapter.fetch({ dataset: 'pcr' }, {}, '2024-01-01', mockRequestManager);
             
@@ -95,8 +102,7 @@ describe('CboeFetchAdapter', () => {
         it('sollte leeres Array zurückgeben, wenn Archiv fehlt und Yahoo fehlschlägt (Grenzfall)', async () => {
             fs.existsSync.mockReturnValue(false);
             
-            const { default: yahooFinance } = await import('yahoo-finance2');
-            yahooFinance.options = vi.fn().mockResolvedValue(null);
+            yahooFinance.options.mockResolvedValue(null);
 
             const result = await adapter.fetch({ dataset: 'pcr' }, {}, '2024-01-01', mockRequestManager);
             expect(result).toHaveLength(0);

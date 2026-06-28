@@ -16,18 +16,7 @@ function getNextDate(dateStr) {
     return d.toISOString().split('T')[0];
 }
 
-async function fetchWithTimeout(url, options, timeoutMs = 5000) {
-    const controller = new AbortController();
-    const id = setTimeout(() => controller.abort(), timeoutMs);
-    try {
-        const response = await fetch(url, { ...options, signal: controller.signal });
-        clearTimeout(id);
-        return response;
-    } catch (error) {
-        clearTimeout(id);
-        throw error;
-    }
-}
+// Wrapper entfernt, wir nutzen den AbortController direkt im Loop, damit er auch response.text() abdeckt
 
 async function run() {
     console.log(`Starte historischen CBOE PCR Download (Safe Mode)...`);
@@ -66,16 +55,23 @@ async function run() {
         // Skip weekends and dates we already have
         if (dayOfWeek !== 0 && dayOfWeek !== 6 && !existingDates.has(currentDate)) {
             const url = `https://www.cboe.com/markets/us/options/market-statistics/daily/?dt=${currentDate}`;
+            let timeoutId;
             try {
-                const response = await fetchWithTimeout(url, {
+                const controller = new AbortController();
+                timeoutId = setTimeout(() => controller.abort(), 8000);
+                
+                const response = await fetch(url, {
                     headers: {
                         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0 Safari/537.36',
                         'Accept': 'text/html'
-                    }
-                }, 8000); // 8 second timeout
+                    },
+                    signal: controller.signal
+                });
                 
                 if (response.status === 200) {
                     const text = await response.text();
+                    clearTimeout(timeoutId);
+                    
                     const match = text.match(/TOTAL PUT\/CALL RATIO(?:\\?|)",(?:\\?|)"value(?:\\?|)":(?:\\?|)"([0-9.]+)/);
                     
                     if (match && match[1]) {
@@ -94,13 +90,16 @@ async function run() {
                         consecutiveErrors = 0;
                     }
                 } else if (response.status === 403 || response.status === 429) {
+                     clearTimeout(timeoutId);
                      console.log(`[${currentDate}] GEBLOCKT! HTTP ${response.status}`);
                      consecutiveErrors += 5; // force abort
                 } else {
+                     clearTimeout(timeoutId);
                      console.log(`[${currentDate}] HTTP ${response.status}`);
                      consecutiveErrors++;
                 }
             } catch (e) {
+                if (timeoutId) clearTimeout(timeoutId);
                 console.error(`[${currentDate}] Fehler: ${e.message} (Timeout/Hang)`);
                 consecutiveErrors++;
             }

@@ -24,21 +24,20 @@ Um diese Euphorie und Kapitulation quantifizierbar zu machen, haben wir folgende
 * **Datenquelle:** Yahoo Finance.
 
 ## Aktueller Projektstatus & Fahrplan
-* **Status:** Analyse-Phase abgeschlossen, Indikator-Logik in Vorbereitung.
+* **Status:** Analyse-Phase abgeschlossen, Indikator-Logik ist vollständig in der `IndicatorEngine` implementiert. Fokus liegt nun auf dem Notification-System und Daten-Vollständigkeit.
 * **Nächste Schritte:** 
-  - [x] 1. Datenquellen (FINRA Short Volume, CBOE PCR, SKEW, SMH) in das Fetcher-System integrieren.
-  - [x] 2. Historische Daten lokal sammeln (Ab 2023 für FINRA, ab 1999 für SKEW).
-  - [x] 3. **Data Science / Analyse:** Überprüfen, ob die Theorie in der Vergangenheit (z.B. Tops in 2021 oder 2023) statistisch signifikante Crash-Signale geliefert hat.
-      * *Ergebnis:* Das Combo-Signal (`SKEW > 145` UND `Short-Ratio < 45%`) hat eine sehr hohe Trefferquote (75% bei Short-Volume-Dips). Es gab jedoch **4 signifikante Fehlalarme**, bei denen das Signal auslöste, aber kein Crash folgte:
-        * 12.12.2023 (SKEW 148.8, Short 44.8%)
-        * 17.01.2024 (SKEW 147.8, Short 33.5%)
-        * 16.05.2024 (SKEW 147.9, Short 42.5%)
-        * 18.11.2024 (SKEW 147.3, Short 33.9%)
-      * *Erkenntnis:* Diese 4 Fehlalarme passierten ausnahmslos in absoluten "Melt-Up" Phasen (z.B. KI-Wahn, Post-Election). Das schiere **Momentum** (FOMO) des Marktes war in diesen Phasen so gigantisch, dass es die Kapitulation und die hohen Hedging-Kosten einfach überrollt und einen Crash verhindert hat.
-  - [x] 4. **Messung von "Momentum" (Melt-Up Filter):** Wir haben herausgefunden, dass das **Put/Call Ratio (PCR)** als perfekter "Melt-Up Filter" fungiert! An allen 4 Fehlalarm-Tagen lag das PCR noch bei ca. ~0.90 bis 1.00. Solange das PCR nicht unterhalb von **0.75** fällt, sind die Retail-Bären noch nicht vollends in Euphorie verfallen, was bedeutet, dass der Markt weiter nach oben pushen kann (Melt-Up).
-  - [x] 5. **PCR-Datenquelle:** Da CBOE & MacroMicro durch Cloudflare geblockt sind, nutzen wir einen **hybriden Ansatz**:
-      * Für das **Backtesting** haben wir die historischen CBOE-Daten in `data/archive/cboe/pcr.csv` gespeichert.
-      * Für den **Live-Betrieb** greift der Fetcher per `yahoo-finance2` auf die tagesaktuelle Optionskette (Puts & Calls) des SPY zu und berechnet das Put/Call Ratio autonom und zukunftssicher selbst.
-  - [x] 6. Übernahme der finalen, momentum-gefilterten Erkenntnisse in die `IndicatorEngine` als "Red Alert (Bullenmarkt-Stirbt-Signal)".
-  - [ ] 7. **TODO: Ntfy-Benachrichtigung testen.** Prüfen, ob bei Auslösen des "Red Alert" (SKEW > 145, Short < 45%, PCR < 0.75) auch verlässlich eine Push-Benachrichtigung über den `NtfyService` auf das Handy gesendet wird.
-  - [ ] 8. **TODO: Historischen PCR-Download abschließen.** Das "Safe Mode" Skript für den CBOE Download läuft im Hintergrund. Wir müssen am Ende prüfen, ob die `pcr.csv` vollständig die letzten 5 Jahre (2020-2026) lückenlos abdeckt, oder ob CBOE unsere IP doch noch temporär blockiert hat.
+  - [ ] 1. **TODO: Historischen PCR-Download abschließen.** Das "Safe Mode" Skript für den CBOE Download (`scratch/downloadHistoricalPcr.js`) läuft im Hintergrund. Wir müssen prüfen, ob die `pcr.csv` vollständig die letzten Jahre lückenlos abdeckt.
+  - [ ] 2. **TODO: Dynamisches Benachrichtigungssystem & Daily Status:**
+      * **Konfiguration:** Die Zuordnung der Indikatoren zu bestimmten Asset-Klassen (z.B. GOLD, CRYPTO, MARKET, MACRO) soll *von außen* konfigurierbar gemacht werden (z.B. per JSON-Config-Datei) und nicht hardgecodet in der Engine stehen.
+      * **Warnungs-Trennung:** `IndicatorEngine.getAlerts()` umbauen, sodass Warnungen nach diesen konfigurierten Asset-Klassen getrennt gruppiert zurückgegeben werden.
+      * **Visuelles Push-Design:** Den `NtfyService` so nutzen, dass er separate Benachrichtigungen pro Asset-Klasse inklusive spezifischer Emojis/Tags (z.B. 🪙, ₿, 🚨) sendet.
+      * **Daily Status:** Einen zusammenfassenden, täglichen Bericht (Daily Status Report) bauen, der z.B. nach Marktschluss einmalig versendet wird.
+
+## Diskrepanzen zwischen Analyse (Theorie) und Code (Implementierung)
+Bei einem Abgleich zwischen `docs/Analyse.md` und `IndicatorEngine.js` wurden folgende Lücken festgestellt, die behoben werden müssen:
+1. **Fehlende Krypto-Indikatoren (Höchste Prio):** Die Krypto-Indikatoren (Net Liquidity, BTC Volume Climax, und MSTR/COIN Zyklus-Divergenzen) sind ausführlich in der Doku beschrieben, fehlen aber komplett im Code der `IndicatorEngine`. Dies blockiert Krypto-spezifische Alarme.
+2. **Maturity Wall Schwellenwerte:** Laut Doku ist `>15%` ein "Roter Alarm". Der Code definiert `15%` jedoch nur als Warning und `21%` als Critical. Die Doku muss an die reale Adaption (21%) angepasst werden oder der Code verschärft werden.
+3. **Globale Liquidität (EZB Bilanz):** Wird in der Doku als Frühindikator gelistet, ist aber im Code nicht implementiert.
+
+* **Nächste Schritte (Erweiterung):**
+  - [ ] 3. **TODO: Code & Doku synchronisieren:** Implementierung der fehlenden BTC- und Proxy-Indikatoren in die `IndicatorEngine`, um das geplante Krypto-Benachrichtigungssystem zu ermöglichen, sowie Angleichung der Schwellenwerte (Maturity Wall).

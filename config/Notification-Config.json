@@ -1,0 +1,47 @@
+{
+  "topics": {
+    "MARKET": {
+      "title": "CrashRadar: Gesamtmarkt",
+      "icon": "rotating_light",
+      "priority": "high"
+    },
+    "GOLD": {
+      "title": "CrashRadar: Gold & Minen",
+      "icon": "coin",
+      "priority": "high"
+    },
+    "CRYPTO": {
+      "title": "CrashRadar: Krypto",
+      "icon": "bitcoin",
+      "priority": "high"
+    },
+    "MACRO": {
+      "title": "CrashRadar: Makro-Liquidität",
+      "icon": "bank",
+      "priority": "default"
+    }
+  },
+  "indicators": {
+    "Red Alert (Bullenmarkt-Stirbt-Signal)": "MARKET",
+    "Panik-Kapitulation (VIX + CBOE + RSI)": "MARKET",
+    "VIX (Spike & Crush)": "MARKET",
+    "High Yield Divergenz (HYG)": "MARKET",
+    "Rate Shock (Real Yield Velocity)": "MACRO",
+    "Bankreserven (TOTRESNS)": "MACRO",
+    "Maturity Wall (T-Bill Rollover)": "MACRO",
+    "Treasury General Account (TGA)": "MACRO",
+    "Yield Curve (T10Y2Y)": "MACRO",
+    "Sahm Rule (Rezession)": "MACRO",
+    "Margin Debt (Gier & Hebel)": "MACRO",
+    "Schattenbanken Zinslast (ARCC)": "MACRO",
+    "Chicago Fed Stress Index (NFCI)": "MACRO",
+    "Private Credit Stress (BIZD)": "MACRO",
+    "Floating Rate Stress (BKLN)": "MACRO",
+    "Central Bank Policy Error (DFF vs T10YIE vs DXY)": "MACRO",
+    "Gold Volume Climax (Panik/FOMO)": "GOLD",
+    "GDX Selling Climax (Boden-Suche)": "GOLD",
+    "GDX Buying Climax (Top-Gefahr)": "GOLD",
+    "GDX vs Gold Divergenz": "GOLD",
+    "Gold (SMA 50 Ausbruch)": "GOLD"
+  }
+}

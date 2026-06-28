@@ -627,7 +627,7 @@ describe('IndicatorEngine', () => {
     it('sollte null zurückgeben, wenn es keine Warnungen gibt', () => {
       const timeline = generateTimeline(95); // alles OK
       const alerts = engine.getAlerts(timeline);
-      expect(alerts).toBeNull();
+      expect(alerts.notifications).toBeNull();
     });
 
     it('sollte nur Warnungen aggregieren', () => {
@@ -637,10 +637,10 @@ describe('IndicatorEngine', () => {
       timeline[94].macroGroups.Fundamentals = { ARCC_InterestExpense: 105000000 }; // +5%
       
       const alerts = engine.getAlerts(timeline);
-      expect(alerts).not.toBeNull();
-      expect(alerts.priority).toBe('high');
-      expect(alerts.message).toContain('WARNING: Schattenbanken Zinslast');
-      expect(alerts.message).not.toContain('CRITICAL');
+      expect(alerts.notifications).not.toBeNull();
+      expect(alerts.notifications[0].priority).toBe('high');
+      expect(alerts.notifications[0].message).toContain('WARNING: Schattenbanken Zinslast');
+      expect(alerts.notifications[0].message).not.toContain('CRITICAL');
     });
 
     it('sollte höchste Priorität (urgent) annehmen wenn es CRITICAL gibt', () => {
@@ -649,23 +649,23 @@ describe('IndicatorEngine', () => {
       timeline[94].macroGroups.BankingHealth.TotalReserves = 2000;
       
       const alerts = engine.getAlerts(timeline);
-      expect(alerts).not.toBeNull();
-      expect(alerts.priority).toBe('urgent');
-      expect(alerts.message).toContain('CRITICAL: Bankreserven');
+      expect(alerts.notifications).not.toBeNull();
+      expect(alerts.notifications[0].priority).toBe('urgent');
+      expect(alerts.notifications[0].message).toContain('CRITICAL: Bankreserven');
     });
 
     it('sollte die Priorität bei einem zweiten Warning nicht überschreiben', () => {
       const timeline = generateTimeline(95);
-      // Erzeuge zwei WARNINGS
+      // Erzeuge zwei WARNINGS (beide MACRO -> selbes Topic)
       timeline[94].macroGroups.BankingHealth.TotalReserves = 2900; // Warning 1
       timeline[5].macroGroups.Fundamentals = { ARCC_InterestExpense: 100000000 };
       timeline[94].macroGroups.Fundamentals = { ARCC_InterestExpense: 105000000 }; // Warning 2
       
       const alerts = engine.getAlerts(timeline);
-      expect(alerts).not.toBeNull();
-      expect(alerts.priority).toBe('high');
-      expect(alerts.message).toContain('WARNING: Bankreserven');
-      expect(alerts.message).toContain('WARNING: Schattenbanken Zinslast');
+      expect(alerts.notifications).not.toBeNull();
+      expect(alerts.notifications[0].priority).toBe('high');
+      expect(alerts.notifications[0].message).toContain('WARNING: Bankreserven');
+      expect(alerts.notifications[0].message).toContain('WARNING: Schattenbanken Zinslast');
     });
   });
 

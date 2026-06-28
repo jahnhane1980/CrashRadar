@@ -1,5 +1,20 @@
+import fs from 'fs';
+import path from 'path';
+
 export class IndicatorEngine {
   constructor() {
+    const configPath = path.resolve(process.cwd(), 'config/Notification-Config.json');
+    this.notificationConfig = { topics: {}, indicators: {} };
+    try {
+      if (fs.existsSync(configPath)) {
+        this.notificationConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+      } else {
+        console.warn(`[IndicatorEngine] Config nicht gefunden: ${configPath}`);
+      }
+    } catch (e) {
+      console.error("[IndicatorEngine] Fehler beim Laden der Notification-Config:", e.message);
+    }
+
     const THRESHOLDS = {
       TOTRESNS_CRITICAL: 2800,
       TOTRESNS_WARNING: 3000,
@@ -692,10 +707,11 @@ export class IndicatorEngine {
   getAlerts(groupedData, alertHistory = {}, debounceDays = 14) {
     if (!groupedData || groupedData.length === 0) return null;
     
-    let highestPriority = 'default';
-    const alerts = [];
     const now = Date.now();
     const debounceMs = debounceDays * 24 * 60 * 60 * 1000;
+    
+    // Gruppierung der Alarme nach Topic (Asset Class)
+    const groupedAlerts = {};
 
     this.indicators.forEach(ind => {
       const result = ind.evaluate(groupedData);
@@ -708,25 +724,84 @@ export class IndicatorEngine {
             return; // Zu früh, überspringen (Spam-Schutz)
         }
 
-        // Wir merken uns, dass wir ihn jetzt (bzw. gleich) senden
         alertHistory[historyKey] = now;
+        
+        // Topic ermitteln (Fallback: MACRO)
+        const topicKey = this.notificationConfig.indicators[ind.name] || 'MACRO';
+        
+        if (!groupedAlerts[topicKey]) {
+            groupedAlerts[topicKey] = {
+                highestPriority: 'default',
+                messages: []
+            };
+        }
 
         if (result.status === 'CRITICAL') {
-          highestPriority = 'urgent'; // Ntfy max priority
-          alerts.push(`🚨 CRITICAL: ${ind.name} - ${result.message} (${result.value})`);
+          groupedAlerts[topicKey].highestPriority = 'urgent'; 
+          groupedAlerts[topicKey].messages.push(`🚨 CRITICAL: ${ind.name} - ${result.message} (${result.value})`);
         } else if (result.status === 'WARNING') {
-          if (highestPriority === 'default') highestPriority = 'high';
-          alerts.push(`⚠️ WARNING: ${ind.name} - ${result.message} (${result.value})`);
+          if (groupedAlerts[topicKey].highestPriority === 'default') {
+              groupedAlerts[topicKey].highestPriority = 'high';
+          }
+          groupedAlerts[topicKey].messages.push(`⚠️ WARNING: ${ind.name} - ${result.message} (${result.value})`);
         }
       }
     });
 
-    if (alerts.length === 0) return null;
+    const notifications = [];
+    
+    for (const [topicKey, data] of Object.entries(groupedAlerts)) {
+        const topicConfig = this.notificationConfig.topics[topicKey] || { title: `CrashRadar: ${topicKey}`, icon: 'warning', priority: 'high' };
+        
+        // Bei 'urgent' (Critical) überschreiben wir die Standard-Topic-Priority. 
+        // Bei 'high' (Warning) überschreiben wir nur, wenn der Topic-Standard 'default' ist.
+        const finalPriority = data.highestPriority === 'urgent' ? 'urgent' : 
+                             (data.highestPriority === 'high' && topicConfig.priority === 'default' ? 'high' : topicConfig.priority);
+        
+        notifications.push({
+            title: topicConfig.title,
+            priority: finalPriority,
+            tags: topicConfig.icon,
+            message: data.messages.join('\n\n')
+        });
+    }
 
     return {
-      priority: highestPriority,
-      message: alerts.join('\n\n'),
+      notifications: notifications.length > 0 ? notifications : null,
       updatedHistory: alertHistory
+    };
+  }
+
+  getDailyStatusReport(groupedData) {
+    if (!groupedData || groupedData.length === 0) return null;
+    
+    let summary = '';
+    const categories = ['LEADING', 'TRIGGER', 'CONTEMPORANEOUS', 'TROUGH'];
+    let overallStatus = 'OK';
+    
+    categories.forEach(cat => {
+      const catIndicators = this.indicators.filter(i => i.category === cat);
+      let catErrors = 0;
+      let catWarns = 0;
+      
+      catIndicators.forEach(ind => {
+          const res = ind.evaluate(groupedData);
+          if (res.status === 'CRITICAL') catErrors++;
+          else if (res.status === 'WARNING') catWarns++;
+      });
+      
+      if (catErrors > 0) overallStatus = 'CRITICAL';
+      else if (catWarns > 0 && overallStatus !== 'CRITICAL') overallStatus = 'WARNING';
+      
+      let catStatusStr = catErrors > 0 ? '🚨 Kritisch' : (catWarns > 0 ? '⚠️ Warnung' : '✅ OK');
+      summary += `${cat}: ${catStatusStr}\n`;
+    });
+    
+    return {
+        title: `CrashRadar: Daily Status (${overallStatus})`,
+        priority: 'default',
+        tags: 'chart_with_upwards_trend',
+        message: summary.trim()
     };
   }
 }
