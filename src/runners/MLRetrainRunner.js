@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const CONFIG_PATH = path.join(__dirname, '..', '..', 'config', 'ML-Cycles-Config.json');
 
-function getLabelForDate(dateStr, cycles) {
+export function getLabelForDate(dateStr, cycles) {
   const d = new Date(dateStr);
   for (const phase of cycles) {
     if (d >= new Date(phase.start) && d <= new Date(phase.end)) {
@@ -19,12 +19,13 @@ function getLabelForDate(dateStr, cycles) {
   return 'UNKNOWN';
 }
 
-async function run() {
+export async function run(mockRepo = null, mockFs = null) {
   console.log('🚀 Starte ML Retraining Pipeline für alle konfigurierten Zyklen...');
-  const repo = new AnalysisRepository();
+  const repo = mockRepo || new AnalysisRepository();
+  const fileSystem = mockFs || fs;
   
   try {
-    const configData = JSON.parse(await fs.readFile(CONFIG_PATH, 'utf-8'));
+    const configData = JSON.parse(await fileSystem.readFile(CONFIG_PATH, 'utf-8'));
     
     console.log('📥 Lade historische Kerzen aus der TiDB ab 1999...');
     // Wir ziehen ab 1999, da die QQQ Historie so weit zurückreicht
@@ -85,13 +86,16 @@ async function run() {
     }
     
     console.log('\n✅ ML Retraining Runner erfolgreich beendet.');
-    process.exit(0);
+    if (!mockRepo) process.exit(0);
   } catch (err) {
     console.error('❌ Fehler beim ML Retraining:', err);
-    process.exit(1);
+    if (!mockRepo) process.exit(1);
+    throw err;
   } finally {
-    await repo.close();
+    if (repo && repo.close) await repo.close();
   }
 }
 
-run();
+if (process.argv[1] && process.argv[1] === fileURLToPath(import.meta.url)) {
+  run();
+}
