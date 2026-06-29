@@ -28,4 +28,20 @@ describe('CboeAdapter', () => {
       adapter.getInsertQueryAndValues(task, data);
     }).toThrow(/Invalid or missing ticker/);
   });
+
+  it('sollte korrekte Query für pcr Datensätze generieren', () => {
+    const task = { dataset: 'pcr' };
+    const data = [
+      { record_date: '2026-06-01', total_pcr: 1.0, equity_pcr: 0.8, index_pcr: 1.2 }
+    ];
+    
+    const result = adapter.getInsertQueryAndValues(task, data);
+    expect(result.query).toContain('INSERT INTO market_data_pcr');
+    expect(result.values).toHaveLength(1);
+    expect(result.values[0]).toEqual(['2026-06-01', 1.0, 0.8, 1.2]);
+  });
+  
+  it('sollte null zurückgeben wenn daten leer sind', () => {
+    expect(adapter.getInsertQueryAndValues({}, [])).toBeNull();
+  });
 });

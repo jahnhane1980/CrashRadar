@@ -58,6 +58,41 @@ describe('MLRegimeService', () => {
     });
   });
 
+  describe('loadModel', () => {
+    it('returns early if model is already loaded', async () => {
+      service.model = {};
+      const spyReadFile = jest.spyOn(fs, 'readFile');
+      await service.loadModel();
+      expect(spyReadFile).not.toHaveBeenCalled();
+      spyReadFile.mockRestore();
+    });
+
+    it('loads stats and executes model building, but fails at setWeights due to mock shape mismatch', async () => {
+      const mockStats = { return_pct: { mean: 0, std: 1 } };
+      const mockWeights = [[0.1, 0.2]];
+
+      const spyReadFile = jest.spyOn(fs, 'readFile').mockImplementation((path) => {
+        if (path.includes('stats.json')) return Promise.resolve(JSON.stringify(mockStats));
+        if (path.includes('weights.json')) return Promise.resolve(JSON.stringify(mockWeights));
+        return Promise.resolve('{}');
+      });
+
+      // We expect it to throw a shape mismatch error from TF.js because mockWeights is fake,
+      // but this verifies that stats were loaded and the try block was executed.
+      await expect(service.loadModel()).rejects.toThrow(/expecting/i);
+      
+      expect(service.stats).toEqual(mockStats);
+      
+      spyReadFile.mockRestore();
+    });
+
+    it('throws error if reading files fails', async () => {
+      const spyReadFile = jest.spyOn(fs, 'readFile').mockRejectedValue(new Error('File missing'));
+      await expect(service.loadModel()).rejects.toThrow('File missing');
+      spyReadFile.mockRestore();
+    });
+  });
+
   describe('normalize', () => {
     it('builds stats and normalizes when buildStats is true', () => {
       const features = [

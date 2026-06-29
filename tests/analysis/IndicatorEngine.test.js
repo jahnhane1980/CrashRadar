@@ -1116,4 +1116,58 @@ describe('IndicatorEngine', () => {
       expect(report).not.toContain('\x1b'); // Keine ANSI Escape codes
     });
   });
+
+  describe('ML Regime Radar (Makro & Krypto)', () => {
+    it('sollte UNKNOWN zurückgeben, wenn Daten fehlen', () => {
+      const timeline = generateTimeline(1);
+      const res1 = engine.indicators.find(i => i.name.includes('ML Regime Radar (Makro)')).evaluate(timeline);
+      const res2 = engine.indicators.find(i => i.name.includes('ML Regime Radar (Krypto)')).evaluate(timeline);
+      expect(res1.status).toBe('UNKNOWN');
+      expect(res2.status).toBe('UNKNOWN');
+    });
+
+    it('sollte ML Regime Radar Makro korrekt auswerten', () => {
+      const timeline = generateTimeline(1);
+      
+      timeline[0].mlRegime = { phase: 'MACRO_TOP', confidence: 0.9 };
+      let res = engine.indicators.find(i => i.name.includes('ML Regime Radar (Makro)')).evaluate(timeline);
+      expect(res.status).toBe('CRITICAL');
+      expect(res.value).toContain('TOP (90.0%)');
+
+      timeline[0].mlRegime = { phase: 'DOWNTREND', confidence: 0.7 };
+      res = engine.indicators.find(i => i.name.includes('ML Regime Radar (Makro)')).evaluate(timeline);
+      expect(res.status).toBe('WARNING');
+
+      timeline[0].mlRegime = { phase: 'MACRO_BOTTOM', confidence: 0.8 };
+      res = engine.indicators.find(i => i.name.includes('ML Regime Radar (Makro)')).evaluate(timeline);
+      expect(res.status).toBe('CRITICAL');
+      expect(res.value).toContain('BOTTOM');
+
+      timeline[0].mlRegime = { phase: 'UPTREND', confidence: 0.6 };
+      res = engine.indicators.find(i => i.name.includes('ML Regime Radar (Makro)')).evaluate(timeline);
+      expect(res.status).toBe('OK');
+    });
+
+    it('sollte ML Regime Radar Krypto korrekt auswerten', () => {
+      const timeline = generateTimeline(1);
+      
+      timeline[0].mlRegime = { phase: 'MACRO_TOP', confidence: 0.9 };
+      let res = engine.indicators.find(i => i.name.includes('ML Regime Radar (Krypto)')).evaluate(timeline);
+      expect(res.status).toBe('CRITICAL');
+      expect(res.message).toContain('KRYPTO-ZYKLUSENDE');
+
+      timeline[0].mlRegime = { phase: 'DOWNTREND', confidence: 0.7 };
+      res = engine.indicators.find(i => i.name.includes('ML Regime Radar (Krypto)')).evaluate(timeline);
+      expect(res.status).toBe('WARNING');
+
+      timeline[0].mlRegime = { phase: 'MACRO_BOTTOM', confidence: 0.8 };
+      res = engine.indicators.find(i => i.name.includes('ML Regime Radar (Krypto)')).evaluate(timeline);
+      expect(res.status).toBe('CRITICAL');
+      expect(res.message).toContain('KRYPTO-BODEN');
+
+      timeline[0].mlRegime = { phase: 'UPTREND', confidence: 0.6 };
+      res = engine.indicators.find(i => i.name.includes('ML Regime Radar (Krypto)')).evaluate(timeline);
+      expect(res.status).toBe('OK');
+    });
+  });
 });

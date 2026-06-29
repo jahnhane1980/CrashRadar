@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { FinraAdapter } from '../../../../src/core/adapters/storage/FinraAdapter.js';
 
 describe('FinraAdapter', () => {
@@ -31,5 +31,18 @@ describe('FinraAdapter', () => {
     expect(result).toBeNull();
     const result2 = adapter.getInsertQueryAndValues({ id: 'finra' }, null);
     expect(result2).toBeNull();
+  });
+
+  it('should generate correct SQL query and values for short_volume data', () => {
+    const task = { dataset: 'short_volume' };
+    const data = [
+      { symbol: 'QQQ', record_date: '2025-01-01', short_volume: 100, total_volume: 500, short_volume_ratio: 0.2 }
+    ];
+    
+    const result = adapter.getInsertQueryAndValues(task, data);
+    
+    expect(result.query).toContain('INSERT INTO market_data_short_volume');
+    expect(result.values).toHaveLength(1);
+    expect(result.values[0]).toEqual(['QQQ', '2025-01-01', 100, 500, 0.2]);
   });
 });

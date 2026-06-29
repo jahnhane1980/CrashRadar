@@ -159,4 +159,51 @@ describe('RequestManager Class', () => {
     // Auch wenn p1 fehlschlägt, MUSS das Throttling (100ms) für p2 greifen
     expect(end - start).toBeGreaterThanOrEqual(95);
   });
+
+  it('sollte 403 und 404 Fehler speziell behandeln und loggen (Zeile 55)', async () => {
+    const manager = new RequestManager(config);
+    const kyExtendMock = ky.extend();
+    const error404 = new Error('Not Found');
+    error404.response = { status: 404 };
+    
+    kyExtendMock.get.mockReturnValue({
+      json: vi.fn().mockRejectedValue(error404)
+    });
+    
+    await expect(manager.fetch('http://missing.com', 'FastProv')).rejects.toThrow('Not Found');
+    expect(console.log).toHaveBeenCalledWith(expect.stringContaining('[RequestManager] Skipping http://missing.com (Status: 404)'));
+    
+    const error403 = new Error('Forbidden');
+    error403.response = { status: 403 };
+    kyExtendMock.get.mockReturnValue({
+      json: vi.fn().mockRejectedValue(error403)
+    });
+    await expect(manager.fetch('http://forbidden.com', 'FastProv')).rejects.toThrow('Forbidden');
+    expect(console.log).toHaveBeenCalledWith(expect.stringContaining('[RequestManager] Skipping http://forbidden.com (Status: 403)'));
+  });
+
+  it('sollte unhandled rejections in der Queue abfangen (Zeile 79)', async () => {
+    const manager = new RequestManager(config); // SlowProv has delayMs > 0
+    const kyExtendMock = ky.extend();
+    
+    kyExtendMock.get.mockReturnValue({
+      json: vi.fn().mockResolvedValue({ ok: true })
+    });
+    
+    // Wir mocken setTimeout so dass es explodiert
+    const originalSetTimeout = global.setTimeout;
+    global.setTimeout = () => { throw new Error('Queue Error'); };
+    
+    // Die Promise der fetch-Methode wird resolven (da execute() klappt), 
+    // aber DANACH explodiert setTimeout in der Queue und das wird vom Queue-Catch abgefangen.
+    await manager.fetch('http://queue.com', 'SlowProv');
+    
+    // Wiederherstellen
+    global.setTimeout = originalSetTimeout;
+    
+    // Kurz warten, bis der microtask für das catch ausgeführt wurde
+    await new Promise(r => originalSetTimeout(r, 10));
+    
+    expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[RequestManager Queue Error] Queue Error'));
+  });
 });
