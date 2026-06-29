@@ -61,7 +61,13 @@ export class RequestManager {
     };
 
     // Die eigentliche Ausführung in die Queue einhängen
-    return new Promise((resolve, reject) => {
+    if (!this.cache) this.cache = new Map();
+    if (this.cache.has(url)) {
+      console.log(`[RequestManager] Cache hit for ${url}`);
+      return this.cache.get(url);
+    }
+
+    const promise = new Promise((resolve, reject) => {
       this.queues[providerId] = this.queues[providerId].then(async () => {
         try {
           const result = await execute();
@@ -75,9 +81,11 @@ export class RequestManager {
           await new Promise(r => setTimeout(r, delayMs));
         }
       }).catch(e => {
-        // Verhindere, dass die Queue durch einen unhandled rejection komplett stoppt
         console.error(`[RequestManager Queue Error] ${e.message}`);
       });
     });
+
+    this.cache.set(url, promise);
+    return promise;
   }
 }

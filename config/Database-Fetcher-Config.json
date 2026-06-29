@@ -701,6 +701,102 @@
       "resolution": "daily",
       "ticker": "PLTR",
       "overrideStartDate": "2020-09-30"
+    },
+    {
+      "id": "tiingo_s_daily",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/S/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "S",
+      "overrideStartDate": "2016-01-01"
+    },
+    {
+      "id": "tiingo_sofi_daily",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/SOFI/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "SOFI",
+      "overrideStartDate": "2016-01-01"
+    },
+    {
+      "id": "tiingo_zeta_daily",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/ZETA/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "ZETA",
+      "overrideStartDate": "2016-01-01"
+    },
+    {
+      "id": "tiingo_soun_daily",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/SOUN/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "SOUN",
+      "overrideStartDate": "2016-01-01"
+    },
+    {
+      "id": "tiingo_lumn_daily",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/LUMN/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "LUMN",
+      "overrideStartDate": "2016-01-01"
+    },
+    {
+      "id": "tiingo_nvts_daily",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/NVTS/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "NVTS",
+      "overrideStartDate": "2016-01-01"
+    },
+    {
+      "id": "finra_short_volume_pltr",
+      "provider": "Finra",
+      "dataset": "short_volume",
+      "ticker": "PLTR"
+    },
+    {
+      "id": "finra_short_volume_s",
+      "provider": "Finra",
+      "dataset": "short_volume",
+      "ticker": "S"
+    },
+    {
+      "id": "finra_short_volume_sofi",
+      "provider": "Finra",
+      "dataset": "short_volume",
+      "ticker": "SOFI"
+    },
+    {
+      "id": "finra_short_volume_zeta",
+      "provider": "Finra",
+      "dataset": "short_volume",
+      "ticker": "ZETA"
+    },
+    {
+      "id": "finra_short_volume_soun",
+      "provider": "Finra",
+      "dataset": "short_volume",
+      "ticker": "SOUN"
+    },
+    {
+      "id": "finra_short_volume_lumn",
+      "provider": "Finra",
+      "dataset": "short_volume",
+      "ticker": "LUMN"
+    },
+    {
+      "id": "finra_short_volume_nvts",
+      "provider": "Finra",
+      "dataset": "short_volume",
+      "ticker": "NVTS"
     }
   ]
 }
