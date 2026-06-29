@@ -151,8 +151,11 @@ export class MLRegimeService {
     const X = [];
     const y = [];
     for (let i = this.sequenceLength; i < normalized.length; i++) {
-      X.push(normalized.slice(i - this.sequenceLength, i));
-      y.push(labels[i]);
+      const currentLabel = validFeatures[i].label;
+      if (currentLabel !== 'UNKNOWN') {
+        X.push(normalized.slice(i - this.sequenceLength, i));
+        y.push(labels[i]);
+      }
     }
 
     // Chronologischer Split 80/20 (Data Leakage verhindern)

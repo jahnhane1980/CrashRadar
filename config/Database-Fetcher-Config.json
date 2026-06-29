@@ -691,8 +691,16 @@
       "endpoint": "/tiingo/daily/ARKK/prices",
       "params": {},
       "resolution": "daily",
-      "ticker": "ARKK",
-      "overrideStartDate": "2015-01-01"
+      "ticker": "ARKK"
+    },
+    {
+      "id": "tiingo_pltr_daily",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/PLTR/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "PLTR",
+      "overrideStartDate": "2020-09-30"
     }
   ]
 }

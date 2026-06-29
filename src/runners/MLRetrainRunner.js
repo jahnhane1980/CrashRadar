@@ -64,6 +64,25 @@ async function run() {
       const mlQqq = new MLRegimeService('qqq_regime_v1');
       await mlQqq.retrain(labeledQqq);
     }
+
+    // 3. Trainiere PLTR Modell
+    if (configData.cycles.pltr && data.tiingo) {
+      console.log('\n--- 🧠 Starte Training: pltr_regime_v1 ---');
+      const pltrCandles = data.tiingo
+        .filter(d => d.symbol === 'PLTR' && d.close !== null)
+        .map(d => ({ date: d.date, close: d.close }));
+        
+      pltrCandles.sort((a, b) => new Date(a.date) - new Date(b.date));
+      const labeledPltr = pltrCandles.map(candle => ({
+        ...candle,
+        label: getLabelForDate(candle.date, configData.cycles.pltr)
+      }));
+      const labeledCount = labeledPltr.filter(d => d.label !== 'UNKNOWN').length;
+      console.log(`📊 Gefunden: ${pltrCandles.length} Kerzen. Davon gelabelt: ${labeledCount}.`);
+      
+      const mlPltr = new MLRegimeService('pltr_regime_v1');
+      await mlPltr.retrain(labeledPltr);
+    }
     
     console.log('\n✅ ML Retraining Runner erfolgreich beendet.');
     process.exit(0);

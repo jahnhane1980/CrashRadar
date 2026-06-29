@@ -26,6 +26,7 @@ export const SYMBOLS = Object.freeze({
   SKEW: '^SKEW',
   MSTR: 'MSTR',
   COIN: 'COIN',
+  PLTR: 'PLTR',
 });
 
 export const FRED_SERIES = Object.freeze({
@@ -74,8 +75,8 @@ export class AnalysisRepository {
     const [tiingo] = await this.pool.query(`
       SELECT symbol, record_date as date, close, volume 
       FROM ${TABLES.TIINGO} 
-      WHERE symbol IN (?, ?, ?, ?, ?) AND record_date >= ?
-    `, [SYMBOLS.SPY, SYMBOLS.QQQ, SYMBOLS.TLT, SYMBOLS.MSTR, SYMBOLS.COIN, startDate]);
+      WHERE symbol IN (?, ?, ?, ?, ?, ?) AND record_date >= ?
+    `, [SYMBOLS.SPY, SYMBOLS.QQQ, SYMBOLS.TLT, SYMBOLS.MSTR, SYMBOLS.COIN, SYMBOLS.PLTR, startDate]);
 
     const [yahoo] = await this.pool.query(`
       SELECT symbol, record_date as date, close, volume
