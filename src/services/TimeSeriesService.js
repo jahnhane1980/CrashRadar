@@ -6,8 +6,25 @@ export class TimeSeriesService {
     const timeline = {};
     const addToTimeline = (date, key, value) => {
       if (!date) return;
-      if (!timeline[date]) timeline[date] = {};
-      timeline[date][key] = value;
+      let dateStr = date;
+      if (date instanceof Date) {
+        const yyyy = date.getFullYear();
+        const mm = String(date.getMonth() + 1).padStart(2, '0');
+        const dd = String(date.getDate()).padStart(2, '0');
+        dateStr = `${yyyy}-${mm}-${dd}`;
+      } else if (typeof date === 'string' && date.includes('GMT')) {
+        // Fallback for already stringified Date objects (just in case)
+        const d = new Date(date);
+        if (!isNaN(d.getTime())) {
+          const yyyy = d.getFullYear();
+          const mm = String(d.getMonth() + 1).padStart(2, '0');
+          const dd = String(d.getDate()).padStart(2, '0');
+          dateStr = `${yyyy}-${mm}-${dd}`;
+        }
+      }
+      
+      if (!timeline[dateStr]) timeline[dateStr] = {};
+      timeline[dateStr][key] = value;
     };
 
     btc?.forEach(r => {
