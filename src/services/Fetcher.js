@@ -77,7 +77,11 @@ export class Fetcher {
           if (!isNaN(timestamp)) return timestamp + 1; // Nächste Millisekunde
         } else if (dateFormat === DATE_FORMATS.YYYY_MM_DD) {
           // Strict string parsing to avoid Timezone offsets
-          const d = new Date(lastDateRaw + 'T00:00:00.000Z');
+          let dateStr = String(lastDateRaw);
+          if (!dateStr.includes('T')) {
+            dateStr += 'T00:00:00.000Z';
+          }
+          const d = new Date(dateStr);
           if (!isNaN(d.getTime())) {
             d.setUTCDate(d.getUTCDate() + 1);
             return d.toISOString().split('T')[0];
