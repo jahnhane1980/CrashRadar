@@ -60,11 +60,17 @@ export class RequestManager {
       }
     };
 
+    let paramsString = '';
+    if (options.searchParams) {
+        paramsString = new URLSearchParams(options.searchParams).toString();
+    }
+    const cacheKey = `${url}${paramsString ? '?' + paramsString : ''}`;
+
     // Die eigentliche Ausführung in die Queue einhängen
     if (!this.cache) this.cache = new Map();
-    if (this.cache.has(url)) {
-      console.log(`[RequestManager] Cache hit for ${url}`);
-      return this.cache.get(url);
+    if (this.cache.has(cacheKey)) {
+      console.log(`[RequestManager] Cache hit for ${cacheKey}`);
+      return this.cache.get(cacheKey);
     }
 
     const promise = new Promise((resolve, reject) => {

@@ -1,3 +1,27 @@
+# CrashRadar - Indicator Engine Architektur
+
+Die `IndicatorEngine` verarbeitet und evaluiert alle gesammelten Finanz- und Makrodaten. Hierbei wird konzeptionell zwischen zwei Ebenen der Datenkombination und Ausgabe unterschieden:
+
+### 1. Engine-Ebene (Reporting & Benachrichtigung): Individuelle Darstellung
+Die Engine selbst berechnet aktuell keinen globalen Aggregat-Score ("Super-Score" über alle Metriken). 
+* Wenn Reports oder Alerts generiert werden (`generateReport`, `getAlerts`), durchläuft die Engine die Indikatorenliste sequenziell.
+* Jeder Indikator wird einzeln evaluiert und triggert für sich sein eigenes Signal (CRITICAL, WARNING, OK).
+* In Zusammenfassungen wie dem `DailyStatusReport` werden die ausgelösten Fehler und Warnungen lediglich pro Kategorie gezählt, um einen groben Tagesstatus zu definieren, ohne sie komplex zu verschmelzen.
+* **Grund:** Maximale Transparenz im Reporting. Der Nutzer sieht sofort, welches spezifische Setup gefeuert hat.
+
+### 2. Indikator-Ebene (Logik): Komplexe Verknüpfungen (Meta-Indikatoren)
+Innerhalb der einzelnen Indikator-Regeln findet bereits eine tiefe Kombination verschiedener Metriken und Assets statt. Viele Indikatoren sind "Meta-Indikatoren", die nur triggern, wenn mehrere spezifische Bedingungen zusammenkommen:
+
+* **Red Alert (Bullenmarkt-Stirbt-Signal):** Kombiniert `SKEW` (Panik der Profis), `ShortVolumeRatio` (Retail Capitulation) und `Put/Call Ratio` (Melt-Up Phase).
+* **Panik-Kapitulation:** Sucht gleichzeitig nach `VIX` Spikes, `CBOE` Optionsvolumen-Spikes und bestätigt diese über eine bullische Divergenz im `RSI` gegenüber dem reinen Preis (`SPY`).
+* **Central Bank Policy Error:** Vergleicht die Leitzinsentwicklung (`DFF`) mit den Inflationserwartungen (`T10YIE`) und integriert den US-Dollar (`DXY`) als Störfaktor-Filter.
+* **Divergenzen (Bitcoin/Makro & Gold/GDX):** Analysieren die relative Performance zweier sich normalerweise synchron bewegender Datensätze, um Warnungen bei Abweichungen (Liquiditätsentzug) zu generieren.
+
+**Fazit:** 
+Komplexe, multikausale Kombinationen finden in CrashRadar direkt **in der Logik der spezifischen Indikatoren** statt. Im Output und Monitoring werden diese jedoch bewusst als **diskrete Einzel-Signale** behandelt, um das Rauschen zu minimieren und die Ursache eines Alarms sofort identifizierbar zu machen.
+
+---
+
 # ML-Modell & Labeling: Update-Strategie
 
 Dieses Dokument beschreibt, wie das Machine Learning Modell (LSTM für Regime Classification) des CrashRadar weiter lernt und aktualisiert wird.

@@ -1,7 +1,7 @@
 import { PaginationStrategies } from './PaginationStrategies.js';
 import { FetchAdapterFactory } from '../core/adapters/fetch/FetchAdapterFactory.js';
 const CONFIG_DEFAULTS = Object.freeze({
-  CONCURRENCY: 10,
+  CONCURRENCY: 5,
   FALLBACK_START_DATE: '1999-12-01',
 });
 
