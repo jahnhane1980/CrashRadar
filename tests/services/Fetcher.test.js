@@ -238,6 +238,13 @@ describe('Fetcher Class', () => {
     expect(date).toBe('2020-01-02');
   });
 
+  it('sollte ISO-Datum-Strings in getStartDate ohne T-Duplizierung korrekt parsen', () => {
+    const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
+    const lastRecord = { date: '2026-06-29T00:00:00.000Z' };
+    const date = fetcher.getStartDate({ provider: 'Tiingo' }, mockConfig.providers.DateRange, lastRecord);
+    expect(date).toBe('2026-06-30');
+  });
+
   it('sollte bei Unix-MS Datum eine Millisekunde hochzählen', () => {
     const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
     mockConfig.providers.TimeCursor.pagination.dateExtractPath = 0;
