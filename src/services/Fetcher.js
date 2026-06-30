@@ -63,12 +63,44 @@ export class Fetcher {
     }
   }
 
+  getLatestRecord(task, provider, dataArray) {
+    if (!dataArray || dataArray.length === 0) return null;
+    const pagination = provider.pagination || {};
+    const extractPath = task.dateExtractPath || pagination.dateExtractPath;
+    
+    if (extractPath === undefined) {
+      return dataArray[dataArray.length - 1]; // Fallback
+    }
+
+    let latestItem = dataArray[0];
+    let maxTime = -Infinity;
+
+    for (const item of dataArray) {
+      const dateVal = item[extractPath];
+      if (dateVal !== undefined && dateVal !== null) {
+        let time;
+        if (pagination.dateFormat === 'unix-ms') {
+          time = parseInt(dateVal, 10);
+        } else {
+          let dateStr = String(dateVal);
+          if (!dateStr.includes('T')) dateStr += 'T00:00:00.000Z';
+          time = new Date(dateStr).getTime();
+        }
+        if (!isNaN(time) && time >= maxTime) {
+          maxTime = time;
+          latestItem = item;
+        }
+      }
+    }
+    return latestItem;
+  }
+
   getStartDate(task, provider, lastRecord) {
     const pagination = provider.pagination || {};
     const dateFormat = pagination.dateFormat || DATE_FORMATS.YYYY_MM_DD;
     
     if (lastRecord) {
-      const extractPath = pagination.dateExtractPath;
+      const extractPath = task.dateExtractPath || pagination.dateExtractPath;
       const lastDateRaw = extractPath !== undefined ? lastRecord[extractPath] : undefined;
       
       if (lastDateRaw !== undefined && lastDateRaw !== null) {
@@ -116,7 +148,7 @@ export class Fetcher {
         const newData = this.extractData(result, provider);
         
         if (newData && newData.length > 0) {
-          const newLastRecord = newData[newData.length - 1];
+          const newLastRecord = this.getLatestRecord(task, provider, newData);
           await this.storage.insertDataAndState(task, newData, newLastRecord);
         }
       } catch (error) {
@@ -187,7 +219,7 @@ export class Fetcher {
       }
       if (allNewData.length > 0) {
         try {
-          const lastItem = allNewData[allNewData.length - 1];
+          const lastItem = this.getLatestRecord(task, provider, allNewData);
           // Cursor Extraktor: Verhindern, dass gigantische Payloads (wie SEC Edgar) 
           // als Cursor gespeichert werden und die MySQL TEXT-Spalte (65KB Limit) sprengen.
           let cursorToSave = {};

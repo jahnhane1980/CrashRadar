@@ -13,6 +13,7 @@ describe('PaginationStrategies', () => {
     mockFetcher = {
       requestManager: { fetch: vi.fn().mockResolvedValue({}) },
       extractData: vi.fn(),
+      getLatestRecord: vi.fn((t, p, arr) => arr && arr.length > 0 ? arr[arr.length - 1] : null),
       storage: { insertDataAndState: vi.fn().mockResolvedValue() }
     };
     context = {

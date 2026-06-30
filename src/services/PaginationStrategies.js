@@ -24,7 +24,7 @@ export const PaginationStrategies = {
       
       if (!Array.isArray(data) || data.length === 0) break;
       
-      const newLastRecord = data[data.length - 1];
+      const newLastRecord = fetcher.getLatestRecord(task, provider, data);
       try {
         await fetcher.storage.insertDataAndState(task, data, newLastRecord);
       } catch(e) {
@@ -78,7 +78,7 @@ export const PaginationStrategies = {
       }
       lastDataHash = currentDataHash;
 
-      const newLastRecord = actualData[actualData.length - 1];
+      const newLastRecord = fetcher.getLatestRecord(task, provider, actualData);
       try {
         await fetcher.storage.insertDataAndState(task, actualData, newLastRecord);
       } catch(e) {
@@ -107,7 +107,7 @@ export const PaginationStrategies = {
     
     if (finalData.length > 0) {
       try {
-        const newLastRecord = finalData[finalData.length - 1];
+        const newLastRecord = fetcher.getLatestRecord(task, provider, finalData);
         await fetcher.storage.insertDataAndState(task, finalData, newLastRecord);
       } catch(e) {
         console.error(`[Storage] Error inserting data for task ${task.id}:`, e.message);
