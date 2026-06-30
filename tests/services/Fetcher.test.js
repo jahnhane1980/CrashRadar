@@ -493,5 +493,56 @@ describe('Fetcher Class', () => {
       expect.objectContaining({ id: 1 }) // Eingekürzter Cursor (id extrahiert)
     );
   });
+
+  it('sollte Provider-spezifische Concurrency-Limits strikt einhalten', async () => {
+    const customConfig = {
+      globalConcurrency: 2,
+      providers: {
+        FastAPI: { type: 'http' },
+        TiingoAPI: { type: 'http', concurrency: 1 }
+      },
+      tasks: [
+        { id: 'f1', provider: 'FastAPI' },
+        { id: 'f2', provider: 'FastAPI' },
+        { id: 'f3', provider: 'FastAPI' },
+        { id: 't1', provider: 'TiingoAPI' },
+        { id: 't2', provider: 'TiingoAPI' },
+        { id: 't3', provider: 'TiingoAPI' }
+      ]
+    };
+
+    const fetcher = new Fetcher(customConfig, mockStorage, mockRequestManager);
+
+    let activeFastAPI = 0;
+    let maxFastAPI = 0;
+    let activeTiingo = 0;
+    let maxTiingo = 0;
+    let completed = 0;
+
+    vi.spyOn(fetcher, 'runTask').mockImplementation(async (task) => {
+      if (task.provider === 'FastAPI') {
+        activeFastAPI++;
+        if (activeFastAPI > maxFastAPI) maxFastAPI = activeFastAPI;
+      } else {
+        activeTiingo++;
+        if (activeTiingo > maxTiingo) maxTiingo = activeTiingo;
+      }
+
+      await new Promise(resolve => setTimeout(resolve, 20));
+
+      if (task.provider === 'FastAPI') {
+        activeFastAPI--;
+      } else {
+        activeTiingo--;
+      }
+      completed++;
+    });
+
+    await fetcher.runAllTasks();
+
+    expect(maxTiingo).toBeLessThanOrEqual(1);
+    expect(maxFastAPI).toBeLessThanOrEqual(2);
+    expect(completed).toBe(6);
+  });
 });
 

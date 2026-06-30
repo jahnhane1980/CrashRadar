@@ -28,6 +28,38 @@ const API_STATUS = Object.freeze({
   ERROR: 'error',
 });
 
+function createLimit(concurrency) {
+  const queue = [];
+  let activeCount = 0;
+
+  const next = () => {
+    activeCount--;
+    if (queue.length > 0) {
+      queue.shift()();
+    }
+  };
+
+  return (fn) => new Promise((resolve, reject) => {
+    const run = async () => {
+      activeCount++;
+      try {
+        const result = await fn();
+        resolve(result);
+      } catch (error) {
+        reject(error);
+      } finally {
+        next();
+      }
+    };
+
+    if (activeCount < concurrency) {
+      run();
+    } else {
+      queue.push(run);
+    }
+  });
+}
+
 export class Fetcher {
   constructor(config, storage, requestManager) {
     this.config = config;
@@ -37,17 +69,28 @@ export class Fetcher {
 
   async runAllTasks() {
     const tasks = this.config.tasks;
-    const concurrency = CONFIG_DEFAULTS.CONCURRENCY;
+    const globalConcurrency = this.config.globalConcurrency || CONFIG_DEFAULTS.CONCURRENCY;
     
-    for (let i = 0; i < tasks.length; i += concurrency) {
-      const chunk = tasks.slice(i, i + concurrency);
-      const promises = chunk.map(task => 
+    const limits = {};
+    const getProviderLimit = (providerName) => {
+      if (!limits[providerName]) {
+        const providerConfig = this.config.providers[providerName] || {};
+        const concurrency = providerConfig.concurrency || globalConcurrency;
+        limits[providerName] = createLimit(concurrency);
+      }
+      return limits[providerName];
+    };
+
+    const promises = tasks.map(task => {
+      const limit = getProviderLimit(task.provider);
+      return limit(() => 
         this.runTask(task).catch(e => {
           console.error(`[Error] Task ${task.id} failed entirely:`, e.message);
         })
       );
-      await Promise.allSettled(promises);
-    }
+    });
+
+    await Promise.allSettled(promises);
   }
 
   async runTask(task) {

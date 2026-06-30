@@ -1,5 +1,6 @@
 {
   "globalStartDate": "1999-12-01",
+  "globalConcurrency": 5,
   "providers": {
     "Binance": {
       "type": "http",
@@ -59,6 +60,7 @@
     "Tiingo": {
       "type": "http",
       "baseUrl": "https://api.tiingo.com",
+      "concurrency": 2,
       "auth": {
         "type": "header",
         "key": "Authorization",
