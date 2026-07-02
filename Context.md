@@ -80,9 +80,36 @@ Der Workflow ist aktuell ein 3-stufiger Prozess aus Skripten:
 *   **Analyse:** Das Hinzufügen der Momentum-Indikatoren (RSI, MACD) hat die Out-of-Sample Performance drastisch von 48 % auf über 70 % katapultiert! Das Modell erkennt echte Ausbrüche jetzt wesentlich zuverlässiger.
 *   **Early Stopping:** Das Training bricht nun automatisch nach ~7 Epochen ab, um Overfitting zu verhindern, da das Modell die essenziellen Muster bereits in den ersten Epochen verinnerlicht.
 
-### 4. Nächste Schritte
-*   **Refactoring:** Das chaotische `scratch/`-Setup perspektivisch in eine aufgeräumte CLI-Pipeline (`src/ml/index.js`) überführen.
-*   **Integration:** Das trainierte Modell in die `FinanceExpert.js` live einbinden, um echte Signale zu generieren.
+### 4. Der neue Architektur-Blueprint: Die universelle ML-Pipeline
+Da wir in Zukunft nicht nur BTC und QQQ, sondern auch Einzelaktien (SOFI, ZETA, PLTR) trainieren wollen, ersetzen wir das fehleranfällige `scratch/`-Setup durch eine universelle, wartbare ML-Pipeline. Um dabei ein "Konfigurations-Monster" zu vermeiden, nutzen wir einen hybriden Strategy-Pattern-Ansatz:
+
+1. **Zentrale Konfiguration (`config/ML-Config.json`)**: 
+   * Beinhaltet nur primitive Hyperparameter (Epochen, Batch-Size, Modell-Version, Default-Features). Keine komplexen SQL-Joins oder Programmierlogiken in der JSON.
+2. **Pluggable Feature-Generierung (`src/ml/features/`)**:
+   * Ein `DefaultFeatureBuilder.js` berechnet Standard-Metriken (RSI, MACD, OBV) aus reinen OHLCV-Daten (für 90% der Ticker ausreichend).
+   * Bei Spezialfällen (z.B. FINRA Short-Volume für ZETA) wird einfach ein `ZetaFeatureBuilder.js` angelegt, der vom Default erbt. Die Config bleibt dadurch sauber!
+3. **Universelles Training (`src/ml/ModelTrainer.js` & `TestInference.js`)**:
+   * Das TensorFlow-Training ist unabhängig vom Asset. Der Trainer lädt den fertigen CSV-Snapshot, berechnet automatisch die `classWeights` zum Ausgleich von Datenungleichgewichten, trainiert per Early-Stopping und speichert das Modell sauber ab.
+4. **CLI-Orchestrator (`ml.js` im Root)**:
+   * Ein zentraler Einstiegspunkt für das Terminal (z.B. `node ml.js run --ticker=SOFI --step=all`), der die Pipeline von der Datengewinnung bis zur Modellspeicherung steuert.
+   * **Funktionsweise:** Die `ml.js` nutzt das *Strategy-Pattern*. Sie prüft beim Start dynamisch, ob für den angefragten Ticker ein spezialisierter FeatureBuilder existiert (z.B. `src/ml/features/SofiFeatureBuilder.js`). Ist dies nicht der Fall, fällt sie sanft auf die universelle `DefaultFeatureBuilder.js` zurück. Dadurch bleiben wir extrem flexibel für exotische Ticker, ohne die Kern-Pipeline anrühren zu müssen. Um diese Logik testbar zu machen, wird die Ausführung in eine separate Runner/Orchestrator-Klasse ausgelagert.
+
+### 5. Konkreter Schritt-für-Schritt Umsetzungsplan
+Dieser Plan bildet unsere direkten nächsten Arbeitspakete ab:
+
+* **Step 1: Basis-Infrastruktur & Config ✅ ERLEDIGT**
+  * Erstellen der `config/ML-Config.json` (inkl. Fallbacks und Ticker-spezifischer Overrides).
+  * Anlegen der benötigten Ordnerstruktur (`src/ml/features/`, `data/ml/snapshots/`).
+* **Step 2: Der Feature-Builder (ETL) ✅ ERLEDIGT**
+  * `AnalysisRepository.js` wurde um `getOhlcvForTicker()` erweitert, um Ticker-agnostisch Rohdaten (OHLCV) aus Binance, Tiingo oder Yahoo zu laden.
+  * Entwicklung der `DefaultFeatureBuilder.js`: Zieht Rohdaten, nutzt den `RegimeLabeler` für die Dow-Theorie Ground-Truth, berechnet dynamisch die in der Config hinterlegten Indikatoren (RSI, MACD, OBV etc.) und generiert den fertigen CSV-Snapshot.
+* **Step 3: Der universelle Trainer ✅ ERLEDIGT**
+  * Entwicklung der `src/ml/ModelTrainer.js`: Ist Ticker-agnostisch, liest den Input-Shape dynamisch aus den CSV-Headern, bezieht Hyperparameter (Epochen, Patience) aus der Config, berechnet zur Laufzeit mathematisch perfekte ClassWeights gegen Imbalance und speichert das TensorFlow-Netz über einen robusten Custom Save-Adapter.
+* **Step 4: Der CLI-Orchestrator ✅ ERLEDIGT**
+  * Erstellen der `ml.js` im Projekt-Root zur Steuerung der Parameter (`--ticker`, `--step=features|train`). Refactoring der Logik in die `MLPipelineRunner.js` inkl. Test-Abdeckung.
+* **Step 5: Migration & Testlauf**
+  * Das aktuelle BTC v2 Setup als Proof-of-Concept durch die neue Pipeline jagen, um sicherzustellen, dass sie fehlerfrei funktioniert. Danach können die alten `scratch/`-Trainingsskripte gelöscht werden.
+  * **Nächster Schritt nach BTC:** Erstellung neuer Modell-Versionen für SPY, QQQ und PLTR über die frische Pipeline. Dabei ist das Konzept aus [`docs/TensorFlow-Champion-Challenger.md`](file:///C:/GitHub/CrashRadar/docs/TensorFlow-Champion-Challenger.md) strikt anzuwenden (Champion vs. Challenger Prinzip für nahtlose Upgrades).
 
 ---
 > 🚀 **Ausstehende Entwicklungsaufgaben und offene Punkte (TODOs) findest du ab sofort gebündelt in der [ROADMAP.md](file:///C:/GitHub/CrashRadar/ROADMAP.md).**

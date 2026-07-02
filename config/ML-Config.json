@@ -1,0 +1,40 @@
+{
+  "global": {
+    "snapshotDir": "data/ml/snapshots",
+    "modelDir": "data/ml/models"
+  },
+  "default": {
+    "version": "v1",
+    "epochs": 100,
+    "batchSize": 32,
+    "timeSteps": 5,
+    "earlyStoppingPatience": 15,
+    "features": [
+      "Close",
+      "Volume",
+      "OBV",
+      "ATR_14",
+      "RSI_14",
+      "MACD_Hist"
+    ]
+  },
+  "tickers": {
+    "BTC": {
+      "version": "v2",
+      "epochs": 50,
+      "earlyStoppingPatience": 10
+    },
+    "QQQ": {
+      "version": "v1"
+    },
+    "SOFI": {
+      "version": "v1"
+    },
+    "ZETA": {
+      "version": "v1"
+    },
+    "PLTR": {
+      "version": "v1"
+    }
+  }
+}

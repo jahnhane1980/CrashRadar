@@ -65,6 +65,39 @@ export class AnalysisRepository {
     }
   }
 
+  async getOhlcvForTicker(ticker, startDate = '2015-01-01') {
+    // BTCUSDT from Binance
+    if (ticker === 'BTC') {
+      const [rows] = await this.pool.query(`
+        SELECT DATE_FORMAT(FROM_UNIXTIME(open_time/1000), '%Y-%m-%d') as date, close, volume, high, low 
+        FROM market_data_binance 
+        WHERE symbol = 'BTCUSDT' AND interval_type = '1d' AND DATE_FORMAT(FROM_UNIXTIME(open_time/1000), '%Y-%m-%d') >= ?
+        ORDER BY open_time ASC
+      `, [startDate]);
+      return rows;
+    }
+    
+    // Equities from Tiingo
+    const [tiingoRows] = await this.pool.query(`
+      SELECT record_date as date, close, volume, high, low
+      FROM market_data_tiingo 
+      WHERE symbol = ? AND record_date >= ?
+      ORDER BY record_date ASC
+    `, [ticker, startDate]);
+    
+    if (tiingoRows.length > 0) return tiingoRows;
+
+    // Fallback Yahoo Finance
+    const [yahooRows] = await this.pool.query(`
+      SELECT record_date as date, close, volume, high, low
+      FROM market_data_yahoo 
+      WHERE symbol = ? AND record_date >= ?
+      ORDER BY record_date ASC
+    `, [ticker, startDate]);
+
+    return yahooRows;
+  }
+
   async getAllRawData(startDate) {
     const [btc] = await this.pool.query(`
       SELECT DATE_FORMAT(FROM_UNIXTIME(open_time/1000), '%Y-%m-%d') as date, close, volume, high, low 

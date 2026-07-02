@@ -36,11 +36,4 @@ Dieses Dokument bündelt alle aktuell noch offenen Entwicklungsaufgaben und Arch
   * **Code-Anpassung:** Die identifizierten Gründe in mathematische "Features" übersetzen und die Methode `buildFeatures()` im `src/services/MLRegimeService.js` entsprechend erweitern (neben den bisherigen RSI, MACD und Tagesrenditen).
   * **Retraining:** Modelle mit den neuen Features neu anlernen, um die Vorhersage-Konfidenz signifikant zu steigern.
 
-## 5. Integration des neuen BTC-Regime (v2) Modells
-* **Status:** 🟢 **READY FOR INTEGRATION** (Training des Modells ist erfolgreich abgeschlossen. Das Modell inkl. Dow-Theorie Labels, OBV, ATR, RSI, MACD und ClassWeights liegt fertig unter `data/ml/models/btc_regime_v2/`).
-* **Problem:** Die Live-Umgebung (`FinanceExpert.js` und `IndicatorEngine.js`) nutzt aktuell noch die alte V1-Architektur.
-* **Ziel:** Das hochperformante V2-Modell muss im täglichen Live-Betrieb aktiviert werden.
-* **Aufgaben:**
-  * **ETL-Pipeline:** Die `FinanceExpert.js` bzw. `MLRegimeService.js` muss so angepasst werden, dass sie die neuen Features (OBV, ATR_14, RSI_14, MACD_Hist) für Live-Daten berechnet, genau wie im Trainingsskript.
-  * **Modell-Tausch:** Laden des V2-Modells (`btc_regime_v2`) anstelle des alten V1.
-  * **Alarm-Logik:** Anpassen der `IndicatorEngine.js` auf die neuen 6 Label-Klassen der Dow-Theorie (`BULL_MARKET`, `CYCLE_TOP`, `BEAR_RALLY`, etc.).
+
