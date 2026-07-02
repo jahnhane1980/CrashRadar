@@ -213,41 +213,59 @@ describe('IndicatorEngine', () => {
     });
   });
 
-  describe('Gold', () => {
-    it('sollte CRITICAL bei starkem Breakout triggern', () => {
-      const timeline = generateTimeline(55);
-      timeline[54].assets.Gold = 2100;
-      const res = engine.indicators.find(i => i.name === 'Gold (SMA 50 Ausbruch)').evaluate(timeline);
-      expect(res.status).toBe('CRITICAL');
-    });
+  describe('Gold Capitulation & Healing (2-Step)', () => {
+    it('sollte WARNING (TRAUMA) triggern, wenn Trauma existiert, aber noch kein SMA20 Breakout', () => {
+      const timeline = generateTimeline(60);
+      // Average Volume auf 1000 setzen
+      for(let i=0; i<60; i++) {
+          timeline[i].assets.Gold = 2000;
+          timeline[i].assets.Gold_Volume = 1000;
+      }
+      
+      // Trauma an Tag 50 (Volume > 4.5x, also 5000)
+      timeline[50].assets.Gold_Volume = 5000;
+      timeline[50].assets.Gold = 1900; // Preis muss fallen für Trauma
+      
+      // Heute an Tag 59, Preis bleibt unter SMA20 (SMA20 = 2000)
+      timeline[58].assets.Gold = 1950;
+      timeline[59].assets.Gold = 1980;
 
-    it('sollte WARNING bei leichtem Breakout triggern', () => {
-      const timeline = generateTimeline(55);
-      timeline[54].assets.Gold = 2010;
-      const res = engine.indicators.find(i => i.name === 'Gold (SMA 50 Ausbruch)').evaluate(timeline);
+      const res = engine.indicators.find(i => i.name === 'Gold Capitulation & Healing (2-Step)').evaluate(timeline);
       expect(res.status).toBe('WARNING');
+      expect(res.value).toBe('TRAUMA');
     });
 
-    it('sollte UNKNOWN sein, wenn count 0 ist (nur null werte in SMA range)', () => {
-      const timeline = generateTimeline(55);
-      for(let i=5; i<55; i++) timeline[i].assets.Gold = null;
-      const res = engine.indicators.find(i => i.name === 'Gold (SMA 50 Ausbruch)').evaluate(timeline);
-      expect(res.status).toBe('UNKNOWN');
+    it('sollte CRITICAL (HEALING) triggern, wenn Trauma existiert und heute SMA20 Breakout stattfindet', () => {
+      const timeline = generateTimeline(60);
+      for(let i=0; i<60; i++) {
+          timeline[i].assets.Gold = 2000;
+          timeline[i].assets.Gold_Volume = 1000;
+      }
+      
+      // Trauma an Tag 50
+      timeline[50].assets.Gold_Volume = 5000;
+      timeline[50].assets.Gold = 1900; // Preis muss fallen
+      
+      // Gestern unter SMA20, Heute über SMA20 (Breakout)
+      timeline[58].assets.Gold = 1950;
+      timeline[59].assets.Gold = 2050; // SMA20 ist ca. 2000
+
+      const res = engine.indicators.find(i => i.name === 'Gold Capitulation & Healing (2-Step)').evaluate(timeline);
+      expect(res.status).toBe('CRITICAL');
+      expect(res.value).toBe('HEALING');
     });
 
-    it('sollte UNKNOWN sein, wenn zu wenig Daten (< 50)', () => {
-      const timeline = generateTimeline(40);
-      const res = engine.indicators.find(i => i.name === 'Gold (SMA 50 Ausbruch)').evaluate(timeline);
-      expect(res.status).toBe('UNKNOWN');
-    });
-
-    it('sollte OK sein, wenn Gold unter dem SMA50 ist', () => {
-      const timeline = generateTimeline(55);
-      // setze SMA sehr hoch
-      for(let i=5; i<55; i++) timeline[i].assets.Gold = 2500;
-      timeline[54].assets.Gold = 2000;
-      const res = engine.indicators.find(i => i.name === 'Gold (SMA 50 Ausbruch)').evaluate(timeline);
+    it('sollte OK sein, wenn kein Trauma existiert', () => {
+      const timeline = generateTimeline(60);
+      for(let i=0; i<60; i++) {
+          timeline[i].assets.Gold = 2000;
+          timeline[i].assets.Gold_Volume = 1000;
+      }
+      // Kein Volume Climax in den letzten 20 Tagen
+      
+      const res = engine.indicators.find(i => i.name === 'Gold Capitulation & Healing (2-Step)').evaluate(timeline);
       expect(res.status).toBe('OK');
+      expect(res.value).toBe('NORMAL');
     });
   });
 

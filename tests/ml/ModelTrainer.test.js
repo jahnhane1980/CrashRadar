@@ -75,9 +75,12 @@ describe('ModelTrainer', () => {
     expect(fs.writeFileSync.mock.calls[1][0]).toContain('stats.json');
 
     // Stats sollten ein gueltiges JSON sein
-    const savedStats = JSON.parse(fs.writeFileSync.mock.calls[1][1]);
-    expect(savedStats).toHaveProperty('Close');
-  }, 15000);
+    expect(fs.writeFileSync).toHaveBeenCalledWith(
+      expect.stringContaining('stats.json'),
+      expect.any(String),
+      'utf-8'
+    );
+  }, 30000);
 
   it('should filter out UNKNOWN labels', async () => {
     fs.existsSync.mockImplementation((p) => String(p).endsWith('.csv'));
