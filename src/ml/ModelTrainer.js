@@ -9,7 +9,8 @@ const LABELS = [
   'BULL_CORRECTION', 
   'CYCLE_TOP', 
   'BEAR_MARKET', 
-  'BEAR_RALLY'
+  'BEAR_RALLY',
+  'BASE'
 ];
 
 export class ModelTrainer {

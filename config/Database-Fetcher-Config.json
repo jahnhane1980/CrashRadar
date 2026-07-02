@@ -365,6 +365,24 @@
       }
     },
     {
+      "id": "fred_jtsldl",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "JTSLDL",
+        "file_type": "json"
+      }
+    },
+    {
+      "id": "fred_payems",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "PAYEMS",
+        "file_type": "json"
+      }
+    },
+    {
       "id": "yahoo_vix",
       "provider": "YahooFinance",
       "ticker": "^VIX",

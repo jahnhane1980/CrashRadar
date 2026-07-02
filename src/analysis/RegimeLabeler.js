@@ -1,22 +1,39 @@
 import fs from 'fs';
 import path from 'path';
 
-export const Regimes = {
+export const Regimes = Object.freeze({
   CYCLE_BOTTOM: 'CYCLE_BOTTOM',
   BULL_MARKET: 'BULL_MARKET',
   BULL_CORRECTION: 'BULL_CORRECTION',
   CYCLE_TOP: 'CYCLE_TOP',
   BEAR_MARKET: 'BEAR_MARKET',
   BEAR_RALLY: 'BEAR_RALLY',
+  BASE: 'BASE',
   UNKNOWN: 'UNKNOWN'
-};
+});
+
+export const Strategies = Object.freeze({
+  ABSOLUTE_WINDOW: 'absolute_window',
+  DRAWDOWN: 'drawdown'
+});
 
 export class RegimeLabeler {
   constructor(data, assetKey = 'BTC') {
     this.data = data;
     this.assetKey = assetKey;
     this.config = this._loadConfig();
-    this.baseCycleDays = this.config[assetKey] || this.config['DEFAULT'] || 1460;
+    
+    const assetConfig = this.config[assetKey] || this.config['DEFAULT'];
+    
+    if (typeof assetConfig === 'number') {
+      this.strategy = Strategies.ABSOLUTE_WINDOW;
+      this.baseCycleDays = assetConfig;
+      this.threshold = 0.20;
+    } else {
+      this.strategy = assetConfig.strategy || Strategies.ABSOLUTE_WINDOW;
+      this.baseCycleDays = assetConfig.windowDays || 1460;
+      this.threshold = assetConfig.threshold || 0.20;
+    }
   }
 
   _loadConfig() {
@@ -28,20 +45,31 @@ export class RegimeLabeler {
     } catch (e) {
       console.warn("Konnte Cycle-Base-Config.json nicht laden, nutze Defaults.", e);
     }
-    return { BTC: 1460, QQQ: 1825, SPY: 1825, TLT: 2920, DEFAULT: 1460 };
+    return { 
+        BTC: { strategy: Strategies.ABSOLUTE_WINDOW, windowDays: 1460 },
+        QQQ: { strategy: Strategies.DRAWDOWN, threshold: 0.20 },
+        SPY: { strategy: Strategies.DRAWDOWN, threshold: 0.20 },
+        TLT: { strategy: Strategies.ABSOLUTE_WINDOW, windowDays: 2920 },
+        DEFAULT: { strategy: Strategies.ABSOLUTE_WINDOW, windowDays: 1460 }
+    };
   }
 
   generateLabels() {
     const metrics = this._calculateMetrics();
+    let labels;
     
-    // Pass 1: Finde Zyklen mit der Start-Annahme aus der Config
-    let extremes = this._identifyMacroExtremes(metrics, this.baseCycleDays);
-    
-    // Messe den tatsächlichen Abstand zwischen den Zyklen
-    this.measuredWindow = this._measureCycleLength(extremes, this.baseCycleDays);
-    
-    // Pass 2: Finde die perfekten Tops/Bottoms mit dem exakt gemessenen Fenster
-    const labels = this._identifyMacroExtremes(metrics, this.measuredWindow);
+    if (this.strategy === Strategies.DRAWDOWN) {
+        labels = this._identifyDrawdownExtremes(metrics, this.threshold);
+    } else {
+        // Pass 1: Finde Zyklen mit der Start-Annahme aus der Config
+        let extremes = this._identifyMacroExtremes(metrics, this.baseCycleDays);
+        
+        // Messe den tatsächlichen Abstand zwischen den Zyklen
+        this.measuredWindow = this._measureCycleLength(extremes, this.baseCycleDays);
+        
+        // Pass 2: Finde die perfekten Tops/Bottoms mit dem exakt gemessenen Fenster
+        labels = this._identifyMacroExtremes(metrics, this.measuredWindow);
+    }
     
     // Pass 3: Dow-Theorie (Swing Highs/Lows) für die Zwischenphasen
     this._fillDowTheoryRegimes(labels, metrics);
@@ -124,6 +152,53 @@ export class RegimeLabeler {
     return labels;
   }
 
+  _identifyDrawdownExtremes(metrics, threshold) {
+    const labels = metrics.map(m => ({ date: m.date, close: m.close, label: null }));
+    
+    let isSeekingTop = true;
+    let extremeValue = null;
+    let extremeIndex = -1;
+    
+    for (let i = 0; i < metrics.length; i++) {
+        const m = metrics[i];
+        if (m.close === null) continue;
+        
+        if (extremeValue === null) {
+            extremeValue = m.close;
+            extremeIndex = i;
+        }
+
+        if (isSeekingTop) {
+            if (m.close > extremeValue) {
+                extremeValue = m.close;
+                extremeIndex = i;
+            } else if (m.close <= extremeValue * (1 - threshold)) {
+                // Drop von X% -> Top gefunden
+                for (let j = Math.max(0, extremeIndex - 3); j <= Math.min(metrics.length - 1, extremeIndex + 3); j++) {
+                    labels[j].label = Regimes.CYCLE_TOP;
+                }
+                isSeekingTop = false;
+                extremeValue = m.close;
+                extremeIndex = i;
+            }
+        } else {
+            if (m.close < extremeValue) {
+                extremeValue = m.close;
+                extremeIndex = i;
+            } else if (m.close >= extremeValue * (1 + threshold)) {
+                // Rally von X% -> Bottom gefunden
+                for (let j = Math.max(0, extremeIndex - 3); j <= Math.min(metrics.length - 1, extremeIndex + 3); j++) {
+                    labels[j].label = Regimes.CYCLE_BOTTOM;
+                }
+                isSeekingTop = true;
+                extremeValue = m.close;
+                extremeIndex = i;
+            }
+        }
+    }
+    return labels;
+  }
+
   _measureCycleLength(labels, baseDays) {
     let bottomIndices = [];
     for(let i=0; i<labels.length; i++) {
@@ -170,13 +245,16 @@ export class RegimeLabeler {
       const close = m.close;
       const atr = m.atr;
       
+      // Mindestens 5% Bewegung für einen gültigen Makro-Swing (verhindert Rauschen bei SPY/QQQ)
+      const minSwing = Math.max(close * 0.05, 3 * atr);
+      
       // ZigZag Logik (Swing Erkennung)
       if (currentExtr === null) currentExtr = close;
       
       if (isSeekingHigh) {
          if (close > currentExtr) {
             currentExtr = close; 
-         } else if (close < currentExtr - 3 * atr) {
+         } else if (close < currentExtr - minSwing) {
             lastSwingHigh = currentExtr; // Neues Swing High gelockt
             isSeekingHigh = false;
             currentExtr = close; 
@@ -184,7 +262,7 @@ export class RegimeLabeler {
       } else {
          if (close < currentExtr) {
             currentExtr = close; 
-         } else if (close > currentExtr + 3 * atr) {
+         } else if (close > currentExtr + minSwing) {
             lastSwingLow = currentExtr; // Neues Swing Low gelockt
             isSeekingHigh = true;
             currentExtr = close; 
@@ -242,7 +320,15 @@ export class RegimeLabeler {
               } else if (close > lastSwingHigh) {
                  currentState = Regimes.BULL_MARKET; // Widerstand bricht -> Bull Market
               } else if (close < m.sma50) {
-                 currentState = Regimes.BEAR_MARKET; // Schneller Abverkauf
+                 currentState = Regimes.BASE; // Konsolidierung über dem letzten Tief -> Accumulation Base
+              }
+              break;
+              
+            case Regimes.BASE:
+              if (close > lastSwingHigh) {
+                 currentState = Regimes.BULL_MARKET; // Breakout aus der Base nach oben
+              } else if (close < lastSwingLow) {
+                 currentState = Regimes.BEAR_MARKET; // Base bricht nach unten -> Downtrend geht weiter
               }
               break;
           }

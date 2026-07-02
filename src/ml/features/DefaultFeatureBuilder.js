@@ -94,6 +94,7 @@ export class DefaultFeatureBuilder {
 
     // 5. Finales Dataset zusammenbauen
     const finalDataset = [];
+    let daysBelowSma200 = 0;
     
     for (let i = 0; i < baseFeatures.length; i++) {
       const bf = baseFeatures[i];
@@ -110,6 +111,68 @@ export class DefaultFeatureBuilder {
       const macd = macdPadded[i] ? macdPadded[i].histogram : null;
       const label = labelsMap[bf.date] || 'UNKNOWN';
 
+      let distSma200 = null;
+      let sma200Slope = null;
+      if (i >= 199) {
+        let sum = 0;
+        for (let j = i - 199; j <= i; j++) sum += baseFeatures[j].close;
+        const sma200 = sum / 200;
+        distSma200 = (bf.close / sma200) - 1;
+
+        if (bf.close < sma200) {
+            daysBelowSma200++;
+        } else {
+            daysBelowSma200 = 0;
+        }
+
+        if (i >= 209) {
+            let sum10 = 0;
+            for (let j = i - 209; j <= i - 10; j++) sum10 += baseFeatures[j].close;
+            const sma200_10 = sum10 / 200;
+            sma200Slope = (sma200 / sma200_10) - 1;
+        }
+      }
+
+      let volZScore = null;
+      if (i >= 49) {
+        let sumVol = 0;
+        for (let j = i - 49; j <= i; j++) sumVol += baseFeatures[j].volume;
+        const sma50Vol = sumVol / 50;
+        
+        let varianceSum = 0;
+        for (let j = i - 49; j <= i; j++) {
+            varianceSum += Math.pow(baseFeatures[j].volume - sma50Vol, 2);
+        }
+        const stdDev50Vol = Math.sqrt(varianceSum / 50);
+        volZScore = stdDev50Vol === 0 ? 0 : (bf.volume - sma50Vol) / stdDev50Vol;
+      }
+
+      let dist52wHigh = null;
+      let dist52wLow = null;
+      if (i >= 251) {
+        let maxHigh = -Infinity;
+        let minLow = Infinity;
+        for (let j = i - 251; j <= i; j++) {
+            if (candles[j].high > maxHigh) maxHigh = candles[j].high;
+            if (candles[j].low < minLow) minLow = candles[j].low;
+        }
+        dist52wHigh = (bf.close / maxHigh) - 1;
+        dist52wLow = (bf.close / minLow) - 1;
+      }
+
+      let logReturnEma3 = null;
+      if (i >= 1) {
+         let logReturn = Math.log(bf.close / baseFeatures[i-1].close);
+         if (i === 1) {
+             baseFeatures[i].logReturnEma3 = logReturn;
+             logReturnEma3 = logReturn;
+         } else {
+             // EMA3 = (LogReturn * 0.5) + (PreviousEMA3 * 0.5)
+             logReturnEma3 = (logReturn * 0.5) + (baseFeatures[i-1].logReturnEma3 * 0.5);
+             baseFeatures[i].logReturnEma3 = logReturnEma3;
+         }
+      }
+
       // Dynamisches Mapping auf Basis der Config
       const rowData = {
         Date: bf.date,
@@ -118,7 +181,14 @@ export class DefaultFeatureBuilder {
         OBV: bf.obv !== null ? bf.obv.toFixed(2) : null,
         ATR_14: atr !== null ? atr.toFixed(2) : null,
         RSI_14: rsi !== null ? rsi.toFixed(2) : null,
-        MACD_Hist: macd !== null && macd !== undefined ? macd.toFixed(2) : null
+        MACD_Hist: macd !== null && macd !== undefined ? macd.toFixed(2) : null,
+        Dist_SMA200: distSma200 !== null ? distSma200.toFixed(4) : null,
+        SMA200_Slope: sma200Slope !== null ? sma200Slope.toFixed(6) : null,
+        Days_Below_SMA200: distSma200 !== null ? daysBelowSma200 : null,
+        Volume_Z_Score: volZScore !== null ? volZScore.toFixed(4) : null,
+        Dist_52W_High: dist52wHigh !== null ? dist52wHigh.toFixed(4) : null,
+        Dist_52W_Low: dist52wLow !== null ? dist52wLow.toFixed(4) : null,
+        Log_Return_EMA3: logReturnEma3 !== null ? logReturnEma3.toFixed(6) : null
       };
 
       // Check ob alle in der Config geforderten Features existieren (überspringt Warmup-Phase)

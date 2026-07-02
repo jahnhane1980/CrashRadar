@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { RegimeLabeler, Regimes } from '../../src/analysis/RegimeLabeler.js';
+import { RegimeLabeler, Regimes, Strategies } from '../../src/analysis/RegimeLabeler.js';
 import fs from 'fs';
 
 // Wir mocken das Dateisystem, um fehlende oder falsche Configs zu simulieren
@@ -140,6 +140,42 @@ describe('RegimeLabeler - Dow Theory & Edge Cases', () => {
     const labels = labeler.generateLabels();
     // Nach dem Warmup sollte ein solider Fallback State existieren (idR BEAR_MARKET durch Fallback <= SMA)
     expect(labels[90].label).toBe(Regimes.BEAR_MARKET);
+  });
+
+  it('Drawdown-Strategie: Erkennung von CYCLE_TOP und CYCLE_BOTTOM bei SPY (20% Threshold)', () => {
+    fs.existsSync.mockReturnValue(true);
+    fs.readFileSync.mockReturnValue(JSON.stringify({ 
+      SPY: { strategy: Strategies.DRAWDOWN, threshold: 0.20 } 
+    }));
+
+    let closes = [];
+    for(let i=0; i<50; i++) closes.push(100); // Warmup
+    
+    closes.push(200); // Index 50: ATH
+    closes.push(180); // Index 51
+    closes.push(160); // Index 52: Exakt -20% Drop -> Lockt Index 50 als CYCLE_TOP
+    
+    for(let i=0; i<10; i++) closes.push(150 - i*5); // Fällt bis 105 (Index 62)
+    closes.push(100); // Index 63: Tiefpunkt
+    closes.push(110); // Index 64
+    closes.push(120); // Index 65: Exakt +20% Runup -> Lockt Index 63 als CYCLE_BOTTOM
+    
+    // Mappe BTC auf SPY, da unser Mock-Generator hart auf BTC programmiert ist
+    const rawData = generateMockData(closes).map(d => ({ date: d.date, assets: { SPY: d.assets.BTC } }));
+    
+    const labeler = new RegimeLabeler(rawData, 'SPY');
+    const labels = labeler.generateLabels();
+    
+    expect(labeler.strategy).toBe(Strategies.DRAWDOWN);
+    expect(labeler.threshold).toBe(0.20);
+    
+    // Das Top muss an Index 50 gelockt sein (inkl. +/- 3 Puffer)
+    expect(labels[50].label).toBe(Regimes.CYCLE_TOP);
+    expect(labels[49].label).toBe(Regimes.CYCLE_TOP);
+    
+    // Das Bottom muss an Index 63 gelockt sein
+    expect(labels[63].label).toBe(Regimes.CYCLE_BOTTOM);
+    expect(labels[64].label).toBe(Regimes.CYCLE_BOTTOM);
   });
 
   it.skip('Dow-Theorie: Komplexe Transitions (ZigZag 100% Coverage)', () => {

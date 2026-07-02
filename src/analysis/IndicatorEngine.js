@@ -677,34 +677,66 @@ export class IndicatorEngine {
         }
       },
       {
-        name: 'Gold (SMA 50 Ausbruch)',
+        name: 'Gold Capitulation & Healing (2-Step)',
         category: 'TROUGH',
         evaluate: (timeline) => {
           if (timeline.length < 50) return { status: 'UNKNOWN', message: 'Zu wenig Daten' };
           
-          const current = timeline[timeline.length - 1].assets.Gold;
-          if (current === null) return { status: 'UNKNOWN', message: 'Keine Daten' };
-          
-          // Berechne SMA 50
-          let sum = 0;
-          let count = 0;
-          for (let i = timeline.length - 50; i < timeline.length; i++) {
-            const v = timeline[i].assets.Gold;
-            if (v !== null) {
-              sum += v;
-              count++;
+          const today = timeline[timeline.length - 1];
+          const gcClose = today.assets.Gold;
+          if (!gcClose) return { status: 'UNKNOWN', message: 'Keine Gold-Daten' };
+
+          // Berechne SMA 20 von heute
+          let sumPrice = 0, countPrice = 0;
+          for (let i = timeline.length - 20; i < timeline.length; i++) {
+            if (timeline[i].assets.Gold) {
+              sumPrice += timeline[i].assets.Gold;
+              countPrice++;
             }
           }
-          
-          if (count === 0) return { status: 'UNKNOWN', message: 'Keine Daten für SMA' };
-          const sma50 = sum / count;
-          
-          if (current > sma50 * THRESHOLDS.GOLD_BREAKOUT_PCT) {
-            return { status: 'CRITICAL', value: current.toFixed(0), message: 'KAUFSIGNAL! Gold bricht nach oben aus (Flucht in Sicherheit beendet, Trend dreht).' };
-          } else if (current > sma50) {
-            return { status: 'WARNING', value: current.toFixed(0), message: 'Gold kämpft am SMA 50. Beobachten.' };
+          if (countPrice === 0) return { status: 'UNKNOWN', message: 'Keine Daten für SMA20' };
+          const sma20 = sumPrice / countPrice;
+
+          // Ist heute der Ausbruch über den SMA 20?
+          const yesterday = timeline[timeline.length - 2];
+          const isBreakout = (yesterday.assets.Gold < sma20 && gcClose > sma20);
+
+          // Suche nach einem Trauma in den letzten 30 Tagen (ohne heute)
+          let recentTrauma = null;
+          for (let i = timeline.length - 30; i < timeline.length - 1; i++) {
+            if (i < 50) continue;
+            
+            const pastVol = timeline[i].assets.Gold_Volume;
+            const pastClose = timeline[i].assets.Gold;
+            if (!pastVol || !pastClose) continue;
+
+            // 50-Tage Durchschnittsvolumen vor dem Trauma-Tag
+            let sumVol = 0, countVol = 0;
+            for (let j = i - 50; j < i; j++) {
+              if (timeline[j].assets.Gold_Volume > 0) {
+                sumVol += timeline[j].assets.Gold_Volume;
+                countVol++;
+              }
+            }
+            if (countVol === 0) continue;
+            const avgVol = sumVol / countVol;
+
+            // 10-Tage Drop vor dem Trauma-Tag
+            const past10 = timeline[i-10]?.assets.Gold;
+            const drop10 = past10 ? ((pastClose - past10) / past10) * 100 : 0;
+
+            if (pastVol > avgVol * 3.0 && drop10 <= -2.0) {
+              recentTrauma = timeline[i].date;
+            }
           }
-          return { status: 'OK', value: current.toFixed(0), message: 'Gold im Abwärtstrend (unter SMA 50).' };
+
+          if (recentTrauma && isBreakout) {
+            return { status: 'CRITICAL', value: 'HEALING', message: `BODEN GEFUNDEN! Gold durchbricht nach dem Liquidations-Trauma vom ${recentTrauma} den SMA 20. Liquidität fließt zurück ins System!` };
+          } else if (recentTrauma) {
+            return { status: 'WARNING', value: 'TRAUMA', message: `Gold ist am ${recentTrauma} massiv ausgeblutet (Margin Calls). Wir warten auf den SMA 20 Ausbruch zur Bestätigung.` };
+          }
+          
+          return { status: 'OK', value: 'NORMAL', message: 'Keine extremen Panik-Muster bei Gold.' };
         }
       },
       {
@@ -870,6 +902,49 @@ export class IndicatorEngine {
             return { status: 'OK', value: `CORRECTION (${confPct})`, message: 'Normale Korrektur im intakten Bullenmarkt (Buy the dip).' };
           }
           return { status: 'OK', value: `${phase} (${confPct})`, message: 'Neutrales Krypto-Regime.' };
+        }
+      },
+      {
+        name: 'Market Panic & Capitulation (VIX + Volume)',
+        category: 'TROUGH',
+        evaluate: (timeline) => {
+          if (timeline.length < 15) return { status: 'UNKNOWN', message: 'Zu wenig Daten' };
+          
+          // Wir betrachten das aktuelle 14-Tage-Fenster auf historische Panik-Spitzen
+          let maxVix = 0;
+          let maxVolRatio = 0;
+          
+          // 50-Tage Durchschnittsvolumen VOR dem 14-Tage-Fenster berechnen
+          let sumVol = 0;
+          let count = 0;
+          const windowStart = timeline.length - 15;
+          for (let i = Math.max(0, windowStart - 50); i < windowStart; i++) {
+            const v = timeline[i].assets.SPY_Volume || timeline[i].assets.QQQ_Volume;
+            if (v) { sumVol += v; count++; }
+          }
+          if (count === 0) return { status: 'UNKNOWN', message: 'Keine gültigen Volumendaten' };
+          const avgVol = sumVol / count;
+          
+          // Analysiere die letzten 14 Tage auf Extremwerte
+          for (let i = windowStart; i < timeline.length; i++) {
+            const day = timeline[i];
+            const vix = day.assets.VIX || 0;
+            const vol = day.assets.SPY_Volume || day.assets.QQQ_Volume || 0;
+            
+            if (vix > maxVix) maxVix = vix;
+            if (vol) {
+                const ratio = vol / avgVol;
+                if (ratio > maxVolRatio) maxVolRatio = ratio;
+            }
+          }
+          
+          if (maxVix >= 28 && maxVolRatio >= 1.25) {
+              return { status: 'CRITICAL', value: `VIX:${maxVix.toFixed(1)}|Vol:${maxVolRatio.toFixed(1)}x`, message: 'CAPITULATION ZONE! Maximale Panik (VIX>28) und gigantisches Volumen (>1.25x). Historisches DCA-Kaufgebiet!' };
+          } else if (maxVix >= 25 && maxVolRatio >= 1.2) {
+              return { status: 'WARNING', value: `VIX:${maxVix.toFixed(1)}|Vol:${maxVolRatio.toFixed(1)}x`, message: 'Panik nimmt stark zu. Blut auf den Straßen formiert sich.' };
+          }
+          
+          return { status: 'OK', value: `VIX:${maxVix.toFixed(1)}|Vol:${maxVolRatio.toFixed(1)}x`, message: 'Normales Marktumfeld, keine Kapitulation.' };
         }
       }
     ];

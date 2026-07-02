@@ -64,7 +64,9 @@ export class FinanceExpert {
         date,
         assets: {
           SPY: state.SPY,
+          SPY_Volume: state.SPY_Volume,
           QQQ: state.QQQ,
+          QQQ_Volume: state.QQQ_Volume,
           BTC: state.BTC,
           BTC_Volume: state.BTC_Volume,
           BTC_High: state.BTC_High,

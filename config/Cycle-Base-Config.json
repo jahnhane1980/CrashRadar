@@ -1,9 +1,30 @@
 {
-  "BTC": 1460,
-  "QQQ": 1825,
-  "SPY": 1825,
-  "TLT": 2920,
-  "GOLD": 2920,
-  "COPPER": 2920,
-  "DEFAULT": 1460
+  "BTC": {
+    "strategy": "absolute_window",
+    "windowDays": 1460
+  },
+  "QQQ": {
+    "strategy": "drawdown",
+    "threshold": 0.20
+  },
+  "SPY": {
+    "strategy": "drawdown",
+    "threshold": 0.20
+  },
+  "TLT": {
+    "strategy": "absolute_window",
+    "windowDays": 2920
+  },
+  "GOLD": {
+    "strategy": "absolute_window",
+    "windowDays": 2920
+  },
+  "COPPER": {
+    "strategy": "absolute_window",
+    "windowDays": 2920
+  },
+  "DEFAULT": {
+    "strategy": "absolute_window",
+    "windowDays": 1460
+  }
 }

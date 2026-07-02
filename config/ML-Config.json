@@ -25,7 +25,14 @@
       "earlyStoppingPatience": 10
     },
     "QQQ": {
-      "version": "v1"
+      "version": "v1",
+      "timeSteps": 14,
+      "features": ["Close", "Volume", "OBV", "ATR_14", "RSI_14", "MACD_Hist", "Dist_SMA200", "SMA200_Slope", "Days_Below_SMA200", "Volume_Z_Score", "Dist_52W_High", "Dist_52W_Low"]
+    },
+    "SPY": {
+      "version": "v1",
+      "timeSteps": 14,
+      "features": ["Close", "Volume", "OBV", "ATR_14", "RSI_14", "MACD_Hist", "Dist_SMA200", "SMA200_Slope", "Days_Below_SMA200", "Volume_Z_Score", "Dist_52W_High", "Dist_52W_Low"]
     },
     "SOFI": {
       "version": "v1"
@@ -34,7 +41,28 @@
       "version": "v1"
     },
     "PLTR": {
-      "version": "v1"
+      "version": "v1",
+      "timeSteps": 7,
+      "epochs": 100,
+      "features": ["Log_Return_EMA3", "Volume", "OBV", "ATR_14", "RSI_14", "Volume_Z_Score", "Dist_52W_High", "Dist_52W_Low"]
+    },
+    "SOFI": {
+      "version": "v1",
+      "timeSteps": 7,
+      "epochs": 100,
+      "features": ["Log_Return_EMA3", "Volume", "OBV", "ATR_14", "RSI_14", "Volume_Z_Score", "Dist_52W_High", "Dist_52W_Low"]
+    },
+    "ZETA": {
+      "version": "v1",
+      "timeSteps": 7,
+      "epochs": 100,
+      "features": ["Log_Return_EMA3", "Volume", "OBV", "ATR_14", "RSI_14", "Volume_Z_Score", "Dist_52W_High", "Dist_52W_Low"]
+    },
+    "NVTS": {
+      "version": "v1",
+      "timeSteps": 7,
+      "epochs": 100,
+      "features": ["Log_Return_EMA3", "Volume", "OBV", "ATR_14", "RSI_14", "Volume_Z_Score", "Dist_52W_High", "Dist_52W_Low"]
     }
   }
 }
