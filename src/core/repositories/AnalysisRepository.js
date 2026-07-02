@@ -67,7 +67,7 @@ export class AnalysisRepository {
 
   async getAllRawData(startDate) {
     const [btc] = await this.pool.query(`
-      SELECT DATE_FORMAT(FROM_UNIXTIME(open_time/1000), '%Y-%m-%d') as date, close, volume 
+      SELECT DATE_FORMAT(FROM_UNIXTIME(open_time/1000), '%Y-%m-%d') as date, close, volume, high, low 
       FROM ${TABLES.BINANCE} 
       WHERE symbol = ? AND interval_type = '1d' AND DATE_FORMAT(FROM_UNIXTIME(open_time/1000), '%Y-%m-%d') >= ?
     `, [SYMBOLS.BTC, startDate]);
@@ -144,6 +144,8 @@ export class AnalysisRepository {
 
     const initialBtc = await getLastBefore(TABLES.BINANCE, "DATE_FORMAT(FROM_UNIXTIME(open_time/1000), '%Y-%m-%d')", 'close', "AND symbol = ? AND interval_type = '1d'", [SYMBOLS.BTC]);
     const initialBtcVol = await getLastBefore(TABLES.BINANCE, "DATE_FORMAT(FROM_UNIXTIME(open_time/1000), '%Y-%m-%d')", 'volume', "AND symbol = ? AND interval_type = '1d'", [SYMBOLS.BTC]);
+    const initialBtcHigh = await getLastBefore(TABLES.BINANCE, "DATE_FORMAT(FROM_UNIXTIME(open_time/1000), '%Y-%m-%d')", 'high', "AND symbol = ? AND interval_type = '1d'", [SYMBOLS.BTC]);
+    const initialBtcLow = await getLastBefore(TABLES.BINANCE, "DATE_FORMAT(FROM_UNIXTIME(open_time/1000), '%Y-%m-%d')", 'low', "AND symbol = ? AND interval_type = '1d'", [SYMBOLS.BTC]);
     const initialSpy = await getLastBefore(TABLES.TIINGO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.SPY]);
     const initialQqq = await getLastBefore(TABLES.TIINGO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.QQQ]);
     const initialTlt = await getLastBefore(TABLES.TIINGO, 'record_date', 'close', "AND symbol = ?", [SYMBOLS.TLT]);
@@ -190,7 +192,7 @@ export class AnalysisRepository {
     const initialArccIncome = await getLastBefore(TABLES.FUND_SEC, 'record_date', 'net_income', "AND ticker = ?", ['ARCC']);
 
     return {
-      BTC: initialBtc, BTC_Volume: initialBtcVol, MSTR: initialMstr, COIN: initialCoin, SPY: initialSpy, QQQ: initialQqq, TLT: initialTlt, DXY: initialDxy, Gold: initialGold, Gold_Volume: initialGoldVol, Copper: initialCopper,
+      BTC: initialBtc, BTC_Volume: initialBtcVol, BTC_High: initialBtcHigh, BTC_Low: initialBtcLow, MSTR: initialMstr, COIN: initialCoin, SPY: initialSpy, QQQ: initialQqq, TLT: initialTlt, DXY: initialDxy, Gold: initialGold, Gold_Volume: initialGoldVol, Copper: initialCopper,
       VIX: initialVix, HYG: initialHyg, BIZD: initialBizd, BKLN: initialBkln, SKEW: initialSkew, CBOE_SPY: initialCboeSpy, SPY_ShortVolumeRatio: initialSpyShortVol, TotalPCR: initialPcr,
       WALCL: await parseFred(FRED_SERIES.WALCL, true), TGA: initialTga, RRPONTSYD: await parseFred(FRED_SERIES.RRPONTSYD, false),
       DFII10: await parseFred(FRED_SERIES.DFII10, false), DFF: await parseFred(FRED_SERIES.DFF, false), NFCI: await parseFred(FRED_SERIES.NFCI, false), TOTRESNS: await parseFred(FRED_SERIES.TOTRESNS, false), BORROW: await parseFred(FRED_SERIES.BORROW, false), T10Y2Y: await parseFred(FRED_SERIES.T10Y2Y, false),

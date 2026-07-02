@@ -143,4 +143,36 @@ describe('CLI Entrypoint (index.js)', () => {
     await runCLI(['node', 'index.js', '-c']);
     expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Überspringe Ntfy Push'));
   });
+
+  it('sollte loggen, wenn keine neuen Alarme vorhanden sind', async () => {
+    process.env.DATABASE_URL = 'mysql://prod';
+    process.env.NTFY_TOPIC = 'testtopic';
+    
+    // Mock getAlerts to return null/empty
+    const { IndicatorEngine } = await import('../src/analysis/IndicatorEngine.js');
+    IndicatorEngine.mockImplementationOnce(function() {
+      this.run = vi.fn();
+      this.generateReport = vi.fn().mockReturnValue('report');
+      this.getAlerts = vi.fn().mockReturnValue(null); // Kein Alarm
+      this.getDailyStatusReport = vi.fn().mockReturnValue(null);
+    });
+
+    await runCLI(['node', 'index.js', '-c']);
+    expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Keine akuten Warnungen'));
+  });
+
+  it('sollte Fehler werfen, wenn Config nicht existiert', async () => {
+    process.env.DATABASE_URL = 'mysql://prod';
+    const fs = await import('fs');
+    fs.default.existsSync.mockReturnValueOnce(false); // Config nicht da
+
+    let err;
+    try {
+      await runCLI(['node', 'index.js']);
+    } catch(e) {
+      err = e;
+    }
+    expect(err).toBeDefined();
+    expect(err.message).toMatch(/Critical Config not found/);
+  });
 });

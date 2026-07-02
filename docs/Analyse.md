@@ -13,8 +13,9 @@ Die Invertierung der Zinsstrukturkurve (wenn 2-jährige Anleihen höhere Zinsen 
 
 ### Die "Net Liquidity" Illusion
 Oft wird behauptet, Aktienmärkte (SPY, QQQ) und Bitcoin (BTC) folgten blind der *Net Liquidity* (Fed-Bilanz minus TGA minus Reverse Repo).
-* **Statistische Realität:** Über rollierende 3- bis 6-Monats-Fenster liegt die Korrelation zwischen S&P 500 und Net Liquidity bei mickrigen **0.05**.
-* **Fazit:** In normalen Marktphasen entkoppeln sich die Risiko-Assets komplett von der Makro-Liquidität und werden primär durch Unternehmensgewinne (Earnings) getrieben. Die Net Liquidity bestimmt die Kurse **nur in absoluten Extremfällen** (z.B. bei massiven Geldspritzen wie im Jahr 2020 oder brutalen Liquiditätsabzügen).
+* **Statistische Realität (Aktien):** Über rollierende 3- bis 6-Monats-Fenster liegt die Korrelation zwischen S&P 500 und Net Liquidity bei mickrigen **0.05**.
+* **Statistische Realität (Bitcoin):** Auch bei Bitcoin ist diese Korrelation faktisch nicht existent. Weder auf kurzfristiger Ebene (Tages-/Wochenrenditen: **-0.03** bis **-0.07**), noch auf langfristiger Ebene (rollierende 90-Tage: **-0.006** und 180-Tage-Renditen: **0.009**).
+* **Fazit:** Der Mythos, Krypto und Aktien würden kontinuierlich 1:1 am Tropf der Liquidität hängen, ist mathematisch falsch. In normalen Marktphasen entkoppeln sich die Risiko-Assets komplett von der Makro-Liquidität. Bitcoin treibt eigene Zyklen (Halving, ETF-Flows) und der Aktienmarkt folgt primär Unternehmensgewinnen (Earnings). Die Net Liquidity bestimmt die Kurse **nur in absoluten Extremfällen** (z.B. bei panischen Geldspritzen wie im Jahr 2020 oder wenn sie als makroökonomischer "Käfig" fungiert und die Liquidität komplett austrocknet).
 
 ### Der dominante Faktor: Financial Conditions (DXY)
 Der stärkste makroökonomische Treiber für unsere beobachteten Risiko-Assets ist der US-Dollar-Index (DXY) als Gradmesser der weltweiten "Financial Conditions".

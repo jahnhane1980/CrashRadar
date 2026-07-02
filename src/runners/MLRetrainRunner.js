@@ -33,7 +33,7 @@ export async function run(mockRepo = null, mockFs = null) {
     
     // 1. Trainiere BTC Modell
     if (configData.cycles.btc && data.btc && data.btc.length > 0) {
-      console.log('\n--- 🧠 Starte Training: btc_regime_v1 ---');
+      console.log('\n--- 🧠 Starte Training: btc_regime_v2 ---');
       const btcCandles = data.btc;
       btcCandles.sort((a, b) => new Date(a.date) - new Date(b.date));
       const labeledBtc = btcCandles.map(candle => ({
@@ -43,7 +43,7 @@ export async function run(mockRepo = null, mockFs = null) {
       const labeledCount = labeledBtc.filter(d => d.label !== 'UNKNOWN').length;
       console.log(`📊 Gefunden: ${btcCandles.length} Kerzen. Davon gelabelt: ${labeledCount}.`);
       
-      const mlBtc = new MLRegimeService('btc_regime_v1');
+      const mlBtc = new MLRegimeService('btc_regime_v2');
       await mlBtc.retrain(labeledBtc);
     }
 

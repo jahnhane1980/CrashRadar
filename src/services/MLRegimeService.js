@@ -9,14 +9,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export class MLRegimeService {
-  constructor(modelName = 'btc_regime_v1') {
+  constructor(modelName = 'btc_regime_v2') {
     this.modelName = modelName;
     this.modelDir = path.join(__dirname, '..', '..', 'data', 'ml', 'models', this.modelName);
     this.model = null;
     this.stats = null;
-    this.labels = ['MACRO_TOP', 'MACRO_BOTTOM', 'UPTREND', 'DOWNTREND'];
+    this.labels = ['CYCLE_BOTTOM', 'BULL_MARKET', 'BULL_CORRECTION', 'CYCLE_TOP', 'BEAR_MARKET', 'BEAR_RALLY'];
     this.sequenceLength = 14;
-    this.epochs = 20;
+    this.epochs = 30;
     this.batchSize = 32;
   }
 
@@ -30,17 +30,17 @@ export class MLRegimeService {
       this.stats = JSON.parse(await fs.readFile(statsPath, 'utf8'));
       const weightsArrays = JSON.parse(await fs.readFile(weightsPath, 'utf8'));
 
-      // LSTM Modell identisch zur Trainingsarchitektur bauen
+      // LSTM Modell identisch zur V2-Trainingsarchitektur bauen
       this.model = tf.sequential();
-      this.model.add(tf.layers.lstm({ units: 32, inputShape: [this.sequenceLength, 3], returnSequences: false }));
-      this.model.add(tf.layers.dropout({ rate: 0.2 }));
-      this.model.add(tf.layers.dense({ units: 16, activation: 'relu' }));
-      this.model.add(tf.layers.dense({ units: 4, activation: 'softmax' }));
+      this.model.add(tf.layers.lstm({ units: 64, inputShape: [this.sequenceLength, 6], returnSequences: false }));
+      this.model.add(tf.layers.dropout({ rate: 0.3 }));
+      this.model.add(tf.layers.dense({ units: 32, activation: 'relu' }));
+      this.model.add(tf.layers.dense({ units: 6, activation: 'softmax' }));
 
-      // Gewichte setzen (Custom IO umgeht tfjs-node Windows-Bugs)
+      // Gewichte setzen
       const weights = weightsArrays.map(arr => tf.tensor(arr));
       this.model.setWeights(weights);
-      console.log(`[MLRegimeService] LSTM Modell (Custom IO) erfolgreich in den RAM geladen.`);
+      console.log(`[MLRegimeService] LSTM Modell (V2) erfolgreich in den RAM geladen.`);
     } catch (error) {
       console.error(`[MLRegimeService] Fehler beim Laden des Modells:`, error.message);
       throw error;
@@ -49,36 +49,70 @@ export class MLRegimeService {
 
   buildFeatures(candles) {
     const closes = candles.map(c => Number(c.close));
-    const returns = [0]; // Erster Tag 0%
-    for(let i = 1; i < closes.length; i++) {
-        returns.push((closes[i] - closes[i-1]) / closes[i-1]);
+    let obv = 0;
+    let prevClose = null;
+    const features = [];
+    
+    // 1. Basis-Features berechnen (OBV, True Range)
+    for(const row of candles) {
+       const date = row.date;
+       const close = Number(row.close);
+       const volume = Number(row.volume);
+       const high = Number(row.high);
+       const low = Number(row.low);
+       
+       if (prevClose !== null) {
+         if (close > prevClose) obv += volume;
+         else if (close < prevClose) obv -= volume;
+       }
+       
+       let tr = high - low;
+       if (prevClose !== null) {
+         tr = Math.max(high - low, Math.abs(high - prevClose), Math.abs(low - prevClose));
+       }
+       
+       features.push({ date, close, volume, obv, tr, label: row.label || 'UNKNOWN' });
+       prevClose = close;
     }
 
-    const rsi = RSI.calculate({ values: closes, period: 14 });
-    const macd = MACD.calculate({ values: closes, fastPeriod: 12, slowPeriod: 26, signalPeriod: 9, SimpleMAOscillator: false, SimpleMASignal: false });
+    // 2. Indikatoren berechnen
+    const rsiOutput = RSI.calculate({ values: closes, period: 14 });
+    const macdOutput = MACD.calculate({ values: closes, fastPeriod: 12, slowPeriod: 26, signalPeriod: 9, SimpleMAOscillator: false, SimpleMASignal: false });
+    
+    const rsiPadded = Array(closes.length - rsiOutput.length).fill(null).concat(rsiOutput);
+    const macdPadded = Array(closes.length - macdOutput.length).fill(null).concat(macdOutput);
 
+    // 3. Finales Array bauen
     const result = [];
-    for(let i = 0; i < candles.length; i++) {
-        // RSI startet ab Index 14
-        const rsiVal = i >= 14 ? rsi[i - 14] : 50; 
-        // MACD Histogramm startet ca. ab Index 25
-        const macdIdx = i - 25; 
-        const macdVal = macdIdx >= 0 && macd[macdIdx] ? macd[macdIdx].histogram || 0 : 0;
+    for(let i = 0; i < features.length; i++) {
+        const f = features[i];
+        
+        let atr = null;
+        if (i >= 13) {
+           let sum = 0;
+           for(let j=i-13; j<=i; j++) sum += features[j].tr;
+           atr = sum / 14;
+        }
+
+        const rsi = rsiPadded[i];
+        const macd = macdPadded[i] ? macdPadded[i].histogram : null;
         
         result.push({
-            date: candles[i].date,
-            close: closes[i],
-            return_pct: returns[i],
-            rsi_14: rsiVal,
-            macd_hist: macdVal,
-            label: candles[i].label || 'UNKNOWN'
+            date: f.date,
+            Close: f.close,
+            Volume: f.volume,
+            OBV: f.obv,
+            ATR_14: atr !== null ? atr : 0,
+            RSI_14: rsi !== null ? rsi : 50,
+            MACD_Hist: macd !== null && macd !== undefined ? macd : 0,
+            label: f.label
         });
     }
     return result;
   }
 
   normalize(featuresArray, buildStats = false) {
-    const features = ['return_pct', 'rsi_14', 'macd_hist'];
+    const features = ['Close', 'Volume', 'OBV', 'ATR_14', 'RSI_14', 'MACD_Hist'];
     
     if (buildStats) {
       this.stats = {};
@@ -86,15 +120,18 @@ export class MLRegimeService {
         const values = featuresArray.map(d => parseFloat(d[f]));
         const mean = values.reduce((a, b) => a + b, 0) / values.length;
         const std = Math.sqrt(values.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / values.length);
-        this.stats[f] = { mean, std };
+        this.stats[f] = { mean, std: std === 0 ? 1 : std };
       }
     }
 
     return featuresArray.map(row => {
       return [
-        (parseFloat(row.return_pct) - this.stats['return_pct'].mean) / (this.stats['return_pct'].std || 1),
-        (parseFloat(row.rsi_14) - this.stats['rsi_14'].mean) / (this.stats['rsi_14'].std || 1),
-        (parseFloat(row.macd_hist) - this.stats['macd_hist'].mean) / (this.stats['macd_hist'].std || 1)
+        (parseFloat(row.Close) - this.stats['Close'].mean) / this.stats['Close'].std,
+        (parseFloat(row.Volume) - this.stats['Volume'].mean) / this.stats['Volume'].std,
+        (parseFloat(row.OBV) - this.stats['OBV'].mean) / this.stats['OBV'].std,
+        (parseFloat(row.ATR_14) - this.stats['ATR_14'].mean) / this.stats['ATR_14'].std,
+        (parseFloat(row.RSI_14) - this.stats['RSI_14'].mean) / this.stats['RSI_14'].std,
+        (parseFloat(row.MACD_Hist) - this.stats['MACD_Hist'].mean) / this.stats['MACD_Hist'].std
       ];
     });
   }
@@ -102,7 +139,6 @@ export class MLRegimeService {
   async predict(candles) {
     await this.loadModel();
 
-    // Wir brauchen mindestens 50 Kerzen als Input, damit die RSI/MACD Indikatoren sich einschwingen (warmup)
     const features = this.buildFeatures(candles);
     const normalized = this.normalize(features, false);
     
@@ -132,68 +168,14 @@ export class MLRegimeService {
 
   getOneHot(label) {
     const index = this.labels.indexOf(label);
-    const oneHot = [0, 0, 0, 0];
+    const oneHot = Array(this.labels.length).fill(0);
     if (index !== -1) oneHot[index] = 1;
     return oneHot;
   }
 
   async retrain(candles) {
-    console.log(`[MLRegimeService] Bereite Daten für Retraining vor (${candles.length} Kerzen)...`);
-    
-    const featuresArray = this.buildFeatures(candles);
-    // Wir schneiden die ersten 35 Tage ab, da RSI und MACD hier noch ungenau sind (Warmup-Phase)
-    const validFeatures = featuresArray.slice(35); 
-    
-    console.log(`[MLRegimeService] Normalisiere Features...`);
-    const normalized = this.normalize(validFeatures, true);
-    const labels = validFeatures.map(r => this.getOneHot(r.label));
-
-    const X = [];
-    const y = [];
-    for (let i = this.sequenceLength; i < normalized.length; i++) {
-      const currentLabel = validFeatures[i].label;
-      if (currentLabel !== 'UNKNOWN') {
-        X.push(normalized.slice(i - this.sequenceLength, i));
-        y.push(labels[i]);
-      }
-    }
-
-    // Chronologischer Split 80/20 (Data Leakage verhindern)
-    const splitIdx = Math.floor(X.length * 0.8);
-    const xTrain = tf.tensor3d(X.slice(0, splitIdx));
-    const yTrain = tf.tensor2d(y.slice(0, splitIdx));
-    const xVal = tf.tensor3d(X.slice(splitIdx));
-    const yVal = tf.tensor2d(y.slice(splitIdx));
-
-    this.model = tf.sequential();
-    this.model.add(tf.layers.lstm({ units: 32, inputShape: [this.sequenceLength, 3], returnSequences: false }));
-    this.model.add(tf.layers.dropout({ rate: 0.2 }));
-    this.model.add(tf.layers.dense({ units: 16, activation: 'relu' }));
-    this.model.add(tf.layers.dense({ units: 4, activation: 'softmax' }));
-
-    this.model.compile({ optimizer: 'adam', loss: 'categoricalCrossentropy', metrics: ['accuracy'] });
-
-    console.log('🧠 Starte TF.js Training...');
-    await this.model.fit(xTrain, yTrain, {
-      epochs: this.epochs,
-      batchSize: this.batchSize,
-      validationData: [xVal, yVal],
-      callbacks: {
-        onEpochEnd: (epoch, logs) => {
-          console.log(`Epoch ${epoch + 1}/${this.epochs} - loss: ${logs.loss.toFixed(4)} - val_loss: ${logs.val_loss.toFixed(4)}`);
-        }
-      }
-    });
-
-    console.log(`💾 Speichere Modell-Gewichte in ${this.modelDir}...`);
-    if (!fsSync.existsSync(this.modelDir)) {
-      await fs.mkdir(this.modelDir, { recursive: true });
-    }
-    
-    const weights = this.model.getWeights().map(w => w.arraySync());
-    await fs.writeFile(path.join(this.modelDir, 'weights.json'), JSON.stringify(weights), 'utf-8');
-    await fs.writeFile(path.join(this.modelDir, 'stats.json'), JSON.stringify(this.stats), 'utf-8');
-    
-    console.log(`🎉 Retraining für ${this.modelName} erfolgreich abgeschlossen!`);
+    console.log(`[MLRegimeService] Retraining über Service (V2) ist deaktiviert. Bitte scratch/train_btc_model_v2.js nutzen!`);
+    // Die Retrain-Funktion im Service wird bei V2 aktuell nicht genutzt, da wir das externe Skript mit Class Weights haben.
+    // Wir könnten es implementieren, aber um Fehler zu vermeiden, belassen wir das Training beim dedizierten Skript.
   }
 }

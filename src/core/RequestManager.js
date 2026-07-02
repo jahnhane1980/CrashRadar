@@ -91,7 +91,7 @@ export class RequestManager {
       });
     });
 
-    this.cache.set(url, promise);
+    this.cache.set(cacheKey, promise);
     return promise;
   }
 }

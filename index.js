@@ -56,7 +56,9 @@ export async function runCLI(argv) {
             const btcCandles = groupedData.map(d => ({
               date: d.date,
               close: d.assets.BTC,
-              volume: d.assets.BTC_Volume || 0
+              volume: d.assets.BTC_Volume || 0,
+              high: d.assets.BTC_High || d.assets.BTC,
+              low: d.assets.BTC_Low || d.assets.BTC
             })).filter(c => c.close !== null && c.close !== undefined);
             
             if (btcCandles.length >= 50) {

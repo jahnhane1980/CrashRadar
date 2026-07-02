@@ -20,17 +20,21 @@ export class FinanceExpert {
    * Orchestriert das Laden der Rohdaten, das Forward-Fill (Lücken füllen)
    * und das finale Mapping auf das Makro-Ökonomische Modell.
    */
-  async getDailyGroupedData(startDate) {
+  async getDailyGroupedData(startDate, options = { bypassMemoryGuard: false }) {
     if (!startDate) throw new Error("startDate is required");
 
-    // Memory Guard: Lade maximal 1.5 Jahre an Daten in den RAM, um OOM 
-    // bei sehr weit zurückliegenden globalStartDates (z.B. 1999) zu verhindern.
-    const d = new Date();
-    d.setFullYear(d.getFullYear() - 1);
-    d.setMonth(d.getMonth() - 6);
-    const limitDateStr = d.toISOString().split('T')[0];
-    
-    const actualStartDate = startDate < limitDateStr ? limitDateStr : startDate;
+    let actualStartDate = startDate;
+
+    if (!options.bypassMemoryGuard) {
+      // Memory Guard: Lade maximal 1.5 Jahre an Daten in den RAM, um OOM 
+      // bei sehr weit zurückliegenden globalStartDates (z.B. 1999) zu verhindern.
+      const d = new Date();
+      d.setFullYear(d.getFullYear() - 1);
+      d.setMonth(d.getMonth() - 6);
+      const limitDateStr = d.toISOString().split('T')[0];
+      
+      actualStartDate = startDate < limitDateStr ? limitDateStr : startDate;
+    }
 
     // 1. Raw-Daten holen
     const rawData = await this.repo.getAllRawData(actualStartDate);
@@ -62,6 +66,9 @@ export class FinanceExpert {
           SPY: state.SPY,
           QQQ: state.QQQ,
           BTC: state.BTC,
+          BTC_Volume: state.BTC_Volume,
+          BTC_High: state.BTC_High,
+          BTC_Low: state.BTC_Low,
           TLT: state.TLT,
           Gold: state.Gold,
           Gold_Volume: state.Gold_Volume,

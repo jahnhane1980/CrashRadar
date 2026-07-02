@@ -35,7 +35,8 @@ Eine identische Analyse wurde auf die signifikanten Tops und Bottoms des **QQQ**
 1. **SKEW als Top-Warner:**
    * Der SKEW ist auf den S&P 500 kalibriert. Beim QQQ-Top steigt er im Schnitt auf 142.8 (im Gegensatz zu 144.7 beim SPY). Die Makro-Mechanik funktioniert weiterhin identisch (Retail kauft Tech, Smart Money sichert sich über S&P-Puts ab). Der Threshold von `SKEW > 145` bleibt robust als universelles Warnsignal, um False-Positives zu vermeiden.
 2. **KI-Modell (`qqq_regime_v1`):**
-   * Da das Modell dediziert auf den QQQ trainiert wurde, identifiziert es Tech-Böden extrem scharf (triggert präzise das `MACRO_BOTTOM` Label am Tiefpunkt). An Tops ist es jedoch genauso träge wie beim SPY. Fazit: Ein erstklassiger Bottom-Fischer für Tech-Werte.
+   * Da das Modell dediziert auf den QQQ trainiert wurde, identifiziert es Tech-Böden extrem scharf (triggert präzise das `MACRO_BOTTOM` Label am Tiefpunkt). An Tops ist es jedoch genauso träge wie beim SPY. Fazit: Ein erstklassiger Bottom-Fischer für Tech-Werte. 
+   * *Hinweis zur Integration:* Die Modell-Gewichte wurden bereits erfolgreich trainiert, jedoch steht die offizielle Implementierung in die Live-Engine und Alarm-Logik noch aus (siehe [ROADMAP.md](file:///C:/GitHub/CrashRadar/ROADMAP.md)).
 3. **Credit Stress (HYG/BIZD/BKLN):**
    * Fällt an QQQ-Bottoms nicht ganz so stark aus wie beim SPY. Big-Tech ist durch gewaltige Cash-Reserven resilienter gegen Kreditmarkt-Verwerfungen (Schattenbanken/High Yield) als die klassische Wirtschaft. Ein Tech-Crash kann stattfinden, auch wenn der Kreditmarkt intakt bleibt. Credit Stress ist hier primär ein makroökonomischer Begleitfaktor, kein akuter Trigger.
 
@@ -43,21 +44,6 @@ Eine identische Analyse wurde auf die signifikanten Tops und Bottoms des **QQQ**
 > Die zugrundeliegende Logik und Datenauswertung kann mit folgenden Skripten jederzeit neu validiert werden:
 > * Extraktion der Tops/Bottoms: [scratch/extract_tops_bottoms.js](file:///C:/GitHub/CrashRadar/scratch/extract_tops_bottoms.js)
 > * Aggregation & statistische Analyse: [scratch/analyze_extrema.js](file:///C:/GitHub/CrashRadar/scratch/analyze_extrema.js)
-
----
-
-## TODOs: ML Training für hochvolatile Einzelwerte
-
-Folgende Schritte wurden nach hinten verschoben und müssen noch ausgeführt werden, um die neu integrierten Ticker (`S`, `SOFI`, `ZETA`, `SOUN`, `LUMN`, `NVTS`) voll in die CrashRadar-Engine einzubinden:
-
-1. **Modell-Training durchführen:**
-   * Ausführen des ML-Retrain-Skripts (`npm run ml:retrain` oder das entsprechende Trainer-Skript) für jeden der neuen Ticker.
-   * Basis für das Training ist der frisch ermittelte Ground-Truth in `config/ML-Cycles-Config.json`.
-   * Resultat sollten neue, dedizierte LSTM-Modelle sein (z.B. `s_regime_v1`, `sofi_regime_v1`), die im Verzeichnis `data/ml/models/` gespeichert werden.
-   
-2. **Integration in die IndicatorEngine:**
-   * Die neuen Modelle analog zum `qqq_regime_v1` in den täglichen Analyse- und Warn-Workflow (`IndicatorEngine` / `MLRegimeService`) einbauen.
-   * Sicherstellen, dass Alarme spezifisch für diese Einzelwerte gefeuert werden können, wenn die ML ein `MACRO_TOP` oder `MACRO_BOTTOM` prognostiziert.
 
 ---
 
@@ -71,7 +57,32 @@ Eine erste empirische Auswertung der historischen FINRA-Leerverkaufsdaten (Short
 
 > **Verwendetes Skript:** [scratch/analyze_short_volume.js](file:///C:/GitHub/CrashRadar/scratch/analyze_short_volume.js)
 
-### TODO: Ursachenforschung & ML-Integration
-Es muss untersucht werden, **warum** diese Werte derart unterschiedlich reagieren. 
-* Liegt es am Free-Float, der institutionellen Beteiligung, der fundamentalen Bewertung oder an ausstehenden Wandelanleihen?
-* **Ziel:** Die identifizierten tieferliegenden Gründe (Features) als neue Metriken ermitteln und als Parameter in die ML-Trainingsdaten aufnehmen, damit das neuronale Netz lernt, *warum* 80% Short-Volume bei ZETA ein Kaufsignal, aber bei NVTS ein Risiko ist.
+---
+
+
+## Machine Learning: BTC-Regime (v2) Pipeline & Status
+
+Wir haben erfolgreich eine end-to-end Machine-Learning-Pipeline für die Erkennung von Bitcoin-Marktphasen (Regimen) aufgebaut. Dabei haben wir die V1-Architekturfehler (Look-Ahead Bias, Whipsawing) behoben und nutzen nun strikte **Dow-Theorie-Marktstruktur** (Höhere Hochs, Tiefere Tiefs).
+
+### 1. Architektur & Wichtige Klassen
+*   **Der "Lehrer" (Ground Truth):** Die Klasse `src/analysis/RegimeLabeler.js` ist das Herzstück. Sie nutzt einen retrospektiven ATR-ZigZag-Algorithmus, um aus historischen Daten völlig lückenlose, rauschfreie Labels (`BULL_MARKET`, `CYCLE_TOP`, `BEAR_RALLY` etc.) zu generieren.
+*   **Konfiguration:** Die Basis-Zyklus-Längen (z.B. Bitcoin = 1460 Tage / 4 Jahre) liegen als Fallback in `config/Cycle-Base-Config.json`.
+
+### 2. Der aktuelle ML-Workflow (in `scratch/`)
+Der Workflow ist aktuell ein 3-stufiger Prozess aus Skripten:
+1.  **Labels generieren:** Das Skript `scratch/test_regime_labeler.js` generiert die puren Labels und speichert sie in `scratch/btc_regimes_output.csv`.
+2.  **Feature Pipeline (ETL):** Das Skript `scratch/extract_features.js` holt OHLCV-Tagesdaten aus der MySQL-DB, berechnet `OBV` (On-Balance Volume) und `ATR` (Average True Range) und führt sie mit den Labels zu `scratch/btc_ml_dataset_final.csv` zusammen. Dies ist unser fester CSV-Snapshot für das Training.
+3.  **Model Training:** Das Skript `scratch/train_btc_model_v2.js` baut ein LSTM-Netzwerk (64 Units) über `@tensorflow/tfjs`. Um den `tfjs-node` Bug auf Windows zu umgehen, nutzt es einen Custom-Save-Adapter und speichert die Gewichte (`weights.json`) sowie die Normalisierungs-Faktoren (`stats.json`) direkt nach `data/ml/models/btc_regime_v2/`.
+
+### 3. Ergebnisse des aktuellen V2-Runs (mit RSI, MACD & Early Stopping)
+*   **Trainings-Genauigkeit (In-Sample):** ~83.7 %
+*   **Validierungs-Genauigkeit (Out-of-Sample):** ~73.7 % (in der Spitze)
+*   **Analyse:** Das Hinzufügen der Momentum-Indikatoren (RSI, MACD) hat die Out-of-Sample Performance drastisch von 48 % auf über 70 % katapultiert! Das Modell erkennt echte Ausbrüche jetzt wesentlich zuverlässiger.
+*   **Early Stopping:** Das Training bricht nun automatisch nach ~7 Epochen ab, um Overfitting zu verhindern, da das Modell die essenziellen Muster bereits in den ersten Epochen verinnerlicht.
+
+### 4. Nächste Schritte
+*   **Refactoring:** Das chaotische `scratch/`-Setup perspektivisch in eine aufgeräumte CLI-Pipeline (`src/ml/index.js`) überführen.
+*   **Integration:** Das trainierte Modell in die `FinanceExpert.js` live einbinden, um echte Signale zu generieren.
+
+---
+> 🚀 **Ausstehende Entwicklungsaufgaben und offene Punkte (TODOs) findest du ab sofort gebündelt in der [ROADMAP.md](file:///C:/GitHub/CrashRadar/ROADMAP.md).**

@@ -206,4 +206,35 @@ describe('RequestManager Class', () => {
     
     expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[RequestManager Queue Error] Queue Error'));
   });
+
+  it('sollte den Cache korrekt anhand des cacheKeys anstatt der reinen URL setzen', async () => {
+    const manager = new RequestManager(config);
+    const kyExtendMock = ky.extend();
+    
+    // Wir mocken zwei unterschiedliche Responses
+    kyExtendMock.get.mockReturnValueOnce({ json: vi.fn().mockResolvedValue({ id: 'req1' }) });
+    kyExtendMock.get.mockReturnValueOnce({ json: vi.fn().mockResolvedValue({ id: 'req2' }) });
+    
+    // Startet zwei Anfragen mit unterschiedlichen searchParams an dieselbe URL
+    const params1 = new URLSearchParams({ param: 'A' });
+    const params2 = new URLSearchParams({ param: 'B' });
+    
+    const p1 = manager.fetch('http://cache-bug.com', 'FastProv', { searchParams: params1 });
+    const p2 = manager.fetch('http://cache-bug.com', 'FastProv', { searchParams: params2 });
+    
+    const [res1, res2] = await Promise.all([p1, p2]);
+    
+    // Beide Anfragen sollten unterschiedlich sein, da der CacheKey unterschiedlich ist
+    expect(res1).toEqual({ id: 'req1' });
+    expect(res2).toEqual({ id: 'req2' });
+    
+    // Cache Hit Test: Die exakt selbe URL + Params sollte aus dem Cache kommen (kein 3. Call)
+    kyExtendMock.get.mockReturnValueOnce({ json: vi.fn().mockResolvedValue({ id: 'req3' }) });
+    const p3 = manager.fetch('http://cache-bug.com', 'FastProv', { searchParams: params1 });
+    const res3 = await p3;
+    expect(res3).toEqual({ id: 'req1' });
+    
+    // kyExtendMock.get sollte nur 2x gerufen worden sein (für req1 und req2)
+    expect(kyExtendMock.get).toHaveBeenCalledTimes(2);
+  });
 });

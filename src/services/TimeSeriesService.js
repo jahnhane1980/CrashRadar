@@ -32,6 +32,12 @@ export class TimeSeriesService {
       if (r.volume !== undefined && r.volume !== null) {
         addToTimeline(r.date, 'BTC_Volume', Number(r.volume));
       }
+      if (r.high !== undefined && r.high !== null) {
+        addToTimeline(r.date, 'BTC_High', Number(r.high));
+      }
+      if (r.low !== undefined && r.low !== null) {
+        addToTimeline(r.date, 'BTC_Low', Number(r.low));
+      }
     });
     tiingo?.forEach(r => {
       addToTimeline(r.date, r.symbol, r.close);
