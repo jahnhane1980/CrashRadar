@@ -15,6 +15,16 @@ export class IndicatorEngine {
       console.error("[IndicatorEngine] Fehler beim Laden der Notification-Config:", e.message);
     }
 
+    const cycleConfigPath = path.resolve(process.cwd(), 'config/Cycle-Base-Config.json');
+    this.cycleConfig = { MACRO_CYCLE: { lastBtcBottomDate: '2022-11-21', dangerWindowStartDays: 970 } };
+    try {
+      if (fs.existsSync(cycleConfigPath)) {
+        this.cycleConfig = JSON.parse(fs.readFileSync(cycleConfigPath, 'utf8'));
+      }
+    } catch (e) {
+      console.error("[IndicatorEngine] Fehler beim Laden der Cycle-Base-Config:", e.message);
+    }
+
     const THRESHOLDS = {
       TOTRESNS_CRITICAL: 2800,
       TOTRESNS_WARNING: 3000,
@@ -583,6 +593,113 @@ export class IndicatorEngine {
         }
       },
 
+      {
+        name: 'Krypto Portfolio-Exit (MSTR/COIN)',
+        category: 'TRIGGER',
+        evaluate: (timeline) => {
+          if (timeline.length < 50) return { status: 'UNKNOWN', message: 'Zu wenig Daten' };
+          const macroCycle = this.cycleConfig?.MACRO_CYCLE;
+          if (!macroCycle || !macroCycle.lastBtcBottomDate) return { status: 'UNKNOWN', message: 'Kein Zyklus-Boden in Config' };
+          
+          const currentDay = timeline[timeline.length - 1];
+          const currentDate = new Date(currentDay.date);
+          const bottomDate = new Date(macroCycle.lastBtcBottomDate);
+          const daysSinceBottom = Math.floor((currentDate - bottomDate) / (1000 * 60 * 60 * 24));
+          const dangerStart = macroCycle.dangerWindowStartDays || 970;
+
+          if (isNaN(daysSinceBottom)) return { status: 'UNKNOWN', message: 'Ungültiges Datum' };
+
+          if (daysSinceBottom < dangerStart) {
+            return { status: 'OK', value: `Tag ${daysSinceBottom}/${dangerStart}`, message: 'Krypto-Proxies im sicheren Zeitfenster.' };
+          }
+
+          const getSma = (asset, period, offset = 0) => {
+            let sum = 0, count = 0;
+            const end = timeline.length - offset;
+            const start = end - period;
+            if (start < 0) return null;
+            for (let i = start; i < end; i++) {
+              if (timeline[i].assets[asset]) { sum += timeline[i].assets[asset]; count++; }
+            }
+            return count === period ? sum / period : null;
+          };
+
+          const mstr = currentDay.assets.MSTR;
+          const coin = currentDay.assets.COIN;
+          
+          const mstrSma50 = getSma('MSTR', 50, 0);
+          const prevMstrSma50 = getSma('MSTR', 50, 1);
+          const prevMstr = timeline[timeline.length - 2].assets.MSTR;
+          
+          const coinSma50 = getSma('COIN', 50, 0);
+          const prevCoinSma50 = getSma('COIN', 50, 1);
+          const prevCoin = timeline[timeline.length - 2].assets.COIN;
+          
+          const mstrVolSma50 = getSma('MSTR_Volume', 50, 0);
+          const coinVolSma50 = getSma('COIN_Volume', 50, 0);
+          const mstrVol = currentDay.assets.MSTR_Volume;
+          const coinVol = currentDay.assets.COIN_Volume;
+
+          let alarms = [];
+          
+          if (mstr && mstrSma50 && mstrVolSma50) {
+            const crossedDown = prevMstr >= prevMstrSma50 && mstr < mstrSma50;
+            if (crossedDown && mstrVol > (mstrVolSma50 * 1.2)) {
+              alarms.push(`MSTR bricht SMA 50 (Vol: ${(mstrVol/mstrVolSma50).toFixed(1)}x)`);
+            }
+          }
+          
+          if (coin && coinSma50 && coinVolSma50) {
+            const crossedDown = prevCoin >= prevCoinSma50 && coin < coinSma50;
+            if (crossedDown && coinVol > (coinVolSma50 * 1.2)) {
+              alarms.push(`COIN bricht SMA 50 (Vol: ${(coinVol/coinVolSma50).toFixed(1)}x)`);
+            }
+          }
+
+          if (alarms.length > 0) {
+             return { status: 'CRITICAL', value: `Tag ${daysSinceBottom}`, message: `GEFAHRENZONE AKTIV! ${alarms.join(' & ')}. MSTR/COIN sofort abverkaufen!` };
+          }
+
+          return { status: 'WARNING', value: `Tag ${daysSinceBottom}`, message: 'Gefahrenzone (>970 Tage) aktiv! Warten auf SMA 50 Bruch unter hohem Volumen.' };
+        }
+      },
+      {
+        name: 'BTC Trailing Stop Warnung (Makro-Radar)',
+        category: 'TRIGGER',
+        evaluate: (timeline) => {
+          if (timeline.length < 200) return { status: 'UNKNOWN', message: 'Zu wenig Daten (< 200 Tage)' };
+          
+          const getSma = (asset, period, offset = 0) => {
+            let sum = 0, count = 0;
+            const end = timeline.length - offset;
+            const start = end - period;
+            if (start < 0) return null;
+            for (let i = start; i < end; i++) {
+              if (timeline[i].assets[asset]) { sum += timeline[i].assets[asset]; count++; }
+            }
+            return count === period ? sum / period : null;
+          };
+
+          const mstr = timeline[timeline.length - 1].assets.MSTR;
+          const prevMstr = timeline[timeline.length - 2].assets.MSTR;
+          
+          const mstrSma200 = getSma('MSTR', 200, 0);
+          const prevMstrSma200 = getSma('MSTR', 200, 1);
+
+          if (!mstr || !mstrSma200 || !prevMstrSma200) return { status: 'UNKNOWN', message: 'Keine MSTR Daten' };
+
+          const dropPct = ((mstr - mstrSma200) / mstrSma200) * 100;
+
+          if (mstr < mstrSma200 && prevMstr >= prevMstrSma200) {
+            return { status: 'CRITICAL', value: `MSTR Drop: ${dropPct.toFixed(1)}%`, message: 'MSTR VERLIERT SMA 200! Strukturelle Liquidität bricht ab. BTC Zyklus-Top innerhalb 30-60 Tagen erwartet. Stop-Loss bei BTC ab sofort extrem eng nachziehen!' };
+          } else if (mstr < mstrSma200) {
+             return { status: 'WARNING', value: `MSTR < SMA200`, message: `MSTR bleibt unter SMA 200 (${dropPct.toFixed(1)}%). Makro-Klima für BTC extrem toxisch.` };
+          }
+
+          return { status: 'OK', value: `MSTR > SMA200`, message: 'MSTR intakt. Makro-Liquidität für BTC weiterhin vorhanden.' };
+        }
+      },
+
       // 🔵 TROUGH (Boden-Suche / Kaufsignale nach Crash)
       {
         name: 'Panik-Kapitulation (VIX + CBOE + RSI)',
@@ -855,43 +972,66 @@ export class IndicatorEngine {
         }
       },
       {
-        name: 'ML Regime Radar (Makro)',
+        name: 'ML Regime Radar (SPY)',
         category: 'LEADING',
         evaluate: (timeline) => {
           if (timeline.length < 1) return { status: 'UNKNOWN', message: 'Zu wenig Daten' };
-          const mlRegime = timeline[timeline.length - 1].mlRegime;
+          const mlRegime = timeline[timeline.length - 1].mlRegimeSpy;
           if (!mlRegime) return { status: 'UNKNOWN', message: 'Keine ML Prognose vorhanden' };
           
           const { phase, confidence } = mlRegime;
           const confPct = (confidence * 100).toFixed(1) + '%';
           
           if (phase === 'MACRO_TOP' || phase === 'CYCLE_TOP') {
-            return { status: 'CRITICAL', value: `TOP (${confPct})`, message: 'KI-ALARM! Absolute Makro-Euphorie erkannt. Extremes Absturzrisiko für alle Risiko-Assets.' };
+            return { status: 'CRITICAL', value: `TOP (${confPct})`, message: 'KI-ALARM! Absolute SPY-Makro-Euphorie erkannt. Extremes Absturzrisiko.' };
           } else if ((phase === 'DOWNTREND' || phase === 'BEAR_MARKET') && confidence > 0.6) {
-             return { status: 'WARNING', value: `BEAR (${confPct})`, message: 'KI-Warnung! Bärenmarkt-Struktur aktiv. Liquidität sinkt.' };
+             return { status: 'WARNING', value: `BEAR (${confPct})`, message: 'KI-Warnung! SPY Bärenmarkt-Struktur aktiv. Liquidität sinkt.' };
           } else if (phase === 'MACRO_BOTTOM' || phase === 'CYCLE_BOTTOM') {
-            return { status: 'CRITICAL', value: `BOTTOM (${confPct})`, message: 'KI-SIGNAL! Das makroökonomische Tal der Tränen (Kapitulation) ist erreicht.' };
+            return { status: 'CRITICAL', value: `BOTTOM (${confPct})`, message: 'KI-SIGNAL! SPY Makroökonomisches Tal der Tränen (Kapitulation) erreicht.' };
           } else if (phase === 'UPTREND' || phase === 'BULL_MARKET') {
-            return { status: 'OK', value: `BULL (${confPct})`, message: 'Gesunde Bullenmarkt-Struktur (Higher Highs).' };
+            return { status: 'OK', value: `BULL (${confPct})`, message: 'SPY Gesunde Bullenmarkt-Struktur (Higher Highs).' };
           }
-          return { status: 'OK', value: `${phase} (${confPct})`, message: 'Neutrales Regime.' };
+          return { status: 'OK', value: `${phase} (${confPct})`, message: 'SPY Neutrales Regime.' };
         }
       },
       {
-        name: 'ML Regime Radar (Krypto)',
+        name: 'ML Regime Radar (QQQ)',
         category: 'LEADING',
         evaluate: (timeline) => {
           if (timeline.length < 1) return { status: 'UNKNOWN', message: 'Zu wenig Daten' };
-          const mlRegime = timeline[timeline.length - 1].mlRegime;
+          const mlRegime = timeline[timeline.length - 1].mlRegimeQqq;
           if (!mlRegime) return { status: 'UNKNOWN', message: 'Keine ML Prognose vorhanden' };
           
           const { phase, confidence } = mlRegime;
           const confPct = (confidence * 100).toFixed(1) + '%';
           
           if (phase === 'MACRO_TOP' || phase === 'CYCLE_TOP') {
-            return { status: 'CRITICAL', value: `TOP (${confPct})`, message: 'KRYPTO-ZYKLUSENDE! Verteilungsphase (Distribution) im vollen Gange. Gewinne sichern!' };
+            return { status: 'CRITICAL', value: `TOP (${confPct})`, message: 'KI-ALARM! QQQ Makro-Euphorie erkannt. Tech-Topping im Gange.' };
           } else if ((phase === 'DOWNTREND' || phase === 'BEAR_MARKET') && confidence > 0.6) {
-             return { status: 'WARNING', value: `BEAR (${confPct})`, message: 'KRYPTO-WINTER: Bärenmarkt aktiv. Jeder Pump ist eine Bullenfalle (Dead Cat Bounce).' };
+             return { status: 'WARNING', value: `BEAR (${confPct})`, message: 'KI-Warnung! QQQ Bärenmarkt-Struktur aktiv.' };
+          } else if (phase === 'MACRO_BOTTOM' || phase === 'CYCLE_BOTTOM') {
+            return { status: 'CRITICAL', value: `BOTTOM (${confPct})`, message: 'KI-SIGNAL! QQQ Kapitulation ist erreicht. Tech-Kaufgelegenheit.' };
+          } else if (phase === 'UPTREND' || phase === 'BULL_MARKET') {
+            return { status: 'OK', value: `BULL (${confPct})`, message: 'QQQ Gesunde Bullenmarkt-Struktur.' };
+          }
+          return { status: 'OK', value: `${phase} (${confPct})`, message: 'QQQ Neutrales Regime.' };
+        }
+      },
+      {
+        name: 'ML Regime Radar (BTC)',
+        category: 'LEADING',
+        evaluate: (timeline) => {
+          if (timeline.length < 1) return { status: 'UNKNOWN', message: 'Zu wenig Daten' };
+          const mlRegime = timeline[timeline.length - 1].mlRegimeBtc;
+          if (!mlRegime) return { status: 'UNKNOWN', message: 'Keine ML Prognose vorhanden' };
+          
+          const { phase, confidence } = mlRegime;
+          const confPct = (confidence * 100).toFixed(1) + '%';
+          
+          if (phase === 'MACRO_TOP' || phase === 'CYCLE_TOP') {
+            return { status: 'CRITICAL', value: `TOP (${confPct})`, message: 'KRYPTO-ZYKLUSENDE! Verteilungsphase (Distribution) im vollen Gange.' };
+          } else if ((phase === 'DOWNTREND' || phase === 'BEAR_MARKET') && confidence > 0.6) {
+             return { status: 'WARNING', value: `BEAR (${confPct})`, message: 'KRYPTO-WINTER: Bärenmarkt aktiv.' };
           } else if (phase === 'BEAR_RALLY') {
              return { status: 'WARNING', value: `BEAR RALLY (${confPct})`, message: 'Trügerischer Pump im Bärenmarkt (Dead Cat Bounce).' };
           } else if (phase === 'MACRO_BOTTOM' || phase === 'CYCLE_BOTTOM') {
@@ -945,6 +1085,38 @@ export class IndicatorEngine {
           }
           
           return { status: 'OK', value: `VIX:${maxVix.toFixed(1)}|Vol:${maxVolRatio.toFixed(1)}x`, message: 'Normales Marktumfeld, keine Kapitulation.' };
+        }
+      },
+      {
+        name: 'ML Regime Radar (Makro)',
+        category: 'LEADING',
+        evaluate: (timeline) => {
+          const currentDay = timeline[timeline.length - 1];
+          if (!currentDay || !currentDay.mlRegime || !currentDay.mlRegime.phase) return { status: 'UNKNOWN', message: 'Keine ML Daten' };
+          
+          const phase = currentDay.mlRegime.phase;
+          const conf = (currentDay.mlRegime.confidence * 100).toFixed(1);
+          
+          if (phase === 'MACRO_TOP') return { status: 'CRITICAL', value: `TOP (${conf}%)`, message: 'ML-Modell erkennt zyklisches MAKRO-TOP!' };
+          if (phase === 'MACRO_BOTTOM') return { status: 'CRITICAL', value: `BOTTOM (${conf}%)`, message: 'ML-Modell erkennt zyklischen MAKRO-BODEN!' };
+          if (phase === 'DOWNTREND') return { status: 'WARNING', value: `DOWNTREND (${conf}%)`, message: 'ML-Modell warnt vor Abwärtstrend.' };
+          return { status: 'OK', value: `UPTREND (${conf}%)`, message: 'ML-Modell signalisiert intakten Aufwärtstrend.' };
+        }
+      },
+      {
+        name: 'ML Regime Radar (Krypto)',
+        category: 'TRIGGER',
+        evaluate: (timeline) => {
+          const currentDay = timeline[timeline.length - 1];
+          if (!currentDay || !currentDay.mlRegime || !currentDay.mlRegime.phase) return { status: 'UNKNOWN', message: 'Keine ML Daten' };
+          
+          const phase = currentDay.mlRegime.phase;
+          const conf = (currentDay.mlRegime.confidence * 100).toFixed(1);
+          
+          if (phase === 'MACRO_TOP') return { status: 'CRITICAL', value: `TOP (${conf}%)`, message: 'ML-Modell erkennt KRYPTO-ZYKLUSENDE!' };
+          if (phase === 'MACRO_BOTTOM') return { status: 'CRITICAL', value: `BOTTOM (${conf}%)`, message: 'ML-Modell erkennt KRYPTO-BODEN!' };
+          if (phase === 'DOWNTREND') return { status: 'WARNING', value: `DOWNTREND (${conf}%)`, message: 'ML-Modell warnt vor Krypto-Abwärtstrend.' };
+          return { status: 'OK', value: `UPTREND (${conf}%)`, message: 'Krypto-Zyklus intakt.' };
         }
       }
     ];
@@ -1092,6 +1264,14 @@ export class IndicatorEngine {
       let catStatusStr = catErrors > 0 ? '🚨 Kritisch' : (catWarns > 0 ? '⚠️ Warnung' : '✅ OK');
       summary += `${cat}: ${catStatusStr}\n`;
     });
+    
+    const currentDay = groupedData[groupedData.length - 1];
+    const formatRegime = (regime) => regime ? `${regime.phase} (${(regime.confidence * 100).toFixed(1)}%)` : 'UNKNOWN';
+    
+    summary += `\n🤖 KI-Regime:\n`;
+    summary += `SPY: ${formatRegime(currentDay.mlRegimeSpy)}\n`;
+    summary += `QQQ: ${formatRegime(currentDay.mlRegimeQqq)}\n`;
+    summary += `BTC: ${formatRegime(currentDay.mlRegimeBtc)}\n`;
     
     return {
         title: `CrashRadar: Daily Status (${overallStatus})`,

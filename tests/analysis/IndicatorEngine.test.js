@@ -9,9 +9,13 @@ describe('IndicatorEngine', () => {
   });
 
   const generateTimeline = (length, overrides = {}) => {
-    return Array(length).fill(0).map((_, i) => ({
-      date: `2024-01-${(i + 1).toString().padStart(2, '0')}`,
-      assets: {
+    const startDate = new Date('2024-01-01T12:00:00Z');
+    return Array(length).fill(0).map((_, i) => {
+      const d = new Date(startDate);
+      d.setDate(d.getDate() + i);
+      return {
+        date: d.toISOString().split('T')[0],
+        assets: {
         VIX: 20,
         HYG: 100,
         Gold: 2000,
@@ -29,8 +33,9 @@ describe('IndicatorEngine', () => {
         FinancialConditions: { ChicagoFedIndex: -0.5, RealYield10y: 1.5 },
         ...overrides.macroGroups
       }
-    }));
-  };
+    };
+  });
+};
 
   it('sollte run() ohne Absturz für die CLI ausführen (Terminal Output)', () => {
     const timeline = generateTimeline(35);
@@ -1186,6 +1191,279 @@ describe('IndicatorEngine', () => {
       timeline[0].mlRegime = { phase: 'UPTREND', confidence: 0.6 };
       res = engine.indicators.find(i => i.name.includes('ML Regime Radar (Krypto)')).evaluate(timeline);
       expect(res.status).toBe('OK');
+    });
+  });
+  describe('Krypto Portfolio-Exit (MSTR/COIN)', () => {
+    it('sollte UNKNOWN sein wenn Daten fehlen (< 50 Tage)', () => {
+      const timeline = generateTimeline(40);
+      const res = engine.indicators.find(i => i.name.includes('Portfolio-Exit')).evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+    });
+
+    it('sollte UNKNOWN sein wenn invalid Datum (NaN) in config', () => {
+      const timeline = generateTimeline(60);
+      engine.cycleConfig = { MACRO_CYCLE: { lastBtcBottomDate: 'invalid-date' } };
+      const res = engine.indicators.find(i => i.name.includes('Portfolio-Exit')).evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+      expect(res.message).toBe('Ungültiges Datum');
+    });
+
+    it('sollte default dangerStart (970) nutzen wenn in config nicht definiert', () => {
+      const timeline = generateTimeline(50);
+      engine.cycleConfig = { MACRO_CYCLE: { lastBtcBottomDate: '2022-11-21' } };
+      const res = engine.indicators.find(i => i.name.includes('Portfolio-Exit')).evaluate(timeline);
+      expect(res.status).toBe('OK');
+    });
+
+    it('sollte OK sein wenn wir noch nicht in der Gefahrenzone sind', () => {
+      const timeline = generateTimeline(50);
+      const res = engine.indicators.find(i => i.name.includes('Portfolio-Exit')).evaluate(timeline);
+      expect(res.status).toBe('OK');
+    });
+
+    it('sollte WARNING sein wenn in der Gefahrenzone aber noch kein SMA Bruch', () => {
+      const timeline = generateTimeline(60);
+      engine.cycleConfig = { MACRO_CYCLE: { lastBtcBottomDate: '2022-11-21', dangerWindowStartDays: 10 } };
+      for(let i=0; i<60; i++) {
+        timeline[i].assets.MSTR = 1000;
+        timeline[i].assets.COIN = 200;
+      }
+      const res = engine.indicators.find(i => i.name.includes('Portfolio-Exit')).evaluate(timeline);
+      expect(res.status).toBe('WARNING');
+    });
+
+    it('sollte CRITICAL triggern wenn in Gefahrenzone, SMA50 bricht und Volumen hoch ist', () => {
+      const timeline = generateTimeline(60);
+      engine.cycleConfig = { MACRO_CYCLE: { lastBtcBottomDate: '2022-11-21', dangerWindowStartDays: 10 } };
+      for(let i=0; i<60; i++) {
+        timeline[i].assets.MSTR = 1000;
+        timeline[i].assets.MSTR_Volume = 1000;
+      }
+      timeline[59].assets.MSTR = 900;
+      timeline[59].assets.MSTR_Volume = 3000;
+      
+      const res = engine.indicators.find(i => i.name.includes('Portfolio-Exit')).evaluate(timeline);
+      expect(res.status).toBe('CRITICAL');
+      expect(res.message).toContain('MSTR bricht SMA 50');
+    });
+  });
+
+  describe('BTC Trailing Stop Warnung (Makro-Radar)', () => {
+    it('sollte UNKNOWN sein wenn Daten fehlen (< 200 Tage)', () => {
+      const timeline = generateTimeline(100);
+      const res = engine.indicators.find(i => i.name.includes('BTC Trailing Stop')).evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+    });
+
+    it('sollte UNKNOWN sein wenn MSTR Daten fehlen', () => {
+      const timeline = generateTimeline(210);
+      timeline[209].assets.MSTR = null;
+      const res = engine.indicators.find(i => i.name.includes('BTC Trailing Stop')).evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+      expect(res.message).toBe('Keine MSTR Daten');
+    });
+
+    it('sollte OK sein wenn MSTR >= SMA200', () => {
+      const timeline = generateTimeline(210);
+      for(let i=0; i<210; i++) timeline[i].assets.MSTR = 1000;
+      const res = engine.indicators.find(i => i.name.includes('BTC Trailing Stop')).evaluate(timeline);
+      expect(res.status).toBe('OK');
+    });
+
+    it('sollte CRITICAL triggern wenn MSTR durch SMA 200 fällt', () => {
+      const timeline = generateTimeline(210);
+      for(let i=0; i<210; i++) timeline[i].assets.MSTR = 1000;
+      timeline[209].assets.MSTR = 900; 
+      
+      const res = engine.indicators.find(i => i.name.includes('BTC Trailing Stop')).evaluate(timeline);
+      expect(res.status).toBe('CRITICAL');
+      expect(res.message).toContain('MSTR VERLIERT SMA 200');
+    });
+
+    it('sollte WARNING triggern wenn MSTR bereits unter SMA 200 bleibt', () => {
+      const timeline = generateTimeline(210);
+      for(let i=0; i<210; i++) timeline[i].assets.MSTR = 1000;
+      timeline[208].assets.MSTR = 900;
+      timeline[209].assets.MSTR = 900;
+      
+      const res = engine.indicators.find(i => i.name.includes('BTC Trailing Stop')).evaluate(timeline);
+      expect(res.status).toBe('WARNING');
+    });
+  });
+
+  describe('Market Panic & Capitulation (VIX + Volume)', () => {
+    it('sollte UNKNOWN sein wenn Daten fehlen (< 15 Tage)', () => {
+      const timeline = generateTimeline(10);
+      const res = engine.indicators.find(i => i.name.includes('Market Panic & Capitulation')).evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+    });
+
+    it('sollte UNKNOWN sein wenn keine gültigen Volumendaten existieren', () => {
+      const timeline = generateTimeline(65);
+      // Entferne alle Volumendaten
+      for(let i=0; i<65; i++) {
+        timeline[i].assets.SPY_Volume = null;
+        timeline[i].assets.QQQ_Volume = null;
+      }
+      const res = engine.indicators.find(i => i.name.includes('Market Panic & Capitulation')).evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+      expect(res.message).toBe('Keine gültigen Volumendaten');
+    });
+
+    it('sollte OK sein bei normalem VIX und Volumen', () => {
+      const timeline = generateTimeline(65);
+      for(let i=0; i<65; i++) timeline[i].assets.SPY_Volume = 1000;
+      const res = engine.indicators.find(i => i.name.includes('Market Panic & Capitulation')).evaluate(timeline);
+      expect(res.status).toBe('OK');
+    });
+
+    it('sollte WARNING triggern bei VIX >= 25 und Vol >= 1.2x', () => {
+      const timeline = generateTimeline(65);
+      for(let i=0; i<65; i++) timeline[i].assets.SPY_Volume = 1000;
+      timeline[64].assets.VIX = 26;
+      timeline[64].assets.SPY_Volume = 1250;
+      const res = engine.indicators.find(i => i.name.includes('Market Panic & Capitulation')).evaluate(timeline);
+      expect(res.status).toBe('WARNING');
+    });
+
+    it('sollte CRITICAL triggern bei VIX >= 28 und Vol >= 1.25x', () => {
+      const timeline = generateTimeline(65);
+      for(let i=0; i<65; i++) timeline[i].assets.SPY_Volume = 1000;
+      timeline[64].assets.VIX = 30;
+      timeline[64].assets.SPY_Volume = 1500;
+      const res = engine.indicators.find(i => i.name.includes('Market Panic & Capitulation')).evaluate(timeline);
+      expect(res.status).toBe('CRITICAL');
+    });
+  });
+
+  describe('ML Regime Radar (BTC)', () => {
+    it('sollte UNKNOWN zurückgeben, wenn Daten fehlen', () => {
+      const timeline = generateTimeline(1);
+      const res = engine.indicators.find(i => i.name === 'ML Regime Radar (BTC)').evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+    });
+
+    it('sollte CRITICAL triggern bei MACRO_TOP oder CYCLE_TOP', () => {
+      const timeline = generateTimeline(1);
+      timeline[0].mlRegimeBtc = { phase: 'CYCLE_TOP', confidence: 0.95 };
+      let res = engine.indicators.find(i => i.name === 'ML Regime Radar (BTC)').evaluate(timeline);
+      expect(res.status).toBe('CRITICAL');
+      expect(res.message).toContain('KRYPTO-ZYKLUSENDE');
+
+      timeline[0].mlRegimeBtc = { phase: 'MACRO_TOP', confidence: 0.9 };
+      res = engine.indicators.find(i => i.name === 'ML Regime Radar (BTC)').evaluate(timeline);
+      expect(res.status).toBe('CRITICAL');
+    });
+
+    it('sollte WARNING triggern bei BEAR_MARKET mit hoher Confidence', () => {
+      const timeline = generateTimeline(1);
+      timeline[0].mlRegimeBtc = { phase: 'BEAR_MARKET', confidence: 0.7 };
+      const res = engine.indicators.find(i => i.name === 'ML Regime Radar (BTC)').evaluate(timeline);
+      expect(res.status).toBe('WARNING');
+      expect(res.message).toContain('KRYPTO-WINTER');
+    });
+
+    it('sollte WARNING triggern bei BEAR_RALLY', () => {
+      const timeline = generateTimeline(1);
+      timeline[0].mlRegimeBtc = { phase: 'BEAR_RALLY', confidence: 0.6 };
+      const res = engine.indicators.find(i => i.name === 'ML Regime Radar (BTC)').evaluate(timeline);
+      expect(res.status).toBe('WARNING');
+      expect(res.message).toContain('Dead Cat Bounce');
+    });
+
+    it('sollte CRITICAL triggern bei CYCLE_BOTTOM', () => {
+      const timeline = generateTimeline(1);
+      timeline[0].mlRegimeBtc = { phase: 'CYCLE_BOTTOM', confidence: 0.8 };
+      const res = engine.indicators.find(i => i.name === 'ML Regime Radar (BTC)').evaluate(timeline);
+      expect(res.status).toBe('CRITICAL');
+      expect(res.message).toContain('KRYPTO-BODEN');
+    });
+
+    it('sollte OK sein bei BULL_MARKET oder UPTREND', () => {
+      const timeline = generateTimeline(1);
+      timeline[0].mlRegimeBtc = { phase: 'BULL_MARKET', confidence: 0.9 };
+      let res = engine.indicators.find(i => i.name === 'ML Regime Radar (BTC)').evaluate(timeline);
+      expect(res.status).toBe('OK');
+
+      timeline[0].mlRegimeBtc = { phase: 'UPTREND', confidence: 0.9 };
+      res = engine.indicators.find(i => i.name === 'ML Regime Radar (BTC)').evaluate(timeline);
+      expect(res.status).toBe('OK');
+    });
+
+    it('sollte OK sein bei BULL_CORRECTION', () => {
+      const timeline = generateTimeline(1);
+      timeline[0].mlRegimeBtc = { phase: 'BULL_CORRECTION', confidence: 0.8 };
+      const res = engine.indicators.find(i => i.name === 'ML Regime Radar (BTC)').evaluate(timeline);
+      expect(res.status).toBe('OK');
+      expect(res.message).toContain('Normale Korrektur');
+    });
+
+    it('sollte OK (neutral) sein bei unbekannter Phase', () => {
+      const timeline = generateTimeline(1);
+      timeline[0].mlRegimeBtc = { phase: 'UNKNOWN_PHASE', confidence: 0.5 };
+      const res = engine.indicators.find(i => i.name === 'ML Regime Radar (BTC)').evaluate(timeline);
+      expect(res.status).toBe('OK');
+      expect(res.message).toContain('Neutrales Krypto-Regime');
+    });
+  });
+
+  describe('ML Regime Radar (SPY)', () => {
+    it('sollte UNKNOWN zurückgeben, wenn Daten fehlen', () => {
+      const timeline = generateTimeline(1);
+      const res = engine.indicators.find(i => i.name === 'ML Regime Radar (SPY)').evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+    });
+
+    it('sollte CRITICAL triggern bei MACRO_TOP', () => {
+      const timeline = generateTimeline(1);
+      timeline[0].mlRegimeSpy = { phase: 'MACRO_TOP', confidence: 0.95 };
+      let res = engine.indicators.find(i => i.name === 'ML Regime Radar (SPY)').evaluate(timeline);
+      expect(res.status).toBe('CRITICAL');
+    });
+
+    it('sollte WARNING triggern bei BEAR_MARKET mit hoher Confidence', () => {
+      const timeline = generateTimeline(1);
+      timeline[0].mlRegimeSpy = { phase: 'BEAR_MARKET', confidence: 0.7 };
+      const res = engine.indicators.find(i => i.name === 'ML Regime Radar (SPY)').evaluate(timeline);
+      expect(res.status).toBe('WARNING');
+    });
+
+    it('sollte OK (neutral) sein bei unbekannter Phase', () => {
+      const timeline = generateTimeline(1);
+      timeline[0].mlRegimeSpy = { phase: 'UNKNOWN_PHASE', confidence: 0.5 };
+      const res = engine.indicators.find(i => i.name === 'ML Regime Radar (SPY)').evaluate(timeline);
+      expect(res.status).toBe('OK');
+      expect(res.message).toContain('Neutrales Regime');
+    });
+  });
+
+  describe('ML Regime Radar (QQQ)', () => {
+    it('sollte UNKNOWN zurückgeben, wenn Daten fehlen', () => {
+      const timeline = generateTimeline(1);
+      const res = engine.indicators.find(i => i.name === 'ML Regime Radar (QQQ)').evaluate(timeline);
+      expect(res.status).toBe('UNKNOWN');
+    });
+
+    it('sollte CRITICAL triggern bei MACRO_TOP', () => {
+      const timeline = generateTimeline(1);
+      timeline[0].mlRegimeQqq = { phase: 'MACRO_TOP', confidence: 0.95 };
+      let res = engine.indicators.find(i => i.name === 'ML Regime Radar (QQQ)').evaluate(timeline);
+      expect(res.status).toBe('CRITICAL');
+    });
+
+    it('sollte WARNING triggern bei BEAR_MARKET mit hoher Confidence', () => {
+      const timeline = generateTimeline(1);
+      timeline[0].mlRegimeQqq = { phase: 'BEAR_MARKET', confidence: 0.7 };
+      const res = engine.indicators.find(i => i.name === 'ML Regime Radar (QQQ)').evaluate(timeline);
+      expect(res.status).toBe('WARNING');
+    });
+
+    it('sollte OK (neutral) sein bei unbekannter Phase', () => {
+      const timeline = generateTimeline(1);
+      timeline[0].mlRegimeQqq = { phase: 'UNKNOWN_PHASE', confidence: 0.5 };
+      const res = engine.indicators.find(i => i.name === 'ML Regime Radar (QQQ)').evaluate(timeline);
+      expect(res.status).toBe('OK');
+      expect(res.message).toContain('Neutrales Regime');
     });
   });
 });

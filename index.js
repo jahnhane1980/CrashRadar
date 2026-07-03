@@ -52,18 +52,30 @@ export async function runCLI(argv) {
         
         // --- ML Regime Integration ---
         try {
-            const mlService = new MLRegimeService();
-            const btcCandles = groupedData.map(d => ({
+            const getCandles = (data, assetName, volName) => data.map(d => ({
               date: d.date,
-              close: d.assets.BTC,
-              volume: d.assets.BTC_Volume || 0,
-              high: d.assets.BTC_High || d.assets.BTC,
-              low: d.assets.BTC_Low || d.assets.BTC
+              close: d.assets[assetName],
+              volume: d.assets[volName] || 0,
+              high: d.assets[`${assetName}_High`] || d.assets[assetName],
+              low: d.assets[`${assetName}_Low`] || d.assets[assetName]
             })).filter(c => c.close !== null && c.close !== undefined);
-            
+
+            const btcCandles = getCandles(groupedData, 'BTC', 'BTC_Volume');
             if (btcCandles.length >= 50) {
-              const mlPrediction = await mlService.predict(btcCandles);
-              groupedData[groupedData.length - 1].mlRegime = mlPrediction;
+              const mlPrediction = await new MLRegimeService('btc_regime_v2').predict(btcCandles);
+              groupedData[groupedData.length - 1].mlRegimeBtc = mlPrediction;
+            }
+
+            const spyCandles = getCandles(groupedData, 'SPY', 'SPY_Volume');
+            if (spyCandles.length >= 50) {
+              const mlPrediction = await new MLRegimeService('spy_regime_v1').predict(spyCandles);
+              groupedData[groupedData.length - 1].mlRegimeSpy = mlPrediction;
+            }
+
+            const qqqCandles = getCandles(groupedData, 'QQQ', 'QQQ_Volume');
+            if (qqqCandles.length >= 50) {
+              const mlPrediction = await new MLRegimeService('qqq_regime_v1').predict(qqqCandles);
+              groupedData[groupedData.length - 1].mlRegimeQqq = mlPrediction;
             }
         } catch(e) {
             console.error("[Analysis] Fehler bei der ML-Prognose:", e.message);

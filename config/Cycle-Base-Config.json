@@ -1,4 +1,8 @@
 {
+  "MACRO_CYCLE": {
+    "lastBtcBottomDate": "2022-11-21",
+    "dangerWindowStartDays": 970
+  },
   "BTC": {
     "strategy": "absolute_window",
     "windowDays": 1460

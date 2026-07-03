@@ -50,6 +50,8 @@
     "Gold (SMA 50 Ausbruch)": "GOLD",
     "Tech-Zyklus Radar (SMH vs IGV)": "TECH",
     "ML Regime Radar (Makro)": "MACRO",
-    "ML Regime Radar (Krypto)": "CRYPTO"
+    "ML Regime Radar (Krypto)": "CRYPTO",
+    "Krypto Portfolio-Exit (MSTR/COIN)": "CRYPTO",
+    "BTC Trailing Stop Warnung (Makro-Radar)": "CRYPTO"
   }
 }
