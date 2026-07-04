@@ -818,6 +818,13 @@
       "provider": "Finra",
       "dataset": "short_volume",
       "ticker": "NVTS"
+    },
+    {
+      "id": "yahoo_spy_options_chain",
+      "provider": "YahooFinance",
+      "ticker": "SPY",
+      "method": "options",
+      "overrideStartDate": "2026-07-04"
     }
   ]
 }

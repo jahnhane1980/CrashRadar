@@ -262,6 +262,16 @@ Feuern erst, wenn wir bereits im Crash stecken, und bieten daher null Schutz vor
 
 ---
 
+### 11. Spurenlesen: Order Flow & Gamma-Hedging (Hypothese)
+Echtes "Spurenlesen" findet nicht im normalen Preis-Chart statt, sondern dort, wo Absichten nicht verschleiert ("Spoofing") werden können. Diese These stützt sich auf zwei Säulen:
+
+* **Säule 1: Order Flow Imbalance (Time & Sales):** Market-Orders (aggressiv) kosten Geld und zeigen Dringlichkeit, Limit-Orders (passiv) können gelöscht werden. Die Messung des Verhältnisses von aggressiven Käufern zu Verkäufern offenbart die wahre Marktrichtung. 
+  * *Status (Abgelehnt):* Uns fehlen hierfür die hochfrequenten Intraday-Tickdaten (Level-2 Orderbuch). Echte Tick-Daten verursachen gigantischen Server-Traffic und erfordern teure Lizenzen der Börsen, weshalb auf dem Markt keine dauerhaft kostenlosen APIs dafür existieren. Web-Scraping ist bei der Masse an Daten technisch unmöglich. Ohne kostenpflichtigen Provider (z.B. Databento) oder Broker-API (z.B. IBKR) ist diese Säule nicht umsetzbar.
+* **Säule 2: Gamma-Hedging am Optionsmarkt:** Institutionen handeln Optionen. Market Maker müssen diese Positionen über die Aktie absichern. Kennt man die Open-Interest-Grenzmarken (Strikes), kann man die algorithmischen Käufe/Verkäufe der Market Maker vorhersehen. 
+  * *Status (Live-Recording):* Wir nutzen `yahoo-finance2` (siehe [Machbarkeitsstudie](file:///C:/GitHub/CrashRadar/scratch/analyse/Spurenlesen.js)), um täglich die Options Chains abzurufen. **Wichtig:** Da Yahoo keine historischen Optionsketten anbietet, können wir dieses Modell aktuell noch nicht backtesten. Wir zeichnen die Live-Daten (die aggregierten Open-Interest-Cluster der nächsten 30-45 Tage) ab jetzt täglich in unserer Datenbank auf, um uns einen eigenen historischen Datensatz für spätere Backtests aufzubauen.
+
+---
+
 ## 2. Historische Drawdowns (>= 15%)
 
 Die folgende Liste zeigt historische Markteinbrüche von über 15%, berechnet als "Peak-to-Trough" (vom Allzeithoch bis zum absoluten Tiefpunkt vor der Erholung).
