@@ -17,6 +17,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@supabase/supabase-js": "^2.110.0",
     "@tensorflow/tfjs": "^4.22.0",
     "commander": "^14.0.3",
     "csv-parse": "^7.0.0",

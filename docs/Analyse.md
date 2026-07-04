@@ -313,10 +313,9 @@ Die folgenden Konzepte müssen künftig durch Backtests verifiziert werden, um d
 * **Ergebnis (Bestätigt):** Ein Testlauf ab 2007 zeigte eine Degradation von **0,0%** (Exakt 541 CRITICAL Signale im echten und im verrauschten Chart). Dies belegt mathematisch, dass die Engine echte Makro-Schwerkraft misst und sich nicht durch lokales Kursrauschen austricksen lässt. Overfitting ist in Bezug auf das Preis-Rauschen somit ausgeschlossen.
 
 ### B. Die Signal-vs-Execution Hypothese (Slippage & Einstieg)
-* **Die These:** Das Signal auf dem gleichen Zeithorizont auszuführen, auf dem es generiert wird (z.B. Daily Close), kostet massiv Rendite durch Reibung.
-* **Die Überprüfung:** Backtest-Vergleich:
-    * Variante A: Sofortiger Verkauf zum Daily-Close beim Crash-Signal.
-    * Variante B: Das Daily-Signal dient nur als "Erlaubnis", der exakte Verkauf findet am nächsten Tag via Intraday-Indikator (z.B. 15-Minuten Mean-Reversion) statt.
+* **Die These:** Das Signal auf dem gleichen Zeithorizont auszuführen, auf dem es generiert wird (z.B. Daily Close), kostet massiv Rendite durch Reibung. *(Ausführliche theoretische Erklärung siehe: [docs/Signal-vs-Execution-Hypothese.md](file:///C:/GitHub/CrashRadar/docs/Signal-vs-Execution-Hypothese.md))*
+* **Die Überprüfung:** Ein Test-Skript (siehe [scratch/analyse/Signal-vs-Execution-Hypothese.js](file:///C:/GitHub/CrashRadar/scratch/analyse/Signal-vs-Execution-Hypothese.js)) simuliert den "Yen Carry Trade Crash" (05.08.2024) anhand von 5-Minuten-Kerzen, die direkt aus einer externen Supabase geladen werden.
+* **Ergebnis (Bestätigt):** Wenn die Engine am Freitag (02.08.2024) ein Daily-Signal generiert und wir blind zur Montagseröffnung verkaufen, erleiden wir allein durch den Overnight-Gap-Down **-1,41% Renditeverlust (Slippage)**. Dies beweist, dass ein Daily-Signal zwingend durch eine intraday Execution-Logik flankiert werden muss, um Reibungsverluste zu minimieren.
 
 ### C. Die Fractional Kelly Hypothese (Positionsgröße)
 * **Die These:** Ein binäres System (100% Investiert oder 100% Cash) ist langfristig ineffizienter als ein dynamisch skaliertes Risiko basierend auf der Signal-Konfidenz.

@@ -51,5 +51,9 @@ Dieses Dokument bündelt alle aktuell noch offenen Entwicklungsaufgaben und Arch
 * **Ziel:** Evaluierung des "Spurenlesen" Konzepts (Säule 2: Gamma Hedging). Da Yahoo Finance keine historischen Optionsdaten bereitstellt, sammeln wir ab dem 04.07.2026 jeden Tag Live-Daten über den Fetcher.
 * **Stichtag für ersten Backtest:** **04.01.2027** (nach ca. 6 Monaten Live-Aufzeichnung). Erst dann haben wir genug Markt-Regime (Bull, Bear, Volatility) und OPEX-Zyklen durchlebt, um die Gamma-Support/Resistance-Mauern belastbar in ML-Modelle oder Indikatoren zu integrieren.
 
+## 7. Fraktales Execution-Modul (Anti-Slippage Engine)
+* **Ziel:** Trennung von Makro-Signal (Crash-Vorhersage) und Trade-Ausführung (Execution). Die `IndicatorEngine.js` liefert künftig nur noch die "Erlaubnis" zum Verkauf (Daily Timeframe).
+* **Umsetzung:** Ein neues Execution-Modul muss konzipiert werden, das bei vorliegendem Crash-Signal auf einen Intraday-Zeitrahmen (z.B. 5-Minuten oder 15-Minuten Chart) wechselt und den Verkauf optimiert. Es verkauft entweder noch *vor* dem Daily Close (z.B. 15:55 Uhr) oder wartet am Folgetag gezielt auf eine kurzfristige Markterholung (Mean-Reversion-Spike), um massive Overnight-Gaps (wie am Black Monday 2024) zu vermeiden.
+
 
 
