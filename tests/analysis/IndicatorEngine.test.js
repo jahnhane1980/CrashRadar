@@ -235,7 +235,7 @@ describe('IndicatorEngine', () => {
       timeline[58].assets.Gold = 1950;
       timeline[59].assets.Gold = 1980;
 
-      const res = engine.indicators.find(i => i.name === 'Gold Capitulation & Healing (2-Step)').evaluate(timeline);
+      const res = engine.indicators.find(i => i.name === '[INVEST] Gold Capitulation & Healing (2-Step)').evaluate(timeline);
       expect(res.status).toBe('WARNING');
       expect(res.value).toBe('TRAUMA');
     });
@@ -255,7 +255,7 @@ describe('IndicatorEngine', () => {
       timeline[58].assets.Gold = 1950;
       timeline[59].assets.Gold = 2050; // SMA20 ist ca. 2000
 
-      const res = engine.indicators.find(i => i.name === 'Gold Capitulation & Healing (2-Step)').evaluate(timeline);
+      const res = engine.indicators.find(i => i.name === '[INVEST] Gold Capitulation & Healing (2-Step)').evaluate(timeline);
       expect(res.status).toBe('CRITICAL');
       expect(res.value).toBe('HEALING');
     });
@@ -268,7 +268,7 @@ describe('IndicatorEngine', () => {
       }
       // Kein Volume Climax in den letzten 20 Tagen
       
-      const res = engine.indicators.find(i => i.name === 'Gold Capitulation & Healing (2-Step)').evaluate(timeline);
+      const res = engine.indicators.find(i => i.name === '[INVEST] Gold Capitulation & Healing (2-Step)').evaluate(timeline);
       expect(res.status).toBe('OK');
       expect(res.value).toBe('NORMAL');
     });

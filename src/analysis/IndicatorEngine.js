@@ -268,7 +268,7 @@ export class IndicatorEngine {
         }
       },
       {
-        name: 'Gold Volume Climax (Panik/FOMO)',
+        name: '[INVEST] Gold Volume Climax (Panik/FOMO)',
         category: 'CONTEMPORANEOUS',
         evaluate: (timeline) => {
           if (timeline.length < 50) return { status: 'UNKNOWN', message: 'Zu wenig Daten (< 50 Tage)' };
@@ -310,7 +310,7 @@ export class IndicatorEngine {
         }
       },
       {
-        name: 'GDX Selling Climax (Boden-Suche)',
+        name: '[INVEST] GDX Selling Climax (Boden-Suche)',
         category: 'CONTEMPORANEOUS',
         evaluate: (timeline) => {
           if (timeline.length < 50) return { status: 'UNKNOWN', message: 'Zu wenig Daten (< 50 Tage)' };
@@ -348,7 +348,7 @@ export class IndicatorEngine {
         }
       },
       {
-        name: 'GDX Buying Climax (Top-Gefahr)',
+        name: '[INVEST] GDX Buying Climax (Top-Gefahr)',
         category: 'CONTEMPORANEOUS',
         evaluate: (timeline) => {
           if (timeline.length < 50) return { status: 'UNKNOWN', message: 'Zu wenig Daten (< 50 Tage)' };
@@ -381,7 +381,7 @@ export class IndicatorEngine {
         }
       },
       {
-        name: 'GDX vs Gold Divergenz',
+        name: '[INVEST] GDX vs Gold Divergenz',
         category: 'LEADING',
         evaluate: (timeline) => {
           if (timeline.length < 30) return { status: 'UNKNOWN', message: 'Zu wenig Daten (< 30 Tage)' };
@@ -538,7 +538,7 @@ export class IndicatorEngine {
         }
       },
       {
-        name: 'Central Bank Policy Error (DFF vs T10YIE vs DXY)',
+        name: '[MACRO] Central Bank Policy Error (DFF vs T10YIE vs DXY)',
         category: 'TRIGGER',
         evaluate: (timeline) => {
           // Wir brauchen 60 Handelstage (~3 Monate)
@@ -573,19 +573,19 @@ export class IndicatorEngine {
                 return { 
                   status: 'WARNING', 
                   value: `DFF ${dffChange.toFixed(2)}% / T10YIE +${t10yieChange.toFixed(2)}% / DXY +${dxyReturn.toFixed(1)}%`, 
-                  message: `Policy Error erkannt, ABER starker US-Dollar blockiert Gold-Ausbruch.` 
+                  message: `MACRO ALARM: Policy Error erkannt (Gefahr für Aktien), ABER starker US-Dollar blockiert Gold-Ausbruch.` 
                 };
             }
             return { 
               status: 'CRITICAL', 
               value: `DFF ${dffChange.toFixed(2)}% / T10YIE +${t10yieChange.toFixed(2)}% / DXY ${dxyReturn.toFixed(1)}%`, 
-              message: `SYSTEM-ALARM: FED senkt Zinsen panisch, aber Markt erwartet wieder Inflation! Schwacher Dollar befeuert Fiat-Flucht in Gold.` 
+              message: `MACRO ALARM: Fiat-Flucht detektiert. Erhöhtes Crash-Risiko für SPY/QQQ! (Hinweis: Für ein Gold-Investment auf separaten 'Healing'-Alarm warten).` 
             };
           } else if (dffChange < -0.10 && t10yieChange > 0.05) {
             return { 
               status: 'WARNING', 
               value: `DFF ${dffChange.toFixed(2)}% / T10YIE +${t10yieChange.toFixed(2)}%`, 
-              message: 'FED Zinsen sinken, während Inflationserwartung leicht steigt. Vertrauensverlust droht.' 
+              message: 'MACRO WARNUNG: FED Zinsen sinken, während Inflationserwartung leicht steigt. Vertrauensverlust droht.' 
             };
           }
           
@@ -794,7 +794,7 @@ export class IndicatorEngine {
         }
       },
       {
-        name: 'Gold Capitulation & Healing (2-Step)',
+        name: '[INVEST] Gold Capitulation & Healing (2-Step)',
         category: 'TROUGH',
         evaluate: (timeline) => {
           if (timeline.length < 50) return { status: 'UNKNOWN', message: 'Zu wenig Daten' };

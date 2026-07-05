@@ -4,9 +4,11 @@ Dieses Dokument bündelt alle aktuell noch offenen Entwicklungsaufgaben und Arch
 *Hinweis: Die Reihenfolge der Aufgaben spiegelt ihre Dringlichkeit und architektonische Priorität wider.*
 
 
-## 1. GOLD & GDX Dashboarding und Push-Benachrichtigungen
-* **Problem:** Die bestehenden Indikatoren (GDX Selling Climax, GDX vs Gold Divergenz) sind live in der Engine, aber es ist unklar, ob im Ernstfall ein harter Push-Alarm ausgelöst wird.
-* **Aufgabe:** Die getAlerts-Methode in der IndicatorEngine.js prüfen und sicherstellen, dass ein Gold-Ausbruch oder eine GDX-Capitulation einen **sofortigen Ntfy-Push-Alarm** aufs Handy (und nicht nur ein leises Konsolen-Log) generiert.
+## 1. GOLD & GDX Push-Benachrichtigungen
+* **Problem:** Die bestehenden Indikatoren (GDX Selling Climax, GDX vs Gold Divergenz) sind live in der Engine, aber es ist unklar, ob im Ernstfall ein harter Push-Alarm ausgelöst wird. Zudem blockiert das statische 14-Tage-Debouncing in Crash-Phasen (z.B. zwischen Climax und Breakout) essenzielle Alarme.
+* **Aufgabe:** 
+  * Die getAlerts-Methode in der IndicatorEngine.js prüfen und sicherstellen, dass ein Gold-Ausbruch oder eine GDX-Capitulation einen **sofortigen Ntfy-Push-Alarm** aufs Handy generiert.
+  * **Dynamisches Debouncing:** Das System so umbauen, dass in Peacetime (ruhiger Markt) ein 14-Tage-Debounce gilt, im "Crisis Mode" (z.B. VIX Spike oder CRITICAL Warnungen) das Debouncing aber dynamisch auf 1-5 Tage reduziert wird, um keine schnellen V-Shape-Böden zu verpassen.
 
 
 ## 2. Refactoring & Modularisierung der JS-Dateien (insb. IndicatorEngine.js)
