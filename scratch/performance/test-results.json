@@ -1,0 +1,55 @@
+{
+  "Flash_Crash_2020": {
+    "expectedRegime": "FLASH_CRASH",
+    "detectedRegimes": [
+      "FLASH_CRASH"
+    ],
+    "isRegimeCorrect": true,
+    "firstSignal": "ENTRY_GDX",
+    "totalGdxEntries": 1,
+    "totalGoldEntries": 1,
+    "signals": [
+      {
+        "date": "2020-03-13",
+        "regime": "FLASH_CRASH",
+        "actions": [
+          "ENTRY_GDX (Selling Climax (Flash Crash))",
+          "ENTRY_GOLD (GDX Capitulation Lead)"
+        ]
+      }
+    ]
+  },
+  "Bear_Market_2026": {
+    "expectedRegime": "BEAR_MARKET",
+    "detectedRegimes": [
+      "BEAR_MARKET"
+    ],
+    "isRegimeCorrect": true,
+    "firstSignal": "ENTRY_GOLD",
+    "totalGdxEntries": 0,
+    "totalGoldEntries": 3,
+    "signals": [
+      {
+        "date": "2026-02-10",
+        "regime": "BEAR_MARKET",
+        "actions": [
+          "ENTRY_GOLD (Gold Stärke (Bärenmarkt-Hafen))"
+        ]
+      },
+      {
+        "date": "2026-02-11",
+        "regime": "BEAR_MARKET",
+        "actions": [
+          "ENTRY_GOLD (Gold Stärke (Bärenmarkt-Hafen))"
+        ]
+      },
+      {
+        "date": "2026-02-12",
+        "regime": "BEAR_MARKET",
+        "actions": [
+          "ENTRY_GOLD (Gold Stärke (Bärenmarkt-Hafen))"
+        ]
+      }
+    ]
+  }
+}

@@ -4,20 +4,24 @@ Dieses Dokument bündelt alle aktuell noch offenen Entwicklungsaufgaben und Arch
 *Hinweis: Die Reihenfolge der Aufgaben spiegelt ihre Dringlichkeit und architektonische Priorität wider.*
 
 
-## 1. GOLD & GDX Push-Benachrichtigungen
-* **Problem:** Die bestehenden Indikatoren (GDX Selling Climax, GDX vs Gold Divergenz) sind live in der Engine, aber es ist unklar, ob im Ernstfall ein harter Push-Alarm ausgelöst wird. Zudem blockiert das statische 14-Tage-Debouncing in Crash-Phasen (z.B. zwischen Climax und Breakout) essenzielle Alarme.
+## 1. GOLD & GDX Dynamisches Debouncing (Push-Alarme)
+* **Status:** Die Indikatoren für Gold und GDX wurden erfolgreich in Macro- und Investment-Signale getrennt und die Push-Benachrichtigungs-Pipeline via Ntfy ist aktiv.
+* **Problem:** Das aktuelle statische 14-Tage-Debouncing der `getAlerts`-Methode blockiert in Crash-Phasen (z.B. die kurze Zeitspanne zwischen einem Selling Climax und dem finalen Healing Breakout) essenzielle Folge-Alarme.
 * **Aufgabe:** 
-  * Die getAlerts-Methode in der IndicatorEngine.js prüfen und sicherstellen, dass ein Gold-Ausbruch oder eine GDX-Capitulation einen **sofortigen Ntfy-Push-Alarm** aufs Handy generiert.
-  * **Dynamisches Debouncing:** Das System so umbauen, dass in Peacetime (ruhiger Markt) ein 14-Tage-Debounce gilt, im "Crisis Mode" (z.B. VIX Spike oder CRITICAL Warnungen) das Debouncing aber dynamisch auf 1-5 Tage reduziert wird, um keine schnellen V-Shape-Böden zu verpassen.
+  * **Dynamisches Debouncing:** Das System so umbauen, dass in "Peacetime" (ruhiger Markt) ein 14-Tage-Debounce gilt. Wechselt das System in den "Crisis Mode" (z.B. VIX Spike oder CRITICAL Warnungen), muss das Debouncing dynamisch auf 1-5 Tage reduziert werden, um schnelle V-Shape-Böden nicht zu verpassen.
 
 
 ## 2. Refactoring & Modularisierung der JS-Dateien (insb. IndicatorEngine.js)
-* **Problem:** Die Datei `IndicatorEngine.js` (und potenziell weitere Core-Dateien) ist massiv gewachsen (weit über 1.200 Zeilen) und enthält sämtliche Indikatoren als hartkodiertes Array. Das erschwert die Wartbarkeit, Übersichtlichkeit und Testabdeckung erheblich.
-* **Ziel:** Dringende Überprüfung des Umfangs aller JavaScript-Dateien und anschließendes Architektur-Refactoring, um die Code-Basis sauber, modular und zukunftssicher zu halten.
+* **Status:** **[PROTOTYP & ARCHITEKTUR ABGESCHLOSSEN]** – Die logische Aufteilung in `MacroRegimeEngine` und `TradeSetupEngine` wurde für Gold/GDX theoretisch entworfen (`EngineRefactoring.md`) und in einer Sandbox (`scratch/performance/GoldGDXEngine.js`) extrem erfolgreich als Prototyp bewiesen.
+* **Problem:** Die Datei `IndicatorEngine.js` (und potenziell weitere Core-Dateien) ist massiv gewachsen (weit über 1.200 Zeilen) und enthält sämtliche Indikatoren als hartkodiertes Array. Das erschwert die Wartbarkeit, Übersichtlichkeit und Testabdeckung erheblich. Zudem verletzt die Vermischung von Makro-Warnungen (Systemsteuerung) und Invest-Signalen (Trading-Setups) das Single Responsibility Principle.
+* **Ziel:** Dringendes Architektur-Refactoring, um den bewiesenen Sandbox-Prototypen in das echte System zu portieren und die Code-Basis modular zu halten.
 * **Aufgaben:**
   * **Code-Audit:** Alle großen Dateien im `src/`-Ordner identifizieren und auf Überladung prüfen.
-  * **Modularisierung:** Einzelne Indikatoren aus der `IndicatorEngine.js` in separate Dateien/Klassen auslagern (z.B. in einen Ordner `src/analysis/indicators/`).
-  * **Registry-Pattern:** Die Engine so umbauen, dass sie Indikatoren dynamisch lädt oder via Registry registriert bekommt, anstatt alles monolithisch abzuarbeiten.
+  * **Architektur-Trennung [PROTOTYP DONE -> IMPLEMENTATION OPEN]:** Aufspaltung der `IndicatorEngine.js` in die zwei dedizierten Core-Engines:
+    1. `MacroRegimeEngine`: Beobachtet ausschließlich systemische Indikatoren (Zinsen, FED, VIX, SPY). Zuständig für die generelle Marktwetterlage (Crash-Erkennung).
+    2. `TradeSetupEngine`: Beobachtet isolierte Trade-Setups für konkrete Assets (z.B. Gold Gummiband, GDX Buying Climax) basierend auf dem aktuellen Makro-Regime.
+  * **Modularisierung:** Einzelne Indikatoren in separate Dateien/Klassen auslagern (z.B. in einen Ordner `src/analysis/indicators/`).
+  * **Registry-Pattern:** Die neuen Engines so umbauen, dass sie Indikatoren dynamisch laden, anstatt sie monolithisch abzuarbeiten.
 
 
 ## 3. FINRA Short-Volume: Ursachenforschung & Feature-Erweiterung
