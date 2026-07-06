@@ -15,11 +15,11 @@ Dieses Dokument bündelt alle aktuell noch offenen Entwicklungsaufgaben und Arch
 ## 2. FINRA Short-Volume: Ursachenforschung & Feature-Erweiterung
 * **Problem:** Extreme FINRA-Leerverkaufsdaten wirken sich je nach Aktie massiv unterschiedlich aus (z.B. bei ZETA als Kontra-Indikator, bei NVTS als Volatilitäts-Verstärker). Die detaillierten empirischen Erkenntnisse dazu liegen in der `docs/ML_EVALUATIONS.md`.
 * **Ziel:** Das neuronale Netz soll künftig selbstständig interpretieren können, *warum* extrem hohes Short-Volume bei einer Aktie ein Kaufsignal, bei einer anderen aber ein Risiko darstellt.
-* **Aufgaben:**
-  * **Forschung:** Analysieren, woher die Divergenz stammt (z.B. Free-Float-Anteil, Institutionelle Quote, ausstehende Wandelanleihen, fundamentale Bewertung).
-  * **Architektur-Refactoring (Voraussetzung):** Die monolithische Methode `buildFeatures()` in der `src/services/MLRegimeService.js` auflösen und in das geplante Strategy-Pattern (`<Ticker>FeatureBuilder.js`) überführen (siehe `docs/ML_ARCHITECTURE.md`).
-  * **Code-Anpassung:** Die identifizierten Short-Volume-Metriken als mathematische "Features" in die neuen Ticker-spezifischen Builder einbauen.
-  * **Retraining:** Modelle mit den neuen Features neu anlernen, um die Vorhersage-Konfidenz signifikant zu steigern.
+* **Aufgaben / Status:**
+  * **Architektur-Refactoring [ERLEDIGT]:** Das Strategy-Pattern (`FeatureBuilder.js` im Ordner `src/ml/features/`) wurde bereits erfolgreich etabliert und verifiziert. Die technische Infrastruktur für neue Features steht.
+  * **Forschung [OFFEN]:** Analysieren, woher die Divergenz in der FINRA-Wirkung stammt (z.B. Free-Float-Anteil, Institutionelle Quote, ausstehende Wandelanleihen, fundamentale Bewertung).
+  * **Code-Anpassung [OFFEN]:** Die final identifizierten Short-Volume-Metriken als mathematische "Features" in die neuen Ticker-spezifischen Builder einbauen.
+  * **Retraining [OFFEN]:** Modelle mit den neuen Features neu anlernen, um die Vorhersage-Konfidenz signifikant zu steigern.
 
 
 ## 3. Rework der ML-Modelle für hochvolatile Einzelaktien (Growth: SOFI, ZETA, NVTS)
@@ -46,8 +46,8 @@ Dieses Dokument bündelt alle aktuell noch offenen Entwicklungsaufgaben und Arch
 * **Stichtag für ersten Backtest:** **04.01.2027** (nach ca. 6 Monaten Live-Aufzeichnung). Erst dann haben wir genug Markt-Regime (Bull, Bear, Volatility) und OPEX-Zyklen durchlebt, um die Gamma-Support/Resistance-Mauern belastbar in ML-Modelle oder Indikatoren zu integrieren.
 
 ## 6. Fraktales Execution-Modul (Anti-Slippage Engine)
-* **Ziel:** Trennung von Makro-Signal (Crash-Vorhersage) und Trade-Ausführung (Execution). Die `IndicatorEngine.js` liefert künftig nur noch die "Erlaubnis" zum Verkauf (Daily Timeframe).
-* **Umsetzung:** Ein neues Execution-Modul muss konzipiert werden, das bei vorliegendem Crash-Signal auf einen Intraday-Zeitrahmen (z.B. 5-Minuten oder 15-Minuten Chart) wechselt und den Verkauf optimiert. Es verkauft entweder noch *vor* dem Daily Close (z.B. 15:55 Uhr) oder wartet am Folgetag gezielt auf eine kurzfristige Markterholung (Mean-Reversion-Spike), um massive Overnight-Gaps (wie am Black Monday 2024) zu vermeiden.
+* **Ziel:** Trennung von Makro-Signal (Crash-Vorhersage) und Trade-Ausführung (Execution). Unsere dezentralisierten Indikatoren und die geplante `MacroRegimeEngine` liefern künftig nur noch die übergeordnete "Erlaubnis" zum Verkauf (Daily Timeframe).
+* **Umsetzung:** Ein neues Execution-Modul (die geplante `TradeSetupEngine`) muss konzipiert werden, das bei vorliegendem Crash-Signal auf einen Intraday-Zeitrahmen (z.B. 5-Minuten oder 15-Minuten Chart) wechselt und den Verkauf optimiert. Es verkauft entweder noch *vor* dem Daily Close (z.B. 15:55 Uhr) oder wartet am Folgetag gezielt auf eine kurzfristige Markterholung (Mean-Reversion-Spike), um massive Overnight-Gaps (wie am Black Monday 2024) zu vermeiden.
 
 
 
