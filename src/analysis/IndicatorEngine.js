@@ -36,28 +36,9 @@ import { MlRegimeRadarMacroIndicator } from './indicators/MlRegimeRadarMacroIndi
 import { MlRegimeRadarCryptoIndicator } from './indicators/MlRegimeRadarCryptoIndicator.js';
 
 export class IndicatorEngine {
-  constructor() {
-    const configPath = path.resolve(process.cwd(), 'config/Notification-Config.json');
-    this.notificationConfig = { topics: {}, indicators: {} };
-    try {
-      if (fs.existsSync(configPath)) {
-        this.notificationConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-      } else {
-        console.warn(`[IndicatorEngine] Config nicht gefunden: ${configPath}`);
-      }
-    } catch (e) {
-      console.error("[IndicatorEngine] Fehler beim Laden der Notification-Config:", e.message);
-    }
-
-    const cycleConfigPath = path.resolve(process.cwd(), 'config/Cycle-Base-Config.json');
-    this.cycleConfig = { MACRO_CYCLE: { lastBtcBottomDate: '2022-11-21', dangerWindowStartDays: 970 } };
-    try {
-      if (fs.existsSync(cycleConfigPath)) {
-        this.cycleConfig = JSON.parse(fs.readFileSync(cycleConfigPath, 'utf8'));
-      }
-    } catch (e) {
-      console.error("[IndicatorEngine] Fehler beim Laden der Cycle-Base-Config:", e.message);
-    }
+  constructor(notificationConfig = { topics: {}, indicators: {} }, cycleConfig = { MACRO_CYCLE: { lastBtcBottomDate: '2022-11-21', dangerWindowStartDays: 970 } }) {
+    this.notificationConfig = notificationConfig;
+    this.cycleConfig = cycleConfig;
 
     const THRESHOLDS = {
       TOTRESNS_CRITICAL: 2800,

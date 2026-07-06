@@ -82,7 +82,19 @@ export async function runCLI(argv) {
         }
         // -----------------------------
         
-        const engine = new IndicatorEngine();
+        const notifPath = path.resolve(process.cwd(), 'config/Notification-Config.json');
+        let notificationConfig = { topics: {}, indicators: {} };
+        if (fs.existsSync(notifPath)) {
+          notificationConfig = JSON.parse(fs.readFileSync(notifPath, 'utf8'));
+        }
+
+        const cyclePath = path.resolve(process.cwd(), 'config/Cycle-Base-Config.json');
+        let cycleConfig = { MACRO_CYCLE: { lastBtcBottomDate: '2022-11-21', dangerWindowStartDays: 970 } };
+        if (fs.existsSync(cyclePath)) {
+          cycleConfig = JSON.parse(fs.readFileSync(cyclePath, 'utf8'));
+        }
+
+        const engine = new IndicatorEngine(notificationConfig, cycleConfig);
         
         // 1. Ausgabe im Terminal (mit Farben)
         engine.run(groupedData);

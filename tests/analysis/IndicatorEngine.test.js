@@ -5,7 +5,9 @@ describe('IndicatorEngine', () => {
   let engine;
 
   beforeEach(() => {
-    engine = new IndicatorEngine();
+    const mockNotificationConfig = { topics: {}, indicators: {} };
+    const mockCycleConfig = { MACRO_CYCLE: { lastBtcBottomDate: '2022-11-21', dangerWindowStartDays: 970 } };
+    engine = new IndicatorEngine(mockNotificationConfig, mockCycleConfig);
   });
 
   const generateTimeline = (length, overrides = {}) => {
