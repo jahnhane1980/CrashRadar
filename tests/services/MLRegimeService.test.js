@@ -59,6 +59,62 @@ describe('MLRegimeService', () => {
       const features = service.buildFeatures(candles);
       expect(features[0].label).toBe('UNKNOWN');
     });
+
+    it('calculates long-term features (SMA200, 52W High/Low) correctly with chaos data', () => {
+      const candles = [];
+      let basePrice = 1000;
+      for (let i = 0; i < 260; i++) {
+        // Sinus-Welle mit starkem Rauschen
+        const sine = Math.sin(i / 15.9) * 200;
+        const noise = (Math.random() - 0.5) * 40;
+        
+        // Gaps (extreme Preis-Schocks einbauen)
+        if (i === 150) basePrice -= 300; // Harter Crash
+        if (i === 220) basePrice += 200; // Harter Pump
+        
+        let close = basePrice + sine + noise;
+        let high = close + Math.random() * 20 + 5; 
+        let low = close - Math.random() * 20 - 5;  
+        let volume = 1000 + Math.random() * 500;
+        
+        // Volume Climax
+        if (i === 100) volume *= 15;
+
+        candles.push({
+          date: `2020-01-${i+1}`,
+          close: close,
+          high: high,
+          low: low,
+          volume: volume,
+          label: 'BULL_MARKET'
+        });
+      }
+
+      const features = service.buildFeatures(candles);
+      
+      const f = features[259];
+      expect(f.Dist_SMA200).toBeDefined();
+      expect(f.SMA200_Slope).toBeDefined();
+      expect(f.Dist_52W_High).toBeDefined();
+      expect(f.Dist_52W_Low).toBeDefined();
+      expect(typeof f.Days_Below_SMA200).toBe('number');
+      
+      // Logik-Prüfungen
+      expect(f.Dist_52W_High <= 0).toBe(true); // Preis kann nie höher als das Max-High sein
+      expect(f.Dist_52W_Low >= 0).toBe(true);  // Preis kann nie tiefer als das Min-Low sein
+    });
+
+    it('handles Zero-Variance Edge-Cases (Volume Z-Score DivByZero)', () => {
+      const candles = [];
+      for (let i = 0; i < 60; i++) {
+        // Konstantes Volumen über 60 Tage erzwingt Standardabweichung = 0
+        candles.push({ date: `2020-01-${i+1}`, close: 100, volume: 1000, high: 105, low: 95 }); 
+      }
+      const features = service.buildFeatures(candles);
+      
+      // Volume_Z_Score muss 0 sein, da StdDev = 0 abgefangen wird
+      expect(features[59].Volume_Z_Score).toBe(0);
+    });
   });
 
   describe('loadModel', () => {
@@ -90,6 +146,68 @@ describe('MLRegimeService', () => {
       await expect(service.loadModel()).rejects.toThrow('File missing');
       spyReadFile.mockRestore();
     });
+
+    it('successfully loads model and sets weights (6 classes)', async () => {
+      const mockStats = { Close: {}, Volume: {}, OBV: {}, ATR_14: {}, RSI_14: {}, MACD_Hist: {} }; // 6 Features
+      
+      const makeArray = (shape) => {
+        if (shape.length === 1) return Array(shape[0]).fill(0);
+        if (shape.length === 2) return Array(shape[0]).fill(0).map(() => Array(shape[1]).fill(0));
+      };
+
+      const mockWeights = [
+        makeArray([6, 256]),  // lstm kernel
+        makeArray([64, 256]), // lstm rec_kernel
+        makeArray([256]),     // lstm bias
+        makeArray([64, 32]),  // dense1 kernel
+        makeArray([32]),      // dense1 bias
+        makeArray([32, 6]),   // dense2 kernel
+        makeArray([6])        // dense2 bias
+      ];
+      
+      const spyReadFile = jest.spyOn(fs, 'readFile').mockImplementation((path) => {
+        if (path.includes('stats.json')) return Promise.resolve(JSON.stringify(mockStats));
+        if (path.includes('weights.json')) return Promise.resolve(JSON.stringify(mockWeights));
+        return Promise.resolve('{}');
+      });
+
+      await service.loadModel();
+      expect(service.labels.length).toBe(6);
+      expect(service.model).toBeDefined();
+
+      spyReadFile.mockRestore();
+    }, 15000);
+
+    it('successfully loads model and sets weights (7 classes)', async () => {
+      const mockStats = { Close: {}, Volume: {}, OBV: {}, ATR_14: {}, RSI_14: {}, MACD_Hist: {} }; // 6 Features
+      
+      const makeArray = (shape) => {
+        if (shape.length === 1) return Array(shape[0]).fill(0);
+        if (shape.length === 2) return Array(shape[0]).fill(0).map(() => Array(shape[1]).fill(0));
+      };
+
+      const mockWeights = [
+        makeArray([6, 256]),  // lstm kernel
+        makeArray([64, 256]), // lstm rec_kernel
+        makeArray([256]),     // lstm bias
+        makeArray([64, 32]),  // dense1 kernel
+        makeArray([32]),      // dense1 bias
+        makeArray([32, 7]),   // dense2 kernel
+        makeArray([7])        // dense2 bias
+      ];
+      
+      const spyReadFile = jest.spyOn(fs, 'readFile').mockImplementation((path) => {
+        if (path.includes('stats.json')) return Promise.resolve(JSON.stringify(mockStats));
+        if (path.includes('weights.json')) return Promise.resolve(JSON.stringify(mockWeights));
+        return Promise.resolve('{}');
+      });
+
+      await service.loadModel();
+      expect(service.labels.length).toBe(7);
+      expect(service.model).toBeDefined();
+
+      spyReadFile.mockRestore();
+    }, 15000);
   });
 
   describe('normalize', () => {
@@ -127,6 +245,20 @@ describe('MLRegimeService', () => {
       ];
       const normalized = service.normalize(features, true);
       expect(normalized[0][0]).toBe(0); // falls back to division by 1 -> (100 - 100) / 1 = 0
+    });
+
+    it('returns empty array if stats are not loaded', () => {
+      service.stats = null;
+      expect(service.normalize([{ Close: 100 }], false)).toEqual([]);
+    });
+
+    it('handles undefined feature values by falling back to 0', () => {
+      const features = [
+        { Close: undefined, Volume: null, OBV: 'invalid', ATR_14: 5, RSI_14: 60, MACD_Hist: 1 },
+        { Close: 110, Volume: 20, OBV: 30, ATR_14: 6, RSI_14: 70, MACD_Hist: 2 }
+      ];
+      const normalized = service.normalize(features, true);
+      expect(service.stats.Close.mean).toBe(55); // (0 + 110) / 2
     });
   });
 

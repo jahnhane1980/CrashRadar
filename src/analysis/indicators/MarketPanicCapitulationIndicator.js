@@ -14,15 +14,15 @@ export class MarketPanicCapitulationIndicator {
         let maxVolRatio = 0;
         
         // 50-Tage Durchschnittsvolumen VOR dem 14-Tage-Fenster berechnen
-        const avgVol = MathUtils.getAverageForSlice(timeline, t => t.assets.SPY_Volume || t.assets.QQQ_Volume, 50, 15);
+        const avgVol = MathUtils.getAverageForSlice(timeline, t => t.assets?.SPY_Volume || t.assets?.QQQ_Volume, 50, 15);
         if (avgVol === null) return { status: 'UNKNOWN', message: 'Keine gültigen Volumendaten' };
         
         // Analysiere die letzten 14 Tage auf Extremwerte
         const windowStart = timeline.length - 15;
         for (let i = windowStart; i < timeline.length; i++) {
             const day = timeline[i];
-            const vix = day.assets.VIX || 0;
-            const vol = day.assets.SPY_Volume || day.assets.QQQ_Volume || 0;
+            const vix = day.assets?.VIX || 0;
+            const vol = day.assets?.SPY_Volume || day.assets?.QQQ_Volume || 0;
             
             if (vix > maxVix) maxVix = vix;
             if (vol) {

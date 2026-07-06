@@ -40,6 +40,7 @@ Kupfer gilt als Fieberthermometer der Weltwirtschaft, während Gold traditionell
   * *Selling Climax:* 2011 und vor dem Zins-Schock Anfang 2022 stürzte Gold unter massivem Volumen (-2%, Volumen 41x über Durchschnitt) ab. Das war der perfekte Startschuss für den Crash aller Assetklassen durch Liquidationszwänge (Margin Calls).
   * *Buying Climax:* Extreme Volumenspikes (>20x) bei gleichzeitig steigendem Goldpreis wie in unserer 2026er Simulation sind das finale Zeichen einer "Everything Bubble" (Panik-Käufe aus Angst vor Entwertung/Systemrisiko).
 * **Fazit:** Wenn Gold aufhört zu fallen und einen Aufwärtstrend ausbildet, signalisiert dies, dass der Liquiditätsengpass im System behoben wurde. Es ist der verlässlichste Indikator dafür, dass der Aktienmarkt bald seinen Tiefpunkt ("Boden") findet. Der "Volume Climax" bestätigt uns hingegen in Echtzeit, ob gerade absolute Panik oder "Blow-Off"-FOMO herrscht.
+* **Die Dauer von Gold-Bullenmärkten:** Echte, sekulare Gold-Bullenmärkte laufen historisch eher 3 bis 5 Jahre, mit sehr steilen 1,5- bis 2-jährigen Beschleunigungsphasen ("Parabolic Runs") an ihrem Ende.
 
 ### GDX (Gold Miners) vs. Öl (CL=F) im Gold-Bullenmarkt
 * **Die Top-Bildung (GDX als Vorläufer):** Historisch ist GDX (der Goldminen-ETF) ein exzellenter Vorläufer für das Ende eines Gold-Bullenmarktes. In 13 massiven Gold-Rallyes toppte der GDX in 6 Fällen zwischen 1 und 11 Tagen *vor* dem physischen Gold. Das "Smart Money" nimmt bei den gehebelten, riskanten Minen zuerst Gewinne mit. Fällt der GDX, während Gold noch steigt, steht das Gold-Top unmittelbar bevor.
@@ -52,6 +53,7 @@ Kupfer gilt als Fieberthermometer der Weltwirtschaft, während Gold traditionell
 * **Die Volumen-Analyse (Climax-Muster):** Massive Volumen-Spikes (>3x des 50-Tage-Durchschnitts) beim GDX kennzeichnen verlässlich Wendepunkte (Extremwerte) im Goldmarkt.
   * *Selling Climax (Kaufsignal/Boden):* Wenn GDX an einem Tag massiv einbricht (≤ -5%) UND das Volumen auf über das 3-fache des 50-Tage-Schnitts explodiert, kapitulieren Kleinanleger. Smart Money sammelt ein. Resultat: Ein aggressives V-Shape Reversal.
   * *Buying Climax (Warnsignal/Top):* Wenn GDX extrem steil ansteigt (≥ +5%) UND das Volumen auf über das 3-fache explodiert, kaufen Kleinanleger aus FOMO (Fear Of Missing Out). Smart Money verkauft in die Liquidität hinein. Resultat: Ein brutales lokales Top und darauffolgende Abverkäufe.
+* **Zyklus-Performance & Anomalien (Die 0,35 % Regel):** Ein gesunder, kompletter Makro-Bullenmarkt für den GDX erstreckt sich historisch – analog zum Gold – über mehrere Jahre. In diesen "ganzen Läufen" (z.B. 2008-2011 oder 2022-2026) pegelt sich die durchschnittliche Wachstumsrate erstaunlich konstant bei **~0,34 % bis 0,36 % pro Tag** ein. Extreme Ausreißer nach oben (wie die +1,29 % pro Tag im Jahr 2020) sind das Resultat von massiven Liquidations-Crashs (Margin Calls). In solchen Schock-Momenten wird die Energie eines gesamten Bullenzyklus auf eine extrem kurze V-Shape-Erholung (z.B. nur 142 Tage) komprimiert.
 * **Margin Calls vs. Kapital-Rotation:** Warum fällt Gold überhaupt?
   * *Der Margin Call (Crash-Sog):* Wenn der Aktienmarkt (SPY) crasht und/oder der VIX explodiert, erhalten Institutionen Margin Calls. Sie sind gezwungen, liquide Gewinner (Gold/Minen) zu verkaufen, um Cash zu beschaffen. Das drückt GDX oft extrem tief unter den SMA 50. Algorithmen schreiben den Trend dann fälschlicherweise ab, obwohl der Crash nicht am Gold, sondern am blutenden Aktienmarkt lag.
   * *Die Kapital-Rotation (Opportunity Cost):* In extrem starken Aktien-Bullenmärkten (Risk-On) "verhungert" Gold oft. Liquiditätsspender rotieren ihr Geld aus dem Krisen-Hedge in den hochrentablen Aktienmarkt. Gold ist dann totes Kapital.
@@ -311,6 +313,25 @@ Die folgende Liste zeigt historische Markteinbrüche von über 15%, berechnet al
 * **-26.15%** | Peak: 13.03.2024 ➔ Trough: 06.09.2024 | Recovery: 06.11.2024
 * **-28.10%** | Peak: 21.01.2025 ➔ Trough: 08.04.2025 | Recovery: 18.05.2025
 * **-51.16%** | Peak: 06.10.2025 ➔ Trough: 06.06.2026 | Recovery: Ongoing
+
+---
+
+## 2.5 Die Makro-Zyklus & Rotations-Strategie (Gold vs. BTC)
+
+### Die 7-Jahres-Zyklus-Regel für Gold
+Gold bewegt sich historisch in sehr präzisen **6- bis 7-Jahres-Zyklen** von einem echten Makro-Boden zum nächsten (Ausnahme: Exogene Schocks wie 2008, die den Zyklus gewaltsam neustarten). In der ersten Hälfte jedes großen Makro-Bullenmarktes gibt es historisch einen massiven, monatelangen Rücksetzer ("Mid-Cycle Dip") von ca. **-12 % bis -18 %**. Das ist kein Trendbruch, sondern ein absolut normales "Auswaschen", bevor der parabolische Teil startet.
+
+### Der Hebel-Faktor bei Proxy-Aktien (MSTR & GDX)
+Sowohl MSTR als auch GDX hebeln die Mid-Cycle Dips des Basis-Assets historisch fast exakt mit einem **Faktor von 2x bis 2,5x**. Ein 12 % Dip bei Gold/BTC bedeutet zwingend einen 25 % bis 30 % Einbruch bei den Aktien. Dies muss als "normale Volatilität" einkalkuliert werden.
+
+### Die Makro-Rotations-Strategie ("Vom Airbag zur Rakete")
+* **Gold als Airbag:** In der initialen Crash-Phase (Margin-Call-Sog) findet Gold in 100 % der Fälle *vor* BTC und Aktien seinen echten Boden. Es ist der perfekte Hafen für die erste Schockwelle.
+* **BTC als Rendite-Rakete:** Sobald die FED die Zinsen senkt und Liquidität ins System zurückkehrt, wird Gold zu "totem Kapital" (Opportunity Cost). Der Krypto-Markt (BTC/MSTR) springt an. Durch den viel kürzeren und saubereren **4-Jahres-Rhythmus** von BTC ist die sofortige Rotation von Gold in Krypto das mathematisch profitabelste Setup für den neuen Bullenmarkt.
+* Siehe für Rohdaten zu den Zyklen: [asset_bull_compare.csv](file:///C:/GitHub/CrashRadar/data/archive/asset_bull_compare.csv)
+
+### Das ETF-Korsett bei Bitcoin
+Das "Law of Large Numbers" und die Zulassung der Wall-Street-ETFs dämpfen die irren parabolischen "100x" Meme-Spitzen früherer Krypto-Zyklen. Die Zyklen werden dadurch **flacher, aber länger und strukturell stabiler**, da die ETFs als institutionalisierte Kapital-Rohrleitung dienen.
+**Das Risiko:** Durch die ETFs ist BTC nun hart an das klassische Margin-System gekoppelt. Fällt der S&P 500, erhalten Broker Margin-Calls und liquidieren BTC-ETFs ihrer Kunden automatisiert mit. BTC wird bei einem Liquiditäts-Crash also gnadenlos mit dem Aktienmarkt in die Tiefe gezogen.
 
 ---
 

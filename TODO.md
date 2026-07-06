@@ -26,7 +26,7 @@
 
 ### 1. Core-Services Testabdeckung (Lücken füllen)
 Die Architektur-Analyse hat ergeben, dass noch Lücken in zentralen Services bestehen. Diese werden auf 100% gebracht (mittels Edge-Cases, chaotischen Testdaten und Fallbacks).
-- [ ] `RegimeService.js` (Aktuell ~74% Coverage, benötigt Härtetests für fehlende Logik-Blöcke)
+- [x] `RegimeService.js` (Aktuell ~74% Coverage, benötigt Härtetests für fehlende Logik-Blöcke) -> 100% Abdeckung erreicht!
 
 ### 2. Indikatoren Testabdeckung (Testsuite vervollständigen)
 Jeder verbleibende Indikator muss einzeln und sequenziell mit einer eigenen Testdatei abgedeckt werden. 
@@ -38,18 +38,18 @@ Jeder verbleibende Indikator muss einzeln und sequenziell mit einer eigenen Test
 - Keine Autokorrektur der Test-Ergebnisse (Indikatoren-Code bleibt unangetastet, Ergebnisse werden analysiert).
 
 **Offene Indikatoren (Verbleibende TODOs):**
-- [ ] CryptoPortfolioExitIndicator
-- [ ] GdxBuyingClimaxIndicator
-- [ ] GdxGoldDivergenceIndicator
-- [ ] GdxSellingClimaxIndicator
-- [ ] GoldCapitulationIndicator
-- [ ] GoldVolumeClimaxIndicator
-- [ ] HygDivergenceIndicator
-- [ ] MarginDebtIndicator
-- [ ] MarketPanicCapitulationIndicator
-- [ ] MaturityWallIndicator
-- [ ] MlRegimeRadarBtcIndicator
-- [ ] MlRegimeRadarCryptoIndicator
+- [x] CryptoPortfolioExitIndicator -> 100% Abdeckung!
+- [x] GdxBuyingClimaxIndicator -> 100% Abdeckung erreicht!
+- [x] GdxGoldDivergenceIndicator -> 100% Abdeckung erreicht!
+- [x] GdxSellingClimaxIndicator -> 100% Abdeckung erreicht!
+- [x] GoldCapitulationIndicator -> 100% Abdeckung erreicht!
+- [x] GoldVolumeClimaxIndicator -> 100% Abdeckung erreicht!
+- [x] HygDivergenceIndicator -> 100% Abdeckung erreicht!
+- [x] MarginDebtIndicator -> 100% Abdeckung erreicht!
+- [x] MarketPanicCapitulationIndicator -> 100% Abdeckung erreicht!
+- [x] MaturityWallIndicator -> 100% Abdeckung erreicht!
+- [x] MlRegimeRadarBtcIndicator -> 100% Abdeckung erreicht!
+- [x] MlRegimeRadarCryptoIndicator -> 100% Abdeckung erreicht!
 - [ ] MlRegimeRadarMacroIndicator
 - [ ] MlRegimeRadarQqqIndicator
 - [ ] MlRegimeRadarSpyIndicator

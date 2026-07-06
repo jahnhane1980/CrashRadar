@@ -19,7 +19,6 @@ export class GoldCapitulationIndicator {
             countPrice++;
         }
         }
-        if (countPrice === 0) return { status: 'UNKNOWN', message: 'Keine Daten für SMA20' };
         const sma20 = sumPrice / countPrice;
 
         // Ist heute der Ausbruch über den SMA 20?

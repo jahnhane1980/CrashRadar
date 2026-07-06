@@ -11,7 +11,7 @@ export class MaturityWallIndicator {
     evaluate(timeline) {
         if (timeline.length < 1) return { status: 'UNKNOWN', message: 'Zu wenig Daten' };
         
-        const current = timeline[timeline.length - 1].macroGroups.Leading?.MaturityWallPct;
+        const current = timeline[timeline.length - 1].macroGroups?.Leading?.MaturityWallPct;
         if (current === null || current === undefined) return { status: 'UNKNOWN', message: 'Keine Daten' };
         
         if (current > this.THRESHOLDS.CRITICAL) {

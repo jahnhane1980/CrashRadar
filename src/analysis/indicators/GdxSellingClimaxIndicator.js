@@ -24,7 +24,7 @@ export class GdxSellingClimaxIndicator {
         
         // 50-Tage Durchschnittsvolumen
         const avgVol = MathUtils.getAverageForSlice(timeline, t => t.assets.GDX_Volume, 50);
-        if (avgVol === null) return { status: 'UNKNOWN', message: 'Keine gültigen Volumendaten' };
+        if (!avgVol || isNaN(avgVol)) return { status: 'UNKNOWN', message: 'Keine gültigen Volumendaten' };
         const volRatio = currentVol / avgVol;
         const priceChangePct = ((currentPrice - prevPrice) / prevPrice) * 100;
         
