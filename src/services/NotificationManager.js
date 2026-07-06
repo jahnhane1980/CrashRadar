@@ -1,7 +1,10 @@
 export class NotificationManager {
-    constructor(indicators, notificationConfig) {
-        this.indicators = indicators;
-        this.notificationConfig = notificationConfig;
+    constructor(indicators, notificationConfig = {}) {
+        this.indicators = indicators || [];
+        this.notificationConfig = {
+            topics: notificationConfig?.topics || {},
+            indicators: notificationConfig?.indicators || {}
+        };
     }
 
     generateReport(groupedData, cleanText = false) {
@@ -37,9 +40,14 @@ export class NotificationManager {
             const catIndicators = this.indicators.filter(i => i.category === cat);
             
             catIndicators.forEach(ind => {
-                const result = ind.evaluate(groupedData);
-                const colorStat = statusColor[result.status] || result.status;
-                addLine(`  ${colorStat} ${ind.name}: ${result.value} -> ${result.message}`);
+                try {
+                    const result = ind.evaluate(groupedData);
+                    const colorStat = statusColor[result.status] || result.status;
+                    addLine(`  ${colorStat} ${ind.name}: ${result.value} -> ${result.message}`);
+                } catch (e) {
+                    const errorStat = statusColor['UNKNOWN'] || '[UNKNOWN]';
+                    addLine(`  ${errorStat} ${ind.name}: ERROR -> Fehler bei der Auswertung (${e.message})`);
+                }
             });
             addLine('');
         });
@@ -57,7 +65,14 @@ export class NotificationManager {
         const groupedAlerts = {};
     
         this.indicators.forEach(ind => {
-            const result = ind.evaluate(groupedData);
+            let result;
+            try {
+                result = ind.evaluate(groupedData);
+            } catch (e) {
+                console.error(`[NotificationManager] Fehler beim Auswerten von ${ind.name}:`, e.message);
+                return; // Überspringen und App am Leben halten
+            }
+
             if (result.status === 'CRITICAL' || result.status === 'WARNING') {
             
                 // Debounce-Check: Wurde für diesen Indikator (mit diesem Status) in letzter Zeit schon gewarnt?
@@ -128,9 +143,13 @@ export class NotificationManager {
             let catWarns = 0;
             
             catIndicators.forEach(ind => {
-                const res = ind.evaluate(groupedData);
-                if (res.status === 'CRITICAL') catErrors++;
-                else if (res.status === 'WARNING') catWarns++;
+                try {
+                    const res = ind.evaluate(groupedData);
+                    if (res.status === 'CRITICAL') catErrors++;
+                    else if (res.status === 'WARNING') catWarns++;
+                } catch (e) {
+                    // Indikator hat einen Fehler geworfen, wir zählen ihn nicht mit und stürzen nicht ab
+                }
             });
             
             if (catErrors > 0) overallStatus = 'CRITICAL';
