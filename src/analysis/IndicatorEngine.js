@@ -33,7 +33,6 @@ import { MlRegimeRadarQqqIndicator } from './indicators/MlRegimeRadarQqqIndicato
 import { MlRegimeRadarBtcIndicator } from './indicators/MlRegimeRadarBtcIndicator.js';
 import { MarketPanicCapitulationIndicator } from './indicators/MarketPanicCapitulationIndicator.js';
 import { MlRegimeRadarMacroIndicator } from './indicators/MlRegimeRadarMacroIndicator.js';
-import { MlRegimeRadarMacroIndicator } from './indicators/MlRegimeRadarMacroIndicator.js';
 import { MlRegimeRadarCryptoIndicator } from './indicators/MlRegimeRadarCryptoIndicator.js';
 import { NotificationManager } from '../services/NotificationManager.js';
 
