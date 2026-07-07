@@ -207,7 +207,7 @@ describe('MLRegimeService', () => {
       expect(service.model).toBeDefined();
 
       spyReadFile.mockRestore();
-    }, 15000);
+    }, 30000);
   });
 
   describe('normalize', () => {

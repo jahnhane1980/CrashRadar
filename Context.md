@@ -3,25 +3,24 @@
 *(Dieses Dokument dient als Gedächtnisstütze und State-Transfer für Folge-Sessions. Es hält den aktuellen Fokus, architektonische Leitplanken und strikte Arbeitsregeln fest).*
 
 ## 1. Aktueller Fokus (Nächste Session)
-* **Primäres Ziel:** Fortsetzung der "Hardcore"-Testabdeckung der Indikatoren (Ziel: 100% Coverage).
-* **Nächstes Target:** `MlRegimeRadarMacroIndicator` und die verbleibenden Indikatoren aus der `TODO.md`.
-* **Wichtige Erkenntnis aus letzter Session:** Viele alte Indikatoren verlassen sich blind auf verschachtelte API-Objekte (z.B. `day.assets.VIX`, `macroGroups.Leading.MarginDebt`). Dies führt zu fatalen `TypeError` Abstürzen, wenn Arrays unvollständig sind. Wir nutzen in Tests gezielt `delete` auf diesen Objekten, um Abstürze zu provozieren, und sichern sie dann per Optional Chaining (`?.`) ab.
+* **Primäres Ziel:** Erbringung der fehlenden empirischen Beweise (Backtest-Skripte) für die extrem spezifischen Thesen aus der `docs/Analyse.md`. Siehe `TODO.md` Punkt 1 ("Ausstehende Beweisführungen").
+* **Nächstes Target:** Wir beginnen mit der Erstellung der Backtest-Skripte im Verzeichnis `scratch/analyse/`. Wir müssen die Behauptungen methodisch beweisen (z.B. Tech-Infrastruktur-Rotation mit 13F/DIX, MSTR/COIN-Vorlauf in Tagen, CBOE-VIX-Aktien-Boden, LSTM 79%-Trefferquote, Fractional Kelly, RVOL-These).
+* **Wichtige Erkenntnis:** Die `Analyse.md` wurde überarbeitet und mit lauten `[TODO] BEWEIS ANTRETTEN:`-Markern versehen. Unser Fokus ist es jetzt, diese TODOs im Code zu tilgen und die Ergebnisse in der Doku zu verlinken.
 
-## 2. Testing-Philosophie & Synthetische Märkte (Chaos-Daten)
-Wir testen nicht mehr mit linearen oder flachen Dummy-Daten. Alle Tests müssen die Algorithmen massiv stressen:
-* **Chaos-Arrays:** Daten müssen Sinus-Wellen (Zyklen), hartes Rauschen (`Math.random()`), extreme Gaps (z.B. `+/- 40` Punkte über Nacht) und Volumen-Climaxe (z.B. `15x` Volumen-Spikes) enthalten.
-* **Struktur-Chaos (API-Ausfälle):** Wir löschen gezielt Schlüssel und ganze Knotenpunkte (wie `assets` oder `macroGroups`), um die Robustheit der Indikatoren gegen fehlende Daten zu beweisen.
-* **Mathematische Singularitäten:** Wir zwingen Code gezielt in Division-by-Zero-Szenarien oder undefinierte Zustände, um Fallbacks (`|| 0`) zu erzwingen.
-* **Anti-Overfitting (Noise Injection):** Wir nutzen Rauschen, um sicherzustellen, dass die Indikatoren nicht auf sterile "Happy Paths" überoptimiert sind.
+## 2. Abgeschlossene Meilensteine (Historie)
+* **Testabdeckung & Härtung:** Sämtliche 35 Core-Indikatoren und Services wurden in extremen Chaos-Tests (fehlende Daten, Rauschen) erfolgreich gehärtet. Die Testsuite ist zu **100% grün** (751/751 Tests bestanden) und die Coverage liegt am Maximum.
+* **Architektur:** Die monolithische `IndicatorEngine.js` wurde erfolgreich in autarke Indikator-Klassen (Registry-Pattern) ausgelagert.
+* **Analyse & Doku:** Thesen aus `neue-Thesen.md` wurden tief in die Kern-Doku integriert und alle existierenden Beweis-Skripte aus `scratch/analyse/` wurden lückenlos verlinkt.
 
-## 3. Strikte Arbeitsregeln (Modus: Code-Buddy)
+## 3. Testing-Philosophie & Synthetische Märkte (Chaos-Daten)
+* **Chaos-Arrays:** Daten müssen in Tests Zyklen, hartes Rauschen (`Math.random()`) und extreme Gaps enthalten.
+* **Struktur-Chaos (API-Ausfälle):** Wir löschen gezielt Schlüsselpunkte (wie `assets` oder `macroGroups`), um Robustheit zu beweisen.
+* **Mathematische Singularitäten:** Wir zwingen Code gezielt in Division-by-Zero-Szenarien oder undefinierte Zustände (`UNKNOWN` Fallbacks).
+* **Anti-Overfitting:** Rauschen (`Math.random()`) in historische Preise mischen, um echte Makro-Kausalitäten zu prüfen.
+
+## 4. Strikte Arbeitsregeln (Modus: Code-Buddy)
 Diese Regeln gelten für den KI-Agenten zwingend in jeder Session:
-1. **Keine Autokorrekturen an Kernklassen:** Schlägt ein Test fehl, wird **niemals** eigenmächtig der Produktionscode (z.B. Indikatoren) umgeschrieben. Stattdessen wird der Fehler (inklusive toter Code-Pfade) sauber analysiert und dem User ein Lösungsvorschlag angeboten.
+1. **Keine Autokorrekturen:** Schlägt ein Skript fehl, wird **niemals** eigenmächtig der Produktionscode überschrieben. Stattdessen den Fehler sauber analysieren und dem User einen Lösungsvorschlag machen.
 2. **Absolute Transparenz & Keine Annahmen:** Wenn eine Datei nicht im aktiven Kontext ist, wird sie eingelesen. Keine Schätzungen oder Raten von Variablen.
-3. **Receipt-Pflicht:** Jede Suche oder Aktion wird belegt.
+3. **Receipt-Pflicht:** Jede Kontext-Suche oder Aktion wird im Chat belegt.
 4. **Fokus-Garantie:** Es wird exakt nur das geändert, was besprochen wurde. Bestehende Kommentare, Logiken und Variablen bleiben unangetastet.
-
-## 4. Abgeschlossene Meilensteine (Historie)
-* Die monolithische `IndicatorEngine.js` wurde vollständig in autarke Indikator-Klassen ausgelagert.
-* Core-Services (`MathUtils.js`, `YahooFinanceFetchAdapter.js`, `DefaultFeatureBuilder.js`, `RegimeService.js`) sind bereits erfolgreich durch Chaos-Tests auf 100% Coverage gebracht worden.
-* Etwa die Hälfte der Indikatoren (z.B. GDX-Familie, Gold-Familie, ML-Radar-Familie) ist bereits komplett abgestützt und auf 100% gebracht.

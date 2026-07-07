@@ -5,9 +5,7 @@ export class TechCycleRadarIndicator {
     }
 
     evaluate(timeline) {
-        // Wir brauchen mindestens 10 Wochen (~50 Tage) Daten für einen sinnvollen 10-Wochen-MA,
-        // besser noch mehr (z.B. 100 Tage)
-        if (timeline.length < 100) return { status: 'UNKNOWN', message: 'Zu wenig Daten für Moving Averages' };
+        if (!Array.isArray(timeline) || timeline.length < 100) return { status: 'UNKNOWN', message: 'Zu wenig Daten für Moving Averages' };
 
         const SHORT_MA_DAYS = 15; // ca. 3 Wochen
         const LONG_MA_DAYS = 50;  // ca. 10 Wochen
@@ -18,10 +16,26 @@ export class TechCycleRadarIndicator {
             const startIndex = timeline.length - 1 - offsetIndex - days;
             const endIndex = timeline.length - 1 - offsetIndex;
             for (let i = startIndex; i < endIndex; i++) {
-                if (timeline[i] && timeline[i].assets.SMH && timeline[i].assets.IGV) {
-                    sum += (timeline[i].assets.SMH / timeline[i].assets.IGV);
-                    count++;
-                }
+                const day = timeline[i];
+                if (!day || !day.assets) continue;
+                
+                let smh = day.assets.SMH;
+                let igv = day.assets.IGV;
+                
+                if (smh == null || igv == null) continue;
+                
+                if (typeof smh !== 'number' && typeof smh !== 'string') continue;
+                if (typeof igv !== 'number' && typeof igv !== 'string') continue;
+                if (typeof smh === 'string' && smh.trim() === '') continue;
+                if (typeof igv === 'string' && igv.trim() === '') continue;
+                
+                smh = Number(smh);
+                igv = Number(igv);
+                
+                if (isNaN(smh) || isNaN(igv) || igv === 0) continue;
+
+                sum += (smh / igv);
+                count++;
             }
             return count > 0 ? sum / count : null;
         };
@@ -32,7 +46,7 @@ export class TechCycleRadarIndicator {
         const prevShortMa = getRatioMa(SHORT_MA_DAYS, 5); // MA vor einer Woche
         const prevLongMa = getRatioMa(LONG_MA_DAYS, 5);
 
-        if (!currentShortMa || !currentLongMa || !prevShortMa || !prevLongMa) {
+        if (currentShortMa == null || currentLongMa == null || prevShortMa == null || prevLongMa == null) {
             return { status: 'UNKNOWN', message: 'Keine SMH oder IGV Daten verfügbar' };
         }
 
@@ -45,13 +59,28 @@ export class TechCycleRadarIndicator {
         let cibrStr = "";
         const today = timeline[timeline.length - 1];
         const past = timeline[timeline.length - 15];
-        if (today.assets.CIBR && today.assets.SPY && past.assets.CIBR && past.assets.SPY) {
-            const currentCibrRs = today.assets.CIBR / today.assets.SPY;
-            const pastCibrRs = past.assets.CIBR / past.assets.SPY;
-            const cibrMomentum = ((currentCibrRs - pastCibrRs) / pastCibrRs) * 100;
-            if (cibrMomentum > 2.0) {
-                cibrFleeing = true;
-                cibrStr = `Defensives Geld flüchtet massiv in Cybersecurity (CIBR Momentum: +${cibrMomentum.toFixed(1)}%).`;
+        
+        let todayCibr = today?.assets?.CIBR;
+        let todaySpy = today?.assets?.SPY;
+        let pastCibr = past?.assets?.CIBR;
+        let pastSpy = past?.assets?.SPY;
+        
+        if (todayCibr != null && todaySpy != null && pastCibr != null && pastSpy != null) {
+            todayCibr = Number(todayCibr);
+            todaySpy = Number(todaySpy);
+            pastCibr = Number(pastCibr);
+            pastSpy = Number(pastSpy);
+            
+            if (!isNaN(todayCibr) && !isNaN(todaySpy) && !isNaN(pastCibr) && !isNaN(pastSpy) && todaySpy !== 0 && pastSpy !== 0) {
+                const currentCibrRs = todayCibr / todaySpy;
+                const pastCibrRs = pastCibr / pastSpy;
+                if (pastCibrRs !== 0) {
+                    const cibrMomentum = ((currentCibrRs - pastCibrRs) / pastCibrRs) * 100;
+                    if (cibrMomentum > 2.0) {
+                        cibrFleeing = true;
+                        cibrStr = `Defensives Geld flüchtet massiv in Cybersecurity (CIBR Momentum: +${cibrMomentum.toFixed(1)}%).`;
+                    }
+                }
             }
         }
 

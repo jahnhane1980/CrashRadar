@@ -5,12 +5,23 @@ export class MlRegimeRadarQqqIndicator {
     }
 
     evaluate(timeline) {
-        if (timeline.length < 1) return { status: 'UNKNOWN', message: 'Zu wenig Daten' };
-        const mlRegime = timeline[timeline.length - 1].mlRegimeQqq;
-        if (!mlRegime) return { status: 'UNKNOWN', message: 'Keine ML Prognose vorhanden' };
+        if (!Array.isArray(timeline) || timeline.length === 0) {
+            return { status: 'UNKNOWN', message: 'Zu wenig (oder ungültige) Daten' };
+        }
         
-        const { phase, confidence } = mlRegime;
-        const confPct = (confidence * 100).toFixed(1) + '%';
+        const currentDay = timeline[timeline.length - 1];
+        if (!currentDay || !currentDay.mlRegimeQqq || !currentDay.mlRegimeQqq.phase) {
+            return { status: 'UNKNOWN', message: 'Keine (vollständige) ML Prognose vorhanden' };
+        }
+        
+        const { phase, confidence } = currentDay.mlRegimeQqq;
+        
+        const validPhases = ['MACRO_TOP', 'CYCLE_TOP', 'DOWNTREND', 'BEAR_MARKET', 'MACRO_BOTTOM', 'CYCLE_BOTTOM', 'UPTREND', 'BULL_MARKET', 'SIDEWAYS', 'NEUTRAL'];
+        if (!validPhases.includes(phase)) {
+            return { status: 'UNKNOWN', message: `Unbekannte ML-Phase: ${phase}` };
+        }
+        
+        const confPct = ((confidence || 0) * 100).toFixed(1) + '%';
         
         if (phase === 'MACRO_TOP' || phase === 'CYCLE_TOP') {
             return { status: 'CRITICAL', value: `TOP (${confPct})`, message: 'KI-ALARM! QQQ Makro-Euphorie erkannt. Tech-Topping im Gange.' };
@@ -21,6 +32,7 @@ export class MlRegimeRadarQqqIndicator {
         } else if (phase === 'UPTREND' || phase === 'BULL_MARKET') {
             return { status: 'OK', value: `BULL (${confPct})`, message: 'QQQ Gesunde Bullenmarkt-Struktur.' };
         }
+        
         return { status: 'OK', value: `${phase} (${confPct})`, message: 'QQQ Neutrales Regime.' };
     }
 }

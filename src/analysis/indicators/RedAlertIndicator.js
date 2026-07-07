@@ -5,20 +5,36 @@ export class RedAlertIndicator {
     }
 
     evaluate(timeline) {
-        if (timeline.length < 1) return { status: 'UNKNOWN', message: 'Zu wenig Daten' };
+        if (!Array.isArray(timeline) || timeline.length < 1) return { status: 'UNKNOWN', message: 'Zu wenig Daten' };
         
         const currentDay = timeline[timeline.length - 1];
-        const skew = currentDay.assets?.SKEW;
-        const shortRatio = currentDay.SPY_ShortVolumeRatio;
-        const pcr = currentDay.TotalPCR;
         
-        if (skew === undefined || shortRatio === undefined) {
+        let skew = currentDay?.assets?.SKEW;
+        let shortRatio = currentDay?.SPY_ShortVolumeRatio;
+        let pcr = currentDay?.TotalPCR;
+        
+        if (skew == null || shortRatio == null) {
             return { status: 'UNKNOWN', message: 'Keine SKEW oder Short-Ratio Daten' };
         }
         
+        skew = Number(skew);
+        shortRatio = Number(shortRatio);
+        
+        if (isNaN(skew) || isNaN(shortRatio)) {
+            return { status: 'UNKNOWN', message: 'Ungültige Daten (keine Zahlen)' };
+        }
+        
         // Fallback für PCR, wenn die lokale Datei (noch) fehlt
-        const pcrVal = pcr !== undefined ? pcr : 1.0; 
-        const hasPcr = pcr !== undefined;
+        let pcrVal = 1.0;
+        let hasPcr = false;
+        
+        if (pcr != null) {
+            const numPcr = Number(pcr);
+            if (!isNaN(numPcr)) {
+                pcrVal = numPcr;
+                hasPcr = true;
+            }
+        }
         
         if (skew > 145 && shortRatio < 0.45) {
             if (pcrVal < 0.75) {

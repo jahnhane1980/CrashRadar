@@ -11,16 +11,31 @@ export class VixSpikeCrushIndicator {
     }
 
     evaluate(timeline) {
-        if (timeline.length < 30) return { status: 'UNKNOWN', message: 'Zu wenig Daten' };
+        if (!Array.isArray(timeline) || timeline.length < 30) return { status: 'UNKNOWN', message: 'Zu wenig Daten' };
         
-        const currentVix = timeline[timeline.length - 1].assets.VIX;
-        if (currentVix === null) return { status: 'UNKNOWN', message: 'Keine Daten' };
+        let currentVix = timeline[timeline.length - 1]?.assets?.VIX;
+        if (currentVix == null) return { status: 'UNKNOWN', message: 'Keine Daten' };
+        
+        if (typeof currentVix !== 'number' && typeof currentVix !== 'string') return { status: 'UNKNOWN', message: 'Ungültiger Datentyp' };
+        if (typeof currentVix === 'string' && currentVix.trim() === '') return { status: 'UNKNOWN', message: 'Leerer Wert' };
+        
+        currentVix = Number(currentVix);
+        if (isNaN(currentVix)) return { status: 'UNKNOWN', message: 'Ungültige Daten (keine Zahlen)' };
         
         // Finde das Maximum der letzten 30 Tage
         let maxVix30 = 0;
         for (let i = timeline.length - 30; i < timeline.length; i++) {
-            const v = timeline[i].assets.VIX;
-            if (v !== null && v > maxVix30) maxVix30 = v;
+            const day = timeline[i];
+            let v = day?.assets?.VIX;
+            
+            if (v == null) continue;
+            if (typeof v !== 'number' && typeof v !== 'string') continue;
+            if (typeof v === 'string' && v.trim() === '') continue;
+            
+            v = Number(v);
+            if (!isNaN(v) && v > maxVix30) {
+                maxVix30 = v;
+            }
         }
         
         if (maxVix30 >= this.THRESHOLDS.VIX_SPIKE && currentVix < maxVix30 * this.THRESHOLDS.VIX_CRUSH_PCT) {

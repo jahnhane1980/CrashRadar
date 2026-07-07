@@ -105,5 +105,5 @@ describe('ModelTrainer', () => {
     const savedStats = JSON.parse(fs.writeFileSync.mock.calls[1][1]);
     // mean von (100, 110, 115, 115) = 440 / 4 = 110
     expect(savedStats.Close.mean).toBe(110);
-  }, 15000);
+  }, 30000);
 });

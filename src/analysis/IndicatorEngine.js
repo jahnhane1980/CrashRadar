@@ -113,7 +113,6 @@ export class IndicatorEngine {
       new MlRegimeRadarBtcIndicator(),
       new MarketPanicCapitulationIndicator(),
       new MlRegimeRadarMacroIndicator(),
-      new MlRegimeRadarMacroIndicator(),
       new MlRegimeRadarCryptoIndicator()
     ];
 

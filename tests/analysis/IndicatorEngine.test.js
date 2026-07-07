@@ -737,7 +737,7 @@ describe('IndicatorEngine', () => {
       timeline[99].assets.SPY = null;
       const res = engine.indicators.find(i => i.name.includes('Panik-Kapitulation')).evaluate(timeline);
       expect(res.status).toBe('UNKNOWN');
-      expect(res.message).toContain('Keine Daten');
+      expect(res.message).toContain('Keine (vollständigen) Daten');
     });
 
     it('sollte OK zurückgeben bei VIX < 35 (Edge Case)', () => {
@@ -1434,8 +1434,8 @@ describe('IndicatorEngine', () => {
       const timeline = generateTimeline(1);
       timeline[0].mlRegimeSpy = { phase: 'UNKNOWN_PHASE', confidence: 0.5 };
       const res = engine.indicators.find(i => i.name === 'ML Regime Radar (SPY)').evaluate(timeline);
-      expect(res.status).toBe('OK');
-      expect(res.message).toContain('Neutrales Regime');
+      expect(res.status).toBe('UNKNOWN');
+      expect(res.message).toContain('Unbekannte ML-Phase');
     });
   });
 
@@ -1464,8 +1464,8 @@ describe('IndicatorEngine', () => {
       const timeline = generateTimeline(1);
       timeline[0].mlRegimeQqq = { phase: 'UNKNOWN_PHASE', confidence: 0.5 };
       const res = engine.indicators.find(i => i.name === 'ML Regime Radar (QQQ)').evaluate(timeline);
-      expect(res.status).toBe('OK');
-      expect(res.message).toContain('Neutrales Regime');
+      expect(res.status).toBe('UNKNOWN');
+      expect(res.message).toContain('Unbekannte ML-Phase');
     });
   });
 });
