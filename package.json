@@ -8,6 +8,7 @@
   },
   "scripts": {
     "ml:train": "node ml.js",
+    "ml:retrain": "node ml.js --ticker BTC && node ml.js --ticker SPY && node ml.js --ticker QQQ && node ml.js --ticker SOFI && node ml.js --ticker PLTR && node ml.js --ticker ZETA && node ml.js --ticker NVTS",
     "test": "vitest run -c ./config/vitest.config.js",
     "test:watch": "vitest -c ./config/vitest.config.js",
     "coverage": "vitest run --coverage -c ./config/vitest.config.js"
