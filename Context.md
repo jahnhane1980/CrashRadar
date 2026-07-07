@@ -3,11 +3,14 @@
 *(Dieses Dokument dient als Gedächtnisstütze und State-Transfer für Folge-Sessions. Es hält den aktuellen Fokus, architektonische Leitplanken und strikte Arbeitsregeln fest).*
 
 ## 1. Aktueller Fokus (Nächste Session)
-* **Primäres Ziel:** Erbringung der fehlenden empirischen Beweise (Backtest-Skripte) für die extrem spezifischen Thesen aus der `docs/Analyse.md`. Siehe `TODO.md` Punkt 1 ("Ausstehende Beweisführungen").
-* **Nächstes Target:** Wir beginnen mit der Erstellung der Backtest-Skripte im Verzeichnis `scratch/analyse/`. Wir müssen die Behauptungen methodisch beweisen (z.B. Tech-Infrastruktur-Rotation mit 13F/DIX, MSTR/COIN-Vorlauf in Tagen, CBOE-VIX-Aktien-Boden, LSTM 79%-Trefferquote, Fractional Kelly, RVOL-These).
-* **Wichtige Erkenntnis:** Die `Analyse.md` wurde überarbeitet und mit lauten `[TODO] BEWEIS ANTRETTEN:`-Markern versehen. Unser Fokus ist es jetzt, diese TODOs im Code zu tilgen und die Ergebnisse in der Doku zu verlinken.
+* **Primäres Ziel:** Fortführung der verbleibenden Core-Refactorings gemäß `TODO.md`.
+* **Nächstes Target (Domain Splitting):** Aufspaltung der verbleibenden, sauberen Indikatoren-Auswertung auf zwei neue Kern-Klassen (siehe `TODO.md` Punkt 2):
+  - `MacroRegimeEngine`: Für übergeordnete Makro- und Liquiditäts-Analysen (Zyklus-Erkennung, Crash-Typ Klassifizierung, Catastrophe Stop).
+  - `TradeSetupEngine`: Für kurzfristige, tagesaktuelle Setups und Signale (Dynamischer Einstieg, Sizing, TradeActions).
+* **Ausstehende Daten-Challenge:** Beschaffung und Integration echter historischer Zeitreihen (z. B. Dark Pool Index DIX, 13F-Whale-Filings, VandaTrack Retail Flows), um den noch offenen und als unbewiesen markierten Teil der Tech-Rotations-These empirisch zu belegen.
 
 ## 2. Abgeschlossene Meilensteine (Historie)
+* **Beweisführung & Backtesting (Juli 2026):** 5 von 6 System-Thesen (RVOL-Breakouts, MSTR/COIN-Krypto-Radar, CBOE-VIX-RSI-Böden, LSTM Regime Radar und Fractional Kelly) wurden erfolgreich per Code im Ordner `scratch/analyse/` implementiert, ausgeführt, belegt und in `docs/Analyse.md` verknüpft. Das Datenproblem bezüglich des DIX/13F-Audits wurde als offene Challenge sauber deklariert.
 * **Testabdeckung & Härtung:** Sämtliche 35 Core-Indikatoren und Services wurden in extremen Chaos-Tests (fehlende Daten, Rauschen) erfolgreich gehärtet. Die Testsuite ist zu **100% grün** (751/751 Tests bestanden) und die Coverage liegt am Maximum.
 * **Architektur:** Die monolithische `IndicatorEngine.js` wurde erfolgreich in autarke Indikator-Klassen (Registry-Pattern) ausgelagert.
 * **Analyse & Doku:** Thesen aus `neue-Thesen.md` wurden tief in die Kern-Doku integriert und alle existierenden Beweis-Skripte aus `scratch/analyse/` wurden lückenlos verlinkt.
