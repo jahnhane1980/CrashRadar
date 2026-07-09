@@ -1,0 +1,112 @@
+import { YieldCurveIndicator } from './indicators/YieldCurveIndicator.js';
+import { RedAlertIndicator } from './indicators/RedAlertIndicator.js';
+import { MarginDebtIndicator } from './indicators/MarginDebtIndicator.js';
+import { TgaIndicator } from './indicators/TgaIndicator.js';
+import { MarketPanicCapitulationIndicator } from './indicators/MarketPanicCapitulationIndicator.js';
+import { BankReservesIndicator } from './indicators/BankReservesIndicator.js';
+import { MaturityWallIndicator } from './indicators/MaturityWallIndicator.js';
+import { NfciIndicator } from './indicators/NfciIndicator.js';
+
+export class MacroRegimeEngine {
+    constructor() {
+        // Wir orchestrieren ausschließlich bestehende Indikatoren aus Topf A
+        this.indicators = [
+            new YieldCurveIndicator(),
+            new RedAlertIndicator(),
+            new MarginDebtIndicator(),
+            new TgaIndicator(),
+            new MarketPanicCapitulationIndicator(),
+            new BankReservesIndicator(),
+            new MaturityWallIndicator(),
+            new NfciIndicator()
+        ];
+    }
+
+    evaluate(groupedData) {
+        if (!groupedData || typeof groupedData !== 'object' || Object.keys(groupedData).length === 0) {
+            return {};
+        }
+        
+        const states = {};
+        const dates = Object.keys(groupedData).sort();
+        const timeline = [];
+
+        for (let i = 0; i < dates.length; i++) {
+            const dateStr = dates[i];
+            const currentDay = groupedData[dateStr];
+            timeline.push(currentDay);
+
+            // Fallback für Struktur-Chaos
+            if (!currentDay || !currentDay.assets || !currentDay.macroGroups) {
+                states[dateStr] = {
+                    regime: 'UNKNOWN',
+                    liquidityStatus: 'UNKNOWN',
+                    vetos: []
+                };
+                continue;
+            }
+
+            let regime = 'NORMAL';
+            let liquidityStatus = 'NORMAL';
+            let vetos = [];
+
+            // Alle Indikatoren ausführen
+            for (const indicator of this.indicators) {
+                const result = indicator.evaluate(timeline);
+                if (!result || result.status === 'UNKNOWN') continue;
+
+                // 1. Flash Crash & Panik
+                if (indicator.name === 'Market Panic & Capitulation (VIX + Volume)' && result.status === 'CRITICAL') {
+                    regime = 'FLASH_CRASH';
+                    vetos.push('VIX_SPIKE_PANIC');
+                }
+                
+                // 2. Melt-Up Euphorie (Red Alert)
+                if (indicator.name === 'Red Alert (Bullenmarkt-Stirbt-Signal)' && result.status === 'CRITICAL') {
+                    // Falls nicht schon FLASH_CRASH gesetzt ist
+                    if (regime !== 'FLASH_CRASH') {
+                        regime = 'LATE_CYCLE_EUPHORIA';
+                    }
+                }
+
+                // 3. Deleveraging & Bear Market Warnung (Margin Debt)
+                if (indicator.name === 'Margin Debt (Gier & Hebel)' && (result.status === 'WARNING' || result.status === 'CRITICAL')) {
+                    vetos.push('DELEVERAGING_ONGOING');
+                    // Wenn kein Flash Crash oder Melt-Up aktiv, stufen wir als Bear Market ein
+                    if (regime === 'NORMAL') {
+                        regime = 'BEAR_MARKET';
+                    }
+                }
+
+                // 4. Yield Curve Panic (Un-Inverting)
+                if (indicator.name === 'Yield Curve (T10Y2Y)' && result.status === 'CRITICAL') {
+                    vetos.push('YIELD_CURVE_PANIC');
+                }
+
+                // 5. Stealth Stimulus (TGA)
+                if (indicator.name === 'Treasury General Account (TGA)' && result.message && result.message.includes('Stealth-Stimulus')) {
+                    liquidityStatus = 'STIMULUS_ACTIVE';
+                }
+                
+                // Weitere Vetos aus Topf A (z.B. Bank Reserves, NFCI, etc.)
+                if (indicator.name === 'Bank Reserves' && result.status === 'CRITICAL') {
+                    vetos.push('BANK_RESERVES_CRITICAL');
+                }
+                if (indicator.name === 'Maturity Wall' && result.status === 'CRITICAL') {
+                    vetos.push('MATURITY_WALL_CRITICAL');
+                }
+                if (indicator.name === 'Chicago Fed Stress Index (NFCI)' && result.status === 'CRITICAL') {
+                    vetos.push('NFCI_STRESS_PANIC');
+                }
+            }
+
+            states[dateStr] = {
+                regime,
+                liquidityStatus,
+                vetos
+            };
+        }
+
+        return states;
+    }
+}
