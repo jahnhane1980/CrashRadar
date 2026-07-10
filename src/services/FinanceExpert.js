@@ -116,7 +116,8 @@ export class FinanceExpert {
             M2: state.M2SL,
             CorporateProfits: state.CP,
             BreakevenInflation: state.T10YIE,
-            EcbAssets: state.ECBASSETSW
+            EcbAssets: state.ECBASSETSW,
+            Challenger: state.Challenger
           },
           Contemporaneous: {
             IndustrialProduction: state.INDPRO,

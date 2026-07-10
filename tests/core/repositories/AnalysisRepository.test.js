@@ -13,11 +13,28 @@ vi.mock('mysql2/promise', () => ({
 describe('AnalysisRepository', () => {
   it('sollte initialisiert werden und getAllRawData abrufen können', async () => {
     const repo = new AnalysisRepository('mysql://dummy');
+    
+    repo.pool.query = vi.fn().mockImplementation(async (sql) => {
+        if (sql.includes('econ_challenger')) {
+            if (sql.includes('LIMIT 1')) {
+                // getInitialState query
+                return [[{ val: 40000 }]];
+            }
+            // getAllRawData query
+            return [[{ date: '2023-01-01', Challenger: 45000 }]];
+        }
+        // Fallback for all other queries
+        return [[{ val: 100 }]];
+    });
+
     const data = await repo.getAllRawData('2023-01-01');
     expect(data.btc).toBeDefined();
+    expect(data.challenger).toBeDefined();
+    expect(data.challenger[0].Challenger).toBe(45000);
     
     const state = await repo.getInitialState('2023-01-01');
     expect(state.BTC).toBe(100);
+    expect(state.Challenger).toBe(40000);
     
     await repo.close();
   });

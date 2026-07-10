@@ -38,7 +38,8 @@ describe('MacroRegimeEngine - Chaos & Edge Case Testing', () => {
                     },
                     Leading: {
                         MarginDebt: marginDebt,
-                        MaturityWallPct: 0.10 + Math.random() * 0.05
+                        MaturityWallPct: 0.10 + Math.random() * 0.05,
+                        Challenger: 50000
                     },
                     BankingHealth: {
                         TotalReserves: 3000 + Math.random() * 500
@@ -174,6 +175,22 @@ describe('MacroRegimeEngine - Chaos & Edge Case Testing', () => {
 
             const states = engine.evaluate(data);
             expect(states[euphoricDate].regime).toBe('LATE_CYCLE_EUPHORIA');
+        });
+
+        it('BEAR_MARKET: Sollte Entlassungswellen (Challenger) erkennen und Regime kippen', () => {
+            const data = createHugeChaosData(250);
+            
+            // Für die letzten 30 Tage simulieren wir einen Spike von +60% (auf 80000)
+            const dates = Object.keys(data);
+            for(let i = 220; i < 250; i++) {
+                data[dates[i]].macroGroups.Leading.Challenger = 80000;
+            }
+
+            const states = engine.evaluate(data);
+            const crashState = states[dates[249]];
+            
+            expect(crashState.vetos).toContain('CHALLENGER_CRITICAL_LAYOFFS');
+            expect(crashState.regime).toBe('BEAR_MARKET');
         });
     });
 });

@@ -2,7 +2,7 @@ import { SYMBOLS, FRED_SERIES } from '../core/repositories/AnalysisRepository.js
 
 export class TimeSeriesService {
   static buildTimeline(rawData) {
-    const { btc, tiingo, yahoo, fred, tga, mw, sec, cboe, finra, shortVolume, pcr } = rawData;
+    const { btc, tiingo, yahoo, fred, tga, mw, sec, cboe, finra, shortVolume, pcr, challenger } = rawData;
     const timeline = {};
     const addToTimeline = (date, key, value) => {
       if (!date) return;
@@ -93,6 +93,7 @@ export class TimeSeriesService {
     finra?.forEach(r => addToTimeline(r.date, 'MarginDebt', r.MarginDebt));
     shortVolume?.forEach(r => addToTimeline(r.date, 'SPY_ShortVolumeRatio', r.short_volume_ratio));
     pcr?.forEach(r => addToTimeline(r.date, 'TotalPCR', r.total_pcr));
+    challenger?.forEach(r => addToTimeline(r.date, 'Challenger', r.Challenger));
 
     return timeline;
   }

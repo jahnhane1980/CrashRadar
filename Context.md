@@ -3,8 +3,7 @@
 *(Dieses Dokument dient als Gedächtnisstütze und State-Transfer für Folge-Sessions. Es hält den aktuellen Fokus, architektonische Leitplanken und strikte Arbeitsregeln fest).*
 
 ## 1. Aktueller Fokus (Nächste Session)
-* **Nächste Aufgabe:** Aufbau des "Alternative Labor Market" Divergenz-Trackers. Implementierung nativer Scraping-Pipelines für staatliche WARN-Notices ("Big 4": CA, TX, NY, FL) und Integration der Challenger-Reports direkt in das Backend, um eine ungeschönte Echtzeit-Indikation des Arbeitsmarktes zu erhalten (siehe Roadmap).
-* **Zurückgestellt:** Ausstehende Daten-Challenge (DIX, 13F-Whale-Filings) für die Tech-Rotations-These.
+* **Nächste Aufgabe:** Ausstehende Beweisführungen (Backtest-Skripte). Beschaffung und Analyse der "Daten-Challenge" (DIX, 13F-Whale-Filings, VandaTrack/Odd-Lots) zur empirischen Beweisführung der Tech-Rotations-These (Infrastruktur-Mauer).
 
 ## 2. Testing-Philosophie & Synthetische Märkte (Chaos-Daten)
 * **Chaos-Arrays:** Daten müssen in Tests Zyklen, hartes Rauschen (`Math.random()`) und extreme Gaps enthalten.

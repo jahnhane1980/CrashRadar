@@ -84,6 +84,12 @@ describe('FinanceExpert', () => {
           ]];
         }
 
+        if (s.includes('econ_challenger')) {
+          return [[
+            { date: '2025-01-01', Challenger: 45000 }
+          ]];
+        }
+
         return [[]];
       }),
       end: vi.fn()
@@ -121,6 +127,7 @@ describe('FinanceExpert', () => {
     expect(day1.macroGroups.BankingHealth.TotalReserves).toBe(3000);
     expect(day1.macroGroups.BankingHealth.EmergencyBorrowing).toBe(10);
     expect(day1.macroGroups.YieldCurve.Spread10y2y).toBe(-0.5);
+    expect(day1.macroGroups.Leading.Challenger).toBe(45000);
   });
 
   it('sollte Lücken via Forward-Fill (LOCF) füllen', async () => {

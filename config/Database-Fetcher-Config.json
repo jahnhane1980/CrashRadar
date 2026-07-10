@@ -110,6 +110,14 @@
         "dateExtractPath": "record_date",
         "dateFormat": "YYYY-MM-DD"
       }
+    },
+    "InvestingCom": {
+      "type": "package",
+      "pagination": {
+        "strategy": "custom",
+        "dateExtractPath": "record_date",
+        "dateFormat": "YYYY-MM-DD"
+      }
     }
   },
   "tasks": [
@@ -825,6 +833,28 @@
       "ticker": "SPY",
       "method": "options",
       "overrideStartDate": "2026-07-04"
+    },
+    {
+      "id": "fred_unrate",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "UNRATE",
+        "file_type": "json"
+      }
+    },
+    {
+      "id": "fred_icnsa",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "ICNSA",
+        "file_type": "json"
+      }
+    },
+    {
+      "id": "investing_challenger",
+      "provider": "InvestingCom"
     }
   ]
 }

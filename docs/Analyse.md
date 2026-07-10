@@ -275,9 +275,18 @@ Lösen oft 6 bis 12 Monate vor dem Crash aus. Ein Verkauf würde lukrative Blow-
 
 **B. Zu späte Bestätigung (Kein Schutz vor dem Crash)**
 Feuern erst, wenn wir bereits im Crash stecken, und bieten daher null Schutz vor initialen Verlusten:
-* **Erstanträge Arbeitslosenhilfe (ICSA):** Firmen feuern erst massenhaft, *nachdem* der Aktienmarkt gecrasht ist.
+* **Die staatliche Arbeitsmarkt-Illusion (FRED-Daten):** Offizielle Metriken wie die Arbeitslosenquote (**UNRATE**), Nonfarm Payrolls (**PAYEMS**) und Erstanträge (**ICSA** / **ICNSA**) sind **massiv nachlaufend (Lagging)**. In den 3 Monaten vor großen historischen Crashes (2000, 2007, 2020) blieben diese Metriken starr oder verbesserten sich sogar noch. Sie schlagen erst aus, wenn das Portfolio bereits 20% bis 40% an Wert verloren hat. Sie dürfen **niemals** als Frühwarn-Trigger genutzt werden!
 * **Kupfer ("Dr. Copper"):** Stürzt absolut synchron mit dem Markt ab. Es front-runnt nichts.
 * **Industrieproduktion (INDPRO):** Wächst meist bis zum Aktien-Peak weiter und fällt erst zeitgleich mit dem Crash.
+
+**C. Der wahre Arbeitsmarkt-Vorläufer (Leading Indicator)**
+* **Challenger, Gray & Christmas Report:** Im Gegensatz zu den staatlichen Nachzüglern (wie Sahm Rule oder JOLTS) ist der monatliche Challenger-Report (Ankündigungen von Entlassungen durch CEOs) ein echter Frühindikator. CEOs wissen, dass die Wirtschaft kippt, bevor es in der staatlichen Statistik auftaucht.
+  * *Beweis & Backtest:* Ein historischer Backtest über alle Crashes seit 1999 ([Challenger-Gray-Christmas-Report-Leading-Indicator.js](file:///C:/GitHub/CrashRadar/scratch/analyse/Challenger-Gray-Christmas-Report-Leading-Indicator.js)) belegt die Prognosekraft für **deflationäre/wirtschaftliche Crashes**.
+  * *Die Vorlaufzeit:* Historisch liegt der Vorlauf des massiven Challenger-Spikes vor dem exakten Aktien-Allzeithoch bei **ca. 0 bis 38 Tagen** (Dotcom: exakt im Peak-Monat; Finanzkrise: 38 Tage Vorlauf; Corona: 13 Tage Vorlauf).
+  * *Die Einschränkung (Inflation):* Der Indikator schlägt bei **zins- und inflationsgetriebenen Schocks** (wie Ende 2018 oder 2022) *nicht* an. Hier crashen die Kurse durch die Geldpolitik, während die Unternehmen kaum jemanden entlassen. Er signalisiert also ausschließlich "Kredit/Wirtschafts"-Crashes.
+  * **Signal-Schwellenwerte (Month-over-Month / vs. SMA6):**
+    * 🟡 **Warnstufe (Gelb) | >= +40 % Anstieg:** Erhöhte Aufmerksamkeit. Ein Wert in diesem Bereich (z.B. +43 % im Herbst 2018) zeigt deutlichen Stress in den Chefetagen, löst aber noch keinen blinden Verkaufspanik-Trigger aus.
+    * 🔴 **Alarmstufe (Rot) | >= +55 % Anstieg:** Absolute Alarmglocken (Portfolio-Exit). Ein Sprung über diese Schwelle (historisch: +57 % Dotcom, +85 % GFC, +106 % Corona, +245 % in 2025) ist das ultimative Signal, dass die systemische Kernschmelze unmittelbar bevorsteht oder in den letzten Tagen bereits gestartet ist.
 
 **C. Unzuverlässig / Falsche Signale**
 * **Langlaufende Staatsanleihen (TLT):** Front-runnen den Markt absolut nicht. Sie steigen erst massiv, wenn die Panik voll da ist. Bei Inflations-Crashes verbrennen sie sogar gemeinsam mit Aktien. Völlig ungeeignet als Frühwarnsystem!

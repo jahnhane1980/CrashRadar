@@ -6,6 +6,7 @@ import { MarketPanicCapitulationIndicator } from './indicators/MarketPanicCapitu
 import { BankReservesIndicator } from './indicators/BankReservesIndicator.js';
 import { MaturityWallIndicator } from './indicators/MaturityWallIndicator.js';
 import { NfciIndicator } from './indicators/NfciIndicator.js';
+import { ChallengerIndicator } from './indicators/ChallengerIndicator.js';
 
 export class MacroRegimeEngine {
     constructor() {
@@ -18,7 +19,8 @@ export class MacroRegimeEngine {
             new MarketPanicCapitulationIndicator(),
             new BankReservesIndicator(),
             new MaturityWallIndicator(),
-            new NfciIndicator()
+            new NfciIndicator(),
+            new ChallengerIndicator()
         ];
     }
 
@@ -97,6 +99,12 @@ export class MacroRegimeEngine {
                 }
                 if (indicator.name === 'Chicago Fed Stress Index (NFCI)' && result.status === 'CRITICAL') {
                     vetos.push('NFCI_STRESS_PANIC');
+                }
+                if (indicator.name === 'Challenger Job Cuts (Entlassungswelle)' && result.status === 'CRITICAL') {
+                    vetos.push('CHALLENGER_CRITICAL_LAYOFFS');
+                    if (regime === 'NORMAL') {
+                        regime = 'BEAR_MARKET';
+                    }
                 }
             }
 
