@@ -3,7 +3,9 @@ import { CboeFetchAdapter } from './CboeFetchAdapter.js';
 import { FinraFetchAdapter } from './FinraFetchAdapter.js';
 import { InvestingComFetchAdapter } from './InvestingComFetchAdapter.js';
 import { SqueezeMetricsFetchAdapter } from './SqueezeMetricsFetchAdapter.js';
-import { SecEdgar13FFetchAdapter } from './SecEdgar13FFetchAdapter.js';
+
+import { AaiiFetchAdapter } from './AaiiFetchAdapter.js';
+import { NaaimFetchAdapter } from './NaaimFetchAdapter.js';
 
 const adapters = {
   'YahooFinance': new YahooFinanceFetchAdapter(),
@@ -11,7 +13,9 @@ const adapters = {
   'Finra': new FinraFetchAdapter(),
   'InvestingCom': new InvestingComFetchAdapter(),
   'SqueezeMetrics': new SqueezeMetricsFetchAdapter(),
-  'SecEdgar13F': new SecEdgar13FFetchAdapter(),
+
+  'AAII': new AaiiFetchAdapter(),
+  'NAAIM': new NaaimFetchAdapter(),
 };
 
 export class FetchAdapterFactory {

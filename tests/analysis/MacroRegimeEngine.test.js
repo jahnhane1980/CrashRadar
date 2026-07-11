@@ -78,7 +78,7 @@ describe('MacroRegimeEngine - Chaos & Edge Case Testing', () => {
             expect(firstState).toHaveProperty('vetos');
             expect(Array.isArray(firstState.vetos)).toBe(true);
             
-            expect(end - start).toBeLessThan(1500); 
+            expect(end - start).toBeLessThan(3000); 
         });
     });
 

@@ -23,6 +23,14 @@ describe('AnalysisRepository', () => {
             // getAllRawData query
             return [[{ date: '2023-01-01', Challenger: 45000 }]];
         }
+        if (sql.includes('market_data_aaii')) {
+            if (sql.includes('LIMIT 1')) return [[{ val: 20 }]];
+            return [[{ date: '2023-01-01', AAII_Spread: 25 }]];
+        }
+        if (sql.includes('market_data_dix')) {
+            if (sql.includes('LIMIT 1')) return [[{ val: 40 }]];
+            return [[{ date: '2023-01-01', DIX: 45 }]];
+        }
         // Fallback for all other queries
         return [[{ val: 100 }]];
     });
@@ -31,10 +39,15 @@ describe('AnalysisRepository', () => {
     expect(data.btc).toBeDefined();
     expect(data.challenger).toBeDefined();
     expect(data.challenger[0].Challenger).toBe(45000);
+    expect(data.aaii).toBeDefined();
+    expect(data.aaii[0].AAII_Spread).toBe(25);
+    expect(data.dix).toBeDefined();
     
     const state = await repo.getInitialState('2023-01-01');
     expect(state.BTC).toBe(100);
     expect(state.Challenger).toBe(40000);
+    expect(state.AAII_Spread).toBe(20);
+    expect(state.DIX).toBe(40);
     
     await repo.close();
   });

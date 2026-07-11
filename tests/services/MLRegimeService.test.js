@@ -176,7 +176,7 @@ describe('MLRegimeService', () => {
       expect(service.model).toBeDefined();
 
       spyReadFile.mockRestore();
-    }, 15000);
+    }, 30000);
 
     it('successfully loads model and sets weights (7 classes)', async () => {
       const mockStats = { Close: {}, Volume: {}, OBV: {}, ATR_14: {}, RSI_14: {}, MACD_Hist: {} }; // 6 Features

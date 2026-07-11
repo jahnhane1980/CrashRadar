@@ -90,6 +90,18 @@ describe('FinanceExpert', () => {
           ]];
         }
 
+        if (s.includes('market_data_aaii')) {
+          return [[
+            { date: '2025-01-01', AAII_Spread: 20 }
+          ]];
+        }
+
+        if (s.includes('market_data_dix')) {
+          return [[
+            { date: '2025-01-01', DIX: 45 }
+          ]];
+        }
+
         return [[]];
       }),
       end: vi.fn()
@@ -115,6 +127,8 @@ describe('FinanceExpert', () => {
     expect(day1.assets.BTC).toBe(50000);
     expect(day1.assets.Gold).toBe(2000.5);
     expect(day1.assets.Copper).toBe(4.5);
+    expect(day1.assets.AAII_Spread).toBe(20);
+    expect(day1.assets.DIX).toBe(45);
 
     // WALCL(7000) - TGA(750) - RRP(500) = 5750
     expect(day1.macroGroups.NetLiquidity.NetLiquidity).toBe(5750);

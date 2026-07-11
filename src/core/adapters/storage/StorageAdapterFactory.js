@@ -9,6 +9,8 @@ import { FinraAdapter } from './FinraAdapter.js';
 import { InvestingComAdapter } from './InvestingComAdapter.js';
 import { SqueezeMetricsAdapter } from './SqueezeMetricsAdapter.js';
 import { SecEdgar13FAdapter } from './SecEdgar13FAdapter.js';
+import { AaiiAdapter } from './AaiiAdapter.js';
+import { NaaimAdapter } from './NaaimAdapter.js';
 
 const adapters = {
   'Binance': new BinanceAdapter(),
@@ -22,6 +24,8 @@ const adapters = {
   'InvestingCom': new InvestingComAdapter(),
   'SqueezeMetrics': new SqueezeMetricsAdapter(),
   'SecEdgar13F': new SecEdgar13FAdapter(),
+  'AAII': new AaiiAdapter(),
+  'NAAIM': new NaaimAdapter(),
 };
 
 export class StorageAdapterFactory {

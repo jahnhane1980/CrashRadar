@@ -1,3 +1,4 @@
+import { describe, it, expect, beforeEach, test } from 'vitest';
 import { ChallengerIndicator } from '../../../src/analysis/indicators/ChallengerIndicator.js';
 
 describe('ChallengerIndicator', () => {

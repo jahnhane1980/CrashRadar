@@ -128,9 +128,16 @@
         "dateFormat": "YYYY-MM-DD"
       }
     },
-    "SecEdgar13F": {
+    "AAII": {
       "type": "package",
-      "overrideStartDate": "2016-01-01",
+      "pagination": {
+        "strategy": "custom",
+        "dateExtractPath": "record_date",
+        "dateFormat": "YYYY-MM-DD"
+      }
+    },
+    "NAAIM": {
+      "type": "package",
       "pagination": {
         "strategy": "custom",
         "dateExtractPath": "record_date",
@@ -876,127 +883,14 @@
     },
     {
       "id": "squeezemetrics_dix",
-      "provider": "SqueezeMetrics"
+      "provider": "SqueezeMetrics",
+      "overrideStartDate": "2011-05-02"
     },
     {
-      "id": "sec_13f_0001067983",
-      "provider": "SecEdgar13F",
-      "params": { "cik": "0001067983" },
-      "overrideStartDate": "2016-01-01"
+      "id": "aaii_sentiment",
+      "provider": "AAII",
+      "overrideStartDate": "2010-01-01"
     },
-    {
-      "id": "sec_13f_0001037389",
-      "provider": "SecEdgar13F",
-      "params": { "cik": "0001037389" },
-      "overrideStartDate": "2016-01-01"
-    },
-    {
-      "id": "sec_13f_0001423053",
-      "provider": "SecEdgar13F",
-      "params": { "cik": "0001423053" },
-      "overrideStartDate": "2016-01-01"
-    },
-    {
-      "id": "sec_13f_0001350694",
-      "provider": "SecEdgar13F",
-      "params": { "cik": "0001350694" },
-      "overrideStartDate": "2016-01-01"
-    },
-    {
-      "id": "sec_13f_0001533621",
-      "provider": "SecEdgar13F",
-      "params": { "cik": "0001533621" },
-      "overrideStartDate": "2016-01-01"
-    },
-    {
-      "id": "sec_13f_0000902219",
-      "provider": "SecEdgar13F",
-      "params": { "cik": "0000902219" },
-      "overrideStartDate": "2016-01-01"
-    },
-    {
-      "id": "sec_13f_0001006438",
-      "provider": "SecEdgar13F",
-      "params": { "cik": "0001006438" },
-      "overrideStartDate": "2016-01-01"
-    },
-    {
-      "id": "sec_13f_0001179288",
-      "provider": "SecEdgar13F",
-      "params": { "cik": "0001179288" },
-      "overrideStartDate": "2016-01-01"
-    },
-    {
-      "id": "sec_13f_0001009207",
-      "provider": "SecEdgar13F",
-      "params": { "cik": "0001009207" },
-      "overrideStartDate": "2016-01-01"
-    },
-    {
-      "id": "sec_13f_0001273087",
-      "provider": "SecEdgar13F",
-      "params": { "cik": "0001273087" },
-      "overrideStartDate": "2016-01-01"
-    },
-    {
-      "id": "sec_13f_0001167483",
-      "provider": "SecEdgar13F",
-      "params": { "cik": "0001167483" },
-      "overrideStartDate": "2016-01-01"
-    },
-    {
-      "id": "sec_13f_0001603466",
-      "provider": "SecEdgar13F",
-      "params": { "cik": "0001603466" },
-      "overrideStartDate": "2016-01-01"
-    },
-    {
-      "id": "sec_13f_0001061768",
-      "provider": "SecEdgar13F",
-      "params": { "cik": "0001061768" },
-      "overrideStartDate": "2016-01-01"
-    },
-    {
-      "id": "sec_13f_0001167557",
-      "provider": "SecEdgar13F",
-      "params": { "cik": "0001167557" },
-      "overrideStartDate": "2016-01-01"
-    },
-    {
-      "id": "sec_13f_0001040273",
-      "provider": "SecEdgar13F",
-      "params": { "cik": "0001040273" },
-      "overrideStartDate": "2016-01-01"
-    },
-    {
-      "id": "sec_13f_0000855654",
-      "provider": "SecEdgar13F",
-      "params": { "cik": "0000855654" },
-      "overrideStartDate": "2016-01-01"
-    },
-    {
-      "id": "sec_13f_0001336528",
-      "provider": "SecEdgar13F",
-      "params": { "cik": "0001336528" },
-      "overrideStartDate": "2016-01-01"
-    },
-    {
-      "id": "sec_13f_0001029160",
-      "provider": "SecEdgar13F",
-      "params": { "cik": "0001029160" },
-      "overrideStartDate": "2016-01-01"
-    },
-    {
-      "id": "sec_13f_0001135730",
-      "provider": "SecEdgar13F",
-      "params": { "cik": "0001135730" },
-      "overrideStartDate": "2016-01-01"
-    },
-    {
-      "id": "sec_13f_0001515903",
-      "provider": "SecEdgar13F",
-      "params": { "cik": "0001515903" },
-      "overrideStartDate": "2016-01-01"
     }
   ]
 }

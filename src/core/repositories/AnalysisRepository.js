@@ -10,6 +10,8 @@ export const TABLES = Object.freeze({
   FUND_SEC: 'fund_sec_edgar',
   FINRA: 'macro_margin_debt',
   CHALLENGER: 'econ_challenger',
+  AAII: 'market_data_aaii',
+  DIX: 'market_data_dix',
 });
 
 export const SYMBOLS = Object.freeze({
@@ -172,7 +174,19 @@ export class AnalysisRepository {
       WHERE record_date >= ?
     `, [startDate]);
 
-    return { btc, tiingo, yahoo, fred, tga, mw, sec, cboe, finra, shortVolume, pcr, challenger };
+    const [aaii] = await this.pool.query(`
+      SELECT record_date as date, spread as AAII_Spread
+      FROM ${TABLES.AAII}
+      WHERE record_date >= ?
+    `, [startDate]);
+
+    const [dix] = await this.pool.query(`
+      SELECT record_date as date, dix as DIX
+      FROM ${TABLES.DIX}
+      WHERE record_date >= ?
+    `, [startDate]);
+
+    return { btc, tiingo, yahoo, fred, tga, mw, sec, cboe, finra, shortVolume, pcr, challenger, aaii, dix };
   }
 
   async getInitialState(startDate) {
@@ -205,6 +219,8 @@ export class AnalysisRepository {
     const initialSpyShortVol = await getLastBefore('market_data_short_volume', 'record_date', 'short_volume_ratio', "AND symbol = ?", [SYMBOLS.SPY]);
     const initialPcr = await getLastBefore('market_data_pcr', 'record_date', 'total_pcr', "", []);
     const initialChallenger = await getLastBefore(TABLES.CHALLENGER, 'record_date', 'value', "", []);
+    const initialAaii = await getLastBefore(TABLES.AAII, 'record_date', 'spread', "", []);
+    const initialDix = await getLastBefore(TABLES.DIX, 'record_date', 'dix', "", []);
 
     const getFredBefore = async (seriesId) => await getLastBefore(TABLES.FRED, 'observation_date', 'value', "AND series_id = ?", [seriesId]);
 
@@ -244,7 +260,9 @@ export class AnalysisRepository {
       ARCC_TotalAssets: initialArccAssets,
       ARCC_NetIncome: initialArccIncome,
       MarginDebt: initialMarginDebt,
-      Challenger: initialChallenger
+      Challenger: initialChallenger,
+      AAII_Spread: initialAaii,
+      DIX: initialDix
     };
   }
 }

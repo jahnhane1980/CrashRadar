@@ -1,3 +1,5 @@
+import { SmartDumbMoneyTopIndicator } from './indicators/SmartDumbMoneyTopIndicator.js';
+import { SmartDumbMoneyBottomIndicator } from './indicators/SmartDumbMoneyBottomIndicator.js';
 import { YieldCurveIndicator } from './indicators/YieldCurveIndicator.js';
 import { RedAlertIndicator } from './indicators/RedAlertIndicator.js';
 import { MarginDebtIndicator } from './indicators/MarginDebtIndicator.js';
@@ -12,6 +14,8 @@ export class MacroRegimeEngine {
     constructor() {
         // Wir orchestrieren ausschließlich bestehende Indikatoren aus Topf A
         this.indicators = [
+            new SmartDumbMoneyTopIndicator(),
+            new SmartDumbMoneyBottomIndicator(),
             new YieldCurveIndicator(),
             new RedAlertIndicator(),
             new MarginDebtIndicator(),
@@ -69,6 +73,17 @@ export class MacroRegimeEngine {
                     if (regime !== 'FLASH_CRASH') {
                         regime = 'LATE_CYCLE_EUPHORIA';
                     }
+                }
+
+                // 2.1 Smart vs Dumb Money (Top/Bottom)
+                if (indicator.name === 'Smart vs Dumb Money (The Top)' && result.status === 'CRITICAL') {
+                    if (regime !== 'FLASH_CRASH') {
+                        regime = 'LATE_CYCLE_EUPHORIA';
+                    }
+                }
+                if (indicator.name === 'Smart vs Dumb Money (The Bottom)' && result.status === 'CRITICAL') {
+                    regime = 'FLASH_CRASH';
+                    vetos.push('SMART_MONEY_ACCUMULATION');
                 }
 
                 // 3. Deleveraging & Bear Market Warnung (Margin Debt)
