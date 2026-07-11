@@ -3,7 +3,7 @@
 *(Dieses Dokument dient als Gedächtnisstütze und State-Transfer für Folge-Sessions. Es hält den aktuellen Fokus, architektonische Leitplanken und strikte Arbeitsregeln fest).*
 
 ## 1. Aktueller Fokus (Nächste Session)
-* **Nächste Aufgabe:** Die Indikator-Klassen für das Smart/Dumb Money (`SmartDumbMoneyTopIndicator`, `SmartDumbMoneyBottomIndicator`) sowie die Storage/Fetch-Pipelines sind nun fertig und zu 100% getestet. Nächster Schritt: Integration in die `IndicatorEngine.js` und Ausführen des Backtests.
+* **Nächste Aufgabe:** Architektur & Benachrichtigungen (Transparenz). Aktuell ändern Indikatoren in der `MacroRegimeEngine` (wie Smart/Dumb Money) zwar unsichtbar das "Wetter" (Regime), lösen aber keine aktiven Push-Alarme im `NotificationManager` aus. Bevor wir den finalen Backtest laufen lassen, müssen wir die Architektur so umbauen, dass der User bei kritischen Makro-Triggern nicht "blind" ist, sondern exakt erfährt, *welcher* Makro-Indikator gerade das Regime gewechselt hat (z.B. durch Spieglung der Alarme in die Trade-Engine oder native Makro-Alerts).
 
 ## 2. Testing-Philosophie & Synthetische Märkte (Chaos-Daten)
 * **Chaos-Arrays:** Daten müssen in Tests Zyklen, hartes Rauschen (`Math.random()`) und extreme Gaps enthalten.
