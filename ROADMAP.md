@@ -29,37 +29,6 @@ Dieses Dokument bündelt alle aktuell noch offenen Entwicklungsaufgaben und Arch
   * **Rework:** Um echte Kausalität herzustellen, müssen die Modelle zwingend mit den FINRA Short-Volume Daten als neuem Feature (siehe Punkt 3) grundlegend neu trainiert werden. Eine Engine-Integration findet erst statt, wenn dieses Bias-Problem gelöst ist.
   * **Feature-Experimente:** Für die strategische Erforschung weiterer Features (z.B. Fat Tails vs. Z-Scores, SMA-Distanzen) zur Behebung dieser Biases, siehe die neuen Forschungshypothesen in `docs/ML_FEATURE_RESEARCH.md`.
 
-# CrashRadar Roadmap & Offene TODOs
-
-Dieses Dokument bündelt alle aktuell noch offenen Entwicklungsaufgaben und Architekturerweiterungen für die CrashRadar-Engine. 
-*Hinweis: Die Reihenfolge der Aufgaben spiegelt ihre Dringlichkeit und architektonische Priorität wider.*
-
-
-## 1. GOLD & GDX Dynamisches Debouncing (Push-Alarme)
-* **Status:** Die Indikatoren für Gold und GDX wurden erfolgreich in Macro- und Investment-Signale getrennt und die Push-Benachrichtigungs-Pipeline via Ntfy ist aktiv.
-* **Problem:** Das aktuelle statische 14-Tage-Debouncing der `getAlerts`-Methode blockiert in Crash-Phasen (z.B. die kurze Zeitspanne zwischen einem Selling Climax und dem finalen Healing Breakout) essenzielle Folge-Alarme.
-* **Aufgabe:** 
-  * **Dynamisches Debouncing:** Das System so umbauen, dass in "Peacetime" (ruhiger Markt) ein 14-Tage-Debounce gilt. Wechselt das System in den "Crisis Mode" (z.B. VIX Spike oder CRITICAL Warnungen), muss das Debouncing dynamisch auf 1-5 Tage reduziert werden, um schnelle V-Shape-Böden nicht zu verpassen.
-
-
-
-## 2. FINRA Short-Volume: Ursachenforschung & Feature-Erweiterung
-* **Problem:** Extreme FINRA-Leerverkaufsdaten wirken sich je nach Aktie massiv unterschiedlich aus (z.B. bei ZETA als Kontra-Indikator, bei NVTS als Volatilitäts-Verstärker). Die detaillierten empirischen Erkenntnisse dazu liegen in der `docs/ML_EVALUATIONS.md`.
-* **Ziel:** Das neuronale Netz soll künftig selbstständig interpretieren können, *warum* extrem hohes Short-Volume bei einer Aktie ein Kaufsignal, bei einer anderen aber ein Risiko darstellt.
-* **Aufgaben / Status:**
-  * **Forschung [OFFEN]:** Analysieren, woher die Divergenz in der FINRA-Wirkung stammt (z.B. Free-Float-Anteil, Institutionelle Quote, ausstehende Wandelanleihen, fundamentale Bewertung).
-  * **Code-Anpassung [OFFEN]:** Die final identifizierten Short-Volume-Metriken als mathematische "Features" in die neuen Ticker-spezifischen Builder einbauen.
-  * **Retraining [OFFEN]:** Modelle mit den neuen Features neu anlernen, um die Vorhersage-Konfidenz signifikant zu steigern.
-
-
-## 3. Rework der ML-Modelle für hochvolatile Einzelaktien (Growth: SOFI, ZETA, NVTS)
-* **Status:** Die dedizierten LSTM-Modelle wurden bereits erfolgreich trainiert (basierend auf der 7-Klassen Architektur inkl. `Log_Return_EMA3` und `Volume_Z_Score`).
-* **Problem:** Bei der Evaluierung zeigten sich massive, aktienspezifische Bias-Probleme (z.B. starker Bull-Bias bei SOFI, Dauer-Bear-Bias bei NVTS). Die detaillierten historischen Evaluierungs-Ergebnisse und Trefferquoten sind im Labor-Tagebuch dokumentiert (`docs/ML_EVALUATIONS.md`).
-* **Fazit & Aufgaben:** 
-  * LSTMs memorieren bei diesen hochvolatilen Titeln oft nur die historische Grundstimmung (Rauschen). 
-  * **Rework:** Um echte Kausalität herzustellen, müssen die Modelle zwingend mit den FINRA Short-Volume Daten als neuem Feature (siehe Punkt 3) grundlegend neu trainiert werden. Eine Engine-Integration findet erst statt, wenn dieses Bias-Problem gelöst ist.
-  * **Feature-Experimente:** Für die strategische Erforschung weiterer Features (z.B. Fat Tails vs. Z-Scores, SMA-Distanzen) zur Behebung dieser Biases, siehe die neuen Forschungshypothesen in `docs/ML_FEATURE_RESEARCH.md`.
-
 
 ## 4. Aufbau des "Alternative Labor Market" Divergenz-Trackers
 * **Problem:** Offizielle BLS-Arbeitsmarktdaten (z.B. NFP, Unemployment Rate, Sahm Rule) sind massiv lagging, werden durch das Birth-Death-Modell nach oben verzerrt und kaschieren Schwäche durch einen Überhang an Teilzeit-Jobs. Sie signalisieren eine Krise oft erst, wenn der Aktienmarkt bereits lange gecrasht ist.
