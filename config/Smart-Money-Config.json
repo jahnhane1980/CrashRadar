@@ -1,0 +1,82 @@
+{
+  "0001067983": {
+    "name": "Berkshire Hathaway",
+    "strategy": "Value Investing"
+  },
+  "0001037389": {
+    "name": "Renaissance Technologies",
+    "strategy": "Quant"
+  },
+  "0001423053": {
+    "name": "Citadel Advisors",
+    "strategy": "Multi-Strategy / Market Maker"
+  },
+  "0001350694": {
+    "name": "Bridgewater Associates",
+    "strategy": "Global Macro"
+  },
+  "0001533621": {
+    "name": "Duquesne Family Office (Stanley Druckenmiller)",
+    "strategy": "Global Macro"
+  },
+  "0000902219": {
+    "name": "Elliott Investment Management",
+    "strategy": "Activist"
+  },
+  "0001006438": {
+    "name": "Appaloosa Management (David Tepper)",
+    "strategy": "Distressed / Macro"
+  },
+  "0001179288": {
+    "name": "Two Sigma Investments",
+    "strategy": "Quant"
+  },
+  "0001009207": {
+    "name": "D.E. Shaw & Co.",
+    "strategy": "Quant / Multi-Strategy"
+  },
+  "0001273087": {
+    "name": "Millennium Management",
+    "strategy": "Multi-Strategy"
+  },
+  "0001167483": {
+    "name": "Tiger Global Management",
+    "strategy": "Tech / Growth Equity"
+  },
+  "0001603466": {
+    "name": "Point72 Asset Management",
+    "strategy": "Multi-Strategy / L/S Equity"
+  },
+  "0001061768": {
+    "name": "Baupost Group",
+    "strategy": "Value / Distressed"
+  },
+  "0001167557": {
+    "name": "AQR Capital Management",
+    "strategy": "Quant"
+  },
+  "0001040273": {
+    "name": "Third Point LLC",
+    "strategy": "Activist / Event-Driven"
+  },
+  "0000855654": {
+    "name": "Tudor Investment Corp",
+    "strategy": "Global Macro"
+  },
+  "0001336528": {
+    "name": "Pershing Square",
+    "strategy": "Activist / Concentrated Value"
+  },
+  "0001029160": {
+    "name": "Soros Fund Management",
+    "strategy": "Global Macro"
+  },
+  "0001135730": {
+    "name": "Coatue Management",
+    "strategy": "Tech / Growth Equity"
+  },
+  "0001515903": {
+    "name": "Altimeter Capital Management",
+    "strategy": "Tech / Growth Equity"
+  }
+}
