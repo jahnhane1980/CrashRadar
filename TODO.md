@@ -18,8 +18,8 @@
     * *Dateien:* `src/analysis/ml/builders/SofiFeatureBuilder.js`, `ZetaFeatureBuilder.js`, `NvtsFeatureBuilder.js`
     * *Aktion:* Das Feature `Short_Volume_Ratio` zur Eingangsmatrix hinzufügen. Die Daten dafür stammen aus der bereits verknüpften TiDB-Tabelle `market_data_short_volume`. Schwächere oder redundante Volumen-Z-Scores können dafür entfernt werden.
   * **Phase 3: Das Retraining (Modell-Update) [OFFEN]:** 
-    * *Aktion:* Das ML-Trainings-Skript (z.B. `node src/analysis/ml/train.js <Ticker>`) für SOFI, ZETA, NVTS und PLTR ausführen.
-    * *Ziel:* Die LSTMs lesen die neuen FINRA-Daten aus der DB, lernen die Preis-Volumen-Mechanik für den jeweiligen Ticker und überschreiben die alten Modell-Gewichte in `models/`.
+    * *Aktion:* Das zentrale ML-CLI-Skript (`node ml.js -t <Ticker> -s all`) für SOFI, ZETA, NVTS und PLTR ausführen.
+    * *Ziel:* Der `MLPipelineRunner` extrahiert die neuen FINRA-Daten über die angepassten Feature-Builder aus der DB, trainiert die LSTMs auf die neue Preis-Volumen-Mechanik und überschreibt die alten Modell-Gewichte in `models/`.
   * **Phase 4: Pipeline-Integration & Wachhund [OFFEN]:** 
     * *Neu anzulegen:* `src/analysis/indicators/MlRegimeRadarStockIndicator.js` (Generischer Indikator, dem man im Konstruktor den Ticker übergibt).
     * *Anzupassen:* `src/analysis/TradeSetupEngine.js` (Den neuen Indikator für jeden Ticker dem `this.indicators`-Array hinzufügen).
