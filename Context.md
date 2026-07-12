@@ -3,7 +3,7 @@
 *(Dieses Dokument dient als Gedächtnisstütze und State-Transfer für Folge-Sessions. Es hält den aktuellen Fokus, architektonische Leitplanken und strikte Arbeitsregeln fest).*
 
 ## 1. Aktueller Fokus (Nächste Session)
-* **Zu definieren:** Das dynamische Debouncing für Gold/GDX im Crisis Mode wurde erfolgreich abgeschlossen. Der nächste Fokus wird vom User vorgegeben.
+* **FINRA Short-Volume: Ursachenforschung & Feature-Erweiterung:** Das neuronale Netz soll künftig selbstständig interpretieren können, warum extrem hohes Short-Volume bei einer Aktie ein Kaufsignal (z.B. ZETA), bei einer anderen aber ein Risiko (z.B. NVTS) darstellt. Fokus liegt auf der Analyse der Ursachen (Divergenz) und der Integration als Feature.
 
 ## 2. Testing-Philosophie & Synthetische Märkte (Chaos-Daten)
 * **Chaos-Arrays:** Daten müssen in Tests Zyklen, hartes Rauschen (`Math.random()`) und extreme Gaps enthalten.
