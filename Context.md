@@ -3,7 +3,7 @@
 *(Dieses Dokument dient als Gedächtnisstütze und State-Transfer für Folge-Sessions. Es hält den aktuellen Fokus, architektonische Leitplanken und strikte Arbeitsregeln fest).*
 
 ## 1. Aktueller Fokus (Nächste Session)
-* **Ausstehende Beweisführungen (Tech-Sektor):** Die Architektur für die Benachrichtigungen (Makro-Wetterbericht) ist vollständig abgeschlossen. Der nächste logische Schritt ist die empirische Beweisführung der Tech-Sektor Rotation (Korrelation von DIX und VandaTrack/Odd-Lots mit Tech-Tops), um die simulierten Daten im Backtest durch echte historische Zeitreihen zu verifizieren.
+* **GOLD & GDX Dynamisches Debouncing:** Das statische 14-Tage-Debouncing in `getAlerts` muss in "Crash-Phasen" (Crisis Mode) dynamisch auf 1-5 Tage reduziert werden, um V-Shape-Böden und essenzielle Folge-Alarme nicht zu verpassen.
 
 ## 2. Testing-Philosophie & Synthetische Märkte (Chaos-Daten)
 * **Chaos-Arrays:** Daten müssen in Tests Zyklen, hartes Rauschen (`Math.random()`) und extreme Gaps enthalten.
