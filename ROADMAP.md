@@ -42,6 +42,4 @@ Dieses Dokument bündelt alle aktuell noch offenen Entwicklungsaufgaben und Arch
 * **Ziel:** Evaluierung des "Spurenlesen" Konzepts (Säule 2: Gamma Hedging). Da Yahoo Finance keine historischen Optionsdaten bereitstellt, sammeln wir ab dem 04.07.2026 jeden Tag Live-Daten über den Fetcher.
 * **Stichtag für ersten Backtest:** **04.01.2027** (nach ca. 6 Monaten Live-Aufzeichnung). Erst dann haben wir genug Markt-Regime (Bull, Bear, Volatility) und OPEX-Zyklen durchlebt, um die Gamma-Support/Resistance-Mauern belastbar in ML-Modelle oder Indikatoren zu integrieren.
 
-## 6. Makro-Push-Benachrichtigungen (NotificationManager)
-* **Problem:** Aktuell werden reine Makro-Regimewechsel (z.B. ein neues kritisches Veto durch den Challenger-Indikator in Topf A) nur in den täglichen Statusbericht geschrieben und als stille Blockade (Veto) für Trades genutzt. Sie lösen jedoch keine *sofortigen, lauten Notfall-Push-Benachrichtigungen* über `getAlerts` aus, da das System bisher nur auf Trade-Signale (Topf B) lauscht.
-* **Aufgabe [OFFEN]:** Evaluieren und Umbauen der Architektur (z.B. in `NotificationManager.js` oder `MacroRegimeEngine.js`), sodass auch kritische System- und Makro-Vetos bei ihrem allerersten Auftreten als isolierter Push-Alarm (🚨 CRITICAL) gesendet werden.
+
