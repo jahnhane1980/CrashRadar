@@ -10,6 +10,8 @@
   * **SOFI:** Nur 2 Extrem-Signale im gesamten Bärenmarkt (Struktur verhinderte konzertiertes Shorting).
 * **Ziel:** Das neuronale Netz soll künftig selbstständig interpretieren können, *warum* extrem hohes Short-Volume bei einer Aktie ein Kaufsignal, bei einer anderen aber ein Risiko darstellt.
 * **Aufgaben / Status:**
-  * **Forschung [OFFEN]:** Analysieren, woher die Divergenz in der FINRA-Wirkung stammt (z.B. Free-Float-Anteil, Institutionelle Quote, ausstehende Wandelanleihen, fundamentale Bewertung).
-  * **Code-Anpassung [OFFEN]:** Die final identifizierten Short-Volume-Metriken als mathematische "Features" in die neuen Ticker-spezifischen Builder einbauen.
-  * **Retraining [OFFEN]:** Modelle mit den neuen Features neu anlernen, um die Vorhersage-Konfidenz signifikant zu steigern.
+  * **Forschung [ERLEDIGT]:** Eine Korrelationsanalyse hat zwei Kausalitäts-Metriken isoliert, die den ML-Bias (NVTS vs. ZETA) erklären: 
+    1) Die "Illiquiditäts-Falle" (Institutionelle Quote >80% = Squeeze)
+    2) Die "Verwässerungs-Spirale" (Dilution/ATM Offerings = Crash).
+  * **Code-Anpassung [OFFEN]:** SEC-Daten (Institutional Ownership Ratio) und ein Flag (Dilution Risk) als neue Features in die Ticker-Builder einbauen.
+  * **Retraining [OFFEN]:** Modelle mit diesen neuen Kausalitäts-Features neu anlernen, um die Vorhersage-Konfidenz signifikant zu steigern.

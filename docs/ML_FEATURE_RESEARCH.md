@@ -32,3 +32,15 @@ Dieses Dokument sammelt theoretische Konzepte und Feature-Ideen, die in zukünft
 * **Die experimentelle Lösung (System-Integration):** 
   Wir erweitern die finale Bot-Ausgabe in `ml.js` um das **fraktionale Kelly-Modell**. Das Modell berechnet aus der Konfidenz der Vorhersage und den historischen Trefferquoten des Netzes eine optimale, risikoadjustierte Positionsgröße.
   * *Beispiel-Output:* Statt nur "Warnung: DOWNTREND (85%)" berechnet die Engine einen strikten Sicherheitsfaktor: "Empfohlenes Exposure nach fraktionalem Kelly (Faktor 0.3): Max. 15% Aktien, 85% Cash/T-Bills."
+
+## 4. Kausalitäts-Brücke: FINRA Short-Volume & SEC Fundamentaldaten
+**Quelle:** Historischer FINRA-Backtest (2021-2022) & EDGAR 13F/10-Q Korrelationsanalyse
+
+* **Die Hypothese / Das Problem:**
+  LSTMs zeigten einen massiven Bias (SOFI = Dauer-Bullish, NVTS = Dauer-Bearish). Hohes Off-Exchange Short-Volume (>65%) wirkt je nach Aktie komplett unterschiedlich: Bei ZETA löst es einen Squeeze aus, bei NVTS verstärkt es den Crash. Ohne Fundamentaldaten versteht das Netz diese Divergenz nicht und prägt sich stur den historischen Kursverlauf des jeweiligen Tickers ein (Rauschen statt Intelligenz).
+* **Die experimentelle Lösung (Feature Engineering):**
+  Um dem Netz echte Kausalität beizubringen, werden zwei fundamentale Variablen als Input-Features ergänzt, die der FINRA-Ratio Kontext geben:
+  1. **`Institutional_Ownership_Ratio` (Die Illiquiditäts-Falle):** Stammt aus SEC 13F-Filings. Ist dieser Wert extrem hoch (z.B. >80% wie bei ZETA), ist der echte Free-Float winzig. Hohes Short-Volume ist hier ein mathematischer Trigger für einen Squeeze.
+  2. **`Dilution_Risk_Flag` (Die Verwässerungs-Spirale):** Abgeleitet aus SEC 10-Q Berichten (At-The-Market Offerings, Convertible Debt). Ist dieses Flag aktiv (wie bei NVTS), signalisiert hohes Short-Volume keinen Squeeze, sondern legales "Front-Running" von Hedgefonds auf die kommende Aktienflut.
+  
+  Durch diese Kombination (FINRA-Ratio + Institutional_Ownership + Dilution_Risk) lernt das LSTM das eigentliche Marktsystem hinter "Short Squeezes vs. Death Spirals" und kann dieses Wissen künftig auf völlig unbekannte Aktien verallgemeinern.
