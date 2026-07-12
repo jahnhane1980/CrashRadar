@@ -1,4 +1,5 @@
 import { SmartDumbMoneyTopIndicator } from './indicators/SmartDumbMoneyTopIndicator.js';
+import { FiscalFedLiquidityIndicator } from './indicators/FiscalFedLiquidityIndicator.js';
 import { SmartDumbMoneyBottomIndicator } from './indicators/SmartDumbMoneyBottomIndicator.js';
 import { YieldCurveIndicator } from './indicators/YieldCurveIndicator.js';
 import { RedAlertIndicator } from './indicators/RedAlertIndicator.js';
@@ -24,7 +25,8 @@ export class MacroRegimeEngine {
             new BankReservesIndicator(),
             new MaturityWallIndicator(),
             new NfciIndicator(),
-            new ChallengerIndicator()
+            new ChallengerIndicator(),
+            new FiscalFedLiquidityIndicator()
         ];
     }
 

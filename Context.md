@@ -98,4 +98,4 @@ Böden werden nicht langfristig geplant, sondern entstehen durch akute Panik und
 3. **VIX (Der Panik-Peak):** Laggt nicht, sondern erreicht seinen absoluten Höhepunkt **exakt am Tag (0 Tage)** des Preis-Bottoms.
 *Die Engine-Regel (Re-Entry):* Wenn VIX > 40, AAII < -25% UND DIX > 45% -> Aggressiver Kauf (The Bottom is in).
 
-*(Hinweis: Die Indikatoren-Klassen und Benachrichtigungs-Systeme (Makro-Wetterbericht) sind vollständig implementiert und getestet).*
+*(Hinweis: Die Indikatoren-Klassen, das Fiskal-FED Plumbing (WRESBAL, TGA, BORROW) und das Benachrichtigungs-System (Makro-Wetterbericht) sind nun vollständig implementiert, verknüpft und getestet).*

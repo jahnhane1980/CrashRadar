@@ -104,6 +104,7 @@ export class FinanceExpert {
           },
           BankingHealth: {
             TotalReserves: state.TOTRESNS,
+            BankReserves: state.WRESBAL,
             EmergencyBorrowing: state.BORROW
           },
           YieldCurve: {
