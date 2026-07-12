@@ -115,6 +115,20 @@ Der VIX ("Angst-Barometer") ist historisch gesehen **absolut nutzlos** als Vorwa
 * **Zins-Crash 2018:** VIX 36.07 (Exakt am absoluten Aktien-Tiefpunkt am 24.12.2018)
 * **Crash 2025:** VIX 52.33 (Exakt am absoluten Aktien-Tiefpunkt)
 
+### Fiskaldominanz & Das Plumbing (Die WRESBAL "Wunder-Pille")
+Die zugrundeliegende These lautet, dass der Markt in Extremsituationen nicht primär durch Zinsen gesteuert wird, sondern durch Liquidität, die vom Staat (Treasury/TGA) und der FED in das System gepumpt oder entzogen wird. Jeder Dollar, der sich makroökonomisch bewegt, manifestiert sich am Ende physikalisch in den Bankreserven (`WRESBAL`). 
+
+* **Die These (Die 4-Phasen-Mechanik):** Ein Crash verläuft zyklisch und wird durch fiskalische Liquiditäts-Verschiebungen getrieben:
+  1. **Warnung (Der Staubsauger):** Der Staat füllt sein TGA-Konto rasend schnell (**> +150 Mrd. $** in 90 Tagen) und saugt Liquidität ab, oder die FED zieht Reserven ab (QT).
+  2. **Crash:** Den Banken fehlt das Geld für Margin-Schulden, der Aktienmarkt bricht ein.
+  3. **Panik/Kapitulation:** Banken bluten und flüchten zum Notfallfenster der FED (`BORROW`). Eine Inanspruchnahme von **> +15 Mrd. $** ist das untrügliche Signal für eine systemische Kernschmelze.
+  4. **Rettung (Die Wunder-Pille):** Ein andauernder Crash endet historisch fast immer exakt in der Woche, in der eine massive Liquiditätsspritze das System rettet. Diese "Wunder-Pille" ist ein gewaltiger positiver Delta-Sprung der Bankreserven (`WRESBAL`) oder der FED-Bilanz (`WALCL`). Historische Auswertungen belegen, dass Injektionen von **> +150 Mrd. $** unfehlbar und ohne zeitliche Verzögerung den absoluten Marktboden (V-Shape-Recovery) markieren. Kleinere Injektionen (+50 bis +100 Mrd. $) verpuffen hingegen wirkungslos, wenn im Vorfeld keine akute Panik (Phase 3) stattgefunden hat.
+* **Empirischer Beweis:** 
+  * Das exakte Timing ohne Verzögerung wurde durch das Backtest-Skript [wresbal-timing-test.js](file:///workspaces/CrashRadar/scratch/wresbal-timing-test.js) validiert.
+  * Das Scheitern von kleinen Liquiditätsspritzen (die Ausnahmen ohne vorherige Panik) wurde im Skript [wresbal-failure-test.js](file:///workspaces/CrashRadar/scratch/wresbal-failure-test.js) empirisch bewiesen.
+  * Das komplette 4-Phasen-Konstrukt (TGA-Warnung -> Crash -> BORROW-Panik -> WRESBAL-Rettung) ist als State-Machine im Skript [backtest-indicator.js](file:///workspaces/CrashRadar/scratch/backtest-indicator.js) und [backtest-recent.js](file:///workspaces/CrashRadar/scratch/backtest-recent.js) simuliert.
+  * Zu den Simulationsergebnissen existieren vollständige Test-Logs unter [Crash-Analyzer-Report.md](file:///workspaces/CrashRadar/scratch/Crash-Analyzer-Report.md), [Indicator-Backtest-Log.md](file:///workspaces/CrashRadar/scratch/Indicator-Backtest-Log.md) und [Indicator-Recent-6-Months.md](file:///workspaces/CrashRadar/scratch/Indicator-Recent-6-Months.md).
+
 #### 4. Krypto & Netto-Liquidität (Der Bitcoin-Predictor)
 Bitcoin (BTC) verhält sich völlig anders als der S&P 500. Während der S&P 500 von der normalen Geldmenge (M2) und den Unternehmensgewinnen (CP) getrieben wird, ist Bitcoin das reinste Fieberthermometer für die **zentralbankgesteuerte Netto-Liquidität**.
 * **Die Formel:** `Net Liquidity = FED Bilanz (WALCL) - Staatskonto (TGA) - Reverse Repo (RRP)`

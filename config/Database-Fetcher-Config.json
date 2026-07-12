@@ -236,6 +236,15 @@
       }
     },
     {
+      "id": "fred_wresbal",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "WRESBAL",
+        "file_type": "json"
+      }
+    },
+    {
       "id": "fred_wlcfll",
       "provider": "FRED",
       "endpoint": "/fred/series/observations",
