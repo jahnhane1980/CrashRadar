@@ -3,7 +3,7 @@
 *(Dieses Dokument dient als Gedächtnisstütze und State-Transfer für Folge-Sessions. Es hält den aktuellen Fokus, architektonische Leitplanken und strikte Arbeitsregeln fest).*
 
 ## 1. Aktueller Fokus (Nächste Session)
-* **GOLD & GDX Dynamisches Debouncing:** Das statische 14-Tage-Debouncing in `getAlerts` muss in "Crash-Phasen" (Crisis Mode) dynamisch auf 1-5 Tage reduziert werden, um V-Shape-Böden und essenzielle Folge-Alarme nicht zu verpassen.
+* **Zu definieren:** Das dynamische Debouncing für Gold/GDX im Crisis Mode wurde erfolgreich abgeschlossen. Der nächste Fokus wird vom User vorgegeben.
 
 ## 2. Testing-Philosophie & Synthetische Märkte (Chaos-Daten)
 * **Chaos-Arrays:** Daten müssen in Tests Zyklen, hartes Rauschen (`Math.random()`) und extreme Gaps enthalten.

@@ -13,6 +13,9 @@ export class FiscalFedLiquidityIndicator {
 
         const currentDay = timeline[timeline.length - 1];
         const currentDate = currentDay.date;
+        if (!currentDate || isNaN(new Date(currentDate).getTime())) {
+            return { status: 'UNKNOWN', message: 'Ungültiges Datum in Timeline' };
+        }
         
         // Hilfsfunktion: Hole Wert vor X Tagen aus der Timeline
         const getValAgo = (daysBack, extractFn) => {
@@ -50,6 +53,8 @@ export class FiscalFedLiquidityIndicator {
         
         for (let i = timeline.length - 1; i >= 0; i--) {
             const dStr = timeline[i].date;
+            if (!dStr || isNaN(new Date(dStr).getTime())) continue;
+
             const diffTime = Math.abs(new Date(currentDate) - new Date(dStr));
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
             

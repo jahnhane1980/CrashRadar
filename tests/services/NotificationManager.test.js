@@ -133,4 +133,65 @@ describe('NotificationManager (New Architecture)', () => {
         const result2 = manager.getAlerts(macroState, []);
         expect(result2.notifications).toBeNull();
     });
+
+    describe('Dynamisches Debouncing im Crisis Mode', () => {
+        it('sollte das Debouncing für Gold im FLASH_CRASH auf 2 Tage verkürzen', () => {
+            const macroState = createMockMacroState({ regime: 'FLASH_CRASH' });
+            const tradeActions = [
+                createMockTradeAction({ indicator: 'Gold V-Shape Bottom', status: 'CRITICAL', message: 'Kauf mich' }),
+                createMockTradeAction({ indicator: 'SPY Bottom', status: 'CRITICAL', message: 'Mich auch' })
+            ];
+            
+            // Simuliere, dass beide Alarme vor exakt 3 Tagen gesendet wurden
+            // (ein paar Millisekunden extra, um sicher über der Zeitgrenze zu sein)
+            const threeDaysAgo = Date.now() - (3 * 24 * 60 * 60 * 1000) - 1000; 
+            const alertHistory = {
+                'Gold V-Shape Bottom_CRITICAL': threeDaysAgo,
+                'SPY Bottom_CRITICAL': threeDaysAgo
+            };
+            
+            const result = manager.getAlerts(macroState, tradeActions, alertHistory, 14);
+            
+            expect(result.notifications).not.toBeNull();
+            // Nur der Gold Alarm darf durchkommen, der SPY Alarm wird vom 14-Tage Filter gefressen
+            expect(result.notifications.length).toBe(1);
+            expect(result.notifications[0].message).toContain('Gold V-Shape Bottom');
+        });
+
+        it('sollte das Debouncing nach dem Crash automatisch auf 14 Tage zurücksetzen', () => {
+            const macroState = createMockMacroState({ regime: 'BEAR_MARKET' }); // Kein FLASH_CRASH mehr
+            const tradeActions = [
+                createMockTradeAction({ indicator: 'Gold V-Shape Bottom', status: 'CRITICAL', message: 'Kauf mich' })
+            ];
+            
+            // Simuliere, dass der Alarm vor 3 Tagen gesendet wurde
+            const threeDaysAgo = Date.now() - (3 * 24 * 60 * 60 * 1000) - 1000;
+            const alertHistory = {
+                'Gold V-Shape Bottom_CRITICAL': threeDaysAgo
+            };
+            
+            const result = manager.getAlerts(macroState, tradeActions, alertHistory, 14);
+            
+            // Im BEAR_MARKET greifen wieder harte 14 Tage. 3 Tage sind zu wenig. Alarm blockiert!
+            expect(result.notifications).toBeNull();
+        });
+
+        it('sollte im FLASH_CRASH Spam unter 2 Tagen trotzdem abwehren', () => {
+            const macroState = createMockMacroState({ regime: 'FLASH_CRASH' });
+            const tradeActions = [
+                createMockTradeAction({ indicator: 'Gold V-Shape Bottom', status: 'CRITICAL', message: 'Kauf mich' })
+            ];
+            
+            // Simuliere, dass der Alarm erst vor 1 Tag gesendet wurde
+            const oneDayAgo = Date.now() - (1 * 24 * 60 * 60 * 1000) - 1000;
+            const alertHistory = {
+                'Gold V-Shape Bottom_CRITICAL': oneDayAgo
+            };
+            
+            const result = manager.getAlerts(macroState, tradeActions, alertHistory, 14);
+            
+            // Obwohl 2-Tage-Regel aktiv ist, ist 1 Tag zu früh. Blockiert!
+            expect(result.notifications).toBeNull();
+        });
+    });
 });

@@ -76,12 +76,22 @@ export class NotificationManager {
         if (!tradeActions || tradeActions.length === 0) return { notifications: null, updatedHistory: alertHistory };
         
         const now = Date.now();
-        const debounceMs = debounceDays * 24 * 60 * 60 * 1000;
         const groupedAlerts = {};
     
         tradeActions.forEach(action => {
             // Wir alarmieren nicht für blockierte Aktionen
             if (action.blocked) return;
+
+            let dynamicDebounceDays = debounceDays;
+            
+            // CRISIS MODE: Wenn wir im Flash Crash sind und es um Gold/GDX geht, 
+            // reduzieren wir das Debouncing dynamisch auf 2 Tage.
+            if (macroState.regime === 'FLASH_CRASH' && 
+               (action.indicator.includes('Gold') || action.indicator.includes('GDX'))) {
+                dynamicDebounceDays = 2;
+            }
+            
+            const debounceMs = dynamicDebounceDays * 24 * 60 * 60 * 1000;
 
             const historyKey = `${action.indicator}_${action.status}`;
             const lastSent = alertHistory[historyKey];
