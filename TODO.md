@@ -15,5 +15,5 @@
     2) Die "Verwässerungs-Spirale" (Dilution/ATM Offerings = Crash).
   * **Code-Anpassung [OFFEN]:** 
     1) Die aktuell isolierten Einzelaktien-Modelle müssen in die Pipeline eingeklinkt werden: Einen generischen `MlRegimeRadarStockIndicator.js` erstellen und in die `src/analysis/TradeSetupEngine.js` für jeden Ticker (SOFI, ZETA, NVTS, PLTR) einhängen.
-    2) Anschließend SEC-Daten (Institutional Ownership Ratio) und ein Flag (Dilution Risk) als neue Features in die jeweiligen Ticker-Builder einbauen.
-  * **Retraining [OFFEN]:** Modelle mit diesen neuen Kausalitäts-Features neu anlernen, um die Vorhersage-Konfidenz signifikant zu steigern.
+    2) **Minimalistisches Design (Occam's Razor):** SEC-Daten (Institutional Ownership, Dilution Risk) werden *nicht* in das ML-Modell gestopft, sondern als klassische **Vetos in der TradeSetupEngine** verankert (Schutz vor Concept Drift, falls sich Bilanzen ändern).
+  * **Retraining [OFFEN]:** Einzelaktien-LSTMs dediziert nur mit Preis-Action und dem neuen **FINRA Short-Volume** Feature neu anlernen, um das Modell klein und hochspezialisiert auf die Aktiendynamik zu halten.
