@@ -13,5 +13,7 @@
   * **Forschung [ERLEDIGT]:** Eine Korrelationsanalyse hat zwei Kausalitäts-Metriken isoliert, die den ML-Bias (NVTS vs. ZETA) erklären: 
     1) Die "Illiquiditäts-Falle" (Institutionelle Quote >80% = Squeeze)
     2) Die "Verwässerungs-Spirale" (Dilution/ATM Offerings = Crash).
-  * **Code-Anpassung [OFFEN]:** SEC-Daten (Institutional Ownership Ratio) und ein Flag (Dilution Risk) als neue Features in die Ticker-Builder einbauen.
+  * **Code-Anpassung [OFFEN]:** 
+    1) Die aktuell isolierten Einzelaktien-Modelle müssen in die Pipeline eingeklinkt werden: Einen generischen `MlRegimeRadarStockIndicator.js` erstellen und in die `src/analysis/TradeSetupEngine.js` für jeden Ticker (SOFI, ZETA, NVTS, PLTR) einhängen.
+    2) Anschließend SEC-Daten (Institutional Ownership Ratio) und ein Flag (Dilution Risk) als neue Features in die jeweiligen Ticker-Builder einbauen.
   * **Retraining [OFFEN]:** Modelle mit diesen neuen Kausalitäts-Features neu anlernen, um die Vorhersage-Konfidenz signifikant zu steigern.
