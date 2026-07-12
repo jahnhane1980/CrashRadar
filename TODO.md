@@ -15,13 +15,13 @@
     2) Die "Verwässerungs-Spirale" (Dilution/ATM Offerings = Crash).
   * **Phase 1: Daten-Fundament [ERLEDIGT]:** Historische 2021-2022 FINRA-Daten (aus CSV) wurden in die TiDB-Datenbank importiert. Tägliche Updates erfolgen bereits automatisch via `Database-Fetcher-Config.json`.
   * **Phase 2: Feature-Builder anpassen [OFFEN]:** 
-    * *Dateien:* `src/analysis/ml/builders/SofiFeatureBuilder.js`, `ZetaFeatureBuilder.js`, `NvtsFeatureBuilder.js`
+    * *Dateien:* Entweder `src/ml/features/DefaultFeatureBuilder.js` anpassen oder dedizierte Klassen wie `src/ml/features/ZetaFeatureBuilder.js` erstellen (Der `MLPipelineRunner` lädt diese dynamisch, falls vorhanden).
     * *Aktion:* Das Feature `Short_Volume_Ratio` zur Eingangsmatrix hinzufügen. Die Daten dafür stammen aus der bereits verknüpften TiDB-Tabelle `market_data_short_volume`. Schwächere oder redundante Volumen-Z-Scores können dafür entfernt werden.
   * **Phase 3: Das Retraining (Modell-Update) [OFFEN]:** 
     * *Aktion:* Das zentrale ML-CLI-Skript (`node ml.js -t <Ticker> -s all`) für SOFI, ZETA, NVTS und PLTR ausführen.
     * *Ziel:* Der `MLPipelineRunner` extrahiert die neuen FINRA-Daten über die angepassten Feature-Builder aus der DB, trainiert die LSTMs auf die neue Preis-Volumen-Mechanik und überschreibt die alten Modell-Gewichte in `models/`.
   * **Phase 4: Pipeline-Integration & Wachhund [OFFEN]:** 
-    * *Neu anzulegen:* `src/analysis/indicators/MlRegimeRadarStockIndicator.js` (Generischer Indikator, dem man im Konstruktor den Ticker übergibt).
+    * *Neu anzulegen:* `src/analysis/indicators/MlRegimeRadarStockIndicator.js` (Generischer Indikator, dem man im Konstruktor den Ticker übergibt). Zudem eine neue Config-Datei `config/Fundamental-Veto-Config.json` anlegen, in der die Bilanzen (Institutional Quote, Dilution Risk) für die Ticker hinterlegt werden.
     * *Anzupassen:* `src/analysis/TradeSetupEngine.js` (Den neuen Indikator für jeden Ticker dem `this.indicators`-Array hinzufügen).
-    * *Wachhund-Logik (Change of Character):* In der `TradeSetupEngine` (oder direkt im Indikator) muss eine Veto-Weiche gebaut werden. Das Skript muss die aktuellen Fundamentaldaten abfragen (entweder aus einer `market_data_fundamentals`-Tabelle oder einer zentralen Config).
-      * *Regel:* Sagt das LSTM z.B. einen "ZETA Squeeze" vorher, der Wachhund sieht aber, dass die Inst. Quote massiv gecrasht ist (z.B. von >70% auf 30%) -> **BLOCKIERE** das Signal (Signal veraltet durch Bilanz-Strukturbruch). Gleiches gilt für plötzliche massive Verwässerung (`Dilution_Risk == HIGH`).
+    * *Wachhund-Logik (Change of Character):* In der `TradeSetupEngine` (oder direkt im Indikator) muss eine Veto-Weiche gebaut werden. Das Skript liest die `Fundamental-Veto-Config.json`.
+      * *Regel:* Sagt das LSTM z.B. einen "ZETA Squeeze" vorher, der Wachhund sieht aber in der Config, dass die Inst. Quote massiv gecrasht ist (z.B. <50%) -> **BLOCKIERE** das Signal (Signal veraltet durch Bilanz-Strukturbruch). Gleiches gilt für plötzliche massive Verwässerung (`Dilution_Risk == HIGH`).
