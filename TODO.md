@@ -14,7 +14,14 @@
     1) Die "Illiquiditäts-Falle" (Institutionelle Quote >80% = Squeeze)
     2) Die "Verwässerungs-Spirale" (Dilution/ATM Offerings = Crash).
   * **Phase 1: Daten-Fundament [ERLEDIGT]:** Historische 2021-2022 FINRA-Daten (aus CSV) wurden in die TiDB-Datenbank importiert. Tägliche Updates erfolgen bereits automatisch via `Database-Fetcher-Config.json`.
-  * **Phase 2: Feature-Builder anpassen [OFFEN]:** In den jeweiligen `<Ticker>FeatureBuilder`-Skripten (z.B. für SOFI, ZETA, NVTS) das neue Eingabe-Feature `Short_Volume_Ratio` hinzufügen (ggf. schwächere Volumen-Metriken ersetzen), damit das Modell dieses beim Training sieht.
-  * **Phase 3: Das Retraining (Modell-Update) [OFFEN]:** ML-Trainings-Skript für die Ticker starten. Die LSTMs lesen die neuen FINRA-Daten aus der DB, lernen die Mechanik (ohne Bilanzen, rein über Preis + Short-Volume) und speichern die neuen Gewichte ab.
-  * **Phase 4: Pipeline-Integration & Wachhund [OFFEN]:** Einen generischen `MlRegimeRadarStockIndicator.js` erstellen und in die `src/analysis/TradeSetupEngine.js` einhängen. Dort die SEC-Bilanzen als **Veto-Prüfung** verankern.
-    * *Regel (Change of Character):* Sagt das Netz z.B. einen Squeeze vorher, die `TradeSetupEngine` sieht aber in der DB, dass die Inst. Quote massiv gecrasht ist (z.B. von >70% auf 30%) -> **BLOCKIERE** das Signal (Signal veraltet durch Bilanz-Strukturbruch).
+  * **Phase 2: Feature-Builder anpassen [OFFEN]:** 
+    * *Dateien:* `src/analysis/ml/builders/SofiFeatureBuilder.js`, `ZetaFeatureBuilder.js`, `NvtsFeatureBuilder.js`
+    * *Aktion:* Das Feature `Short_Volume_Ratio` zur Eingangsmatrix hinzufügen. Die Daten dafür stammen aus der bereits verknüpften TiDB-Tabelle `market_data_short_volume`. Schwächere oder redundante Volumen-Z-Scores können dafür entfernt werden.
+  * **Phase 3: Das Retraining (Modell-Update) [OFFEN]:** 
+    * *Aktion:* Das ML-Trainings-Skript (z.B. `node src/analysis/ml/train.js <Ticker>`) für SOFI, ZETA, NVTS und PLTR ausführen.
+    * *Ziel:* Die LSTMs lesen die neuen FINRA-Daten aus der DB, lernen die Preis-Volumen-Mechanik für den jeweiligen Ticker und überschreiben die alten Modell-Gewichte in `models/`.
+  * **Phase 4: Pipeline-Integration & Wachhund [OFFEN]:** 
+    * *Neu anzulegen:* `src/analysis/indicators/MlRegimeRadarStockIndicator.js` (Generischer Indikator, dem man im Konstruktor den Ticker übergibt).
+    * *Anzupassen:* `src/analysis/TradeSetupEngine.js` (Den neuen Indikator für jeden Ticker dem `this.indicators`-Array hinzufügen).
+    * *Wachhund-Logik (Change of Character):* In der `TradeSetupEngine` (oder direkt im Indikator) muss eine Veto-Weiche gebaut werden. Das Skript muss die aktuellen Fundamentaldaten abfragen (entweder aus einer `market_data_fundamentals`-Tabelle oder einer zentralen Config).
+      * *Regel:* Sagt das LSTM z.B. einen "ZETA Squeeze" vorher, der Wachhund sieht aber, dass die Inst. Quote massiv gecrasht ist (z.B. von >70% auf 30%) -> **BLOCKIERE** das Signal (Signal veraltet durch Bilanz-Strukturbruch). Gleiches gilt für plötzliche massive Verwässerung (`Dilution_Risk == HIGH`).
