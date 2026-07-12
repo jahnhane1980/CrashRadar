@@ -39,6 +39,19 @@ export class NotificationManager {
         }
         addLine('');
 
+        if (macroState.indicatorDetails && macroState.indicatorDetails.length > 0) {
+            addLine(`${c_bold}🔎 MAKRO-INDIKATOREN${c_rst}`);
+            addLine(`------------------------------------------------------`);
+            macroState.indicatorDetails.forEach(ind => {
+                let indColor = c_grn;
+                let icon = cleanText ? '' : '🟢';
+                if (ind.status === 'WARNING') { indColor = c_yel; icon = cleanText ? '' : '🟡'; }
+                if (ind.status === 'CRITICAL') { indColor = c_red; icon = cleanText ? '' : '🔴'; }
+                addLine(`  ${icon} ${ind.name.padEnd(50, ' ')} ${indColor}[${ind.status}]${c_rst}`);
+            });
+            addLine('');
+        }
+
         // 2. Trade Actions
         addLine(`${c_bold}📈 TRADE ACTIONS (Execution Planer)${c_rst}`);
         addLine(`------------------------------------------------------`);
@@ -104,8 +117,7 @@ export class NotificationManager {
             const finalPriority = data.highestPriority === 'urgent' ? 'urgent' : 
                                  (data.highestPriority === 'high' && topicConfig.priority === 'default' ? 'high' : topicConfig.priority);
             
-            let regimeInfo = `[Makro-Regime: ${macroState.regime}]`;
-            if (macroState.vetos.length > 0) regimeInfo += ` [Vetos: ${macroState.vetos.join(', ')}]`;
+            let regimeInfo = `[Makro: ${macroState.regime}]`;
 
             notifications.push({
                 title: topicConfig.title,
@@ -123,8 +135,22 @@ export class NotificationManager {
 
     getDailyStatusReport(macroState, tradeActions, currentDayData) {
         let summary = `🌍 Regime: ${macroState.regime}\n`;
-        if (macroState.vetos.length > 0) summary += `⚠️ Vetos: ${macroState.vetos.join(', ')}\n`;
         summary += `💧 Liquidität: ${macroState.liquidityStatus}\n\n`;
+
+        if (macroState.indicatorDetails && macroState.indicatorDetails.length > 0) {
+            summary += `🔎 Makro-Indikatoren:\n`;
+            macroState.indicatorDetails.forEach(ind => {
+                let icon = '🟢';
+                if (ind.status === 'WARNING') icon = '🟡';
+                if (ind.status === 'CRITICAL') icon = '🔴';
+                summary += `${icon} ${ind.name}: ${ind.status}\n`;
+            });
+            summary += `\n`;
+        }
+
+        if (macroState.vetos.length > 0) {
+            summary += `⚠️ Aktive Vetos: ${macroState.vetos.join(', ')}\n\n`;
+        }
 
         let activeActions = tradeActions ? tradeActions.filter(a => !a.blocked) : [];
         if (activeActions.length > 0) {
@@ -147,7 +173,7 @@ export class NotificationManager {
         else if (activeActions.some(a => a.status === 'WARNING')) overallStatus = 'WARNING';
 
         return {
-            title: `CrashRadar: Daily Status (${overallStatus})`,
+            title: `CrashRadar: Makro-Wetterbericht (${overallStatus})`,
             priority: 'default',
             tags: 'chart_with_upwards_trend',
             message: summary.trim()

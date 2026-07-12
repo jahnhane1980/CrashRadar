@@ -71,6 +71,6 @@ describe('IndicatorEngine V2 (New Architecture)', () => {
     const data = createFakeData();
     const status = engine.getDailyStatusReport(data);
     expect(status).toBeDefined();
-    expect(status.title).toContain('CrashRadar: Daily Status');
+    expect(status.title).toContain('CrashRadar: Makro-Wetterbericht');
   });
 });

@@ -118,7 +118,7 @@ describe('NotificationManager (New Architecture)', () => {
         
         expect(result).toBeDefined();
         // FLASH_CRASH -> Overall CRITICAL
-        expect(result.title).toContain('Daily Status (CRITICAL)');
+        expect(result.title).toContain('Makro-Wetterbericht (CRITICAL)');
         expect(result.message).toContain('FLASH_CRASH');
         expect(result.message).toContain('BEAR_MARKET (95.0%)');
         expect(result.message).toContain('CYCLE_BOTTOM (85.0%)');

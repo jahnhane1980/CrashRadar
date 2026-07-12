@@ -47,7 +47,8 @@ export class MacroRegimeEngine {
                 states[dateStr] = {
                     regime: 'UNKNOWN',
                     liquidityStatus: 'UNKNOWN',
-                    vetos: []
+                    vetos: [],
+                    indicatorDetails: []
                 };
                 continue;
             }
@@ -55,10 +56,17 @@ export class MacroRegimeEngine {
             let regime = 'NORMAL';
             let liquidityStatus = 'NORMAL';
             let vetos = [];
+            let indicatorDetails = [];
 
             // Alle Indikatoren ausführen
             for (const indicator of this.indicators) {
                 const result = indicator.evaluate(timeline);
+                
+                indicatorDetails.push({
+                    name: indicator.name,
+                    status: (result && result.status) ? result.status : 'UNKNOWN'
+                });
+
                 if (!result || result.status === 'UNKNOWN') continue;
 
                 // 1. Flash Crash & Panik
@@ -126,7 +134,8 @@ export class MacroRegimeEngine {
             states[dateStr] = {
                 regime,
                 liquidityStatus,
-                vetos
+                vetos,
+                indicatorDetails
             };
         }
 

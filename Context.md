@@ -3,7 +3,7 @@
 *(Dieses Dokument dient als Gedächtnisstütze und State-Transfer für Folge-Sessions. Es hält den aktuellen Fokus, architektonische Leitplanken und strikte Arbeitsregeln fest).*
 
 ## 1. Aktueller Fokus (Nächste Session)
-* **Nächste Aufgabe:** Architektur & Benachrichtigungen (Transparenz). Aktuell ändern Indikatoren in der `MacroRegimeEngine` (wie Smart/Dumb Money) zwar unsichtbar das "Wetter" (Regime), lösen aber keine aktiven Push-Alarme im `NotificationManager` aus. Bevor wir den finalen Backtest laufen lassen, müssen wir die Architektur so umbauen, dass der User bei kritischen Makro-Triggern nicht "blind" ist, sondern exakt erfährt, *welcher* Makro-Indikator gerade das Regime gewechselt hat (z.B. durch Spieglung der Alarme in die Trade-Engine oder native Makro-Alerts).
+* **Ausstehende Beweisführungen (Tech-Sektor):** Die Architektur für die Benachrichtigungen (Makro-Wetterbericht) ist vollständig abgeschlossen. Der nächste logische Schritt ist die empirische Beweisführung der Tech-Sektor Rotation (Korrelation von DIX und VandaTrack/Odd-Lots mit Tech-Tops), um die simulierten Daten im Backtest durch echte historische Zeitreihen zu verifizieren.
 
 ## 2. Testing-Philosophie & Synthetische Märkte (Chaos-Daten)
 * **Chaos-Arrays:** Daten müssen in Tests Zyklen, hartes Rauschen (`Math.random()`) und extreme Gaps enthalten.
@@ -98,8 +98,4 @@ Böden werden nicht langfristig geplant, sondern entstehen durch akute Panik und
 3. **VIX (Der Panik-Peak):** Laggt nicht, sondern erreicht seinen absoluten Höhepunkt **exakt am Tag (0 Tage)** des Preis-Bottoms.
 *Die Engine-Regel (Re-Entry):* Wenn VIX > 40, AAII < -25% UND DIX > 45% -> Aggressiver Kauf (The Bottom is in).
 
-*(Hinweis: Die Indikatoren-Klassen sind vollständig implementiert und getestet. Die finale Registrierung in der `IndicatorEngine.js` steht als letzter Schritt noch aus).*
-
-## 6. Nächste Schritte (TODOs)
-* **13F Hedgefonds-Daten verwerfen:** Da die gesetzliche Quartalsmeldung (inklusive 45-Tage Verzug) für ein kurzfristiges Timing blind ist, werden die 13F Daten als aktives Backtest-Signal aus der Architektur gestrichen. Sie dienen maximal noch als historische Langzeit-Metrik, nicht aber für Trigger-Logiken.
-* **Integration der Divergenzen in die Engine:** Die Indikator-Klassen für Top und Bottom (`SmartDumbMoneyTopIndicator`, `SmartDumbMoneyBottomIndicator`) sind implementiert. Als nächster Schritt müssen diese nun in der `src/analysis/IndicatorEngine.js` registriert werden, sodass der Backtester tagesaktuell feuern kann.
+*(Hinweis: Die Indikatoren-Klassen und Benachrichtigungs-Systeme (Makro-Wetterbericht) sind vollständig implementiert und getestet).*
