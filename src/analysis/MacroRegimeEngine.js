@@ -10,6 +10,7 @@ import { BankReservesIndicator } from './indicators/BankReservesIndicator.js';
 import { MaturityWallIndicator } from './indicators/MaturityWallIndicator.js';
 import { NfciIndicator } from './indicators/NfciIndicator.js';
 import { ChallengerIndicator } from './indicators/ChallengerIndicator.js';
+import { StealthExitIndicator } from './indicators/StealthExitIndicator.js';
 
 export class MacroRegimeEngine {
     constructor() {
@@ -26,7 +27,8 @@ export class MacroRegimeEngine {
             new MaturityWallIndicator(),
             new NfciIndicator(),
             new ChallengerIndicator(),
-            new FiscalFedLiquidityIndicator()
+            new FiscalFedLiquidityIndicator(),
+            new StealthExitIndicator()
         ];
     }
 
@@ -90,6 +92,13 @@ export class MacroRegimeEngine {
                     if (regime !== 'FLASH_CRASH') {
                         regime = 'LATE_CYCLE_EUPHORIA';
                     }
+                }
+                // 2.1.1 Stealth Exit (DIX Dark Pool Divergenz)
+                if (indicator.name === 'Stealth Exit (DIX Dark Pool Divergenz)' && result.status === 'CRITICAL') {
+                    if (regime !== 'FLASH_CRASH') {
+                        regime = 'LATE_CYCLE_EUPHORIA';
+                    }
+                    vetos.push('STEALTH_EXIT_ACTIVE');
                 }
                 if (indicator.name === 'Smart vs Dumb Money (The Bottom)' && result.status === 'CRITICAL') {
                     regime = 'FLASH_CRASH';

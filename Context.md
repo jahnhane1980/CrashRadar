@@ -8,24 +8,7 @@
 * **Mathematische Singularitäten:** Wir zwingen Code gezielt in Division-by-Zero-Szenarien oder undefinierte Zustände (`UNKNOWN` Fallbacks).
 * **Anti-Overfitting:** Rauschen (`Math.random()`) in historische Preise mischen, um echte Makro-Kausalitäten zu prüfen.
 
-
-
-## 2. Makro-Theorie & Schwellenwerte (Stealth Exit)
-Die These lautet, dass Institutionen bei Liquiditätsengpässen (TGA/Bank-Reserven) ihre Aktien an euphorische Kleinanleger abverkaufen, bevor der Preis-Chart einbricht. Wir suchen nach der Divergenz: Preis steigt + Wale verkaufen + Retail kauft.
-Die zu beweisenden Trigger-Schwellen für den Code-Backtest sind:
-1. **SqueezeMetrics (DIX):** `DIX < 40 %` (Wale verkaufen/shorten über Dark Pools, während Markt am ATH steht).
-2. **SEC 13F (Verworfen für exaktes Timing):** 
-   * **Erkenntnis:** Wir haben empirisch bewiesen, dass 13F-Daten (Hedgefonds Holdings) aufgrund der gesetzlichen Quartalsmeldung und der 45-Tage Grace Period für das exakte Crash-Timing völlig blind sind. Sie fliegen aus der direkten Signal-Logik der Engine raus und dienen maximal zur historischen Langzeit-Bestätigung.
-3. **Retail-Proxy (Die beweisbare "Dumb Money" Divergenz):** 
-   * Da Optionen (PCR) institutionelles und privates Geld unbeweisbar vermischen, nutzen wir rein explizite Proxies für den Retail- vs. Smart-Money-Split:
-   * **Die Retail-Masse (Dumb Money):** 
-     - *AAII Sentiment Survey:* Misst wöchentlich die Gier der Main Street (Kleinanleger). Ein Bull/Bear Spread auf Extremwerten beweist blinde Gier. Datenbezug via Scraper/API.
-     - *FINRA Margin Debt:* Misst die Überschuldung auf Pump, was historisch ein reines Retail-Phänomen am Top ist. Bezug via monatlichem FINRA CSV-Download. **(Bereits vollständig im FinraFetchAdapter implementiert!)**
-   * **Das Smart Money (Active Managers):** 
-     - *NAAIM Exposure Index:* Misst wöchentlich die Aktienquote aktiver US-Fondsmanager. Bezug via NAAIM Website (Excel/Scraper).
-   * **Der finale Beweis (Divergenz):** Der Markt crasht, wenn der AAII (Retail) auf "Gier" steht und das Margin Debt auf Allzeithoch klettert, WÄHREND der NAAIM Index fällt und die Top 20 Hedgefonds (13F) netto verkaufen.
-
-## 3. Ergebnisse der Smart vs. Dumb Money Divergenz (Beweisführung)
+## 2. Ergebnisse der Smart vs. Dumb Money Divergenz (Beweisführung)
 *(Diese Ergebnisse stammen aus dem Skript `scratch/analyse/test_dumb_money.js` und zeigen das divergierende Verhalten von Smart und Dumb Money an den absoluten Tops und Bottoms der größten Crashes).*
 
 ### Corona Flash-Crash 2020

@@ -177,6 +177,25 @@ describe('MacroRegimeEngine - Chaos & Edge Case Testing', () => {
             expect(states[euphoricDate].regime).toBe('LATE_CYCLE_EUPHORIA');
         });
 
+        it('STEALTH_EXIT: Sollte verdeckte Wale-Abverkäufe (DIX < 40% am SPY Hoch) erkennen', () => {
+            const data = createHugeChaosData(80);
+            const exitDate = Object.keys(data)[79];
+            
+            // Setzt SPY auf ein konstantes Niveau (kein Drawdown)
+            const dates = Object.keys(data);
+            for(let i = 50; i < 80; i++) {
+                data[dates[i]].assets.SPY = 400.0;
+            }
+            // Setzt DIX am letzten Tag unter 40%
+            data[exitDate].assets.DIX = 38.0;
+
+            const states = engine.evaluate(data);
+            const exitState = states[exitDate];
+            
+            expect(exitState.regime).toBe('LATE_CYCLE_EUPHORIA');
+            expect(exitState.vetos).toContain('STEALTH_EXIT_ACTIVE');
+        });
+ 
         it('BEAR_MARKET: Sollte Entlassungswellen (Challenger) erkennen und Regime kippen', () => {
             const data = createHugeChaosData(250);
             
