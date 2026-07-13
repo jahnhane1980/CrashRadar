@@ -614,6 +614,36 @@
       "dataset": "pcr"
     },
     {
+      "id": "yahoo_fundamentals_zeta",
+      "provider": "YahooFinance",
+      "ticker": "ZETA",
+      "method": "fundamentals"
+    },
+    {
+      "id": "yahoo_fundamentals_nvts",
+      "provider": "YahooFinance",
+      "ticker": "NVTS",
+      "method": "fundamentals"
+    },
+    {
+      "id": "yahoo_fundamentals_sofi",
+      "provider": "YahooFinance",
+      "ticker": "SOFI",
+      "method": "fundamentals"
+    },
+    {
+      "id": "yahoo_fundamentals_pltr",
+      "provider": "YahooFinance",
+      "ticker": "PLTR",
+      "method": "fundamentals"
+    },
+    {
+      "id": "yahoo_fundamentals_s",
+      "provider": "YahooFinance",
+      "ticker": "S",
+      "method": "fundamentals"
+    },
+    {
       "id": "tiingo_xlf_macro",
       "provider": "Tiingo",
       "endpoint": "/tiingo/daily/XLF/prices",
@@ -899,7 +929,6 @@
       "id": "aaii_sentiment",
       "provider": "AAII",
       "overrideStartDate": "2010-01-01"
-    },
     }
   ]
 }

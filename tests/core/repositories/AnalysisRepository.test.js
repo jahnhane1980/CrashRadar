@@ -84,4 +84,27 @@ describe('AnalysisRepository', () => {
     expect(state.TGA).toBe(1234); // 1234000 / 1000
     await repo.close();
   });
+
+  it('sollte FINRA Short Volume via getFinraShortVolumeForTicker abfragen', async () => {
+    const repo = new AnalysisRepository('mysql://dummy');
+    repo.pool.query = vi.fn().mockResolvedValue([[{ date: '2023-01-01', short_volume_ratio: '0.65' }]]);
+    const res = await repo.getFinraShortVolumeForTicker('ZETA', '2015-01-01');
+    expect(repo.pool.query).toHaveBeenCalledWith(expect.stringContaining('market_data_short_volume'), ['ZETA', '2015-01-01']);
+    expect(res[0].short_volume_ratio).toBe('0.65');
+  });
+
+  it('sollte Fundamentals via getFundamentalsForTicker als Array abrufen', async () => {
+    const repo = new AnalysisRepository('mysql://dummy');
+    
+    // DB returns empty array
+    repo.pool.query = vi.fn().mockResolvedValue([[]]);
+    const res1 = await repo.getFundamentalsForTicker('ZETA');
+    expect(res1).toEqual([]);
+    
+    // DB returns valid data array
+    const mockRows = [{ date: '2023-01-01', period: '3M', shareIssued: 1000 }];
+    repo.pool.query = vi.fn().mockResolvedValue([mockRows]);
+    const res2 = await repo.getFundamentalsForTicker('SOFI');
+    expect(res2).toEqual(mockRows);
+  });
 });

@@ -27,9 +27,27 @@ describe('YahooFinanceAdapter', () => {
     expect(() => adapter.getInsertQueryAndValues(task, data)).toThrow('Missing date');
   });
 
-  it('should throw error if date object is invalid Date (edge case)', () => {
+  it('sollte error werfen wenn date object invalid ist (edge case)', () => {
     const task = { ticker: 'AAPL' };
     const data = [{ date: new Date('not-a-valid-date'), open: 150 }];
     expect(() => adapter.getInsertQueryAndValues(task, data)).toThrow('Invalid date');
+  });
+
+  it('sollte fundamentals in company_fundamentals einfügen', () => {
+    const task = { ticker: 'ZETA', method: 'fundamentals' };
+    const data = [{ 
+      ticker: 'ZETA', 
+      date: '2024-01-01',
+      period: '3M',
+      shareIssued: 210000000, 
+      freeCashFlow: 50000,
+      totalRevenue: 100000,
+      netIncome: 20000,
+      financingCashFlow: -10000,
+      institutional_ownership: 0.81 
+    }];
+    const result = adapter.getInsertQueryAndValues(task, data);
+    expect(result.query).toContain('INSERT INTO company_fundamentals');
+    expect(result.values[0]).toEqual(['ZETA', '2024-01-01', '3M', 210000000, 50000, 100000, 20000, -10000, 0.81]);
   });
 });

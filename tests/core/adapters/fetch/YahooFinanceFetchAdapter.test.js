@@ -3,7 +3,9 @@ import { YahooFinanceFetchAdapter } from '../../../../src/core/adapters/fetch/Ya
 
 const mocks = vi.hoisted(() => ({
     chart: vi.fn().mockResolvedValue([{ date: '2023-01-01', close: 100 }]),
-    options: vi.fn()
+    options: vi.fn(),
+    quoteSummary: vi.fn(),
+    fundamentalsTimeSeries: vi.fn()
 }));
 
 // Mock yahoo-finance2
@@ -12,6 +14,8 @@ vi.mock('yahoo-finance2', () => {
     default: class MockYahooFinance {
       chart = mocks.chart;
       options = mocks.options;
+      quoteSummary = mocks.quoteSummary;
+      fundamentalsTimeSeries = mocks.fundamentalsTimeSeries;
     }
   };
 });
@@ -139,6 +143,31 @@ describe('YahooFinanceFetchAdapter - Härtetests', () => {
       const adapter = new YahooFinanceFetchAdapter();
       const result = await adapter.fetch({ method: 'chart', ticker: 'AAPL' }, {}, '2023-01-01');
       expect(result).toBeDefined();
+    });
+  });
+
+  describe('Fundamentals Method', () => {
+    it('sollte quoteSummary aufrufen und Mappings korrekt anwenden', async () => {
+      mocks.quoteSummary.mockResolvedValueOnce({
+        majorHoldersBreakdown: { institutionsPercentHeld: 0.81 }
+      });
+      mocks.fundamentalsTimeSeries.mockResolvedValueOnce([
+        { date: '2024-01-01', shareIssued: 210000000, freeCashFlow: 50000, totalRevenue: 100000, netIncome: 20000, financingCashFlow: -10000 }
+      ]);
+      const adapter = new YahooFinanceFetchAdapter();
+      const result = await adapter.fetch({ method: 'fundamentals', ticker: 'ZETA' }, {});
+      
+      expect(mocks.fundamentalsTimeSeries).toHaveBeenCalledWith('ZETA', { period1: '2010-01-01', module: 'all' });
+      expect(mocks.quoteSummary).toHaveBeenCalledWith('ZETA', { modules: ['majorHoldersBreakdown'] });
+      expect(result.quotes[0]).toEqual(expect.objectContaining({
+        date: '2024-01-01',
+        shareIssued: 210000000,
+        freeCashFlow: 50000,
+        totalRevenue: 100000,
+        netIncome: 20000,
+        financingCashFlow: -10000,
+        institutional_ownership: 0.81
+      }));
     });
   });
 });

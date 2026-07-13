@@ -102,6 +102,35 @@ export class AnalysisRepository {
     return yahooRows;
   }
 
+  async getFinraShortVolumeForTicker(ticker, startDate = '2015-01-01') {
+    const [rows] = await this.pool.query(`
+      SELECT record_date as date, short_volume_ratio 
+      FROM market_data_short_volume 
+      WHERE symbol = ? AND record_date >= ?
+      ORDER BY record_date ASC
+    `, [ticker, startDate]);
+    return rows;
+  }
+
+  async getFundamentalsForTicker(ticker, startDate = '2015-01-01') {
+    try {
+      const [rows] = await this.pool.query(`
+        SELECT DATE_FORMAT(date, '%Y-%m-%d') as date, period, shareIssued, freeCashFlow, totalRevenue, netIncome, financingCashFlow, institutional_ownership
+        FROM company_fundamentals 
+        WHERE symbol = ? AND date >= ?
+        ORDER BY date ASC
+      `, [ticker, startDate]);
+      
+      if (rows.length > 0) {
+        return rows;
+      }
+    } catch (e) {
+      // Fallback if table doesn't exist or other error
+      console.warn(`[AnalysisRepository] Error fetching fundamentals for ${ticker}: ${e.message}`);
+    }
+    return [];
+  }
+
   async getAllRawData(startDate) {
     const [btc] = await this.pool.query(`
       SELECT DATE_FORMAT(FROM_UNIXTIME(open_time/1000), '%Y-%m-%d') as date, close, volume, high, low 

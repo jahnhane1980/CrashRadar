@@ -33,6 +33,49 @@ export class YahooFinanceFetchAdapter {
       };
     }
 
+    if (task.method === 'fundamentals') {
+      console.log(`[YahooFinanceFetchAdapter] Fetching Fundamentals TimeSeries for ${task.ticker}...`);
+      
+      let timeSeries = [];
+      try {
+          timeSeries = await yahooFinance.fundamentalsTimeSeries(task.ticker, { period1: '2010-01-01', module: 'all' });
+      } catch (err) {
+          console.error(`[YahooFinanceFetchAdapter] Error fetching fundamentalsTimeSeries for ${task.ticker}:`, err.message);
+      }
+      
+      let instOwn = 0;
+      try {
+        const quote = await yahooFinance.quoteSummary(task.ticker, { modules: ['majorHoldersBreakdown'] });
+        instOwn = quote?.majorHoldersBreakdown?.institutionsPercentHeld || 0;
+      } catch (err) {
+        console.error(`[YahooFinanceFetchAdapter] Failed to fetch quoteSummary for ${task.ticker}:`, err.message);
+      }
+      
+      const quotes = timeSeries.map(item => {
+        let dateStr;
+        if (item.date) {
+            const d = new Date(item.date);
+            dateStr = d.toISOString().split('T')[0];
+        } else {
+            dateStr = new Date().toISOString().split('T')[0];
+        }
+
+        return {
+          ticker: task.ticker,
+          date: dateStr,
+          period: item.periodType || '3M',
+          shareIssued: item.shareIssued || item.ordinarySharesNumber || 0,
+          freeCashFlow: item.freeCashFlow || 0,
+          totalRevenue: item.totalRevenue || item.operatingRevenue || 0,
+          netIncome: item.netIncome || item.netIncomeCommonStockholders || item.netIncomeFromContinuingOperations || 0,
+          financingCashFlow: item.financingCashFlow || 0,
+          institutional_ownership: instOwn
+        };
+      });
+      
+      return { quotes };
+    }
+
     if (startValue) {
       let dateToCheck = String(startValue);
       // Wenn es ein YYYY-MM-DD String ist, als UTC Mitternacht interpretieren

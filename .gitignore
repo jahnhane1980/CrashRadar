@@ -115,3 +115,9 @@ temp_*.sqlite
 coverage
 data/db
 
+graphify-out
+run_graphify_*.ps1
+run_graphify_*.py
+run_final.ps1
+run_step5_9.py
+run_final_steps.ps1

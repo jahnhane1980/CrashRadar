@@ -3,7 +3,12 @@
 *(Dieses Dokument dient als Gedächtnisstütze und State-Transfer für Folge-Sessions. Es hält den aktuellen Fokus, architektonische Leitplanken und strikte Arbeitsregeln fest).*
 
 ## 1. Aktueller Fokus (Nächste Session)
-* **FINRA Short-Volume: Ursachenforschung & Feature-Erweiterung:** Das neuronale Netz soll künftig selbstständig interpretieren können, warum extrem hohes Short-Volume bei einer Aktie ein Kaufsignal (z.B. ZETA), bei einer anderen aber ein Risiko (z.B. NVTS) darstellt. Fokus liegt auf der Analyse der Ursachen (Divergenz) und der Integration als Feature.
+* **Dynamische Fundamentaldaten (Time-Series):** Die Tabelle `company_fundamentals` operiert aktuell als Snapshot und überschreibt historische Trends (Buybacks vs. Verwässerung). Dies muss in eine Zeitreihe umgewandelt werden, damit die Maschine Veränderungen (Deltas) sehen kann.
+* **Technisches Ziel (Phase 2.5, 3 & 4):**
+  1. **Dynamisches Dilution-Risk (Umbau): [ABGESCHLOSSEN]** Die statische Bewertung (`dilution_risk = 1`) flog aus der Datenbank raus. Stattdessen berechnet der Code (Feature Builder) das Verwässerungsrisiko nun selbst on-the-fly über Time-Series-Daten.
+  2. **Retraining:** Das zentrale Machine-Learning-Skript (`node ml.js -t <Ticker> -s all`) muss für die betroffenen Aktien (ZETA, NVTS, SOFI, PLTR) ausgeführt werden, damit das LSTM die neuen Kausalitäten (Short-Squeeze vs. Todesspirale) erlernt.
+  3. **Evaluation & A/B-Vergleich:** Nach dem Retraining muss zwingend ein Vergleich der alten und neuen Metriken stattfinden. Nur wenn die neuen Features eine signifikante Verbesserung der Vorhersage-Güte bringen, wird die Integration fortgesetzt.
+  4. **Veto-Wachhund:** Implementierung eines neuen Indikators (`MlRegimeRadarStockIndicator.js`) und einer Veto-Weiche in der `TradeSetupEngine`, die Long-Signale des LSTMs hart blockiert, wenn die dynamische Abfrage einen fundamentalen Strukturbruch (z.B. Einbruch FCF + Verwässerung) ergibt.
 
 ## 2. Testing-Philosophie & Synthetische Märkte (Chaos-Daten)
 * **Chaos-Arrays:** Daten müssen in Tests Zyklen, hartes Rauschen (`Math.random()`) und extreme Gaps enthalten.
