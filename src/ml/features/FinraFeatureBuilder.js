@@ -7,7 +7,7 @@ export class FinraFeatureBuilder extends DefaultFeatureBuilder {
     
     // Die neuen FINRA-Features aus der Default-Liste entfernen, 
     // damit der DefaultFeatureBuilder die Zeilen beim Validieren nicht droppt.
-    this.finraFeatures = ["FINRA_Short_Ratio", "Inst_Ownership", "Share_Change_YoY", "FCF_Change_QoQ", "Revenue_Change_QoQ"];
+    this.finraFeatures = ["FINRA_Short_Ratio", "Inst_Ownership", "Share_Change_YoY", "FCF_Change_QoQ", "Revenue_Change_QoQ", "Dilution_Risk_Flag"];
     
     // Wir speichern die originale Liste für den finalen CSV-Header
     this.originalFeaturesToExtract = [...this.featuresToExtract];
@@ -69,6 +69,7 @@ export class FinraFeatureBuilder extends DefaultFeatureBuilder {
         let shareChangeYoY = 'UNKNOWN';
         let fcfChangeQoQ = 'UNKNOWN';
         let revChangeQoQ = 'UNKNOWN';
+        let dilutionRiskFlag = '0.0000';
 
         if (latestFund) {
             instOwn = latestFund.institutional_ownership !== null ? Number(latestFund.institutional_ownership).toFixed(4) : 'UNKNOWN';
@@ -93,6 +94,7 @@ export class FinraFeatureBuilder extends DefaultFeatureBuilder {
 
             if (fund1y && fund1y.shareIssued && latestFund.shareIssued) {
                 shareChangeYoY = (Number(latestFund.shareIssued) / Number(fund1y.shareIssued)).toFixed(4);
+                if (Number(shareChangeYoY) > 1.05) dilutionRiskFlag = '1.0000';
             }
             
             // QoQ-Deltas für Fluss-Metriken (nur sinnvoll, wenn wir einen matching period-Report gefunden haben,
@@ -136,11 +138,18 @@ export class FinraFeatureBuilder extends DefaultFeatureBuilder {
             }
         }
 
+        if (shortRatio === 'UNKNOWN') shortRatio = '0.0000';
+        if (instOwn === 'UNKNOWN') instOwn = '0.0000';
+        if (shareChangeYoY === 'UNKNOWN') shareChangeYoY = '0.0000';
+        if (fcfChangeQoQ === 'UNKNOWN') fcfChangeQoQ = '0.0000';
+        if (revChangeQoQ === 'UNKNOWN') revChangeQoQ = '0.0000';
+
         row.push(shortRatio);
         row.push(instOwn);
         row.push(shareChangeYoY);
         row.push(fcfChangeQoQ);
         row.push(revChangeQoQ);
+        row.push(dilutionRiskFlag);
         row.push(label); // Label ganz ans Ende
 
         newCsvLines.push(row.join(','));

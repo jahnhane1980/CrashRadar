@@ -2,28 +2,15 @@
 
 *(Dieses Dokument dient als Gedächtnisstütze und State-Transfer für Folge-Sessions. Es hält den aktuellen Fokus, architektonische Leitplanken und strikte Arbeitsregeln fest).*
 
-## 1. Aktueller Fokus (Nächste Session)
-* **Dynamische Fundamentaldaten (Time-Series):** Die Tabelle `company_fundamentals` operiert aktuell als Snapshot und überschreibt historische Trends (Buybacks vs. Verwässerung). Dies muss in eine Zeitreihe umgewandelt werden, damit die Maschine Veränderungen (Deltas) sehen kann.
-* **Technisches Ziel (Phase 2.5, 3 & 4):**
-  1. **Dynamisches Dilution-Risk (Umbau): [ABGESCHLOSSEN]** Die statische Bewertung (`dilution_risk = 1`) flog aus der Datenbank raus. Stattdessen berechnet der Code (Feature Builder) das Verwässerungsrisiko nun selbst on-the-fly über Time-Series-Daten.
-  2. **Retraining:** Das zentrale Machine-Learning-Skript (`node ml.js -t <Ticker> -s all`) muss für die betroffenen Aktien (ZETA, NVTS, SOFI, PLTR) ausgeführt werden, damit das LSTM die neuen Kausalitäten (Short-Squeeze vs. Todesspirale) erlernt.
-  3. **Evaluation & A/B-Vergleich:** Nach dem Retraining muss zwingend ein Vergleich der alten und neuen Metriken stattfinden. Nur wenn die neuen Features eine signifikante Verbesserung der Vorhersage-Güte bringen, wird die Integration fortgesetzt.
-  4. **Veto-Wachhund:** Implementierung eines neuen Indikators (`MlRegimeRadarStockIndicator.js`) und einer Veto-Weiche in der `TradeSetupEngine`, die Long-Signale des LSTMs hart blockiert, wenn die dynamische Abfrage einen fundamentalen Strukturbruch (z.B. Einbruch FCF + Verwässerung) ergibt.
-
-## 2. Testing-Philosophie & Synthetische Märkte (Chaos-Daten)
+## 1. Testing-Philosophie & Synthetische Märkte (Chaos-Daten)
 * **Chaos-Arrays:** Daten müssen in Tests Zyklen, hartes Rauschen (`Math.random()`) und extreme Gaps enthalten.
 * **Struktur-Chaos (API-Ausfälle):** Wir löschen gezielt Schlüsselpunkte (wie `assets` oder `macroGroups`), um Robustheit zu beweisen.
 * **Mathematische Singularitäten:** Wir zwingen Code gezielt in Division-by-Zero-Szenarien oder undefinierte Zustände (`UNKNOWN` Fallbacks).
 * **Anti-Overfitting:** Rauschen (`Math.random()`) in historische Preise mischen, um echte Makro-Kausalitäten zu prüfen.
 
-## 3. Strikte Arbeitsregeln (Modus: Code-Buddy)
-Diese Regeln gelten für den KI-Agenten zwingend in jeder Session:
-1. **Keine Autokorrekturen:** Schlägt ein Skript fehl, wird **niemals** eigenmächtig der Produktionscode überschrieben. Stattdessen den Fehler sauber analysieren und dem User einen Lösungsvorschlag machen.
-2. **Absolute Transparenz & Keine Annahmen:** Wenn eine Datei nicht im aktiven Kontext ist, wird sie eingelesen. Keine Schätzungen oder Raten von Variablen.
-3. **Receipt-Pflicht:** Jede Kontext-Suche oder Aktion wird im Chat belegt.
-4. **Fokus-Garantie:** Es wird exakt nur das geändert, was besprochen wurde. Bestehende Kommentare, Logiken und Variablen bleiben unangetastet.
 
-## 4. Makro-Theorie & Schwellenwerte (Stealth Exit)
+
+## 2. Makro-Theorie & Schwellenwerte (Stealth Exit)
 Die These lautet, dass Institutionen bei Liquiditätsengpässen (TGA/Bank-Reserven) ihre Aktien an euphorische Kleinanleger abverkaufen, bevor der Preis-Chart einbricht. Wir suchen nach der Divergenz: Preis steigt + Wale verkaufen + Retail kauft.
 Die zu beweisenden Trigger-Schwellen für den Code-Backtest sind:
 1. **SqueezeMetrics (DIX):** `DIX < 40 %` (Wale verkaufen/shorten über Dark Pools, während Markt am ATH steht).
@@ -38,7 +25,7 @@ Die zu beweisenden Trigger-Schwellen für den Code-Backtest sind:
      - *NAAIM Exposure Index:* Misst wöchentlich die Aktienquote aktiver US-Fondsmanager. Bezug via NAAIM Website (Excel/Scraper).
    * **Der finale Beweis (Divergenz):** Der Markt crasht, wenn der AAII (Retail) auf "Gier" steht und das Margin Debt auf Allzeithoch klettert, WÄHREND der NAAIM Index fällt und die Top 20 Hedgefonds (13F) netto verkaufen.
 
-## 5. Ergebnisse der Smart vs. Dumb Money Divergenz (Beweisführung)
+## 3. Ergebnisse der Smart vs. Dumb Money Divergenz (Beweisführung)
 *(Diese Ergebnisse stammen aus dem Skript `scratch/analyse/test_dumb_money.js` und zeigen das divergierende Verhalten von Smart und Dumb Money an den absoluten Tops und Bottoms der größten Crashes).*
 
 ### Corona Flash-Crash 2020

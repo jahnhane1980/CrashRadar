@@ -50,7 +50,7 @@
       "version": "v1",
       "timeSteps": 7,
       "epochs": 100,
-      "features": ["Log_Return_EMA3", "Volume", "OBV", "ATR_14", "RSI_14", "Volume_Z_Score", "Dist_52W_High", "Dist_52W_Low"]
+      "features": ["Log_Return_EMA3", "Volume", "OBV", "ATR_14", "RSI_14", "Volume_Z_Score", "Dist_52W_High", "Dist_52W_Low", "FINRA_Short_Ratio"]
     },
     "ZETA": {
       "version": "v2",

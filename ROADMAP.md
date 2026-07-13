@@ -33,13 +33,16 @@ Dieses Dokument bündelt alle aktuell noch offenen Entwicklungsaufgaben und Arch
   * **Kritische Fehler (Fatal):** Harte Exceptions werfen und den Lauf abbrechen (`exit`), wenn ein Fortsetzen absolut unmöglich ist oder die Datenintegrität zerstört.
   * **Wichtige Warnungen (Non-Fatal):** Fehler, die den Lauf nicht stoppen dürfen (z.B. geändertes HTML bei einem Scraper), werden gesammelt. Am Ende des Durchlaufs wird ein gesammelter Error/Warning-Report verschickt (z.B. Email/Ntfy), damit wir sofort wissen, dass wir den Code anpassen müssen.
 
-## 5. Rework der ML-Modelle für hochvolatile Einzelaktien (Growth: SOFI, ZETA, NVTS)
-* **Status:** Die dedizierten LSTM-Modelle wurden bereits erfolgreich trainiert (basierend auf der 7-Klassen Architektur inkl. `Log_Return_EMA3` und `Volume_Z_Score`).
-* **Problem:** Bei der Evaluierung zeigten sich massive, aktienspezifische Bias-Probleme (z.B. starker Bull-Bias bei SOFI, Dauer-Bear-Bias bei NVTS). Die detaillierten historischen Evaluierungs-Ergebnisse und Trefferquoten sind im Labor-Tagebuch dokumentiert (`docs/ML_EVALUATIONS.md`).
-* **Fazit & Aufgaben:** 
-  * LSTMs memorieren bei diesen hochvolatilen Titeln oft nur die historische Grundstimmung (Rauschen). 
-  * **Rework:** Um echte Kausalität herzustellen, müssen die Modelle zwingend mit den FINRA Short-Volume Daten als neuem Feature (siehe Punkt 1 im TODO) grundlegend neu trainiert werden. Eine Engine-Integration findet erst statt, wenn dieses Bias-Problem gelöst ist.
-  * **Feature-Experimente:** Für die strategische Erforschung weiterer Features (z.B. Fat Tails vs. Z-Scores, SMA-Distanzen) zur Behebung dieser Biases, siehe die neuen Forschungshypothesen in `docs/ML_FEATURE_RESEARCH.md`.
+## 5. Rework & Integration der ML-Modelle für Einzelaktien (Growth: SOFI, ZETA, NVTS)
+* **Problem Historie:** Anfängliche LSTM-Modelle zeigten massive, aktienspezifische Biases (z.B. Dauer-Bullish bei SOFI, Dauer-Bearish bei NVTS), da sie nur auf Preis-Action trainiert waren und Rauschen memorierten (dokumentiert in `docs/ML_EVALUATIONS.md`).
+* **Erreichtes Rework [Juli 2026]:** 
+  * Das Bias-Problem wurde erfolgreich gebrochen! Die Modelle wurden mit erweiterten Daten (FINRA Short-Volume und fundamentalen Time-Series-Daten wie `Inst_Ownership` und `Dilution_Risk_Flag`) neu trainiert. Die Trefferquoten sind signifikant gestiegen (z.B. SOFI auf 58%).
+  * **Tooling:** Es wurde ein dediziertes Evaluierungs-Skript geschaffen, um Modelle fortlaufend gegen ungesehene Test-Sets zu prüfen: [evaluate.js](file:///C:/GitHub/CrashRadar/scratch/tools/evaluate.js).
+* **Der aktuelle Plan (Noch offen) - Pipeline-Integration & Wachhund:**
+  * Jetzt da die ML-Signale belastbar sind, müssen sie in die `TradeSetupEngine` integriert werden.
+  * *Neu anzulegen:* `src/analysis/indicators/MlRegimeRadarStockIndicator.js` als generischer Indikator pro Ticker.
+  * *Neu anzulegen:* Eine `config/Fundamental-Veto-Config.json` zur Definition harter Schwellenwerte.
+  * *Die Veto-Logik (Guard):* Obwohl das ML-Netz jetzt klüger ist, darf es niemals blind feuern. Wirft das LSTM ein Kaufsignal, prüft der Wachhund die Bilanz-Daten (z.B. Verwässerung) in der Datenbank auf Strukturbrüche und wirft notfalls ein hartes VETO.
 
 ## 6. Tech-Sektor Rotation & Infrastruktur-Mauer (Beweisführung)
 * **Problem:** Es fehlen für die essenziellen Behauptungen zur Sektor-Rotation noch die empirischen Code-Beweise.

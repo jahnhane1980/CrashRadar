@@ -72,12 +72,12 @@ Dieses Dokument sammelt theoretische Konzepte und Feature-Ideen, die in zukünft
 
 * **Die Hypothese / Das Problem:**
   LSTMs zeigten einen massiven Bias (SOFI = Dauer-Bullish, NVTS = Dauer-Bearish). Hohes Off-Exchange Short-Volume (>65%) wirkt je nach Aktie komplett unterschiedlich: Bei ZETA löst es einen Squeeze aus, bei NVTS verstärkt es den Crash. Ohne Fundamentaldaten versteht das Netz diese Divergenz nicht und prägt sich stur den historischen Kursverlauf des jeweiligen Tickers ein (Rauschen statt Intelligenz).
-* **Die experimentelle Lösung (Occam's Razor & Separation of Concerns):**
-  Es wäre ein architektonischer Fehler (Bloat), das neuronale Netz mit abstrakten Bilanzen (Institutional Ownership, Dilution Risk) zu füttern. Ein dediziertes Netz pro Ticker (z.B. `LSTM_ZETA`) lernt die Mechanik der Aktie vollautomatisch, wenn man es **strikt minimal** hält: Nur Preis-Action und **FINRA Short-Volume**.
+* **Die experimentelle Lösung (Integration von Fundamental- & FINRA-Daten):**
+  Wir füttern das neuronale Netz nun explizit mit Bilanzen (`Institutional Ownership`, `Dilution Risk`, etc.) und dem **FINRA Short-Volume**. Erste Evaluierungen (Juli 2026) zeigen, dass dies massiv hilft (z.B. bei SOFI).
   
-  **Das Concept-Drift Problem:** Wenn sich the Bilanzen plötzlich ändern (ZETA verliert Inst. Ownership, NVTS stoppt Verwässerung), würde das minimale LSTM stur falsche Squeezes vorhersagen. 
-  **Die Architektur-Brücke:** Um das zu verhindern, lagern wir die Fundamentaldaten komplett in die `TradeSetupEngine` aus.
-  1. **Das ML-Modell** bleibt winzig und liefert nur das rohe Signal (basierend auf Short-Volume).
+  **Das Concept-Drift Problem:** Wenn sich the Bilanzen plötzlich extrem ändern (ZETA verliert Inst. Ownership, NVTS stoppt Verwässerung), reicht das ML-Modell allein als Absicherung oft nicht aus.
+  **Die Architektur-Brücke:** Um das zu verhindern, nutzen wir die Fundamentaldaten zusätzlich als harten Guard in der `TradeSetupEngine`.
+  1. **Das ML-Modell** wertet Preis-Action, FINRA und Fundamentals aus und liefert ein Regimesignal.
   2. **Die TradeSetupEngine** agiert als Security-Guard. Sie feuert einen Fetcher, der quartalsweise `Institutional_Ownership` (aus 13F) und `Dilution_Risk` (aus 10-Q) prüft. 
   3. Sagt das LSTM "ZETA Squeeze", aber die TradeSetupEngine sieht in der DB, dass die Inst. Quote von 80% auf 30% gefallen ist, wirft sie ein **VETO** und blockiert den Trade. 
   
