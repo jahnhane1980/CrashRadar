@@ -130,6 +130,14 @@ export class FinanceExpert {
             ARCC_InterestExpense: state.ARCC_InterestExpense,
             ARCC_TotalAssets: state.ARCC_TotalAssets,
             ARCC_NetIncome: state.ARCC_NetIncome
+          },
+          LaborMarket: {
+            PAYEMS: state.PAYEMS,
+            CE16OV: state.CE16OV,
+            LNS12500000: state.LNS12500000,
+            LNS12600000: state.LNS12600000,
+            LNS12026619: state.LNS12026619,
+            U6RATE: state.U6RATE
           }
         }
       });

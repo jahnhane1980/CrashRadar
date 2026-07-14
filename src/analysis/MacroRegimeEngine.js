@@ -11,6 +11,7 @@ import { MaturityWallIndicator } from './indicators/MaturityWallIndicator.js';
 import { NfciIndicator } from './indicators/NfciIndicator.js';
 import { ChallengerIndicator } from './indicators/ChallengerIndicator.js';
 import { StealthExitIndicator } from './indicators/StealthExitIndicator.js';
+import LaborMarketDivergenceIndicator from './indicators/LaborMarketDivergenceIndicator.js';
 
 export class MacroRegimeEngine {
     constructor() {
@@ -28,7 +29,8 @@ export class MacroRegimeEngine {
             new NfciIndicator(),
             new ChallengerIndicator(),
             new FiscalFedLiquidityIndicator(),
-            new StealthExitIndicator()
+            new StealthExitIndicator(),
+            new LaborMarketDivergenceIndicator()
         ];
     }
 
@@ -138,6 +140,21 @@ export class MacroRegimeEngine {
                     vetos.push('CHALLENGER_CRITICAL_LAYOFFS');
                     if (regime === 'NORMAL') {
                         regime = 'BEAR_MARKET';
+                    }
+                }
+                
+                // 6. Labor Market Divergence (Qualitativ & Quantitativ)
+                if (indicator.name === 'LaborMarketDivergenceIndicator') {
+                    if (result.status === 'COINCIDENT_ALERT') {
+                        vetos.push('LABOR_MARKET_CRASH_WARNING');
+                        if (regime !== 'FLASH_CRASH') {
+                            regime = 'BEAR_MARKET';
+                        }
+                    } else if (result.status === 'LEADING_WARNING') {
+                        vetos.push('LABOR_MARKET_QUALITY_WARNING');
+                        if (regime === 'NORMAL') {
+                            regime = 'LATE_CYCLE_EUPHORIA';
+                        }
                     }
                 }
             }

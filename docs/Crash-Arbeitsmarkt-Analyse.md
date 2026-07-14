@@ -4,7 +4,7 @@ Dieses Skript prüft, wie viele Monate vor (negativ) oder nach (positiv) einem S
 
 | Markt-Top (Peak) | S&P Peak-Monat | Quant. Schere (Household vs. Payrolls) | Qual. Schere (Vollzeit vs. Teilzeit) | Sahm-Rule Early-Warning (>= 0.3%) | Sahm-Rule Trigger (>= 0.5%) |
 | --- | --- | --- | --- | --- | --- |
-| **Dotcom-Blase** | `2000-03` | 🟢 **-12 Monate** (PAY:535|CE:-80) | 🔴 **+8 Monate** (-2.7%) | 🔴 **+11 Monate** (0.30%) | ❌ *Kein Signal* |
+| **Dotcom-Blase** | `2000-03` | 🔴 **+2 Monate** (PAY:501|CE:-71) | 🔴 **+8 Monate** (-2.7%) | 🔴 **+11 Monate** (0.30%) | ❌ *Kein Signal* |
 | **Finanzkrise (GFC)** | `2007-10` | 🟢 **-6 Monate** (PAY:287|CE:-471) | 🟢 **-17 Monate** (-2.9%) | 🔴 **+2 Monate** (0.40%) | 🔴 **+4 Monate** (0.57%) |
 | **Zins-Panik (2018)** | `2018-09` | 🟢 **-10 Monate** (PAY:364|CE:-481) | 🟢 **-6 Monate** (-2.5%) | ❌ *Kein Signal* | ❌ *Kein Signal* |
 | **Corona-Crash** | `2020-02` | 🟢 **-18 Monate** (PAY:317|CE:-258) | 🟢 **-1 Monate** (-2.5%) | 🔴 **+1 Monate** (0.33%) | 🔴 **+2 Monate** (4.07%) |

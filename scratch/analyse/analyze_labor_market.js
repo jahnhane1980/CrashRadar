@@ -13,32 +13,12 @@ const PEAKS = [
     { name: "Korrektur (2025)", peakDate: "2025-02-19", monthKey: "2025-02" }
 ];
 
-const readJson = (seriesId) => {
-    const filePath = path.join(process.cwd(), 'scratch', 'arbeitsmarkt_tmp', `${seriesId}.json`);
-    if (!fs.existsSync(filePath)) {
-        throw new Error(`Datei fehlt: ${filePath}. Bitte download_labor_data.js ausführen.`);
-    }
-    const content = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-    return content.observations.map(o => ({
-        date: o.date,
-        value: o.value === '.' ? null : parseFloat(o.value)
-    })).filter(o => o.value !== null);
-};
+// JSON Laden entfernt. Wir nutzen die Datenbank direkt.
 
 async function run() {
     console.log("=== ANALYSE ARBEITSMARKT-DIVERGENZEN & S&P 500 ===");
 
-    // 2. Lokale JSON-Dateien einlesen
-    console.log("[Setup] Lade lokale FRED JSON-Dateien...");
-    const ce16ov = readJson('CE16OV');       // Civilian Employment
-    const fullTime = readJson('LNS12500000'); // Full-Time
-    const partTime = readJson('LNS12600000'); // Part-Time
-    const multJob = readJson('LNS12026619');   // Multiple Jobholders
-    const u6Rate = readJson('U6RATE');        // U-6 Unemployment
-    const unrate = readJson('UNRATE');        // Unemployment Rate
-    const payems = readJson('PAYEMS');        // Payrolls
-
-    // 3. Datenbank-Verbindung herstellen und bestehende Reihen laden
+    // 2. Datenbank-Verbindung herstellen und bestehende Reihen laden
     console.log("[Setup] Lade Daten aus lokaler Datenbank...");
     const dbUrl = process.env.DATABASE_URL;
     const repo = new AnalysisRepository(dbUrl);
@@ -47,12 +27,26 @@ async function run() {
     const spyRaw = await repo.getOhlcvForTicker('SPY', '1995-01-01');
     console.log(`   -> SPY Datenpunkte geladen: ${spyRaw.length}`);
     
-    // FRED (ICSA) laden
+    // FRED laden
     const rawData = await repo.getAllRawData('1995-01-01');
     const dbFred = rawData.fred || [];
-    const icsa = dbFred.filter(r => r.series_id === 'ICSA').map(r => ({ date: r.date, value: parseFloat(r.value) }));
     
-    console.log(`   -> DB FRED: ICSA (${icsa.length})`);
+    const extractSeries = (seriesId) => {
+        return dbFred
+            .filter(r => r.series_id === seriesId && r.value !== '.')
+            .map(r => ({ date: r.date, value: parseFloat(r.value) }));
+    };
+
+    const ce16ov = extractSeries('CE16OV');
+    const fullTime = extractSeries('LNS12500000');
+    const partTime = extractSeries('LNS12600000');
+    const multJob = extractSeries('LNS12026619');
+    const u6Rate = extractSeries('U6RATE');
+    const unrate = extractSeries('UNRATE');
+    const payems = extractSeries('PAYEMS');
+    const icsa = extractSeries('ICSA');
+    
+    console.log(`   -> FRED Daten geladen. PAYEMS: ${payems.length}, CE16OV: ${ce16ov.length}`);
     
     await repo.close();
 
@@ -248,7 +242,7 @@ async function run() {
     report += `   * **Sahm-Rule & Sahm-Warning:** Triggern historisch meist erst nach dem absoluten Preis-Top, dafür aber mit 100%iger Trefferquote für eine beginnende Rezession. Sie dienen als finaler Zündschlüssel, um defensive Re-Entries zu verhindern.\n`;
 
     // Auf die Festplatte schreiben für Folge-Analysen
-    const reportPath = path.join(process.cwd(), 'scratch', 'Crash-Arbeitsmarkt-Analyse.md');
+    const reportPath = path.join(process.cwd(), 'docs', 'Crash-Arbeitsmarkt-Analyse.md');
     fs.writeFileSync(reportPath, report, 'utf-8');
 
     console.log("\n" + report);
