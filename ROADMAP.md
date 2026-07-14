@@ -53,9 +53,8 @@ Dieses Dokument bündelt alle aktuell noch offenen Entwicklungsaufgaben und Arch
 ## 8. Datensynchronisation mit "datacenter" (Supabase)
 * **Problem:** Das "datacenter"-Projekt hat eigene exklusive Datensätze (z.B. KI-basierte News/SEC-Analysen, QRA-Estimates, Sector Rotation), die aktuell in der CrashRadar MySQL-Datenbank nicht abgebildet werden. 
 * **Aufgabe [OFFEN]:** Überprüfung des Datenbestands in Supabase. Es muss evaluiert werden, welche exklusiven Daten aus dem "datacenter" in CrashRadar (z.B. für neue ML-Features) genutzt werden sollen und ob diese direkt in Supabase verbleiben oder in die MySQL-DB migriert werden.
-* **Hinweis zu M5-Candles:** Aktuell ziehen wir die 5-Minuten-Kerzen nicht standardmäßig ins CrashRadar-Modell. Das `datacenter` holt diese über den **Polygon.io API Service** (`PolygonIoService.js`). Der Fetch-Job (`sync-m5.yml`) läuft dort **einmal täglich um 06:37 Uhr UTC (Dienstag bis Samstag)** via GitHub Actions, fragt über den `M5Controller` historische "5 minute" Aggregates von Polygon ab und speichert sie direkt in der Supabase-Tabelle `market_m5_candles`.
+* **Erster Meilenstein (14.07.2026) - M5-Candles Transfer:** 
+  * Wir haben offiziell die Struktur für die 5-Minuten-Kerzen in CrashRadar (MySQL) aufgebaut. 
+  * **Tabelle:** `market_data_m5` (`symbol`, `record_time`, `open`, `high`, `low`, `close`, `volume`).
+  * **Status:** Der initiale Export/Import-Skriptlauf (`import_m5_supabase.js`) wurde heute gestartet. Er übersetzt die abstrakten Supabase `ticker_id`s (wie `12` für `SOFI` oder `28` für `QQQ`) in unsere String-Ticker und überführt den gesamten historischen 5-Minuten-Datensatz in unsere lokale Datenbank.
 * **Hinweis zu Optionsdaten (AlphaVantage):** Das `datacenter` nutzt die AlphaVantage-API (`AlphaVantageOptionService.js`) gezielt für Optionsdaten (Volume-to-Open-Interest Ratio und Put-Call-Ratio). Da der Free-Tier auf 25 Calls/Tag limitiert ist, könnten wir durch das Abschalten oder Konsolidieren von redundanten Daten-Fetches (z.B. unserer alten `market_data_pcr` Tabellen in CrashRadar) das API-Kontingent entlasten und effizienter nutzen.
-* **M5-Mapping für CrashRadar:** Da die M5-Tabelle in Supabase nicht über den Ticker-String, sondern über die `ticker_id` referenziert wird, hier das Mapping für die essenziellen CrashRadar-Assets, die bereits M5-Daten aufgebaut haben:
-  * **Broad Market ETFs:** `SPY` (ID: 13 & 27), `QQQ` (ID: 28)
-  * **Einzelaktien (AI/Growth):** `SOFI` (ID: 12), `PLTR` (ID: 26), `NVTS` (ID: 25), `S` (ID: 2), `SOUN` (ID: 4)
-  * **Themen-ETFs:** `IGV` (ID: 6), `CIBR` (ID: 5)
