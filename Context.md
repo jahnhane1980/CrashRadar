@@ -14,4 +14,5 @@
 * **Datengrundlage:** Der Backtest greift auf unsere neu importierte `market_data_m5` Tabelle (über 840.000 5-Minuten-Kerzen) in der lokalen MySQL Datenbank zu.
 * **Relevante Dokumentation:**
   * [docs/Signal-vs-Execution-Hypothese.md](file:///C:/GitHub/CrashRadar/docs/Signal-vs-Execution-Hypothese.md) (Die ausformulierte Kernhypothese)
-  * [docs/Analyse.md](file:///C:/GitHub/CrashRadar/docs/Analyse.md) (Eingliederung im großen Makro-Bild)
+  * [docs/Analyse.md](file:///C:/GitHub/CrashRadar/docs/Analyse.md) (Eingliederung im großen Makro-Bild)
+  * [ROADMAP.md](file:///C:/GitHub/CrashRadar/ROADMAP.md) (Siehe Punkt 8 bzgl. der M5-Datensynchronisation und Tabellen-Struktur)
