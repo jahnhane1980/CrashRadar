@@ -60,7 +60,7 @@ describe('FinraFeatureBuilder', () => {
     expect(writtenCsv).toContain('1.1000'); // YoY change: 110/100
   });
   
-  it('sollte Chaos-Modus UNKNOWN simulieren', async () => {
+  it('sollte Chaos-Modus mit Zero-Padding (0.0000) anstelle von UNKNOWN simulieren', async () => {
     process.env.CHAOS_TEST = 'true';
     const validConfig = { default: { features: ['FINRA_Short_Ratio'] }, tickers: { ZETA: {} }, global: {} };
     const builder = new FinraFeatureBuilder('ZETA', mockRepo, validConfig);
@@ -68,13 +68,13 @@ describe('FinraFeatureBuilder', () => {
     
     // Force random to always trigger chaos
     const originalRandom = Math.random;
-    Math.random = () => 0.01; // < 0.05 triggers UNKNOWN
+    Math.random = () => 0.01; // < 0.05 triggers UNKNOWN internally, which then becomes 0.0000
     
     await builder.build();
     
     // CSV output content sent to writeFileSync
     const writtenCsv = fs.writeFileSync.mock.calls[0][1];
-    expect(writtenCsv).toContain('UNKNOWN');
+    expect(writtenCsv).toContain('0.0000');
     
     Math.random = originalRandom;
     process.env.CHAOS_TEST = 'false';

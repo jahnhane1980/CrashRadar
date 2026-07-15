@@ -4,24 +4,15 @@ Dieses Dokument bündelt alle aktuell noch offenen Entwicklungsaufgaben und Arch
 *Hinweis: Die Reihenfolge der Aufgaben spiegelt ihre Dringlichkeit und architektonische Priorität wider.*
 
 
-## 1. WARN-Notices Pipeline (Der 60-Day Alpha)
-* **Problem:** Offizielle Arbeitsmarktdaten sind lagging.
-* **Ziel:** Etablierung eines echten Echtzeit-Sensors durch das Scraping von staatlichen Massenentlassungs-Vorwarnungen.
-* **Aufgaben [OFFEN]:**
-  * Implementierung von nativen Scraping-Fetcher-Strategien (Strategy Pattern) *direkt in unserem System* für die staatlichen Warn-Portale der "Big 4" (Kalifornien, Texas, New York, Florida). Wir lagern dies **nicht** auf Serverless-Dienste aus, sondern binden die Scraper als festen Bestandteil in die Node.js-Backend-Architektur (Database Fetcher) und unsere eigene Datenbank ein.
 
 ## 2. Architektur-Review der Indikatoren & Notifications
 * **Problem:** Es besteht der Verdacht, dass die aktuelle Pipeline ineffizient ist. Möglicherweise werden Daten doppelt geladen/ausgewertet oder Logiken überschneiden sich unnötig zwischen Engine und Notification-Schicht.
 * **Ziel:** Kritische Prüfung der aktuellen Architektur auf Effizienz, Redundanz und saubere Trennung der Zuständigkeiten (Separation of Concerns).
 * **Aufgaben [OFFEN]:** Datenfluss der Indikatoren und Alarme analysieren. Überlegen, ob dies wirklich die "beste Lösung" ist oder ob ein Refactoring der Architektur ansteht, um Mehrfachauswertungen zu eliminieren.
 
-## 3. Code-vs-Theorie Audit (Abgleich mit Analyse.md)
-* **Problem:** Über die vielen Entwicklungs-Iterationen könnten Divergenzen zwischen der Theorie und der Praxis entstanden sein.
-* **Ziel:** Ein systematischer, lückenloser Abgleich der theoretischen Fundamente aus der `docs/Analyse.md` mit der tatsächlichen Code-Basis (hauptsächlich `src/analysis/`).
-* **Aufgaben [OFFEN]:** 
-  * Identifikation von Indikatoren/Logiken im Code, die *nicht* in der `Analyse.md` dokumentiert sind.
-  * Identifikation von Konzepten in der `Analyse.md`, die im Code *fehlen* oder *abweichend* implementiert wurden.
-  * Entscheidung: Code an die Theorie anpassen, oder die Theorie (Doku) an die neue Code-Realität angleichen?
+## 3. Fractional Kelly (Positionsgrößen-Skalierung)
+* **Problem:** Die Engine gibt Makro-Vetos aus, aber wir passen unsere Positionsgrößen nicht algorithmisch an.
+* **Aufgabe [OFFEN]:** Die in der Theorie geforderte dynamische Skalierung (z.B. 100% -> 40% -> 10% -> 0%) basierend auf den Makro-Vetos muss in der `TradeSetupEngine.js` noch implementiert werden (Füllung des `action.scaleDown` Flags mit mathematischer Logik).
 
 ## 4. Error Handling, Logging & Console-Cleanup
 * **Problem:** Die aktuelle Console-Ausgabe ist unübersichtlich. Zudem ist das Error Handling nicht konsequent genug zwischen "Fatal" und "Non-Fatal" getrennt. Fällt z.B. ein Scraper aus, wird das im Rauschen begraben, anstatt proaktiv gemeldet zu werden.
@@ -42,9 +33,6 @@ Dieses Dokument bündelt alle aktuell noch offenen Entwicklungsaufgaben und Arch
   * *Neu anzulegen:* Eine `config/Fundamental-Veto-Config.json` zur Definition harter Schwellenwerte.
   * *Die Veto-Logik (Guard):* Obwohl das ML-Netz jetzt klüger ist, darf es niemals blind feuern. Wirft das LSTM ein Kaufsignal, prüft der Wachhund die Bilanz-Daten (z.B. Verwässerung) in der Datenbank auf Strukturbrüche und wirft notfalls ein hartes VETO.
 
-## 6. Tech-Sektor Rotation & Infrastruktur-Mauer (Beweisführung)
-* **Problem:** Es fehlen für die essenziellen Behauptungen zur Sektor-Rotation noch die empirischen Code-Beweise.
-* **Aufgabe [OFFEN]:** Korrelation von DIX und VandaTrack/Odd-Lots mit Tech-Tops beweisen. Der aktuelle Backtest nutzt simulierte Daten und muss mit echten historischen Zeitreihen verifiziert werden, bevor echter Code in die Engine wandert.
 
 ## 7. Gamma-Hedging Backtest (Spurenlesen)
 * **Ziel:** Evaluierung des "Spurenlesen" Konzepts (Säule 2: Gamma Hedging). Da Yahoo Finance keine historischen Optionsdaten bereitstellt, sammeln wir ab dem 04.07.2026 jeden Tag Live-Daten über den Fetcher.

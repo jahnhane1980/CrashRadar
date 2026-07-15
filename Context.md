@@ -8,11 +8,11 @@
 * **Mathematische Singularitäten:** Wir zwingen Code gezielt in Division-by-Zero-Szenarien oder undefinierte Zustände (`UNKNOWN` Fallbacks).
 * **Anti-Overfitting:** Rauschen (`Math.random()`) in historische Preise mischen, um echte Makro-Kausalitäten zu prüfen.
 
-## 2. Aktueller Fokus: Signal-vs-Execution Hypothese (Fraktales Trading)
-* **Ziel:** Mathematischer Beweis der Theorie, dass Makro-Signale (Daily) nicht sofort am gleichen Tag, sondern zwingend auf tieferen Timeframes (M5/Intraday) exekutiert werden müssen, um Slippage zu vermeiden und den Edge zu erhalten.
-* **Besonderer Fokus (Intraday-Zyklen):** Wir wollen auswerten, was uns spezifische Tageszeiten über die Marktstruktur verraten, z.B. das Verhalten direkt nach Markteröffnung (Open) und während der Power Hour (letzte Handelsstunde).
-* **Datengrundlage:** Der Backtest greift auf unsere neu importierte `market_data_m5` Tabelle (über 840.000 5-Minuten-Kerzen) in der lokalen MySQL Datenbank zu.
+## 2. Aktueller Fokus: Error Handling, Logging & Console-Cleanup
+* **Status-Update (Juli 2026):** Der große Code-vs-Theorie Audit ist **abgeschlossen**. Alle obsoleten Mythen und Waisen-Indikatoren wurden bereinigt.
+* **Neues Ziel:** Wir bauen ein professionelles, dreistufiges Error- & Logging-Framework (ROADMAP Punkt 4).
+  1. **Console-Cleanup:** Den Code von `console.log` Spam befreien.
+  2. **Fatal Errors:** Harte Programmabbrüche (`exit`), wenn fundamentale Datenbank-Fehler passieren.
+  3. **Non-Fatal Warnings:** Fehlerhafte Scraper oder APIs werden gesammelt und am Ende als gesammelter Ntfy-Push-Report an den Admin gesendet.
 * **Relevante Dokumentation:**
-  * [docs/Signal-vs-Execution-Hypothese.md](file:///C:/GitHub/CrashRadar/docs/Signal-vs-Execution-Hypothese.md) (Die ausformulierte Kernhypothese)
-  * [docs/Analyse.md](file:///C:/GitHub/CrashRadar/docs/Analyse.md) (Eingliederung im großen Makro-Bild)
-  * [ROADMAP.md](file:///C:/GitHub/CrashRadar/ROADMAP.md) (Siehe Punkt 8 bzgl. der M5-Datensynchronisation und Tabellen-Struktur)
+  * [ROADMAP.md](file:///C:/GitHub/CrashRadar/ROADMAP.md) (Siehe Punkt 4)

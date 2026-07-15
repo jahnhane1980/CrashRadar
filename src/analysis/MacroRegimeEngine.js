@@ -5,13 +5,14 @@ import { YieldCurveIndicator } from './indicators/YieldCurveIndicator.js';
 import { RedAlertIndicator } from './indicators/RedAlertIndicator.js';
 import { MarginDebtIndicator } from './indicators/MarginDebtIndicator.js';
 import { TgaIndicator } from './indicators/TgaIndicator.js';
-import { MarketPanicCapitulationIndicator } from './indicators/MarketPanicCapitulationIndicator.js';
+import { PanicCapitulationIndicator } from './indicators/PanicCapitulationIndicator.js';
 import { BankReservesIndicator } from './indicators/BankReservesIndicator.js';
 import { MaturityWallIndicator } from './indicators/MaturityWallIndicator.js';
 import { NfciIndicator } from './indicators/NfciIndicator.js';
 import { ChallengerIndicator } from './indicators/ChallengerIndicator.js';
 import { StealthExitIndicator } from './indicators/StealthExitIndicator.js';
 import LaborMarketDivergenceIndicator from './indicators/LaborMarketDivergenceIndicator.js';
+import { InterestRateCycleIndicator } from './indicators/InterestRateCycleIndicator.js';
 
 export class MacroRegimeEngine {
     constructor() {
@@ -23,14 +24,15 @@ export class MacroRegimeEngine {
             new RedAlertIndicator(),
             new MarginDebtIndicator(),
             new TgaIndicator(),
-            new MarketPanicCapitulationIndicator(),
+            new PanicCapitulationIndicator(),
             new BankReservesIndicator(),
             new MaturityWallIndicator(),
             new NfciIndicator(),
             new ChallengerIndicator(),
             new FiscalFedLiquidityIndicator(),
             new StealthExitIndicator(),
-            new LaborMarketDivergenceIndicator()
+            new LaborMarketDivergenceIndicator(),
+            new InterestRateCycleIndicator()
         ];
     }
 
@@ -76,7 +78,7 @@ export class MacroRegimeEngine {
                 if (!result || result.status === 'UNKNOWN') continue;
 
                 // 1. Flash Crash & Panik
-                if (indicator.name === 'Market Panic & Capitulation (VIX + Volume)' && result.status === 'CRITICAL') {
+                if (indicator.name === 'Panik-Kapitulation (VIX + CBOE + RSI)' && result.status === 'CRITICAL') {
                     regime = 'FLASH_CRASH';
                     vetos.push('VIX_SPIKE_PANIC');
                 }
@@ -155,6 +157,17 @@ export class MacroRegimeEngine {
                         if (regime === 'NORMAL') {
                             regime = 'LATE_CYCLE_EUPHORIA';
                         }
+                    }
+                }
+                // 7. Zins-Zyklus (RateShock + ARCC + PolicyError)
+                if (indicator.name === 'Macro Interest Rate Cycle (RateShock + ARCC + PolicyError)') {
+                    if (result.status === 'CRITICAL') {
+                        vetos.push('INTEREST_RATE_CYCLE_CRITICAL');
+                        if (regime === 'NORMAL' || regime === 'LATE_CYCLE_EUPHORIA') {
+                            regime = 'BEAR_MARKET';
+                        }
+                    } else if (result.status === 'WARNING') {
+                        vetos.push('INTEREST_RATE_CYCLE_WARNING');
                     }
                 }
             }

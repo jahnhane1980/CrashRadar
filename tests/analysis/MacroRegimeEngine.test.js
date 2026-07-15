@@ -109,9 +109,10 @@ describe('MacroRegimeEngine - Chaos & Edge Case Testing', () => {
             const data = createHugeChaosData(80);
             const crashDate = Object.keys(data)[79];
             
-            // MarketPanicCapitulationIndicator erwartet VIX >= 28 und hohes Volumen (>1.25x avg)
-            data[crashDate].assets.VIX = 55.0; 
-            data[crashDate].assets.SPY_Volume = 200000000; // Sehr hoch im Vergleich zum Schnitt
+            // Orchestration Test: Wenn der PanicCapitulationIndicator 'CRITICAL' meldet,
+            // muss die Engine in den FLASH_CRASH Modus schalten und das Veto werfen.
+            const panicInd = engine.indicators.find(i => i.name === 'Panik-Kapitulation (VIX + CBOE + RSI)');
+            panicInd.evaluate = () => ({ status: 'CRITICAL' });
 
             const states = engine.evaluate(data);
             expect(states[crashDate].regime).toBe('FLASH_CRASH');
