@@ -1,4 +1,5 @@
 import ky from 'ky';
+import { Logger } from '../core/Logger.js';
 
 export class NtfyService {
   constructor(topic, serverUrl = 'https://ntfy.sh') {
@@ -18,9 +19,9 @@ export class NtfyService {
           'Tags': tags
         }
       });
-      console.log(`[Ntfy] Alert erfolgreich an Topic '${this.topic}' gesendet.`);
+      Logger.info(`[Ntfy] Alert erfolgreich an Topic '${this.topic}' gesendet.`);
     } catch (error) {
-      console.error(`[Ntfy] Fehler beim Senden an ${url}:`, error.message);
+      Logger.error(`[Ntfy] Fehler beim Senden an ${url}:`, error.message);
     }
   }
 }

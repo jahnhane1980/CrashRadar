@@ -1,5 +1,6 @@
 import { PaginationStrategies } from './PaginationStrategies.js';
 import { FetchAdapterFactory } from '../core/adapters/fetch/FetchAdapterFactory.js';
+import { Logger } from '../core/Logger.js';
 const CONFIG_DEFAULTS = Object.freeze({
   CONCURRENCY: 5,
   FALLBACK_START_DATE: '1999-12-01',
@@ -85,7 +86,7 @@ export class Fetcher {
       const limit = getProviderLimit(task.provider);
       return limit(() => 
         this.runTask(task).catch(e => {
-          console.error(`[Error] Task ${task.id} failed entirely:`, e.message);
+          Logger.error(`[Error] Task ${task.id} failed entirely: ${e.message}`);
         })
       );
     });
@@ -94,7 +95,7 @@ export class Fetcher {
   }
 
   async runTask(task) {
-    console.log(`\n--- Starting task: ${task.id} ---`);
+    Logger.info(`\n--- Starting task: ${task.id} ---`);
     const provider = this.config.providers[task.provider];
     
     if (!provider) throw new Error(`Provider '${task.provider}' not found in config`);
@@ -185,7 +186,7 @@ export class Fetcher {
       const startValue = this.getStartDate(task, provider, lastRecord);
       const adapter = FetchAdapterFactory.get(task.provider);
       
-      console.log(`[PackageFetcher] Fetching ${task.method || 'default'} for ${task.ticker || task.id}`);
+      Logger.info(`[PackageFetcher] Fetching ${task.method || 'default'} for ${task.ticker || task.id}`);
         try {
         const result = await adapter.fetch(task, provider, startValue, this.requestManager);
         const newData = this.extractData(result, provider);
@@ -195,7 +196,7 @@ export class Fetcher {
           await this.storage.insertDataAndState(task, newData, newLastRecord);
         }
       } catch (error) {
-        console.error(`[PackageFetcher Error] Task ${task.id}:`, error.message);
+        Logger.error(`[PackageFetcher Error] Task ${task.id}: ${error.message}`);
         throw error;
       }
     }
@@ -239,7 +240,7 @@ export class Fetcher {
     if (provider.auth) {
       const authVal = process.env[provider.auth.envVar];
       if (!authVal) {
-        console.warn(`[Warning] Missing environment variable ${provider.auth.envVar} for ${task.id}`);
+        Logger.warn(`[Warning] Missing environment variable ${provider.auth.envVar} for ${task.id}`);
       } else {
         if (provider.auth.type === AUTH_TYPES.HEADER) {
           headers[provider.auth.key] = `${provider.auth.prefix || ''}${authVal}`;
@@ -257,7 +258,7 @@ export class Fetcher {
       try {
         allNewData = this.extractData(response, provider);
       } catch(e) {
-        console.error(`[API Error] Task ${task.id}:`, e.message);
+        Logger.error(`[API Error] Task ${task.id}: ${e.message}`);
         return;
       }
       if (allNewData.length > 0) {
@@ -279,7 +280,7 @@ export class Fetcher {
           }
           await this.storage.insertDataAndState(task, allNewData, cursorToSave);
         } catch (e) {
-          console.error(`[Storage] Error inserting data for task ${task.id}:`, e.message);
+          Logger.error(`[Storage] Error inserting data for task ${task.id}: ${e.message}`);
         }
       }
     } else {

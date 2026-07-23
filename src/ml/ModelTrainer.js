@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import * as tf from '@tensorflow/tfjs';
+import { Logger } from '../core/Logger.js';
 
 // Die 6 Dow-Theorie Labels bleiben als feste Architekturkonstante erhalten
 const LABELS = [
@@ -61,7 +62,7 @@ export class ModelTrainer {
   }
 
   async train() {
-    console.log(`[ModelTrainer] Starte Training für ${this.ticker} (v${this.version})`);
+    Logger.info(`[ModelTrainer] Starte Training für ${this.ticker} (v${this.version})`);
     
     if (!fs.existsSync(this.inputCsv)) {
       throw new Error(`Datensatz nicht gefunden: ${this.inputCsv}. Bitte erst Feature-Pipeline laufen lassen.`);
@@ -74,7 +75,7 @@ export class ModelTrainer {
     // Die Features sind alles zwischen "Date" (Index 0) und "Label" (Index length-1)
     const featureCols = headers.slice(1, headers.length - 1);
     const numFeatures = featureCols.length;
-    console.log(`[ModelTrainer] Erkannte Features: ${featureCols.join(', ')}`);
+    Logger.info(`[ModelTrainer] Erkannte Features: ${featureCols.join(', ')}`);
 
     const records = [];
     for(let i=1; i<lines.length; i++) {
@@ -90,7 +91,7 @@ export class ModelTrainer {
     }
 
     const validRecords = records.filter(r => r.Label !== 'UNKNOWN');
-    console.log(`[ModelTrainer] Lade ${validRecords.length} gültige Datensätze.`);
+    Logger.info(`[ModelTrainer] Lade ${validRecords.length} gültige Datensätze.`);
 
     // 2. Normalisieren & Sequenzen bilden
     const normalizedFeatures = this._normalize(validRecords, featureCols);
@@ -112,7 +113,7 @@ export class ModelTrainer {
     const xVal = tf.tensor3d(X.slice(splitIdx));
     const yVal = tf.tensor2d(y.slice(splitIdx));
 
-    console.log(`[ModelTrainer] Train/Val Split: ${splitIdx} / ${X.length - splitIdx} Sequenzen.`);
+    Logger.info(`[ModelTrainer] Train/Val Split: ${splitIdx} / ${X.length - splitIdx} Sequenzen.`);
 
     // 3. Class Weights dynamisch berechnen
     const classCounts = Array(LABELS.length).fill(0);
@@ -129,7 +130,7 @@ export class ModelTrainer {
           classWeight[i] = 1.0;
        }
     }
-    console.log(`[ModelTrainer] Dynamische Class Weights generiert.`);
+    Logger.info(`[ModelTrainer] Dynamische Class Weights generiert.`);
 
     // 4. Modell-Architektur aufbauen
     const model = tf.sequential();
@@ -159,7 +160,7 @@ export class ModelTrainer {
       classWeight: classWeight,
       callbacks: {
         onEpochEnd: (epoch, logs) => {
-          console.log(`[ModelTrainer] Epoch ${epoch + 1}/${this.epochs} - loss: ${logs.loss.toFixed(4)} - val_loss: ${logs.val_loss.toFixed(4)}`);
+          Logger.info(`[ModelTrainer] Epoch ${epoch + 1}/${this.epochs} - loss: ${logs.loss.toFixed(4)} - val_loss: ${logs.val_loss.toFixed(4)}`);
           
           if (logs.val_loss < bestValLoss) {
              bestValLoss = logs.val_loss;
@@ -169,7 +170,7 @@ export class ModelTrainer {
           }
           
           if (patienceCounter >= this.patience) {
-             console.log(`[ModelTrainer] 🛑 Early Stopping bei Epoche ${epoch + 1} (keine Verbesserung seit ${this.patience} Epochen).`);
+             Logger.info(`[ModelTrainer] 🛑 Early Stopping bei Epoche ${epoch + 1} (keine Verbesserung seit ${this.patience} Epochen).`);
              model.stopTraining = true;
           }
         }
@@ -186,6 +187,6 @@ export class ModelTrainer {
     fs.writeFileSync(path.join(this.outDir, 'weights.json'), JSON.stringify(weights), 'utf-8');
     fs.writeFileSync(path.join(this.outDir, 'stats.json'), JSON.stringify(this.globalStats), 'utf-8');
 
-    console.log(`[ModelTrainer] 🎉 Training abgeschlossen! Modell gespeichert unter: ${this.outDir}`);
+    Logger.info(`[ModelTrainer] 🎉 Training abgeschlossen! Modell gespeichert unter: ${this.outDir}`);
   }
 }

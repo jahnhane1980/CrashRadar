@@ -1,5 +1,6 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { IndicatorEngine } from '../../src/analysis/IndicatorEngine.js';
+import { Logger } from '../../src/core/Logger.js';
 
 describe('IndicatorEngine V2 (New Architecture)', () => {
   let engine;
@@ -34,13 +35,12 @@ describe('IndicatorEngine V2 (New Architecture)', () => {
 
   it('sollte run() ohne Absturz für die CLI ausführen (Terminal Output)', () => {
     const data = createFakeData();
-    const originalLog = console.log;
     let output = '';
-    console.log = (msg) => { output += msg + '\n'; };
+    const loggerSpy = vi.spyOn(Logger, 'info').mockImplementation((msg) => { output += msg + '\n'; });
     
     expect(() => engine.run(data)).not.toThrow();
     
-    console.log = originalLog;
+    loggerSpy.mockRestore();
     expect(output).toContain('MAKRO-FINANZ ANALYSE');
     expect(output).toContain('MAKRO-REGIME');
     expect(output).toContain('TRADE ACTIONS');

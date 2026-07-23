@@ -1,10 +1,11 @@
 import * as xlsx from 'xlsx';
+import { Logger } from '../../Logger.js';
 
 export class NaaimFetchAdapter {
     constructor() {}
 
     async fetch(task, provider, startDate, requestManager) {
-        console.log(`[NAAIM] Hole Exposure Index Daten (Zeitraum ab: ${startDate || 'Beginn'})`);
+        Logger.info(`[NAAIM] Hole Exposure Index Daten (Zeitraum ab: ${startDate || 'Beginn'})`);
         const url = 'https://www.naaim.org/programs/naaim-exposure-index/';
 
         try {
@@ -29,7 +30,7 @@ export class NaaimFetchAdapter {
             }
 
             if (!fileUrl) {
-                console.error('[NaaimFetchAdapter] Konnte keinen Excel Link auf der NAAIM Seite finden.');
+                Logger.error('[NaaimFetchAdapter] Konnte keinen Excel Link auf der NAAIM Seite finden.');
                 return [];
             }
 
@@ -103,7 +104,7 @@ export class NaaimFetchAdapter {
             return records.sort((a, b) => a.record_date.localeCompare(b.record_date));
 
         } catch (e) {
-            console.error(`[NaaimFetchAdapter] Fehler beim Abruf von NAAIM: ${e.message}`);
+            Logger.error(`[NaaimFetchAdapter] Fehler beim Abruf von NAAIM: ${e.message}`);
             return [];
         }
     }

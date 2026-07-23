@@ -1,10 +1,11 @@
 import * as xlsx from 'xlsx';
+import { Logger } from '../../Logger.js';
 
 export class AaiiFetchAdapter {
     constructor() {}
 
     async fetch(task, provider, startDate, requestManager) {
-        console.log(`[AAII] Hole Sentiment Survey Daten (Zeitraum ab: ${startDate || 'Beginn'})`);
+        Logger.info(`[AAII] Hole Sentiment Survey Daten (Zeitraum ab: ${startDate || 'Beginn'})`);
         const url = 'https://www.aaii.com/files/surveys/sentiment.xls';
 
         try {
@@ -79,7 +80,7 @@ export class AaiiFetchAdapter {
             return records.sort((a, b) => a.record_date.localeCompare(b.record_date));
 
         } catch (e) {
-            console.error(`[AaiiFetchAdapter] Fehler beim Abruf von AAII Sentiment: ${e.message}`);
+            Logger.error(`[AaiiFetchAdapter] Fehler beim Abruf von AAII Sentiment: ${e.message}`);
             return [];
         }
     }

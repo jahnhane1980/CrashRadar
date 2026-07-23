@@ -1,5 +1,6 @@
 import * as cheerio from 'cheerio';
 import fetch from 'node-fetch';
+import { Logger } from '../../Logger.js';
 
 export class InvestingComFetchAdapter {
     async fetch(task, provider, startValue) {
@@ -8,7 +9,7 @@ export class InvestingComFetchAdapter {
         }
 
         const url = "https://www.investing.com/economic-calendar/challenger-job-cuts-888";
-        console.log(`[InvestingComFetchAdapter] Fetching data from ${url} ...`);
+        Logger.info(`[InvestingComFetchAdapter] Fetching data from ${url} ...`);
         
         const response = await fetch(url, {
             headers: {
@@ -90,7 +91,7 @@ export class InvestingComFetchAdapter {
             throw new Error(`Could not parse actual value: ${actualValue}`);
         }
 
-        console.log(`[InvestingComFetchAdapter] Extracted data: ${record_date} -> ${parsedValue}`);
+        Logger.info(`[InvestingComFetchAdapter] Extracted data: ${record_date} -> ${parsedValue}`);
 
         // Return array of data as expected by the framework
         return [{ record_date, value: parsedValue }];

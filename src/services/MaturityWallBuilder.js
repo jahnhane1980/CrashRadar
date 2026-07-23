@@ -1,4 +1,5 @@
 import mysql from 'mysql2/promise';
+import { Logger } from '../core/Logger.js';
 
 export class MaturityWallBuilder {
   constructor(databaseUrl) {
@@ -17,9 +18,9 @@ export class MaturityWallBuilder {
   }
 
   async build(startDate = '2015-01-01') {
-    console.log('Starte Aggregation der Maturity Wall ab:', startDate);
+    Logger.info('Starte Aggregation der Maturity Wall ab:', startDate);
 
-    console.log('Berechne Maturity Wall per analytischem SQL-Query (Vermeidung von N+1)...');
+    Logger.info('Berechne Maturity Wall per analytischem SQL-Query (Vermeidung von N+1)...');
 
     // MySQL: Wir nutzen DATE_ADD für das Datum und REPLACE INTO anstelle von INSERT OR REPLACE
     const insertQuery = `
@@ -42,15 +43,15 @@ export class MaturityWallBuilder {
     `;
 
     const [info] = await this.pool.query(insertQuery, [startDate]);
-    console.log(`Es wurden ${info.affectedRows} Zeilen bearbeitet (MySQL affectedRows) und in die Datenbank geschrieben.`);
+    Logger.info(`Es wurden ${info.affectedRows} Zeilen bearbeitet (MySQL affectedRows) und in die Datenbank geschrieben.`);
 
-    console.log('Maturity Wall Aggregation erfolgreich abgeschlossen!');
+    Logger.info('Maturity Wall Aggregation erfolgreich abgeschlossen!');
   }
 }
 
 // /* v8 ignore start */
 if (import.meta.url === `file://${process.argv[1]}`) {
   const builder = new MaturityWallBuilder();
-  builder.build().then(() => builder.close()).catch(console.error);
+  builder.build().then(() => builder.close()).catch(e => Logger.error(e));
 }
 // /* v8 ignore stop */

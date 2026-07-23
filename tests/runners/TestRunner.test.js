@@ -1,14 +1,15 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { TestRunner } from '../../src/runners/TestRunner.js';
 import { StandardRunner } from '../../src/runners/StandardRunner.js';
+import { Logger } from '../../src/core/Logger.js';
 
 describe('TestRunner', () => {
   let runner;
 
   beforeEach(() => {
     runner = new TestRunner({ config: {}, storage: {}, fetcher: { runAllTasks: vi.fn() }, maturityWallBuilder: { build: vi.fn(), close: vi.fn() } });
-    vi.spyOn(console, 'log').mockImplementation(() => {});
-    vi.spyOn(console, 'warn').mockImplementation(() => {});
+    vi.spyOn(Logger, 'info').mockImplementation(() => {});
+    vi.spyOn(Logger, 'warn').mockImplementation(() => {});
   });
 
   afterEach(() => {
@@ -21,7 +22,7 @@ describe('TestRunner', () => {
       
       const result = await runner.run();
       
-      expect(console.log).toHaveBeenCalledWith('\n[INFO] RUNNING IN TEST MODE (--test)');
+      expect(Logger.info).toHaveBeenCalledWith('\n[INFO] RUNNING IN TEST MODE (--test)');
       expect(superRunMock).toHaveBeenCalled();
       expect(result).toBe('ok');
     });
@@ -34,7 +35,7 @@ describe('TestRunner', () => {
       const url = TestRunner.getDatabaseUrl();
       
       expect(url).toBe('mysql://test_dummy');
-      expect(console.log).toHaveBeenCalledWith('[INFO] Verwende TEST Datenbank:', 'mysql://test_dummy');
+      expect(Logger.info).toHaveBeenCalledWith('[INFO] Verwende TEST Datenbank:', 'mysql://test_dummy');
     });
 
     it('should fallback to DATABASE_URL if DATABASE_URL_TEST is not set', () => {
@@ -44,7 +45,7 @@ describe('TestRunner', () => {
       const url = TestRunner.getDatabaseUrl();
       
       expect(url).toBe('mysql://dummy');
-      expect(console.warn).toHaveBeenCalledWith('[Warn] DATABASE_URL_TEST nicht gefunden. Verwende reguläre DATABASE_URL als Fallback!');
+      expect(Logger.warn).toHaveBeenCalledWith('[Warn] DATABASE_URL_TEST nicht gefunden. Verwende reguläre DATABASE_URL als Fallback!');
     });
   });
 

@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { MathUtils } from '../utils/MathUtils.js';
+import { Logger } from '../core/Logger.js';
 
 import { MacroRegimeEngine } from './MacroRegimeEngine.js';
 import { TradeSetupEngine } from './TradeSetupEngine.js';
@@ -43,7 +44,7 @@ export class IndicatorEngine {
   run(groupedData) {
     // Console Log für die CLI mit Farben
     const report = this.generateReport(groupedData, false);
-    console.log('\n' + report.trimEnd());
+    Logger.info('\n' + report.trimEnd());
   }
 
   getAlerts(groupedData, alertHistory = {}, debounceDays = 14) {

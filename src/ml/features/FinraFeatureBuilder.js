@@ -1,5 +1,6 @@
 import fs from 'fs';
 import { DefaultFeatureBuilder } from './DefaultFeatureBuilder.js';
+import { Logger } from '../../core/Logger.js';
 
 export class FinraFeatureBuilder extends DefaultFeatureBuilder {
   constructor(ticker, repo, config) {
@@ -18,7 +19,7 @@ export class FinraFeatureBuilder extends DefaultFeatureBuilder {
     // 1. Basis-CSV durch DefaultFeatureBuilder erstellen lassen (OHLCV + Indikatoren)
     const baseCsvPath = await super.build();
     
-    console.log(`[FinraFeatureBuilder] Erweitere Datensatz für ${this.ticker} mit FINRA & Fundamentaldaten...`);
+    Logger.info(`[FinraFeatureBuilder] Erweitere Datensatz für ${this.ticker} mit FINRA & Fundamentaldaten...`);
 
     // 2. FINRA und Fundamentaldaten laden (jetzt sauber über das Repository/DB)
     const finraDataMap = await this._loadFinraData(this.ticker);
@@ -157,9 +158,9 @@ export class FinraFeatureBuilder extends DefaultFeatureBuilder {
 
     // 6. Neue CSV überschreiben
     fs.writeFileSync(baseCsvPath, newCsvLines.join('\n'));
-    console.log(`[FinraFeatureBuilder] ✅ FINRA-Features erfolgreich integriert!`);
+    Logger.info(`[FinraFeatureBuilder] ✅ FINRA-Features erfolgreich integriert!`);
     if (process.env.CHAOS_TEST === 'true') {
-        console.log(`[FinraFeatureBuilder] 🌪️ CHAOS-TESTING AKTIV: ${chaosCount} synthetische Daten-Ausfälle generiert.`);
+        Logger.info(`[FinraFeatureBuilder] 🌪️ CHAOS-TESTING AKTIV: ${chaosCount} synthetische Daten-Ausfälle generiert.`);
     }
 
     return baseCsvPath;
@@ -175,7 +176,7 @@ export class FinraFeatureBuilder extends DefaultFeatureBuilder {
               finraMap[dateStr] = Number(row.short_volume_ratio).toFixed(4);
           }
       } catch(e) {
-          console.warn(`[FinraFeatureBuilder] Warnung: Fehler beim Lesen der FINRA Daten aus DB: ${e.message}`);
+          Logger.warn(`[FinraFeatureBuilder] Warnung: Fehler beim Lesen der FINRA Daten aus DB: ${e.message}`);
       }
       return finraMap;
   }
@@ -186,7 +187,7 @@ export class FinraFeatureBuilder extends DefaultFeatureBuilder {
           const funds = await this.repo.getFundamentalsForTicker(ticker);
           return funds || []; // is an array of timeseries objects now
       } catch(e) {
-           console.warn(`[FinraFeatureBuilder] Warnung: Fehler beim Lesen der Fundamentals: ${e.message}`);
+           Logger.warn(`[FinraFeatureBuilder] Warnung: Fehler beim Lesen der Fundamentals: ${e.message}`);
       }
       return [];
   }

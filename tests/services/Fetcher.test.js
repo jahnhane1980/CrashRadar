@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { Fetcher } from '../../src/services/Fetcher.js';
+import { Logger } from '../../src/core/Logger.js';
 const { mockHistorical, mockQuote, mockChart } = vi.hoisted(() => ({
   mockHistorical: vi.fn(),
   mockQuote: vi.fn(),
@@ -21,6 +22,8 @@ describe('Fetcher Class', () => {
   let mockRequestManager;
   const originalEnv = process.env;
   let mockConfig;
+  let loggerWarnSpy;
+  let loggerErrorSpy;
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -28,6 +31,9 @@ describe('Fetcher Class', () => {
     vi.spyOn(console, 'log').mockImplementation(() => {});
     vi.spyOn(console, 'error').mockImplementation(() => {});
     vi.spyOn(console, 'warn').mockImplementation(() => {});
+    Logger.setLevel('DEBUG');
+    loggerWarnSpy = vi.spyOn(Logger, 'warn').mockImplementation(() => {});
+    loggerErrorSpy = vi.spyOn(Logger, 'error').mockImplementation(() => {});
     
     process.env = { ...originalEnv, TEST_KEY: 'secret123' };
     
@@ -103,7 +109,7 @@ describe('Fetcher Class', () => {
     const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
     await fetcher.runAllTasks();
     
-    expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[PackageFetcher Error] Task t1:'), 'Yahoo error');
+    expect(loggerErrorSpy).toHaveBeenCalledWith(expect.stringContaining('[PackageFetcher Error] Task t1: Yahoo error'));
     expect(mockStorage.insertDataAndState).not.toHaveBeenCalled();
   });
 
@@ -133,7 +139,7 @@ describe('Fetcher Class', () => {
     const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
     await fetcher.runAllTasks();
     
-    expect(console.warn).toHaveBeenCalledWith(expect.stringContaining('[Warning] Missing environment variable TEST_KEY for t3'));
+    expect(loggerWarnSpy).toHaveBeenCalledWith(expect.stringContaining('[Warning] Missing environment variable TEST_KEY for t3'));
   });
 
   it('sollte TimeCursor Paginierung mit Auth per Query korrekt abarbeiten', async () => {
@@ -304,7 +310,7 @@ describe('Fetcher Class', () => {
     await fetcher.runAllTasks();
     
     expect(mockRequestManager.fetch).toHaveBeenCalledTimes(2);
-    expect(console.warn).toHaveBeenCalledWith(expect.stringContaining('[Warning] Infinite loop detected for t9: identical page returned.'));
+    expect(loggerWarnSpy).toHaveBeenCalledWith(expect.stringContaining('[Warning] Infinite loop detected for t9: identical page returned.'));
   });
 
   it('sollte TimeCursor Paginierung abbrechen, falls currentStartTime nicht ansteigt', async () => {
@@ -317,7 +323,7 @@ describe('Fetcher Class', () => {
     await fetcher.runAllTasks();
     
     expect(mockRequestManager.fetch).toHaveBeenCalledTimes(2);
-    expect(console.warn).toHaveBeenCalledWith(expect.stringContaining('[Warning] Infinite loop detected for t10: currentStartTime not advancing.'));
+    expect(loggerWarnSpy).toHaveBeenCalledWith(expect.stringContaining('[Warning] Infinite loop detected for t10: currentStartTime not advancing.'));
   });
 
   it('sollte Abstürze in HTTP-Tasks abfangen, wenn insertDataAndState fehlschlägt', async () => {
@@ -331,7 +337,7 @@ describe('Fetcher Class', () => {
     // Sollte nicht crashen
     await fetcher.runAllTasks();
     
-    expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[Storage] Error inserting data for task t11:'), 'Storage constraint failed');
+    expect(loggerErrorSpy).toHaveBeenCalledWith(expect.stringContaining('[Storage] Error inserting data for task t11: Storage constraint failed'));
   });
 
   // NEW TESTS FOR UNHAPPY PATHS AND 100% COVERAGE
@@ -340,7 +346,7 @@ describe('Fetcher Class', () => {
     mockConfig.tasks.push({ id: "t_unknown", provider: "Ghost", endpoint: "/data" });
     const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
     await fetcher.runAllTasks();
-    expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[Error] Task t_unknown failed entirely:'), "Provider 'Ghost' not found in config");
+    expect(loggerErrorSpy).toHaveBeenCalledWith(expect.stringContaining(`[Error] Task t_unknown failed entirely: ${"Provider 'Ghost' not found in config".replace(/^'|'$/g, '').replace(/^"|"$/g, '')}`));
   });
 
   it('sollte bei unbekanntem Format im getStartDate fallbackStr raw zurückgeben', () => {
@@ -373,7 +379,7 @@ describe('Fetcher Class', () => {
     mockRequestManager.fetch.mockResolvedValue({ error: 'fail' });
     const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
     await fetcher.runAllTasks();
-    expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[API Error] Task t_err1:'), expect.stringContaining('API returned error payload'));
+    expect(loggerErrorSpy).toHaveBeenCalledWith(expect.stringContaining('[API Error] Task t_err1: API returned error payload'));
   });
 
   it('sollte API-Errors in TimeCursor abfangen', async () => {
@@ -381,7 +387,7 @@ describe('Fetcher Class', () => {
     mockRequestManager.fetch.mockResolvedValue({ error: 'fail' });
     const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
     await fetcher.runAllTasks();
-    expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[API Error] Task t_err2:'), expect.stringContaining('API returned error payload'));
+    expect(loggerErrorSpy).toHaveBeenCalledWith(expect.stringContaining('[API Error] Task t_err2: API returned error payload'));
   });
 
   it('sollte API-Errors in PageNum abfangen', async () => {
@@ -389,7 +395,7 @@ describe('Fetcher Class', () => {
     mockRequestManager.fetch.mockResolvedValue({ error: 'fail' });
     const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
     await fetcher.runAllTasks();
-    expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[API Error] Task t_err3:'), expect.stringContaining('API returned error payload'));
+    expect(loggerErrorSpy).toHaveBeenCalledWith(expect.stringContaining('[API Error] Task t_err3: API returned error payload'));
   });
 
   it('sollte API-Errors in DateRange abfangen', async () => {
@@ -397,7 +403,7 @@ describe('Fetcher Class', () => {
     mockRequestManager.fetch.mockResolvedValue({ error: 'fail' });
     const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
     await fetcher.runAllTasks();
-    expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[API Error] Task t_err4:'), expect.stringContaining('API returned error payload'));
+    expect(loggerErrorSpy).toHaveBeenCalledWith(expect.stringContaining('[API Error] Task t_err4: API returned error payload'));
   });
 
   it('sollte Storage-Errors in TimeCursor abfangen', async () => {
@@ -406,7 +412,7 @@ describe('Fetcher Class', () => {
     mockStorage.insertDataAndState.mockImplementation(() => { throw new Error('DB Error TC'); });
     const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
     await fetcher.runAllTasks();
-    expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[Storage] Error inserting data for task t_err5:'), 'DB Error TC');
+    expect(loggerErrorSpy).toHaveBeenCalledWith(expect.stringContaining('[Storage] Error inserting data for task t_err5: DB Error TC'));
   });
 
   it('sollte Storage-Errors in PageNum abfangen', async () => {
@@ -415,7 +421,7 @@ describe('Fetcher Class', () => {
     mockStorage.insertDataAndState.mockImplementation(() => { throw new Error('DB Error PN'); });
     const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
     await fetcher.runAllTasks();
-    expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[Storage] Error inserting data for task t_err6:'), 'DB Error PN');
+    expect(loggerErrorSpy).toHaveBeenCalledWith(expect.stringContaining('[Storage] Error inserting data for task t_err6: DB Error PN'));
   });
 
   it('sollte Storage-Errors in DateRange abfangen', async () => {
@@ -424,7 +430,7 @@ describe('Fetcher Class', () => {
     mockStorage.insertDataAndState.mockImplementation(() => { throw new Error('DB Error DR'); });
     const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
     await fetcher.runAllTasks();
-    expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[Storage] Error inserting data for task t_err7:'), 'DB Error DR');
+    expect(loggerErrorSpy).toHaveBeenCalledWith(expect.stringContaining('[Storage] Error inserting data for task t_err7: DB Error DR'));
   });
 
   it('sollte bei einem Netzwerk-Fehler in fetchViaHttp den Task komplett abbrechen', async () => {
@@ -432,7 +438,7 @@ describe('Fetcher Class', () => {
     mockRequestManager.fetch.mockRejectedValue(new Error('Network Crash'));
     const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
     await fetcher.runAllTasks();
-    expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[Error] Task t_err8 failed entirely:'), 'Network Crash');
+    expect(loggerErrorSpy).toHaveBeenCalledWith(expect.stringContaining(`[Error] Task t_err8 failed entirely: ${'Network Crash'.replace(/^'|'$/g, '').replace(/^"|"$/g, '')}`));
     expect(mockStorage.insertDataAndState).not.toHaveBeenCalled();
   });
 
@@ -441,7 +447,7 @@ describe('Fetcher Class', () => {
     mockConfig.tasks.push({ id: "t_alien", provider: "TimeCursor", endpoint: "/time", params: {}, dbKey: "db.time" });
     const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
     await fetcher.runAllTasks();
-    expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[Error] Task t_alien failed entirely:'), 'Unknown pagination strategy: alien-strategy');
+    expect(loggerErrorSpy).toHaveBeenCalledWith(expect.stringContaining(`[Error] Task t_alien failed entirely: ${'Unknown pagination strategy: alien-strategy'.replace(/^'|'$/g, '').replace(/^"|"$/g, '')}`));
   });
 
   it('sollte Fehler abfangen und loggen, wenn insertDataAndState in Package Tasks fehlschlägt', async () => {
@@ -453,7 +459,7 @@ describe('Fetcher Class', () => {
     const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
     await fetcher.runAllTasks();
     
-    expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[PackageFetcher Error] Task t_pkg_err:'), 'DB Failed on Package');
+    expect(loggerErrorSpy).toHaveBeenCalledWith(expect.stringContaining('[PackageFetcher Error] Task t_pkg_err: DB Failed on Package'));
   });
 
   it('sollte extractData mit .data oder .observations Arrays korrekt verarbeiten', () => {

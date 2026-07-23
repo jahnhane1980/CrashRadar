@@ -4,6 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import * as tf from '@tensorflow/tfjs';
 import { RSI, MACD } from 'technicalindicators';
+import { Logger } from '../core/Logger.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -51,9 +52,9 @@ export class MLRegimeService {
       // Gewichte setzen
       const weights = weightsArrays.map(arr => tf.tensor(arr));
       this.model.setWeights(weights);
-      console.log(`[MLRegimeService] LSTM Modell (V2) erfolgreich in den RAM geladen.`);
+      Logger.info(`[MLRegimeService] LSTM Modell (V2) erfolgreich in den RAM geladen.`);
     } catch (error) {
-      console.error(`[MLRegimeService] Fehler beim Laden des Modells:`, error.message);
+      Logger.error(`[MLRegimeService] Fehler beim Laden des Modells:`, error.message);
       throw error;
     }
   }
@@ -250,7 +251,7 @@ export class MLRegimeService {
   }
 
   async retrain(candles) {
-    console.log(`[MLRegimeService] Retraining über Service (V2) ist deaktiviert. Bitte scratch/train_btc_model_v2.js nutzen!`);
+    Logger.info(`[MLRegimeService] Retraining über Service (V2) ist deaktiviert. Bitte scratch/train_btc_model_v2.js nutzen!`);
     // Die Retrain-Funktion im Service wird bei V2 aktuell nicht genutzt, da wir das externe Skript mit Class Weights haben.
     // Wir könnten es implementieren, aber um Fehler zu vermeiden, belassen wir das Training beim dedizierten Skript.
   }

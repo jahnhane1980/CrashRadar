@@ -1,4 +1,5 @@
 import mysql from 'mysql2/promise';
+import { Logger } from '../Logger.js';
 
 export const TABLES = Object.freeze({
   BINANCE: 'market_data_binance',
@@ -126,7 +127,7 @@ export class AnalysisRepository {
       }
     } catch (e) {
       // Fallback if table doesn't exist or other error
-      console.warn(`[AnalysisRepository] Error fetching fundamentals for ${ticker}: ${e.message}`);
+      Logger.warn(`[AnalysisRepository] Error fetching fundamentals for ${ticker}: ${e.message}`);
     }
     return [];
   }

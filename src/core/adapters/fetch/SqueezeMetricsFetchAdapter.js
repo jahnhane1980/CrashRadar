@@ -2,13 +2,14 @@ import fs from 'fs';
 import path from 'path';
 import os from 'os';
 import { parse } from 'csv-parse';
+import { Logger } from '../../Logger.js';
 
 export class SqueezeMetricsFetchAdapter {
     constructor() {
     }
 
     async fetch(task, provider, startDate, requestManager) {
-        console.log(`[SqueezeMetrics] Hole Daten für Task: ${task.id} (Zeitraum ab: ${startDate || 'Beginn'})`);
+        Logger.info(`[SqueezeMetrics] Hole Daten für Task: ${task.id} (Zeitraum ab: ${startDate || 'Beginn'})`);
         const records = [];
         const url = 'https://squeezemetrics.com/monitor/static/DIX.csv';
         
@@ -27,7 +28,7 @@ export class SqueezeMetricsFetchAdapter {
 
             // 3. Temporär auf die Festplatte schreiben
             fs.writeFileSync(tempFilePath, text);
-            console.log(`[SqueezeMetrics] Datei temporär gespeichert unter: ${tempFilePath}`);
+            Logger.info(`[SqueezeMetrics] Datei temporär gespeichert unter: ${tempFilePath}`);
 
             // 4. Datei als Stream parsen (Ressourcenschonend, falls Dateien wachsen)
             const parser = fs.createReadStream(tempFilePath).pipe(
@@ -81,22 +82,22 @@ export class SqueezeMetricsFetchAdapter {
                 throw new Error(`Silent Fail: ${totalParsedRows} Zeilen geparst, aber 0 gültige Datensätze extrahiert. Datumsformat oder CSV-Struktur wurde möglicherweise vom Betreiber geändert!`);
             }
 
-            console.log(`[SqueezeMetrics] ${records.length} gültige Datensätze ab ${startDate || 'Anfang'} extrahiert.`);
+            Logger.info(`[SqueezeMetrics] ${records.length} gültige Datensätze ab ${startDate || 'Anfang'} extrahiert.`);
             
             // Aufsteigend nach Datum sortieren
             return records.sort((a, b) => a.record_date.localeCompare(b.record_date));
 
         } catch (error) {
-            console.error(`[SqueezeMetricsFetchAdapter] Fehler beim Abruf von DIX: ${error.message}`);
+            Logger.error(`[SqueezeMetricsFetchAdapter] Fehler beim Abruf von DIX: ${error.message}`);
             return [];
         } finally {
             // 5. Aufräumen: Temporäre Datei löschen (egal ob Fehler oder Erfolg)
             if (fs.existsSync(tempFilePath)) {
                 try {
                     fs.unlinkSync(tempFilePath);
-                    console.log(`[SqueezeMetrics] Temporäre Datei erfolgreich gelöscht: ${tempFilePath}`);
+                    Logger.info(`[SqueezeMetrics] Temporäre Datei erfolgreich gelöscht: ${tempFilePath}`);
                 } catch (cleanupError) {
-                    console.error(`[SqueezeMetricsFetchAdapter] Fehler beim Löschen der temporären Datei: ${cleanupError.message}`);
+                    Logger.error(`[SqueezeMetricsFetchAdapter] Fehler beim Löschen der temporären Datei: ${cleanupError.message}`);
                 }
             }
         }

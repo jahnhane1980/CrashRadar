@@ -1,10 +1,11 @@
 import YahooFinance from 'yahoo-finance2';
+import { Logger } from '../../Logger.js';
 const yahooFinance = new YahooFinance();
 
 export class YahooFinanceFetchAdapter {
   async fetch(task, provider, startValue) {
     if (task.method === 'options') {
-      console.log(`[YahooFinanceFetchAdapter] Fetching Options Chain for ${task.ticker}...`);
+      Logger.info(`[YahooFinanceFetchAdapter] Fetching Options Chain for ${task.ticker}...`);
       const result = await yahooFinance.options(task.ticker);
       if (!result.options || result.options.length === 0) return { quotes: [] };
       
@@ -34,13 +35,13 @@ export class YahooFinanceFetchAdapter {
     }
 
     if (task.method === 'fundamentals') {
-      console.log(`[YahooFinanceFetchAdapter] Fetching Fundamentals TimeSeries for ${task.ticker}...`);
+      Logger.info(`[YahooFinanceFetchAdapter] Fetching Fundamentals TimeSeries for ${task.ticker}...`);
       
       let timeSeries = [];
       try {
           timeSeries = await yahooFinance.fundamentalsTimeSeries(task.ticker, { period1: '2010-01-01', module: 'all' });
       } catch (err) {
-          console.error(`[YahooFinanceFetchAdapter] Error fetching fundamentalsTimeSeries for ${task.ticker}:`, err.message);
+          Logger.error(`[YahooFinanceFetchAdapter] Error fetching fundamentalsTimeSeries for ${task.ticker}: ${err.message}`);
       }
       
       let instOwn = 0;
@@ -48,7 +49,7 @@ export class YahooFinanceFetchAdapter {
         const quote = await yahooFinance.quoteSummary(task.ticker, { modules: ['majorHoldersBreakdown'] });
         instOwn = quote?.majorHoldersBreakdown?.institutionsPercentHeld || 0;
       } catch (err) {
-        console.error(`[YahooFinanceFetchAdapter] Failed to fetch quoteSummary for ${task.ticker}:`, err.message);
+        Logger.error(`[YahooFinanceFetchAdapter] Failed to fetch quoteSummary for ${task.ticker}: ${err.message}`);
       }
       
       const quotes = timeSeries.map(item => {
@@ -88,7 +89,7 @@ export class YahooFinanceFetchAdapter {
       
       const startDate = new Date(dateToCheck);
       if (!isNaN(startDate.getTime()) && startDate > new Date()) {
-        console.log(`[YahooFinanceFetchAdapter] Skipping ${task.ticker} as startValue (${startValue}) is in the future.`);
+        Logger.info(`[YahooFinanceFetchAdapter] Skipping ${task.ticker} as startValue (${startValue}) is in the future.`);
         return [];
       }
     }

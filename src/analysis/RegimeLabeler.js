@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { Logger } from '../core/Logger.js';
 
 export const Regimes = Object.freeze({
   CYCLE_BOTTOM: 'CYCLE_BOTTOM',
@@ -43,7 +44,7 @@ export class RegimeLabeler {
          return JSON.parse(fs.readFileSync(configPath, 'utf8'));
       }
     } catch (e) {
-      console.warn("Konnte Cycle-Base-Config.json nicht laden, nutze Defaults.", e);
+      Logger.warn("Konnte Cycle-Base-Config.json nicht laden, nutze Defaults.", e);
     }
     return { 
         BTC: { strategy: Strategies.ABSOLUTE_WINDOW, windowDays: 1460 },

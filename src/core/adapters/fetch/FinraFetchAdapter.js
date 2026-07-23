@@ -2,6 +2,7 @@ import ky from 'ky';
 import * as xlsx from 'xlsx';
 import fs from 'fs';
 import path from 'path';
+import { Logger } from '../../Logger.js';
 
 export class FinraFetchAdapter {
     constructor() {
@@ -9,7 +10,7 @@ export class FinraFetchAdapter {
 
     async fetch(task, provider, startDate, requestManager) {
         if (task.dataset === 'short_volume') {
-            console.log(`[FINRA] Hole Daily Short Volume für ${task.ticker} (Zeitraum ab: ${startDate})`);
+            Logger.info(`[FINRA] Hole Daily Short Volume für ${task.ticker} (Zeitraum ab: ${startDate})`);
             const records = [];
             const startStr = startDate || '2025-01-01';
             const endStr = new Date().toISOString().split('T')[0];
@@ -56,13 +57,13 @@ export class FinraFetchAdapter {
                         // Dateiformat existiert an Feiertagen etc. nicht (AWS S3 gibt 403 statt 404)
                         continue;
                     }
-                    console.error(`[FinraFetchAdapter] Fehler beim Abruf von Short Volume ${dateStr}: ${e.message}`);
+                    Logger.error(`[FinraFetchAdapter] Fehler beim Abruf von Short Volume ${dateStr}: ${e.message}`);
                 }
             }
             return records;
         }
 
-        console.log(`[FINRA] Hole Margin Statistics für Task: ${task.id}`);
+        Logger.info(`[FINRA] Hole Margin Statistics für Task: ${task.id}`);
         try {
             // 1. Hole die HTML Seite
             const html = await requestManager.fetch('https://www.finra.org/investors/learn-to-invest/advanced-investing/margin-statistics', task.provider, {
@@ -82,7 +83,7 @@ export class FinraFetchAdapter {
             }
             
             const fileUrl = 'https://www.finra.org' + match[1];
-            console.log(`[FINRA] Excel Datei gefunden: ${fileUrl}`);
+            Logger.info(`[FINRA] Excel Datei gefunden: ${fileUrl}`);
 
             // 3. Lade die Excel Datei herunter
             const buffer = await requestManager.fetch(fileUrl, task.provider, {
@@ -143,15 +144,15 @@ export class FinraFetchAdapter {
                 const currentDateStr = new Date().toISOString().split('T')[0];
                 const fileName = `MarginDebt_${startDate}_to_${currentDateStr}.csv`;
                 fs.writeFileSync(path.join(dir, fileName), csvHeader + csvBody);
-                console.log(`[FINRA] CSV gesichert unter: ${path.join(dir, fileName)}`);
+                Logger.info(`[FINRA] CSV gesichert unter: ${path.join(dir, fileName)}`);
             } else {
-                console.log(`[FINRA] Keine neuen Daten für den Zeitraum seit ${startDate} gefunden.`);
+                Logger.info(`[FINRA] Keine neuen Daten für den Zeitraum seit ${startDate} gefunden.`);
             }
 
             return parsedRecords.sort((a, b) => a.record_date.localeCompare(b.record_date));
 
         } catch (error) {
-            console.error(`[FinraFetchAdapter] Fehler beim Abruf von FINRA Margin Debt: ${error.message}`);
+            Logger.error(`[FinraFetchAdapter] Fehler beim Abruf von FINRA Margin Debt: ${error.message}`);
             return [];
         }
     }

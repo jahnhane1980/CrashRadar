@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { NtfyService } from '../../src/services/NtfyService.js';
+import { Logger } from '../../src/core/Logger.js';
 import ky from 'ky';
 
 vi.mock('ky', () => ({
@@ -21,12 +22,12 @@ describe('NtfyService', () => {
 
   it('sollte einen Fehler abfangen, wenn ky.post fehlschlägt', async () => {
     ky.post.mockRejectedValueOnce(new Error('Network error'));
-    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const loggerSpy = vi.spyOn(Logger, 'error').mockImplementation(() => {});
     const service = new NtfyService('test-topic');
     
     await service.send('Titel', 'Nachricht');
     
-    expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining('[Ntfy] Fehler beim Senden an'), 'Network error');
-    consoleSpy.mockRestore();
+    expect(loggerSpy).toHaveBeenCalledWith(expect.stringContaining('[Ntfy] Fehler beim Senden an'), 'Network error');
+    loggerSpy.mockRestore();
   });
 });

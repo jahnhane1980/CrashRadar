@@ -2,6 +2,7 @@ import ky from 'ky';
 import fs from 'fs';
 import path from 'path';
 import { parse } from 'csv-parse/sync';
+import { Logger } from '../../Logger.js';
 
 export class CboeFetchAdapter {
     constructor() {
@@ -12,14 +13,14 @@ export class CboeFetchAdapter {
         const toDateStr = new Date().toISOString().split('T')[0];
 
         if (task.dataset === 'pcr') {
-            console.log(`[CBOE/Yahoo] Hole PCR Daten für den Markt (Zeitraum: ${fromDateStr} bis ${toDateStr})`);
+            Logger.info(`[CBOE/Yahoo] Hole PCR Daten für den Markt (Zeitraum: ${fromDateStr} bis ${toDateStr})`);
             
             const results = [];
 
             // 1. Lokales Archiv lesen (Backtesting Historie)
             const archivePath = path.resolve(process.cwd(), 'data/archive/cboe/pcr.csv');
             if (fs.existsSync(archivePath)) {
-                console.log(`[CBOE] Lese historische PCR-Daten aus lokalem Archiv: ${archivePath}`);
+                Logger.info(`[CBOE] Lese historische PCR-Daten aus lokalem Archiv: ${archivePath}`);
                 const text = fs.readFileSync(archivePath, 'utf8');
                 const recordsObj = parse(text, {
                     columns: true,
@@ -38,7 +39,7 @@ export class CboeFetchAdapter {
 
             // 2. Live Daten über Yahoo Finance Optionskette (Future-Proof Proxy)
             try {
-                console.log(`[YahooOptions] Berechne tagesaktuelles SPY Put/Call Ratio...`);
+                Logger.info(`[YahooOptions] Berechne tagesaktuelles SPY Put/Call Ratio...`);
                 // Dynamischer Import, um Abhängigkeiten sauber zu halten
                 const YahooFinance = (await import('yahoo-finance2')).default;
                 const yahooFinance = new YahooFinance();
@@ -55,7 +56,7 @@ export class CboeFetchAdapter {
                     if (totalCallVol > 0) {
                         const calculatedPcr = totalPutVol / totalCallVol;
                         const latestDate = new Date().toISOString().split('T')[0];
-                        console.log(`[YahooOptions] SPY PCR berechnet: ${calculatedPcr.toFixed(2)} (Puts: ${totalPutVol}, Calls: ${totalCallVol})`);
+                        Logger.info(`[YahooOptions] SPY PCR berechnet: ${calculatedPcr.toFixed(2)} (Puts: ${totalPutVol}, Calls: ${totalCallVol})`);
                         results.push({
                             record_date: latestDate,
                             total_pcr: calculatedPcr,
@@ -65,7 +66,7 @@ export class CboeFetchAdapter {
                     }
                 }
             } catch(e) {
-                console.error(`[YahooOptions] Fehler bei der PCR-Berechnung: ${e.message}`);
+                Logger.error(`[YahooOptions] Fehler bei der PCR-Berechnung: ${e.message}`);
             }
 
             return results;
@@ -96,12 +97,12 @@ export class CboeFetchAdapter {
                 }
             });
         } catch (e) {
-            console.error(`[CboeFetchAdapter] Fehler beim Abruf von ${task.ticker}: ${e.message}`);
+            Logger.error(`[CboeFetchAdapter] Fehler beim Abruf von ${task.ticker}: ${e.message}`);
             return [];
         }
 
         if (!responseText || responseText.trim().length === 0 || responseText.includes('No data found')) {
-            console.log(`[CBOE] Keine Daten für ${task.ticker} im Zeitraum (${fromDateStr} bis ${toDateStr}) gefunden.`);
+            Logger.info(`[CBOE] Keine Daten für ${task.ticker} im Zeitraum (${fromDateStr} bis ${toDateStr}) gefunden.`);
             return [];
         }
 
@@ -113,7 +114,7 @@ export class CboeFetchAdapter {
         
         const fileName = `${task.ticker}_${fromDateStr}_to_${toDateStr}.csv`;
         fs.writeFileSync(path.join(archiveDir, fileName), responseText, 'utf8');
-        console.log(`[CBOE] CSV gesichert unter: ${path.join('data/archive/cboe', fileName)}`);
+        Logger.info(`[CBOE] CSV gesichert unter: ${path.join('data/archive/cboe', fileName)}`);
 
         const records = parse(responseText, {
             columns: true,

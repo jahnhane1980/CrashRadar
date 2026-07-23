@@ -1,4 +1,5 @@
 import ky from 'ky';
+import { Logger } from './Logger.js';
 
 export class RequestManager {
   constructor(config) {
@@ -32,7 +33,7 @@ export class RequestManager {
         hooks: {
           beforeRetry: [
             ({ request, error, retryCount }) => {
-              console.warn(`[RequestManager] Retrying (${retryCount}) ${request.url} due to ${error.message}`);
+              Logger.warn(`[RequestManager] Retrying (${retryCount}) ${request.url} due to ${error.message}`);
             }
           ]
         },
@@ -44,7 +45,7 @@ export class RequestManager {
         if (options.searchParams) {
             paramsString = new URLSearchParams(options.searchParams).toString();
         }
-        console.log(`[HTTP GET] ${url}${paramsString ? '?' + paramsString : ''}`);
+        Logger.debug(`[HTTP GET] ${url}${paramsString ? '?' + paramsString : ''}`);
         
         const responseType = options.responseType || 'json';
         const response = await kyInstance.get(url)[responseType]();
@@ -52,9 +53,9 @@ export class RequestManager {
       } catch (error) {
         if (error.response && (error.response.status === 403 || error.response.status === 404)) {
             // Minimal logging for expected 403/404s (holidays, weekends)
-            console.log(`[RequestManager] Skipping ${url} (Status: ${error.response.status})`);
+            Logger.debug(`[RequestManager] Skipping ${url} (Status: ${error.response.status})`);
         } else {
-            console.error(`[RequestManager] Final error fetching ${url}:`, error.message);
+            Logger.error(`[RequestManager] Final error fetching ${url}: ${error.message}`);
         }
         throw error;
       }
@@ -69,7 +70,7 @@ export class RequestManager {
     // Die eigentliche Ausführung in die Queue einhängen
     if (!this.cache) this.cache = new Map();
     if (this.cache.has(cacheKey)) {
-      console.log(`[RequestManager] Cache hit for ${cacheKey}`);
+      Logger.debug(`[RequestManager] Cache hit for ${cacheKey}`);
       return this.cache.get(cacheKey);
     }
 
@@ -87,7 +88,7 @@ export class RequestManager {
           await new Promise(r => setTimeout(r, delayMs));
         }
       }).catch(e => {
-        console.error(`[RequestManager Queue Error] ${e.message}`);
+        Logger.error(`[RequestManager Queue Error] ${e.message}`);
       });
     });
 

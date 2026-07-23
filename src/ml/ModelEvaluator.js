@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import * as tf from '@tensorflow/tfjs';
+import { Logger } from '../core/Logger.js';
 
 const LABELS = [
   'CYCLE_BOTTOM', 
@@ -45,10 +46,10 @@ export class ModelEvaluator {
     }
 
     async evaluate() {
-        console.log(`\n=== Evaluating ${this.ticker} (v${this.version}) ===`);
+        Logger.info(`\n=== Evaluating ${this.ticker} (v${this.version}) ===`);
         
         if (!fs.existsSync(this.modelDir)) {
-            console.log(`[ModelEvaluator] Modell-Ordner nicht gefunden: ${this.modelDir}`);
+            Logger.info(`[ModelEvaluator] Modell-Ordner nicht gefunden: ${this.modelDir}`);
             return null;
         }
 
@@ -56,7 +57,7 @@ export class ModelEvaluator {
         const weightsPath = path.join(this.modelDir, 'weights.json');
         
         if (!fs.existsSync(statsPath) || !fs.existsSync(weightsPath)) {
-            console.log(`[ModelEvaluator] Modell-Dateien (stats/weights) fehlen in ${this.modelDir}`);
+            Logger.info(`[ModelEvaluator] Modell-Dateien (stats/weights) fehlen in ${this.modelDir}`);
             return null;
         }
 
@@ -139,16 +140,16 @@ export class ModelEvaluator {
         }
 
         const accuracy = (correct / predictions.length) * 100;
-        console.log(`Accuracy auf Test-Set (letzte 20%): ${accuracy.toFixed(2)}%`);
-        console.log(`Test-Set Größe: ${predictions.length} Sequenzen\n`);
+        Logger.info(`Accuracy auf Test-Set (letzte 20%): ${accuracy.toFixed(2)}%`);
+        Logger.info(`Test-Set Größe: ${predictions.length} Sequenzen\n`);
         
-        console.log("Confusion Matrix / Label Performance:");
+        Logger.info("Confusion Matrix / Label Performance:");
         for (const l of LABELS) {
             const act = confusion[l].actualCount;
             const pred = confusion[l].predictedCount;
             const corr = confusion[l].correctlyPredicted;
             if (act > 0 || pred > 0) {
-                console.log(`- ${l.padEnd(16)}: Actual: ${act.toString().padStart(3)}, Predicted: ${pred.toString().padStart(3)}, Correct: ${corr.toString().padStart(3)} (${act > 0 ? ((corr/act)*100).toFixed(1) : 0}%)`);
+                Logger.info(`- ${l.padEnd(16)}: Actual: ${act.toString().padStart(3)}, Predicted: ${pred.toString().padStart(3)}, Correct: ${corr.toString().padStart(3)} (${act > 0 ? ((corr/act)*100).toFixed(1) : 0}%)`);
             }
         }
         

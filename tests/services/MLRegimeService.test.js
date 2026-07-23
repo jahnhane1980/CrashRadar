@@ -1,6 +1,7 @@
-import { describe, it, expect, beforeEach, afterEach, vi as jest } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi as jest, vi } from 'vitest';
 import * as tf from '@tensorflow/tfjs';
 import { MLRegimeService } from '../../src/services/MLRegimeService.js';
+import { Logger } from '../../src/core/Logger.js';
 import fs from 'fs/promises';
 import fsSync from 'fs';
 
@@ -301,11 +302,11 @@ describe('MLRegimeService', () => {
   });
 
   describe('retrain', () => {
-    it('returns early with a warning instead of training V2 models', async () => {
-      const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
+    it('sollte retrain aufrufen und einen Hinweis loggen', async () => {
+      const loggerSpy = vi.spyOn(Logger, 'info').mockImplementation(() => {});
       await service.retrain([]);
-      expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining('[MLRegimeService] Retraining über Service'));
-      consoleSpy.mockRestore();
+      expect(loggerSpy).toHaveBeenCalledWith(expect.stringContaining('[MLRegimeService] Retraining über Service'));
+      loggerSpy.mockRestore();
     });
 
   });

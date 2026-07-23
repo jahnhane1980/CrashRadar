@@ -1,5 +1,6 @@
 import mysql from 'mysql2/promise';
 import { StorageAdapterFactory } from './adapters/storage/StorageAdapterFactory.js';
+import { Logger } from './Logger.js';
 
 export class Storage {
   constructor(config = {}) {
@@ -44,7 +45,7 @@ export class Storage {
       await connection.query(stateQuery, [task.id, task.provider, JSON.stringify(newLastRecord), new Date().toISOString()]);
 
       await connection.commit();
-      console.log(`[Storage] Inserted/Updated ${data.length} items and state for task '${task.id}'`);
+      Logger.info(`[Storage] Inserted/Updated ${data.length} items and state for task '${task.id}'`);
     } catch (error) {
       await connection.rollback();
       throw error;

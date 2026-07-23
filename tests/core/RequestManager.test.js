@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { RequestManager } from '../../src/core/RequestManager.js';
+import { Logger } from '../../src/core/Logger.js';
 import ky from 'ky';
 
 // Wir mocken 'ky', um die internen HTTP Aufrufe zu simulieren ohne echte Netzwerkanfragen zu senden.
@@ -19,11 +20,16 @@ vi.mock('ky', () => {
 describe('RequestManager Class', () => {
   let config;
 
+  let loggerDebugSpy;
+  let loggerWarnSpy;
+  let loggerErrorSpy;
+
   beforeEach(() => {
     vi.clearAllMocks();
-    vi.spyOn(console, 'log').mockImplementation(() => {});
-    vi.spyOn(console, 'error').mockImplementation(() => {});
-    vi.spyOn(console, 'warn').mockImplementation(() => {});
+    Logger.setLevel('DEBUG');
+    loggerDebugSpy = vi.spyOn(Logger, 'debug').mockImplementation(() => {});
+    loggerWarnSpy = vi.spyOn(Logger, 'warn').mockImplementation(() => {});
+    loggerErrorSpy = vi.spyOn(Logger, 'error').mockImplementation(() => {});
     
     config = {
       providers: {
@@ -58,7 +64,7 @@ describe('RequestManager Class', () => {
     });
     
     await expect(manager.fetch('http://error.com', 'FastProv')).rejects.toThrow('Not Found');
-    expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[RequestManager] Final error fetching http://error.com:'), 'Not Found');
+    expect(loggerErrorSpy).toHaveBeenCalledWith(expect.stringContaining('[RequestManager] Final error fetching http://error.com: Not Found'));
   });
 
   it('sollte das Queue-Delay (100ms) zwischen zwei Anfragen auf demselben Provider anwenden', async () => {
@@ -94,7 +100,7 @@ describe('RequestManager Class', () => {
     const hook = extendArgs.hooks.beforeRetry[0];
     hook({ request: { url: 'http://retry.com' }, error: { message: 'Timeout' }, retryCount: 1 });
     
-    expect(console.warn).toHaveBeenCalledWith(expect.stringContaining('[RequestManager] Retrying (1) http://retry.com due to Timeout'));
+    expect(loggerWarnSpy).toHaveBeenCalledWith(expect.stringContaining('[RequestManager] Retrying (1) http://retry.com due to Timeout'));
   });
 
   it('sollte die Queue nicht blockieren, wenn eine unerwartete Exception auftritt', async () => {
@@ -111,7 +117,7 @@ describe('RequestManager Class', () => {
     const result2 = await manager.fetch('http://crash.com/2', 'FastProv');
     
     expect(result2).toEqual({ ok: true });
-    expect(console.error).toHaveBeenCalledTimes(1);
+    expect(loggerErrorSpy).toHaveBeenCalledTimes(1);
   });
 
   it('sollte Anfragen ohne Absturz ausführen, wenn Config oder Provider fehlen', async () => {
@@ -132,12 +138,12 @@ describe('RequestManager Class', () => {
     const kyExtendMock = ky.extend();
     kyExtendMock.get.mockReturnValue({ json: vi.fn().mockResolvedValue({ ok: true }) });
     
-    const consoleLogSpy = vi.spyOn(console, 'log');
+    kyExtendMock.get.mockReturnValue({ json: vi.fn().mockResolvedValue({ ok: true }) });
     const searchParams = new URLSearchParams({ test: '123', abc: 'xyz' });
     
     await manager.fetch('http://log.com', 'FastProv', { searchParams });
     
-    expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('[HTTP GET] http://log.com?test=123&abc=xyz'));
+    expect(loggerDebugSpy).toHaveBeenCalledWith(expect.stringContaining('[HTTP GET] http://log.com?test=123&abc=xyz'));
   });
 
   it('sollte delayMs auch nach einem Error abwarten, um die Queue nicht zu überfluten', async () => {
@@ -171,7 +177,7 @@ describe('RequestManager Class', () => {
     });
     
     await expect(manager.fetch('http://missing.com', 'FastProv')).rejects.toThrow('Not Found');
-    expect(console.log).toHaveBeenCalledWith(expect.stringContaining('[RequestManager] Skipping http://missing.com (Status: 404)'));
+    expect(loggerDebugSpy).toHaveBeenCalledWith(expect.stringContaining('[RequestManager] Skipping http://missing.com (Status: 404)'));
     
     const error403 = new Error('Forbidden');
     error403.response = { status: 403 };
@@ -179,7 +185,7 @@ describe('RequestManager Class', () => {
       json: vi.fn().mockRejectedValue(error403)
     });
     await expect(manager.fetch('http://forbidden.com', 'FastProv')).rejects.toThrow('Forbidden');
-    expect(console.log).toHaveBeenCalledWith(expect.stringContaining('[RequestManager] Skipping http://forbidden.com (Status: 403)'));
+    expect(loggerDebugSpy).toHaveBeenCalledWith(expect.stringContaining('[RequestManager] Skipping http://forbidden.com (Status: 403)'));
   });
 
   it('sollte unhandled rejections in der Queue abfangen (Zeile 79)', async () => {
@@ -204,7 +210,7 @@ describe('RequestManager Class', () => {
     // Kurz warten, bis der microtask für das catch ausgeführt wurde
     await new Promise(r => originalSetTimeout(r, 10));
     
-    expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[RequestManager Queue Error] Queue Error'));
+    expect(loggerErrorSpy).toHaveBeenCalledWith(expect.stringContaining('[RequestManager Queue Error] Queue Error'));
   });
 
   it('sollte den Cache korrekt anhand des cacheKeys anstatt der reinen URL setzen', async () => {

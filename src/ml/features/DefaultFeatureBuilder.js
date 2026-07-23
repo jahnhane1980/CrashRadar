@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { RSI, MACD } from 'technicalindicators';
 import { RegimeLabeler } from '../../analysis/RegimeLabeler.js';
+import { Logger } from '../../core/Logger.js';
 
 export class DefaultFeatureBuilder {
   constructor(ticker, repo, config) {
@@ -19,14 +20,14 @@ export class DefaultFeatureBuilder {
   }
 
   async build() {
-    console.log(`[FeatureBuilder] Erstelle Datensatz für ${this.ticker}...`);
+    Logger.info(`[FeatureBuilder] Erstelle Datensatz für ${this.ticker}...`);
 
     // 1. Raw-Daten holen (OHLCV)
     const rawData = await this.repo.getOhlcvForTicker(this.ticker, '2015-01-01');
     if (!rawData || rawData.length === 0) {
       throw new Error(`Keine OHLCV-Daten für ${this.ticker} gefunden!`);
     }
-    console.log(`[FeatureBuilder] ${rawData.length} Rohdaten-Zeilen geladen.`);
+    Logger.info(`[FeatureBuilder] ${rawData.length} Rohdaten-Zeilen geladen.`);
 
     // 2. Formatieren und Labels generieren (Dow-Theory Ground Truth)
     // RegimeLabeler erwartet das Format: { date, assets: { [ticker]: close } }
@@ -219,8 +220,8 @@ export class DefaultFeatureBuilder {
     const body = finalDataset.length > 0 ? '\n' + finalDataset.join('\n') : '';
     fs.writeFileSync(outPath, header + body);
 
-    console.log(`[FeatureBuilder] ✅ Datensatz für ${this.ticker} erfolgreich erstellt!`);
-    console.log(`[FeatureBuilder] Exportiert nach: ${outPath} (${finalDataset.length} Datensätze)`);
+    Logger.info(`[FeatureBuilder] ✅ Datensatz für ${this.ticker} erfolgreich erstellt!`);
+    Logger.info(`[FeatureBuilder] Exportiert nach: ${outPath} (${finalDataset.length} Datensätze)`);
     
     return outPath;
   }

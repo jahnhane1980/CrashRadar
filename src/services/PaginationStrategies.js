@@ -1,3 +1,5 @@
+import { Logger } from '../core/Logger.js';
+
 export const SPECIAL_EXTRACT_PATHS = Object.freeze({
   LAST_ITEM_INDEX_6: 'last_item_index_6',
 });
@@ -18,7 +20,7 @@ export const PaginationStrategies = {
       try {
         data = fetcher.extractData(response, provider);
       } catch(e) {
-        console.error(`[API Error] Task ${task.id}:`, e.message);
+        Logger.error(`[API Error] Task ${task.id}: ${e.message}`);
         break;
       }
       
@@ -28,7 +30,7 @@ export const PaginationStrategies = {
       try {
         await fetcher.storage.insertDataAndState(task, data, newLastRecord);
       } catch(e) {
-        console.error(`[Storage] Error inserting data for task ${task.id}:`, e.message);
+        Logger.error(`[Storage] Error inserting data for task ${task.id}: ${e.message}`);
         break;
       }
       
@@ -37,7 +39,7 @@ export const PaginationStrategies = {
       if (pagination.cursorExtractPath === SPECIAL_EXTRACT_PATHS.LAST_ITEM_INDEX_6) {
         const nextTime = newLastRecord[6] + 1;
         if (nextTime === currentStartTime || isNaN(nextTime)) {
-          console.warn(`[Warning] Infinite loop detected for ${task.id}: currentStartTime not advancing.`);
+          Logger.warn(`[Warning] Infinite loop detected for ${task.id}: currentStartTime not advancing.`);
           break;
         }
         currentStartTime = nextTime;
@@ -65,7 +67,7 @@ export const PaginationStrategies = {
       try {
         actualData = fetcher.extractData(response, provider);
       } catch(e) {
-        console.error(`[API Error] Task ${task.id}:`, e.message);
+        Logger.error(`[API Error] Task ${task.id}: ${e.message}`);
         break;
       }
       
@@ -73,7 +75,7 @@ export const PaginationStrategies = {
       
       const currentDataHash = JSON.stringify(actualData);
       if (currentDataHash === lastDataHash) {
-        console.warn(`[Warning] Infinite loop detected for ${task.id}: identical page returned.`);
+        Logger.warn(`[Warning] Infinite loop detected for ${task.id}: identical page returned.`);
         break;
       }
       lastDataHash = currentDataHash;
@@ -82,7 +84,7 @@ export const PaginationStrategies = {
       try {
         await fetcher.storage.insertDataAndState(task, actualData, newLastRecord);
       } catch(e) {
-        console.error(`[Storage] Error inserting data for task ${task.id}:`, e.message);
+        Logger.error(`[Storage] Error inserting data for task ${task.id}: ${e.message}`);
         break;
       }
 
@@ -101,7 +103,7 @@ export const PaginationStrategies = {
     try {
       finalData = fetcher.extractData(response, provider);
     } catch(e) {
-      console.error(`[API Error] Task ${task.id}:`, e.message);
+      Logger.error(`[API Error] Task ${task.id}: ${e.message}`);
       return;
     }
     
@@ -110,7 +112,7 @@ export const PaginationStrategies = {
         const newLastRecord = fetcher.getLatestRecord(task, provider, finalData);
         await fetcher.storage.insertDataAndState(task, finalData, newLastRecord);
       } catch(e) {
-        console.error(`[Storage] Error inserting data for task ${task.id}:`, e.message);
+        Logger.error(`[Storage] Error inserting data for task ${task.id}: ${e.message}`);
       }
     }
   }

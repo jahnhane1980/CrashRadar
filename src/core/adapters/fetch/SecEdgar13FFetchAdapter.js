@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import os from 'os';
 import readline from 'readline';
+import { Logger } from '../../Logger.js';
 
 export class SecEdgar13FFetchAdapter {
     constructor() {
@@ -13,7 +14,7 @@ export class SecEdgar13FFetchAdapter {
     }
 
     async fetch(task, provider, startDate, requestManager) {
-        console.log(`[SecEdgar13F] Hole 13F Holdings (Zeitraum ab: ${startDate || 'Beginn'})`);
+        Logger.info(`[SecEdgar13F] Hole 13F Holdings (Zeitraum ab: ${startDate || 'Beginn'})`);
         
         // 1. Config laden
         const configPath = path.join(process.cwd(), 'config', 'Smart-Money-Config.json');
@@ -31,7 +32,7 @@ export class SecEdgar13FFetchAdapter {
 
         // 2. Alle angefragten Fonds durchgehen
         for (const [cik, fundInfo] of Object.entries(ciksToProcess)) {
-            console.log(`\n[SecEdgar13F] Prüfe Filings für ${fundInfo.name} (CIK: ${cik})`);
+            Logger.info(`\n[SecEdgar13F] Prüfe Filings für ${fundInfo.name} (CIK: ${cik})`);
             
             try {
                 // 2.1 Submissions JSON holen
@@ -64,11 +65,11 @@ export class SecEdgar13FFetchAdapter {
                 }
 
                 if (targetFilings.length === 0) {
-                    console.log(`[SecEdgar13F] Keine neuen 13F-HR Filings seit ${startDate} für ${fundInfo.name}.`);
+                    Logger.info(`[SecEdgar13F] Keine neuen 13F-HR Filings seit ${startDate} für ${fundInfo.name}.`);
                     continue;
                 }
 
-                console.log(`[SecEdgar13F] Gefundene neue 13F-HR Filings für ${fundInfo.name}: ${targetFilings.length}`);
+                Logger.info(`[SecEdgar13F] Gefundene neue 13F-HR Filings für ${fundInfo.name}: ${targetFilings.length}`);
 
                 // 2.2 Für jedes gefundene Filing die Holdings holen
                 for (const filing of targetFilings) {
@@ -94,7 +95,7 @@ export class SecEdgar13FFetchAdapter {
                     }
 
                     if (!holdingXmlFile) {
-                        console.warn(`[SecEdgar13F] ⚠️ Keine Holdings-XML gefunden in ${filing.accessionNumber}`);
+                        Logger.warn(`[SecEdgar13F] ⚠️ Keine Holdings-XML gefunden in ${filing.accessionNumber}`);
                         continue;
                     }
 
@@ -113,7 +114,7 @@ export class SecEdgar13FFetchAdapter {
                     try {
                         const parsedHoldings = await this.parseXmlStream(tempFilePath, filing.reportDate, filing.filingDate, cik);
                         allRecords.push(...parsedHoldings);
-                        console.log(`[SecEdgar13F] 🐋 ${fundInfo.name} [${filing.reportDate}]: ${parsedHoldings.length} Positionen geparst.`);
+                        Logger.info(`[SecEdgar13F] 🐋 ${fundInfo.name} [${filing.reportDate}]: ${parsedHoldings.length} Positionen geparst.`);
                     } finally {
                         if (fs.existsSync(tempFilePath)) {
                             fs.unlinkSync(tempFilePath);
@@ -122,7 +123,7 @@ export class SecEdgar13FFetchAdapter {
                 }
 
             } catch (err) {
-                console.error(`[SecEdgar13F] Fehler bei Fonds ${fundInfo.name} (${cik}): ${err.message}`);
+                Logger.error(`[SecEdgar13F] Fehler bei Fonds ${fundInfo.name} (${cik}): ${err.message}`);
                 // Wir werfen hier keinen globalen Fehler, damit andere Fonds weiterlaufen!
             }
         }

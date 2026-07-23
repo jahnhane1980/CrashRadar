@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { StandardRunner } from '../../src/runners/StandardRunner.js';
+import { Logger } from '../../src/core/Logger.js';
 
 describe('StandardRunner', () => {
   let mockStorage;
@@ -19,9 +20,9 @@ describe('StandardRunner', () => {
       maturityWallBuilder: mockMwBuilder
     });
 
-    vi.spyOn(console, 'log').mockImplementation(() => {});
-    vi.spyOn(console, 'warn').mockImplementation(() => {});
-    vi.spyOn(console, 'error').mockImplementation(() => {});
+    vi.spyOn(Logger, 'info').mockImplementation(() => {});
+    vi.spyOn(Logger, 'warn').mockImplementation(() => {});
+    vi.spyOn(Logger, 'error').mockImplementation(() => {});
     vi.spyOn(process, 'exit').mockImplementation(() => {});
   });
 
@@ -51,7 +52,7 @@ describe('StandardRunner', () => {
 
       await runner.run();
 
-      expect(console.error).toHaveBeenCalledWith('[Fatal Error] Execution failed:', 'Test Error');
+      expect(Logger.error).toHaveBeenCalledWith('[Fatal Error] Execution failed:', 'Test Error');
       expect(process.exit).toHaveBeenCalledWith(1);
       expect(mockStorage.close).toHaveBeenCalled();
     });
@@ -63,7 +64,7 @@ describe('StandardRunner', () => {
       
       expect(mockStorage.close).toHaveBeenCalled();
       expect(runner.storage).toBeNull();
-      expect(console.log).toHaveBeenCalledWith('Database connection closed.');
+      expect(Logger.info).toHaveBeenCalledWith('Database connection closed.');
     });
 
     it('should do nothing if storage is null', async () => {

@@ -1,18 +1,19 @@
 import { StandardRunner } from './StandardRunner.js';
+import { Logger } from '../core/Logger.js';
 
 export class TestRunner extends StandardRunner {
   async run() {
-    console.log('\n[INFO] RUNNING IN TEST MODE (--test)');
+    Logger.info('\n[INFO] RUNNING IN TEST MODE (--test)');
     return super.run();
   }
 
   static getDatabaseUrl() {
     const testUrl = process.env.DATABASE_URL_TEST;
     if (!testUrl) {
-      console.warn('[Warn] DATABASE_URL_TEST nicht gefunden. Verwende reguläre DATABASE_URL als Fallback!');
+      Logger.warn('[Warn] DATABASE_URL_TEST nicht gefunden. Verwende reguläre DATABASE_URL als Fallback!');
       return process.env.DATABASE_URL;
     }
-    console.log('[INFO] Verwende TEST Datenbank:', testUrl.split('@')[1] || testUrl);
+    Logger.info('[INFO] Verwende TEST Datenbank:', testUrl.split('@')[1] || testUrl);
     return testUrl;
   }
 
@@ -20,7 +21,7 @@ export class TestRunner extends StandardRunner {
     const threeDaysAgo = new Date();
     threeDaysAgo.setUTCDate(threeDaysAgo.getUTCDate() - 3);
     config.globalStartDate = threeDaysAgo.toISOString().split('T')[0];
-    console.log(`[INFO] Overriding globalStartDate to: ${config.globalStartDate} (3 days ago)`);
+    Logger.info(`[INFO] Overriding globalStartDate to: ${config.globalStartDate} (3 days ago)`);
     
     if (config.providers) {
       for (const [pName, pConf] of Object.entries(config.providers)) {
