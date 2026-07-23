@@ -14,15 +14,7 @@ Dieses Dokument bündelt alle aktuell noch offenen Entwicklungsaufgaben und Arch
 * **Problem:** Die Engine gibt Makro-Vetos aus, aber wir passen unsere Positionsgrößen nicht algorithmisch an.
 * **Aufgabe [OFFEN]:** Die in der Theorie geforderte dynamische Skalierung (z.B. 100% -> 40% -> 10% -> 0%) basierend auf den Makro-Vetos muss in der `TradeSetupEngine.js` noch implementiert werden (Füllung des `action.scaleDown` Flags mit mathematischer Logik).
 
-## 4. Error Handling, Logging & Console-Cleanup
-* **Problem:** Die aktuelle Console-Ausgabe ist unübersichtlich. Zudem ist das Error Handling nicht konsequent genug zwischen "Fatal" und "Non-Fatal" getrennt. Fällt z.B. ein Scraper aus, wird das im Rauschen begraben, anstatt proaktiv gemeldet zu werden.
-* **Ziel:** Ein professionelles, dreistufiges Error- & Logging-Framework.
-* **Aufgaben [OFFEN]:**
-  * **Console-Cleanup:** Unnötige Konsolenausgaben entfernen und saubere, strukturierte Logs etablieren.
-  * **Kritische Fehler (Fatal):** Harte Exceptions werfen und den Lauf abbrechen (`exit`), wenn ein Fortsetzen absolut unmöglich ist oder die Datenintegrität zerstört.
-  * **Wichtige Warnungen (Non-Fatal):** Fehler, die den Lauf nicht stoppen dürfen (z.B. geändertes HTML bei einem Scraper), werden gesammelt. Am Ende des Durchlaufs wird ein gesammelter Error/Warning-Report verschickt (z.B. Email/Ntfy), damit wir sofort wissen, dass wir den Code anpassen müssen.
-
-## 5. Rework & Integration der ML-Modelle für Einzelaktien (Growth: SOFI, ZETA, NVTS)
+## 4. Rework & Integration der ML-Modelle für Einzelaktien (Growth: SOFI, ZETA, NVTS)
 * **Problem Historie:** Anfängliche LSTM-Modelle zeigten massive, aktienspezifische Biases (z.B. Dauer-Bullish bei SOFI, Dauer-Bearish bei NVTS), da sie nur auf Preis-Action trainiert waren und Rauschen memorierten (dokumentiert in `docs/ML_EVALUATIONS.md`).
 * **Erreichtes Rework [Juli 2026]:** 
   * Das Bias-Problem wurde erfolgreich gebrochen! Die Modelle wurden mit erweiterten Daten (FINRA Short-Volume und fundamentalen Time-Series-Daten wie `Inst_Ownership` und `Dilution_Risk_Flag`) neu trainiert. Die Trefferquoten sind signifikant gestiegen (z.B. SOFI auf 58%).
@@ -34,11 +26,11 @@ Dieses Dokument bündelt alle aktuell noch offenen Entwicklungsaufgaben und Arch
   * *Die Veto-Logik (Guard):* Obwohl das ML-Netz jetzt klüger ist, darf es niemals blind feuern. Wirft das LSTM ein Kaufsignal, prüft der Wachhund die Bilanz-Daten (z.B. Verwässerung) in der Datenbank auf Strukturbrüche und wirft notfalls ein hartes VETO.
 
 
-## 7. Gamma-Hedging Backtest (Spurenlesen)
+## 5. Gamma-Hedging Backtest (Spurenlesen)
 * **Ziel:** Evaluierung des "Spurenlesen" Konzepts (Säule 2: Gamma Hedging). Da Yahoo Finance keine historischen Optionsdaten bereitstellt, sammeln wir ab dem 04.07.2026 jeden Tag Live-Daten über den Fetcher.
 * **Stichtag für ersten Backtest:** **04.01.2027** (nach ca. 6 Monaten Live-Aufzeichnung). Erst dann haben wir genug Markt-Regime (Bull, Bear, Volatility) und OPEX-Zyklen durchlebt, um die Gamma-Support/Resistance-Mauern belastbar in ML-Modelle oder Indikatoren zu integrieren.
 
-## 8. Datensynchronisation mit "datacenter" (Supabase)
+## 6. Datensynchronisation mit "datacenter" (Supabase)
 * **Problem:** Das "datacenter"-Projekt hat eigene exklusive Datensätze (z.B. KI-basierte News/SEC-Analysen, QRA-Estimates, Sector Rotation), die aktuell in der CrashRadar MySQL-Datenbank nicht abgebildet werden. 
 * **Aufgabe [OFFEN]:** Überprüfung des Datenbestands in Supabase. Es muss evaluiert werden, welche exklusiven Daten aus dem "datacenter" in CrashRadar (z.B. für neue ML-Features) genutzt werden sollen und ob diese direkt in Supabase verbleiben oder in die MySQL-DB migriert werden.
 * **Erster Meilenstein (14.07.2026) - M5-Candles Transfer:** 

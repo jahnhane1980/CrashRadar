@@ -8,12 +8,10 @@
 * **Mathematische Singularitäten:** Wir zwingen Code gezielt in Division-by-Zero-Szenarien oder undefinierte Zustände (`UNKNOWN` Fallbacks).
 * **Anti-Overfitting:** Rauschen (`Math.random()`) in historische Preise mischen, um echte Makro-Kausalitäten zu prüfen.
 
-## 2. Aktueller Fokus: Error Handling, Logging & Console-Cleanup
-* **Status-Update (Juli 2026):** Der große Code-vs-Theorie Audit ist **abgeschlossen**. Alle obsoleten Mythen und Waisen-Indikatoren wurden bereinigt.
-* **Architektur-Plan: Dreistufiges Error- & Logging-Framework (ROADMAP Punkt 4)**
-  1. **Zentraler Logger (Console-Cleanup):** Eine neue Klasse `src/core/Logger.js` mit Log-Leveln (DEBUG, INFO, WARN, ERROR, FATAL) ersetzt alle harten `console.log` Aufrufe. Die Konsole bleibt im Server-Betrieb flüsterleise.
-  2. **ErrorRegistry (Non-Fatal Warnings):** Fehlerhafte Scraper oder API-Timeouts führen nicht mehr zum Absturz. Sie werden stattdessen in einer globalen `src/core/ErrorRegistry.js` gesammelt.
-  3. **Admin-Wachhund (Ntfy-Push):** Am Ende des Pipeline-Runs (z.B. im `StandardRunner`) prüft das System die `ErrorRegistry`. Gibt es Warnungen, wird ein dedizierter System-Health-Report (getrennt vom normalen Wetterbericht) an den Admin via Ntfy gepusht.
-  4. **Fatal Errors:** Fehlt die Datenbankverbindung oder `.env`, ruft das System `Logger.fatal()` auf und erzwingt einen harten Abbruch (`process.exit(1)`).
+## 2. Aktueller Fokus: FINRA Short-Volume & ML Veto-Wachhund
+* **Status-Update (Juli 2026):** Das dreistufige Error- & Logging-Framework (inkl. Admin-Wachhund via Ntfy) wurde vollständig implementiert. Der gesamte Code nutzt nun den neuen Logger.
+* **Architektur-Plan (ROADMAP Punkt 4):**
+  1. **Integration der ML-Modelle:** Die überarbeiteten ML-Modelle (die nun auch Short-Volume und fundamentale Daten nutzen) müssen in die Pipeline.
+  2. **Veto-Wachhund:** Erstellung einer `config/Fundamental-Veto-Config.json` und Implementierung eines harten Vetos, um Signale des neuronalen Netzes bei strukturellen Bilanz-Zusammenbrüchen zu blockieren.
 * **Relevante Dokumentation:**
   * [ROADMAP.md](file:///C:/GitHub/CrashRadar/ROADMAP.md) (Siehe Punkt 4)
