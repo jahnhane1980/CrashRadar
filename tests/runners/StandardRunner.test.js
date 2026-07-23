@@ -6,18 +6,24 @@ describe('StandardRunner', () => {
   let mockStorage;
   let mockFetcher;
   let mockMwBuilder;
+  let mockErrorRegistry;
+  let mockNtfyService;
   let runner;
 
   beforeEach(() => {
     mockStorage = { close: vi.fn() };
     mockFetcher = { runAllTasks: vi.fn().mockResolvedValue() };
     mockMwBuilder = { build: vi.fn().mockResolvedValue(), close: vi.fn().mockResolvedValue() };
+    mockErrorRegistry = { hasErrors: vi.fn().mockReturnValue(false), getSummary: vi.fn().mockReturnValue('Summary') };
+    mockNtfyService = { send: vi.fn().mockResolvedValue() };
     
     runner = new StandardRunner({
       config: { globalStartDate: '2020-01-01' },
       storage: mockStorage,
       fetcher: mockFetcher,
-      maturityWallBuilder: mockMwBuilder
+      maturityWallBuilder: mockMwBuilder,
+      errorRegistry: mockErrorRegistry,
+      ntfyService: mockNtfyService
     });
 
     vi.spyOn(Logger, 'info').mockImplementation(() => {});
@@ -37,7 +43,14 @@ describe('StandardRunner', () => {
       expect(mockFetcher.runAllTasks).toHaveBeenCalled();
       expect(mockMwBuilder.build).toHaveBeenCalledWith('2020-01-01');
       expect(mockMwBuilder.close).toHaveBeenCalled();
+      expect(mockNtfyService.send).not.toHaveBeenCalled(); // No errors
       expect(mockStorage.close).toHaveBeenCalled();
+    });
+
+    it('should send Ntfy alert if ErrorRegistry has errors', async () => {
+      mockErrorRegistry.hasErrors.mockReturnValue(true);
+      await runner.run();
+      expect(mockNtfyService.send).toHaveBeenCalledWith('CrashRadar ETL Fehler', 'Summary', 'high', 'warning');
     });
 
     it('should fallback to 2015-01-01 if globalStartDate is missing', async () => {
@@ -53,6 +66,7 @@ describe('StandardRunner', () => {
       await runner.run();
 
       expect(Logger.error).toHaveBeenCalledWith('[Fatal Error] Execution failed:', 'Test Error');
+      expect(mockNtfyService.send).toHaveBeenCalledWith('CrashRadar FATAL ERROR', 'Test Error', 'urgent', 'skull');
       expect(process.exit).toHaveBeenCalledWith(1);
       expect(mockStorage.close).toHaveBeenCalled();
     });

@@ -24,6 +24,7 @@ describe('Fetcher Class', () => {
   let mockConfig;
   let loggerWarnSpy;
   let loggerErrorSpy;
+  let mockErrorRegistry;
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -38,10 +39,11 @@ describe('Fetcher Class', () => {
     process.env = { ...originalEnv, TEST_KEY: 'secret123' };
     
     mockStorage = { 
-      insertDataAndState: vi.fn(), 
+      insertDataAndState: vi.fn(),
       getSyncState: vi.fn().mockReturnValue(null) 
     };
     mockRequestManager = { fetch: vi.fn() };
+    mockErrorRegistry = { addError: vi.fn(), addWarning: vi.fn() };
     
     mockConfig = {
       providers: {
@@ -106,10 +108,11 @@ describe('Fetcher Class', () => {
     mockConfig.tasks.push({ id: "t1", provider: "YahooFinance", ticker: "AAPL", method: "historical", dbKey: "db.aapl" });
     mockHistorical.mockRejectedValue(new Error('Yahoo error'));
     
-    const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
+    const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager, mockErrorRegistry);
     await fetcher.runAllTasks();
     
     expect(loggerErrorSpy).toHaveBeenCalledWith(expect.stringContaining('[PackageFetcher Error] Task t1: Yahoo error'));
+    expect(mockErrorRegistry.addError).toHaveBeenCalledWith('t1', expect.any(Error));
     expect(mockStorage.insertDataAndState).not.toHaveBeenCalled();
   });
 
@@ -333,20 +336,22 @@ describe('Fetcher Class', () => {
       throw new Error('Storage constraint failed');
     });
     
-    const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
+    const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager, mockErrorRegistry);
     // Sollte nicht crashen
     await fetcher.runAllTasks();
     
     expect(loggerErrorSpy).toHaveBeenCalledWith(expect.stringContaining('[Storage] Error inserting data for task t11: Storage constraint failed'));
+    expect(mockErrorRegistry.addError).toHaveBeenCalledWith('t11 (Storage)', expect.any(Error));
   });
 
   // NEW TESTS FOR UNHAPPY PATHS AND 100% COVERAGE
 
   it('sollte Fehler abfangen, wenn der Provider nicht in der Config existiert', async () => {
     mockConfig.tasks.push({ id: "t_unknown", provider: "Ghost", endpoint: "/data" });
-    const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
+    const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager, mockErrorRegistry);
     await fetcher.runAllTasks();
     expect(loggerErrorSpy).toHaveBeenCalledWith(expect.stringContaining(`[Error] Task t_unknown failed entirely: ${"Provider 'Ghost' not found in config".replace(/^'|'$/g, '').replace(/^"|"$/g, '')}`));
+    expect(mockErrorRegistry.addError).toHaveBeenCalledWith('t_unknown', expect.any(Error));
   });
 
   it('sollte bei unbekanntem Format im getStartDate fallbackStr raw zurückgeben', () => {
@@ -377,9 +382,10 @@ describe('Fetcher Class', () => {
   it('sollte API-Errors in HTTP Tasks ohne Paginierung abfangen', async () => {
     mockConfig.tasks.push({ id: "t_err1", provider: "Simple", endpoint: "/data", params: {}, dbKey: "db.simple" });
     mockRequestManager.fetch.mockResolvedValue({ error: 'fail' });
-    const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
+    const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager, mockErrorRegistry);
     await fetcher.runAllTasks();
     expect(loggerErrorSpy).toHaveBeenCalledWith(expect.stringContaining('[API Error] Task t_err1: API returned error payload'));
+    expect(mockErrorRegistry.addError).toHaveBeenCalledWith('t_err1', expect.any(Error));
   });
 
   it('sollte API-Errors in TimeCursor abfangen', async () => {

@@ -62,10 +62,11 @@ function createLimit(concurrency) {
 }
 
 export class Fetcher {
-  constructor(config, storage, requestManager) {
+  constructor(config, storage, requestManager, errorRegistry) {
     this.config = config;
     this.storage = storage;
     this.requestManager = requestManager;
+    this.errorRegistry = errorRegistry;
   }
 
   async runAllTasks() {
@@ -87,6 +88,7 @@ export class Fetcher {
       return limit(() => 
         this.runTask(task).catch(e => {
           Logger.error(`[Error] Task ${task.id} failed entirely: ${e.message}`);
+          if (this.errorRegistry) this.errorRegistry.addError(task.id, e);
         })
       );
     });
@@ -259,6 +261,7 @@ export class Fetcher {
         allNewData = this.extractData(response, provider);
       } catch(e) {
         Logger.error(`[API Error] Task ${task.id}: ${e.message}`);
+        if (this.errorRegistry) this.errorRegistry.addError(task.id, e);
         return;
       }
       if (allNewData.length > 0) {
@@ -281,6 +284,7 @@ export class Fetcher {
           await this.storage.insertDataAndState(task, allNewData, cursorToSave);
         } catch (e) {
           Logger.error(`[Storage] Error inserting data for task ${task.id}: ${e.message}`);
+          if (this.errorRegistry) this.errorRegistry.addError(`${task.id} (Storage)`, e);
         }
       }
     } else {

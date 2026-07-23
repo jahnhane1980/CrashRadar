@@ -13,6 +13,7 @@ import { Storage } from './src/core/Storage.js';
 import { RequestManager } from './src/core/RequestManager.js';
 import { Fetcher } from './src/services/Fetcher.js';
 import { MaturityWallBuilder } from './src/services/MaturityWallBuilder.js';
+import { ErrorRegistry } from './src/core/ErrorRegistry.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -156,10 +157,14 @@ export async function runCLI(argv) {
 
       const storage = new Storage({ databaseUrl: dbUrl });
       const requestManager = new RequestManager(config);
-      const fetcher = new Fetcher(config, storage, requestManager);
+      
+      const errorRegistry = new ErrorRegistry();
+      const ntfyService = process.env.NTFY_TOPIC ? new NtfyService(process.env.NTFY_TOPIC) : null;
+      
+      const fetcher = new Fetcher(config, storage, requestManager, errorRegistry);
       const maturityWallBuilder = new MaturityWallBuilder(dbUrl);
 
-      const runnerArgs = { config, storage, fetcher, maturityWallBuilder };
+      const runnerArgs = { config, storage, fetcher, maturityWallBuilder, errorRegistry, ntfyService };
       activeRunner = isTest ? new TestRunner(runnerArgs) : new StandardRunner(runnerArgs);
       
       await activeRunner.run();
