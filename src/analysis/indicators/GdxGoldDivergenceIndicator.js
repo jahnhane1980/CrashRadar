@@ -3,7 +3,7 @@ import { MathUtils } from '../../utils/MathUtils.js';
 export class GdxGoldDivergenceIndicator {
     constructor() {
         this.name = '[INVEST] GDX vs Gold Divergenz';
-        this.category = 'LEADING';
+        this.category = 'EARLY_WARNING';
     }
 
     evaluate(timeline) {

@@ -1,7 +1,7 @@
 export class InterestRateCycleIndicator {
     constructor() {
         this.name = 'Macro Interest Rate Cycle (RateShock + ARCC + PolicyError)';
-        this.category = 'MACRO';
+        this.category = 'MACRO_CONTEXT';
         this.MEMORY_DAYS = 180;
     }
 

@@ -1,7 +1,7 @@
 export class RedAlertIndicator {
     constructor() {
         this.name = 'Red Alert (Bullenmarkt-Stirbt-Signal)';
-        this.category = 'TRIGGER';
+        this.category = 'ACUTE_PANIC';
     }
 
     evaluate(timeline) {

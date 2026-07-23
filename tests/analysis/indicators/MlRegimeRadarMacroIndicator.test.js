@@ -6,7 +6,7 @@ describe('MlRegimeRadarMacroIndicator', () => {
 
     it('should have correct name and category', () => {
         expect(indicator.name).toBe('ML Regime Radar (Makro)');
-        expect(indicator.category).toBe('LEADING');
+        expect(indicator.category).toBe('EARLY_WARNING');
     });
 
     it('should return UNKNOWN if timeline is empty', () => {

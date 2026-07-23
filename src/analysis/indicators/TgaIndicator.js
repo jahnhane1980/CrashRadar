@@ -1,7 +1,7 @@
 export class TgaIndicator {
     constructor() {
         this.name = 'Treasury General Account (TGA)';
-        this.category = 'LEADING';
+        this.category = 'EARLY_WARNING';
         this.THRESHOLDS = {
             TGA_DIFF: 100
         };

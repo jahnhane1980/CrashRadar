@@ -1,7 +1,7 @@
 export class MlRegimeRadarCryptoIndicator {
     constructor() {
         this.name = 'ML Regime Radar (Krypto)';
-        this.category = 'TRIGGER';
+        this.category = 'ACUTE_PANIC';
     }
 
     evaluate(timeline) {

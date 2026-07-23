@@ -1,7 +1,7 @@
 export class SmartDumbMoneyTopIndicator {
     constructor() {
         this.name = 'Smart vs Dumb Money (The Top)';
-        this.category = 'TRIGGER';
+        this.category = 'ACUTE_PANIC';
     }
 
     evaluate(timeline) {

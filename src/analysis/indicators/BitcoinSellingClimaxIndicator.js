@@ -1,7 +1,7 @@
 export class BitcoinSellingClimaxIndicator {
     constructor() {
         this.name = 'Bitcoin Selling Climax (Panik/Boden)';
-        this.category = 'TROUGH';
+        this.category = 'BOTTOM_FINDER';
     }
 
     evaluate(timeline) {

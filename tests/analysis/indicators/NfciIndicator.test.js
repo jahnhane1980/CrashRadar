@@ -16,7 +16,7 @@ describe('NfciIndicator', () => {
 
     it('should have correct name and category', () => {
         expect(indicator.name).toBe('Chicago Fed Stress Index (NFCI)');
-        expect(indicator.category).toBe('CONTEMPORANEOUS');
+        expect(indicator.category).toBe('ACUTE_PANIC');
     });
 
     it('should return UNKNOWN if timeline is empty', () => {

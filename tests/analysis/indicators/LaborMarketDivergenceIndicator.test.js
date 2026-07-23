@@ -50,11 +50,11 @@ describe('LaborMarketDivergenceIndicator', () => {
     const result = indicator.evaluate(timeline);
     
     expect(result.status).toBe('LEADING_WARNING');
-    expect(result.signals[0].type).toBe('LEADING');
+    expect(result.signals[0].type).toBe('EARLY_WARNING');
     expect(result.signals[0].triggered).toBe(true);
     expect(result.signals[0].metrics.ratioDrop).toBeLessThan(-0.025);
     
-    expect(result.signals[1].type).toBe('COINCIDENT');
+    expect(result.signals[1].type).toBe('ACUTE_PANIC');
     expect(result.signals[1].triggered).toBe(false);
   });
 

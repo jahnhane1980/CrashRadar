@@ -3,7 +3,7 @@ import { MathUtils } from '../../utils/MathUtils.js';
 export class ChallengerIndicator {
     constructor() {
         this.name = 'Challenger Job Cuts (Entlassungswelle)';
-        this.category = 'LEADING';
+        this.category = 'EARLY_WARNING';
     }
 
     evaluate(timeline) {

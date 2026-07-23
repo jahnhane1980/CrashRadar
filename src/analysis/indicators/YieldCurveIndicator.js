@@ -1,7 +1,7 @@
 export class YieldCurveIndicator {
     constructor() {
         this.name = 'Yield Curve (T10Y2Y)';
-        this.category = 'LEADING';
+        this.category = 'EARLY_WARNING';
     }
 
     evaluate(timeline) {

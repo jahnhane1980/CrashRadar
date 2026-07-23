@@ -1,7 +1,7 @@
 export class MlRegimeRadarSpyIndicator {
     constructor() {
         this.name = 'ML Regime Radar (SPY)';
-        this.category = 'LEADING';
+        this.category = 'EARLY_WARNING';
     }
 
     evaluate(timeline) {

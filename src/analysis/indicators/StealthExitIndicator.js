@@ -3,7 +3,7 @@ import { MathUtils } from '../../utils/MathUtils.js';
 export class StealthExitIndicator {
     constructor() {
         this.name = 'Stealth Exit (DIX Dark Pool Divergenz)';
-        this.category = 'LEADING';
+        this.category = 'EARLY_WARNING';
         this.THRESHOLDS = {
             DIX_LOW: 40.0,
             SPY_DRAWDOWN_MAX: -3.0 // SPY must be within 3% of 30-day high

@@ -5,7 +5,7 @@ describe('SmartDumbMoneyBottomIndicator', () => {
     it('sollte korrekte Metadaten haben', () => {
         const indicator = new SmartDumbMoneyBottomIndicator();
         expect(indicator.name).toBe('Smart vs Dumb Money (The Bottom)');
-        expect(indicator.category).toBe('TROUGH');
+        expect(indicator.category).toBe('BOTTOM_FINDER');
     });
 
     it('sollte UNKNOWN zurückgeben, wenn keine Timeline vorhanden ist', () => {

@@ -1,7 +1,7 @@
 export class MlRegimeRadarQqqIndicator {
     constructor() {
         this.name = 'ML Regime Radar (QQQ)';
-        this.category = 'LEADING';
+        this.category = 'EARLY_WARNING';
     }
 
     evaluate(timeline) {

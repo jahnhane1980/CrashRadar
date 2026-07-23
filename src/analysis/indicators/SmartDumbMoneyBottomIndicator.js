@@ -1,7 +1,7 @@
 export class SmartDumbMoneyBottomIndicator {
     constructor() {
         this.name = 'Smart vs Dumb Money (The Bottom)';
-        this.category = 'TROUGH';
+        this.category = 'BOTTOM_FINDER';
     }
 
     evaluate(timeline) {

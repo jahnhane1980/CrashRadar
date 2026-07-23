@@ -1,7 +1,7 @@
 export class BankReservesIndicator {
     constructor() {
         this.name = 'Bankreserven (TOTRESNS)';
-        this.category = 'LEADING';
+        this.category = 'EARLY_WARNING';
         this.THRESHOLDS = {
             CRITICAL: 2800,
             WARNING: 3000

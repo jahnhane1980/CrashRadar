@@ -3,7 +3,7 @@ import { MathUtils } from '../../utils/MathUtils.js';
 export class PanicCapitulationIndicator {
     constructor() {
         this.name = 'Panik-Kapitulation (VIX + CBOE + RSI)';
-        this.category = 'TROUGH';
+        this.category = 'BOTTOM_FINDER';
     }
 
     evaluate(timeline) {

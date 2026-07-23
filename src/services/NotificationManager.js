@@ -144,21 +144,42 @@ export class NotificationManager {
     }
 
     getDailyStatusReport(macroState, tradeActions, currentDayData) {
-        let summary = `🌍 Regime: ${macroState.regime}\n`;
+        // HINWEIS: Der tägliche Wetterbericht unterliegt absichtlich KEINEM Debouncing (Spam-Schutz).
+        // Er soll jeden Tag den ungeschönten Ist-Zustand des Marktes pushen.
+        let summary = `🌍 Makro-Regime: ${macroState.regime}\n`;
         summary += `💧 Liquidität: ${macroState.liquidityStatus}\n\n`;
 
         if (macroState.indicatorDetails && macroState.indicatorDetails.length > 0) {
-            summary += `🔎 Makro-Indikatoren:\n`;
-            macroState.indicatorDetails.forEach(ind => {
-                let icon = '🟢';
-                if (ind.status === 'WARNING') icon = '🟡';
-                if (ind.status === 'CRITICAL') icon = '🔴';
-                summary += `${icon} ${ind.name}: ${ind.status}\n`;
+            const getIcon = (status) => {
+                if (status === 'CRITICAL') return '🔴';
+                if (status === 'WARNING') return '🟡';
+                if (status === 'UNKNOWN') return '⚪';
+                return '🟢';
+            };
+
+            const groups = [
+                { id: 'EARLY_WARNING', title: '🌪️ 1. Frühwarn-System (Liquiditätsentzug)' },
+                { id: 'ACUTE_PANIC', title: '🚨 2. Akut-Sensoren (Stress & Überhitzung)' },
+                { id: 'BOTTOM_FINDER', title: '⚓ 3. Boden-Finder (Kapitulation & Einstieg)' },
+                { id: 'MACRO_CONTEXT', title: '🌍 4. Zyklus-Begleitumfeld' }
+            ];
+
+            groups.forEach(group => {
+                const groupInds = macroState.indicatorDetails.filter(ind => ind.category === group.id);
+                if (groupInds.length > 0) {
+                    summary += `${group.title}\n`;
+                    groupInds.forEach(ind => {
+                        const icon = getIcon(ind.status);
+                        let text = `${icon} ${ind.name}: ${ind.status}`;
+                        if (ind.value) text += ` (${ind.value})`;
+                        summary += `${text}\n`;
+                    });
+                    summary += `\n`;
+                }
             });
-            summary += `\n`;
         }
 
-        if (macroState.vetos.length > 0) {
+        if (macroState.vetos && macroState.vetos.length > 0) {
             summary += `⚠️ Aktive Vetos: ${macroState.vetos.join(', ')}\n\n`;
         }
 
@@ -171,7 +192,7 @@ export class NotificationManager {
 
         const formatRegime = (regime) => regime ? `${regime.phase} (${(regime.confidence * 100).toFixed(1)}%)` : 'UNKNOWN';
         if (currentDayData) {
-            summary += `🤖 KI-Regime:\n`;
+            summary += `🤖 5. KI-Regime Radar\n`;
             summary += `SPY: ${formatRegime(currentDayData.mlRegimeSpy)}\n`;
             summary += `QQQ: ${formatRegime(currentDayData.mlRegimeQqq)}\n`;
             summary += `BTC: ${formatRegime(currentDayData.mlRegimeBtc)}\n`;

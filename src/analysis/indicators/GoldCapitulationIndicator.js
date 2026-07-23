@@ -1,7 +1,7 @@
 export class GoldCapitulationIndicator {
     constructor() {
         this.name = '[INVEST] Gold Capitulation & Healing (2-Step)';
-        this.category = 'TROUGH';
+        this.category = 'BOTTOM_FINDER';
     }
 
     evaluate(timeline) {

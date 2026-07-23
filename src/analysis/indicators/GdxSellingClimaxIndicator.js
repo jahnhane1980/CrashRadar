@@ -3,7 +3,7 @@ import { MathUtils } from '../../utils/MathUtils.js';
 export class GdxSellingClimaxIndicator {
     constructor() {
         this.name = '[INVEST] GDX Selling Climax (Boden-Suche)';
-        this.category = 'CONTEMPORANEOUS';
+        this.category = 'ACUTE_PANIC';
         this.THRESHOLDS = {
             GDX_CLIMAX_VOL_MULTIPLIER: 3.0,
             GDX_CLIMAX_PRICE_DROP: -5.0

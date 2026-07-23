@@ -3,7 +3,7 @@ import { MathUtils } from '../../utils/MathUtils.js';
 export class BtcTrailingStopIndicator {
     constructor() {
         this.name = 'BTC Trailing Stop Warnung (Makro-Radar)';
-        this.category = 'TRIGGER';
+        this.category = 'ACUTE_PANIC';
     }
 
     evaluate(timeline) {

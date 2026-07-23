@@ -72,7 +72,10 @@ export class MacroRegimeEngine {
                 
                 indicatorDetails.push({
                     name: indicator.name,
-                    status: (result && result.status) ? result.status : 'UNKNOWN'
+                    category: indicator.category,
+                    status: (result && result.status) ? result.status : 'UNKNOWN',
+                    value: (result && result.value) ? result.value : null,
+                    message: (result && result.message) ? result.message : null
                 });
 
                 if (!result || result.status === 'UNKNOWN') continue;

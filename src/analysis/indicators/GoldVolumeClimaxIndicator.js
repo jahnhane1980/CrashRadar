@@ -3,7 +3,7 @@ import { MathUtils } from '../../utils/MathUtils.js';
 export class GoldVolumeClimaxIndicator {
     constructor() {
         this.name = '[INVEST] Gold Volume Climax (Panik/FOMO)';
-        this.category = 'CONTEMPORANEOUS';
+        this.category = 'ACUTE_PANIC';
         this.THRESHOLDS = {
             GOLD_CLIMAX_VOL_MULTIPLIER: 5.0,
             GOLD_CLIMAX_PRICE_DROP: -2.0,

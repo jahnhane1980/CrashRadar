@@ -3,7 +3,7 @@ import { MathUtils } from '../../utils/MathUtils.js';
 export class MarginDebtIndicator {
     constructor() {
         this.name = 'Margin Debt (Gier & Hebel)';
-        this.category = 'LEADING';
+        this.category = 'EARLY_WARNING';
     }
 
     evaluate(timeline) {

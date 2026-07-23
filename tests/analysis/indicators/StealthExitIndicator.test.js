@@ -5,7 +5,7 @@ describe('StealthExitIndicator', () => {
     it('sollte korrekte Metadaten haben', () => {
         const indicator = new StealthExitIndicator();
         expect(indicator.name).toBe('Stealth Exit (DIX Dark Pool Divergenz)');
-        expect(indicator.category).toBe('LEADING');
+        expect(indicator.category).toBe('EARLY_WARNING');
     });
 
     it('sollte UNKNOWN zurückgeben, wenn keine Timeline vorhanden ist oder zu kurz ist', () => {

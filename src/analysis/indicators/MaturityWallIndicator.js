@@ -1,7 +1,7 @@
 export class MaturityWallIndicator {
     constructor() {
         this.name = 'Maturity Wall (T-Bill Rollover)';
-        this.category = 'LEADING';
+        this.category = 'EARLY_WARNING';
         this.THRESHOLDS = {
             CRITICAL: 21,
             WARNING: 15

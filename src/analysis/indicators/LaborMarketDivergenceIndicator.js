@@ -16,7 +16,7 @@ class LaborMarketDivergenceIndicator {
       status: "NEUTRAL",
       signals: [
         {
-          type: "LEADING",
+          type: "EARLY_WARNING",
           name: "Qualitative Arbeitsmarkt-Schere (Vollzeit vs. Teilzeit)",
           timeframe: "Frühindikator (6 - 18 Monate Vorlauf)",
           triggered: false,
@@ -24,7 +24,7 @@ class LaborMarketDivergenceIndicator {
           metrics: { ratioDrop: 0, fullTime: 0, partTime: 0 }
         },
         {
-          type: "COINCIDENT",
+          type: "ACUTE_PANIC",
           name: "Quantitative Arbeitsmarkt-Schere (Household vs. Payrolls)",
           timeframe: "Akutindikator (0 - 3 Monate Vorlauf)",
           triggered: false,

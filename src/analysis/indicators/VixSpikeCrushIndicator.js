@@ -1,7 +1,7 @@
 export class VixSpikeCrushIndicator {
     constructor() {
         this.name = 'VIX (Spike & Crush)';
-        this.category = 'TROUGH';
+        this.category = 'BOTTOM_FINDER';
         this.THRESHOLDS = {
             VIX_SPIKE: 40,
             VIX_WARNING: 35,

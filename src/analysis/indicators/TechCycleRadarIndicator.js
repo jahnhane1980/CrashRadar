@@ -1,7 +1,7 @@
 export class TechCycleRadarIndicator {
     constructor() {
         this.name = 'Tech-Zyklus Radar (SMH vs IGV)';
-        this.category = 'CYCLE';
+        this.category = 'MACRO_CONTEXT';
     }
 
     evaluate(timeline) {

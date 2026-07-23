@@ -3,7 +3,7 @@ import { MathUtils } from '../../utils/MathUtils.js';
 export class BitcoinDivergenceIndicator {
     constructor() {
         this.name = 'Bitcoin Divergenz (Makro-Liquidität)';
-        this.category = 'LEADING';
+        this.category = 'EARLY_WARNING';
     }
 
     evaluate(timeline) {

@@ -1,7 +1,7 @@
 export class MlRegimeRadarMacroIndicator {
     constructor() {
         this.name = 'ML Regime Radar (Makro)';
-        this.category = 'LEADING';
+        this.category = 'EARLY_WARNING';
     }
 
     evaluate(timeline) {

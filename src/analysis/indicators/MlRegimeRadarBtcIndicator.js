@@ -1,7 +1,7 @@
 export class MlRegimeRadarBtcIndicator {
     constructor() {
         this.name = 'ML Regime Radar (BTC)';
-        this.category = 'LEADING';
+        this.category = 'EARLY_WARNING';
     }
 
     evaluate(timeline) {

@@ -3,7 +3,7 @@ import { MathUtils } from '../../utils/MathUtils.js';
 export class CryptoCycleDivergenceIndicator {
     constructor() {
         this.name = 'Krypto Zyklus-Divergenz (MSTR/COIN)';
-        this.category = 'LEADING';
+        this.category = 'EARLY_WARNING';
     }
 
     evaluate(timeline) {

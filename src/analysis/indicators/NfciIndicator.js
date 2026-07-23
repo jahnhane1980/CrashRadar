@@ -1,7 +1,7 @@
 export class NfciIndicator {
     constructor() {
         this.name = 'Chicago Fed Stress Index (NFCI)';
-        this.category = 'CONTEMPORANEOUS';
+        this.category = 'ACUTE_PANIC';
         this.THRESHOLDS = {
             CRITICAL: 0
         };

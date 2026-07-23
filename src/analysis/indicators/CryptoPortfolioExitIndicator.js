@@ -3,7 +3,7 @@ import { MathUtils } from '../../utils/MathUtils.js';
 export class CryptoPortfolioExitIndicator {
     constructor(getCycleConfig) {
         this.name = 'Krypto Portfolio-Exit (MSTR/COIN)';
-        this.category = 'TRIGGER';
+        this.category = 'ACUTE_PANIC';
         this.getCycleConfig = getCycleConfig;
     }
 
