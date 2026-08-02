@@ -8,16 +8,7 @@
 * **Mathematische Singularitäten:** Wir zwingen Code gezielt in Division-by-Zero-Szenarien oder undefinierte Zustände (`UNKNOWN` Fallbacks).
 * **Anti-Overfitting:** Rauschen (`Math.random()`) in historische Preise mischen, um echte Makro-Kausalitäten zu prüfen.
 
-## 2. Aktueller Fokus: FINRA Short-Volume & ML Veto-Wachhund
-* **Status-Update (Juli 2026):** Das dreistufige Error- & Logging-Framework (inkl. Admin-Wachhund via Ntfy) wurde vollständig implementiert. Der gesamte Code nutzt nun den neuen Logger.
-* **Architektur-Plan (ROADMAP Punkt 4):**
-  1. **Integration der ML-Modelle:** Die überarbeiteten ML-Modelle (die nun auch Short-Volume und fundamentale Daten nutzen) müssen in die Pipeline.
-  2. **Veto-Wachhund:** Erstellung einer `config/Fundamental-Veto-Config.json` und Implementierung eines harten Vetos, um Signale des neuronalen Netzes bei strukturellen Bilanz-Zusammenbrüchen zu blockieren.
-* **Relevante Dokumentation:**
-  * [ROADMAP.md](file:///workspaces/CrashRadar/ROADMAP.md) (Siehe Punkt 4)
-  * [Analyse.md](file:///workspaces/CrashRadar/docs/Analyse.md)
-
-## 3. Erkenntnisse & Unterscheidungsmerkmale: Gold & Liquidationswellen
+## 2. Erkenntnisse & Unterscheidungsmerkmale: Gold & Liquidationswellen
 * **Margin-Call-Sog (SPY Crash vs. Gold):**
   * Bei plötzlichen Aktienmarkt-Crashes (SPY) gerät physisches Gold durch erzwungene Liquidationswellen (Margin Calls) oft mehrfach unter Druck. Ein erstes lokales Tief ist in solchen Phasen historisch selten der finale Boden.
 * **2-Step-Indikator-Logik (`GoldCapitulationIndicator`):**
@@ -30,7 +21,7 @@
   3. **DXY-Parabel-Climax:** Der finale Boden bei Gold fällt historisch mit der parabelartigen Erschöpfung des US-Dollar-Indexes (DXY) zusammen.
      * **Code-Status:** **Teilweise / Offen.** DXY ist in `MacroRegimeEngine` integriert, aber ein isolierter `DxyParabolicClimaxIndicator` als direkter Trigger für Gold-Böden fehlt noch.
 
-## 4. Nächster Schritt / Fahrplan: Gold Bottom & Tranchen-Skalierung
+## 3. Nächster Schritt / Fahrplan: Gold Bottom & Tranchen-Skalierung
 * **Aufgabe 1:** Erweitern von [GdxGoldDivergenceIndicator.js](file:///workspaces/CrashRadar/src/analysis/indicators/GdxGoldDivergenceIndicator.js) um bullische Boden-Divergenz (GDX macht höhere Tiefs, während Gold neue Tiefs testet $\implies$ `CRITICAL` / `BOTTOM_FINDER`).
 * **Aufgabe 2:** Erstellen von `src/analysis/indicators/DxyParabolicClimaxIndicator.js` (Triggert bei DXY 20-Tage ROC $\ge +3.0\%$ & Erschöpfung als `MACRO_TURNING_POINT` für Gold).
 * **Aufgabe 3:** Tranchen-Skalierung in [TradeSetupEngine.js](file:///workspaces/CrashRadar/src/analysis/TradeSetupEngine.js) einbauen:

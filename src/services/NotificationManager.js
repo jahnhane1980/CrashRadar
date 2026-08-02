@@ -147,7 +147,15 @@ export class NotificationManager {
         // HINWEIS: Der tägliche Wetterbericht unterliegt absichtlich KEINEM Debouncing (Spam-Schutz).
         // Er soll jeden Tag den ungeschönten Ist-Zustand des Marktes pushen.
         let summary = `🌍 Makro-Regime: ${macroState.regime}\n`;
-        summary += `💧 Liquidität: ${macroState.liquidityStatus}\n\n`;
+        summary += `💧 Liquidität: ${macroState.liquidityStatus}\n`;
+
+        if (macroState.vetos && macroState.vetos.includes('DALIO_TIPPING_POINT_ACTIVE')) {
+            summary += `💥 DALIO KIPPPUNKT: 🔴 CRITICAL (0-3 Monate Crash-Fenster - RRP/Spreads getriggert!)\n\n`;
+        } else if (macroState.vetos && macroState.vetos.includes('DALIO_LATE_STAGE_WATCHLIST')) {
+            summary += `🏛️ DALIO SPÄTZYKLUS: 🟡 WATCHLIST (3/4 Bedingungen ROT - Zeitfenster ~3-12 Monate)\n\n`;
+        } else {
+            summary += `\n`;
+        }
 
         if (macroState.indicatorDetails && macroState.indicatorDetails.length > 0) {
             const getIcon = (status) => {

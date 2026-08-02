@@ -227,6 +227,51 @@
       }
     },
     {
+      "id": "fred_t10y3m",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "T10Y3M",
+        "file_type": "json"
+      }
+    },
+    {
+      "id": "fred_tdsp",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "TDSP",
+        "file_type": "json"
+      }
+    },
+    {
+      "id": "fred_gfdegdq188s",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "GFDEGDQ188S",
+        "file_type": "json"
+      }
+    },
+    {
+      "id": "fred_busloans",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "BUSLOANS",
+        "file_type": "json"
+      }
+    },
+    {
+      "id": "fred_w006rc1q027sbea",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "W006RC1Q027SBEA",
+        "file_type": "json"
+      }
+    },
+    {
       "id": "fred_totresns",
       "provider": "FRED",
       "endpoint": "/fred/series/observations",

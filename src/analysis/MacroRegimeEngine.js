@@ -13,6 +13,7 @@ import { ChallengerIndicator } from './indicators/ChallengerIndicator.js';
 import { StealthExitIndicator } from './indicators/StealthExitIndicator.js';
 import LaborMarketDivergenceIndicator from './indicators/LaborMarketDivergenceIndicator.js';
 import { InterestRateCycleIndicator } from './indicators/InterestRateCycleIndicator.js';
+import { DalioTwoStageRegimeIndicator } from './indicators/DalioTwoStageRegimeIndicator.js';
 
 export class MacroRegimeEngine {
     constructor() {
@@ -32,7 +33,8 @@ export class MacroRegimeEngine {
             new FiscalFedLiquidityIndicator(),
             new StealthExitIndicator(),
             new LaborMarketDivergenceIndicator(),
-            new InterestRateCycleIndicator()
+            new InterestRateCycleIndicator(),
+            new DalioTwoStageRegimeIndicator()
         ];
     }
 
@@ -171,6 +173,20 @@ export class MacroRegimeEngine {
                         }
                     } else if (result.status === 'WARNING') {
                         vetos.push('INTEREST_RATE_CYCLE_WARNING');
+                    }
+                }
+                // 8. Dalio 2-Stufen Spätzyklus & Kipppunkt
+                if (indicator.name === 'Dalio Late-Stage & Tipping Point Indicator (2-Stufen)') {
+                    if (result.status === 'CRITICAL') {
+                        vetos.push('DALIO_TIPPING_POINT_ACTIVE');
+                        if (regime !== 'FLASH_CRASH') {
+                            regime = 'BEAR_MARKET';
+                        }
+                    } else if (result.status === 'WARNING') {
+                        vetos.push('DALIO_LATE_STAGE_WATCHLIST');
+                        if (regime === 'NORMAL') {
+                            regime = 'LATE_CYCLE_EUPHORIA';
+                        }
                     }
                 }
             }
