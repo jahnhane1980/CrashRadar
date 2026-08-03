@@ -962,10 +962,6 @@
       }
     },
     {
-      "id": "investing_challenger",
-      "provider": "InvestingCom"
-    },
-    {
       "id": "squeezemetrics_dix",
       "provider": "SqueezeMetrics",
       "overrideStartDate": "2011-05-02"

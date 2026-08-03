@@ -9,15 +9,16 @@ export class ChallengerIndicator {
     evaluate(timeline) {
         if (timeline.length < 180) return { status: 'UNKNOWN', message: 'Zu wenig Daten (< 180 Tage)' };
         
-        const current = timeline[timeline.length - 1].macroGroups?.Leading?.Challenger;
+        const getVal = (item) => item?.macroGroups?.Contemporaneous?.InitialClaims ?? item?.macroGroups?.Leading?.Challenger;
+        const current = getVal(timeline[timeline.length - 1]);
         if (current === null || current === undefined) return { status: 'UNKNOWN', message: 'Keine Daten' };
 
-        // Wir brauchen die vorherigen 6 Monate (exklusive des aktuellen Werts) als Baseline (SMA6)
+        // Wir brauchen die vorherigen 6 Zeitpunkte/Monate als Baseline (SMA6)
         const previousValues = [];
         let lastVal = current;
         
         for (let i = timeline.length - 1; i >= 0; i--) {
-            const val = timeline[i].macroGroups?.Leading?.Challenger;
+            const val = getVal(timeline[i]);
             if (val !== null && val !== undefined) {
                 // Sobald sich der Wert ändert, haben wir den Vormonat gefunden
                 if (val !== lastVal) {

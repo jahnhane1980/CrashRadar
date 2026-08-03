@@ -9,9 +9,9 @@ export class RedAlertIndicator {
         
         const currentDay = timeline[timeline.length - 1];
         
-        let skew = currentDay?.assets?.SKEW;
-        let shortRatio = currentDay?.SPY_ShortVolumeRatio;
-        let pcr = currentDay?.TotalPCR;
+        let skew = currentDay?.assets?.SKEW ?? currentDay?.SKEW;
+        let shortRatio = currentDay?.assets?.SPY_ShortVolumeRatio ?? currentDay?.SPY_ShortVolumeRatio;
+        let pcr = currentDay?.assets?.TotalPCR ?? currentDay?.TotalPCR;
         
         if (skew == null || shortRatio == null) {
             return { status: 'UNKNOWN', message: 'Keine SKEW oder Short-Ratio Daten' };
