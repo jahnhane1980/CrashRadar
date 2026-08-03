@@ -11,6 +11,7 @@ import { BitcoinSellingClimaxIndicator } from './indicators/BitcoinSellingClimax
 import { TechCycleRadarIndicator } from './indicators/TechCycleRadarIndicator.js';
 import { MlRegimeRadarBtcIndicator } from './indicators/MlRegimeRadarBtcIndicator.js';
 import { MlRegimeRadarCryptoIndicator } from './indicators/MlRegimeRadarCryptoIndicator.js';
+import { DxyParabolicClimaxIndicator } from './indicators/DxyParabolicClimaxIndicator.js';
 
 export class TradeSetupEngine {
     constructor(getCycleConfig) {
@@ -22,6 +23,7 @@ export class TradeSetupEngine {
             new GdxSellingClimaxIndicator(),
             new GdxBuyingClimaxIndicator(),
             new GdxGoldDivergenceIndicator(),
+            new DxyParabolicClimaxIndicator(),
             new BitcoinDivergenceIndicator(),
             new CryptoCycleDivergenceIndicator(),
             new CryptoPortfolioExitIndicator(safeConfig),
@@ -31,6 +33,16 @@ export class TradeSetupEngine {
             new MlRegimeRadarBtcIndicator(),
             new MlRegimeRadarCryptoIndicator()
         ];
+    }
+
+    _determineTargetAsset(indicator) {
+        if (indicator.targetAsset) return indicator.targetAsset;
+        const name = indicator.name || '';
+        if (name.includes('Gold') || name.includes('GDX')) return 'GOLD';
+        if (name.includes('Bitcoin') || name.includes('BTC') || name.includes('Crypto')) return 'BTC';
+        if (name.includes('Tech') || name.includes('QQQ')) return 'QQQ';
+        if (name.includes('SPY')) return 'SPY';
+        return 'MACRO';
     }
 
     evaluate(groupedData, macroStates) {
@@ -59,6 +71,8 @@ export class TradeSetupEngine {
             const regime = macroState.regime;
             const vetos = macroState.vetos || [];
 
+            const rawActions = [];
+
             for (const indicator of this.indicators) {
                 const result = indicator.evaluate(timeline);
                 
@@ -68,11 +82,15 @@ export class TradeSetupEngine {
                     continue;
                 }
 
+                const targetAsset = this._determineTargetAsset(indicator);
+
                 // Generiere ein TradeAction-Objekt
                 const action = {
                     indicator: indicator.name,
-                    category: indicator.category,
+                    category: result.category || indicator.category,
+                    targetAsset: targetAsset,
                     status: result.status,
+                    value: result.value,
                     message: result.message,
                     macroRegime: regime,
                     blocked: false,
@@ -111,6 +129,25 @@ export class TradeSetupEngine {
                     }
                 }
 
+                rawActions.push(action);
+            }
+
+            // Asset Confluence & Tranche Allocation Calculation (Post-Processing pro Tag)
+            const activeBottomSignalsByAsset = {};
+            for (const action of rawActions) {
+                if (!action.blocked && (action.category === 'BOTTOM_FINDER' || action.status === 'CRITICAL')) {
+                    const asset = action.targetAsset;
+                    activeBottomSignalsByAsset[asset] = (activeBottomSignalsByAsset[asset] || 0) + 1;
+                }
+            }
+
+            for (const action of rawActions) {
+                if (!action.blocked && (action.category === 'BOTTOM_FINDER' || action.status === 'CRITICAL')) {
+                    const score = activeBottomSignalsByAsset[action.targetAsset] || 1;
+                    action.confluenceScore = score;
+                    action.trancheLevel = Math.min(score, 3);
+                    action.targetAllocationPct = action.trancheLevel === 1 ? 33 : (action.trancheLevel === 2 ? 66 : 100);
+                }
                 actionsByDate[dateStr].push(action);
             }
         }

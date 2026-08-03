@@ -194,7 +194,10 @@ export class NotificationManager {
         let activeActions = tradeActions ? tradeActions.filter(a => !a.blocked) : [];
         if (activeActions.length > 0) {
             summary += `📈 Aktive Signale:\n`;
-            activeActions.forEach(a => summary += `- ${a.indicator} (${a.status})\n`);
+            activeActions.forEach(a => {
+                let trancheStr = a.trancheLevel ? ` [Tranche ${a.trancheLevel}/3: ${a.targetAllocationPct}% ${a.targetAsset}]` : '';
+                summary += `- ${a.indicator} (${a.status})${trancheStr}\n`;
+            });
             summary += `\n`;
         }
 

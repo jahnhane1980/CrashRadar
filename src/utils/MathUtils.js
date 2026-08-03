@@ -157,4 +157,24 @@ export class MathUtils {
         if (maxIdx === -1) return null;
         return { maxValue: max, daysAgo: (timeline.length - 1) - maxIdx };
     }
+
+    /**
+     * Findet das Minimum in einem Suchfenster und gibt auch den relativen Index (Tage seit dem Tief) zurück.
+     * @returns {Object|null} { minValue, daysAgo }
+     */
+    static getMinWithIndex(timeline, valueExtractor, lookback) {
+        if (!timeline || timeline.length < lookback) return null;
+        let min = Infinity;
+        let minIdx = -1;
+        const startIndex = timeline.length - lookback;
+        for (let i = startIndex; i < timeline.length; i++) {
+            const v = valueExtractor(timeline[i]);
+            if (v !== null && v !== undefined && v < min) {
+                min = v;
+                minIdx = i;
+            }
+        }
+        if (minIdx === -1) return null;
+        return { minValue: min, daysAgo: (timeline.length - 1) - minIdx };
+    }
 }
