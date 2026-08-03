@@ -17,3 +17,6 @@
 * **Aufgabe 3: ML-Pipeline-Integration & Error-Handling absichern**
   * Sicherstellen, dass der ML-Inferenz-Schritt (`MLRegimeService.predict()`) für SPY, QQQ und BTC im Standard-Runner vor der Berichtgenerierung verlässlich ausgeführt wird.
   * Verbessertes Logging & Fallback bei ML-Ausfällen.
+* **Aufgabe 4: Umstellung von `investing_challenger` Scraper auf FRED API (Cloudflare HTTP 403 Fix)**
+  * **Analyse:** `investing.com` blockiert den Axios-Scraper in `InvestingComFetchAdapter.js` mit `HTTP 403 Forbidden: Blocked by Cloudflare`.
+  * **Lösungsvorschlag (Empfohlen):** Umstellung des `ChallengerJobCuts`-Abrufs auf die offizielle FRED API (Series ID `JTSLDL` für Layoffs & Discharges), um Arbeitsmarkt-Daten ohne anfälliges HTML-Scraping und ohne Cloudflare-Sperren zu erhalten.

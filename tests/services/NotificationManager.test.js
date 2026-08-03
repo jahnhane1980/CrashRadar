@@ -124,6 +124,29 @@ describe('NotificationManager (New Architecture)', () => {
         expect(result.message).toContain('CYCLE_BOTTOM (85.0%)');
     });
 
+    it('sollte DailyStatusReport mit aggregierten KI-Regime BÄR/BULL Gruppen und Top-2 Einzelklassen formatieren', () => {
+        const macroState = createMockMacroState();
+        const tradeActions = [];
+        
+        const currentDayData = {
+            mlRegimeBtc: {
+                phase: 'BEAR_MARKET',
+                confidence: 0.4784,
+                rawScores: {
+                    BEAR_MARKET: 0.4784,
+                    BEAR_RALLY: 0.4172,
+                    BULL_CORRECTION: 0.0738,
+                    BULL_MARKET: 0.0160,
+                    CYCLE_TOP: 0.0083,
+                    CYCLE_BOTTOM: 0.0062
+                }
+            }
+        };
+
+        const result = manager.getDailyStatusReport(macroState, tradeActions, currentDayData);
+        expect(result.message).toContain('BTC: BÄR 89.6% (BEAR_MARKET 47.8%, BEAR_RALLY 41.7%)');
+    });
+
     it('sollte null zurückgeben bei getAlerts wenn tradeActions leer/null ist', () => {
         const macroState = createMockMacroState();
         

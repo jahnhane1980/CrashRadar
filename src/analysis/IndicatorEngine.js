@@ -24,14 +24,23 @@ export class IndicatorEngine {
     const macroStates = this.macroRegimeEngine.evaluate(groupedData);
     const actionsByDate = this.tradeSetupEngine.evaluate(groupedData, macroStates);
     
-    const dates = Object.keys(groupedData).sort();
-    const lastDate = dates[dates.length - 1];
+    let lastDate;
+    let currentDayData;
+
+    if (Array.isArray(groupedData)) {
+      currentDayData = groupedData[groupedData.length - 1];
+      lastDate = currentDayData?.date || currentDayData?.dateStr;
+    } else {
+      const dates = Object.keys(groupedData).sort();
+      lastDate = dates[dates.length - 1];
+      currentDayData = groupedData[lastDate];
+    }
     
     return {
       macroState: macroStates[lastDate] || { regime: 'NORMAL', vetos: [], liquidityStatus: 'NORMAL' },
       tradeActions: actionsByDate[lastDate] || [],
       dateStr: lastDate,
-      currentDayData: groupedData[lastDate]
+      currentDayData: currentDayData
     };
   }
 

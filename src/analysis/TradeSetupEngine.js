@@ -51,12 +51,15 @@ export class TradeSetupEngine {
         }
 
         const actionsByDate = {};
-        const dates = Object.keys(groupedData).sort();
+        const isArr = Array.isArray(groupedData);
+        const entries = isArr 
+            ? groupedData.map(item => ({ dateStr: item.date || item.dateStr, currentDay: item }))
+            : Object.keys(groupedData).sort().map(d => ({ dateStr: d, currentDay: groupedData[d] }));
+
         const timeline = [];
 
-        for (let i = 0; i < dates.length; i++) {
-            const dateStr = dates[i];
-            const currentDay = groupedData[dateStr];
+        for (let i = 0; i < entries.length; i++) {
+            const { dateStr, currentDay } = entries[i];
             timeline.push(currentDay);
 
             actionsByDate[dateStr] = [];

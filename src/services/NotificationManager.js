@@ -201,7 +201,42 @@ export class NotificationManager {
             summary += `\n`;
         }
 
-        const formatRegime = (regime) => regime ? `${regime.phase} (${(regime.confidence * 100).toFixed(1)}%)` : 'UNKNOWN';
+        const formatRegime = (regime) => {
+            if (!regime) return 'UNKNOWN';
+            if (!regime.rawScores || Object.keys(regime.rawScores).length === 0) {
+                return `${regime.phase} (${(regime.confidence * 100).toFixed(1)}%)`;
+            }
+
+            const scores = regime.rawScores;
+            const bearSum = (scores.BEAR_MARKET || 0) + (scores.BEAR_RALLY || 0);
+            const bullSum = (scores.BULL_MARKET || 0) + (scores.BULL_CORRECTION || 0);
+            const cycleTop = scores.CYCLE_TOP || 0;
+            const cycleBottom = scores.CYCLE_BOTTOM || 0;
+
+            const sortedClasses = Object.entries(scores)
+                .filter(([_, score]) => typeof score === 'number' && !isNaN(score))
+                .sort((a, b) => b[1] - a[1]);
+
+            const top2Str = sortedClasses.slice(0, 2)
+                .map(([cls, score]) => `${cls} ${(score * 100).toFixed(1)}%`)
+                .join(', ');
+
+            let groupTitle = '';
+            if (bearSum >= bullSum && bearSum >= cycleTop && bearSum >= cycleBottom && bearSum > 0) {
+                groupTitle = `BÄR ${(bearSum * 100).toFixed(1)}%`;
+            } else if (bullSum >= bearSum && bullSum >= cycleTop && bullSum >= cycleBottom && bullSum > 0) {
+                groupTitle = `BULL ${(bullSum * 100).toFixed(1)}%`;
+            } else if (cycleTop >= cycleBottom && cycleTop > 0) {
+                groupTitle = `CYCLE_TOP ${(cycleTop * 100).toFixed(1)}%`;
+            } else if (cycleBottom > 0) {
+                groupTitle = `CYCLE_BOTTOM ${(cycleBottom * 100).toFixed(1)}%`;
+            } else {
+                return `${regime.phase} (${(regime.confidence * 100).toFixed(1)}%)`;
+            }
+
+            return `${groupTitle} (${top2Str})`;
+        };
+
         if (currentDayData) {
             summary += `🤖 5. KI-Regime Radar\n`;
             summary += `SPY: ${formatRegime(currentDayData.mlRegimeSpy)}\n`;
