@@ -112,4 +112,25 @@ describe('Logger', () => {
         expect(processExitSpy).toHaveBeenCalledTimes(1);
         expect(processExitSpy).toHaveBeenCalledWith(1);
     });
+
+    it('should record warnings and errors into internal ErrorRegistry and generate summary', () => {
+        Logger.reset();
+        expect(Logger.hasIssues()).toBe(false);
+
+        Logger.warn('[ML-Regime] Missing model file');
+        Logger.error('[Storage] Database connection lost');
+
+        expect(Logger.hasIssues()).toBe(true);
+        expect(Logger.hasWarnings()).toBe(true);
+        expect(Logger.hasErrors()).toBe(true);
+
+        const summary = Logger.getSummary();
+        expect(summary).toContain('Fehler: 1 | Warnungen: 1');
+        expect(summary).toContain('❌ FEHLER:\n- [Storage] Database connection lost');
+        expect(summary).toContain('⚠️ WARNUNGEN:\n- [ML-Regime] Missing model file');
+
+        Logger.reset();
+        expect(Logger.hasIssues()).toBe(false);
+    });
 });
+

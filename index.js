@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { Command } from 'commander';
+import { Logger } from './src/core/Logger.js';
 import { StandardRunner } from './src/runners/StandardRunner.js';
 import { TestRunner } from './src/runners/TestRunner.js';
 import { FinanceExpert } from './src/services/FinanceExpert.js';
@@ -21,13 +22,13 @@ const __dirname = path.dirname(__filename);
 let activeRunner = null;
 
 process.on('SIGINT', () => {
-  console.log('\n[Process] Caught interrupt signal (SIGINT). Exiting gracefully...');
+  Logger.info('[Process] Caught interrupt signal (SIGINT). Exiting gracefully...');
   if (activeRunner) activeRunner.cleanup();
   process.exit(0);
 });
 
 process.on('SIGTERM', () => {
-  console.log('\n[Process] Caught termination signal (SIGTERM). Exiting gracefully...');
+  Logger.info('[Process] Caught termination signal (SIGTERM). Exiting gracefully...');
   if (activeRunner) activeRunner.cleanup();
   process.exit(0);
 });
@@ -46,41 +47,38 @@ export async function runCLI(argv) {
   program.action(async (options) => {
     try {
       if (options.checkIndikator) {
-        console.log('[Analysis] Lade historische Daten aus lokaler Datenbank...');
+        Logger.info('[Analysis] Lade historische Daten aus lokaler Datenbank...');
         const dbUrl = options.test ? (process.env.DATABASE_URL_TEST || process.env.DATABASE_URL) : process.env.DATABASE_URL;
         const expert = new FinanceExpert(dbUrl);
         const groupedData = await expert.getDailyGroupedData('2015-01-01');
         
         // --- ML Regime Integration ---
-        try {
-            const getCandles = (data, assetName, volName) => data.map(d => ({
-              date: d.date,
-              close: d.assets[assetName],
-              volume: d.assets[volName] || 0,
-              high: d.assets[`${assetName}_High`] || d.assets[assetName],
-              low: d.assets[`${assetName}_Low`] || d.assets[assetName]
-            })).filter(c => c.close !== null && c.close !== undefined);
+        const getCandles = (data, assetName, volName) => data.map(d => ({
+          date: d.date,
+          close: d.assets[assetName],
+          volume: d.assets[volName] || 0,
+          high: d.assets[`${assetName}_High`] || d.assets[assetName],
+          low: d.assets[`${assetName}_Low`] || d.assets[assetName]
+        })).filter(c => c.close !== null && c.close !== undefined);
 
-            const btcCandles = getCandles(groupedData, 'BTC', 'BTC_Volume');
-            if (btcCandles.length >= 50) {
-              const mlPrediction = await new MLRegimeService('btc_regime_v2').predict(btcCandles);
-              groupedData[groupedData.length - 1].mlRegimeBtc = mlPrediction;
+        const runPredict = async (modelName, assetName, volName, targetField) => {
+          try {
+            const candles = getCandles(groupedData, assetName, volName);
+            if (candles.length >= 50) {
+              const mlPrediction = await new MLRegimeService(modelName).predict(candles);
+              groupedData[groupedData.length - 1][targetField] = mlPrediction;
+              Logger.info(`[ML-Regime] ${assetName} Prognose: ${mlPrediction.phase} (${(mlPrediction.confidence * 100).toFixed(1)}%)`);
+            } else {
+              Logger.warn(`[ML-Regime] Zu wenige Kerzen für ${assetName} (${candles.length} < 50). Prognose übersprungen.`);
             }
+          } catch (e) {
+            Logger.error(`[ML-Regime] Fehler bei der Prognose für ${assetName} (${modelName}):`, e.message);
+          }
+        };
 
-            const spyCandles = getCandles(groupedData, 'SPY', 'SPY_Volume');
-            if (spyCandles.length >= 50) {
-              const mlPrediction = await new MLRegimeService('spy_regime_v1').predict(spyCandles);
-              groupedData[groupedData.length - 1].mlRegimeSpy = mlPrediction;
-            }
-
-            const qqqCandles = getCandles(groupedData, 'QQQ', 'QQQ_Volume');
-            if (qqqCandles.length >= 50) {
-              const mlPrediction = await new MLRegimeService('qqq_regime_v1').predict(qqqCandles);
-              groupedData[groupedData.length - 1].mlRegimeQqq = mlPrediction;
-            }
-        } catch(e) {
-            console.error("[Analysis] Fehler bei der ML-Prognose:", e.message);
-        }
+        await runPredict('btc_regime_v2', 'BTC', 'BTC_Volume', 'mlRegimeBtc');
+        await runPredict('spy_regime_v1', 'SPY', 'SPY_Volume', 'mlRegimeSpy');
+        await runPredict('qqq_regime_v1', 'QQQ', 'QQQ_Volume', 'mlRegimeQqq');
         // -----------------------------
         
         const notifPath = path.resolve(process.cwd(), 'config/Notification-Config.json');
@@ -108,7 +106,7 @@ export async function runCLI(argv) {
             try {
               alertHistory = JSON.parse(fs.readFileSync(alertHistoryPath, 'utf8'));
             } catch (e) {
-              console.warn("[Alerting] Konnte alert_history.json nicht parsen, starte neu.");
+              Logger.warn('[Alerting] Konnte alert_history.json nicht parsen, starte neu.');
             }
           }
 
@@ -116,7 +114,7 @@ export async function runCLI(argv) {
           const alertResult = engine.getAlerts(groupedData, alertHistory);
           
           if (alertResult && alertResult.notifications) {
-            console.log(`\n[Alerting] Sende ${alertResult.notifications.length} spezifische Ntfy Push-Alarme...`);
+            Logger.info(`[Alerting] Sende ${alertResult.notifications.length} spezifische Ntfy Push-Alarme...`);
             for (const notif of alertResult.notifications) {
                await ntfy.send(notif.title, notif.message, notif.priority, notif.tags);
             }
@@ -124,16 +122,21 @@ export async function runCLI(argv) {
             // History speichern (Debouncing greift)
             fs.writeFileSync(alertHistoryPath, JSON.stringify(alertResult.updatedHistory, null, 2), 'utf8');
           } else {
-            console.log('\n[Alerting] Keine akuten Warnungen (alles im grünen Bereich oder bereits benachrichtigt).');
+            Logger.info('[Alerting] Keine akuten Warnungen (alles im grünen Bereich oder bereits benachrichtigt).');
           }
           
-          console.log('\n[Alerting] Sende Daily Status Report...');
+          Logger.info('[Alerting] Sende Daily Status Report...');
           const daily = engine.getDailyStatusReport(groupedData);
           if (daily) {
              await ntfy.send(daily.title, daily.message, daily.priority, daily.tags);
           }
+
+          if (Logger.hasIssues()) {
+             Logger.info('[Alerting] Sende System-Health Report (Fehler/Warnungen)...');
+             await ntfy.send('CrashRadar System-Health Report', Logger.getSummary(), 'high', 'warning');
+          }
         } else {
-          console.log('\n[Alerting] NTFY_TOPIC nicht gesetzt. Überspringe Ntfy Push.');
+          Logger.info('[Alerting] NTFY_TOPIC nicht gesetzt. Überspringe Ntfy Push.');
         }
 
         await expert.close();
@@ -169,7 +172,7 @@ export async function runCLI(argv) {
       
       await activeRunner.run();
     } catch (error) {
-      console.error(error);
+      Logger.error('[CLI Error]', error.message || error);
       throw error; // Statt process.exit(1) werfen wir den Fehler weiter
     }
   });
@@ -185,3 +188,4 @@ if (process.argv[1] === __filename) {
     process.exit(1);
   });
 }
+

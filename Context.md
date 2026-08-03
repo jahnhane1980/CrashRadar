@@ -7,3 +7,13 @@
 * **Struktur-Chaos (API-Ausfälle):** Wir löschen gezielt Schlüsselpunkte (wie `assets` oder `macroGroups`), um Robustheit zu beweisen.
 * **Mathematische Singularitäten:** Wir zwingen Code gezielt in Division-by-Zero-Szenarien oder undefinierte Zustände (`UNKNOWN` Fallbacks).
 * **Anti-Overfitting:** Rauschen (`Math.random()`) in historische Preise mischen, um echte Makro-Kausalitäten zu prüfen.
+
+## 2. Aktueller Fokus / Fahrplan: Behebung der UNKNOWN-Werte im Makro-Wetterbericht
+* **Aufgabe 1: Mapping in `FinanceExpert.js` ergänzen**
+  * `SKEW`, `SPY_ShortVolumeRatio` und `TotalPCR` müssen in `finalData.assets` bzw. im Tagesobjekt gemappt werden, damit `SmartDumbMoneyTopIndicator` und `RedAlertIndicator` die Werte aus der DB erhalten.
+* **Aufgabe 2: Last Known Value (Forward-Fill) & Stale-Handling für wöchentliche/verzögerte Daten**
+  * Forward-Fill für AAII Sentiment und FINRA Short Volume nutzen, um künstliche `UNKNOWN`-Blindspots an tagesaktuellen Rastern zu vermeiden.
+  * Altersgrenze (z.B. max. 14 Tage Gültigkeit) beachten/kennzeichnen, um Fehlsignale durch zu alte Daten zu verhindern.
+* **Aufgabe 3: ML-Pipeline-Integration & Error-Handling absichern**
+  * Sicherstellen, dass der ML-Inferenz-Schritt (`MLRegimeService.predict()`) für SPY, QQQ und BTC im Standard-Runner vor der Berichtgenerierung verlässlich ausgeführt wird.
+  * Verbessertes Logging & Fallback bei ML-Ausfällen.
