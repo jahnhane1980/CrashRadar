@@ -1,7 +1,10 @@
 # CrashRadar Roadmap & Offene TODOs
 
-Dieses Dokument bündelt alle aktuell noch offenen Entwicklungsaufgaben und Architekturerweiterungen für die CrashRadar-Engine. 
+> **Zweck:** Überblick über den übergeordneten, strategischen Entwicklungsplan, architektonische Meilensteine und langfristige Zeithorizonte (Makro-Ebene).  
+> **Fokus:** Übergreifende Features, externe Schnittstellen (Supabase/Datacenter), historische Meilensteine, Release-Zyklen und Priorisierung größerer Baustellen.
+
 *Hinweis: Die Reihenfolge der Aufgaben spiegelt ihre Dringlichkeit und architektonische Priorität wider.*
+
 
 
 

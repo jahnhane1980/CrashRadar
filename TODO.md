@@ -1,5 +1,8 @@
 # CrashRadar Refactoring - Status & TODOs
 
+> **Zweck:** Unmittelbare, operative Arbeitsliste für das laufende Entwicklungs-Sprint auf Code-Ebene (Mikro-Ebene).  
+> **Fokus:** Konkrete Dateipfade, Klassennamen, Konfigurationsstrukturen und Entscheidungslogiken (if/else), die unmittelbar im Code implementiert werden müssen.
+
 ## Was noch zu tun ist (Offen)
 
 ### 1. FINRA Short-Volume: Ursachenforschung & Feature-Erweiterung

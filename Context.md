@@ -1,6 +1,8 @@
 # CrashRadar: System Context
 
-*(Dieses Dokument dient als Gedächtnisstütze und State-Transfer für Folge-Sessions. Es hält den aktuellen Fokus, architektonische Leitplanken und strikte Arbeitsregeln fest).*
+> **Zweck:** State-Transfer für neue Chat-Sessions und dauerhafte Leitplanken. Hält fest, nach welchen Regeln und Qualitätsmaßstäben das Gesamtsystem entwickelt, getestet und gewartet wird.  
+> **Fokus:** Keine Aufgabenlisten, sondern Qualitätsstandards, Test-Philosophien (Chaos-Daten, Anti-Overfitting) und übergeordnete Systemarchitektur.
+
 
 ## 1. Testing-Philosophie & Synthetische Märkte (Chaos-Daten)
 * **Chaos-Arrays:** Daten müssen in Tests Zyklen, hartes Rauschen (`Math.random()`) und extreme Gaps enthalten.
