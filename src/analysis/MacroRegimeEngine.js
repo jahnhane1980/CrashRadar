@@ -14,6 +14,7 @@ import { StealthExitIndicator } from './indicators/StealthExitIndicator.js';
 import LaborMarketDivergenceIndicator from './indicators/LaborMarketDivergenceIndicator.js';
 import { InterestRateCycleIndicator } from './indicators/InterestRateCycleIndicator.js';
 import { DalioTwoStageRegimeIndicator } from './indicators/DalioTwoStageRegimeIndicator.js';
+import { MlRegimeRadarMacroIndicator } from './indicators/MlRegimeRadarMacroIndicator.js';
 
 export class MacroRegimeEngine {
     constructor() {
@@ -34,7 +35,8 @@ export class MacroRegimeEngine {
             new StealthExitIndicator(),
             new LaborMarketDivergenceIndicator(),
             new InterestRateCycleIndicator(),
-            new DalioTwoStageRegimeIndicator()
+            new DalioTwoStageRegimeIndicator(),
+            new MlRegimeRadarMacroIndicator()
         ];
     }
 

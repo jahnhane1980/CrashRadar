@@ -41,3 +41,12 @@
   * **Tabelle:** `market_data_m5` (`symbol`, `record_time`, `open`, `high`, `low`, `close`, `volume`).
   * **Status:** Der initiale Export/Import-Skriptlauf (`import_m5_supabase.js`) wurde heute gestartet. Er übersetzt die abstrakten Supabase `ticker_id`s (wie `12` für `SOFI` oder `28` für `QQQ`) in unsere String-Ticker und überführt den gesamten historischen 5-Minuten-Datensatz in unsere lokale Datenbank.
 * **Hinweis zu Optionsdaten (AlphaVantage):** Das `datacenter` nutzt die AlphaVantage-API (`AlphaVantageOptionService.js`) gezielt für Optionsdaten (Volume-to-Open-Interest Ratio und Put-Call-Ratio). Da der Free-Tier auf 25 Calls/Tag limitiert ist, könnten wir durch das Abschalten oder Konsolidieren von redundanten Daten-Fetches (z.B. unserer alten `market_data_pcr` Tabellen in CrashRadar) das API-Kontingent entlasten und effizienter nutzen.
+
+## 7. Multivariates Makro-ML-Regime-Modell (Liquidität, Smart Money, Zinsen)
+* **Problem:** Die bisherige Makro-Engine basiert auf starren Einzelgrenzwerten (z. B. SKEW > 145), während bestehende ML-Modelle (`src/ml/`) nur auf technische Chart-Indikatoren der Einzelaktien beschränkt sind. Mehrdimensionale Risikofaktoren (z. B. TGA-Sog + verdeckte Distribution via DIX + Margin-Debt-Einbruch) werden nicht kontinuierlich synthetisiert.
+* **Ziel:** Entwicklung eines multivariaten Makro-ML-Modells (Gradient Boosted Trees / XGBoost), das aus allen 87 Rohindikatoren einen kontinuierlichen Crash-Risiko-Score (0 bis 100 %) ermittelt und als übergeordnete Wetterlage mit den Chart-Modellen zu einem 2-stufigen Ensemble verschmolzen wird.
+* **Detail-Konzept:** Ausführliche Architektur, Feature-Cluster und Ensemble-Matrix sind dokumentiert in [`docs/Makro-ML.md`](file:///D:/GitHub/CrashRadar/docs/Makro-ML.md).
+* **Aufgaben [OFFEN]:**
+  * Feature-Pipeline & Stationarisierung auf Basis von `data/historical_events_raw_indicators.csv`.
+  * Python-Trainingspipeline mit XGBoost, Purged Walk-Forward CV und SHAP-Erklärbarkeit.
+  * Runtime-Inference-Service (`src/services/MacroMlService.js`) für die tägliche Bewertung in Node.js.

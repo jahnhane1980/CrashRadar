@@ -239,6 +239,20 @@ export class NotificationManager {
 
         if (currentDayData) {
             summary += `🤖 5. KI-Regime Radar\n`;
+            let macroRiskInfo = null;
+            if (currentDayData.mlRegimeMacro) {
+                const mRisk = currentDayData.mlRegimeMacro.riskPct ?? ((currentDayData.mlRegimeMacro.probability || 0) * 100).toFixed(1);
+                const mReg = currentDayData.mlRegimeMacro.regime || 'NORMAL';
+                macroRiskInfo = `${mRisk}% Crash-Risiko [${mReg}]`;
+            } else if (macroState?.indicatorDetails) {
+                const macroInd = macroState.indicatorDetails.find(ind => ind.name === 'ML Regime Radar (Makro)');
+                if (macroInd && macroInd.value) {
+                    macroRiskInfo = `${macroInd.value} [${macroInd.status}]`;
+                }
+            }
+            if (macroRiskInfo) {
+                summary += `Makro (XGBoost 32 Features): ${macroRiskInfo}\n`;
+            }
             summary += `SPY: ${formatRegime(currentDayData.mlRegimeSpy)}\n`;
             summary += `QQQ: ${formatRegime(currentDayData.mlRegimeQqq)}\n`;
             summary += `BTC: ${formatRegime(currentDayData.mlRegimeBtc)}\n`;

@@ -9,6 +9,7 @@ import { TestRunner } from './src/runners/TestRunner.js';
 import { FinanceExpert } from './src/services/FinanceExpert.js';
 import { IndicatorEngine } from './src/analysis/IndicatorEngine.js';
 import { MLRegimeService } from './src/services/MLRegimeService.js';
+import { MlRegimeRadarMacroIndicator } from './src/analysis/indicators/MlRegimeRadarMacroIndicator.js';
 import { NtfyService } from './src/services/NtfyService.js';
 import { Storage } from './src/core/Storage.js';
 import { RequestManager } from './src/core/RequestManager.js';
@@ -79,6 +80,22 @@ export async function runCLI(argv) {
         await runPredict('btc_regime_v2', 'BTC', 'BTC_Volume', 'mlRegimeBtc');
         await runPredict('spy_regime_v1', 'SPY', 'SPY_Volume', 'mlRegimeSpy');
         await runPredict('qqq_regime_v1', 'QQQ', 'QQQ_Volume', 'mlRegimeQqq');
+
+        try {
+          if (groupedData && groupedData.length > 0) {
+            const macroIndicator = new MlRegimeRadarMacroIndicator();
+            const macroResult = macroIndicator.evaluate(groupedData);
+            groupedData[groupedData.length - 1].mlRegimeMacro = {
+              riskPct: parseFloat(macroResult.value) || 0,
+              regime: macroResult.status === 'CRITICAL' ? 'ACUTE_CRASH_RISK' : (macroResult.status === 'WARNING' ? 'ELEVATED_RISK' : 'NORMAL'),
+              status: macroResult.status,
+              message: macroResult.message
+            };
+            Logger.info(`[ML-Regime] Makro Crash-Risiko: ${macroResult.value} (${macroResult.status})`);
+          }
+        } catch (e) {
+          Logger.error(`[ML-Regime] Fehler bei der Makro-ML-Prognose:`, e.message);
+        }
         // -----------------------------
         
         const notifPath = path.resolve(process.cwd(), 'config/Notification-Config.json');
