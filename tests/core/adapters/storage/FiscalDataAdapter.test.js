@@ -28,8 +28,35 @@ describe('FiscalDataAdapter', () => {
     expect(result.values[0]).toEqual(['2023-01-01', '123456', 'Bill', '2023-01-02', '2023-04-02', '1000', '4.5']);
   });
 
-  it('should return null query for unknown task id (edge case)', () => {
+  it('should map fiscaldata_buybacks correctly', () => {
     const task = { id: 'fiscaldata_buybacks' };
+    const data = [
+      {
+        operation_date: '2026-08-25',
+        settlement_date: '2026-08-26',
+        operation_type: 'Liquidity Support',
+        security_type: 'Nominal Coupons',
+        maturity_bucket: '5Y to 7Y',
+        total_par_amt_offered: '8402000000.00',
+        total_par_amt_accepted: '1191000000.00'
+      }
+    ];
+
+    const result = adapter.getInsertQueryAndValues(task, data);
+    expect(result.query).toContain('INSERT INTO fiscal_buybacks');
+    expect(result.values[0]).toEqual([
+      '2026-08-25',
+      '2026-08-26',
+      'Liquidity Support',
+      'Nominal Coupons',
+      '5Y to 7Y',
+      '8402000000.00',
+      '1191000000.00'
+    ]);
+  });
+
+  it('should return null query for unknown task id (edge case)', () => {
+    const task = { id: 'unknown_fiscal_endpoint' };
     const result = adapter.getInsertQueryAndValues(task, []);
     expect(result.query).toBeNull();
     expect(result.values).toHaveLength(0);

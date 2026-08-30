@@ -20,6 +20,21 @@ export class FiscalDataAdapter {
       `;
       const values = data.map(item => [item.record_date, item.cusip, item.security_type, parseVal(item.issue_date), parseVal(item.maturity_date), parseVal(item.total_accepted), parseVal(item.high_yield)]);
       return { query, values };
+    } else if (task.id === 'fiscaldata_buybacks') {
+      const query = `
+        INSERT INTO fiscal_buybacks (operation_date, settlement_date, operation_type, security_type, maturity_bucket, total_offered, total_accepted)
+        VALUES ?
+      `;
+      const values = data.map(item => [
+        item.operation_date,
+        parseVal(item.settlement_date),
+        parseVal(item.operation_type),
+        parseVal(item.security_type),
+        parseVal(item.maturity_bucket),
+        parseVal(item.total_par_amt_offered),
+        parseVal(item.total_par_amt_accepted)
+      ]);
+      return { query, values };
     }
     
     // Fallback falls unbekannt

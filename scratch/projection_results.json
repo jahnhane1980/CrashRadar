@@ -1,0 +1,200 @@
+{
+  "validationResults": [
+    {
+      "date": "2018-04-16",
+      "baseScore": "58.5",
+      "proj60Score": "58.8",
+      "actual60Score": "62.3",
+      "error": "3.5",
+      "predictedDirection": "NEUTRAL →",
+      "actualDirection": "NEUTRAL →",
+      "directionHit": true
+    },
+    {
+      "date": "2018-06-01",
+      "baseScore": "65.0",
+      "proj60Score": "59.8",
+      "actual60Score": "65.0",
+      "error": "5.3",
+      "predictedDirection": "FALLEND ↘",
+      "actualDirection": "NEUTRAL →",
+      "directionHit": false
+    },
+    {
+      "date": "2018-08-01",
+      "baseScore": "99.4",
+      "proj60Score": "99.9",
+      "actual60Score": "62.3",
+      "error": "37.6",
+      "predictedDirection": "NEUTRAL →",
+      "actualDirection": "FALLEND ↘",
+      "directionHit": false
+    },
+    {
+      "date": "2019-04-15",
+      "baseScore": "98.7",
+      "proj60Score": "99.8",
+      "actual60Score": "62.1",
+      "error": "37.7",
+      "predictedDirection": "NEUTRAL →",
+      "actualDirection": "FALLEND ↘",
+      "directionHit": false
+    },
+    {
+      "date": "2019-06-15",
+      "baseScore": "63.1",
+      "proj60Score": "59.5",
+      "actual60Score": "62.7",
+      "error": "3.2",
+      "predictedDirection": "NEUTRAL →",
+      "actualDirection": "NEUTRAL →",
+      "directionHit": true
+    },
+    {
+      "date": "2019-08-01",
+      "baseScore": "65.0",
+      "proj60Score": "59.8",
+      "actual60Score": "100.0",
+      "error": "40.3",
+      "predictedDirection": "FALLEND ↘",
+      "actualDirection": "STEIGEND ↗",
+      "directionHit": false
+    },
+    {
+      "date": "2021-08-16",
+      "baseScore": "18.6",
+      "proj60Score": "18.6",
+      "actual60Score": "12.1",
+      "error": "6.5",
+      "predictedDirection": "NEUTRAL →",
+      "actualDirection": "FALLEND ↘",
+      "directionHit": false
+    },
+    {
+      "date": "2021-10-15",
+      "baseScore": "30.9",
+      "proj60Score": "30.9",
+      "actual60Score": "13.5",
+      "error": "17.4",
+      "predictedDirection": "NEUTRAL →",
+      "actualDirection": "FALLEND ↘",
+      "directionHit": false
+    },
+    {
+      "date": "2021-12-01",
+      "baseScore": "17.7",
+      "proj60Score": "17.7",
+      "actual60Score": "15.1",
+      "error": "2.6",
+      "predictedDirection": "NEUTRAL →",
+      "actualDirection": "NEUTRAL →",
+      "directionHit": true
+    },
+    {
+      "date": "2023-04-17",
+      "baseScore": "8.0",
+      "proj60Score": "8.0",
+      "actual60Score": "50.0",
+      "error": "42.0",
+      "predictedDirection": "NEUTRAL →",
+      "actualDirection": "STEIGEND ↗",
+      "directionHit": false
+    },
+    {
+      "date": "2023-06-15",
+      "baseScore": "20.7",
+      "proj60Score": "20.7",
+      "actual60Score": "13.5",
+      "error": "7.2",
+      "predictedDirection": "NEUTRAL →",
+      "actualDirection": "FALLEND ↘",
+      "directionHit": false
+    },
+    {
+      "date": "2023-08-03",
+      "baseScore": "12.0",
+      "proj60Score": "14.5",
+      "actual60Score": "15.5",
+      "error": "1.0",
+      "predictedDirection": "NEUTRAL →",
+      "actualDirection": "NEUTRAL →",
+      "directionHit": true
+    },
+    {
+      "date": "2024-02-15",
+      "baseScore": "48.9",
+      "proj60Score": "43.5",
+      "actual60Score": "50.6",
+      "error": "7.1",
+      "predictedDirection": "FALLEND ↘",
+      "actualDirection": "NEUTRAL →",
+      "directionHit": false
+    },
+    {
+      "date": "2024-04-15",
+      "baseScore": "54.3",
+      "proj60Score": "72.2",
+      "actual60Score": "60.8",
+      "error": "11.4",
+      "predictedDirection": "STEIGEND ↗",
+      "actualDirection": "STEIGEND ↗",
+      "directionHit": true
+    },
+    {
+      "date": "2024-06-15",
+      "baseScore": "56.2",
+      "proj60Score": "52.3",
+      "actual60Score": "60.6",
+      "error": "8.3",
+      "predictedDirection": "NEUTRAL →",
+      "actualDirection": "NEUTRAL →",
+      "directionHit": true
+    }
+  ],
+  "liveProjections": [
+    {
+      "horizonDays": 15,
+      "projTga": "$959.8B",
+      "projSlack": "$0.0B",
+      "projScore": "99.6",
+      "statusLabel": "ROT 🔴 (Akutes Korrekturrisiko / Exit)"
+    },
+    {
+      "horizonDays": 30,
+      "projTga": "$968.8B",
+      "projSlack": "$0.0B",
+      "projScore": "99.6",
+      "statusLabel": "ROT 🔴 (Akutes Korrekturrisiko / Exit)"
+    },
+    {
+      "horizonDays": 45,
+      "projTga": "$977.8B",
+      "projSlack": "$0.0B",
+      "projScore": "99.6",
+      "statusLabel": "ROT 🔴 (Akutes Korrekturrisiko / Exit)"
+    },
+    {
+      "horizonDays": 60,
+      "projTga": "$986.8B",
+      "projSlack": "$0.0B",
+      "projScore": "99.6",
+      "statusLabel": "ROT 🔴 (Akutes Korrekturrisiko / Exit)"
+    },
+    {
+      "horizonDays": 75,
+      "projTga": "$995.8B",
+      "projSlack": "$0.0B",
+      "projScore": "99.6",
+      "statusLabel": "ROT 🔴 (Akutes Korrekturrisiko / Exit)"
+    },
+    {
+      "horizonDays": 90,
+      "projTga": "$1004.8B",
+      "projSlack": "$0.0B",
+      "projScore": "99.6",
+      "statusLabel": "ROT 🔴 (Akutes Korrekturrisiko / Exit)"
+    }
+  ],
+  "avgError": "15.4",
+  "hitRate": "40.0"
+}

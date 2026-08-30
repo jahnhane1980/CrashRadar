@@ -15,6 +15,7 @@ import LaborMarketDivergenceIndicator from './indicators/LaborMarketDivergenceIn
 import { InterestRateCycleIndicator } from './indicators/InterestRateCycleIndicator.js';
 import { DalioTwoStageRegimeIndicator } from './indicators/DalioTwoStageRegimeIndicator.js';
 import { MlRegimeRadarMacroIndicator } from './indicators/MlRegimeRadarMacroIndicator.js';
+import { TreasuryCapacityRadarIndicator } from './indicators/TreasuryCapacityRadarIndicator.js';
 
 export class MacroRegimeEngine {
     constructor() {
@@ -36,7 +37,8 @@ export class MacroRegimeEngine {
             new LaborMarketDivergenceIndicator(),
             new InterestRateCycleIndicator(),
             new DalioTwoStageRegimeIndicator(),
-            new MlRegimeRadarMacroIndicator()
+            new MlRegimeRadarMacroIndicator(),
+            new TreasuryCapacityRadarIndicator()
         ];
     }
 
@@ -192,6 +194,18 @@ export class MacroRegimeEngine {
                         if (regime === 'NORMAL') {
                             regime = 'LATE_CYCLE_EUPHORIA';
                         }
+                    }
+                }
+
+                // 9. Treasury & Money Market Capacity Radar (Dual-Engine + Buybacks)
+                if (indicator.name === 'Treasury & Money Market Capacity Radar') {
+                    if (result.status === 'CRITICAL') {
+                        vetos.push('TREASURY_CAPACITY_CRITICAL');
+                        if (regime !== 'FLASH_CRASH') {
+                            regime = 'BEAR_MARKET';
+                        }
+                    } else if (result.status === 'WARNING') {
+                        vetos.push('TREASURY_CAPACITY_WARNING');
                     }
                 }
             }

@@ -1,0 +1,127 @@
+{
+  "greenStats": {
+    "count": 2532,
+    "daysSharePct": "33.5",
+    "avgFwd30": "0.49",
+    "avgFwd60": "0.72",
+    "avgFwd90": "1.01",
+    "avgMaxDd60": "-3.43",
+    "avgMaxDd90": "-4.37",
+    "winRate60": "63.1",
+    "avgArkk60": "0.71"
+  },
+  "yellowStats": {
+    "count": 1111,
+    "daysSharePct": "14.7",
+    "avgFwd30": "0.45",
+    "avgFwd60": "1.25",
+    "avgFwd90": "1.60",
+    "avgMaxDd60": "-3.14",
+    "avgMaxDd90": "-3.83",
+    "winRate60": "68.0",
+    "avgArkk60": "0.22"
+  },
+  "redStats": {
+    "count": 3921,
+    "daysSharePct": "51.8",
+    "avgFwd30": "0.69",
+    "avgFwd60": "1.42",
+    "avgFwd90": "2.24",
+    "avgMaxDd60": "-3.46",
+    "avgMaxDd90": "-4.21",
+    "winRate60": "69.0",
+    "avgArkk60": "3.80"
+  },
+  "crisisReport": [
+    {
+      "crisis": "2007/08 Große Finanzkrise (GFC)",
+      "peakDate": "2007-10-09",
+      "firstWarningDate": "2007-08-14",
+      "leadDays": 56,
+      "leadTradingDays": 56,
+      "status": "WARNING",
+      "score": 60
+    },
+    {
+      "crisis": "2011 US-Rating Downgrade / Euro-Krise",
+      "peakDate": "2011-04-29",
+      "firstWarningDate": "2011-01-29",
+      "leadDays": 90,
+      "leadTradingDays": 90,
+      "status": "CRITICAL",
+      "score": 94
+    },
+    {
+      "crisis": "2015/16 Rohstoff & Fed Zinswende",
+      "peakDate": "2015-05-21",
+      "firstWarningDate": "2015-02-20",
+      "leadDays": 90,
+      "leadTradingDays": 90,
+      "status": "CRITICAL",
+      "score": 80.4
+    },
+    {
+      "crisis": "2018 Q4 QT-Crash",
+      "peakDate": "2018-09-20",
+      "firstWarningDate": "2018-06-22",
+      "leadDays": 90,
+      "leadTradingDays": 90,
+      "status": "CRITICAL",
+      "score": 99.1
+    },
+    {
+      "crisis": "2019 Sept Repo-Krise",
+      "peakDate": "2019-09-16",
+      "firstWarningDate": "2019-06-18",
+      "leadDays": 90,
+      "leadTradingDays": 90,
+      "status": "CRITICAL",
+      "score": 97.9
+    },
+    {
+      "crisis": "2020 Feb Covid-Crash",
+      "peakDate": "2020-02-19",
+      "firstWarningDate": "2019-11-21",
+      "leadDays": 90,
+      "leadTradingDays": 90,
+      "status": "CRITICAL",
+      "score": 96.9
+    },
+    {
+      "crisis": "2022 Tech-Bärenmarkt (Zinsschock)",
+      "peakDate": "2022-01-04",
+      "firstWarningDate": "2021-10-11",
+      "leadDays": 85,
+      "leadTradingDays": 85,
+      "status": "WARNING",
+      "score": 72.1
+    },
+    {
+      "crisis": "2023 Aug-Okt QRA Kupon-Schock",
+      "peakDate": "2023-07-31",
+      "firstWarningDate": "2023-05-29",
+      "leadDays": 63,
+      "leadTradingDays": 63,
+      "status": "CRITICAL",
+      "score": 81.3
+    },
+    {
+      "crisis": "2024 Sommer Tech-Dip / Carry Unwind",
+      "peakDate": "2024-07-16",
+      "firstWarningDate": "2024-04-19",
+      "leadDays": 88,
+      "leadTradingDays": 88,
+      "status": "WARNING",
+      "score": 55.7
+    },
+    {
+      "crisis": "2025 April Tax-Day Crash",
+      "peakDate": "2025-03-25",
+      "firstWarningDate": "2025-01-01",
+      "leadDays": 83,
+      "leadTradingDays": 83,
+      "status": "CRITICAL",
+      "score": 80.9
+    }
+  ]
+}

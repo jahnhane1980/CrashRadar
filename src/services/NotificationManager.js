@@ -47,7 +47,11 @@ export class NotificationManager {
                 let icon = cleanText ? '' : '🟢';
                 if (ind.status === 'WARNING') { indColor = c_yel; icon = cleanText ? '' : '🟡'; }
                 if (ind.status === 'CRITICAL') { indColor = c_red; icon = cleanText ? '' : '🔴'; }
-                addLine(`  ${icon} ${ind.name.padEnd(50, ' ')} ${indColor}[${ind.status}]${c_rst}`);
+                const valStr = ind.value ? ` (${ind.value})` : '';
+                addLine(`  ${icon} ${ind.name.padEnd(50, ' ')} ${indColor}[${ind.status}]${c_rst}${valStr}`);
+                if (ind.status !== 'OK' && ind.status !== 'NORMAL' && ind.status !== 'NEUTRAL' && ind.message) {
+                    addLine(`     ↳ ${c_gray}${ind.message}${c_rst}`);
+                }
             });
             addLine('');
         }

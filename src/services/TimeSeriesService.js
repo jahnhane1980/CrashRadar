@@ -97,6 +97,36 @@ export class TimeSeriesService {
     aaii?.forEach(r => addToTimeline(r.date, 'AAII_Spread', r.AAII_Spread));
     dix?.forEach(r => addToTimeline(r.date, 'DIX', r.DIX));
 
+    const { auctions, buybacks } = rawData;
+    auctions?.forEach(r => {
+      const volMio = Number(r.total_accepted || 25000000000) / 1e6;
+      const mat = Number(r.maturity_years) || 0.25;
+      let modDuration = 0.25;
+      if (r.security_type === 'Bill') {
+        modDuration = Math.max(0.08, mat * 0.9);
+        addToTimeline(r.date, 'AuctionBillsMio', (timeline[r.date]?.AuctionBillsMio || 0) + volMio);
+      } else {
+        modDuration = Math.max(1.5, mat * 0.85);
+        addToTimeline(r.date, 'AuctionCouponsMio', (timeline[r.date]?.AuctionCouponsMio || 0) + volMio);
+      }
+      addToTimeline(r.date, 'AuctionDv01', (timeline[r.date]?.AuctionDv01 || 0) + (volMio * modDuration * 0.0001));
+    });
+
+    buybacks?.forEach(r => {
+      const volMio = Number(r.total_accepted) / 1e6;
+      let modDuration = 4.0;
+      const mb = r.maturity_bucket || '';
+      if (mb.includes('1Mo to 2Y')) modDuration = 0.8;
+      else if (mb.includes('2Y to 3Y')) modDuration = 2.2;
+      else if (mb.includes('3Y to 5Y')) modDuration = 3.6;
+      else if (mb.includes('5Y to 7Y')) modDuration = 5.2;
+      else if (mb.includes('7Y to 10Y') || mb.includes('10Y to 20Y')) modDuration = 9.0;
+      else if (mb.includes('20Y to 30Y')) modDuration = 18.0;
+
+      addToTimeline(r.date, 'BuybackMio', (timeline[r.date]?.BuybackMio || 0) + volMio);
+      addToTimeline(r.date, 'BuybackDv01', (timeline[r.date]?.BuybackDv01 || 0) + (volMio * modDuration * 0.0001));
+    });
+
     return timeline;
   }
 }

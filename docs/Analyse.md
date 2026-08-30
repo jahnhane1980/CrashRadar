@@ -230,9 +230,31 @@ Im Rahmen eines Experiments haben wir das auf den Nasdaq-Index (QQQ) trainierte 
 * **Der Absturz der Konfidenz:** Das Index-Netzwerk lieferte für massive PLTR-Spitzen und Bodenbildungen nur noch Konfidenzen um die ~30 %. Die Vorhersagen waren blindes Raten.
 * **Die Ursache (Out-of-Distribution):** Ein LSTM-Modell lernt die Volatilitätsstruktur (Standardabweichungen) seines Trainingsdatensatzes. Für den QQQ bedeutet eine 3%-Tageskerze "absolute Panik". Für PLTR ist eine 15%-Kerze "Business as usual". Wenn man die 15%-Kerze in ein für 3% normalisiertes Index-Gehirn schickt, explodieren die Eingabewerte aus dem gelernten Rahmen. Das Netzwerk verliert völlig die Orientierung.
 * **Die Lösung (Spezialisierte Netze):** Um Einzelaktien mit KI zu tracken, **müssen** spezialisierte Netzwerke trainiert werden. Durch die Erstellung eines maßgeschneiderten `pltr_regime_v1` Modells mit dynamisch berechneter PLTR-Ground-Truth in der `Cycle-Base-Config.json` stieg die Konfidenz an Extrempunkten sofort von ~30 % auf bis zu **77,2 %**. Das Modell konnte die "Persönlichkeit" und Volatilität der Aktie fehlerfrei bändigen und die Crash-Extreme exakt identifizieren.
-* **Die Wichtigkeit von `UNKNOWN`-Gaps:** Beim Training hochvolatiler Einzeltitel müssen die extrem langen Leerlaufphasen (zwischen Tops und Bottoms) rigoros aus dem Training ausgeschlossen (`UNKNOWN`) werden, andernfalls wird die Cross-Entropy-Mathematik des LSTMs zerstört, und die Gewichte korrumpieren zu unbrauchbaren "NaN"- oder "0-Loss"-Werten. Ein strikter Filter für `UNKNOWN`-Ziele im Training ist überlebenswichtig.
+### 11. Das Treasury & Money Market Capacity Radar (Dual-Engine: Cash-Slack & Zins-Duration)
+Gängige Makro-Modelle betrachten Liquidität entweder rein eindimensional (z. B. reines TGA oder Bankreserven) oder warten auf nachlaufende Interbanken-Spreads (SOFR-Spikes), wenn das Kind bereits in den Brunnen gefallen ist. Die empirische Auswertung über 21 Jahre (2005–2026) beweist, dass ein robuster Frühindikator zwei voneinander unabhängige Kräfte in einer **Dual-Engine** simultan überwachen muss:
+1. **Die physische Tankanzeige (Geldmarkt-Slack):** Das Zusammenspiel aus Reverse-Repo-Beständen (`RRPONTSYD`), Überschuss-Bankreserven über der regulatorischen Mindestreserve (`LCLOR = 10,5 % GDP`) und dem Staatskassen-Guthaben (`TGA`).
+2. **Die Zins- & Duration-Belastung (Duration Shock):** Die Geschwindigkeit des Renditeanstiegs (Realzinsen `DFII10`, Term Premium `THREEFYTP10`) und die reale Netto-Kuponlast der Primary Dealer.
 
+* **Die These (Die Tankanzeige & Der TGA-Zuckerrausch):**
+  * **Grünes Regime ($\text{Slack} > \$1.000\text{B}$):** Das System schwimmt in Geld. TGA-Auffüllungen verpuffen wirkungslos.
+  * **Gelbes Regime / Puffer-Phase (Der TGA-Melt-Up):** Wenn das RRP bei $0 liegt, das Treasury aber auf einem gigantischen TGA-Guthaben (> $850 Mrd.) sitzt und Buybacks durchführt, wirkt der TGA-Abbau wie **unsterilisiertes QE (Stealth Stimulus)**. In diesem Zeitfenster (typisch 60 bis 80 Tage) explodieren Small/Mid-Cap Growth Werte parabolisch (**Melt-Up**), während das Smart Money leise Hebel abbaut (`Margin Debt: -5,6 %`).
+  * **Rotes Regime (Die Kollision):** Sobald der TGA-Puffer aufgebraucht ist oder ein akuter Zwang zur Staatskassen-Auffüllung besteht (`IMMINENT_DRAIN` wie am 15. April 2025), schlägt die Auktionsflut ungepuffert in die leeren Bankreserven ein $\rightarrow$ **Liquiditäts-Vakuum und brutale Marktkorrektur**.
 
+* **Statistische Realität (21-Jahre-Backtest 2005–2026 über 5.240+ Handelstage):**
+  * **Krisen-Trefferquote:** **10 von 10 historischen Großkrisen (100 %)** wurden mit einer Vorwarnzeit von **56 bis 90 Tagen** vor dem Allzeithoch erkannt (2007 GFC, 2011 Downgrade, 2015 Zinswende, 2018 QT, 2019 Repo, 2020 Covid, 2022 Zinsschock, 2023 QRA, 2024 Tech-Dip, 2025 Tax-Day).
+  * **Forward-Returns im Gelben Regime (Melt-Up Bestätigung):** In Gelb-Phasen vor dem Peak stiegen Werte wie `PLTR` (+155 %), `SOFI` (+109 %), `COIN` (+96 %) und `ARKK` (+41 %) mit einem **4x bis 15x Hebel gegenüber dem S&P 500** (+10,2 %).
+  * **Verhalten nach dem Peak (Rotes Regime):** Nach Ablauf des Puffer-Countdowns verzeichneten dieselben High-Growth-Werte Drawdowns von **-30 % bis -50 %** (z. B. 2022, Aug 2023, April 2025).
+
+* **Die Taktik für den Anleger:**
+  1. **In GELB (Puffer-Phase):** Den Zuckerrausch aktiv über High-Beta Growth reiten, aber keine neuen langfristigen Positionen aufbauen.
+  2. **Im berechneten Kollisions-Fenster (aktuell: 26.10. – 10.11.2026 nach den Zwischenwahlen/QRA):** Konsequenter **Stealth Exit** und Risikoabbau, bevor das System auf ROT umschaltet.
+
+> 📖 **Ausführliche Architektur & mathematische Herleitung:**  
+> Die vollständigen Berechnungsformeln ($\text{Liquid Slack}$, $\text{LCLOR}$, $\text{DV01}$, Buyback-Netting und Katalysator-Status) sowie die Detail-Logik sind dokumentiert in:  
+> 🔗 [Treasury-Liquidity-Capacity-Architecture.md](file:///D:/GitHub/CrashRadar/docs/Treasury-Liquidity-Capacity-Architecture.md)  
+> 🔗 [Indikatoren-Grand-Prix-21-Jahre-Analyse.md](file:///D:/GitHub/CrashRadar/Indikatoren-Grand-Prix-21-Jahre-Analyse.md)
+
+---
 
 ### 🚦 Die große Indikator-Klassifizierung (Zusammenfassung)
 

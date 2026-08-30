@@ -1015,6 +1015,60 @@
         "series_id": "U6RATE",
         "file_type": "json"
       }
+    },
+    {
+      "id": "fred_gdp",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "GDP",
+        "file_type": "json"
+      }
+    },
+    {
+      "id": "fred_wrmfsl",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "WRMFSL",
+        "file_type": "json"
+      }
+    },
+    {
+      "id": "fred_threefytp10",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "THREEFYTP10",
+        "file_type": "json"
+      }
+    },
+    {
+      "id": "fred_sofr",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "SOFR",
+        "file_type": "json"
+      }
+    },
+    {
+      "id": "fred_iorb",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "IORB",
+        "file_type": "json"
+      }
+    },
+    {
+      "id": "fred_usgsec",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "USGSEC",
+        "file_type": "json"
+      }
     }
   ]
 }

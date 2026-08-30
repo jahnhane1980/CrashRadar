@@ -165,6 +165,19 @@ export class FinanceExpert {
             LNS12600000: state.LNS12600000,
             LNS12026619: state.LNS12026619,
             U6RATE: state.U6RATE
+          },
+          TreasuryCapacity: {
+            GDP: state.GDP,
+            THREEFYTP10: state.THREEFYTP10,
+            USGSEC: state.USGSEC,
+            SOFR: state.SOFR,
+            IORB: state.IORB,
+            WRMFSL: state.WRMFSL,
+            AuctionBillsMio: state.AuctionBillsMio || 0,
+            AuctionCouponsMio: state.AuctionCouponsMio || 0,
+            AuctionDv01: state.AuctionDv01 || 0,
+            BuybackMio: state.BuybackMio || 0,
+            BuybackDv01: state.BuybackDv01 || 0
           }
         }
       });

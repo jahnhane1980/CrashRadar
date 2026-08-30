@@ -1,0 +1,122 @@
+{
+  "dualStats": [
+    {
+      "name": "Q1: Niedriger Stress (0-20%)",
+      "range": "0.2 - 50.2",
+      "spy20": "1.08",
+      "spy60": "2.58",
+      "qqq60": "3.66",
+      "mddSpy": "-4.24",
+      "mddQqq": "-5.85",
+      "winRate": "70.2"
+    },
+    {
+      "name": "Q2: Moderat Grün (20-40%)",
+      "range": "50.2 - 61.1",
+      "spy20": "0.11",
+      "spy60": "0.86",
+      "qqq60": "1.07",
+      "mddSpy": "-5.24",
+      "mddQqq": "-6.63",
+      "winRate": "61.7"
+    },
+    {
+      "name": "Q3: Neutral (40-60%)",
+      "range": "61.1 - 64.6",
+      "spy20": "1.39",
+      "spy60": "4.72",
+      "qqq60": "6.78",
+      "mddSpy": "-3.28",
+      "mddQqq": "-3.84",
+      "winRate": "88.9"
+    },
+    {
+      "name": "Q4: Erhöhter Stress (60-80%)",
+      "range": "64.6 - 90.3",
+      "spy20": "1.97",
+      "spy60": "4.68",
+      "qqq60": "6.75",
+      "mddSpy": "-3.69",
+      "mddQqq": "-4.14",
+      "winRate": "80.1"
+    },
+    {
+      "name": "Q5: Extremer Stress (80-100%)",
+      "range": "90.7 - 100.0",
+      "spy20": "0.48",
+      "spy60": "2.00",
+      "qqq60": "4.06",
+      "mddSpy": "-6.29",
+      "mddQqq": "-6.80",
+      "winRate": "71.8"
+    }
+  ],
+  "eventComparison": [
+    {
+      "event": "1. Q4 2018 QT-Selloff",
+      "type": "Endogen / Liquidität",
+      "peakDate": "2018-09-20",
+      "oldLead": "60d (2018-06-26) ✅",
+      "newLead": "60d (2018-06-26) ✅",
+      "triggerType": "Liquiditäts-Engine 💧",
+      "liqStress": "98.1",
+      "rateStress": "6.2",
+      "dualScore": "98.1"
+    },
+    {
+      "event": "2. Sept 2019 Repo Crisis",
+      "type": "Endogen / Plumbing",
+      "peakDate": "2019-09-16",
+      "oldLead": "58d (2019-06-24) ✅",
+      "newLead": "60d (2019-06-20) ✅",
+      "triggerType": "Liquiditäts-Engine 💧",
+      "liqStress": "100.0",
+      "rateStress": "12.7",
+      "dualScore": "100.0"
+    },
+    {
+      "event": "3. Feb-März 2020 Covid Crash",
+      "type": "Exogen / Puffer $0",
+      "peakDate": "2020-02-19",
+      "oldLead": "53d (2019-12-02) ✅",
+      "newLead": "60d (2019-11-20) ✅",
+      "triggerType": "Liquiditäts-Engine 💧",
+      "liqStress": "96.6",
+      "rateStress": "8.8",
+      "dualScore": "96.6"
+    },
+    {
+      "event": "4. 2022 Bear Market (Zinswende)",
+      "type": "Endogen / Zins-Schock",
+      "peakDate": "2022-01-04",
+      "oldLead": "Kein Signal ❌",
+      "newLead": "59d (2021-10-11) ✅",
+      "triggerType": "Zins-/Bewertungs-Engine 📈",
+      "liqStress": "14.4",
+      "rateStress": "8.2",
+      "dualScore": "14.4"
+    },
+    {
+      "event": "5. Aug-Okt 2023 10y Zinsspitze",
+      "type": "Endogen / QRA Duration",
+      "peakDate": "2023-07-31",
+      "oldLead": "Kein Signal ❌",
+      "newLead": "Kein Signal ❌",
+      "triggerType": "-",
+      "liqStress": "11.4",
+      "rateStress": "8.1",
+      "dualScore": "11.4"
+    },
+    {
+      "event": "6. Sommer 2024 Tech-Korrektur",
+      "type": "Exogen / Yen Unwind",
+      "peakDate": "2024-07-16",
+      "oldLead": "52d (2024-04-30) ✅",
+      "newLead": "60d (2024-04-18) ✅",
+      "triggerType": "Liquiditäts-Engine 💧",
+      "liqStress": "76.8",
+      "rateStress": "3.2",
+      "dualScore": "76.8"
+    }
+  ]
+}

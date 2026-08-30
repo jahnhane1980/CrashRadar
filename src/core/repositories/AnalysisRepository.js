@@ -223,7 +223,19 @@ export class AnalysisRepository {
       WHERE record_date >= ?
     `, [startDate]);
 
-    return { btc, tiingo, yahoo, fred, tga, mw, sec, cboe, finra, shortVolume, pcr, challenger, aaii, dix };
+    const [auctions] = await this.pool.query(`
+      SELECT issue_date as date, security_type, total_accepted, DATEDIFF(maturity_date, issue_date)/365.25 as maturity_years
+      FROM fiscal_auctions
+      WHERE issue_date >= ?
+    `, [startDate]);
+
+    const [buybacks] = await this.pool.query(`
+      SELECT operation_date as date, security_type, maturity_bucket, total_accepted
+      FROM fiscal_buybacks
+      WHERE operation_date >= ?
+    `, [startDate]);
+
+    return { btc, tiingo, yahoo, fred, tga, mw, sec, cboe, finra, shortVolume, pcr, challenger, aaii, dix, auctions, buybacks };
   }
 
   async getInitialState(startDate) {
