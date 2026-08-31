@@ -1,3 +1,11 @@
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { Logger } from '../core/Logger.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 import { GoldVolumeClimaxIndicator } from './indicators/GoldVolumeClimaxIndicator.js';
 import { GoldCapitulationIndicator } from './indicators/GoldCapitulationIndicator.js';
 import { GdxSellingClimaxIndicator } from './indicators/GdxSellingClimaxIndicator.js';
@@ -14,25 +22,69 @@ import { MlRegimeRadarCryptoIndicator } from './indicators/MlRegimeRadarCryptoIn
 import { DxyParabolicClimaxIndicator } from './indicators/DxyParabolicClimaxIndicator.js';
 
 export class TradeSetupEngine {
-    constructor(getCycleConfig) {
+    constructor(getCycleConfig, indicatorConfig = null) {
         const safeConfig = getCycleConfig || (() => ({ MACRO_CYCLE: { lastBtcBottomDate: '2022-11-21' } }));
-        // Orchestrierung der Topf-B Indikatoren (Asset-Setups & Signale)
-        this.indicators = [
-            new GoldVolumeClimaxIndicator(),
-            new GoldCapitulationIndicator(),
-            new GdxSellingClimaxIndicator(),
-            new GdxBuyingClimaxIndicator(),
-            new GdxGoldDivergenceIndicator(),
-            new DxyParabolicClimaxIndicator(),
-            new BitcoinDivergenceIndicator(),
-            new CryptoCycleDivergenceIndicator(),
-            new CryptoPortfolioExitIndicator(safeConfig),
-            new BtcTrailingStopIndicator(),
-            new BitcoinSellingClimaxIndicator(),
-            new TechCycleRadarIndicator(),
-            new MlRegimeRadarBtcIndicator(),
-            new MlRegimeRadarCryptoIndicator()
-        ];
+        
+        const registry = {
+            GoldVolumeClimaxIndicator: () => new GoldVolumeClimaxIndicator(),
+            GoldCapitulationIndicator: () => new GoldCapitulationIndicator(),
+            GdxSellingClimaxIndicator: () => new GdxSellingClimaxIndicator(),
+            GdxBuyingClimaxIndicator: () => new GdxBuyingClimaxIndicator(),
+            GdxGoldDivergenceIndicator: () => new GdxGoldDivergenceIndicator(),
+            DxyParabolicClimaxIndicator: () => new DxyParabolicClimaxIndicator(),
+            BitcoinDivergenceIndicator: () => new BitcoinDivergenceIndicator(),
+            CryptoCycleDivergenceIndicator: () => new CryptoCycleDivergenceIndicator(),
+            CryptoPortfolioExitIndicator: () => new CryptoPortfolioExitIndicator(safeConfig),
+            BtcTrailingStopIndicator: () => new BtcTrailingStopIndicator(),
+            BitcoinSellingClimaxIndicator: () => new BitcoinSellingClimaxIndicator(),
+            TechCycleRadarIndicator: () => new TechCycleRadarIndicator(),
+            MlRegimeRadarBtcIndicator: () => new MlRegimeRadarBtcIndicator(),
+            MlRegimeRadarCryptoIndicator: () => new MlRegimeRadarCryptoIndicator()
+        };
+
+        let resolvedConfig = indicatorConfig;
+        if (!resolvedConfig) {
+            const configPath = path.resolve(__dirname, '../../config/Indicator-Pipeline-Config.json');
+            if (fs.existsSync(configPath)) {
+                try {
+                    resolvedConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+                } catch (e) {
+                    Logger.warn(`[TradeSetupEngine] Konnte Indicator-Pipeline-Config.json nicht parsen: ${e.message}`);
+                }
+            }
+        }
+
+        const tradeList = resolvedConfig?.tradeSetupIndicators || resolvedConfig;
+
+        if (Array.isArray(tradeList)) {
+            const activeConfigs = tradeList
+                .filter(item => item && item.enabled !== false && registry[item.className])
+                .sort((a, b) => (a.reportOrder ?? 999) - (b.reportOrder ?? 999));
+
+            this.indicators = activeConfigs.map(item => {
+                const instance = registry[item.className]();
+                instance.__executionRules = item.executionRules || null;
+                return instance;
+            });
+        } else {
+            // Fallback: Orchestrierung der Topf-B Indikatoren
+            this.indicators = [
+                new GoldVolumeClimaxIndicator(),
+                new GoldCapitulationIndicator(),
+                new GdxSellingClimaxIndicator(),
+                new GdxBuyingClimaxIndicator(),
+                new GdxGoldDivergenceIndicator(),
+                new DxyParabolicClimaxIndicator(),
+                new BitcoinDivergenceIndicator(),
+                new CryptoCycleDivergenceIndicator(),
+                new CryptoPortfolioExitIndicator(safeConfig),
+                new BtcTrailingStopIndicator(),
+                new BitcoinSellingClimaxIndicator(),
+                new TechCycleRadarIndicator(),
+                new MlRegimeRadarBtcIndicator(),
+                new MlRegimeRadarCryptoIndicator()
+            ];
+        }
     }
 
     _determineTargetAsset(indicator) {
@@ -43,6 +95,33 @@ export class TradeSetupEngine {
         if (name.includes('Tech') || name.includes('QQQ')) return 'QQQ';
         if (name.includes('SPY')) return 'SPY';
         return 'MACRO';
+    }
+
+    _applyExecutionRules(action, indicator, regime, vetos) {
+        const rules = indicator.__executionRules;
+
+        if (regime === 'FLASH_CRASH') {
+            const allowInFlashCrash = rules?.allowInFlashCrash ?? (indicator.name.includes('Capitulation') || indicator.name.includes('Selling Climax'));
+            if (!allowInFlashCrash) {
+                action.blocked = true;
+                action.blockReason = 'FLASH_CRASH_BLOCKS_RISK_ON';
+            }
+        } 
+        else if (regime === 'BEAR_MARKET') {
+            if (rules?.blockedByRegimes?.includes('BEAR_MARKET') || indicator.name === 'Tech-Zyklus Radar (SMH vs IGV)') {
+                action.blocked = true;
+                action.blockReason = rules?.blockReason || 'BEAR_MARKET_BLOCKS_TECH_BREAKOUT';
+            }
+            if (vetos.includes('DELEVERAGING_ONGOING')) {
+                action.scaleDown = true;
+            }
+        }
+        else if (regime === 'LATE_CYCLE_EUPHORIA') {
+            if (rules?.blockedByRegimes?.includes('LATE_CYCLE_EUPHORIA')) {
+                action.blocked = true;
+                action.blockReason = rules?.blockReason || 'LATE_CYCLE_EUPHORIA_BLOCKS_ENTRY';
+            }
+        }
     }
 
     evaluate(groupedData, macroStates) {
@@ -64,12 +143,10 @@ export class TradeSetupEngine {
 
             actionsByDate[dateStr] = [];
 
-            // Fallback: Keine gültigen Daten für diesen Tag
             if (!currentDay || !currentDay.assets) {
                 continue;
             }
 
-            // Makro-Regime vom "Wetterfrosch" holen (Fallback auf NORMAL)
             const macroState = macroStates && macroStates[dateStr] ? macroStates[dateStr] : { regime: 'NORMAL', vetos: [], liquidityStatus: 'NORMAL' };
             const regime = macroState.regime;
             const vetos = macroState.vetos || [];
@@ -79,15 +156,12 @@ export class TradeSetupEngine {
             for (const indicator of this.indicators) {
                 const result = indicator.evaluate(timeline);
                 
-                // Wir filtern UNKNOWN und uninteressante (OK) Signale heraus,
-                // ES SEI DENN wir wollen auch "OK" tracken. Wir konzentrieren uns auf Actions (WARNING/CRITICAL).
                 if (!result || result.status === 'UNKNOWN' || result.status === 'OK') {
                     continue;
                 }
 
                 const targetAsset = this._determineTargetAsset(indicator);
 
-                // Generiere ein TradeAction-Objekt
                 const action = {
                     indicator: indicator.name,
                     category: result.category || indicator.category,
@@ -100,37 +174,7 @@ export class TradeSetupEngine {
                     blockReason: null
                 };
 
-                // --- EXECUTION BLOCKING LOGIC ---
-                // Hier entscheidet die Engine, ob ein Signal durch das Makro-Wetter blockiert wird
-
-                if (regime === 'FLASH_CRASH') {
-                    // In einem Flash Crash verbieten wir Breakouts und reguläre Long-Setups.
-                    // Nur Capitulation / Selling Climax Indikatoren dürfen durch!
-                    const isCapitulation = indicator.name.includes('Capitulation') || indicator.name.includes('Selling Climax');
-                    
-                    if (!isCapitulation) {
-                        action.blocked = true;
-                        action.blockReason = 'FLASH_CRASH_BLOCKS_RISK_ON';
-                    }
-                } 
-                else if (regime === 'BEAR_MARKET') {
-                    // Im Bärenmarkt verbieten wir riskante Tech-Longs
-                    if (indicator.name === 'Tech-Zyklus Radar (SMH vs IGV)') {
-                        action.blocked = true;
-                        action.blockReason = 'BEAR_MARKET_BLOCKS_TECH_BREAKOUT';
-                    }
-                    // Vetos könnten auch Skalierungen erzwingen (z.B. halbe Positionsgröße)
-                    if (vetos.includes('DELEVERAGING_ONGOING')) {
-                        action.scaleDown = true; // Empfehlung für Positionsgröße
-                    }
-                }
-                else if (regime === 'LATE_CYCLE_EUPHORIA') {
-                    // In der Euphorie blockieren wir späte Einstiege
-                    const isBuyingClimax = indicator.name.includes('Buying Climax');
-                    if (!isBuyingClimax) {
-                        // TODO: Je nach Strategie blockieren
-                    }
-                }
+                this._applyExecutionRules(action, indicator, regime, vetos);
 
                 rawActions.push(action);
             }

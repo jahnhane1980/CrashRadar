@@ -100,4 +100,27 @@ describe('TradeSetupEngine Tranchen-Skalierung', () => {
         expect(dayActions[0].trancheLevel).toBe(3);
         expect(dayActions[0].targetAllocationPct).toBe(100);
     });
+
+    it('sollte nur aktive Trade-Indikatoren instanziieren und nach reportOrder sortieren', () => {
+        const config = [
+            {
+                id: 'gold_capitulation',
+                name: '[INVEST] Gold Capitulation & Healing (2-Step)',
+                className: 'GoldCapitulationIndicator',
+                reportOrder: 1,
+                enabled: true
+            },
+            {
+                id: 'btc_trailing_stop',
+                name: 'BTC Trailing Stop Warnung (Makro-Radar)',
+                className: 'BtcTrailingStopIndicator',
+                reportOrder: 2,
+                enabled: false
+            }
+        ];
+
+        const customEngine = new TradeSetupEngine(undefined, config);
+        expect(customEngine.indicators.length).toBe(1);
+        expect(customEngine.indicators[0].name).toBe('[INVEST] Gold Capitulation & Healing (2-Step)');
+    });
 });

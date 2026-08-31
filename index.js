@@ -110,7 +110,17 @@ export async function runCLI(argv) {
           cycleConfig = JSON.parse(fs.readFileSync(cyclePath, 'utf8'));
         }
 
-        const engine = new IndicatorEngine(notificationConfig, cycleConfig);
+        const pipelineConfigPath = path.resolve(process.cwd(), 'config/Indicator-Pipeline-Config.json');
+        let indicatorPipelineConfig = null;
+        if (fs.existsSync(pipelineConfigPath)) {
+          try {
+            indicatorPipelineConfig = JSON.parse(fs.readFileSync(pipelineConfigPath, 'utf8'));
+          } catch (e) {
+            Logger.warn(`[Config] Konnte Indicator-Pipeline-Config.json nicht parsen: ${e.message}`);
+          }
+        }
+
+        const engine = new IndicatorEngine(notificationConfig, cycleConfig, indicatorPipelineConfig);
         
         // 1. Ausgabe im Terminal (mit Farben)
         engine.run(groupedData);

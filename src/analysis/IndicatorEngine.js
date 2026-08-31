@@ -1,21 +1,40 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { MathUtils } from '../utils/MathUtils.js';
 import { Logger } from '../core/Logger.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 import { MacroRegimeEngine } from './MacroRegimeEngine.js';
 import { TradeSetupEngine } from './TradeSetupEngine.js';
 import { NotificationManager } from '../services/NotificationManager.js';
 
 export class IndicatorEngine {
-  constructor(notificationConfig = { topics: {}, indicators: {} }, cycleConfig = { MACRO_CYCLE: { lastBtcBottomDate: '2022-11-21', dangerWindowStartDays: 970 } }) {
+  constructor(
+    notificationConfig = { topics: {}, indicators: {} },
+    cycleConfig = { MACRO_CYCLE: { lastBtcBottomDate: '2022-11-21', dangerWindowStartDays: 970 } },
+    indicatorPipelineConfig = null
+  ) {
     this.notificationConfig = notificationConfig;
     this.cycleConfig = cycleConfig;
 
-    // --- NEUE ARCHITEKTUR ---
-    // Die 33 alten Einzel-Indikatoren wurden restlos entfernt und durch die beiden neuen Engines abgelöst.
-    this.macroRegimeEngine = new MacroRegimeEngine();
-    this.tradeSetupEngine = new TradeSetupEngine(() => this.cycleConfig);
+    let pipelineConfig = indicatorPipelineConfig;
+    if (!pipelineConfig) {
+      const configPath = path.resolve(__dirname, '../../config/Indicator-Pipeline-Config.json');
+      if (fs.existsSync(configPath)) {
+        try {
+          pipelineConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+        } catch (e) {
+          Logger.warn(`[IndicatorEngine] Konnte Indicator-Pipeline-Config.json nicht parsen: ${e.message}`);
+        }
+      }
+    }
+    this.indicatorPipelineConfig = pipelineConfig;
+
+    this.macroRegimeEngine = new MacroRegimeEngine(this.indicatorPipelineConfig?.macroIndicators || this.indicatorPipelineConfig);
+    this.tradeSetupEngine = new TradeSetupEngine(() => this.cycleConfig, this.indicatorPipelineConfig?.tradeSetupIndicators || this.indicatorPipelineConfig);
     this.notificationManager = new NotificationManager(this.notificationConfig);
   }
 

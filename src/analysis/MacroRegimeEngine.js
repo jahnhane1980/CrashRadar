@@ -1,3 +1,11 @@
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { Logger } from '../core/Logger.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 import { SmartDumbMoneyTopIndicator } from './indicators/SmartDumbMoneyTopIndicator.js';
 import { FiscalFedLiquidityIndicator } from './indicators/FiscalFedLiquidityIndicator.js';
 import { SmartDumbMoneyBottomIndicator } from './indicators/SmartDumbMoneyBottomIndicator.js';
@@ -18,28 +26,132 @@ import { MlRegimeRadarMacroIndicator } from './indicators/MlRegimeRadarMacroIndi
 import { TreasuryCapacityRadarIndicator } from './indicators/TreasuryCapacityRadarIndicator.js';
 
 export class MacroRegimeEngine {
-    constructor() {
-        // Wir orchestrieren ausschließlich bestehende Indikatoren aus Topf A
-        this.indicators = [
-            new SmartDumbMoneyTopIndicator(),
-            new SmartDumbMoneyBottomIndicator(),
-            new YieldCurveIndicator(),
-            new RedAlertIndicator(),
-            new MarginDebtIndicator(),
-            new TgaIndicator(),
-            new PanicCapitulationIndicator(),
-            new BankReservesIndicator(),
-            new MaturityWallIndicator(),
-            new NfciIndicator(),
-            new ChallengerIndicator(),
-            new FiscalFedLiquidityIndicator(),
-            new StealthExitIndicator(),
-            new LaborMarketDivergenceIndicator(),
-            new InterestRateCycleIndicator(),
-            new DalioTwoStageRegimeIndicator(),
-            new MlRegimeRadarMacroIndicator(),
-            new TreasuryCapacityRadarIndicator()
-        ];
+    constructor(indicatorConfig = null) {
+        const registry = {
+            SmartDumbMoneyTopIndicator,
+            SmartDumbMoneyBottomIndicator,
+            YieldCurveIndicator,
+            RedAlertIndicator,
+            MarginDebtIndicator,
+            TgaIndicator,
+            PanicCapitulationIndicator,
+            BankReservesIndicator,
+            MaturityWallIndicator,
+            NfciIndicator,
+            ChallengerIndicator,
+            FiscalFedLiquidityIndicator,
+            StealthExitIndicator,
+            LaborMarketDivergenceIndicator,
+            InterestRateCycleIndicator,
+            DalioTwoStageRegimeIndicator,
+            MlRegimeRadarMacroIndicator,
+            TreasuryCapacityRadarIndicator
+        };
+
+        let resolvedConfig = indicatorConfig;
+        if (!resolvedConfig) {
+            const configPath = path.resolve(__dirname, '../../config/Indicator-Pipeline-Config.json');
+            if (fs.existsSync(configPath)) {
+                try {
+                    resolvedConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+                } catch (e) {
+                    Logger.warn(`[MacroRegimeEngine] Konnte Indicator-Pipeline-Config.json nicht parsen: ${e.message}`);
+                }
+            }
+        }
+
+        const macroList = resolvedConfig?.macroIndicators || resolvedConfig;
+
+        if (Array.isArray(macroList)) {
+            const activeConfigs = macroList
+                .filter(item => item && item.enabled !== false && registry[item.className])
+                .sort((a, b) => (a.reportOrder ?? 999) - (b.reportOrder ?? 999));
+
+            this.indicators = activeConfigs.map(item => {
+                const instance = new registry[item.className]();
+                instance.__rules = item.rules || null;
+                return instance;
+            });
+        } else {
+            // Fallback: Standard-Instanzen
+            this.indicators = [
+                new SmartDumbMoneyTopIndicator(),
+                new SmartDumbMoneyBottomIndicator(),
+                new YieldCurveIndicator(),
+                new RedAlertIndicator(),
+                new MarginDebtIndicator(),
+                new TgaIndicator(),
+                new PanicCapitulationIndicator(),
+                new BankReservesIndicator(),
+                new MaturityWallIndicator(),
+                new NfciIndicator(),
+                new ChallengerIndicator(),
+                new FiscalFedLiquidityIndicator(),
+                new StealthExitIndicator(),
+                new LaborMarketDivergenceIndicator(),
+                new InterestRateCycleIndicator(),
+                new DalioTwoStageRegimeIndicator(),
+                new MlRegimeRadarMacroIndicator(),
+                new TreasuryCapacityRadarIndicator()
+            ];
+        }
+    }
+
+    _applyRule(rule, state, result) {
+        if (!rule) return;
+
+        if (Array.isArray(rule.addVetos)) {
+            for (const v of rule.addVetos) {
+                if (!state.vetos.includes(v)) {
+                    state.vetos.push(v);
+                }
+            }
+        }
+
+        if (rule.setLiquidityStatus) {
+            state.liquidityStatus = rule.setLiquidityStatus;
+        }
+
+        if (rule.setRegimeIf) {
+            const allowedCurrent = Array.isArray(rule.setRegimeIf.currentRegime)
+                ? rule.setRegimeIf.currentRegime
+                : [rule.setRegimeIf.currentRegime];
+
+            if (allowedCurrent.includes(state.regime)) {
+                state.regime = rule.setRegimeIf.targetRegime;
+            }
+        }
+
+        if (rule.setRegime) {
+            const exceptions = rule.exceptIfRegime || rule.regimeOverrideExcept || [];
+            if (!exceptions.includes(state.regime)) {
+                state.regime = rule.setRegime;
+            }
+        }
+    }
+
+    _applyIndicatorRules(indicator, result, state) {
+        const rules = indicator.__rules;
+        if (!rules || !result) return;
+
+        if (rules.onMessageMatch && result.message) {
+            if (result.message.includes(rules.onMessageMatch.matchText)) {
+                this._applyRule(rules.onMessageMatch, state, result);
+            }
+        }
+
+        if (Array.isArray(rules.onStatusMatch)) {
+            const matchedRule = rules.onStatusMatch.find(r => r.status === result.status);
+            if (matchedRule) {
+                this._applyRule(matchedRule, state, result);
+            }
+        }
+
+        if (result.status === 'WARNING' && rules.onWarning) {
+            this._applyRule(rules.onWarning, state, result);
+        } else if (result.status === 'CRITICAL' && rules.onCritical) {
+            this._applyRule(rules.onCritical, state, result);
+        }
     }
 
     evaluate(groupedData) {
@@ -59,7 +171,6 @@ export class MacroRegimeEngine {
             const { dateStr, currentDay } = entries[i];
             timeline.push(currentDay);
 
-            // Fallback für Struktur-Chaos
             if (!currentDay || !currentDay.assets || !currentDay.macroGroups) {
                 states[dateStr] = {
                     regime: 'UNKNOWN',
@@ -70,16 +181,17 @@ export class MacroRegimeEngine {
                 continue;
             }
 
-            let regime = 'NORMAL';
-            let liquidityStatus = 'NORMAL';
-            let vetos = [];
-            let indicatorDetails = [];
+            const state = {
+                regime: 'NORMAL',
+                liquidityStatus: 'NORMAL',
+                vetos: [],
+                indicatorDetails: []
+            };
 
-            // Alle Indikatoren ausführen
             for (const indicator of this.indicators) {
                 const result = indicator.evaluate(timeline);
                 
-                indicatorDetails.push({
+                state.indicatorDetails.push({
                     name: indicator.name,
                     category: indicator.category,
                     status: (result && result.status) ? result.status : 'UNKNOWN',
@@ -89,133 +201,10 @@ export class MacroRegimeEngine {
 
                 if (!result || result.status === 'UNKNOWN') continue;
 
-                // 1. Flash Crash & Panik
-                if (indicator.name === 'Panik-Kapitulation (VIX + CBOE + RSI)' && result.status === 'CRITICAL') {
-                    regime = 'FLASH_CRASH';
-                    vetos.push('VIX_SPIKE_PANIC');
-                }
-                
-                // 2. Melt-Up Euphorie (Red Alert)
-                if (indicator.name === 'Red Alert (Bullenmarkt-Stirbt-Signal)' && result.status === 'CRITICAL') {
-                    // Falls nicht schon FLASH_CRASH gesetzt ist
-                    if (regime !== 'FLASH_CRASH') {
-                        regime = 'LATE_CYCLE_EUPHORIA';
-                    }
-                }
-
-                // 2.1 Smart vs Dumb Money (Top/Bottom)
-                if (indicator.name === 'Smart vs Dumb Money (The Top)' && result.status === 'CRITICAL') {
-                    if (regime !== 'FLASH_CRASH') {
-                        regime = 'LATE_CYCLE_EUPHORIA';
-                    }
-                }
-                // 2.1.1 Stealth Exit (DIX Dark Pool Divergenz)
-                if (indicator.name === 'Stealth Exit (DIX Dark Pool Divergenz)' && result.status === 'CRITICAL') {
-                    if (regime !== 'FLASH_CRASH') {
-                        regime = 'LATE_CYCLE_EUPHORIA';
-                    }
-                    vetos.push('STEALTH_EXIT_ACTIVE');
-                }
-                if (indicator.name === 'Smart vs Dumb Money (The Bottom)' && result.status === 'CRITICAL') {
-                    regime = 'FLASH_CRASH';
-                    vetos.push('SMART_MONEY_ACCUMULATION');
-                }
-
-                // 3. Deleveraging & Bear Market Warnung (Margin Debt)
-                if (indicator.name === 'Margin Debt (Gier & Hebel)' && (result.status === 'WARNING' || result.status === 'CRITICAL')) {
-                    vetos.push('DELEVERAGING_ONGOING');
-                    // Wenn kein Flash Crash oder Melt-Up aktiv, stufen wir als Bear Market ein
-                    if (regime === 'NORMAL') {
-                        regime = 'BEAR_MARKET';
-                    }
-                }
-
-                // 4. Yield Curve Panic (Un-Inverting)
-                if (indicator.name === 'Yield Curve (T10Y2Y)' && result.status === 'CRITICAL') {
-                    vetos.push('YIELD_CURVE_PANIC');
-                }
-
-                // 5. Stealth Stimulus (TGA)
-                if (indicator.name === 'Treasury General Account (TGA)' && result.message && result.message.includes('Stealth-Stimulus')) {
-                    liquidityStatus = 'STIMULUS_ACTIVE';
-                }
-                
-                // Weitere Vetos aus Topf A (z.B. Bank Reserves, NFCI, etc.)
-                if (indicator.name === 'Bank Reserves' && result.status === 'CRITICAL') {
-                    vetos.push('BANK_RESERVES_CRITICAL');
-                }
-                if (indicator.name === 'Maturity Wall' && result.status === 'CRITICAL') {
-                    vetos.push('MATURITY_WALL_CRITICAL');
-                }
-                if (indicator.name === 'Chicago Fed Stress Index (NFCI)' && result.status === 'CRITICAL') {
-                    vetos.push('NFCI_STRESS_PANIC');
-                }
-                if (indicator.name === 'Challenger Job Cuts (Entlassungswelle)' && result.status === 'CRITICAL') {
-                    vetos.push('CHALLENGER_CRITICAL_LAYOFFS');
-                    if (regime === 'NORMAL') {
-                        regime = 'BEAR_MARKET';
-                    }
-                }
-                
-                // 6. Labor Market Divergence (Qualitativ & Quantitativ)
-                if (indicator.name === 'LaborMarketDivergenceIndicator') {
-                    if (result.status === 'COINCIDENT_ALERT') {
-                        vetos.push('LABOR_MARKET_CRASH_WARNING');
-                        if (regime !== 'FLASH_CRASH') {
-                            regime = 'BEAR_MARKET';
-                        }
-                    } else if (result.status === 'LEADING_WARNING') {
-                        vetos.push('LABOR_MARKET_QUALITY_WARNING');
-                        if (regime === 'NORMAL') {
-                            regime = 'LATE_CYCLE_EUPHORIA';
-                        }
-                    }
-                }
-                // 7. Zins-Zyklus (RateShock + ARCC + PolicyError)
-                if (indicator.name === 'Macro Interest Rate Cycle (RateShock + ARCC + PolicyError)') {
-                    if (result.status === 'CRITICAL') {
-                        vetos.push('INTEREST_RATE_CYCLE_CRITICAL');
-                        if (regime === 'NORMAL' || regime === 'LATE_CYCLE_EUPHORIA') {
-                            regime = 'BEAR_MARKET';
-                        }
-                    } else if (result.status === 'WARNING') {
-                        vetos.push('INTEREST_RATE_CYCLE_WARNING');
-                    }
-                }
-                // 8. Dalio 2-Stufen Spätzyklus & Kipppunkt
-                if (indicator.name === 'Dalio Late-Stage & Tipping Point Indicator (2-Stufen)') {
-                    if (result.status === 'CRITICAL') {
-                        vetos.push('DALIO_TIPPING_POINT_ACTIVE');
-                        if (regime !== 'FLASH_CRASH') {
-                            regime = 'BEAR_MARKET';
-                        }
-                    } else if (result.status === 'WARNING') {
-                        vetos.push('DALIO_LATE_STAGE_WATCHLIST');
-                        if (regime === 'NORMAL') {
-                            regime = 'LATE_CYCLE_EUPHORIA';
-                        }
-                    }
-                }
-
-                // 9. Treasury & Money Market Capacity Radar (Dual-Engine + Buybacks)
-                if (indicator.name === 'Treasury & Money Market Capacity Radar') {
-                    if (result.status === 'CRITICAL') {
-                        vetos.push('TREASURY_CAPACITY_CRITICAL');
-                        if (regime !== 'FLASH_CRASH') {
-                            regime = 'BEAR_MARKET';
-                        }
-                    } else if (result.status === 'WARNING') {
-                        vetos.push('TREASURY_CAPACITY_WARNING');
-                    }
-                }
+                this._applyIndicatorRules(indicator, result, state);
             }
 
-            states[dateStr] = {
-                regime,
-                liquidityStatus,
-                vetos,
-                indicatorDetails
-            };
+            states[dateStr] = state;
         }
 
         return states;

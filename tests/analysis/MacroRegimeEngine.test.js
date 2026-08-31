@@ -212,5 +212,36 @@ describe('MacroRegimeEngine - Chaos & Edge Case Testing', () => {
             expect(crashState.vetos).toContain('CHALLENGER_CRITICAL_LAYOFFS');
             expect(crashState.regime).toBe('BEAR_MARKET');
         });
+
+        it('CONFIG: Sollte nur aktive Indikatoren instanziieren und nach reportOrder sortieren', () => {
+            const config = [
+                {
+                    id: 'treasury_capacity_radar',
+                    name: 'Treasury & Money Market Capacity Radar',
+                    className: 'TreasuryCapacityRadarIndicator',
+                    reportOrder: 1,
+                    enabled: true
+                },
+                {
+                    id: 'yield_curve',
+                    name: 'Yield Curve (T10Y2Y)',
+                    className: 'YieldCurveIndicator',
+                    reportOrder: 2,
+                    enabled: true
+                },
+                {
+                    id: 'red_alert',
+                    name: 'Red Alert (Bullenmarkt-Stirbt-Signal)',
+                    className: 'RedAlertIndicator',
+                    reportOrder: 3,
+                    enabled: false
+                }
+            ];
+
+            const customEngine = new MacroRegimeEngine(config);
+            expect(customEngine.indicators.length).toBe(2);
+            expect(customEngine.indicators[0].name).toBe('Treasury & Money Market Capacity Radar');
+            expect(customEngine.indicators[1].name).toBe('Yield Curve (T10Y2Y)');
+        });
     });
 });

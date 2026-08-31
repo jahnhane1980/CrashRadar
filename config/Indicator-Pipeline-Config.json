@@ -1,0 +1,476 @@
+{
+  "regimePriority": {
+    "FLASH_CRASH": 100,
+    "BEAR_MARKET": 50,
+    "LATE_CYCLE_EUPHORIA": 25,
+    "NORMAL": 0
+  },
+  "stages": [
+    {
+      "id": "STAGE_1_EARLY_WARNING",
+      "name": "1. Frühwarn-System (Liquiditätsentzug)",
+      "category": "EARLY_WARNING",
+      "enabled": true
+    },
+    {
+      "id": "STAGE_2_SMART_MONEY",
+      "name": "2. Smart Money & Distribution",
+      "category": "EARLY_WARNING",
+      "enabled": true
+    },
+    {
+      "id": "STAGE_3_ACUTE_PANIC",
+      "name": "3. Akute Notbremse (Crash & Stress)",
+      "category": "ACUTE_PANIC",
+      "enabled": true
+    },
+    {
+      "id": "STAGE_4_BOTTOM_FINDER",
+      "name": "4. Boden-Finder (Kapitulation & Einstieg)",
+      "category": "BOTTOM_FINDER",
+      "enabled": true
+    },
+    {
+      "id": "STAGE_5_TRADE_SETUPS",
+      "name": "5. Asset Trade Actions & Tranchen",
+      "category": "TRADE_SETUP",
+      "enabled": true
+    }
+  ],
+  "macroIndicators": [
+    {
+      "id": "smart_dumb_money_top",
+      "name": "Smart vs Dumb Money (The Top)",
+      "className": "SmartDumbMoneyTopIndicator",
+      "stage": "STAGE_3_ACUTE_PANIC",
+      "reportOrder": 1,
+      "enabled": true,
+      "rules": {
+        "onCritical": {
+          "setRegime": "LATE_CYCLE_EUPHORIA",
+          "exceptIfRegime": ["FLASH_CRASH"]
+        }
+      }
+    },
+    {
+      "id": "smart_dumb_money_bottom",
+      "name": "Smart vs Dumb Money (The Bottom)",
+      "className": "SmartDumbMoneyBottomIndicator",
+      "stage": "STAGE_4_BOTTOM_FINDER",
+      "reportOrder": 2,
+      "enabled": true,
+      "rules": {
+        "onCritical": {
+          "addVetos": ["SMART_MONEY_ACCUMULATION"],
+          "setRegime": "FLASH_CRASH"
+        }
+      }
+    },
+    {
+      "id": "yield_curve",
+      "name": "Yield Curve (T10Y2Y)",
+      "className": "YieldCurveIndicator",
+      "stage": "STAGE_1_EARLY_WARNING",
+      "reportOrder": 3,
+      "enabled": true,
+      "rules": {
+        "onCritical": {
+          "addVetos": ["YIELD_CURVE_PANIC"]
+        }
+      }
+    },
+    {
+      "id": "red_alert",
+      "name": "Red Alert (Bullenmarkt-Stirbt-Signal)",
+      "className": "RedAlertIndicator",
+      "stage": "STAGE_3_ACUTE_PANIC",
+      "reportOrder": 4,
+      "enabled": true,
+      "rules": {
+        "onCritical": {
+          "setRegime": "LATE_CYCLE_EUPHORIA",
+          "exceptIfRegime": ["FLASH_CRASH"]
+        }
+      }
+    },
+    {
+      "id": "margin_debt",
+      "name": "Margin Debt (Gier & Hebel)",
+      "className": "MarginDebtIndicator",
+      "stage": "STAGE_1_EARLY_WARNING",
+      "reportOrder": 5,
+      "enabled": true,
+      "rules": {
+        "onWarning": {
+          "addVetos": ["DELEVERAGING_ONGOING"],
+          "setRegimeIf": { "currentRegime": ["NORMAL"], "targetRegime": "BEAR_MARKET" }
+        },
+        "onCritical": {
+          "addVetos": ["DELEVERAGING_ONGOING"],
+          "setRegimeIf": { "currentRegime": ["NORMAL"], "targetRegime": "BEAR_MARKET" }
+        }
+      }
+    },
+    {
+      "id": "tga_indicator",
+      "name": "Treasury General Account (TGA)",
+      "className": "TgaIndicator",
+      "stage": "STAGE_1_EARLY_WARNING",
+      "reportOrder": 6,
+      "enabled": true,
+      "rules": {
+        "onMessageMatch": {
+          "matchText": "Stealth-Stimulus",
+          "setLiquidityStatus": "STIMULUS_ACTIVE"
+        }
+      }
+    },
+    {
+      "id": "panic_capitulation",
+      "name": "Panik-Kapitulation (VIX + CBOE + RSI)",
+      "className": "PanicCapitulationIndicator",
+      "stage": "STAGE_4_BOTTOM_FINDER",
+      "reportOrder": 7,
+      "enabled": true,
+      "rules": {
+        "onCritical": {
+          "addVetos": ["VIX_SPIKE_PANIC"],
+          "setRegime": "FLASH_CRASH"
+        }
+      }
+    },
+    {
+      "id": "bank_reserves",
+      "name": "Bank Reserves",
+      "className": "BankReservesIndicator",
+      "stage": "STAGE_1_EARLY_WARNING",
+      "reportOrder": 8,
+      "enabled": true,
+      "rules": {
+        "onCritical": {
+          "addVetos": ["BANK_RESERVES_CRITICAL"]
+        }
+      }
+    },
+    {
+      "id": "maturity_wall",
+      "name": "Maturity Wall",
+      "className": "MaturityWallIndicator",
+      "stage": "STAGE_1_EARLY_WARNING",
+      "reportOrder": 9,
+      "enabled": true,
+      "rules": {
+        "onCritical": {
+          "addVetos": ["MATURITY_WALL_CRITICAL"]
+        }
+      }
+    },
+    {
+      "id": "nfci_stress",
+      "name": "Chicago Fed Stress Index (NFCI)",
+      "className": "NfciIndicator",
+      "stage": "STAGE_3_ACUTE_PANIC",
+      "reportOrder": 10,
+      "enabled": true,
+      "rules": {
+        "onCritical": {
+          "addVetos": ["NFCI_STRESS_PANIC"]
+        }
+      }
+    },
+    {
+      "id": "challenger_job_cuts",
+      "name": "Challenger Job Cuts (Entlassungswelle)",
+      "className": "ChallengerIndicator",
+      "stage": "STAGE_1_EARLY_WARNING",
+      "reportOrder": 11,
+      "enabled": true,
+      "rules": {
+        "onCritical": {
+          "addVetos": ["CHALLENGER_CRITICAL_LAYOFFS"],
+          "setRegimeIf": { "currentRegime": ["NORMAL"], "targetRegime": "BEAR_MARKET" }
+        }
+      }
+    },
+    {
+      "id": "fiscal_fed_liquidity",
+      "name": "Fiscal-FED Liquidity (Plumbing)",
+      "className": "FiscalFedLiquidityIndicator",
+      "stage": "STAGE_2_SMART_MONEY",
+      "reportOrder": 12,
+      "enabled": true
+    },
+    {
+      "id": "stealth_exit_dix",
+      "name": "Stealth Exit (DIX Dark Pool Divergenz)",
+      "className": "StealthExitIndicator",
+      "stage": "STAGE_2_SMART_MONEY",
+      "reportOrder": 13,
+      "enabled": true,
+      "rules": {
+        "onCritical": {
+          "addVetos": ["STEALTH_EXIT_ACTIVE"],
+          "setRegime": "LATE_CYCLE_EUPHORIA",
+          "exceptIfRegime": ["FLASH_CRASH"]
+        }
+      }
+    },
+    {
+      "id": "labor_market_divergence",
+      "name": "LaborMarketDivergenceIndicator",
+      "className": "LaborMarketDivergenceIndicator",
+      "stage": "STAGE_1_EARLY_WARNING",
+      "reportOrder": 14,
+      "enabled": true,
+      "rules": {
+        "onStatusMatch": [
+          {
+            "status": "COINCIDENT_ALERT",
+            "addVetos": ["LABOR_MARKET_CRASH_WARNING"],
+            "setRegime": "BEAR_MARKET",
+            "exceptIfRegime": ["FLASH_CRASH"]
+          },
+          {
+            "status": "LEADING_WARNING",
+            "addVetos": ["LABOR_MARKET_QUALITY_WARNING"],
+            "setRegimeIf": { "currentRegime": ["NORMAL"], "targetRegime": "LATE_CYCLE_EUPHORIA" }
+          }
+        ]
+      }
+    },
+    {
+      "id": "macro_interest_rate_cycle",
+      "name": "Macro Interest Rate Cycle (RateShock + ARCC + PolicyError)",
+      "className": "InterestRateCycleIndicator",
+      "stage": "STAGE_1_EARLY_WARNING",
+      "reportOrder": 15,
+      "enabled": true,
+      "rules": {
+        "onWarning": {
+          "addVetos": ["INTEREST_RATE_CYCLE_WARNING"]
+        },
+        "onCritical": {
+          "addVetos": ["INTEREST_RATE_CYCLE_CRITICAL"],
+          "setRegimeIf": { "currentRegime": ["NORMAL", "LATE_CYCLE_EUPHORIA"], "targetRegime": "BEAR_MARKET" }
+        }
+      }
+    },
+    {
+      "id": "dalio_two_stage",
+      "name": "Dalio Late-Stage & Tipping Point Indicator (2-Stufen)",
+      "className": "DalioTwoStageRegimeIndicator",
+      "stage": "STAGE_1_EARLY_WARNING",
+      "reportOrder": 16,
+      "enabled": true,
+      "rules": {
+        "onWarning": {
+          "addVetos": ["DALIO_LATE_STAGE_WATCHLIST"],
+          "setRegimeIf": { "currentRegime": ["NORMAL"], "targetRegime": "LATE_CYCLE_EUPHORIA" }
+        },
+        "onCritical": {
+          "addVetos": ["DALIO_TIPPING_POINT_ACTIVE"],
+          "setRegime": "BEAR_MARKET",
+          "exceptIfRegime": ["FLASH_CRASH"]
+        }
+      }
+    },
+    {
+      "id": "ml_regime_radar_macro",
+      "name": "ML Regime Radar (Makro)",
+      "className": "MlRegimeRadarMacroIndicator",
+      "stage": "STAGE_1_EARLY_WARNING",
+      "reportOrder": 17,
+      "enabled": true
+    },
+    {
+      "id": "treasury_capacity_radar",
+      "name": "Treasury & Money Market Capacity Radar",
+      "className": "TreasuryCapacityRadarIndicator",
+      "stage": "STAGE_1_EARLY_WARNING",
+      "reportOrder": 18,
+      "enabled": true,
+      "rules": {
+        "onWarning": {
+          "addVetos": ["TREASURY_CAPACITY_WARNING"]
+        },
+        "onCritical": {
+          "addVetos": ["TREASURY_CAPACITY_CRITICAL"],
+          "setRegime": "BEAR_MARKET",
+          "exceptIfRegime": ["FLASH_CRASH"]
+        }
+      }
+    }
+  ],
+  "tradeSetupIndicators": [
+    {
+      "id": "gold_volume_climax",
+      "name": "[INVEST] Gold Volume Climax (Panik/FOMO)",
+      "className": "GoldVolumeClimaxIndicator",
+      "stage": "STAGE_5_TRADE_SETUPS",
+      "targetAsset": "GOLD",
+      "reportOrder": 1,
+      "enabled": true,
+      "executionRules": {
+        "allowInFlashCrash": false
+      }
+    },
+    {
+      "id": "gold_capitulation",
+      "name": "[INVEST] Gold Capitulation & Healing (2-Step)",
+      "className": "GoldCapitulationIndicator",
+      "stage": "STAGE_5_TRADE_SETUPS",
+      "targetAsset": "GOLD",
+      "reportOrder": 2,
+      "enabled": true,
+      "executionRules": {
+        "allowInFlashCrash": true
+      }
+    },
+    {
+      "id": "gdx_selling_climax",
+      "name": "[INVEST] GDX Selling Climax (Boden-Suche)",
+      "className": "GdxSellingClimaxIndicator",
+      "stage": "STAGE_5_TRADE_SETUPS",
+      "targetAsset": "GOLD",
+      "reportOrder": 3,
+      "enabled": true,
+      "executionRules": {
+        "allowInFlashCrash": true
+      }
+    },
+    {
+      "id": "gdx_buying_climax",
+      "name": "[INVEST] GDX Buying Climax (Top-Gefahr)",
+      "className": "GdxBuyingClimaxIndicator",
+      "stage": "STAGE_5_TRADE_SETUPS",
+      "targetAsset": "GOLD",
+      "reportOrder": 4,
+      "enabled": true,
+      "executionRules": {
+        "allowInFlashCrash": false
+      }
+    },
+    {
+      "id": "gdx_gold_divergence",
+      "name": "[INVEST] GDX vs Gold Divergenz",
+      "className": "GdxGoldDivergenceIndicator",
+      "stage": "STAGE_5_TRADE_SETUPS",
+      "targetAsset": "GOLD",
+      "reportOrder": 5,
+      "enabled": true,
+      "executionRules": {
+        "allowInFlashCrash": false
+      }
+    },
+    {
+      "id": "dxy_parabolic_climax",
+      "name": "[INVEST] DXY Parabolic Climax (Dollar-Top)",
+      "className": "DxyParabolicClimaxIndicator",
+      "stage": "STAGE_5_TRADE_SETUPS",
+      "targetAsset": "MACRO",
+      "reportOrder": 6,
+      "enabled": true,
+      "executionRules": {
+        "allowInFlashCrash": false
+      }
+    },
+    {
+      "id": "bitcoin_divergence",
+      "name": "Bitcoin Bearish/Bullish Divergenz",
+      "className": "BitcoinDivergenceIndicator",
+      "stage": "STAGE_5_TRADE_SETUPS",
+      "targetAsset": "BTC",
+      "reportOrder": 7,
+      "enabled": true,
+      "executionRules": {
+        "allowInFlashCrash": false
+      }
+    },
+    {
+      "id": "crypto_cycle_divergence",
+      "name": "Krypto Zyklus Divergenz",
+      "className": "CryptoCycleDivergenceIndicator",
+      "stage": "STAGE_5_TRADE_SETUPS",
+      "targetAsset": "BTC",
+      "reportOrder": 8,
+      "enabled": true,
+      "executionRules": {
+        "allowInFlashCrash": false
+      }
+    },
+    {
+      "id": "crypto_portfolio_exit",
+      "name": "Krypto Portfolio-Exit (MSTR/COIN)",
+      "className": "CryptoPortfolioExitIndicator",
+      "stage": "STAGE_5_TRADE_SETUPS",
+      "targetAsset": "BTC",
+      "reportOrder": 9,
+      "enabled": true,
+      "executionRules": {
+        "allowInFlashCrash": false
+      }
+    },
+    {
+      "id": "btc_trailing_stop",
+      "name": "BTC Trailing Stop Warnung (Makro-Radar)",
+      "className": "BtcTrailingStopIndicator",
+      "stage": "STAGE_5_TRADE_SETUPS",
+      "targetAsset": "BTC",
+      "reportOrder": 10,
+      "enabled": true,
+      "executionRules": {
+        "allowInFlashCrash": false
+      }
+    },
+    {
+      "id": "bitcoin_selling_climax",
+      "name": "Bitcoin Selling Climax (Panik-Boden)",
+      "className": "BitcoinSellingClimaxIndicator",
+      "stage": "STAGE_5_TRADE_SETUPS",
+      "targetAsset": "BTC",
+      "reportOrder": 11,
+      "enabled": true,
+      "executionRules": {
+        "allowInFlashCrash": true
+      }
+    },
+    {
+      "id": "tech_cycle_radar",
+      "name": "Tech-Zyklus Radar (SMH vs IGV)",
+      "className": "TechCycleRadarIndicator",
+      "stage": "STAGE_5_TRADE_SETUPS",
+      "targetAsset": "QQQ",
+      "reportOrder": 12,
+      "enabled": true,
+      "executionRules": {
+        "blockedByRegimes": ["BEAR_MARKET"],
+        "blockReason": "BEAR_MARKET_BLOCKS_TECH_BREAKOUT",
+        "allowInFlashCrash": false
+      }
+    },
+    {
+      "id": "ml_regime_radar_btc",
+      "name": "ML Regime Radar (BTC)",
+      "className": "MlRegimeRadarBtcIndicator",
+      "stage": "STAGE_5_TRADE_SETUPS",
+      "targetAsset": "BTC",
+      "reportOrder": 13,
+      "enabled": true,
+      "executionRules": {
+        "allowInFlashCrash": false
+      }
+    },
+    {
+      "id": "ml_regime_radar_crypto",
+      "name": "ML Regime Radar (Krypto)",
+      "className": "MlRegimeRadarCryptoIndicator",
+      "stage": "STAGE_5_TRADE_SETUPS",
+      "targetAsset": "BTC",
+      "reportOrder": 14,
+      "enabled": true,
+      "executionRules": {
+        "allowInFlashCrash": false
+      }
+    }
+  ]
+}

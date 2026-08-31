@@ -73,4 +73,36 @@ describe('IndicatorEngine V2 (New Architecture)', () => {
     expect(status).toBeDefined();
     expect(status.title).toContain('CrashRadar: Makro-Wetterbericht');
   });
+
+  it('sollte Indikatoren basierend auf indicatorPipelineConfig de- und aktivieren können', () => {
+    const customConfig = {
+      macroIndicators: [
+        {
+          id: 'yield_curve',
+          name: 'Yield Curve (T10Y2Y)',
+          className: 'YieldCurveIndicator',
+          reportOrder: 1,
+          enabled: true
+        },
+        {
+          id: 'margin_debt',
+          name: 'Margin Debt (Gier & Hebel)',
+          className: 'MarginDebtIndicator',
+          reportOrder: 2,
+          enabled: false
+        }
+      ],
+      tradeSetupIndicators: []
+    };
+
+    const customEngine = new IndicatorEngine(undefined, undefined, customConfig);
+    expect(customEngine.macroRegimeEngine.indicators.length).toBe(1);
+    expect(customEngine.macroRegimeEngine.indicators[0].name).toBe('Yield Curve (T10Y2Y)');
+    expect(customEngine.tradeSetupEngine.indicators.length).toBe(0);
+
+    const data = createFakeData();
+    const status = customEngine.getDailyStatusReport(data);
+    expect(status.message).toContain('Yield Curve');
+    expect(status.message).not.toContain('Margin Debt');
+  });
 });
