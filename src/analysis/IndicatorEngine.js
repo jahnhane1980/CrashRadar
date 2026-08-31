@@ -35,7 +35,7 @@ export class IndicatorEngine {
 
     this.macroRegimeEngine = new MacroRegimeEngine(this.indicatorPipelineConfig?.macroIndicators || this.indicatorPipelineConfig);
     this.tradeSetupEngine = new TradeSetupEngine(() => this.cycleConfig, this.indicatorPipelineConfig?.tradeSetupIndicators || this.indicatorPipelineConfig);
-    this.notificationManager = new NotificationManager(this.notificationConfig);
+    this.notificationManager = new NotificationManager(this.notificationConfig, this.indicatorPipelineConfig);
   }
 
   _evaluateState(groupedData) {

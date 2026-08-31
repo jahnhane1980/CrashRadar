@@ -1,9 +1,10 @@
 export class NotificationManager {
-    constructor(notificationConfig = {}) {
+    constructor(notificationConfig = {}, indicatorPipelineConfig = null) {
         this.notificationConfig = {
             topics: notificationConfig?.topics || {},
             indicators: notificationConfig?.indicators || {}
         };
+        this.indicatorPipelineConfig = indicatorPipelineConfig;
     }
 
     generateReport(macroState, tradeActions, dateStr, cleanText = false) {
@@ -169,12 +170,20 @@ export class NotificationManager {
                 return '🟢';
             };
 
-            const groups = [
+            const defaultGroups = [
                 { id: 'EARLY_WARNING', title: '🌪️ 1. Frühwarn-System (Liquiditätsentzug)' },
                 { id: 'ACUTE_PANIC', title: '🚨 2. Akut-Sensoren (Stress & Überhitzung)' },
                 { id: 'BOTTOM_FINDER', title: '⚓ 3. Boden-Finder (Kapitulation & Einstieg)' },
                 { id: 'MACRO_CONTEXT', title: '🌍 4. Zyklus-Begleitumfeld' }
             ];
+
+            const stagesConfig = this.indicatorPipelineConfig?.stages;
+            const groups = Array.isArray(stagesConfig) && stagesConfig.length > 0
+                ? stagesConfig.filter(s => s.enabled !== false).map(s => ({
+                    id: s.id || s.category,
+                    title: s.title || s.name
+                }))
+                : defaultGroups;
 
             groups.forEach(group => {
                 const groupInds = macroState.indicatorDetails.filter(ind => ind.category === group.id);

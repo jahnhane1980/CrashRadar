@@ -147,6 +147,28 @@ describe('NotificationManager (New Architecture)', () => {
         expect(result.message).toContain('BTC: BÄR 89.6% (BEAR_MARKET 47.8%, BEAR_RALLY 41.7%)');
     });
 
+    it('sollte Gruppenüberschriften im DailyStatusReport dynamisch aus indicatorPipelineConfig.stages übernehmen', () => {
+        const customPipelineConfig = {
+            stages: [
+                { id: 'EARLY_WARNING', title: '🌪️ Benutzerdefinierte Frühwarnung' },
+                { id: 'ACUTE_PANIC', title: '🚨 Eigene Panik-Sensoren' }
+            ]
+        };
+        const customManager = new NotificationManager(mockConfig, customPipelineConfig);
+        const macroState = createMockMacroState({
+            indicatorDetails: [
+                { name: 'Yield Curve', category: 'EARLY_WARNING', status: 'OK', value: '0.4' },
+                { name: 'Red Alert', category: 'ACUTE_PANIC', status: 'CRITICAL', value: 'ALERT' }
+            ]
+        });
+
+        const report = customManager.getDailyStatusReport(macroState, []);
+        expect(report.message).toContain('🌪️ Benutzerdefinierte Frühwarnung');
+        expect(report.message).toContain('🚨 Eigene Panik-Sensoren');
+        expect(report.message).toContain('🟢 Yield Curve: OK (0.4)');
+        expect(report.message).toContain('🔴 Red Alert: CRITICAL (ALERT)');
+    });
+
     it('sollte null zurückgeben bei getAlerts wenn tradeActions leer/null ist', () => {
         const macroState = createMockMacroState();
         
