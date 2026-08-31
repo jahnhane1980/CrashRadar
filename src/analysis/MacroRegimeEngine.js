@@ -196,7 +196,9 @@ export class MacroRegimeEngine {
                     category: indicator.category,
                     status: (result && result.status) ? result.status : 'UNKNOWN',
                     value: (result && result.value) ? result.value : null,
-                    message: (result && result.message) ? result.message : null
+                    message: (result && result.message) ? result.message : null,
+                    details: (result && result.details) ? result.details : null,
+                    projectedCollision: (result && result.projectedCollision) ? result.projectedCollision : null
                 });
 
                 if (!result || result.status === 'UNKNOWN') continue;

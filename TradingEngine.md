@@ -252,7 +252,7 @@ export class TradingEngine {
 Die Funktionsweise und empirischen Beweise der zugrundeliegenden Sensoren sind in folgenden Architektur-Dokumenten festgehalten:
 
 * 📊 **Vollständiger Indikatoren-Vergleich über 21 Jahre:**  
-  🔗 [Indikatoren-Grand-Prix-21-Jahre-Analyse.md](file:///D:/GitHub/CrashRadar/Indikatoren-Grand-Prix-21-Jahre-Analyse.md)  
+  🔗 [docs/Indikatoren-Grand-Prix-21-Jahre-Analyse.md](file:///D:/GitHub/CrashRadar/docs/Indikatoren-Grand-Prix-21-Jahre-Analyse.md)  
   *(Nachweis der 100 % Krisen-Trefferquote und der 4-Schichten-Verteidigung)*
 
 * 🏛️ **Mathematische Formeln & Geldmarkt-Plumbing:**  

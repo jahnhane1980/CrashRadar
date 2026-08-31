@@ -1,4 +1,5 @@
 {
+  "_comment_regimePriority": "HINWEIS: Die Regime-Steuerung erfolgt gegenwaertig ueber die 'rules'-Bloecke in den einzelnen Indikatoren (1:1 Abbildung der bewaehrten Logik). 'regimePriority' ist ein Entwurf fuer eine alternative, rein gewichtungsbasierte Steuerung (Prioritaetenleiter: FLASH_CRASH > BEAR_MARKET > LATE_CYCLE_EUPHORIA > NORMAL), die gegenwaertig noch nicht aktiv im Code ausgewertet wird.",
   "regimePriority": {
     "FLASH_CRASH": 100,
     "BEAR_MARKET": 50,
@@ -107,7 +108,7 @@
       "className": "TgaIndicator",
       "stage": "STAGE_1_EARLY_WARNING",
       "reportOrder": 6,
-      "enabled": true,
+      "enabled": false,
       "rules": {
         "onMessageMatch": {
           "matchText": "Stealth-Stimulus",
@@ -135,7 +136,7 @@
       "className": "BankReservesIndicator",
       "stage": "STAGE_1_EARLY_WARNING",
       "reportOrder": 8,
-      "enabled": true,
+      "enabled": false,
       "rules": {
         "onCritical": {
           "addVetos": ["BANK_RESERVES_CRITICAL"]
@@ -281,12 +282,14 @@
       "enabled": true,
       "rules": {
         "onWarning": {
-          "addVetos": ["TREASURY_CAPACITY_WARNING"]
+          "addVetos": ["TREASURY_CAPACITY_WARNING"],
+          "setLiquidityStatus": "PUFFER_PHASE"
         },
         "onCritical": {
           "addVetos": ["TREASURY_CAPACITY_CRITICAL"],
           "setRegime": "BEAR_MARKET",
-          "exceptIfRegime": ["FLASH_CRASH"]
+          "exceptIfRegime": ["FLASH_CRASH"],
+          "setLiquidityStatus": "CRITICAL_DRAIN"
         }
       }
     }

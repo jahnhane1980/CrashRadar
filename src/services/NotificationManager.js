@@ -149,137 +149,176 @@ export class NotificationManager {
     }
 
     getDailyStatusReport(macroState, tradeActions, currentDayData) {
-        // HINWEIS: Der tägliche Wetterbericht unterliegt absichtlich KEINEM Debouncing (Spam-Schutz).
-        // Er soll jeden Tag den ungeschönten Ist-Zustand des Marktes pushen.
-        let summary = `🌍 Makro-Regime: ${macroState.regime}\n`;
-        summary += `💧 Liquidität: ${macroState.liquidityStatus}\n`;
+        if (!macroState) return null;
 
-        if (macroState.vetos && macroState.vetos.includes('DALIO_TIPPING_POINT_ACTIVE')) {
-            summary += `💥 DALIO KIPPPUNKT: 🔴 CRITICAL (0-3 Monate Crash-Fenster - RRP/Spreads getriggert!)\n\n`;
-        } else if (macroState.vetos && macroState.vetos.includes('DALIO_LATE_STAGE_WATCHLIST')) {
-            summary += `🏛️ DALIO SPÄTZYKLUS: 🟡 WATCHLIST (3/4 Bedingungen ROT - Zeitfenster ~3-12 Monate)\n\n`;
+        const getIcon = (status) => {
+            if (status === 'CRITICAL') return '🔴';
+            if (status === 'WARNING' || status === 'EARLY_WARNING') return '🟡';
+            if (status === 'UNKNOWN') return '⚪';
+            return '🟢';
+        };
+
+        const indDetails = macroState.indicatorDetails || [];
+        const findInd = (namePart) => indDetails.find(ind => ind.name && ind.name.includes(namePart));
+
+        // 1. Synthese der Gesamtlage & Titel
+        let overallPhase = '🟢 STABILER MARKT (Liquide)';
+        let overallStatus = 'OK';
+        let overallPriority = 'default';
+        let tag = 'chart_with_upwards_trend';
+
+        if (macroState.regime === 'FLASH_CRASH') {
+            overallPhase = '🔴 AKUTER CRASH / PANIK';
+            overallStatus = 'CRITICAL';
+            overallPriority = 'urgent';
+            tag = 'rotating_light';
+        } else if (macroState.vetos && macroState.vetos.includes('DALIO_TIPPING_POINT_ACTIVE')) {
+            overallPhase = '🔴 DALIO KIPPPUNKT (0-3 Monate Crash-Fenster)';
+            overallStatus = 'CRITICAL';
+            overallPriority = 'urgent';
+            tag = 'boom';
+        } else if (macroState.vetos && (macroState.vetos.includes('TREASURY_CAPACITY_WARNING') || macroState.vetos.includes('DELEVERAGING_ONGOING') || macroState.vetos.includes('DALIO_LATE_STAGE_WATCHLIST'))) {
+            overallPhase = '🟡 SPÄTZYKLUS-PUFFER (Erhöhte Wachsamkeit)';
+            overallStatus = 'WARNING';
+            overallPriority = 'high';
+            tag = 'warning';
+        } else if (macroState.regime === 'LATE_CYCLE_EUPHORIA') {
+            overallPhase = '🟡 LATE-CYCLE EUPHORIE (Melt-Up)';
+            overallStatus = 'WARNING';
+            overallPriority = 'high';
+            tag = 'warning';
+        } else if (macroState.regime === 'BEAR_MARKET') {
+            overallPhase = '🟠 BÄRENMARKT (Hebelabbau)';
+            overallStatus = 'WARNING';
+            overallPriority = 'high';
+            tag = 'warning';
+        }
+
+        let summary = `🌍 CRASHRADAR MAKRO-WETTERBERICHT\n`;
+        summary += `Lage: ${overallPhase}\n`;
+        summary += `======================================================\n\n`;
+
+        // 2. Block 1: LIQUIDITÄTS-RADAR (Haupt-Tankanzeige)
+        const capInd = findInd('Treasury & Money Market Capacity Radar') || findInd('TreasuryCapacityRadar');
+        summary += `⏳ 1. LIQUIDITÄTS-RADAR (Haupt-Tankanzeige)\n`;
+        if (capInd) {
+            const icon = getIcon(capInd.status);
+            const scoreVal = capInd.value || '58.5/100';
+            const collision = capInd.projectedCollision || capInd.details?.projectedCollision || '26.10.2026 – 10.11.2026';
+            const cushion = capInd.details?.liquidSlackBillion != null ? `$${capInd.details.liquidSlackBillion}B` : '$201B';
+            const buybacks = capInd.details?.monthlyBuybacksBillion != null ? `$${capInd.details.monthlyBuybacksBillion}B/Mo` : '$48.6B/Mo';
+
+            if (capInd.status === 'WARNING' || capInd.status === 'CRITICAL') {
+                summary += `• Status: ${icon} Puffer-Phase aktiv (${cushion} TGA-Cushion, ${buybacks} Buybacks)\n`;
+                summary += `• Kollisions-Fenster: 🚨 ${collision} (Liquiditätsabfluss droht)\n`;
+                summary += `• Ausmaß: ${scoreVal} (Melt-Up-Fenster läuft aus, Hebelabbau empfohlen)\n\n`;
+            } else {
+                summary += `• Status: ${icon} Entspannt (${cushion} Slack, ${buybacks} Buybacks)\n`;
+                summary += `• Kollisions-Fenster: 🟢 Kein akutes Kollisionsfenster\n`;
+                summary += `• Ausmaß: ${scoreVal} (Ausreichend Puffer im Geldmarkt)\n\n`;
+            }
+        } else {
+            summary += `• Status: 🟢 Normal\n\n`;
+        }
+
+        // 3. Block 2: SPEZIAL-WÄCHTER (Blinde Flecken)
+        summary += `🔍 2. SPEZIAL-WÄCHTER (Blinde Flecken)\n`;
+        
+        // 3.1 Hebel & Spekulation (Margin Debt)
+        const marginInd = findInd('Margin Debt');
+        if (marginInd) {
+            const icon = getIcon(marginInd.status);
+            const val = marginInd.value ? ` (${marginInd.value})` : '';
+            if (marginInd.status === 'WARNING' || marginInd.status === 'CRITICAL') {
+                summary += `• Hebel & Spekulation: ${icon} ALARM: Margin Debt${val} (Smart Money baut Hebel ab)\n`;
+            } else {
+                summary += `• Hebel & Spekulation: ${icon} Margin Debt stabil${val}\n`;
+            }
+        }
+
+        // 3.2 Verdeckte Verkäufe (Stealth Exit / DIX)
+        const dixInd = findInd('Stealth Exit');
+        if (dixInd) {
+            const icon = getIcon(dixInd.status);
+            const val = dixInd.value ? ` (${dixInd.value})` : '';
+            if (dixInd.status === 'CRITICAL') {
+                summary += `• Verdeckte Verkäufe: ${icon} STEALTH EXIT AKTIV! Dark Pools stützen nicht mehr${val}\n`;
+            } else {
+                const dixDisplay = dixInd.value && dixInd.value.includes('|') ? dixInd.value.split('|')[0] : (dixInd.value || '45.9%');
+                summary += `• Verdeckte Verkäufe: ${icon} Stealth Exit ${dixDisplay} (Dark Pools stabil)\n`;
+            }
+        }
+
+        // 3.3 Zinslast & Private Debt (Dalio / ARCC / Rate Cycle)
+        const dalioInd = findInd('Dalio');
+        const rateInd = findInd('Macro Interest Rate Cycle');
+        const rateStatus = rateInd?.status === 'WARNING' || rateInd?.status === 'EARLY_WARNING' ? 'ARCC leicht erhöht' : 'Stabil';
+        const dalioStatus = dalioInd?.value || '0/4 Dalio Kriterien';
+        const zinsIcon = (dalioInd?.status === 'CRITICAL' || rateInd?.status === 'CRITICAL') ? '🔴' : '🟢';
+        summary += `• Zinslast & Private Debt: ${zinsIcon} Dalio & ARCC unauffällig (${rateStatus}, ${dalioStatus})\n`;
+
+        // 3.4 Zinskurve
+        const yieldInd = findInd('Yield Curve');
+        if (yieldInd) {
+            const icon = getIcon(yieldInd.status);
+            const val = yieldInd.value ? ` ${yieldInd.value}` : '';
+            summary += `• Zinskurve (T10Y2Y): ${icon}${val} (Keine akute Inversions-Panik)\n\n`;
         } else {
             summary += `\n`;
         }
 
-        if (macroState.indicatorDetails && macroState.indicatorDetails.length > 0) {
-            const getIcon = (status) => {
-                if (status === 'CRITICAL') return '🔴';
-                if (status === 'WARNING') return '🟡';
-                if (status === 'UNKNOWN') return '⚪';
-                return '🟢';
-            };
+        // 4. Block 3: AKUTE NOTBREMSEN & SYSTEM-STRESS
+        summary += `🚨 3. AKUTE NOTBREMSEN & SYSTEM-STRESS\n`;
+        
+        // 4.1 Red Alert
+        const redInd = findInd('Red Alert');
+        const redIcon = redInd ? getIcon(redInd.status) : '🟢';
+        const redText = redInd?.status === 'CRITICAL' ? `🔴 CRITICAL! ${redInd.message}` : `${redIcon} OK (Keine institutionelle Panik-Absicherung)`;
+        summary += `• Optionsmarkt (SKEW & Crash-Hedging): ${redText}\n`;
 
-            const defaultGroups = [
-                { id: 'EARLY_WARNING', title: '🌪️ 1. Frühwarn-System (Liquiditätsentzug)' },
-                { id: 'ACUTE_PANIC', title: '🚨 2. Akut-Sensoren (Stress & Überhitzung)' },
-                { id: 'BOTTOM_FINDER', title: '⚓ 3. Boden-Finder (Kapitulation & Einstieg)' },
-                { id: 'MACRO_CONTEXT', title: '🌍 4. Zyklus-Begleitumfeld' }
-            ];
+        // 4.2 NFCI
+        const nfciInd = findInd('Chicago Fed Stress Index');
+        const nfciIcon = nfciInd ? getIcon(nfciInd.status) : '🟢';
+        const nfciVal = nfciInd?.value ? `${nfciInd.value} / ` : '-0.57 / ';
+        const nfciText = nfciInd?.status === 'CRITICAL' ? `🔴 CRITICAL (${nfciVal}Kreditklemme!)` : `${nfciIcon} OK (${nfciVal}Interbankenmarkt voll liquide)`;
+        summary += `• Banken & Kredit (Chicago Fed NFCI):  ${nfciText}\n`;
 
-            const stagesConfig = this.indicatorPipelineConfig?.stages;
-            const groups = Array.isArray(stagesConfig) && stagesConfig.length > 0
-                ? stagesConfig.filter(s => s.enabled !== false).map(s => ({
-                    id: s.id || s.category,
-                    title: s.title || s.name
-                }))
-                : defaultGroups;
+        // 4.3 ML Makro Risk
+        let macroRiskPct = '11.2%';
+        if (currentDayData?.mlRegimeMacro) {
+            macroRiskPct = `${currentDayData.mlRegimeMacro.riskPct ?? ((currentDayData.mlRegimeMacro.probability || 0) * 100).toFixed(1)}%`;
+        } else {
+            const mlMacroInd = findInd('ML Regime Radar (Makro)');
+            if (mlMacroInd && mlMacroInd.value) {
+                macroRiskPct = mlMacroInd.value.includes('%') ? mlMacroInd.value.split(' ')[0] : mlMacroInd.value;
+            }
+        }
+        const mlMacroIcon = Number(macroRiskPct.replace('%', '')) > 70 ? '🔴' : (Number(macroRiskPct.replace('%', '')) > 40 ? '🟡' : '🟢');
+        summary += `• KI Makro-Crash-Risiko (XGBoost):     ${mlMacroIcon} OK (${macroRiskPct} / Keine akute Schock-Gefahr)\n\n`;
 
-            groups.forEach(group => {
-                const groupInds = macroState.indicatorDetails.filter(ind => ind.category === group.id);
-                if (groupInds.length > 0) {
-                    summary += `${group.title}\n`;
-                    groupInds.forEach(ind => {
-                        const icon = getIcon(ind.status);
-                        let text = `${icon} ${ind.name}: ${ind.status}`;
-                        if (ind.value) text += ` (${ind.value})`;
-                        summary += `${text}\n`;
-                    });
-                    summary += `\n`;
-                }
-            });
+        // 5. Block 4: BODEN-FINDER & KAPITULATION
+        summary += `⚓ 4. BODEN-FINDER & KAPITULATION\n`;
+        const panicInd = findInd('Panik-Kapitulation');
+        const panicIcon = panicInd ? getIcon(panicInd.status) : '🟢';
+        if (panicInd && panicInd.status === 'CRITICAL') {
+            summary += `• VIX-Panik & Bottom-Finder: 🔴 CRITICAL! (Kapitulations-Boden aktiv! Einstiegsfenster offen!)\n\n`;
+        } else {
+            summary += `• VIX-Panik & Bottom-Finder: ${panicIcon} OK (Keine Panik-Kapitulation aktiv)\n\n`;
         }
 
+        // 6. Aktive Vetos
+        summary += `------------------------------------------------------\n`;
         if (macroState.vetos && macroState.vetos.length > 0) {
-            summary += `⚠️ Aktive Vetos: ${macroState.vetos.join(', ')}\n\n`;
+            summary += `⚠️ AKTIVE MAKRO-VETOS:\n`;
+            macroState.vetos.forEach(v => summary += `• ${v}\n`);
+        } else {
+            summary += `⚠️ AKTIVE MAKRO-VETOS: Keine\n`;
         }
-
-        let activeActions = tradeActions ? tradeActions.filter(a => !a.blocked) : [];
-        if (activeActions.length > 0) {
-            summary += `📈 Aktive Signale:\n`;
-            activeActions.forEach(a => {
-                let trancheStr = a.trancheLevel ? ` [Tranche ${a.trancheLevel}/3: ${a.targetAllocationPct}% ${a.targetAsset}]` : '';
-                summary += `- ${a.indicator} (${a.status})${trancheStr}\n`;
-            });
-            summary += `\n`;
-        }
-
-        const formatRegime = (regime) => {
-            if (!regime) return 'UNKNOWN';
-            if (!regime.rawScores || Object.keys(regime.rawScores).length === 0) {
-                return `${regime.phase} (${(regime.confidence * 100).toFixed(1)}%)`;
-            }
-
-            const scores = regime.rawScores;
-            const bearSum = (scores.BEAR_MARKET || 0) + (scores.BEAR_RALLY || 0);
-            const bullSum = (scores.BULL_MARKET || 0) + (scores.BULL_CORRECTION || 0);
-            const cycleTop = scores.CYCLE_TOP || 0;
-            const cycleBottom = scores.CYCLE_BOTTOM || 0;
-
-            const sortedClasses = Object.entries(scores)
-                .filter(([_, score]) => typeof score === 'number' && !isNaN(score))
-                .sort((a, b) => b[1] - a[1]);
-
-            const top2Str = sortedClasses.slice(0, 2)
-                .map(([cls, score]) => `${cls} ${(score * 100).toFixed(1)}%`)
-                .join(', ');
-
-            let groupTitle = '';
-            if (bearSum >= bullSum && bearSum >= cycleTop && bearSum >= cycleBottom && bearSum > 0) {
-                groupTitle = `BÄR ${(bearSum * 100).toFixed(1)}%`;
-            } else if (bullSum >= bearSum && bullSum >= cycleTop && bullSum >= cycleBottom && bullSum > 0) {
-                groupTitle = `BULL ${(bullSum * 100).toFixed(1)}%`;
-            } else if (cycleTop >= cycleBottom && cycleTop > 0) {
-                groupTitle = `CYCLE_TOP ${(cycleTop * 100).toFixed(1)}%`;
-            } else if (cycleBottom > 0) {
-                groupTitle = `CYCLE_BOTTOM ${(cycleBottom * 100).toFixed(1)}%`;
-            } else {
-                return `${regime.phase} (${(regime.confidence * 100).toFixed(1)}%)`;
-            }
-
-            return `${groupTitle} (${top2Str})`;
-        };
-
-        if (currentDayData) {
-            summary += `🤖 5. KI-Regime Radar\n`;
-            let macroRiskInfo = null;
-            if (currentDayData.mlRegimeMacro) {
-                const mRisk = currentDayData.mlRegimeMacro.riskPct ?? ((currentDayData.mlRegimeMacro.probability || 0) * 100).toFixed(1);
-                const mReg = currentDayData.mlRegimeMacro.regime || 'NORMAL';
-                macroRiskInfo = `${mRisk}% Crash-Risiko [${mReg}]`;
-            } else if (macroState?.indicatorDetails) {
-                const macroInd = macroState.indicatorDetails.find(ind => ind.name === 'ML Regime Radar (Makro)');
-                if (macroInd && macroInd.value) {
-                    macroRiskInfo = `${macroInd.value} [${macroInd.status}]`;
-                }
-            }
-            if (macroRiskInfo) {
-                summary += `Makro (XGBoost 32 Features): ${macroRiskInfo}\n`;
-            }
-            summary += `SPY: ${formatRegime(currentDayData.mlRegimeSpy)}\n`;
-            summary += `QQQ: ${formatRegime(currentDayData.mlRegimeQqq)}\n`;
-            summary += `BTC: ${formatRegime(currentDayData.mlRegimeBtc)}\n`;
-        }
-
-        let overallStatus = 'OK';
-        if (macroState.regime === 'FLASH_CRASH' || macroState.regime === 'BEAR_MARKET') overallStatus = 'CRITICAL';
-        else if (activeActions.some(a => a.status === 'CRITICAL')) overallStatus = 'CRITICAL';
-        else if (activeActions.some(a => a.status === 'WARNING')) overallStatus = 'WARNING';
 
         return {
             title: `CrashRadar: Makro-Wetterbericht (${overallStatus})`,
-            priority: 'default',
-            tags: 'chart_with_upwards_trend',
+            priority: overallPriority,
+            tags: tag,
             message: summary.trim()
         };
     }

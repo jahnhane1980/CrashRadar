@@ -104,69 +104,71 @@ describe('NotificationManager (New Architecture)', () => {
         expect(result2.notifications).toBeNull(); // Blockiert durch Debounce
     });
 
-    it('sollte DailyStatusReport generieren', () => {
-        const macroState = createMockMacroState({ regime: 'FLASH_CRASH' });
-        const tradeActions = [createMockTradeAction({ status: 'WARNING' })];
-        
-        const currentDayData = {
-            mlRegimeSpy: { phase: 'BEAR_MARKET', confidence: 0.95 },
-            mlRegimeQqq: { phase: 'BEAR_MARKET', confidence: 0.90 },
-            mlRegimeBtc: { phase: 'CYCLE_BOTTOM', confidence: 0.85 }
-        };
-
-        const result = manager.getDailyStatusReport(macroState, tradeActions, currentDayData);
-        
-        expect(result).toBeDefined();
-        // FLASH_CRASH -> Overall CRITICAL
-        expect(result.title).toContain('Makro-Wetterbericht (CRITICAL)');
-        expect(result.message).toContain('FLASH_CRASH');
-        expect(result.message).toContain('BEAR_MARKET (95.0%)');
-        expect(result.message).toContain('CYCLE_BOTTOM (85.0%)');
-    });
-
-    it('sollte DailyStatusReport mit aggregierten KI-Regime BÄR/BULL Gruppen und Top-2 Einzelklassen formatieren', () => {
-        const macroState = createMockMacroState();
-        const tradeActions = [];
-        
-        const currentDayData = {
-            mlRegimeBtc: {
-                phase: 'BEAR_MARKET',
-                confidence: 0.4784,
-                rawScores: {
-                    BEAR_MARKET: 0.4784,
-                    BEAR_RALLY: 0.4172,
-                    BULL_CORRECTION: 0.0738,
-                    BULL_MARKET: 0.0160,
-                    CYCLE_TOP: 0.0083,
-                    CYCLE_BOTTOM: 0.0062
-                }
-            }
-        };
-
-        const result = manager.getDailyStatusReport(macroState, tradeActions, currentDayData);
-        expect(result.message).toContain('BTC: BÄR 89.6% (BEAR_MARKET 47.8%, BEAR_RALLY 41.7%)');
-    });
-
-    it('sollte Gruppenüberschriften im DailyStatusReport dynamisch aus indicatorPipelineConfig.stages übernehmen', () => {
-        const customPipelineConfig = {
-            stages: [
-                { id: 'EARLY_WARNING', title: '🌪️ Benutzerdefinierte Frühwarnung' },
-                { id: 'ACUTE_PANIC', title: '🚨 Eigene Panik-Sensoren' }
-            ]
-        };
-        const customManager = new NotificationManager(mockConfig, customPipelineConfig);
+    it('sollte DailyStatusReport mit 4-Block-Layout generieren (FLASH_CRASH -> CRITICAL)', () => {
         const macroState = createMockMacroState({
+            regime: 'FLASH_CRASH',
             indicatorDetails: [
-                { name: 'Yield Curve', category: 'EARLY_WARNING', status: 'OK', value: '0.4' },
-                { name: 'Red Alert', category: 'ACUTE_PANIC', status: 'CRITICAL', value: 'ALERT' }
+                { name: 'Panik-Kapitulation (VIX + CBOE + RSI)', status: 'CRITICAL' },
+                { name: 'Treasury & Money Market Capacity Radar', status: 'WARNING', value: '58.5/100', projectedCollision: '26.10.2026 – 10.11.2026' }
             ]
         });
 
-        const report = customManager.getDailyStatusReport(macroState, []);
-        expect(report.message).toContain('🌪️ Benutzerdefinierte Frühwarnung');
-        expect(report.message).toContain('🚨 Eigene Panik-Sensoren');
-        expect(report.message).toContain('🟢 Yield Curve: OK (0.4)');
-        expect(report.message).toContain('🔴 Red Alert: CRITICAL (ALERT)');
+        const result = manager.getDailyStatusReport(macroState, []);
+        
+        expect(result).toBeDefined();
+        expect(result.title).toContain('Makro-Wetterbericht (CRITICAL)');
+        expect(result.message).toContain('MAKRO-WETTERBERICHT');
+        expect(result.message).toContain('1. LIQUIDITÄTS-RADAR');
+        expect(result.message).toContain('2. SPEZIAL-WÄCHTER');
+        expect(result.message).toContain('3. AKUTE NOTBREMSEN');
+        expect(result.message).toContain('4. BODEN-FINDER');
+        expect(result.message).toContain('26.10.2026 – 10.11.2026');
+        expect(result.message).toContain('Kapitulations-Boden aktiv');
+    });
+
+    it('sollte DailyStatusReport im Normalzustand als stabil und grün formatieren', () => {
+        const macroState = createMockMacroState({
+            regime: 'NORMAL',
+            indicatorDetails: [
+                { name: 'Treasury & Money Market Capacity Radar', status: 'OK', value: '25.0/100' },
+                { name: 'Margin Debt (Gier & Hebel)', status: 'OK' },
+                { name: 'Red Alert (Bullenmarkt-Stirbt-Signal)', status: 'OK' },
+                { name: 'Chicago Fed Stress Index (NFCI)', status: 'OK', value: '-0.60' }
+            ]
+        });
+
+        const report = manager.getDailyStatusReport(macroState, []);
+        expect(report.title).toContain('Makro-Wetterbericht (OK)');
+        expect(report.message).toContain('STABILER MARKT (Liquide)');
+        expect(report.message).toContain('Margin Debt stabil');
+        expect(report.message).toContain('Keine institutionelle Panik-Absicherung');
+        expect(report.message).toContain('Interbankenmarkt voll liquide');
+    });
+
+    it('sollte DailyStatusReport im Spätzyklus mit Puffer-Phase und Kollisionsfenster formatieren', () => {
+        const macroState = createMockMacroState({
+            regime: 'NORMAL',
+            vetos: ['TREASURY_CAPACITY_WARNING', 'DELEVERAGING_ONGOING'],
+            indicatorDetails: [
+                { 
+                    name: 'Treasury & Money Market Capacity Radar', 
+                    status: 'WARNING', 
+                    value: '58.5/100',
+                    projectedCollision: '26.10.2026 – 10.11.2026',
+                    details: { liquidSlackBillion: 201, monthlyBuybacksBillion: 48.6 }
+                },
+                { name: 'Margin Debt (Gier & Hebel)', status: 'WARNING', value: '-5.6%' }
+            ]
+        });
+
+        const report = manager.getDailyStatusReport(macroState, []);
+        expect(report.title).toContain('Makro-Wetterbericht (WARNING)');
+        expect(report.message).toContain('SPÄTZYKLUS-PUFFER');
+        expect(report.message).toContain('26.10.2026 – 10.11.2026');
+        expect(report.message).toContain('$201B TGA-Cushion');
+        expect(report.message).toContain('ALARM: Margin Debt (-5.6%)');
+        expect(report.message).toContain('TREASURY_CAPACITY_WARNING');
+        expect(report.message).toContain('DELEVERAGING_ONGOING');
     });
 
     it('sollte null zurückgeben bei getAlerts wenn tradeActions leer/null ist', () => {

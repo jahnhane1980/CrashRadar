@@ -162,7 +162,22 @@ describe('MacroRegimeEngine - Chaos & Edge Case Testing', () => {
             data[Object.keys(data)[49]].macroGroups.NetLiquidity.TGA = 800;
             data[pumpDate].macroGroups.NetLiquidity.TGA = 400;
 
-            const states = engine.evaluate(data);
+            const tgaEngine = new MacroRegimeEngine([
+                {
+                    id: 'tga_indicator',
+                    name: 'Treasury General Account (TGA)',
+                    className: 'TgaIndicator',
+                    enabled: true,
+                    rules: {
+                        onMessageMatch: {
+                            matchText: 'Stealth-Stimulus',
+                            setLiquidityStatus: 'STIMULUS_ACTIVE'
+                        }
+                    }
+                }
+            ]);
+
+            const states = tgaEngine.evaluate(data);
             expect(states[pumpDate].liquidityStatus).toBe('STIMULUS_ACTIVE');
         });
 

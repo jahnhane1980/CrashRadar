@@ -252,7 +252,7 @@ Gängige Makro-Modelle betrachten Liquidität entweder rein eindimensional (z. B
 > 📖 **Ausführliche Architektur & mathematische Herleitung:**  
 > Die vollständigen Berechnungsformeln ($\text{Liquid Slack}$, $\text{LCLOR}$, $\text{DV01}$, Buyback-Netting und Katalysator-Status) sowie die Detail-Logik sind dokumentiert in:  
 > 🔗 [Treasury-Liquidity-Capacity-Architecture.md](file:///D:/GitHub/CrashRadar/docs/Treasury-Liquidity-Capacity-Architecture.md)  
-> 🔗 [Indikatoren-Grand-Prix-21-Jahre-Analyse.md](file:///D:/GitHub/CrashRadar/Indikatoren-Grand-Prix-21-Jahre-Analyse.md)
+> 🔗 [Indikatoren-Grand-Prix-21-Jahre-Analyse.md](file:///D:/GitHub/CrashRadar/docs/Indikatoren-Grand-Prix-21-Jahre-Analyse.md)
 
 ---
 

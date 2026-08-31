@@ -102,7 +102,7 @@ describe('IndicatorEngine V2 (New Architecture)', () => {
 
     const data = createFakeData();
     const status = customEngine.getDailyStatusReport(data);
-    expect(status.message).toContain('Yield Curve');
-    expect(status.message).not.toContain('Margin Debt');
+    expect(status.message).toContain('Zinskurve (T10Y2Y)');
+    expect(status.message).not.toContain('ALARM: Margin Debt');
   });
 });
