@@ -147,7 +147,10 @@ export class FinanceExpert {
             CorporateProfits: state.CP,
             BreakevenInflation: state.T10YIE,
             EcbAssets: state.ECBASSETSW,
-            Challenger: state.Challenger
+            Challenger: state.Challenger,
+            CPI_Core: state.CPILFESL,
+            PCE_Core: state.PCEPILFE,
+            PPI: state.PPIACO
           },
           Contemporaneous: {
             IndustrialProduction: state.INDPRO,
@@ -164,7 +167,8 @@ export class FinanceExpert {
             LNS12500000: state.LNS12500000,
             LNS12600000: state.LNS12600000,
             LNS12026619: state.LNS12026619,
-            U6RATE: state.U6RATE
+            U6RATE: state.U6RATE,
+            JTSJOL: state.JTSJOL
           },
           TreasuryCapacity: {
             GDP: state.GDP,

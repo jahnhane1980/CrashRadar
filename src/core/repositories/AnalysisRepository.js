@@ -58,6 +58,10 @@ export const FRED_SERIES = Object.freeze({
   T10YIE: 'T10YIE',
   INDPRO: 'INDPRO',
   DFF: 'DFF',
+  JTSJOL: 'JTSJOL',
+  CPILFESL: 'CPILFESL',
+  PCEPILFE: 'PCEPILFE',
+  PPIACO: 'PPIACO',
 });
 
 export class AnalysisRepository {

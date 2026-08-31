@@ -16,6 +16,7 @@ import { RequestManager } from './src/core/RequestManager.js';
 import { Fetcher } from './src/services/Fetcher.js';
 import { MaturityWallBuilder } from './src/services/MaturityWallBuilder.js';
 import { ErrorRegistry } from './src/core/ErrorRegistry.js';
+import { ScenarioChecklistService } from './src/services/ScenarioChecklistService.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -156,6 +157,16 @@ export async function runCLI(argv) {
           const daily = engine.getDailyStatusReport(groupedData);
           if (daily) {
              await ntfy.send(daily.title, daily.message, daily.priority, daily.tags);
+          }
+
+          // --- Makro-Szenario & Rallye-Checkliste ---
+          const scenarioService = new ScenarioChecklistService();
+          const latestDay = groupedData[groupedData.length - 1];
+          const latestDateStr = latestDay ? latestDay.date : new Date().toISOString().split('T')[0];
+          const scenarioResult = scenarioService.evaluate(latestDateStr, groupedData);
+          if (scenarioResult.shouldNotify) {
+            Logger.info(`[Alerting] Sende Makro-Szenario Scorecard für ${latestDateStr}...`);
+            await ntfy.send(scenarioResult.title, scenarioResult.message, scenarioResult.priority, scenarioResult.tags);
           }
 
           if (Logger.hasIssues()) {

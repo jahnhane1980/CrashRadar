@@ -1,0 +1,112 @@
+{
+  "activeScenario": "goldilocks_september_2026",
+  "scenarios": {
+    "goldilocks_september_2026": {
+      "id": "goldilocks_september_2026",
+      "title": "SEPTEMBER 2026: GOLDILOCKS-SCORECARD",
+      "subtitle": "Rallye-Checkliste zur Überprüfung des Soft-Landing- & Melt-Up-Pfads",
+      "timeframe": "01.09.2026 - 30.09.2026",
+      "tgaTargetCollision": "26.10.2026 - 10.11.2026",
+      "events": [
+        {
+          "id": "jolts_july",
+          "title": "US JOLTS Report (Juli)",
+          "date": "2026-09-01",
+          "time": "16:00 MESZ",
+          "metric": "JTSJOL",
+          "rule": {
+            "type": "RANGE",
+            "min": 7000,
+            "max": 8200,
+            "unit": "k"
+          },
+          "passMessage": "Offene Stellen kühlen sich moderat ab (kein abrupter Einbruch)",
+          "failMessage": "Abrupter Einbruch der offenen Stellen (<7.0M) signalisiert Einstellungsstopp!"
+        },
+        {
+          "id": "nfp_august",
+          "title": "US-Arbeitsmarktbericht (August)",
+          "date": "2026-09-04",
+          "time": "14:30 MESZ",
+          "rules": [
+            {
+              "metric": "PAYEMS_DIFF",
+              "type": "MIN",
+              "min": 100,
+              "passMsg": "Solider Stellenzuwachs (>=100k)",
+              "failMsg": "Stellenaufbau zu schwach (<100k / Rezessionsangst)"
+            },
+            {
+              "metric": "SAHMREALTIME",
+              "type": "MAX",
+              "max": 0.5,
+              "passMsg": "Sahm-Regel ruhig (<0.50)",
+              "failMsg": "Sahm-Regel getriggert (>0.50 / Rezessions-Alarm)"
+            }
+          ],
+          "passMessage": "Arbeitsmarkt stabil im neutralen Korridor",
+          "failMessage": "Arbeitsmarktdaten schlagen Alarm (Rezessionssorgen oder Sahm-Trigger)"
+        },
+        {
+          "id": "ppi_august",
+          "title": "US Erzeugerpreisindex / PPI (August)",
+          "date": "2026-09-10",
+          "time": "14:30 MESZ",
+          "metric": "PPIACO_YOY",
+          "rule": {
+            "type": "MAX",
+            "max": 3,
+            "unit": "%"
+          },
+          "passMessage": "Großhandelspreise bestätigen Entspannung in Lieferketten",
+          "failMessage": "Erzeugerpreise ziehen unerwartet stark an (>3.0%)"
+        },
+        {
+          "id": "cpi_core_august",
+          "title": "US Core CPI Inflation (August)",
+          "date": "2026-09-11",
+          "time": "14:30 MESZ",
+          "metric": "CPILFESL_YOY",
+          "rule": {
+            "type": "MAX",
+            "max": 3.4,
+            "unit": "%"
+          },
+          "passMessage": "Kerninflation im Rahmen der Erwartungen (Disinflation intakt)",
+          "failMessage": "Kerninflation klebt zäh fest (>3.4%) – Zinsangst steigt!"
+        },
+        {
+          "id": "fomc_september",
+          "title": "FOMC Zinsentscheid & Notenbank-Signal",
+          "date": "2026-09-16",
+          "time": "20:00 MESZ",
+          "metric": "DFF_ACTION",
+          "rule": {
+            "type": "ALLOWED_VALUES",
+            "allowed": [
+              "PAUSE",
+              "CUT_25",
+              "CUT"
+            ]
+          },
+          "passMessage": "Fed pausiert oder senkt moderat – Startschuss Erleichterungsrallye!",
+          "failMessage": "Zinsschock (+25 Bps)! Fed wiederholt das 2018er Powell-Trauma."
+        },
+        {
+          "id": "pce_core_august",
+          "title": "Core PCE Preisindex & Monatsabschluss",
+          "date": "2026-09-30",
+          "time": "14:30 MESZ",
+          "metric": "PCEPILFE_YOY",
+          "rule": {
+            "type": "MAX",
+            "max": 3.3,
+            "unit": "%"
+          },
+          "passMessage": "Offizielles Fed-Preismaß bestätigt Disinflationspfad",
+          "failMessage": "Core PCE über Erwartung (>3.3%)"
+        }
+      ]
+    }
+  }
+}

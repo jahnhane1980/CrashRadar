@@ -98,6 +98,29 @@ Die Analyse der entbündelten FED- und Fiscal-Parameter (isoliert betrachtet, ni
   * *Dotcom (2000) & Finanzkrise (2008):* Die Kurve war lange invers (unter 0). Erst in den 3 Monaten vor dem Absturz stieg der Spread wieder massiv an. An Tops liegt der Spread im Durchschnitt bei +0.18, am Bottom invers bei -0.05. Der tatsächliche Aktien-Crash folgt exakt mit der Normalisierung (Steepening) der Zinsstruktur. Die bewährte Code-Logik hierfür lautet: `past30 < 0 && current >= 0`.
 * **Sahm Rule (Reale Rezession) - WERTLOSE ILLUSION:** Steigt die Arbeitslosigkeit zu schnell (> 0.50), gilt eine Rezession in der Realwirtschaft zwar als unausweichlich, für den Aktienmarkt ist dieses Signal jedoch völlig nutzlos.
   * 🔴 **Lagging-Beweis:** Ein historischer Backtest (`scratch/analyse/Sahm-Rule.js`) über alle Crashes (Dotcom, GFC, Corona, 2022) hat empirisch bewiesen, dass die Sahm Rule **massiv nachlaufend** (Lagging) ist. Sie schlug im Schnitt erst Monate *nach* dem absoluten Aktien-Top Alarm (z.B. +434 Tage nach dem Dotcom-Top, +175 Tage nach dem GFC-Top) oder fiel in Bärenmärkten komplett aus. Die Sahm Rule darf **niemals** als Frühindikator für den Markt-Ausstieg verwendet werden.
+
+### Das Midterm-Zins-Dilemma: Fed-Pause vs. 2018er Zinsschock (Erleichterungsrallye)
+Vor US-Zwischenwahlen (*Midterm Elections*) gerät die Federal Reserve regelmäßig in ein geldpolitisches Spannungsfeld zwischen Inflationsbekämpfung und politischer Sensibilität. Ein verbreiteter Trugschluss ist, dass vom Markt eingepreiste Wahrscheinlichkeiten von rund 60 % an den Futures-Märkten bereits eine sichere Zinserhöhung bedeuten.
+
+* **Statistische Realität der Terminmärkte (~60 % Bereich):** Historische Untersuchungen der Federal Reserve (St. Louis & New York) belegen, dass eingepreiste Wahrscheinlichkeiten von 50 % bis 65 % an den *Fed Funds Futures* faktisch **statistisches Rauschen (Münzwurf)** darstellen. Erst ab Wahrscheinlichkeiten von > 75–80 % (2 bis 3 Wochen vor der Sitzung) erreicht der Markt eine Treffsicherheit von über 90 %.
+* **Verbale Intervention („Jawboning“) statt realem Vollzug:** Zentralbanken nutzen vor Wahlen bevorzugt restriktive Rhetorik (*Forward Guidance / Hawkish Tone*), um die Marktzinsen (z. B. 2-Year Treasury Yields) vorab steigen zu lassen und die Wirtschaft zu dämpfen, **ohne** den Leitzins faktisch anheben zu müssen.
+
+#### Die historische Midterm-Matrix (FOMC 2 Monate vor den Wahlen)
+
+| Jahr | Makro-Setup | FOMC-Aktion im September | Marktreaktion (S&P 500 Q4) |
+| :--- | :--- | :--- | :--- |
+| **1998** | Asienkrise / LTCM, niedrige Arbeitslosigkeit | **Zinssenkung (-25 Bps)** | **Massive Rallye (+20,9 %)** |
+| **2006** | Core CPI ~2,9 %, abkühlende Konjunktur | **Zinspause (0 Bps)** | **Erleichterungsrallye (+6,7 %)** |
+| **2018** | Solide Wirtschaft, Powell auf „Autopilot“ | **Zinserhöhung (+25 Bps)** | **Crash / Selloff (-14,0 % / Christmas Eve Massacre)** |
+| **2022** | Rekord-Inflation (PCE > 6 %) | **Aggressive Erhöhung (+75 Bps)** | Fortführung Bärenmarkt |
+
+* **Statistische Häufigkeit von Erleichterungsrallyes:**
+  * **In 100 % der Fälle (4 von 4 in unserer DB ab 2000)**, in denen die Fed im September pausierte oder die Zinsen senkte (2002, 2006, 2010, 2014), folgte im 4. Quartal eine **durchschnittliche S&P 500 Rallye von +7,10 %** *(siehe empirischer Backtest [scratch/analyse/Midterm-Fed-Seasonality.js](file:///D:/GitHub/CrashRadar/scratch/analyse/Midterm-Fed-Seasonality.js))*.
+  * **Saisonalität im Midterm-Jahr:** Das 4. Quartal in Midterm-Jahren ist historisch das stärkste Quartal des 4-jährigen US-Präsidentschaftszyklus (durchschnittlich **+6,4 %** im S&P 500, in 87 % aller Fälle positiv).
+* **Fazit & Taktik für CrashRadar:**
+  * Bleibt die Fed im September auf der Bremse (Pause oder moderater Cut), zündet das **Melt-Up-Fenster**, das bis zum berechneten TGA-Liquiditätsabriss (`26.10. – 10.11.2026`) getragen wird.
+  * Tritt hingegen das 2018er-Szenario ein (+25 Bps Zinsschock in abkühlende Arbeitsmarktdaten), bricht der Spätzyklus-Puffer vorzeitig ab und erfordert einen sofortigen Not-Exit.
+  * **Begleitende Checkliste:** Die operative Meilenstein-Überwachung erfolgt deklarativ über [`docs/Checkliste-Goldilocks-Szenarios.md`](file:///D:/GitHub/CrashRadar/docs/Checkliste-Goldilocks-Szenarios.md) und den [`ScenarioChecklistService`](file:///D:/GitHub/CrashRadar/src/services/ScenarioChecklistService.js).
 * **Margin Debt (FINRA Wertpapierkredite):** Das absolut reinste Fieberthermometer für "Gier und Hebel" im US-Aktienmarkt. Margin Debt misst, wie viel Geld sich Anleger auf Pump leihen, um Aktien zu kaufen.
   * *Signal (Top):* Margin Debt erreicht immer ein historisches Allzeithoch und dreht (stagniert oder fällt) **2 bis 6 Monate bevor** der S&P 500 seinen absoluten Höhepunkt erreicht *(siehe [scratch/analyse/Margin-Debt-Top.js](file:///C:/GitHub/CrashRadar/scratch/analyse/Margin-Debt-Top.js))*. Das "Smart Money" und die Kreditlinien sind erschöpft, bevor der Retail-Markt sein finales Blow-Off-Top bildet. Da dieser Vorlauf sehr groß ist, stellt die ca. 3-wöchige Veröffentlichungsverzögerung der FINRA hier kein Problem dar.
   * *Beispiele:* DotCom (Margin toppte Feb 2000, SPY Aug 2000), Finanzkrise (Margin toppte Jun 2007, SPY Okt 2007), Bärenmarkt 2022 (Margin toppte Sep 2021, SPY Dez 2021).

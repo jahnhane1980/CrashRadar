@@ -576,6 +576,42 @@
       }
     },
     {
+      "id": "fred_jtsjol",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "JTSJOL",
+        "file_type": "json"
+      }
+    },
+    {
+      "id": "fred_cpilfesl",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "CPILFESL",
+        "file_type": "json"
+      }
+    },
+    {
+      "id": "fred_pcepilfe",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "PCEPILFE",
+        "file_type": "json"
+      }
+    },
+    {
+      "id": "fred_ppiaco",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "PPIACO",
+        "file_type": "json"
+      }
+    },
+    {
       "id": "sec_edgar_arcc",
       "provider": "SecEdgar",
       "ticker": "ARCC",
