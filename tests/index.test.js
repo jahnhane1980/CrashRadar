@@ -1,178 +1,56 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { runCLI } from '../index.js';
-
-// Mocks
-vi.mock('../src/runners/StandardRunner.js', () => {
-  return {
-    StandardRunner: vi.fn(function() {
-      this.run = vi.fn().mockResolvedValue();
-    })
-  };
-});
-
-vi.mock('../src/runners/TestRunner.js', () => {
-  return {
-    TestRunner: vi.fn(function() {
-      this.run = vi.fn().mockResolvedValue();
-    })
-  };
-});
-import { TestRunner } from '../src/runners/TestRunner.js';
-TestRunner.getDatabaseUrl = vi.fn().mockReturnValue('mysql://test');
-TestRunner.applyTestConfigOverrides = vi.fn();
-
-vi.mock('../src/services/FinanceExpert.js', () => {
-  return {
-    FinanceExpert: vi.fn(function() {
-      this.getDailyGroupedData = vi.fn().mockResolvedValue([{ mock: 'data' }]);
-      this.close = vi.fn().mockResolvedValue();
-    })
-  };
-});
-
-vi.mock('../src/analysis/IndicatorEngine.js', () => {
-  return {
-    IndicatorEngine: vi.fn(function() {
-      this.run = vi.fn();
-      this.generateReport = vi.fn().mockReturnValue('report');
-      this.getAlerts = vi.fn().mockReturnValue({ notifications: [{ priority: 'high', message: 'alert' }] });
-      this.getDailyStatusReport = vi.fn().mockReturnValue({ priority: 'default', message: 'daily' });
-    })
-  };
-});
-
-vi.mock('../src/services/NtfyService.js', () => {
-  return {
-    NtfyService: vi.fn(function() {
-      this.send = vi.fn().mockResolvedValue();
-    })
-  };
-});
-
-// Zusätzliche Mocks, damit absolut kein DB-Pool oder HTTP-Manager initialisiert wird
-vi.mock('../src/core/Storage.js', () => ({
-  Storage: vi.fn(function() { return {}; })
-}));
-
-vi.mock('../src/core/RequestManager.js', () => ({
-  RequestManager: vi.fn(function() { return {}; })
-}));
-
-vi.mock('../src/services/Fetcher.js', () => ({
-  Fetcher: vi.fn(function() { return {}; })
-}));
-
-vi.mock('../src/services/MaturityWallBuilder.js', () => ({
-  MaturityWallBuilder: vi.fn(function() { return {}; })
-}));
-
-// Avoid executing fs operations completely
-vi.mock('fs', () => {
-  return {
-    default: {
-      existsSync: vi.fn().mockReturnValue(true),
-      readFileSync: vi.fn().mockReturnValue(JSON.stringify({ providers: {}, tasks: [] })),
-      writeFileSync: vi.fn()
-    }
-  };
-});
-
-// We need to suppress console.log and console.error in tests
-const originalEnv = process.env;
+import { DataFetchRunner } from '../src/runners/DataFetchRunner.js';
+import { IndicatorAnalysisRunner } from '../src/runners/IndicatorAnalysisRunner.js';
+import { MacroScorecardRunner } from '../src/runners/MacroScorecardRunner.js';
+import { Logger } from '../src/core/Logger.js';
 
 describe('CLI Entrypoint (index.js)', () => {
-  let consoleLogSpy;
-  let consoleErrorSpy;
-
   beforeEach(() => {
-    vi.clearAllMocks();
-    process.env = { ...originalEnv };
-    consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
-    consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    vi.spyOn(Logger, 'info').mockImplementation(() => {});
+    vi.spyOn(Logger, 'warn').mockImplementation(() => {});
+    vi.spyOn(Logger, 'error').mockImplementation(() => {});
   });
 
   afterEach(() => {
-    process.env = originalEnv;
+    vi.restoreAllMocks();
   });
 
-  it('sollte im Standard-Modus starten', async () => {
-    process.env.DATABASE_URL = 'mysql://prod';
+  it('startet im Standard-Modus mit DataFetchRunner', async () => {
+    const runSpy = vi.spyOn(DataFetchRunner.prototype, 'run').mockResolvedValue();
+
     await runCLI(['node', 'index.js']);
-    
-    // TestRunner overrides should not be called
-    expect(TestRunner.applyTestConfigOverrides).not.toHaveBeenCalled();
-    // StandardRunner imported above was mocked, so it should have been called
-    // Wait, dynamic checking of class instantiation is hard, but we can verify it didn't throw
+
+    expect(runSpy).toHaveBeenCalled();
   });
 
-  it('sollte im Test-Modus starten (-t)', async () => {
+  it('startet im Test-Modus mit DataFetchRunner (-t)', async () => {
+    const runSpy = vi.spyOn(DataFetchRunner.prototype, 'run').mockResolvedValue();
+
     await runCLI(['node', 'index.js', '-t']);
-    expect(TestRunner.getDatabaseUrl).toHaveBeenCalled();
-    expect(TestRunner.applyTestConfigOverrides).toHaveBeenCalled();
+
+    expect(runSpy).toHaveBeenCalled();
   });
 
-  it('sollte einen Fehler werfen, wenn DATABASE_URL fehlt', async () => {
-    delete process.env.DATABASE_URL;
-    let err;
-    try {
-      await runCLI(['node', 'index.js']);
-    } catch(e) {
-      err = e;
-    }
-    expect(err).toBeDefined();
-    expect(err.message).toMatch(/Missing DATABASE_URL/);
-    expect(consoleErrorSpy).toHaveBeenCalled();
-  });
-
-  it('sollte den IndicatorEngine Modus starten (-c)', async () => {
-    process.env.DATABASE_URL = 'mysql://prod';
-    await runCLI(['node', 'index.js', '-c']);
-    expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('[Analysis]'));
-  });
-
-  it('sollte Ntfy Alert senden im Indicator Modus, wenn NTFY_TOPIC gesetzt ist', async () => {
-    process.env.DATABASE_URL = 'mysql://prod';
-    process.env.NTFY_TOPIC = 'testtopic';
-    await runCLI(['node', 'index.js', '-c']);
-    expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('spezifische Ntfy Push-Alarme'));
-  });
-
-  it('sollte Ntfy Alert überspringen, wenn kein Topic gesetzt ist', async () => {
-    process.env.DATABASE_URL = 'mysql://prod';
-    delete process.env.NTFY_TOPIC;
-    await runCLI(['node', 'index.js', '-c']);
-    expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Überspringe Ntfy Push'));
-  });
-
-  it('sollte loggen, wenn keine neuen Alarme vorhanden sind', async () => {
-    process.env.DATABASE_URL = 'mysql://prod';
-    process.env.NTFY_TOPIC = 'testtopic';
-    
-    // Mock getAlerts to return null/empty
-    const { IndicatorEngine } = await import('../src/analysis/IndicatorEngine.js');
-    IndicatorEngine.mockImplementationOnce(function() {
-      this.run = vi.fn();
-      this.generateReport = vi.fn().mockReturnValue('report');
-      this.getAlerts = vi.fn().mockReturnValue(null); // Kein Alarm
-      this.getDailyStatusReport = vi.fn().mockReturnValue(null);
-    });
+  it('startet im Indicator-Modus mit IndicatorAnalysisRunner (-c)', async () => {
+    const runSpy = vi.spyOn(IndicatorAnalysisRunner.prototype, 'run').mockResolvedValue();
 
     await runCLI(['node', 'index.js', '-c']);
-    expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Keine akuten Warnungen'));
+
+    expect(runSpy).toHaveBeenCalled();
   });
 
-  it('sollte Fehler werfen, wenn Config nicht existiert', async () => {
-    process.env.DATABASE_URL = 'mysql://prod';
-    const fs = await import('fs');
-    fs.default.existsSync.mockReturnValueOnce(false); // Config nicht da
+  it('startet im Scenario-Modus mit MacroScorecardRunner (-s)', async () => {
+    const runSpy = vi.spyOn(MacroScorecardRunner.prototype, 'run').mockResolvedValue();
 
-    let err;
-    try {
-      await runCLI(['node', 'index.js']);
-    } catch(e) {
-      err = e;
-    }
-    expect(err).toBeDefined();
-    expect(err.message).toMatch(/Critical Config not found/);
+    await runCLI(['node', 'index.js', '-s']);
+
+    expect(runSpy).toHaveBeenCalled();
+  });
+
+  it('reicht Fehler aus dem Runner weiter', async () => {
+    vi.spyOn(DataFetchRunner.prototype, 'run').mockRejectedValue(new Error('Runner Failure'));
+
+    await expect(runCLI(['node', 'index.js'])).rejects.toThrow('Runner Failure');
   });
 });
