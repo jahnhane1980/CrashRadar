@@ -278,3 +278,39 @@ Als nächster Schritt wird ein dediziertes Simulations-Skript (`scratch/full_21y
    * **Maximaler Portfolio-Drawdown** (Ziel: Vermeidung der -55 % in 2008, -35 % in 2020, -33 % in 2022)
    * **Sharpe-Ratio & Profit-Faktor**
    * **Re-Entry Effizienz:** Wie profitabel war das Wiedereinsteigen nach parabolischen Gewinnmitnahmen?
+
+---
+
+## 6. Einzeltitel-Execution: FINRA Short-Volume, ML-Features & Fundamentaler Wachhund (Konzept & Diskussionsstand)
+
+> **Hinweis zur Entwicklung:** Dieser Abschnitt fasst die empirischen Erkenntnisse und Implementierungsentwürfe für Einzeltitel zusammen. Die Details dienen als Diskussions- und Validierungsgrundlage für die spätere Umsetzung der Execution-Engine.
+
+### 6.1 Empirische Erkenntnisse zu FINRA Short-Volume (Bärenmarkt-Beweisführung)
+Extreme FINRA-Leerverkaufsdaten wirken sich je nach Aktie und Bilanzstruktur massiv unterschiedlich aus (dokumentiert in [`docs/ML_EVALUATIONS.md`](file:///D:/GitHub/CrashRadar/docs/ML_EVALUATIONS.md)):
+* **ZETA:** 46 Extrem-Signale (>65 % Short Vol). Win-Rate nach 5 Tagen: **67,4 %** (Squeeze-Kontra-Indikator / Smart Money sammelt ein).
+* **NVTS:** 71 Extrem-Signale. Win-Rate brach auf **36,6 %** nach 20 Tagen ein (Todesspirale / Volatilitätsverstärker ohne institutionellen Rückhalt).
+* **SOFI:** Nur 2 Extrem-Signale im gesamten Bärenmarkt (breite Aktionärsstruktur verhinderte konzertiertes Shorting).
+
+### 6.2 Entwurf: Ticker-Spezifische LSTMs & Fundamentaler Wachhund (Guard)
+Das neuronale Netz soll künftig interpretieren, *warum* extrem hohes Short-Volume bei einer Aktie ein Kaufsignal, bei einer anderen aber ein Risiko darstellt.
+
+```mermaid
+flowchart TD
+    ML["LSTM Signal (z. B. ZETA Squeeze Buy)"] --> Watchdog{"Wachhund (Fundamental-Veto-Config.json)"}
+    Watchdog -->|"Inst. Quote < 50 % ODER Dilution Risk == HIGH"| Block["🚫 BLOCKIERE Signal (Bilanz-Strukturbruch)"]
+    Watchdog -->|"Fundamentaldaten intakt"| Allow["✅ ERLAUBT (Trade Execution)"]
+```
+
+* **Komponenten-Entwurf:**
+  1. `src/analysis/indicators/MlRegimeRadarStockIndicator.js`: Generischer Indikator, dem im Konstruktor der jeweilige Ticker (`SOFI`, `ZETA`, `NVTS`, `PLTR`) übergeben wird.
+  2. `config/Fundamental-Veto-Config.json`: Konfigurationsdatei mit harten Bilanz-Schwellenwerten (z. B. `minInstitutionalOwnershipPct: 50`, `maxDilutionRisk: 'MEDIUM'`).
+  3. **Wachhund in [`TradeSetupEngine.js`](file:///D:/GitHub/CrashRadar/src/analysis/TradeSetupEngine.js):** Sagt das LSTM z. B. einen Squeeze vorher, der Wachhund erkennt aber einen Einbruch der institutionellen Quote $\to$ **Veto & Blockade**.
+
+### 6.3 Geplante Validierung: A/B-Testzyklus (Makro-Heuristik vs. ML-Ensemble)
+Vor dem Live-Einsatz von ML-Signalen auf Einzeltitel-Ebene wird ein automatisierter Backtest-Vergleich durchgeführt:
+* **Variante A (Reines Makro-Plumbing / Heuristik ohne ML):** Execution basiert ausschließlich auf Treasury Capacity Radar, Margin Debt Deleveraging, Halving-Uhr (>970 Tage), SMA 200 Bruch und Gold Capitulation.
+* **Variante B (Hybrid-System / Makro + KI-Ensemble):** Nutzt alle Regeln aus A plus:
+  1. LSTM Single-Stock Regimes (`MlRegimeRadarStockIndicator.js`).
+  2. XGBoost Makro-Risiko-Score für kontinuierliches **Fractional-Kelly Positionsgrößen-Sizing** (automatische Skalierung `action.scaleDown` / Veto bei Makro-Risiko $> 70\,\%$).
+  3. FINRA Short-Volume Wachhund (`Fundamental-Veto-Config.json`).
+
