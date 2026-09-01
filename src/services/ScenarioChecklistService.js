@@ -20,6 +20,55 @@ export class ScenarioChecklistService {
   }
 
   /**
+   * Gibt das Event für ein bestimmtes Tagesdatum aus dem aktiven Szenario zurück (oder null).
+   * @param {string} currentDateStr - Format 'YYYY-MM-DD'
+   * @returns {Object|null}
+   */
+  getEventForDate(currentDateStr) {
+    if (!this.config || !this.config.activeScenario) return null;
+    const scenario = this.config.scenarios[this.config.activeScenario];
+    if (!scenario || !Array.isArray(scenario.events)) return null;
+    return scenario.events.find(e => e.date === currentDateStr) || null;
+  }
+
+  /**
+   * Ermittelt die Task-IDs (z. B. FRED), die für ein bestimmtes Szenario-Event benötigt werden.
+   * @param {Object} event
+   * @returns {string[]}
+   */
+  getRequiredTaskIdsForEvent(event) {
+    if (!event) return [];
+    const metricToTaskMap = {
+      JTSJOL: 'fred_jtsjol',
+      PAYEMS: 'fred_payems',
+      PAYEMS_DIFF: 'fred_payems',
+      SAHMREALTIME: 'fred_sahmrealtime',
+      PPIACO_YOY: 'fred_ppiaco',
+      PPI: 'fred_ppiaco',
+      CPILFESL_YOY: 'fred_cpilfesl',
+      CPI_CORE: 'fred_cpilfesl',
+      PCEPILFE_YOY: 'fred_pcepilfe',
+      PCE_CORE: 'fred_pcepilfe',
+      DFF_ACTION: 'fred_dff',
+      DFF: 'fred_dff',
+      HYG: 'tiingo_hyg'
+    };
+
+    const taskIds = new Set();
+    if (Array.isArray(event.rules)) {
+      for (const r of event.rules) {
+        if (r.metric && metricToTaskMap[r.metric]) {
+          taskIds.add(metricToTaskMap[r.metric]);
+        }
+      }
+    }
+    if (event.metric && metricToTaskMap[event.metric]) {
+      taskIds.add(metricToTaskMap[event.metric]);
+    }
+    return Array.from(taskIds);
+  }
+
+  /**
    * Bewertet das aktive Szenario für ein gegebenes Tagesdatum und die Timeline.
    * @param {string} currentDateStr - Datum im Format 'YYYY-MM-DD'
    * @param {Array} timeline - Array von täglichen Makro-Objekten ({ date, assets, macroGroups })
@@ -53,6 +102,17 @@ export class ScenarioChecklistService {
       }
     }
 
+    // Wenn das heutige Event noch im Zustand isPending ist (Daten noch nicht von der Behörde publiziert), nicht alarmieren!
+    const todayEvaluated = evaluatedEvents.find(e => e.date === currentDateStr);
+    if (todayEvaluated && todayEvaluated.isPending && !options.forceNotify) {
+      return {
+        shouldNotify: false,
+        isPending: true,
+        pendingEvent: todayEvaluated,
+        reason: todayEvaluated.reason
+      };
+    }
+
     if (evaluatedEvents.length === 0 && !options.forceNotify) {
       return { shouldNotify: false };
     }
@@ -79,8 +139,64 @@ export class ScenarioChecklistService {
     };
   }
 
+  _normalizeMetricKey(metricKey) {
+    switch (metricKey) {
+      case 'JTSJOL': return 'JTSJOL';
+      case 'PAYEMS':
+      case 'PAYEMS_DIFF': return 'PAYEMS';
+      case 'SAHMREALTIME': return 'SAHMREALTIME';
+      case 'PPIACO_YOY':
+      case 'PPI': return 'PPIACO';
+      case 'CPILFESL_YOY':
+      case 'CPI_CORE': return 'CPILFESL';
+      case 'PCEPILFE_YOY':
+      case 'PCE_CORE': return 'PCEPILFE';
+      case 'DFF_ACTION':
+      case 'DFF': return 'DFF';
+      default: return metricKey;
+    }
+  }
+
+  _isEventDataAvailable(event, latestData) {
+    if (!event.targetObservationDate || !latestData || !latestData.observationDates) {
+      return true; // Fallback für Legacy-Konfigs oder Mocks ohne observationDates
+    }
+
+    const metrics = [];
+    if (Array.isArray(event.rules)) {
+      for (const r of event.rules) {
+        if (r.metric) metrics.push(this._normalizeMetricKey(r.metric));
+      }
+    }
+    if (event.metric) {
+      metrics.push(this._normalizeMetricKey(event.metric));
+    }
+
+    for (const m of metrics) {
+      const obsDate = latestData.observationDates[m];
+      if (!obsDate || obsDate < event.targetObservationDate) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   _evaluateSingleEvent(event, timeline, currentDateStr) {
     const latestData = this._getLatestDataForDate(timeline, event.date <= currentDateStr ? event.date : currentDateStr);
+    
+    // Freshness-Guard: Prüfen, ob die Daten für diesen Berichtsmonat vorliegen
+    const isDataAvailable = this._isEventDataAvailable(event, latestData);
+    if (!isDataAvailable) {
+      return {
+        id: event.id,
+        title: event.title,
+        date: event.date,
+        time: event.time,
+        passed: false,
+        isPending: true,
+        reason: `Daten für Berichts-Stichtag ${event.targetObservationDate} noch nicht publiziert`
+      };
+    }
     
     // Fall 1: Multiple Rules
     if (Array.isArray(event.rules) && event.rules.length > 0) {
@@ -213,7 +329,9 @@ export class ScenarioChecklistService {
 
     for (const ev of evaluatedEvents) {
       const datePart = ev.date.split('-').slice(1).reverse().join('.');
-      if (ev.passed) {
+      if (ev.isPending) {
+        lines.push(`• ${datePart}. ${ev.title}: ⏳ AUSSTEHEND (${ev.reason})`);
+      } else if (ev.passed) {
         lines.push(`• ${datePart}. ${ev.title}: 🟢 PASS (${ev.reason})`);
       } else {
         lines.push(`• ${datePart}. ${ev.title}: 🔴 FAIL`);

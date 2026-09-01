@@ -44,7 +44,8 @@ export async function runCLI(argv) {
 
   program
     .option('-t, --test', 'Run the fetcher in test mode')
-    .option('-c, --check-indikator', 'Run the macro financial indicator analysis');
+    .option('-c, --check-indikator', 'Run the macro financial indicator analysis')
+    .option('-s, --check-scenario', 'Run targeted macro scenario fetch, evaluation and alerting');
 
   program.action(async (options) => {
     try {
@@ -163,10 +164,23 @@ export async function runCLI(argv) {
           const scenarioService = new ScenarioChecklistService();
           const latestDay = groupedData[groupedData.length - 1];
           const latestDateStr = latestDay ? latestDay.date : new Date().toISOString().split('T')[0];
-          const scenarioResult = scenarioService.evaluate(latestDateStr, groupedData);
-          if (scenarioResult.shouldNotify) {
-            Logger.info(`[Alerting] Sende Makro-Szenario Scorecard für ${latestDateStr}...`);
-            await ntfy.send(scenarioResult.title, scenarioResult.message, scenarioResult.priority, scenarioResult.tags);
+          const activeEvent = scenarioService.getEventForDate(latestDateStr);
+          const alreadyReported = activeEvent && alertHistory.scenarioEvents && alertHistory.scenarioEvents[activeEvent.id] === latestDateStr;
+
+          if (!alreadyReported) {
+            const scenarioResult = scenarioService.evaluate(latestDateStr, groupedData);
+            if (scenarioResult.shouldNotify) {
+              Logger.info(`[Alerting] Sende Makro-Szenario Scorecard für ${latestDateStr}...`);
+              await ntfy.send(scenarioResult.title, scenarioResult.message, scenarioResult.priority, scenarioResult.tags);
+
+              if (activeEvent) {
+                alertHistory.scenarioEvents = alertHistory.scenarioEvents || {};
+                alertHistory.scenarioEvents[activeEvent.id] = latestDateStr;
+                fs.writeFileSync(alertHistoryPath, JSON.stringify(alertHistory, null, 2), 'utf8');
+              }
+            }
+          } else {
+            Logger.info(`[Alerting] Makro-Szenario Event '${activeEvent.id}' für ${latestDateStr} bereits gemeldet. Überspringe.`);
           }
 
           if (Logger.hasIssues()) {
@@ -179,6 +193,89 @@ export async function runCLI(argv) {
 
         await expert.close();
         return; // Statt process.exit(0) für bessere Testbarkeit
+      }
+
+      if (options.checkScenario) {
+        Logger.info('[Scenario] Starte Smart-Makro-Szenario Check...');
+        const scenarioService = new ScenarioChecklistService();
+        const todayStr = new Date().toISOString().split('T')[0];
+        const todayEvent = scenarioService.getEventForDate(todayStr);
+
+        if (!todayEvent) {
+          Logger.info(`[Scenario] Kein Makro-Event für heute (${todayStr}) im aktiven Szenario geplant. Vorgang beendet.`);
+          return;
+        }
+
+        const alertHistoryPath = path.resolve(__dirname, 'config/alert_history.json');
+        let alertHistory = {};
+        if (fs.existsSync(alertHistoryPath)) {
+          try {
+            alertHistory = JSON.parse(fs.readFileSync(alertHistoryPath, 'utf8'));
+          } catch (e) {
+            Logger.warn('[Scenario] Konnte alert_history.json nicht parsen.');
+          }
+        }
+
+        if (alertHistory.scenarioEvents && alertHistory.scenarioEvents[todayEvent.id] === todayStr) {
+          Logger.info(`[Scenario] Event '${todayEvent.title}' (${todayEvent.id}) wurde heute (${todayStr}) bereits gemeldet. Vorgang beendet.`);
+          return;
+        }
+
+        const taskIds = scenarioService.getRequiredTaskIdsForEvent(todayEvent);
+        Logger.info(`[Scenario] Event '${todayEvent.title}' erkannt. Benötigte Tasks: [${taskIds.join(', ') || 'Keine'}]`);
+
+        const isTest = options.test;
+        const dbUrl = isTest ? (process.env.DATABASE_URL_TEST || process.env.DATABASE_URL) : process.env.DATABASE_URL;
+        if (!dbUrl) throw new Error("Missing DATABASE_URL in environment.");
+
+        if (taskIds.length > 0) {
+          const configPath = path.resolve(__dirname, 'config/Database-Fetcher-Config.json');
+          if (fs.existsSync(configPath)) {
+            const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+            if (isTest) TestRunner.applyTestConfigOverrides(config);
+
+            const storage = new Storage({ databaseUrl: dbUrl });
+            const requestManager = new RequestManager(config);
+            const errorRegistry = new ErrorRegistry();
+            const fetcher = new Fetcher(config, storage, requestManager, errorRegistry);
+
+            try {
+              Logger.info(`[Scenario] Führe gezielten Fetch für [${taskIds.join(', ')}] aus...`);
+              await fetcher.runTasksByIds(taskIds);
+            } finally {
+              await storage.close();
+            }
+          }
+        }
+
+        const expert = new FinanceExpert(dbUrl);
+        try {
+          const groupedData = await expert.getDailyGroupedData('2015-01-01');
+          const scenarioResult = scenarioService.evaluate(todayStr, groupedData);
+
+          if (scenarioResult && scenarioResult.shouldNotify) {
+            if (process.env.NTFY_TOPIC) {
+              const ntfy = new NtfyService(process.env.NTFY_TOPIC);
+              Logger.info(`[Scenario] Sende Makro-Szenario Scorecard für ${todayStr}...`);
+              await ntfy.send(scenarioResult.title, scenarioResult.message, scenarioResult.priority, scenarioResult.tags);
+
+              alertHistory.scenarioEvents = alertHistory.scenarioEvents || {};
+              alertHistory.scenarioEvents[todayEvent.id] = todayStr;
+              fs.writeFileSync(alertHistoryPath, JSON.stringify(alertHistory, null, 2), 'utf8');
+              Logger.info(`[Scenario] Alert-History für ${todayEvent.id} aktualisiert.`);
+            } else {
+              Logger.info('[Scenario] NTFY_TOPIC nicht gesetzt. Scorecard-Nachricht:\n' + scenarioResult.message);
+            }
+          } else if (scenarioResult && scenarioResult.isPending) {
+            Logger.info(`[Scenario] Daten für Event '${todayEvent.title}' (Ziel: ${todayEvent.targetObservationDate}) noch nicht bei FRED publiziert. Warte auf nächstes Zeitfenster.`);
+          } else {
+            Logger.info(`[Scenario] Keine Benachrichtigung erforderlich für ${todayStr}.`);
+          }
+        } finally {
+          await expert.close();
+        }
+
+        return;
       }
 
       const isTest = options.test;

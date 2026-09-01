@@ -47,6 +47,7 @@ export class FinanceExpert {
     const state = await this.repo.getInitialState(startDate);
 
     const finalData = [];
+    const observationDates = {};
     const lastUpdatedDates = {
       AAII_Spread: null,
       SPY_ShortVolumeRatio: null,
@@ -65,6 +66,12 @@ export class FinanceExpert {
     for (const date of dates) {
       const currentTimeline = timeline[date] || {};
       Object.assign(state, currentTimeline);
+
+      for (const [k, v] of Object.entries(currentTimeline)) {
+        if (v !== undefined && v !== null) {
+          observationDates[k] = date;
+        }
+      }
 
       // Stale-Handling (max. 8 Tage Gültigkeit für wöchentliche/verzögerte Daten)
       const periodicFields = ['AAII_Spread', 'SPY_ShortVolumeRatio', 'TotalPCR', 'SKEW'];
@@ -183,7 +190,8 @@ export class FinanceExpert {
             BuybackMio: state.BuybackMio || 0,
             BuybackDv01: state.BuybackDv01 || 0
           }
-        }
+        },
+        observationDates: { ...observationDates }
       });
     }
 

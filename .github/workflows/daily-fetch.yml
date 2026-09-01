@@ -1,14 +1,27 @@
-name: Daily Data Fetcher
+name: Daily Data Fetcher & Alerting
 
 on:
   schedule:
     # 01:00 UTC (ca. 02:00 / 03:00 Uhr nachts deutscher Zeit), Dienstag bis Samstag.
-    # Zu dieser Zeit sind die US-Märkte sicher geschlossen, abgerechnet und die FRED/TGA-Daten 
-    # des vergangenen Tages sind definitiv von den Behörden publiziert.
+    # Nachtlauf für den vollständigen Datenabgleich aller Provider und täglichen Statusbericht.
     - cron: '0 1 * * 2-6'
+    
+    # 14:30 bis 20:30 UTC (16:30 bis 22:30 Uhr MESZ), Montag bis Freitag stündlich.
+    # Smart-Makro-Szenario Check für zeitnahe Auswertung von US-Releases (JOLTS, NFP, CPI, PCE etc.).
+    - cron: '30 14,15,16,17,18,19,20 * * 1-5'
   
   # Erlaubt es dir, den Workflow jederzeit manuell über einen Button auf GitHub zu starten!
-  workflow_dispatch: 
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Ausführungs-Modus'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - 'all'
+          - 'scenario-only'
+          - 'fetch-and-indicators'
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -35,18 +48,38 @@ jobs:
       - name: 📦 Install Dependencies
         run: npm ci
 
-      - name: 🚀 Run Fetcher & Indicator Analysis
-        # Hier werden die API Keys sicher aus den GitHub Secrets geladen
+      # 1. Vollständiger EOD Datenabgleich (Nachtlauf oder manuell 'all' / 'fetch-and-indicators')
+      - name: 🚀 Run Full Data Fetcher (EOD)
+        if: ${{ (github.event_name == 'workflow_dispatch' && (inputs.mode == 'all' || inputs.mode == 'fetch-and-indicators')) || (github.event_name == 'schedule' && github.event.schedule == '0 1 * * 2-6') }}
         env:
           TIINGO_API_KEY: ${{ secrets.TIINGO_API_KEY }}
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: node index.js
 
+      # 2. Indikator- & Regime-Analyse (Nachtlauf oder manuell)
+      - name: 📊 Run Indicator Analysis & Alerts
+        if: ${{ (github.event_name == 'workflow_dispatch' && (inputs.mode == 'all' || inputs.mode == 'fetch-and-indicators')) || (github.event_name == 'schedule' && github.event.schedule == '0 1 * * 2-6') }}
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: node index.js --check-indikator
+
+      # 3. Smart-Makro-Szenario Check (Intraday-Fenster oder manuell 'all' / 'scenario-only')
+      - name: 🎯 Run Smart Macro Scenario Check
+        if: ${{ (github.event_name == 'workflow_dispatch' && (inputs.mode == 'all' || inputs.mode == 'scenario-only')) || (github.event_name == 'schedule' && github.event.schedule == '30 14,15,16,17,18,19,20 * * 1-5') }}
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: node index.js --check-scenario
+
+      # 4. Commit und Push für lokale Daten und Alert-History
       - name: 💾 Commit and Push Local Data (CBOE Archives & History)
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add data/
           git add config/alert_history.json || true
-          git diff --staged --quiet || (git commit -m "chore: update local data and cboe archives [skip ci]" && git push)
+          git diff --staged --quiet || (git commit -m "chore: update local data and alert history [skip ci]" && git push)
+

@@ -556,5 +556,51 @@ describe('Fetcher Class', () => {
     expect(maxFastAPI).toBeLessThanOrEqual(2);
     expect(completed).toBe(6);
   });
+
+  describe('runTasksByIds', () => {
+    it('sollte nur die spezifizierten Tasks ausführen', async () => {
+      mockConfig.tasks = [
+        { id: 'fred_jtsjol', provider: 'Simple' },
+        { id: 'fred_cpilfesl', provider: 'Simple' },
+        { id: 'binance_btc', provider: 'Simple' }
+      ];
+
+      const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
+      const runTaskSpy = vi.spyOn(fetcher, 'runTask').mockResolvedValue();
+
+      await fetcher.runTasksByIds(['fred_jtsjol']);
+
+      expect(runTaskSpy).toHaveBeenCalledTimes(1);
+      expect(runTaskSpy).toHaveBeenCalledWith(expect.objectContaining({ id: 'fred_jtsjol' }));
+    });
+
+    it('sollte bei leerem Array oder nicht vorhandenen Tasks nichts tun', async () => {
+      mockConfig.tasks = [
+        { id: 'fred_jtsjol', provider: 'Simple' }
+      ];
+
+      const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager);
+      const runTaskSpy = vi.spyOn(fetcher, 'runTask').mockResolvedValue();
+
+      await fetcher.runTasksByIds([]);
+      await fetcher.runTasksByIds(['non_existent']);
+
+      expect(runTaskSpy).not.toHaveBeenCalled();
+    });
+
+    it('sollte Fehler in einzelnen Tasks abfangen und registrieren', async () => {
+      mockConfig.tasks = [
+        { id: 'fred_fail', provider: 'Simple' }
+      ];
+
+      const fetcher = new Fetcher(mockConfig, mockStorage, mockRequestManager, mockErrorRegistry);
+      vi.spyOn(fetcher, 'runTask').mockRejectedValue(new Error('Network error'));
+
+      await fetcher.runTasksByIds(['fred_fail']);
+
+      expect(mockErrorRegistry.addError).toHaveBeenCalledWith('fred_fail', expect.any(Error));
+    });
+  });
 });
+
 

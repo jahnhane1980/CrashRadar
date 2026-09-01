@@ -135,4 +135,96 @@ describe('ScenarioChecklistService', () => {
     const result = service.evaluate('2026-09-01', sampleTimeline);
     expect(result.shouldNotify).toBe(false);
   });
+
+  describe('getEventForDate', () => {
+    it('gibt das Event für ein passendes Datum zurück', () => {
+      const service = new ScenarioChecklistService(mockConfig);
+      const event = service.getEventForDate('2026-09-01');
+      expect(event).toBeDefined();
+      expect(event.id).toBe('jolts_july');
+    });
+
+    it('gibt null zurück, wenn für das Datum kein Event existiert', () => {
+      const service = new ScenarioChecklistService(mockConfig);
+      expect(service.getEventForDate('2026-09-02')).toBeNull();
+    });
+  });
+
+  describe('getRequiredTaskIdsForEvent', () => {
+    it('ermittelt Task-IDs für Single-Rule Event (z.B. JOLTS -> fred_jtsjol)', () => {
+      const service = new ScenarioChecklistService(mockConfig);
+      const event = service.getEventForDate('2026-09-01');
+      const taskIds = service.getRequiredTaskIdsForEvent(event);
+      expect(taskIds).toEqual(['fred_jtsjol']);
+    });
+
+    it('ermittelt Task-IDs für Multi-Rule Event (z.B. NFP -> fred_payems, fred_sahmrealtime)', () => {
+      const service = new ScenarioChecklistService(mockConfig);
+      const event = service.getEventForDate('2026-09-04');
+      const taskIds = service.getRequiredTaskIdsForEvent(event);
+      expect(taskIds).toContain('fred_payems');
+      expect(taskIds).toContain('fred_sahmrealtime');
+      expect(taskIds.length).toBe(2);
+    });
+
+    it('gibt leeres Array bei null/undefined zurück', () => {
+      const service = new ScenarioChecklistService(mockConfig);
+      expect(service.getRequiredTaskIdsForEvent(null)).toEqual([]);
+    });
+  });
+
+  describe('Freshness-Guard & targetObservationDate', () => {
+    const configWithObservationDates = {
+      activeScenario: 'goldilocks_september_2026',
+      scenarios: {
+        goldilocks_september_2026: {
+          id: 'goldilocks_september_2026',
+          title: 'SEPTEMBER 2026: GOLDILOCKS-SCORECARD',
+          events: [
+            {
+              id: 'jolts_july',
+              title: 'US JOLTS Report (Berichtsmonat: Juli)',
+              date: '2026-09-01',
+              metric: 'JTSJOL',
+              targetObservationDate: '2026-07-01',
+              rule: { type: 'RANGE', min: 7000, max: 8200 }
+            }
+          ]
+        }
+      }
+    };
+
+    it('gibt shouldNotify: false und isPending: true zurück, wenn FRED-Daten noch den Vormonat haben', () => {
+      const service = new ScenarioChecklistService(configWithObservationDates);
+      const staleTimeline = [
+        {
+          date: '2026-09-01',
+          macroGroups: { LaborMarket: { JTSJOL: 7359 } },
+          observationDates: { JTSJOL: '2026-06-01' } // Nur Juni vorhanden!
+        }
+      ];
+
+      const result = service.evaluate('2026-09-01', staleTimeline);
+      expect(result.shouldNotify).toBe(false);
+      expect(result.isPending).toBe(true);
+      expect(result.pendingEvent.isPending).toBe(true);
+      expect(result.pendingEvent.reason).toContain('2026-07-01 noch nicht publiziert');
+    });
+
+    it('wertet erfolgreich aus und gibt shouldNotify: true zurück, wenn Juli-Daten vorliegen', () => {
+      const service = new ScenarioChecklistService(configWithObservationDates);
+      const freshTimeline = [
+        {
+          date: '2026-09-01',
+          macroGroups: { LaborMarket: { JTSJOL: 7650 } },
+          observationDates: { JTSJOL: '2026-07-01' } // Juli vorhanden!
+        }
+      ];
+
+      const result = service.evaluate('2026-09-01', freshTimeline);
+      expect(result.shouldNotify).toBe(true);
+      expect(result.evaluation.passedCount).toBe(1);
+      expect(result.evaluation.totalEvaluated).toBe(1);
+    });
+  });
 });

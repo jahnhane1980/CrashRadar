@@ -96,6 +96,24 @@ export class Fetcher {
     await Promise.allSettled(promises);
   }
 
+  /**
+   * Führt gezielt nur eine Liste von Tasks anhand ihrer IDs aus.
+   * @param {string[]} taskIds - Array von Task-IDs (z. B. ['fred_jtsjol'])
+   */
+  async runTasksByIds(taskIds = []) {
+    if (!Array.isArray(taskIds) || taskIds.length === 0) return;
+    const targetTasks = this.config.tasks.filter(t => taskIds.includes(t.id));
+    
+    for (const task of targetTasks) {
+      try {
+        await this.runTask(task);
+      } catch (e) {
+        Logger.error(`[Error] Targeted Task ${task.id} failed: ${e.message}`);
+        if (this.errorRegistry) this.errorRegistry.addError(task.id, e);
+      }
+    }
+  }
+
   async runTask(task) {
     Logger.info(`\n--- Starting task: ${task.id} ---`);
     const provider = this.config.providers[task.provider];
