@@ -9,5 +9,7 @@
   "Krypto Portfolio-Exit (MSTR/COIN)_WARNING": 1787478825446,
   "BTC Trailing Stop Warnung (Makro-Radar)_WARNING": 1787478825446,
   "ML Regime Radar (BTC)_WARNING": 1787478825446,
-  "scenarioEvents": {}
+  "scenarioEvents": {
+    "jolts_july": "2026-09-01"
+  }
 }
