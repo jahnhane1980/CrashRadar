@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 import { Logger } from '../core/Logger.js';
 import { Storage } from '../core/Storage.js';
 import { RequestManager } from '../core/RequestManager.js';
-import { Fetcher } from '../services/Fetcher.js';
+import { TimeSeriesFetcher } from '../services/TimeSeriesFetcher.js';
 import { ErrorRegistry } from '../core/ErrorRegistry.js';
 import { FinanceExpert } from '../services/FinanceExpert.js';
 import { NtfyService } from '../services/NtfyService.js';
@@ -71,7 +71,7 @@ export class MacroScorecardRunner {
             this.storage = this.dependencies.storage || new Storage({ databaseUrl: dbUrl });
             const requestManager = this.dependencies.requestManager || new RequestManager(config);
             const errorRegistry = this.dependencies.errorRegistry || new ErrorRegistry();
-            const fetcher = new Fetcher(config, this.storage, requestManager, errorRegistry);
+            const fetcher = new TimeSeriesFetcher(config, this.storage, requestManager, errorRegistry);
 
             try {
               Logger.info(`[MacroScorecard] Führe gezielten Fetch für [${taskIds.join(', ')}] aus...`);

@@ -304,13 +304,14 @@ flowchart TD
 * **Komponenten-Entwurf:**
   1. `src/analysis/indicators/MlRegimeRadarStockIndicator.js`: Generischer Indikator, dem im Konstruktor der jeweilige Ticker (`SOFI`, `ZETA`, `NVTS`, `PLTR`) übergeben wird.
   2. `config/Fundamental-Veto-Config.json`: Konfigurationsdatei mit harten Bilanz-Schwellenwerten (z. B. `minInstitutionalOwnershipPct: 50`, `maxDilutionRisk: 'MEDIUM'`).
-  3. **Wachhund in [`TradeSetupEngine.js`](file:///D:/GitHub/CrashRadar/src/analysis/TradeSetupEngine.js):** Sagt das LSTM z. B. einen Squeeze vorher, der Wachhund erkennt aber einen Einbruch der institutionellen Quote $\to$ **Veto & Blockade**.
+  3. `src/analysis/indicators/MacroScenarioIndicator.js`: Szenario-Regime-Indikator (siehe [`docs/Makro-Kalender-Szenarien-Konzept.md`](file:///D:/GitHub/CrashRadar/docs/Makro-Kalender-Szenarien-Konzept.md)), der den aktuellen Score (z. B. Goldilocks vs. Stagflation) an die Engine meldet.
+  4. **Wachhund in [`TradeSetupEngine.js`](file:///D:/GitHub/CrashRadar/src/analysis/TradeSetupEngine.js):** Sagt das LSTM z. B. einen Squeeze vorher, der Wachhund erkennt aber einen Einbruch der institutionellen Quote oder ein gescheitertes Makro-Szenario $\to$ **Veto & Blockade**.
 
 ### 6.3 Geplante Validierung: A/B-Testzyklus (Makro-Heuristik vs. ML-Ensemble)
 Vor dem Live-Einsatz von ML-Signalen auf Einzeltitel-Ebene wird ein automatisierter Backtest-Vergleich durchgeführt:
 * **Variante A (Reines Makro-Plumbing / Heuristik ohne ML):** Execution basiert ausschließlich auf Treasury Capacity Radar, Margin Debt Deleveraging, Halving-Uhr (>970 Tage), SMA 200 Bruch und Gold Capitulation.
 * **Variante B (Hybrid-System / Makro + KI-Ensemble):** Nutzt alle Regeln aus A plus:
   1. LSTM Single-Stock Regimes (`MlRegimeRadarStockIndicator.js`).
-  2. XGBoost Makro-Risiko-Score für kontinuierliches **Fractional-Kelly Positionsgrößen-Sizing** (automatische Skalierung `action.scaleDown` / Veto bei Makro-Risiko $> 70\,\%$).
+  2. XGBoost Makro-Risiko-Score & `MacroScenarioIndicator` für kontinuierliches **Fractional-Kelly Positionsgrößen-Sizing** (automatische Skalierung `action.scaleDown` / Veto bei Makro-Risiko $> 70\,\%$ oder Szenario-Fehlschlag).
   3. FINRA Short-Volume Wachhund (`Fundamental-Veto-Config.json`).
 

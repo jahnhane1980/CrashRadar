@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { runCLI } from '../index.js';
-import { DataFetchRunner } from '../src/runners/DataFetchRunner.js';
+import { TimeSeriesFetchRunner } from '../src/runners/TimeSeriesFetchRunner.js';
 import { IndicatorAnalysisRunner } from '../src/runners/IndicatorAnalysisRunner.js';
 import { MacroScorecardRunner } from '../src/runners/MacroScorecardRunner.js';
 import { Logger } from '../src/core/Logger.js';
@@ -16,16 +16,16 @@ describe('CLI Entrypoint (index.js)', () => {
     vi.restoreAllMocks();
   });
 
-  it('startet im Standard-Modus mit DataFetchRunner', async () => {
-    const runSpy = vi.spyOn(DataFetchRunner.prototype, 'run').mockResolvedValue();
+  it('startet im Standard-Modus mit TimeSeriesFetchRunner', async () => {
+    const runSpy = vi.spyOn(TimeSeriesFetchRunner.prototype, 'run').mockResolvedValue();
 
     await runCLI(['node', 'index.js']);
 
     expect(runSpy).toHaveBeenCalled();
   });
 
-  it('startet im Test-Modus mit DataFetchRunner (-t)', async () => {
-    const runSpy = vi.spyOn(DataFetchRunner.prototype, 'run').mockResolvedValue();
+  it('startet im Test-Modus mit TimeSeriesFetchRunner (-t)', async () => {
+    const runSpy = vi.spyOn(TimeSeriesFetchRunner.prototype, 'run').mockResolvedValue();
 
     await runCLI(['node', 'index.js', '-t']);
 
@@ -49,7 +49,7 @@ describe('CLI Entrypoint (index.js)', () => {
   });
 
   it('reicht Fehler aus dem Runner weiter', async () => {
-    vi.spyOn(DataFetchRunner.prototype, 'run').mockRejectedValue(new Error('Runner Failure'));
+    vi.spyOn(TimeSeriesFetchRunner.prototype, 'run').mockRejectedValue(new Error('Runner Failure'));
 
     await expect(runCLI(['node', 'index.js'])).rejects.toThrow('Runner Failure');
   });

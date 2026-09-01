@@ -17,12 +17,12 @@
           "targetObservationDate": "2026-07-01",
           "rule": {
             "type": "RANGE",
-            "min": 7000,
-            "max": 8200,
+            "min": 6900,
+            "max": 7800,
             "unit": "k"
           },
-          "passMessage": "Offene Stellen kühlen sich moderat ab (kein abrupter Einbruch)",
-          "failMessage": "Abrupter Einbruch der offenen Stellen (<7.0M) signalisiert Einstellungsstopp!"
+          "passMessage": "Offene Stellen kühlen sich moderat ab (6.9M - 7.8M / kein abrupter Einbruch)",
+          "failMessage": "Offene Stellen außerhalb des Zielkorridors (<6.9M oder >7.8M)!"
         },
         {
           "id": "nfp_august",
@@ -34,9 +34,9 @@
             {
               "metric": "PAYEMS_DIFF",
               "type": "MIN",
-              "min": 100,
-              "passMsg": "Solider Stellenzuwachs (>=100k)",
-              "failMsg": "Stellenaufbau zu schwach (<100k / Rezessionsangst)"
+              "min": 40,
+              "passMsg": "Stellenaufbau stabil im Erwartungskorridor (>=40k / Konsens 55k)",
+              "failMsg": "Stellenaufbau bricht ein (<40k / Rezessionsgefahr)"
             },
             {
               "metric": "SAHMREALTIME",
@@ -58,11 +58,11 @@
           "targetObservationDate": "2026-08-01",
           "rule": {
             "type": "MAX",
-            "max": 3,
+            "max": 9.0,
             "unit": "%"
           },
-          "passMessage": "Großhandelspreise bestätigen Entspannung in Lieferketten",
-          "failMessage": "Erzeugerpreise ziehen unerwartet stark an (>3.0%)"
+          "passMessage": "Rohstoff-Erzeugerpreise bestätigen Abkühlungspfad (<=9.0%)",
+          "failMessage": "Erzeugerpreise ziehen unerwartet stark an (>9.0%)"
         },
         {
           "id": "cpi_core_august",
@@ -73,11 +73,11 @@
           "targetObservationDate": "2026-08-01",
           "rule": {
             "type": "MAX",
-            "max": 3.4,
+            "max": 2.7,
             "unit": "%"
           },
-          "passMessage": "Kerninflation im Rahmen der Erwartungen (Disinflation intakt)",
-          "failMessage": "Kerninflation klebt zäh fest (>3.4%) – Zinsangst steigt!"
+          "passMessage": "Kerninflation bestätigt Disinflationspfad (<=2.7% / Nowcast: 2.38%)",
+          "failMessage": "Kerninflation klebt zäh fest (>2.7%) – Zinsangst steigt!"
         },
         {
           "id": "fomc_september",
@@ -91,11 +91,11 @@
             "allowed": [
               "PAUSE",
               "CUT_25",
-              "CUT"
+              "CUT_50"
             ]
           },
           "passMessage": "Fed pausiert oder senkt moderat – Startschuss Erleichterungsrallye!",
-          "failMessage": "Zinsschock (+25 Bps)! Fed wiederholt das 2018er Powell-Trauma."
+          "failMessage": "Zinsschock! Fed weicht vom Marktkonsens ab."
         },
         {
           "id": "pce_core_august",
@@ -106,11 +106,11 @@
           "targetObservationDate": "2026-08-01",
           "rule": {
             "type": "MAX",
-            "max": 3.3,
+            "max": 3.5,
             "unit": "%"
           },
-          "passMessage": "Offizielles Fed-Preismaß bestätigt Disinflationspfad",
-          "failMessage": "Core PCE über Erwartung (>3.3%)"
+          "passMessage": "Offizielles Fed-Preismaß im Rahmen der Erwartungen (<=3.5% / Nowcast: 3.40%)",
+          "failMessage": "Core PCE über Erwartung (>3.5%)"
         }
       ]
     }

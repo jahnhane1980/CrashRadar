@@ -4,7 +4,7 @@ import { Command } from 'commander';
 import { Logger } from './src/core/Logger.js';
 import { IndicatorAnalysisRunner } from './src/runners/IndicatorAnalysisRunner.js';
 import { MacroScorecardRunner } from './src/runners/MacroScorecardRunner.js';
-import { DataFetchRunner } from './src/runners/DataFetchRunner.js';
+import { TimeSeriesFetchRunner } from './src/runners/TimeSeriesFetchRunner.js';
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -41,7 +41,7 @@ export async function runCLI(argv) {
       } else if (options.checkScenario) {
         activeRunner = new MacroScorecardRunner(options);
       } else {
-        activeRunner = new DataFetchRunner(options);
+        activeRunner = new TimeSeriesFetchRunner(options);
       }
 
       await activeRunner.run();
