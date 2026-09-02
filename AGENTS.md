@@ -15,7 +15,12 @@
 ## 3. Workflow & Atomic-Change
 * **Limitierung:** Verändere nur so viele Dateien auf einmal, wie du sicher im Kontext behalten kannst. Behalte deinen kontinuierlichen Fluss bei.
 * **Fahrplan:** Erstelle bei größeren, komplexeren Aufgaben zuerst einen Step-by-Step-Fahrplan zur Freigabe.
-* **Scratch-Hygiene:** Temporäre Scratch-Dateien, die sich im Entwicklungsprozess als Sackgasse erweisen und nicht im Konzept/Code referenziert sind, werden vor dem Session-Abschluss selbstständig bereinigt.
+* **2-Säulen-Doku & Spiegel-Disziplin (docs/ & scratch/):**
+  * **Keine losen Root-Dateien:** Weder in `docs/` noch in `scratch/` dürfen Dateien direkt im Wurzelordner abgelegt werden (Ausnahme: `docs/README.md`).
+  * **Strikte 2-Säulen-Trennung:** Jede neue Dokumentation gehört entweder in `docs/architecture/<bereich>/` (technische Spezifikationen, APIs, Schemas, Trading-Regeln) oder in `docs/research/<bereich>/` (empirische Analysen, Backtest-Beweise, Zyklen-Studien).
+  * **Spiegelung in `scratch/`:** Experimentier- und Analyse-Code muss im exakt gleichnamigen gespiegelten Unterordner unter `scratch/architecture/<bereich>/` bzw. `scratch/research/<bereich>/` liegen.
+  * **Tools vs. Trash:** Operative Prototypen/CLI-Hilfsmittel gehören nach `scratch/tools/`. Temporäre Einmal-Prüfungen oder Wegwerf-Skripte wandern nach `scratch/trash/`.
+  * **Index-Pflege:** Jedes neu erstellte oder umbenannte Dokument in `docs/` wird unverzüglich in [`docs/README.md`](file:///D:/GitHub/CrashRadar/docs/README.md) mit kurzer Kurzbeschreibung verlinkt.
 
 ## 4. Formatierung & Integrität
 * **Kommentar-Treue:** Bestehende Kommentare bleiben unverändert an ihrer exakten Position (außer sie sind fachlich nachweisbar veraltet).
