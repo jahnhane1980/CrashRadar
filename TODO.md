@@ -6,7 +6,7 @@
 ## Was noch zu tun ist (Offen)
 
 ### 1. M5-Candles Ingestion Pipeline (`PolygonFetchAdapter`) & Single-Asset Radar
-* **Master-Architektur & Spezifikation:** Vollständig dokumentiert in [`docs/single-asset-radar/Single-Asset-Radar-Architecture.md`](file:///D:/GitHub/CrashRadar/docs/single-asset-radar/Single-Asset-Radar-Architecture.md) (mit Detail-Dokus [`docs/single-asset-radar/M5Candels.md`](file:///D:/GitHub/CrashRadar/docs/single-asset-radar/M5Candels.md) und [`docs/single-asset-radar/SingleAssetTrading.md`](file:///D:/GitHub/CrashRadar/docs/single-asset-radar/SingleAssetTrading.md)).
+* **Master-Architektur & Spezifikation:** Vollständig dokumentiert in [`docs/architecture/single-asset-radar/Single-Asset-Radar-Architecture.md`](file:///D:/GitHub/CrashRadar/docs/architecture/single-asset-radar/Single-Asset-Radar-Architecture.md) (mit Detail-Dokus [`docs/architecture/single-asset-radar/M5Candels.md`](file:///D:/GitHub/CrashRadar/docs/architecture/single-asset-radar/M5Candels.md) und [`docs/architecture/single-asset-radar/SingleAssetTrading.md`](file:///D:/GitHub/CrashRadar/docs/architecture/single-asset-radar/SingleAssetTrading.md)).
 * **Ziel:** Etablierung des nativen, autarken Bezugs von 5-Minuten-Intraday-Kerzen direkt über Polygon.io in die Tabelle `market_data_m5` zur tagesaktuellen Überwachung aktiver High-Beta- & ETF-Positionen.
 * **Operative Umsetzungsschritte [OFFEN]:**
   * **Schritt 1 (`PolygonFetchAdapter.js`):** Implementierung der Fetch-Adapter-Klasse in [`src/core/adapters/fetch/PolygonFetchAdapter.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/fetch/PolygonFetchAdapter.js) mit Market-Status-Check (`/v1/marketstatus/now`), Paginierung via `next_url` und UTC-Mapping.
@@ -16,7 +16,7 @@
   * **Schritt 5 (Workflows & Radar-Sync):** Anlegen von `intraday-m5-fetch.yml` (2x täglich: 17:15 & 22:15 Uhr) und Verifikation mit [`GrowthStockTradingEngine.js`](file:///D:/GitHub/CrashRadar/scratch/tools/GrowthStockTradingEngine.js) & [`BlueChipAndEtfTrader.js`](file:///D:/GitHub/CrashRadar/scratch/tools/BlueChipAndEtfTrader.js).
 
 ### 2. Dynamischer Makro-Wirtschaftskalender & Szenario-Framework (Option A: Full DB)
-* **Konzept-Spezifikation:** Vollständig dokumentiert in [`docs/macro/Makro-Kalender-Szenarien-Konzept.md`](file:///D:/GitHub/CrashRadar/docs/macro/Makro-Kalender-Szenarien-Konzept.md).
+* **Konzept-Spezifikation:** Vollständig dokumentiert in [`docs/architecture/macro/Makro-Kalender-Szenarien-Konzept.md`](file:///D:/GitHub/CrashRadar/docs/architecture/macro/Makro-Kalender-Szenarien-Konzept.md).
 * **Ziel:** Vollständige Ablösung der statischen `Macro-Scenarios-Config.json` durch eine automatisierte, datenbankgestützte Event-, Kalender- und Scorecard-Engine.
 * **Operative Umsetzungsschritte [OFFEN]:**
   * **Schritt 1 (DDL & DB-Migration):** Anlegen der Tabelle `macro_calendar_events` via `src/db/migrations/create_macro_calendar_events.sql` (inkl. `consensus_estimate`, `previous_value`, `status`, `rule_json`).
@@ -36,11 +36,11 @@
   * [`config/Notification-Config.json`](file:///D:/GitHub/CrashRadar/config/Notification-Config.json) (Konfigurierbare Debounce-Schwellenwerte pro Marktphase).
 
 ### 4. Trading & Execution Engine (Architektur, Einzeltitel-ML & 21-Jahre-Backtest)
-* **Architektur & Konzept-Blaupause:** Vollständig dokumentiert in [`docs/trading-engine/TradingEngine.md`](file:///D:/GitHub/CrashRadar/docs/trading-engine/TradingEngine.md).
+* **Architektur & Konzept-Blaupause:** Vollständig dokumentiert in [`docs/architecture/trading-engine/TradingEngine.md`](file:///D:/GitHub/CrashRadar/docs/architecture/trading-engine/TradingEngine.md).
 * **Umfang der Säule:**
   * **Portfolio-DNA & State Machine:** 5-Stufen-Modell für 50/50 Krypto- & Growth-Portfolio (`MSTR`, `NVTS`, `SOFI`, `ZETA`).
   * **FINRA Short-Volume & Fundamentaler Wachhund:** Ticker-spezifische LSTMs (`MlRegimeRadarStockIndicator.js`) kombiniert mit Bilanz-Vetos (`Fundamental-Veto-Config.json`) und Szenario-Feedback (`MacroScenarioIndicator`).
   * **Dynamische Positionsgrößen-Skalierung:** Fractional-Kelly-Logik (`action.scaleDown`) basierend auf Makro-Crash-Risiko ($> 70\,\%$) und Vetos.
   * **A/B-Testzyklus (Makro-Heuristik vs. ML-Ensemble):** Empirischer Vergleich über 21 Jahre (10 Großkrisen).
-* **Status:** Vorbereitung & Konzeptionsphase in [`docs/trading-engine/TradingEngine.md`](file:///D:/GitHub/CrashRadar/docs/trading-engine/TradingEngine.md) abgeschlossen; Umsetzung folgt im dedizierten Entwicklungszweig.
+* **Status:** Vorbereitung & Konzeptionsphase in [`docs/architecture/trading-engine/TradingEngine.md`](file:///D:/GitHub/CrashRadar/docs/architecture/trading-engine/TradingEngine.md) abgeschlossen; Umsetzung folgt im dedizierten Entwicklungszweig.
 
