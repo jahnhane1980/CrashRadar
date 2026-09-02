@@ -274,8 +274,8 @@ Gängige Makro-Modelle betrachten Liquidität entweder rein eindimensional (z. B
 
 > 📖 **Ausführliche Architektur & mathematische Herleitung:**  
 > Die vollständigen Berechnungsformeln ($\text{Liquid Slack}$, $\text{LCLOR}$, $\text{DV01}$, Buyback-Netting und Katalysator-Status) sowie die Detail-Logik sind dokumentiert in:  
-> 🔗 [Treasury-Liquidity-Capacity-Architecture.md](file:///D:/GitHub/CrashRadar/docs/Treasury-Liquidity-Capacity-Architecture.md)  
-> 🔗 [Indikatoren-Grand-Prix-21-Jahre-Analyse.md](file:///D:/GitHub/CrashRadar/docs/Indikatoren-Grand-Prix-21-Jahre-Analyse.md)
+> 🔗 [Treasury-Liquidity-Capacity-Architecture.md](file:///D:/GitHub/CrashRadar/docs/macro/Treasury-Liquidity-Capacity-Architecture.md)  
+> 🔗 [Indikatoren-Grand-Prix-21-Jahre-Analyse.md](file:///D:/GitHub/CrashRadar/docs/audits/Indikatoren-Grand-Prix-21-Jahre-Analyse.md)
 
 ---
 
@@ -348,7 +348,7 @@ Feuern erst, wenn wir bereits im Crash stecken, und bieten daher null Schutz vor
 * **Die Arbeitsmarkt-Divergenz (Quantität vs. Qualität):** Während die Headline-Daten trügen, liefert die innere Struktur der Arbeitsmarktdaten ein klares, vorausschauendes Signal.
   * *Frühindikator (6 bis 18 Monate Vorlauf):* Die qualitative Schere. Unternehmen bauen Vollzeitstellen (`LNS12500000`) ab und wandeln sie in Teilzeit (`LNS12600000`) um. Fällt das Verhältnis um mehr als 2,5% unter sein 12-Monats-Maximum, zeigt dies strukturellen Abbau lange vor einem Aktien-Top.
   * *Akutindikator (0 bis 3 Monate Vorlauf):* Die quantitative Schere. Die Payrolls (`PAYEMS`) steigen durch Statistiktricks weiter, aber das reale Beschäftigungsniveau der Haushalte (`CE16OV`) bricht bereits ein (3-Monats-Delta negativ). Das "Jobwachstum" beruht dann oft nur noch auf Zweitjobs (`LNS12026619`).
-  * *Beweis & Backtest:* Ein historischer Test über alle Crashes seit 1995 ([analyze_labor_market.js](file:///C:/GitHub/CrashRadar/scratch/analyse/analyze_labor_market.js) und [Crash-Arbeitsmarkt-Analyse.md](file:///C:/GitHub/CrashRadar/docs/Crash-Arbeitsmarkt-Analyse.md)) belegt die Treffsicherheit dieser Divergenzen. Nur bei reinen Bewertungsblasen (Dotcom) reagierte die Realwirtschaft verzögert.
+  * *Beweis & Backtest:* Ein historischer Test über alle Crashes seit 1995 ([analyze_labor_market.js](file:///D:/GitHub/CrashRadar/scratch/analyse/analyze_labor_market.js) und [Crash-Arbeitsmarkt-Analyse.md](file:///D:/GitHub/CrashRadar/docs/macro/Crash-Arbeitsmarkt-Analyse.md)) belegt die Treffsicherheit dieser Divergenzen. Nur bei reinen Bewertungsblasen (Dotcom) reagierte die Realwirtschaft verzögert.
 
 * **Challenger, Gray & Christmas Report:** Im Gegensatz zu den staatlichen Nachzüglern (wie Sahm Rule oder JOLTS) ist der monatliche Challenger-Report (Ankündigungen von Entlassungen durch CEOs) ein echter Frühindikator. CEOs wissen, dass die Wirtschaft kippt, bevor es in der staatlichen Statistik auftaucht.
   * *Beweis & Backtest:* Ein historischer Backtest über alle Crashes seit 1999 ([Challenger-Gray-Christmas-Report-Leading-Indicator.js](file:///C:/GitHub/CrashRadar/scratch/analyse/Challenger-Gray-Christmas-Report-Leading-Indicator.js)) belegt die Prognosekraft für **deflationäre/wirtschaftliche Crashes**.

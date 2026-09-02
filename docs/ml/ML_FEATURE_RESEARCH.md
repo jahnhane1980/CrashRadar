@@ -4,7 +4,7 @@
 > **[STATUS: ZU VERIFIZIERENDES EXPERIMENT]**
 > Die in diesem Dokument beschriebenen Konzepte sind derzeit theoretische Hypothesen zur Verbesserung unserer ML-Modelle. Es muss durch Backtesting und Evaluierung erst noch verifiziert werden, ob diese Features in der Praxis tatsächlich einen quantifizierbaren Vorteil (höhere Konfidenz, weniger Bias) beim Training generieren.
 
-Dieses Dokument sammelt theoretische Konzepte und Feature-Ideen, die in zukünftige `<Ticker>FeatureBuilder` (siehe `ML_ARCHITECTURE.md`) integriert werden könnten, um die Schwächen des aktuellen LSTMs (insbesondere bei hochvolatilen Growth-Aktien) zu beheben.
+Dieses Dokument sammelt theoretische Konzepte und Feature-Ideen, die in zukünftige `<Ticker>FeatureBuilder` (siehe [`docs/ml/ML_ARCHITECTURE.md`](file:///D:/GitHub/CrashRadar/docs/ml/ML_ARCHITECTURE.md)) integriert werden könnten, um die Schwächen des aktuellen LSTMs (insbesondere bei hochvolatilen Growth-Aktien) zu beheben.
 
 ---
 
@@ -38,7 +38,7 @@ Dieses Dokument sammelt theoretische Konzepte und Feature-Ideen, die in zukünft
 > **[STATUS: ZU VERIFIZIERENDES EXPERIMENT]**
 > Die in diesem Dokument beschriebenen Konzepte sind derzeit theoretische Hypothesen zur Verbesserung unserer ML-Modelle. Es muss durch Backtesting und Evaluierung erst noch verifiziert werden, ob diese Features in der Praxis tatsächlich einen quantifizierbaren Vorteil (höhere Konfidenz, weniger Bias) beim Training generieren.
 
-Dieses Dokument sammelt theoretische Konzepte und Feature-Ideen, die in zukünftige `<Ticker>FeatureBuilder` (siehe `ML_ARCHITECTURE.md`) integriert werden könnten, um die Schwächen des aktuellen LSTMs (insbesondere bei hochvolatilen Growth-Aktien) zu beheben.
+Dieses Dokument sammelt theoretische Konzepte und Feature-Ideen, die in zukünftige `<Ticker>FeatureBuilder` (siehe [`docs/ml/ML_ARCHITECTURE.md`](file:///D:/GitHub/CrashRadar/docs/ml/ML_ARCHITECTURE.md)) integriert werden könnten, um die Schwächen des aktuellen LSTMs (insbesondere bei hochvolatilen Growth-Aktien) zu beheben.
 
 ---
 

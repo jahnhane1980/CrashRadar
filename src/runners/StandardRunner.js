@@ -1,19 +1,21 @@
 import { Logger } from '../core/Logger.js';
 
 export class StandardRunner {
-  constructor({ config, storage, fetcher, maturityWallBuilder, errorRegistry, ntfyService }) {
+  constructor({ config, storage, fetcher, maturityWallBuilder, errorRegistry, ntfyService, options = {} }) {
     this.config = config;
     this.storage = storage;
     this.fetcher = fetcher;
     this.maturityWallBuilder = maturityWallBuilder;
     this.errorRegistry = errorRegistry;
     this.ntfyService = ntfyService;
+    this.options = options;
   }
 
   async run() {
     try {
-      Logger.info('Starting fetch jobs...');
-      await this.fetcher.runAllTasks();
+      const profile = this.options?.profile || 'daily';
+      Logger.info(`Starting fetch jobs (Profile: ${profile})...`);
+      await this.fetcher.runAllTasks(profile);
       
       Logger.info('Updating Maturity Wall...');
       await this.maturityWallBuilder.build(this.config.globalStartDate || '2015-01-01');

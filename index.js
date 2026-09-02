@@ -32,7 +32,8 @@ export async function runCLI(argv) {
   program
     .option('-t, --test', 'Run the fetcher in test mode')
     .option('-c, --check-indikator', 'Run the macro financial indicator analysis')
-    .option('-s, --check-scenario', 'Run targeted macro scenario fetch, evaluation and alerting');
+    .option('-s, --check-scenario', 'Run targeted macro scenario fetch, evaluation and alerting')
+    .option('-p, --profile <profile>', 'Filter data fetching tasks by profile / frequency (e.g. daily, intraday_m5, all)', 'daily');
 
   program.action(async (options) => {
     try {

@@ -52,7 +52,7 @@ export class TimeSeriesFetchRunner {
     const fetcher = this.dependencies.fetcher || new TimeSeriesFetcher(config, storage, requestManager, errorRegistry);
     const maturityWallBuilder = this.dependencies.maturityWallBuilder || new MaturityWallBuilder(dbUrl);
 
-    const runnerArgs = { config, storage, fetcher, maturityWallBuilder, errorRegistry, ntfyService };
+    const runnerArgs = { config, storage, fetcher, maturityWallBuilder, errorRegistry, ntfyService, options: this.options };
     
     if (this.dependencies.runner) {
       this.activeRunner = this.dependencies.runner;

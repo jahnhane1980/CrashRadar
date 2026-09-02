@@ -242,7 +242,7 @@ async function run() {
     report += `   * **Sahm-Rule & Sahm-Warning:** Triggern historisch meist erst nach dem absoluten Preis-Top, dafür aber mit 100%iger Trefferquote für eine beginnende Rezession. Sie dienen als finaler Zündschlüssel, um defensive Re-Entries zu verhindern.\n`;
 
     // Auf die Festplatte schreiben für Folge-Analysen
-    const reportPath = path.join(process.cwd(), 'docs', 'Crash-Arbeitsmarkt-Analyse.md');
+    const reportPath = path.join(process.cwd(), 'docs', 'macro', 'Crash-Arbeitsmarkt-Analyse.md');
     fs.writeFileSync(reportPath, report, 'utf-8');
 
     console.log("\n" + report);

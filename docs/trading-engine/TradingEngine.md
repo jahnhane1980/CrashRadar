@@ -252,15 +252,15 @@ export class TradingEngine {
 Die Funktionsweise und empirischen Beweise der zugrundeliegenden Sensoren sind in folgenden Architektur-Dokumenten festgehalten:
 
 * 📊 **Vollständiger Indikatoren-Vergleich über 21 Jahre:**  
-  🔗 [docs/Indikatoren-Grand-Prix-21-Jahre-Analyse.md](file:///D:/GitHub/CrashRadar/docs/Indikatoren-Grand-Prix-21-Jahre-Analyse.md)  
+  🔗 [docs/audits/Indikatoren-Grand-Prix-21-Jahre-Analyse.md](file:///D:/GitHub/CrashRadar/docs/audits/Indikatoren-Grand-Prix-21-Jahre-Analyse.md)  
   *(Nachweis der 100 % Krisen-Trefferquote und der 4-Schichten-Verteidigung)*
 
 * 🏛️ **Mathematische Formeln & Geldmarkt-Plumbing:**  
-  🔗 [docs/Treasury-Liquidity-Capacity-Architecture.md](file:///D:/GitHub/CrashRadar/docs/Treasury-Liquidity-Capacity-Architecture.md)  
+  🔗 [docs/macro/Treasury-Liquidity-Capacity-Architecture.md](file:///D:/GitHub/CrashRadar/docs/macro/Treasury-Liquidity-Capacity-Architecture.md)  
   *(Formeln zu Liquid Slack, LCLOR, TGA-Cushion, Buyback-Netting und Kollisions-Timer)*
 
 * 🧠 **Zentrale Makro-Thesen & Mythos-Buster:**  
-  🔗 [docs/Analyse.md](file:///D:/GitHub/CrashRadar/docs/Analyse.md)  
+  🔗 [docs/macro/Analyse.md](file:///D:/GitHub/CrashRadar/docs/macro/Analyse.md)  
   *(Auswertung zu Yield Curve, Net Liquidity Illusion, DXY, Margin Debt und SKEW)*
 
 ---
@@ -286,7 +286,7 @@ Als nächster Schritt wird ein dediziertes Simulations-Skript (`scratch/full_21y
 > **Hinweis zur Entwicklung:** Dieser Abschnitt fasst die empirischen Erkenntnisse und Implementierungsentwürfe für Einzeltitel zusammen. Die Details dienen als Diskussions- und Validierungsgrundlage für die spätere Umsetzung der Execution-Engine.
 
 ### 6.1 Empirische Erkenntnisse zu FINRA Short-Volume (Bärenmarkt-Beweisführung)
-Extreme FINRA-Leerverkaufsdaten wirken sich je nach Aktie und Bilanzstruktur massiv unterschiedlich aus (dokumentiert in [`docs/ML_EVALUATIONS.md`](file:///D:/GitHub/CrashRadar/docs/ML_EVALUATIONS.md)):
+Extreme FINRA-Leerverkaufsdaten wirken sich je nach Aktie und Bilanzstruktur massiv unterschiedlich aus (dokumentiert in [`docs/ml/ML_EVALUATIONS.md`](file:///D:/GitHub/CrashRadar/docs/ml/ML_EVALUATIONS.md)):
 * **ZETA:** 46 Extrem-Signale (>65 % Short Vol). Win-Rate nach 5 Tagen: **67,4 %** (Squeeze-Kontra-Indikator / Smart Money sammelt ein).
 * **NVTS:** 71 Extrem-Signale. Win-Rate brach auf **36,6 %** nach 20 Tagen ein (Todesspirale / Volatilitätsverstärker ohne institutionellen Rückhalt).
 * **SOFI:** Nur 2 Extrem-Signale im gesamten Bärenmarkt (breite Aktionärsstruktur verhinderte konzertiertes Shorting).
@@ -304,7 +304,7 @@ flowchart TD
 * **Komponenten-Entwurf:**
   1. `src/analysis/indicators/MlRegimeRadarStockIndicator.js`: Generischer Indikator, dem im Konstruktor der jeweilige Ticker (`SOFI`, `ZETA`, `NVTS`, `PLTR`) übergeben wird.
   2. `config/Fundamental-Veto-Config.json`: Konfigurationsdatei mit harten Bilanz-Schwellenwerten (z. B. `minInstitutionalOwnershipPct: 50`, `maxDilutionRisk: 'MEDIUM'`).
-  3. `src/analysis/indicators/MacroScenarioIndicator.js`: Szenario-Regime-Indikator (siehe [`docs/Makro-Kalender-Szenarien-Konzept.md`](file:///D:/GitHub/CrashRadar/docs/Makro-Kalender-Szenarien-Konzept.md)), der den aktuellen Score (z. B. Goldilocks vs. Stagflation) an die Engine meldet.
+  3. `src/analysis/indicators/MacroScenarioIndicator.js`: Szenario-Regime-Indikator (siehe [`docs/macro/Makro-Kalender-Szenarien-Konzept.md`](file:///D:/GitHub/CrashRadar/docs/macro/Makro-Kalender-Szenarien-Konzept.md)), der den aktuellen Score (z. B. Goldilocks vs. Stagflation) an die Engine meldet.
   4. **Wachhund in [`TradeSetupEngine.js`](file:///D:/GitHub/CrashRadar/src/analysis/TradeSetupEngine.js):** Sagt das LSTM z. B. einen Squeeze vorher, der Wachhund erkennt aber einen Einbruch der institutionellen Quote oder ein gescheitertes Makro-Szenario $\to$ **Veto & Blockade**.
 
 ### 6.3 Geplante Validierung: A/B-Testzyklus (Makro-Heuristik vs. ML-Ensemble)

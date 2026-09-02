@@ -66,8 +66,15 @@ export class TimeSeriesFetcher {
     this.errorRegistry = errorRegistry;
   }
 
-  async runAllTasks() {
-    const tasks = this.config.tasks;
+  /**
+   * Führt alle konfigurierten Tasks aus, optional gefiltert nach Profil / Frequenz.
+   * @param {string} profile - Profil-Name (z. B. 'daily', 'intraday_m5', 'all'). Standard: 'daily'
+   */
+  async runAllTasks(profile = 'daily') {
+    let tasks = this.config.tasks;
+    if (profile && profile !== 'all') {
+      tasks = tasks.filter(task => (task.frequency || 'daily') === profile);
+    }
     const globalConcurrency = this.config.globalConcurrency || CONFIG_DEFAULTS.CONCURRENCY;
     
     const limits = {};

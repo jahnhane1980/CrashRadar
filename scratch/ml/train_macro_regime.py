@@ -1,6 +1,6 @@
 """
 Prototyp-Training für das Multivariate Makro-ML-Regime-Modell
-CrashRadar - Phase 7 (docs/Makro-ML.md)
+CrashRadar - Phase 7 (docs/ml/Makro-ML.md)
 
 Liest data/historical_events_raw_indicators.csv ein, trainiert ein XGBoost-Modell
 und exportiert die JSON-Bäume für die Node.js-Inferenz.

@@ -384,7 +384,7 @@ flowchart LR
     end
 
     subgraph Trading["3. TradingEngine (Execution & Veto)"]
-        Radar["MlRegimeRadar / Watchdog\n(docs/TradingEngine.md)"]
+        Radar["MlRegimeRadar / Watchdog\n(docs/trading-engine/TradingEngine.md)"]
         Kelly["Fractional Kelly: 1.0x (Volle Allokation)\nBei FAILED: scaleDown & Veto"]
     end
 
@@ -409,7 +409,7 @@ flowchart LR
   }
   ```
 
-### 10.2 Rolle in der TradingEngine ([`docs/TradingEngine.md`](file:///D:/GitHub/CrashRadar/docs/TradingEngine.md))
+### 10.2 Rolle in der TradingEngine ([`docs/trading-engine/TradingEngine.md`](file:///D:/GitHub/CrashRadar/docs/trading-engine/TradingEngine.md))
 * **Verantwortung:** Fundamental-Veto und dynamische Risikoskalierung (Kelly Multiplikator).
 * **Handlungslogik:**
   * **Score $\ge 80\,\%$ (`CONFIRMED`):** Grünes Licht für Trendfolge- und Momentum-Strategien. Maximales Risiko-Budget.

@@ -3,6 +3,7 @@ import { createClient } from '@supabase/supabase-js';
 import mysql from 'mysql2/promise';
 
 const MAPPING = {
+  1: 'IBRX',
   12: 'SOFI',
   13: 'SPY',
   27: 'SPY',
@@ -16,7 +17,7 @@ const MAPPING = {
 };
 
 async function run() {
-  console.log('=== START M5 IMPORT: SUPABASE -> CRASHRADAR ===');
+  console.log('=== START INCREMENTAL M5 IMPORT: SUPABASE -> CRASHRADAR ===');
 
   const supabaseUrl = `https://${process.env.SUPABASE_PROJECT_ID}.supabase.co`;
   const supabaseKey = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_PUBLISHABLE_KEY;
@@ -31,7 +32,7 @@ async function run() {
   const pool = mysql.createPool(dbUrl);
 
   try {
-    console.log('[Setup] Creating market_data_m5 table if not exists...');
+    console.log('[Setup] Ensuring market_data_m5 table exists...');
     await pool.query(`
       CREATE TABLE IF NOT EXISTS market_data_m5 (
         symbol VARCHAR(10) NOT NULL,
@@ -45,68 +46,110 @@ async function run() {
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
     `);
 
-    const tickerIds = Object.keys(MAPPING).map(Number);
-    console.log(`[Fetch] Querying Supabase for ticker IDs: ${tickerIds.join(', ')}...`);
+    // 1. Hole aktuellen Max-Stand je Symbol aus MySQL
+    const [latestRows] = await pool.query(`
+      SELECT symbol, MAX(record_time) as max_time
+      FROM market_data_m5
+      GROUP BY symbol
+    `);
 
-    let allData = [];
-    let page = 0;
-    const limit = 1000;
-    while (true) {
-      const { data, error } = await supabase
-        .from('market_m5_candles')
-        .select('*')
-        .in('ticker', tickerIds)
-        .range(page * limit, (page + 1) * limit - 1);
-
-      if (error) {
-        throw new Error(`Supabase error: ${error.message}`);
+    const latestBySymbol = {};
+    for (const r of latestRows) {
+      if (r.max_time) {
+        latestBySymbol[r.symbol] = new Date(r.max_time);
       }
-
-      if (!data || data.length === 0) {
-        break;
-      }
-
-      allData.push(...data);
-      console.log(`  -> Fetched ${allData.length} records so far...`);
-      if (data.length < limit) break;
-      page++;
     }
 
-    console.log(`[Transform] Transforming ${allData.length} records...`);
-    const valuesToInsert = allData.map(row => {
-      const symbol = MAPPING[row.ticker];
-      
-      // If timestamp is like 1781205900, it's seconds. If it's 1781205900000, it's ms.
-      const tsMs = row.timestamp > 100000000000 ? row.timestamp : row.timestamp * 1000;
-      const d = new Date(tsMs);
-      const iso = d.toISOString().replace('T', ' ').substring(0, 19);
-      
-      return [
-        symbol,
-        iso,
-        row.open,
-        row.high,
-        row.low,
-        row.close,
-        row.volume
-      ];
-    });
-
-    if (valuesToInsert.length > 0) {
-      console.log(`[Insert] Writing to MySQL table market_data_m5...`);
-      const chunkSize = 2000;
-      for (let i = 0; i < valuesToInsert.length; i += chunkSize) {
-        const chunk = valuesToInsert.slice(i, i + chunkSize);
-        await pool.query(`
-          INSERT IGNORE INTO market_data_m5 (symbol, record_time, open, high, low, close, volume)
-          VALUES ?
-        `, [chunk]);
-        console.log(`  -> Inserted batch ${i / chunkSize + 1} of ${Math.ceil(valuesToInsert.length/chunkSize)}`);
-      }
-      console.log(`[Success] Inserted total of ${valuesToInsert.length} records.`);
-    } else {
-      console.log('[Warning] No records found to insert.');
+    console.log('[Status] Aktuelle Stände in MySQL:');
+    for (const [sym, dt] of Object.entries(latestBySymbol)) {
+      console.log(`  ${sym.padEnd(6)}: ${dt.toISOString()}`);
     }
+
+    let totalInserted = 0;
+
+    // 2. Diff für jeden Ticker aus Supabase abrufen
+    for (const [tickerIdStr, symbol] of Object.entries(MAPPING)) {
+      const tickerId = Number(tickerIdStr);
+      const lastDate = latestBySymbol[symbol];
+      
+      // Start-Timestamp (in Sekunden) mit 1 Stunde Sicherheitspuffer
+      let startTimestampSec = 0;
+      if (lastDate) {
+        startTimestampSec = Math.max(0, Math.floor(lastDate.getTime() / 1000) - 3600);
+      }
+
+      console.log(`\n[Fetch] Ticker ${tickerId} (${symbol}) ab ${startTimestampSec > 0 ? new Date(startTimestampSec * 1000).toISOString() : 'Beginn'}...`);
+
+      let page = 0;
+      const limit = 1000;
+      let tickerRows = 0;
+
+      while (true) {
+        let query = supabase
+          .from('market_m5_candles')
+          .select('*')
+          .eq('ticker', tickerId)
+          .order('timestamp', { ascending: true })
+          .range(page * limit, (page + 1) * limit - 1);
+
+        if (startTimestampSec > 0) {
+          query = query.gte('timestamp', startTimestampSec);
+        }
+
+        const { data, error } = await query;
+
+        if (error) {
+          console.error(`  [Error] Supabase Fehler für Ticker ${tickerId}: ${error.message}`);
+          break;
+        }
+
+        if (!data || data.length === 0) {
+          break;
+        }
+
+        const valuesToInsert = data.map(row => {
+          const tsMs = row.timestamp > 100000000000 ? row.timestamp : row.timestamp * 1000;
+          const d = new Date(tsMs);
+          const iso = d.toISOString().replace('T', ' ').substring(0, 19);
+          return [
+            symbol,
+            iso,
+            row.open,
+            row.high,
+            row.low,
+            row.close,
+            row.volume
+          ];
+        });
+
+        if (valuesToInsert.length > 0) {
+          const [result] = await pool.query(`
+            INSERT IGNORE INTO market_data_m5 (symbol, record_time, open, high, low, close, volume)
+            VALUES ?
+          `, [valuesToInsert]);
+          
+          tickerRows += result.affectedRows;
+          totalInserted += result.affectedRows;
+        }
+
+        if (data.length < limit) break;
+        page++;
+      }
+
+      console.log(`  -> ${tickerRows} neue Datensätze für ${symbol} (Ticker ${tickerId}) eingefügt.`);
+    }
+
+    console.log(`\n=== IMPORT ERFOLGREICH: Insgesamt ${totalInserted} neue M5-Kerzen importiert. ===\n`);
+
+    // Finale Überprüfung
+    const [finalStats] = await pool.query(`
+      SELECT symbol, COUNT(*) as count, MIN(record_time) as min_time, MAX(record_time) as max_time
+      FROM market_data_m5
+      GROUP BY symbol
+      ORDER BY symbol ASC
+    `);
+    console.log('--- Finale MySQL market_data_m5 Übersicht ---');
+    console.table(finalStats);
 
   } catch (err) {
     console.error('[Fatal]', err);
