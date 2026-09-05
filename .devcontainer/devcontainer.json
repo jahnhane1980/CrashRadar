@@ -1,0 +1,4 @@
+{
+  "name": "CrashRadar Dev Container",
+  "postCreateCommand": "bash .devcontainer/setup.sh"
+}
