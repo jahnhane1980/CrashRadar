@@ -53,19 +53,19 @@ flowchart TD
 
 1. **`MacroCalendarFetcher.js` (Fakten, Termine & Konsens):**
    * Fragt die offiziellen Veröffentlichungstermine für das Kalenderjahr von der FRED-API ab (`release_date`, `release_time`, `target_observation_date`, `event_code`).
-   * Bezieht den offiziellen Wall-Street-Konsens (`consensus_estimate`) von ForexFactory und Cleveland Fed Nowcast.
+   * Bezieht den offiziellen Wall-Street-Konsens (`consensus_estimate`) resilient von Cleveland Fed Nowcast und per gecachtem Abruf von ForexFactory.
    * Schreibt diese Termine mit Status `SCHEDULED` in die Tabelle `macro_calendar_events`.
    * **Wichtig:** Kennt *keine* Trading- oder Goldilocks-Regeln.
 
 2. **`MacroScenarioRuleService.js` (Markt-Regeln & Interpretation):**
    * Definiert, was die Wall Street in einem bestimmten Regime (z. B. "Goldilocks", "Stagflation-Watch", "Zinswende-Tracker") sehen will.
-   * Generiert relative, trend- und zinsabhängige Schwellenwerte (`rule_json`) und ordnet sie den Events zu.
+   * Generiert relative, trend- und zinsabhängige Schwellenwerte (`rule_json`) mit beidseitigen Korridoren und ordnet sie den Events zu.
 
 3. **`MacroScorecardRunner.js` (Live-Execution & Werte-Übertrag):**
    * Prüft täglich, ob ein Event ansteht (`release_date = CURRENT_DATE`).
    * Führt den gezielten `TimeSeriesFetcher`-Task aus (Daten fließen in `econ_fred`).
-   * **Lokale Synchronisation:** Liest den neuen Ist-Wert direkt lokal aus `econ_fred` (keine redundanten externen API-Calls).
-   * Validiert den Freshness-Guard, bewertet die Regel, aktualisiert `actual_value` + `status` (`PASSED`/`FAILED`) und feuert die Ntfy-Scorecard.
+   * **Lokale Synchronisation:** Liest den neuen Ist-Wert direkt lokal aus `econ_fred` (keine redundanten externen API-Calls) bzw. nutzt am FOMC-Abend den offiziellen Notenbank-Hybrid.
+   * Validiert den Freshness-Guard, bewertet die Regel, aktualisiert `actual_value`, `details_json` + `status` (`PASSED`/`FAILED`) und feuert die Ntfy-Scorecard.
 
 ### 2.1 Das Monopol des TimeSeriesFetchers (Separation of Concerns)
 
@@ -84,13 +84,13 @@ Ein zentraler Architektur-Grundsatz von CrashRadar ist das **Monopol des TimeSer
 
 Die US-Behörden und die Federal Reserve veröffentlichen ihren Jahresplan weit im Voraus. Die Termine werden über die offizielle FRED-Release-API synchronisiert:
 
-| Event | Herausgeber | Offizielle Quelle | FRED Release-ID | Standard-Uhrzeit |
+| Event | Herausgeber | Offizielle Quelle | FRED Release-ID / Feed | Standard-Uhrzeit |
 | :--- | :--- | :--- | :--- | :--- |
 | **JOLTS** (Offene Stellen) | **BLS** (Bureau of Labor Statistics) | [BLS Schedule](https://www.bls.gov/schedule/news_release/) | `release_id=119` | 16:00 MESZ (10:00 ET) |
 | **NFP** (Employment Situation / Payrolls) | **BLS** | [BLS Schedule](https://www.bls.gov/news.release/empsit.toc.htm) | `release_id=50` | 14:30 MESZ (08:30 ET) |
 | **CPI Core** (Verbraucherpreise) | **BLS** | [BLS Schedule](https://www.bls.gov/cpi/) | `release_id=10` | 14:30 MESZ (08:30 ET) |
 | **PPI** (Erzeugerpreise) | **BLS** | [BLS Schedule](https://www.bls.gov/ppi/) | `release_id=110` | 14:30 MESZ (08:30 ET) |
-| **FOMC** (Fed Zinsentscheid) | **Federal Reserve** | [FOMC Calendar](https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm) | *(8 feste Termine / Jahr)* | 20:00 MESZ (14:00 ET) |
+| **FOMC** (Fed Zinsentscheid) | **Federal Reserve** | [FOMC Calendar](https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm) & [FRB Monetary Feed](https://www.federalreserve.gov/feeds/press_monetary.xml) | 8 Termine / Jahr (H.15 `release_id=115`) | 20:00 MESZ (Live-Statement) / T+1 15:30 MESZ (FRED) |
 | **Core PCE** (Fed-Preismaß) | **BEA** (Bureau of Economic Analysis) | [BEA Schedule](https://www.bea.gov/news/schedule) | `release_id=54` | 14:30 MESZ (08:30 ET) |
 
 ### 3.2 Live-Evaluierung & Marktübersicht aller Datenquellen
@@ -104,44 +104,93 @@ Im Rahmen der Konzeption wurden alle relevanten Marktdaten-Provider auf ihre Eig
 | **AlphaVantage** | ❌ Nein | ❌ Nein | Funktion `ECONOMIC_CALENDAR` existiert nicht. Reine historische Zeitreihen. |
 | **FMP (FinancialModelingPrep)** | ⚠️ Nur Paid | ⚠️ Nur Paid | ❌ **Blockiert:** Seit Aug 2025 hinter Paywall (`HTTP 402 Restricted Endpoint`). |
 | **Finnhub** | ⚠️ Nur Schedule | ⚠️ Nur Earnings | Im Free-Tier auf Schedule und Unternehmensgewinne (EPS) beschränkt; keine verlässlichen Makro-Prints. |
-| **👑 Cleveland Fed Nowcasting** | ✅ Ja (Inflation) | ✅ Ja (Live Nowcast) | 🟢 **Hervorragend (Gold-Standard):** Tägliche Schätzungen für Core CPI (`2.38 %`) und Core PCE (`3.40 %`). |
-| **👑 ForexFactory JSON Feed** | ✅ Ja (Alle Events) | ✅ Ja (Offizieller Konsens) | 🟢 **Hervorragend:** Öffentlicher JSON-Feed (`nfs.faireconomy.media`) liefert punktgenauen Wall-Street-Konsens (z. B. JOLTS: `7.33M`, NFP: `55k`, Unemployment: `4.1%`). |
+| **👑 Cleveland Fed Nowcasting** | ✅ Ja (Inflation) | ✅ Ja (Live Nowcast) | 🟢 **Hervorragend (Gold-Standard):** Tägliche Schätzungen für Core CPI (`2.38 %`) und Core PCE (`3.40 %`). Stabil und verlässlich. |
+| **👑 ForexFactory JSON Feed** | ✅ Ja (Alle Events) | ✅ Ja (Offizieller Konsens) | 🟢 **Hervorragend:** Öffentlicher JSON-Feed (`nfs.faireconomy.media`) liefert punktgenauen Wall-Street-Konsens (z. B. JOLTS: `7.33M`, NFP: `55k`, Unemployment: `4.1%`). *Wichtig: Caching erforderlich wegen Cloudflare Rate Limits.* |
 
-### 3.3 Beschlossene Quellen-Strategie pro Metrik
+### 3.3 Beschlossene Quellen-Strategie & 3-Stufen-Resilienz
 
-| Metrik-Gruppe | Primäre Datenquelle für `consensus_estimate` | Status & Implementierung |
+| Metrik-Gruppe | Primäre Datenquelle für `consensus_estimate` | Status & Resilienz-Strategie |
 | :--- | :--- | :--- |
-| **Inflation** (`CPI_CORE`, `PCE_CORE`) | **Cleveland Fed Inflation Nowcast** | ✅ **Beschlossen:** Tägliches Nowcast-Scraping / API-Parsing (`parseClevelandNowcast()`). |
-| **Zinsen** (`FOMC`) | **Federal Reserve FOMC-Kalender** | ✅ **Beschlossen:** Diskreter Zins-Erwartungskorridor (`PAUSE`, `CUT_25`, `CUT_50`). |
-| **Arbeitsmarkt** (`PAYEMS` / NFP, `JTSJOL`) | **ForexFactory JSON Feed + Demografischer Breakeven Guard ($100\text{k}$ / Sahm $<0.50$)** | ✅ **Beschlossen:** Liest den Wall-Street-Konsens (`forecast`) direkt aus dem ForexFactory-JSON-Feed (JOLTS: `7.33M`, NFP: `55k`) und sichert ihn durch das 2-Stufen-Modell gegen Rezessionsschocks ab. |
+| **Inflation** (`CPI_CORE`, `PCE_CORE`) | **Cleveland Fed Inflation Nowcast** | ✅ **Beschlossen:** Tägliches Nowcast-Scraping / API-Parsing (`parseClevelandNowcast()`). Höchste Genauigkeit. |
+| **Zinsen** (`FOMC`) | **Federal Reserve Notenbank-Hybrid** | ✅ **Beschlossen:** Phase 1 (20:05 MESZ) offizieller Fed-Statement RSS-Feed; Phase 2 (T+1) FRED-Validierung (`DFEDTARU`). |
+| **Arbeitsmarkt** (`PAYEMS` / NFP, `JTSJOL`) | **ForexFactory Feed (gecached) + Demografie- & Sahm-Guard** | ✅ **Beschlossen:** Gecachter Abruf des Wall-Street-Konsens (`forecast`) aus ForexFactory. Fallback auf konfigurierte Breakeven-Schwellen bei Verbindungsproblemen. |
 
-#### 3.3.1 Der ForexFactory Konsens-Ingestion-Flow (4-Schritte-Ablauf)
+#### 3.3.1 ForexFactory Ingestion & Cloudflare-Resilienz (3-Stufen-Architektur)
 
 ```mermaid
 sequenceDiagram
     autonumber
-    participant CalFetcher as MacroCalendarFetcher
+    participant CalFetcher as MacroCalendarFetcher (wöchentlich / morgens)
     participant FF as ForexFactory Feed (nfs.faireconomy.media)
     participant DB as MySQL (macro_calendar_events)
-    participant Runner as MacroScorecardRunner (am Event-Tag)
+    participant Runner as MacroScorecardRunner (am Event-Nachmittag)
 
-    Note over CalFetcher,FF: 1. Konsens-Abruf (wöchentlich / am Event-Morgen)
+    Note over CalFetcher,FF: 1. Gecachter Abruf (1x pro Woche / Event-Morgen mit Backoff)
     CalFetcher->>FF: GET /ff_calendar_thisweek.json
-    FF-->>CalFetcher: JSON-Array aller USD-Events mit "forecast"
-    
-    Note over CalFetcher: 2. Normalisierung (z. B. "7.33M" -> 7330k, "55K" -> 55k)
-    CalFetcher->>DB: UPDATE macro_calendar_events SET consensus_estimate = 7330 WHERE event_code = 'JTSJOL' AND release_date = '2026-09-01'
+    alt Feed erfolgreich
+        FF-->>CalFetcher: JSON-Array aller USD-Events mit "forecast"
+        Note over CalFetcher: Normalisierung ("7.33M" -> 7330k, "55K" -> 55k)
+        CalFetcher->>DB: UPDATE consensus_estimate in macro_calendar_events
+    else Cloudflare Rate Limit / HTTP 429
+        Note over CalFetcher: Fallback: Bestehende DB-Schätzungen oder Konfig-Defaults beibehalten
+    end
 
-    Note over Runner,DB: 3. Auswertung am Event-Tag (nach FRED-Daten-Fetch)
-    Runner->>DB: Lese Event (consensus_estimate: 7330, actual_value: 7650)
-    Note over Runner: Stufe 1: 7650k vs 7330k (Konsens erfüllt / Beat)<br>Stufe 2: Sahm -0.03 < 0.50 (Makro-Guard intakt)
-    Runner->>DB: SET status = 'PASSED'
+    Note over Runner,DB: 2. Auswertung am Event-Nachmittag (100% lokal & offline-fähig)
+    Runner->>DB: Lese consensus_estimate direkt aus DB (KEIN externer Call!)
+    Note over Runner: Prüfung gegen actual_value und Stufe-2-Guards
+    Runner->>DB: UPDATE status = 'PASSED' / 'FAILED'
 ```
 
-1. **Abruf des Feeds:** URL: `https://nfs.faireconomy.media/ff_calendar_thisweek.json` (kein API-Key erforderlich).
-2. **Matching & Einheiten-Normalisierung:** Filterung nach `country === 'USD'`, Umwandlung von Strings (`"7.33M"` $\to$ `7330`, `"55K"` $\to$ `55`).
-3. **Persistierung in der DB:** Automatisches Update der Spalte `macro_calendar_events.consensus_estimate`.
-4. **Ausführung am Event-Tag:** Abgleich von `actual_value` gegen `consensus_estimate` und Prüfung des Stufe-2-Guards.
+1. **Kein Live-Abruf im Alert-Fenster:** Um Cloudflare-Blockaden (`<title>Rate Limited</title>`) zuverlässig auszuschließen, greift der `MacroScorecardRunner` am Nachmittag niemals live auf ForexFactory zu. Sämtliche Konsens-Schätzungen werden vorab in `macro_calendar_events.consensus_estimate` persistiert.
+2. **Graceful Fallback:** Sollte der Feed während des Seedings temporär nicht erreichbar sein, greift das System automatisch auf das in [`config/Macro-Scenarios-Config.json`](file:///D:/GitHub/CrashRadar/config/Macro-Scenarios-Config.json) hinterlegte Default-Niveau bzw. das 3M-Trend-Modell zurück. Der Runner stürzt niemals ab.
+
+#### 3.3.2 Die 2-Phasen FOMC-Zinsentscheid-Strategie (Automatisierter Notenbank-Hybrid)
+
+Das FOMC-Meeting stellt eine fundamentale methodische Besonderheit dar:
+* **Das Problem:** Der Zinsentscheid wird am Mittwoch um 14:00 ET (20:00 MESZ) verkündet. Der effektive Leitzins (`DFF`) wird von der Federal Reserve Bank of New York jedoch erst am **darauffolgenden Geschäftstag (Donnerstag ca. 15:00 MESZ)** volumengewichtet aus den tatsächlichen Übernacht-Interbankenkrediten berechnet. Wer am Mittwochabend um 20:05 MESZ FRED abfragt, findet ausnahmslos den alten Zinssatz vor.
+* **Die Gefahr unstrukturierten News-Scrapings:** Finanzportale und Nachrichtenticker sind werbeüberladen, ändern regelmäßig ihr DOM-Layout und neigen zu Halluzinationen oder Fehlinterpretationen.
+* **Die Lösung: Der 2-Phasen-Notenbank-Hybrid:**
+
+```mermaid
+flowchart TD
+    subgraph Phase1["Phase 1: Live-Sitzungsabend (Mittwoch 20:05 MESZ)"]
+        CronWed["Cronjob 20:05 MESZ"] --> FetchRSS["Abruf offizieller Federal Reserve RSS-Feed\n(feeds/press_monetary.xml)"]
+        FetchRSS --> ParseStmt{"Regex-Abgleich des offiziellen FOMC-Statements"}
+        ParseStmt -->|"maintain"| SetPause["actual_value = 'PAUSE'\nstatus = 'PASSED'"]
+        ParseStmt -->|"lower ... by 25 basis points"| SetCut25["actual_value = 'CUT_25'\nstatus = 'PASSED'"]
+        ParseStmt -->|"lower ... by 50 basis points"| SetCut50["actual_value = 'CUT_50'\nstatus = 'PASSED'"]
+        ParseStmt -->|"raise ... by 25 basis points"| SetHike["actual_value = 'HIKE_25'\nstatus = 'FAILED'"]
+        ParseStmt -->|"Unklar / Feed down"| Pending["Stummer Übergang in PENDING_DATA\n(Kein Raten / Keine Falschmeldung)"]
+        SetPause --> PushWed["Sofortiger Ntfy Scorecard Alert (Live am Abend)"]
+        SetCut25 --> PushWed
+        SetCut50 --> PushWed
+        SetHike --> PushWed
+    end
+
+    subgraph Phase2["Phase 2: T+1 Hard Data Verifikation (Donnerstag 15:30 MESZ)"]
+        CronThu["Cronjob Donnerstag 15:30 MESZ"] --> FetchFRED["TimeSeriesFetcher Task (fred_interest / DFEDTARU)"]
+        FetchFRED --> DB_Fred[("econ_fred")]
+        DB_Fred --> VerifyDB["Prüft mathematisches Zins-Delta:\nDelta = TargetRate(t) - TargetRate(t-1)"]
+        VerifyDB --> PersistFinal["Endgültige Bestätigung & Archivierung in macro_calendar_events"]
+    end
+
+    Pending --> Phase2
+```
+
+1. **Phase 1 (Mittwochabend 20:05 MESZ – Offizielle Primärquelle der Notenbank):**
+   * Statt unzuverlässiger Nachrichtenseiten liest der Runner direkt den offiziellen RSS-Feed des Federal Reserve Board:
+     `https://www.federalreserve.gov/feeds/press_monetary.xml`
+   * Der Committee-Beschluss folgt seit Jahrzehnten exakt standardisierten Satzmustern:
+     * `"decided to maintain the target range"` $\to$ `'PAUSE'`
+     * `"decided to lower the target range ... by 25 basis points"` $\to$ `'CUT_25'`
+     * `"decided to lower the target range ... by 50 basis points"` $\to$ `'CUT_50'`
+     * `"decided to raise the target range ... by 25 basis points"` $\to$ `'HIKE_25'`
+   * Liefert das Statement ein eindeutiges Signal, feuert die Scorecard noch am selben Abend als **Live-Alert**.
+2. **Sicherheitsnetz (Zero-Hallucination-Guard):**
+   * Ist der Fed-Feed nicht erreichbar oder matcht kein Pattern (z. B. bei unvorhersehbaren Formulierungsänderungen), wird **niemals geraten**.
+   * Das Event verharrt geräuschlos auf `status = 'PENDING_DATA'`.
+3. **Phase 2 (Donnerstag 15:30 MESZ – T+1 Verifikation aus FRED):**
+   * Sobald die St. Louis Fed das H.15-Release (`DFEDTARU` / Federal Funds Target Range - Upper Limit bzw. `DFF`) eingepflegt hat, gleicht der `TimeSeriesFetcher` die harte Zahl mathematisch ab und verifiziert das Ergebnis endgültig in der Datenbank.
 
 ### 3.4 Der FRED API Endpunkt für Kalenderdaten
 ```http
@@ -159,19 +208,20 @@ CREATE TABLE IF NOT EXISTS `macro_calendar_events` (
   `id` VARCHAR(64) NOT NULL,                           -- z. B. '2026-09-01_JTSJOL' oder UUID
   `scenario_id` VARCHAR(64) NOT NULL,                  -- z. B. 'goldilocks_q3_2026', 'goldilocks_q4_2026'
   `event_code` VARCHAR(32) NOT NULL,                   -- Standardisiert: 'JTSJOL', 'PAYEMS', 'CPI_CORE', 'PPI', 'FOMC', 'PCE_CORE'
-  `title` VARCHAR(128) NOT NULL,                        -- z. B. 'US JOLTS Report'
+  `title` VARCHAR(128) NOT NULL,                       -- z. B. 'US JOLTS Report'
   `reporting_period` VARCHAR(16) NOT NULL,             -- z. B. '2026-07' (Juli), '2026-08' (August), '2026-Q3'
   `release_date` DATE NOT NULL,                        -- Veröffentlichungstag, z. B. '2026-09-01'
   `release_time` VARCHAR(32) NOT NULL,                 -- Uhrzeit, z. B. '16:00 MESZ'
   `target_observation_date` DATE NOT NULL,             -- Exakter FRED-Stichtag, z. B. '2026-07-01'
-  `metric` VARCHAR(32) NOT NULL,                       -- Metrik in econ_fred, z. B. 'JTSJOL'
+  `metric` VARCHAR(32) NOT NULL,                       -- Primäre Metrik in econ_fred, z. B. 'JTSJOL'
   `rule_json` JSON NOT NULL,                           -- Dynamische Auswertungsregel
   `pass_message` VARCHAR(255) DEFAULT NULL,            -- Erklärung bei Erfolg
   `fail_message` VARCHAR(255) DEFAULT NULL,            -- Erklärung bei Nichterfüllung
   `status` ENUM('SCHEDULED', 'PENDING_DATA', 'PASSED', 'FAILED', 'SKIPPED') NOT NULL DEFAULT 'SCHEDULED',
-  `previous_value` DOUBLE DEFAULT NULL,                -- Wert des vorangegangenen Berichtsmonats
-  `consensus_estimate` DOUBLE DEFAULT NULL,            -- Offizieller Wall-Street-Konsens vor Veröffentlichung
-  `actual_value` DOUBLE DEFAULT NULL,                  -- Gemessener Ist-Wert aus econ_fred
+  `previous_value` VARCHAR(64) DEFAULT NULL,           -- Wert des vorangegangenen Berichtsmonats (Zahl z. B. '158800' oder Text)
+  `consensus_estimate` VARCHAR(64) DEFAULT NULL,       -- Offizieller Wall-Street-Konsens vor Veröffentlichung (z. B. '55k', '2.38%')
+  `actual_value` VARCHAR(64) DEFAULT NULL,             -- Gemessener Ist-Wert (Zahl z. B. '142', '2.65' oder String 'CUT_25')
+  `details_json` JSON DEFAULT NULL,                    -- Strukturierte Auswertungs-Details aller Sub-Regeln & Guards
   `evaluated_at` DATETIME DEFAULT NULL,                -- Timestamp der erfolgreichen Auswertung
   `notified_at` DATETIME DEFAULT NULL,                 -- Timestamp des Ntfy-Versands
   `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -191,25 +241,30 @@ CREATE TABLE IF NOT EXISTS `macro_calendar_events` (
 | `PAYEMS` | NFP Arbeitsmarkt & Payrolls | `fred_payems`, `fred_sahmrealtime` | `PAYEMS_DIFF`, `SAHMREALTIME` |
 | `PPI` | Erzeugerpreisindex | `fred_ppiaco` | `PPIACO_YOY` |
 | `CPI_CORE` | Kerninflation | `fred_cpilfesl` | `CPILFESL_YOY` |
-| `FOMC` | Fed Zinsentscheid | `fred_interest` | `DFF_ACTION` |
+| `FOMC` | Fed Zinsentscheid | `fred_interest` | `DFF_ACTION` / `DFEDTARU` |
 | `PCE_CORE` | Core PCE Preisindex | `fred_pcepilfe` | `PCEPILFE_YOY` |
 
 ### 4.3 Automatische Metrik-Transformationen (Rohdaten -> Ist-Wert)
 
-In `econ_fred` liegen Rohzeitreihen vor. Der `MacroScorecardRunner` bzw. `AnalysisRepository` führt vor dem Regelabgleich standardisierte Transformationen durch:
+In `econ_fred` liegen rohe Zeitreihen vor. Der `MacroScorecardRunner` bzw. `ScenarioChecklistService` führt vor dem Regelabgleich standardisierte Transformationen durch:
 
 1. **Preisindizes (`CPI_CORE`, `PCE_CORE`, `PPI`):**
    * *Rohdaten:* Indexstände (z. B. `CPILFESL = 325.4`).
-   * *Berechnung:* $\text{YoY} = \frac{\text{Wert}(t) - \text{Wert}(t-12)}{\text{Wert}(t-12)} \times 100$
-   * *Ergebnis:* Prozentuale Inflationsrate (z. B. `2.47 %`), die direkt gegen den Konsens (`consensus_estimate`) abgeglichen wird.
+   * *Berechnung:* $\text{YoY} = \frac{\text{Index}(\text{Stichtag } M) - \text{Index}(\text{Stichtag } M-12)}{\text{Index}(\text{Stichtag } M-12)} \times 100$
+   * *Ergebnis:* Prozentuale Inflationsrate (z. B. `2.65 %`), die direkt gegen den Konsens (`consensus_estimate`) abgeglichen wird.
+   * *Wichtig bei täglichem Forward-Fill:* Als Basiswert $M-12$ dient der historische Indexstand auf oder vor dem 12-Monats-Stichtag (`target_observation_date - 1 Jahr`), nicht ein Kalendertag des Vorjahres ohne Marktnotierung.
+
 2. **Arbeitsmarkt-Zuwachs (`PAYEMS`):**
-   * *Rohdaten:* Gesamtbeschäftigte in Tausend (z. B. `PAYEMS = 158858`).
-   * *Berechnung:* $\Delta \text{PAYEMS} = \text{Wert}(t) - \text{Wert}(t-1)$
-   * *Ergebnis:* Monatlicher Stellenzuwachs in Tausend (z. B. `+55k`).
+   * *Rohdaten:* Gesamtbeschäftigte in Tausend (z. B. `PAYEMS = 158942`).
+   * *Berechnung:* $\Delta \text{PAYEMS} = \text{PAYEMS}(\text{Stichtag } M) - \text{PAYEMS}(\text{Stichtag } M-1)$
+   * *Ergebnis:* Monatlicher Stellenzuwachs in Tausend (z. B. `158942 - 158800 = +142k`), der gegen den Konsens (`consensus_estimate`) abgeglichen wird.
+   * *Kritischer Architektur-Hinweis für tägliche Zeitreihen:* Bei täglicher Datenhaltung mit Forward-Fill darf $M-1$ **keinesfalls der gestrige Handelstag ($t-1$)** sein! Da monatliche FRED-Daten über den gesamten Monat auf jeden Handelstag fortgeschrieben werden, wäre die Differenz zum Vortag immer $0$. Die Differenzbildung muss zwingend den Datenstand unmittelbar vor dem neuen Monats-Stichtag (`date < target_observation_date`) als Vormonat heranziehen.
+
 3. **Zinsentscheid (`FOMC`):**
-   * *Rohdaten:* Effektiver Leitzins `DFF`.
-   * *Berechnung:* Delta $\Delta \text{DFF} = \text{DFF}(t) - \text{DFF}(t-1)$.
-   * *Ergebnis:* Diskrete Klassifikation (`'PAUSE'` bei $\Delta = 0$, `'CUT_25'` bei $\Delta \approx -0.25\,\%$, `'CUT_50'` bei $\Delta \approx -0.50\,\%$, `'HIKE'` bei $\Delta > 0$).
+   * *Phase 1 (Live-Abend, 20:05 MESZ):* Textmuster-Extraktion aus dem offiziellen Fed-Statement (`'PAUSE'`, `'CUT_25'`, `'CUT_50'`, `'HIKE_25'`).
+   * *Phase 2 (T+1 Verifikation, 15:30 MESZ):* Mathematisches Zins-Delta auf Basis der Target Range (`DFEDTARU`):
+     $$\Delta \text{Rate} = \text{DFEDTARU}(t) - \text{DFEDTARU}(t-1)$$
+   * *Ergebnis:* Bestätigung der diskreten Klassifikation (`'PAUSE'` bei $\Delta = 0$, `'CUT_25'` bei $\Delta \approx -0.25\,\%$, `'CUT_50'` bei $\Delta \approx -0.50\,\%$, `'HIKE_25'` bei $\Delta > 0$).
 
 ---
 
@@ -249,15 +304,21 @@ flowchart TD
 ```
 
 ### Stufe 1: Der Wall-Street-Konsens-Check (`consensus_estimate`)
-* Prüft, ob der gemeldete Wert die Konsens-Erwartungen der Wall Street erfüllt:
-  * **Inflation (CPI/PCE/PPI):** $\text{actual\_value} \le \text{consensus\_estimate} + 0.10\,\%$
-  * **Arbeitsmarkt (NFP):** $\text{actual\_value} \ge \text{consensus\_estimate} - 15\text{k}$
-* Ein Erreichen oder Schlagen des Konsenses signalisiert grünes Licht für eine Erleichterungsrallye.
+* Prüft, ob der gemeldete Wert im Erwartungskorridor der Wall Street liegt:
+  * **Inflation (CPI/PCE/PPI):** $\text{actual\_value} \le \text{consensus\_estimate} + 0.10\,\%$ (Disinflationspfad intakt; Werte über Konsens schüren Zinsängste).
+  * **Arbeitsmarkt (NFP – Beidseitiger Goldilocks-Korridor):**
+    $$\text{consensus\_estimate} - 15\text{k} \le \text{actual\_value} \le \text{consensus\_estimate} + 100\text{k}$$
+    * *Untergrenze:* Schützt vor Rezessionspanik (kein abrupter Stellenabbau).
+    * *Obergrenze:* Schützt vor Überhitzung (ein überhitzter Arbeitsmarkt wie $+350\text{k}$ würde neue Zinserhöhungsängste entfachen und ist kein Goldilocks-Melt-Up!).
+* Ein Erreichen oder Schlagen des Konsenses innerhalb des Korridors signalisiert grünes Licht für eine Erleichterungsrallye.
 
-### Stufe 2: Das strukturelle Makro-Sicherheitsnetz (Sanity Guard)
-* Verhindert Fehlinterpretationen bei "faulen Beats":
-  * *Beispiel:* Die Wall Street erwartet im Crash nur noch $+10\text{k}$ Payrolls. Die gemeldeten $+20\text{k}$ "schlagen" zwar den Konsens, bedeuten aber realen Stellenabbau und Rezession!
-  * **Der Guard greift ein:** Trotz positivem Konsens-Beat wirft Stufe 2 ein Veto, wenn die Sahm-Regel $\ge 0.50$ triggert oder die Kerninflation über dem Leitzins (`DFF`) liegt.
+### Stufe 2: Das strukturelle Makro-Sicherheitsnetz (Sanity Guards)
+* Verhindert Fehlinterpretationen bei "faulen Beats" (wenn der Konsens bereits ein Krisenniveau widerspiegelt):
+  * *Beispiel:* Die Wall Street erwartet im Abschwung nur noch $+10\text{k}$ Payrolls. Die gemeldeten $+20\text{k}$ "schlagen" zwar den Konsens, liegen aber unter dem US-Mindestbedarf für Vollbeschäftigung!
+  * **Die Guards greifen ein:** Trotz Konsens-Beat wirft Stufe 2 ein Veto über unabhängige Sanity-Checks:
+    1. **Sahm-Rezessions-Guard:** Die Arbeitslosenquote darf die Sahm-Regel nicht triggern (`SAHMREALTIME < 0.50`).
+    2. **Demografischer Breakeven-Guard:** Der absolute Stellenaufbau muss den demografischen Mindestbedarf decken (`PAYEMS_DIFF >= 40k`).
+    3. **Realzins-Guard bei Inflation:** Die Kerninflation darf den Leitzins nicht invertieren ($\text{Core CPI} \le \text{DFF} - 0.25\,\%$ im restriktiven Regime).
 
 ---
 
@@ -271,40 +332,55 @@ Die Konfiguration in `macro_calendar_events.rule_json` bildet dieses 2-Stufen-Mo
   "type": "TWO_STAGE_CONSENSUS",
   "consensusMetric": "consensus_estimate",
   "maxTolerance": 0.10,
-  "macroGuard": {
-    "type": "SPREAD_TO_METRIC",
-    "compareMetric": "DFF",
-    "operator": "LESS_THAN_OR_EQUAL",
-    "offset": -0.25
-  },
+  "macroGuards": [
+    {
+      "type": "SPREAD_TO_METRIC",
+      "compareMetric": "DFF",
+      "operator": "LESS_THAN_OR_EQUAL",
+      "offset": -0.25,
+      "failMsg": "Kerninflation über Leitzins / Realzins-Inversion"
+    }
+  ],
   "passMsg": "Inflation im Rahmen der Erwartungen & Realzins restriktiv",
   "failMsg": "Inflation über Konsens oder Realzins-Inversion"
 }
 ```
 
-### 2. 2-Stufen-Regel für Arbeitsmarkt (Konsens + Sahm-Regel Guard)
+### 2. 2-Stufen-Regel für Arbeitsmarkt (Beidseitiger Konsens + Multi-Guard)
 ```json
 {
   "type": "TWO_STAGE_CONSENSUS",
   "consensusMetric": "consensus_estimate",
   "minTolerance": -15,
-  "macroGuard": {
-    "metric": "SAHMREALTIME",
-    "type": "MAX",
-    "max": 0.50
-  },
-  "passMsg": "Arbeitsmarkt stabil im Erwartungs-Korridor (keine Rezession)",
-  "failMsg": "Arbeitsmarkt bricht ein oder Sahm-Rezessionsalarm"
+  "maxTolerance": 100,
+  "macroGuards": [
+    {
+      "metric": "SAHMREALTIME",
+      "type": "MAX",
+      "max": 0.50,
+      "failMsg": "Sahm-Rezessionsalarm getriggert (>0.50)"
+    },
+    {
+      "metric": "PAYEMS_DIFF",
+      "type": "MIN",
+      "min": 40,
+      "failMsg": "Stellenaufbau unter demografischem Breakeven (<40k)"
+    }
+  ],
+  "passMsg": "Arbeitsmarkt stabil im neutralen Goldilocks-Korridor (keine Rezession & keine Überhitzung)",
+  "failMsg": "Arbeitsmarkt außerhalb des Korridors oder Makro-Guard verletzt"
 }
 ```
 
-### 3. Diskrete Notenbank-Entscheidung (`ALLOWED_VALUES` z. B. FOMC)
+### 3. Diskrete Notenbank-Entscheidung (FOMC Notenbank-Hybrid)
 ```json
 {
   "type": "ALLOWED_VALUES",
   "allowed": ["PAUSE", "CUT_25", "CUT_50"],
+  "phase1Feed": "https://www.federalreserve.gov/feeds/press_monetary.xml",
+  "phase2Metric": "DFEDTARU",
   "passMsg": "Geldpolitische Lockerung / Zinspause bestätigt",
-  "failMsg": "Unerwarteter Zinsschritt / Restriktion"
+  "failMsg": "Unerwarteter Zinsschritt / Restriktion (HIKE)"
 }
 ```
 
@@ -348,23 +424,24 @@ sequenceDiagram
 ## 9. Migrations- & Einführungsfahrplan (Step-by-Step)
 
 1. **Schritt 1: DDL & Migration (`macro_calendar_events`)**
-   * Erstellen des Migrationsskripts in `src/db/migrations/create_macro_calendar_events.sql` inklusive der Spalten `consensus_estimate` und `previous_value`.
+   * Erstellen des Migrationsskripts in `src/db/migrations/create_macro_calendar_events.sql` inklusive der Spalten `consensus_estimate` (`VARCHAR(64)`), `actual_value` (`VARCHAR(64)`) und `details_json` (`JSON`).
    * Ausführen der Tabellenerstellung in MySQL.
 
 2. **Schritt 2: `MacroCalendarFetcher.js` (Termin- & Konsens-Ingestion)**
    * Implementierung des Fetchers, der für das Kalenderjahr 2026 die Termine der 5 Kern-Release-IDs abfragt und mit `status = 'SCHEDULED'` in `macro_calendar_events` einträgt.
-   * Periodische Konsens-Ingestion von ForexFactory und Cleveland Fed Nowcast in `macro_calendar_events.consensus_estimate`.
+   * Gecachte und rate-limit-geschützte Konsens-Ingestion von Cleveland Fed Nowcast und ForexFactory in `macro_calendar_events.consensus_estimate` (wöchentlich / morgens).
 
-3. **Schritt 3: `MacroScenarioRuleService.js` (2-Stufen-Regel-Engine)**
-   * Implementierung der 2-Stufen-Regel-Auswertung (`TWO_STAGE_CONSENSUS`, `ALLOWED_VALUES`, `RANGE`, `SPREAD_TO_METRIC`).
+3. **Schritt 3: `MacroScenarioRuleService.js` (2-Stufen-Regel-Engine & Notenbank-Hybrid)**
+   * Implementierung der erweiterten 2-Stufen-Regel-Auswertung (`TWO_STAGE_CONSENSUS` mit beidseitigem Korridor und `macroGuards`-Array, `RANGE`, `SPREAD_TO_METRIC`).
+   * Einbindung des FOMC-Notenbank-Hybrids (Phase 1: Fed-Statement RSS am Sitzungsabend; Phase 2: T+1 FRED-Hard-Data-Verifikation).
    * Zuweisung des aktiven Szenarios (z. B. `goldilocks_q3_2026`) auf die entsprechenden Quartals-Events.
 
 4. **Schritt 4: Refactoring [`ScenarioChecklistService.js`](file:///D:/GitHub/CrashRadar/src/services/ScenarioChecklistService.js) & [`MacroScorecardRunner.js`](file:///D:/GitHub/CrashRadar/src/runners/MacroScorecardRunner.js)**
    * Umstellung von der statischen JSON-Datei auf die Datenbank-Tabelle `macro_calendar_events`.
-   * Lokaler Werte-Abgleich aus `econ_fred` und persistentes Update von `actual_value` und `status`.
+   * Lokaler Werte-Abgleich aus `econ_fred` mit strikter MoM-Stichtags- und YoY-Transformation sowie persistenter Speicherung in `actual_value`, `details_json` und `status`.
 
 5. **Schritt 5: Test-Suite & Verifikation**
-   * Unit-Tests mit Mocks für alle Regeltypen und Live-Dry-Run via CLI.
+   * Unit-Tests mit Mocks für alle Regeltypen, Multi-Guards, Stichtags-Forward-Fills und Live-Dry-Run via CLI.
 
 ---
 

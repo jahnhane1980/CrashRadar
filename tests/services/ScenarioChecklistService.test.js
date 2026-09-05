@@ -227,4 +227,196 @@ describe('ScenarioChecklistService', () => {
       expect(result.evaluation.totalEvaluated).toBe(1);
     });
   });
+
+  describe('MoM und YoY Transformationen bei täglichem Forward-Fill', () => {
+    const fullScenarioConfig = {
+      activeScenario: 'goldilocks_september_2026',
+      scenarios: {
+        goldilocks_september_2026: {
+          id: 'goldilocks_september_2026',
+          title: 'SEPTEMBER 2026: GOLDILOCKS-SCORECARD',
+          events: [
+            {
+              id: 'nfp_august',
+              title: 'US-Arbeitsmarktbericht / NFP (Berichtsmonat: August)',
+              date: '2026-09-04',
+              time: '14:30 MESZ',
+              targetObservationDate: '2026-08-01',
+              rules: [
+                { metric: 'PAYEMS_DIFF', type: 'MIN', min: 40, passMsg: 'Stellenaufbau stabil (>=40k)', failMsg: 'Stellenaufbau bricht ein (<40k)' },
+                { metric: 'SAHMREALTIME', type: 'MAX', max: 0.5, passMsg: 'Sahm ruhig (<0.50)', failMsg: 'Sahm Alarm (>0.50)' }
+              ]
+            },
+            {
+              id: 'ppi_august',
+              title: 'US Erzeugerpreisindex / PPI (Berichtsmonat: August)',
+              date: '2026-09-10',
+              time: '14:30 MESZ',
+              metric: 'PPIACO_YOY',
+              targetObservationDate: '2026-08-01',
+              rule: { type: 'MAX', max: 9.0, unit: '%' }
+            },
+            {
+              id: 'cpi_core_august',
+              title: 'US Core CPI Inflation (Berichtsmonat: August)',
+              date: '2026-09-11',
+              time: '14:30 MESZ',
+              metric: 'CPILFESL_YOY',
+              targetObservationDate: '2026-08-01',
+              rule: { type: 'MAX', max: 2.7, unit: '%' }
+            },
+            {
+              id: 'fomc_september',
+              title: 'FOMC Zinsentscheid',
+              date: '2026-09-16',
+              time: '20:00 MESZ',
+              metric: 'DFF_ACTION',
+              targetObservationDate: '2026-09-16',
+              rule: { type: 'ALLOWED_VALUES', allowed: ['PAUSE', 'CUT_25', 'CUT_50'] }
+            },
+            {
+              id: 'pce_core_august',
+              title: 'Core PCE Preisindex (Berichtsmonat: August)',
+              date: '2026-09-30',
+              time: '14:30 MESZ',
+              metric: 'PCEPILFE_YOY',
+              targetObservationDate: '2026-08-01',
+              rule: { type: 'MAX', max: 3.5, unit: '%' }
+            }
+          ]
+        }
+      }
+    };
+
+    const dailyTimelineWithHistory = [
+      {
+        date: '2025-08-01',
+        macroGroups: {
+          LaborMarket: { PAYEMS: 156000 },
+          Leading: { PPI: 250.0, CPI_Core: 317.0, PCE_Core: 120.0 }
+        },
+        observationDates: { PAYEMS: '2025-08-01', PPIACO: '2025-08-01', CPILFESL: '2025-08-01', PCEPILFE: '2025-08-01' }
+      },
+      {
+        date: '2026-07-31',
+        macroGroups: {
+          LaborMarket: { PAYEMS: 158800 },
+          Leading: { SahmRule: 0.40, PPI: 254.0, CPI_Core: 324.0, PCE_Core: 123.0 },
+          FinancialConditions: { FedFundsRate: 5.33 }
+        },
+        observationDates: { PAYEMS: '2026-07-01', SAHMREALTIME: '2026-07-01', PPIACO: '2026-07-01', CPILFESL: '2026-07-01', PCEPILFE: '2026-07-01' }
+      },
+      {
+        date: '2026-08-01',
+        macroGroups: {
+          LaborMarket: { PAYEMS: 158942 },
+          Leading: { SahmRule: 0.42, PPI: 255.0, CPI_Core: 325.4, PCE_Core: 123.6 },
+          FinancialConditions: { FedFundsRate: 5.33 }
+        },
+        observationDates: { PAYEMS: '2026-08-01', SAHMREALTIME: '2026-08-01', PPIACO: '2026-08-01', CPILFESL: '2026-08-01', PCEPILFE: '2026-08-01' }
+      },
+      {
+        date: '2026-09-03',
+        macroGroups: {
+          LaborMarket: { PAYEMS: 158942 },
+          Leading: { SahmRule: 0.42, PPI: 255.0, CPI_Core: 325.4, PCE_Core: 123.6 },
+          FinancialConditions: { FedFundsRate: 5.33 }
+        },
+        observationDates: { PAYEMS: '2026-08-01', SAHMREALTIME: '2026-08-01', PPIACO: '2026-08-01', CPILFESL: '2026-08-01', PCEPILFE: '2026-08-01' }
+      },
+      {
+        date: '2026-09-04',
+        macroGroups: {
+          LaborMarket: { PAYEMS: 158942 },
+          Leading: { SahmRule: 0.42, PPI: 255.0, CPI_Core: 325.4, PCE_Core: 123.6 },
+          FinancialConditions: { FedFundsRate: 5.33 }
+        },
+        observationDates: { PAYEMS: '2026-08-01', SAHMREALTIME: '2026-08-01', PPIACO: '2026-08-01', CPILFESL: '2026-08-01', PCEPILFE: '2026-08-01' }
+      },
+      {
+        date: '2026-09-10',
+        macroGroups: {
+          LaborMarket: { PAYEMS: 158942 },
+          Leading: { SahmRule: 0.42, PPI: 255.0, CPI_Core: 325.4, PCE_Core: 123.6 },
+          FinancialConditions: { FedFundsRate: 5.33 }
+        },
+        observationDates: { PAYEMS: '2026-08-01', SAHMREALTIME: '2026-08-01', PPIACO: '2026-08-01', CPILFESL: '2026-08-01', PCEPILFE: '2026-08-01' }
+      },
+      {
+        date: '2026-09-11',
+        macroGroups: {
+          LaborMarket: { PAYEMS: 158942 },
+          Leading: { SahmRule: 0.42, PPI: 255.0, CPI_Core: 325.4, PCE_Core: 123.6 },
+          FinancialConditions: { FedFundsRate: 5.33 }
+        },
+        observationDates: { PAYEMS: '2026-08-01', SAHMREALTIME: '2026-08-01', PPIACO: '2026-08-01', CPILFESL: '2026-08-01', PCEPILFE: '2026-08-01' }
+      },
+      {
+        date: '2026-09-16',
+        macroGroups: {
+          LaborMarket: { PAYEMS: 158942 },
+          Leading: { SahmRule: 0.42, PPI: 255.0, CPI_Core: 325.4, PCE_Core: 123.6 },
+          FinancialConditions: { FedFundsRate: 5.08 } // 25 bps Cut!
+        },
+        observationDates: { DFF: '2026-09-16' }
+      },
+      {
+        date: '2026-09-30',
+        macroGroups: {
+          LaborMarket: { PAYEMS: 158942 },
+          Leading: { SahmRule: 0.42, PPI: 255.0, CPI_Core: 325.4, PCE_Core: 123.6 },
+          FinancialConditions: { FedFundsRate: 5.08 }
+        },
+        observationDates: { PAYEMS: '2026-08-01', PPIACO: '2026-08-01', CPILFESL: '2026-08-01', PCEPILFE: '2026-08-01' }
+      }
+    ];
+
+    it('berechnet PAYEMS_DIFF am 04.09. korrekt als Monats-Delta (+142k) statt 0k', () => {
+      const service = new ScenarioChecklistService(fullScenarioConfig);
+      const result = service.evaluate('2026-09-04', dailyTimelineWithHistory);
+
+      expect(result.shouldNotify).toBe(true);
+      expect(result.evaluation.passedCount).toBe(1);
+      const nfpEvent = result.evaluation.evaluatedEvents.find(e => e.id === 'nfp_august');
+      expect(nfpEvent.passed).toBe(true);
+      expect(nfpEvent.details[0].value).toBe(142);
+      expect(nfpEvent.details[0].passed).toBe(true);
+    });
+
+    it('berechnet PPI YoY (255 vs 250 -> 2.0%) korrekt und besteht <= 9.0%', () => {
+      const service = new ScenarioChecklistService(fullScenarioConfig);
+      const result = service.evaluate('2026-09-10', dailyTimelineWithHistory);
+
+      const ppiEvent = result.evaluation.evaluatedEvents.find(e => e.id === 'ppi_august');
+      expect(ppiEvent.passed).toBe(true);
+      expect(ppiEvent.value).toBe(2.0);
+    });
+
+    it('berechnet Core CPI YoY (325.4 vs 317.0 -> 2.65%) korrekt und besteht <= 2.7%', () => {
+      const service = new ScenarioChecklistService(fullScenarioConfig);
+      const result = service.evaluate('2026-09-11', dailyTimelineWithHistory);
+
+      const cpiEvent = result.evaluation.evaluatedEvents.find(e => e.id === 'cpi_core_august');
+      expect(cpiEvent.passed).toBe(true);
+      expect(cpiEvent.value).toBe(2.65);
+    });
+
+    it('erkennt Zinssenkung um 25 bps als CUT_25 am FOMC-Tag', () => {
+      const service = new ScenarioChecklistService(fullScenarioConfig);
+      const result = service.evaluate('2026-09-16', dailyTimelineWithHistory);
+
+      const fomcEvent = result.evaluation.evaluatedEvents.find(e => e.id === 'fomc_september');
+      expect(fomcEvent.passed).toBe(true);
+      expect(fomcEvent.value).toBe('CUT_25');
+    });
+
+    it('berechnet Core PCE YoY (123.6 vs 120.0 -> 3.0%) korrekt und besteht <= 3.5%', () => {
+      const service = new ScenarioChecklistService(fullScenarioConfig);
+      const result = service.evaluate('2026-09-30', dailyTimelineWithHistory);
+
+      const pceEvent = result.evaluation.evaluatedEvents.find(e => e.id === 'pce_core_august');
+      expect(pceEvent.passed).toBe(true);
+      expect(pceEvent.value).toBe(3.0);
+    });
+  });
 });

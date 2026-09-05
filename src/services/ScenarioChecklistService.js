@@ -204,7 +204,7 @@ export class ScenarioChecklistService {
       const details = [];
 
       for (const r of event.rules) {
-        const val = this._resolveMetricValue(r.metric, latestData, timeline);
+        const val = this._resolveMetricValue(r.metric, latestData, timeline, event);
         const passed = this._checkRule(r, val);
         if (!passed) allPassed = false;
         details.push({
@@ -232,7 +232,7 @@ export class ScenarioChecklistService {
     }
 
     // Fall 2: Single Rule
-    const val = this._resolveMetricValue(event.metric, latestData, timeline);
+    const val = this._resolveMetricValue(event.metric, latestData, timeline, event);
     const passed = this._checkRule(event.rule, val);
     const reason = passed ? event.passMessage : event.failMessage;
 
@@ -265,10 +265,11 @@ export class ScenarioChecklistService {
     }
   }
 
-  _resolveMetricValue(metricKey, currentData, timeline) {
+  _resolveMetricValue(metricKey, currentData, timeline, event = null) {
     if (!currentData) return null;
     const mg = currentData.macroGroups || {};
     const assets = currentData.assets || {};
+    const targetDateStr = event?.targetObservationDate || currentData.date;
 
     switch (metricKey) {
       case 'JTSJOL':
@@ -276,28 +277,49 @@ export class ScenarioChecklistService {
       case 'PAYEMS':
         return mg.LaborMarket?.PAYEMS ?? null;
       case 'PAYEMS_DIFF': {
-        if (!Array.isArray(timeline) || timeline.length < 2) return null;
-        const currIdx = timeline.findIndex(d => d.date === currentData.date);
-        if (currIdx <= 0) return null;
-        const prevData = timeline[currIdx - 1];
-        const p1 = currentData.macroGroups?.LaborMarket?.PAYEMS;
-        const p0 = prevData.macroGroups?.LaborMarket?.PAYEMS;
-        return (p1 !== undefined && p0 !== undefined && p1 !== null && p0 !== null) ? (p1 - p0) : null;
+        return this._calculatePayemsDiff(currentData, timeline, event);
       }
       case 'SAHMREALTIME':
         return mg.Leading?.SahmRule ?? null;
       case 'PPIACO_YOY':
-      case 'PPI':
-        return mg.Leading?.PPI ?? null;
+      case 'PPI': {
+        const rawPpi = mg.Leading?.PPI ?? null;
+        return this._calculateYoY(rawPpi, targetDateStr, timeline, d => d.macroGroups?.Leading?.PPI);
+      }
       case 'CPILFESL_YOY':
-      case 'CPI_CORE':
-        return mg.Leading?.CPI_Core ?? null;
+      case 'CPI_CORE': {
+        const rawCpi = mg.Leading?.CPI_Core ?? null;
+        return this._calculateYoY(rawCpi, targetDateStr, timeline, d => d.macroGroups?.Leading?.CPI_Core);
+      }
       case 'PCEPILFE_YOY':
-      case 'PCE_CORE':
-        return mg.Leading?.PCE_Core ?? null;
+      case 'PCE_CORE': {
+        const rawPce = mg.Leading?.PCE_Core ?? null;
+        return this._calculateYoY(rawPce, targetDateStr, timeline, d => d.macroGroups?.Leading?.PCE_Core);
+      }
       case 'DFF_ACTION': {
         const rate = mg.FinancialConditions?.FedFundsRate;
         if (rate === null || rate === undefined) return 'PAUSE';
+        if (!Array.isArray(timeline) || timeline.length < 2) {
+          return rate > 5.5 ? 'HIKE_25' : 'PAUSE';
+        }
+        const currIdx = timeline.findIndex(d => d.date === currentData.date);
+        let prevRate = null;
+        if (currIdx > 0) {
+          for (let i = currIdx - 1; i >= 0; i--) {
+            const r = timeline[i].macroGroups?.FinancialConditions?.FedFundsRate;
+            if (r !== null && r !== undefined) {
+              prevRate = r;
+              break;
+            }
+          }
+        }
+        if (prevRate !== null && prevRate !== undefined) {
+          const delta = rate - prevRate;
+          if (delta <= -0.375) return 'CUT_50';
+          if (delta <= -0.125) return 'CUT_25';
+          if (delta >= 0.125) return 'HIKE_25';
+          return 'PAUSE';
+        }
         return rate > 5.5 ? 'HIKE_25' : 'PAUSE';
       }
       case 'HYG':
@@ -305,6 +327,84 @@ export class ScenarioChecklistService {
       default:
         return mg.Leading?.[metricKey] ?? mg.LaborMarket?.[metricKey] ?? assets[metricKey] ?? null;
     }
+  }
+
+  _calculatePayemsDiff(currentData, timeline, event = null) {
+    if (!Array.isArray(timeline) || timeline.length < 2 || !currentData) return null;
+
+    const p1 = currentData.macroGroups?.LaborMarket?.PAYEMS;
+    if (p1 === null || p1 === undefined) return null;
+
+    const targetObsDate = event?.targetObservationDate || currentData.observationDates?.PAYEMS;
+    let p0 = null;
+
+    if (targetObsDate) {
+      // In einer täglichen Forward-Fill Timeline: Finde den letzten Eintrag VOR dem Stichtag dieses Berichtsmonats
+      for (let i = timeline.length - 1; i >= 0; i--) {
+        const d = timeline[i];
+        const isBeforeTarget = d.date < targetObsDate || (d.observationDates?.PAYEMS && d.observationDates.PAYEMS < targetObsDate);
+        if (isBeforeTarget) {
+          const val = d.macroGroups?.LaborMarket?.PAYEMS;
+          if (val !== null && val !== undefined) {
+            p0 = val;
+            break;
+          }
+        }
+      }
+    }
+
+    // Fallback für Mocks ohne Stichtag oder ohne observationDates
+    if (p0 === null) {
+      const currIdx = timeline.findIndex(d => d.date === currentData.date);
+      if (currIdx > 0) {
+        // Suche rückwärts nach einem abweichenden Vormonatswert
+        for (let i = currIdx - 1; i >= 0; i--) {
+          const val = timeline[i].macroGroups?.LaborMarket?.PAYEMS;
+          if (val !== null && val !== undefined && val !== p1) {
+            p0 = val;
+            break;
+          }
+        }
+        // Letzter Fallback: Unmittelbarer Vortag
+        if (p0 === null) {
+          p0 = timeline[currIdx - 1].macroGroups?.LaborMarket?.PAYEMS ?? null;
+        }
+      }
+    }
+
+    return (p0 !== null && p0 !== undefined) ? (p1 - p0) : null;
+  }
+
+  _calculateYoY(currentVal, targetDateStr, timeline, metricExtractor) {
+    if (currentVal === null || currentVal === undefined) return null;
+    if (!Array.isArray(timeline) || timeline.length === 0) return currentVal;
+
+    // Ziel: Stichtag vor 1 Jahr (365 Tage)
+    const baseDate = new Date(targetDateStr);
+    if (isNaN(baseDate.getTime())) return currentVal;
+
+    baseDate.setFullYear(baseDate.getFullYear() - 1);
+    const oneYearAgoStr = baseDate.toISOString().split('T')[0];
+
+    // Suche den letzten verfügbaren Datenpunkt auf oder vor dem 1-Jahres-Stichtag
+    let prevVal = null;
+    for (let i = timeline.length - 1; i >= 0; i--) {
+      const d = timeline[i];
+      if (d.date <= oneYearAgoStr) {
+        const v = metricExtractor(d);
+        if (v !== null && v !== undefined) {
+          prevVal = v;
+          break;
+        }
+      }
+    }
+
+    if (prevVal !== null && prevVal !== undefined && prevVal > 0) {
+      const yoy = ((currentVal - prevVal) / prevVal) * 100;
+      return parseFloat(yoy.toFixed(2));
+    }
+
+    return currentVal;
   }
 
   _getLatestDataForDate(timeline, targetDateStr) {
