@@ -46,3 +46,28 @@
   * **A/B-Testzyklus (Makro-Heuristik vs. ML-Ensemble):** Empirischer Vergleich über 21 Jahre (10 Großkrisen).
 * **Status:** Vorbereitung & Konzeptionsphase in [`docs/architecture/trading-engine/TradingEngine.md`](file:///D:/GitHub/CrashRadar/docs/architecture/trading-engine/TradingEngine.md) abgeschlossen; Umsetzung folgt im dedizierten Entwicklungszweig.
 
+### 5. PortfolioStrategyEngine (Plugin-Architektur, Interface & Strategie-Registry)
+* **Ziel:** Etablierung einer autarken `PortfolioStrategyEngine` zur modularen Kapselung und parallelen Ausführung aller Portfoliostrategien (analog zur Indikatoren-Registry via `_indicators` in `MacroRegimeEngine`).
+* **Operative Umsetzungsschritte [OFFEN]:**
+  * **Schritt 1 (`BasePortfolioStrategy.js` Interface):** Einheitliche Basisklasse mit Standard-Methoden (`initialize()`, `evaluateDaily(date, marketData, macroState)`, `executeTrades()`, `getPortfolioStatus()`, `getHistory()`, `generateAlerts()`).
+  * **Schritt 2 (`PortfolioStrategyEngine.js`):** Orchestrator-Klasse zur parallelen Ausführung aller registrierten Strategien, aggregiertem Reporting und Schnittstelle zur Notification-Engine.
+  * **Schritt 3 (Harmonisierung & Finalisierung der Strategien):**
+    * **Kamikaze Growth:** Integration des parabolischen Climax-Top Exits (`TOP_CLIMAX_ALERT` bei Distanz zum EMA 20 $\ge 35-45\,\%$) und Watchlist-Klausel für Turnaround-Kandidaten (Lehre aus dem NVTS > $ 30 Case).
+    * **Satellite-Strategie:** Spezifikation und Ausarbeitung von [`docs/architecture/strategies/Satelite.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Satelite.md) (irregulärer Solana- & Ethereum-Staking ETF aus Gehaltsüberschüssen).
+    * **MCW vs. 7-Slot-Guru Abgleich:** Abgleich der Makro-Schutzschilde: Prüfung, ob das 7-Slot-Guru-System von der statischen 25 % Gold-Quote auf die hocheffektive MCW-Notfall-Evakuierung (100 % in 50 % Gold / 50 % Cash mit Re-Entry Sniper) gehoben wird.
+    * **Strategie-Klassen anlegen:** Kapselung von `MuzzledCathieWoodStrategy.js`, `KamikazeGrowthStrategy.js`, `SevenSlotGuruStrategy.js`, `GoldSpyDcaStrategy.js` in `src/strategies/`.
+
+### 6. Notification-System: Telegram-Migration mit Multi-Channel & Test-Isolation
+* **Ziel:** Vollständige Ablösung von [`src/services/NtfyService.js`](file:///D:/GitHub/CrashRadar/src/services/NtfyService.js) durch einen kanal-basierten `TelegramService` via offizieller Telegram Bot API.
+* **Kanal- und Routing-Struktur [OFFEN]:**
+  * **Schritt 1 (`TelegramService.js`):** Implementierung des Telegram Bot Clients mit MarkdownV2-Unterstützung, Fehlerbehandlung, Rate-Limiting und Chat-/Topic-Routing.
+  * **Schritt 2 (Gruppen- & Kanal-Setup):** Konfiguration dedizierter Gruppen/Kanäle, damit Interessierte zielgerichtet abonnieren können:
+    * Kanal `Makro-Wetter` (Regime-Status, Zinsen, Liquidität, Frühwarnungen)
+    * Eigener Kanal für jede Strategie (`Kamikaze-Growth`, `Muzzled-Cathie-Wood`, `7-Slot-Guru`, `Gold-SPY`, `Satelite`)
+  * **Schritt 3 (Lokales Test-Pendant `-Test`):**
+    * Jede Gruppe / jeder Kanal erhält ein gespiegeltes Test-Pendant mit dem Suffix `-Test` (z. B. `Makro-Wetter-Test`, `Kamikaze-Growth-Test`).
+    * Konfigurierbar in [`config/Notification-Config.json`](file:///D:/GitHub/CrashRadar/config/Notification-Config.json) und `.env` (`TELEGRAM_ENV=test` vs `TELEGRAM_ENV=prod`).
+    * Lokale Testläufe und Regressionstests routen ihre Meldungen strikt in die `-Test` Gruppen, sodass die Live-Kanäle unberührt bleiben.
+  * **Schritt 4 (Runner-Refactoring):** Aktualisierung aller Runner ([`IndicatorAnalysisRunner.js`](file:///D:/GitHub/CrashRadar/src/runners/IndicatorAnalysisRunner.js), [`MacroScorecardRunner.js`](file:///D:/GitHub/CrashRadar/src/runners/MacroScorecardRunner.js), [`StandardRunner.js`](file:///D:/GitHub/CrashRadar/src/runners/StandardRunner.js)) zur Übergabe von Nachrichten an den neuen `TelegramService` mit automatischem Channel-Routing nach Event-Typ.
+
+

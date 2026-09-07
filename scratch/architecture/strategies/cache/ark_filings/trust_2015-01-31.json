@@ -1,0 +1,898 @@
+{
+  "source": "N-CSRS",
+  "cik": "1579982",
+  "reportDate": "2015-01-31",
+  "filingDate": "2015-04-02",
+  "accessionNumber": "0001144204-15-020884",
+  "totalValue_usd": 88773345,
+  "holdings": [
+    {
+      "name": "Alnylam Pharmaceuticals, Inc.",
+      "cusip": null,
+      "value_usd": 60426,
+      "shares": 644
+    },
+    {
+      "name": "Amgen, Inc.",
+      "cusip": null,
+      "value_usd": 40197,
+      "shares": 264
+    },
+    {
+      "name": "Biogen Idec, Inc.",
+      "cusip": null,
+      "value_usd": 139319,
+      "shares": 358
+    },
+    {
+      "name": "BioMarin Pharmaceutical, Inc.",
+      "cusip": null,
+      "value_usd": 45082,
+      "shares": 464
+    },
+    {
+      "name": "Bluebird Bio, Inc.",
+      "cusip": null,
+      "value_usd": 61599,
+      "shares": 663
+    },
+    {
+      "name": "Celgene Corp.",
+      "cusip": null,
+      "value_usd": 86034,
+      "shares": 722
+    },
+    {
+      "name": "Cepheid",
+      "cusip": null,
+      "value_usd": 181906,
+      "shares": 3219
+    },
+    {
+      "name": "Clovis Oncology, Inc.",
+      "cusip": null,
+      "value_usd": 102609,
+      "shares": 1574
+    },
+    {
+      "name": "Evogene Ltd.",
+      "cusip": null,
+      "value_usd": 28036,
+      "shares": 3384
+    },
+    {
+      "name": "Exact Sciences Corp.",
+      "cusip": null,
+      "value_usd": 41631,
+      "shares": 1530
+    },
+    {
+      "name": "Foundation Medicine, Inc.",
+      "cusip": null,
+      "value_usd": 309313,
+      "shares": 6490
+    },
+    {
+      "name": "Genomic Health, Inc.",
+      "cusip": null,
+      "value_usd": 21047,
+      "shares": 652
+    },
+    {
+      "name": "Gilead Sciences, Inc.",
+      "cusip": null,
+      "value_usd": 114579,
+      "shares": 1093
+    },
+    {
+      "name": "Incyte Corp.",
+      "cusip": null,
+      "value_usd": 52290,
+      "shares": 656
+    },
+    {
+      "name": "Isis Pharmaceuticals, Inc.",
+      "cusip": null,
+      "value_usd": 56315,
+      "shares": 822
+    },
+    {
+      "name": "Kite Pharma, Inc.",
+      "cusip": null,
+      "value_usd": 34784,
+      "shares": 518
+    },
+    {
+      "name": "NewLink Genetics Corp.",
+      "cusip": null,
+      "value_usd": 44457,
+      "shares": 1215
+    },
+    {
+      "name": "Oncothyreon, Inc.",
+      "cusip": null,
+      "value_usd": 3163,
+      "shares": 2002
+    },
+    {
+      "name": "Regeneron Pharmaceuticals, Inc.",
+      "cusip": null,
+      "value_usd": 77082,
+      "shares": 185
+    },
+    {
+      "name": "Rosetta Genomics Ltd.",
+      "cusip": null,
+      "value_usd": 13545,
+      "shares": 4485
+    },
+    {
+      "name": "Sangamo BioSciences, Inc.",
+      "cusip": null,
+      "value_usd": 65191,
+      "shares": 5097
+    },
+    {
+      "name": "uniQure B.V.",
+      "cusip": null,
+      "value_usd": 37632,
+      "shares": 1792
+    },
+    {
+      "name": "Zafgen, Inc.",
+      "cusip": null,
+      "value_usd": 6918,
+      "shares": 182
+    },
+    {
+      "name": "Monsanto Co.",
+      "cusip": null,
+      "value_usd": 226876,
+      "shares": 1923
+    },
+    {
+      "name": "Novozymes A/S",
+      "cusip": null,
+      "value_usd": 24468,
+      "shares": 536
+    },
+    {
+      "name": "QUALCOMM, Inc.",
+      "cusip": null,
+      "value_usd": 61960,
+      "shares": 992
+    },
+    {
+      "name": "Cerus Corp.",
+      "cusip": null,
+      "value_usd": 136507,
+      "shares": 25563
+    },
+    {
+      "name": "Veracyte, Inc.",
+      "cusip": null,
+      "value_usd": 65529,
+      "shares": 8090
+    },
+    {
+      "name": "Laboratory Corp. of America Holdings",
+      "cusip": null,
+      "value_usd": 76558,
+      "shares": 667
+    },
+    {
+      "name": "athenahealth, Inc.",
+      "cusip": null,
+      "value_usd": 103944,
+      "shares": 744
+    },
+    {
+      "name": "Medidata Solutions, Inc.",
+      "cusip": null,
+      "value_usd": 120329,
+      "shares": 2799
+    },
+    {
+      "name": "Amazon.com, Inc.",
+      "cusip": null,
+      "value_usd": 45380,
+      "shares": 128
+    },
+    {
+      "name": "Affymetrix, Inc.",
+      "cusip": null,
+      "value_usd": 78715,
+      "shares": 7130
+    },
+    {
+      "name": "Compugen Ltd.",
+      "cusip": null,
+      "value_usd": 146338,
+      "shares": 18858
+    },
+    {
+      "name": "Fluidigm Corp.",
+      "cusip": null,
+      "value_usd": 176660,
+      "shares": 4585
+    },
+    {
+      "name": "Illumina, Inc.",
+      "cusip": null,
+      "value_usd": 328700,
+      "shares": 1684
+    },
+    {
+      "name": "Mettler-Toledo International, Inc.",
+      "cusip": null,
+      "value_usd": 77811,
+      "shares": 256
+    },
+    {
+      "name": "NanoString Technologies, Inc.",
+      "cusip": null,
+      "value_usd": 22847,
+      "shares": 1819
+    },
+    {
+      "name": "Pacific Biosciences of California, Inc.",
+      "cusip": null,
+      "value_usd": 167972,
+      "shares": 20892
+    },
+    {
+      "name": "Thermo Fisher Scientific, Inc.",
+      "cusip": null,
+      "value_usd": 221622,
+      "shares": 1770
+    },
+    {
+      "name": "AbbVie, Inc.",
+      "cusip": null,
+      "value_usd": 37659,
+      "shares": 624
+    },
+    {
+      "name": "AstraZeneca PLC",
+      "cusip": null,
+      "value_usd": 38006,
+      "shares": 535
+    },
+    {
+      "name": "Bayer AG",
+      "cusip": null,
+      "value_usd": 149506,
+      "shares": 1042
+    },
+    {
+      "name": "Johnson &amp; Johnson",
+      "cusip": null,
+      "value_usd": 63188,
+      "shares": 631
+    },
+    {
+      "name": "Novartis AG",
+      "cusip": null,
+      "value_usd": 131393,
+      "shares": 1349
+    },
+    {
+      "name": "Roche Holding AG",
+      "cusip": null,
+      "value_usd": 43213,
+      "shares": 1280
+    },
+    {
+      "name": "NVIDIA Corp.",
+      "cusip": null,
+      "value_usd": 135779,
+      "shares": 7070
+    },
+    {
+      "name": "Splunk, Inc.",
+      "cusip": null,
+      "value_usd": 95346,
+      "shares": 1846
+    },
+    {
+      "name": "Tableau Software, Inc., Class A",
+      "cusip": null,
+      "value_usd": 72199,
+      "shares": 894
+    },
+    {
+      "name": "Cray, Inc.",
+      "cusip": null,
+      "value_usd": 77001,
+      "shares": 2370
+    },
+    {
+      "name": "Aerovironment, Inc.",
+      "cusip": null,
+      "value_usd": 80967,
+      "shares": 3164
+    },
+    {
+      "name": "Elbit Systems Ltd.",
+      "cusip": null,
+      "value_usd": 124939,
+      "shares": 2022
+    },
+    {
+      "name": "GenCorp, Inc.",
+      "cusip": null,
+      "value_usd": 45057,
+      "shares": 2682
+    },
+    {
+      "name": "Orbital Sciences Corp.",
+      "cusip": null,
+      "value_usd": 115057,
+      "shares": 4096
+    },
+    {
+      "name": "Autoliv, Inc.",
+      "cusip": null,
+      "value_usd": 188999,
+      "shares": 1782
+    },
+    {
+      "name": "Delphi Automotive PLC",
+      "cusip": null,
+      "value_usd": 142271,
+      "shares": 2070
+    },
+    {
+      "name": "Tesla Motors, Inc.",
+      "cusip": null,
+      "value_usd": 526102,
+      "shares": 2584
+    },
+    {
+      "name": "Organovo Holdings, Inc.",
+      "cusip": null,
+      "value_usd": 48842,
+      "shares": 7596
+    },
+    {
+      "name": "DeVry Education Group, Inc.",
+      "cusip": null,
+      "value_usd": 106067,
+      "shares": 2501
+    },
+    {
+      "name": "ABB Ltd.",
+      "cusip": null,
+      "value_usd": 186385,
+      "shares": 9738
+    },
+    {
+      "name": "Allied Motion Technologies, Inc.",
+      "cusip": null,
+      "value_usd": 34370,
+      "shares": 1533
+    },
+    {
+      "name": "Polypore International, Inc.",
+      "cusip": null,
+      "value_usd": 230532,
+      "shares": 5155
+    },
+    {
+      "name": "Rockwell Automation, Inc.",
+      "cusip": null,
+      "value_usd": 178520,
+      "shares": 1639
+    },
+    {
+      "name": "Cognex Corp.",
+      "cusip": null,
+      "value_usd": 293485,
+      "shares": 7986
+    },
+    {
+      "name": "FARO Technologies, Inc.",
+      "cusip": null,
+      "value_usd": 202304,
+      "shares": 3655
+    },
+    {
+      "name": "Trimble Navigation Ltd.",
+      "cusip": null,
+      "value_usd": 309682,
+      "shares": 12990
+    },
+    {
+      "name": "Accuray, Inc.",
+      "cusip": null,
+      "value_usd": 179858,
+      "shares": 24404
+    },
+    {
+      "name": "Align Technology, Inc.",
+      "cusip": null,
+      "value_usd": 152996,
+      "shares": 2884
+    },
+    {
+      "name": "Intuitive Surgical, Inc.",
+      "cusip": null,
+      "value_usd": 230428,
+      "shares": 466
+    },
+    {
+      "name": "Mazor Robotics Ltd.",
+      "cusip": null,
+      "value_usd": 49541,
+      "shares": 4857
+    },
+    {
+      "name": "ReWalk Robotics Ltd.",
+      "cusip": null,
+      "value_usd": 47018,
+      "shares": 2696
+    },
+    {
+      "name": "iRobot Corp.",
+      "cusip": null,
+      "value_usd": 244355,
+      "shares": 7745
+    },
+    {
+      "name": "Panasonic Corp.",
+      "cusip": null,
+      "value_usd": 301581,
+      "shares": 26571
+    },
+    {
+      "name": "Cornerstone OnDemand, Inc.",
+      "cusip": null,
+      "value_usd": 318198,
+      "shares": 9657
+    },
+    {
+      "name": "Google, Inc., Class C",
+      "cusip": null,
+      "value_usd": 389665,
+      "shares": 729
+    },
+    {
+      "name": "Adept Technology, Inc.",
+      "cusip": null,
+      "value_usd": 89615,
+      "shares": 9636
+    },
+    {
+      "name": "Deere &amp; Co.",
+      "cusip": null,
+      "value_usd": 75904,
+      "shares": 891
+    },
+    {
+      "name": "ExOne Co.",
+      "cusip": null,
+      "value_usd": 185416,
+      "shares": 12921
+    },
+    {
+      "name": "FANUC Corp.",
+      "cusip": null,
+      "value_usd": 283477,
+      "shares": 10186
+    },
+    {
+      "name": "Proto Labs, Inc.",
+      "cusip": null,
+      "value_usd": 247258,
+      "shares": 3840
+    },
+    {
+      "name": "Manpowergroup, Inc.",
+      "cusip": null,
+      "value_usd": 143064,
+      "shares": 1963
+    },
+    {
+      "name": "Robert Half International, Inc.",
+      "cusip": null,
+      "value_usd": 91212,
+      "shares": 1571
+    },
+    {
+      "name": "Cree, Inc.",
+      "cusip": null,
+      "value_usd": 103393,
+      "shares": 2924
+    },
+    {
+      "name": "NXP Semiconductors NV",
+      "cusip": null,
+      "value_usd": 128134,
+      "shares": 1615
+    },
+    {
+      "name": "Adobe Systems, Inc.",
+      "cusip": null,
+      "value_usd": 204990,
+      "shares": 2923
+    },
+    {
+      "name": "ANSYS, Inc.",
+      "cusip": null,
+      "value_usd": 188768,
+      "shares": 2340
+    },
+    {
+      "name": "Autodesk, Inc.",
+      "cusip": null,
+      "value_usd": 331321,
+      "shares": 6135
+    },
+    {
+      "name": "Dassault Systemes",
+      "cusip": null,
+      "value_usd": 161699,
+      "shares": 2611
+    },
+    {
+      "name": "Materialise NV",
+      "cusip": null,
+      "value_usd": 175488,
+      "shares": 20010
+    },
+    {
+      "name": "Stratasys Ltd.",
+      "cusip": null,
+      "value_usd": 450470,
+      "shares": 5667
+    },
+    {
+      "name": "Palo Alto Networks, Inc.",
+      "cusip": null,
+      "value_usd": 29323,
+      "shares": 232
+    },
+    {
+      "name": "Ctrip.com International Ltd.",
+      "cusip": null,
+      "value_usd": 121218,
+      "shares": 2549
+    },
+    {
+      "name": "Netflix, Inc.",
+      "cusip": null,
+      "value_usd": 167884,
+      "shares": 380
+    },
+    {
+      "name": "Alibaba Group Holding Ltd.",
+      "cusip": null,
+      "value_usd": 144488,
+      "shares": 1622
+    },
+    {
+      "name": "Facebook, Inc., Class A",
+      "cusip": null,
+      "value_usd": 158348,
+      "shares": 2086
+    },
+    {
+      "name": "Hortonworks, Inc.",
+      "cusip": null,
+      "value_usd": 53801,
+      "shares": 2539
+    },
+    {
+      "name": "LendingClub Corp.",
+      "cusip": null,
+      "value_usd": 100926,
+      "shares": 5377
+    },
+    {
+      "name": "LinkedIn Corp., Class A",
+      "cusip": null,
+      "value_usd": 106752,
+      "shares": 475
+    },
+    {
+      "name": "MercadoLibre, Inc.",
+      "cusip": null,
+      "value_usd": 65688,
+      "shares": 530
+    },
+    {
+      "name": "Tencent Holdings Ltd.",
+      "cusip": null,
+      "value_usd": 63765,
+      "shares": 3791
+    },
+    {
+      "name": "Twitter, Inc.",
+      "cusip": null,
+      "value_usd": 195419,
+      "shares": 5207
+    },
+    {
+      "name": "Yelp, Inc.",
+      "cusip": null,
+      "value_usd": 97542,
+      "shares": 1859
+    },
+    {
+      "name": "Walt Disney Co.",
+      "cusip": null,
+      "value_usd": 55395,
+      "shares": 609
+    },
+    {
+      "name": "Avis Budget Group, Inc.",
+      "cusip": null,
+      "value_usd": 49573,
+      "shares": 865
+    },
+    {
+      "name": "Intuit, Inc.",
+      "cusip": null,
+      "value_usd": 61642,
+      "shares": 710
+    },
+    {
+      "name": "NetSuite, Inc.",
+      "cusip": null,
+      "value_usd": 164378,
+      "shares": 1670
+    },
+    {
+      "name": "Red Hat, Inc.",
+      "cusip": null,
+      "value_usd": 179888,
+      "shares": 2820
+    },
+    {
+      "name": "salesforce.com, Inc.",
+      "cusip": null,
+      "value_usd": 165681,
+      "shares": 2935
+    },
+    {
+      "name": "Apple, Inc.",
+      "cusip": null,
+      "value_usd": 161095,
+      "shares": 1375
+    },
+    {
+      "name": "CalAmp Corp.",
+      "cusip": null,
+      "value_usd": 21868,
+      "shares": 1221
+    },
+    {
+      "name": "Akamai Technologies, Inc.",
+      "cusip": null,
+      "value_usd": 111541,
+      "shares": 1918
+    },
+    {
+      "name": "GrubHub, Inc.",
+      "cusip": null,
+      "value_usd": 41110,
+      "shares": 1194
+    },
+    {
+      "name": "Ambarella, Inc.",
+      "cusip": null,
+      "value_usd": 108352,
+      "shares": 1959
+    },
+    {
+      "name": "ARM Holdings PLC",
+      "cusip": null,
+      "value_usd": 161879,
+      "shares": 3456
+    },
+    {
+      "name": "Taiwan Semiconductor Manufacturing Co. Ltd.",
+      "cusip": null,
+      "value_usd": 129652,
+      "shares": 5709
+    },
+    {
+      "name": "Guidewire Software, Inc.",
+      "cusip": null,
+      "value_usd": 41082,
+      "shares": 820
+    },
+    {
+      "name": "Workday, Inc., Class A",
+      "cusip": null,
+      "value_usd": 178308,
+      "shares": 2244
+    },
+    {
+      "name": "Investment securities sold",
+      "cusip": null,
+      "value_usd": 164956,
+      "shares": 71233
+    },
+    {
+      "name": "Investment securities purchased",
+      "cusip": null,
+      "value_usd": 1187904,
+      "shares": 76613
+    },
+    {
+      "name": "Management fees (Note 3)",
+      "cusip": null,
+      "value_usd": 15967,
+      "shares": 7881
+    },
+    {
+      "name": "NET ASSETS",
+      "cusip": null,
+      "value_usd": 9128791,
+      "shares": 4559098
+    },
+    {
+      "name": "Paid-in capital",
+      "cusip": null,
+      "value_usd": 8967569,
+      "shares": 4165365
+    },
+    {
+      "name": "Accumulated net investment loss",
+      "cusip": null,
+      "value_usd": 16734,
+      "shares": 5450
+    },
+    {
+      "name": "Accumulated net realized gain (loss) on investments",
+      "cusip": null,
+      "value_usd": 2160,
+      "shares": 6906
+    },
+    {
+      "name": "Net unrealized appreciation (depreciation) on investments",
+      "cusip": null,
+      "value_usd": 180116,
+      "shares": 406089
+    },
+    {
+      "name": "Shares outstanding",
+      "cusip": null,
+      "value_usd": 450000,
+      "shares": 205000
+    },
+    {
+      "name": "Dividend income",
+      "cusip": null,
+      "value_usd": 7603,
+      "shares": 3284
+    },
+    {
+      "name": "Net Investment Loss (3)",
+      "cusip": null,
+      "value_usd": 16734,
+      "shares": 5450
+    },
+    {
+      "name": "Net realized gain (loss) on investments",
+      "cusip": null,
+      "value_usd": 2160,
+      "shares": 6906
+    },
+    {
+      "name": "Net change in unrealized appreciation (depreciation) on investments",
+      "cusip": null,
+      "value_usd": 180116,
+      "shares": 406089
+    },
+    {
+      "name": "Net realized and unrealized gain (loss) on investments",
+      "cusip": null,
+      "value_usd": 177956,
+      "shares": 399183
+    },
+    {
+      "name": "Net Increase (Decrease) in Net Assets Resulting From Operations",
+      "cusip": null,
+      "value_usd": 161222,
+      "shares": 393733
+    },
+    {
+      "name": "Net investment loss (1)",
+      "cusip": null,
+      "value_usd": 16734,
+      "shares": 5450
+    },
+    {
+      "name": "Net increase (decrease) in net assets resulting from operations",
+      "cusip": null,
+      "value_usd": 161222,
+      "shares": 393733
+    },
+    {
+      "name": "Proceeds from shares sold",
+      "cusip": null,
+      "value_usd": 8967569,
+      "shares": 4065365
+    },
+    {
+      "name": "Net increase in net assets resulting from shareholder transactions",
+      "cusip": null,
+      "value_usd": 8967569,
+      "shares": 4065365
+    },
+    {
+      "name": "Increase in net assets",
+      "cusip": null,
+      "value_usd": 9128791,
+      "shares": 4459098
+    },
+    {
+      "name": "End of period",
+      "cusip": null,
+      "value_usd": 9128791,
+      "shares": 4559098
+    },
+    {
+      "name": "Accumulated net investment loss included in net assets at end of period",
+      "cusip": null,
+      "value_usd": 16734,
+      "shares": 5450
+    },
+    {
+      "name": "Shares sold",
+      "cusip": null,
+      "value_usd": 450000,
+      "shares": 200000
+    },
+    {
+      "name": "Shares outstanding, end of period",
+      "cusip": null,
+      "value_usd": 450000,
+      "shares": 205000
+    },
+    {
+      "name": "Common Stocks",
+      "cusip": null,
+      "value_usd": 4548661,
+      "shares": 4548661
+    },
+    {
+      "name": "Money Market Fund",
+      "cusip": null,
+      "value_usd": 18012,
+      "shares": 18012
+    },
+    {
+      "name": "Total",
+      "cusip": null,
+      "value_usd": 4566673,
+      "shares": 4566673
+    },
+    {
+      "name": "ARK Genomic Revolution Multi-Sector ETF",
+      "cusip": null,
+      "value_usd": 659028,
+      "shares": 828459
+    },
+    {
+      "name": "ARK Industrial Innovation ETF",
+      "cusip": null,
+      "value_usd": 1913278,
+      "shares": 2087317
+    },
+    {
+      "name": "ARK Innovation ETF",
+      "cusip": null,
+      "value_usd": 1464950,
+      "shares": 1550245
+    },
+    {
+      "name": "ARK Web x.0 ETF",
+      "cusip": null,
+      "value_usd": 2582658,
+      "shares": 2707844
+    }
+  ]
+}

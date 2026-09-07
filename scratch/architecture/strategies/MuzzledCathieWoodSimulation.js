@@ -4,6 +4,8 @@ import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import YahooFinance from 'yahoo-finance2';
+import { FinanceExpert } from '../../../src/services/FinanceExpert.js';
+import { PanicCapitulationIndicator } from '../../../src/analysis/indicators/PanicCapitulationIndicator.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -172,20 +174,26 @@ async function runMuzzledCathieWoodSimulation(options = {}) {
     const deRiskTech = options.deRiskTech !== undefined ? options.deRiskTech : true; // true = Tech + Mutterschiff, false = nur Mutterschiff
     const silent = options.silent || false;
 
+    const startDate = options.startDate || '2020-01-01';
+    const endDate = options.endDate || '2026-09-06';
+    const priceStartDate = options.priceStartDate || (startDate <= '2015-01-01' ? '2014-10-01' : '2019-01-01');
+
     if (!silent) {
         console.log("================================================================================");
         console.log("   CRASHRADAR: MUZZLED CATHIE WOOD STRATEGIE – MASTER V3");
         console.log(`   60 % Tech / 40 % Krypto | Makro-DeRisk: ${(deRiskRate * 100).toFixed(0)}% (Gold: ${(goldRatio * 100).toFixed(0)}% / Cash: ${((1 - goldRatio) * 100).toFixed(0)}%) | Tech-DeRisk: ${deRiskTech}`);
         console.log("   Internes Verrechnungskonto | Krypto-Sub-Bucket (BTC/COIN/HOOD)");
-        console.log("   Zeitraum: 2020-01-01 bis heute | Start: 10.000 € | Sparrate: 150 €/Monat");
+        console.log(`   Zeitraum: ${startDate} bis heute | Start: 10.000 € | Sparrate: 150 €/Monat`);
         console.log("================================================================================\n");
     }
 
-    const startDate = '2020-01-01';
-    const endDate = '2026-09-06';
-
-    const techSymbols = ['ZM', 'TDOC', 'ROKU', 'NVDA', 'TSLA', 'PLTR', 'SHOP'];
-    const kryptoSymbols = ['BTC-USD', 'COIN', 'HOOD'];
+    const defaultTech = ['ZM', 'TDOC', 'ROKU', 'NVDA', 'TSLA', 'PLTR', 'SHOP'];
+    const expandedTech = [
+        'TSLA', 'NVDA', 'AMZN', 'NFLX', 'SHOP', 'XYZ', 'ROKU',
+        'TDOC', 'ZM', 'PLTR', 'SSYS', 'DDD', 'ILMN', 'PRLB', 'MELI', 'ISRG', 'CRSP'
+    ];
+    const techSymbols = options.techSymbols || (startDate <= '2015-01-01' ? expandedTech : defaultTech);
+    const kryptoSymbols = options.kryptoSymbols || (startDate <= '2015-01-01' ? ['BTC-USD', 'COIN'] : ['BTC-USD', 'COIN', 'HOOD']);
     const benchmarkSymbols = ['QQQ', 'SPY', 'ARKK'];
     const hedgeSymbols = ['GLD', 'EURUSD=X'];
     const sectorSymbols = ['SMH', 'IGV', 'XLY'];
@@ -197,12 +205,23 @@ async function runMuzzledCathieWoodSimulation(options = {}) {
         TDOC: 'IGV',
         TSLA: 'XLY',
         SHOP: 'XLY',
-        ROKU: 'QQQ'
+        ROKU: 'QQQ',
+        AMZN: 'XLY',
+        NFLX: 'QQQ',
+        XYZ: 'QQQ',
+        SSYS: 'QQQ',
+        DDD: 'QQQ',
+        ILMN: 'QQQ',
+        PRLB: 'QQQ',
+        MELI: 'XLY',
+        ISRG: 'QQQ',
+        CRSP: 'QQQ',
+        ...(options.sectorMap || {})
     };
 
     const allSymbols = [...new Set([...techSymbols, ...kryptoSymbols, ...benchmarkSymbols, ...hedgeSymbols, ...sectorSymbols])];
-    const prices = await getHistoricalPrices(allSymbols, '2019-01-01', endDate);
-    const macro = await getMacroData('2019-01-01');
+    const prices = await getHistoricalPrices(allSymbols, priceStartDate, endDate);
+    const macro = await getMacroData(priceStartDate);
 
     // Fundamental Data Master Cache
     const fundamentalsPath = fs.existsSync(path.resolve(__dirname, 'fundamentals_master.json'))
@@ -211,6 +230,13 @@ async function runMuzzledCathieWoodSimulation(options = {}) {
     let fundamentalsMaster = {};
     if (fs.existsSync(fundamentalsPath)) {
         fundamentalsMaster = JSON.parse(fs.readFileSync(fundamentalsPath, 'utf8'));
+    }
+
+    // ARK Historical Watchlist Cache (OBSERVE Status)
+    const watchlistPath = path.resolve(__dirname, 'cache/ark_historical_watchlist_2014_2026.json');
+    let arkWatchlistMap = {};
+    if (fs.existsSync(watchlistPath)) {
+        arkWatchlistMap = JSON.parse(fs.readFileSync(watchlistPath, 'utf8')).watchlistByStock || {};
     }
 
     function getLatestFundamentals(symbol, date) {
@@ -250,9 +276,51 @@ async function runMuzzledCathieWoodSimulation(options = {}) {
         dfii10Map[row.date] = row.value;
     }
 
-    // Build Net Fed Liquidity 8-week Delta Map
+    // Build Net Fed Liquidity 8-week Delta Map (Donnerstags-Stichtag) & Panic Sniper Map
     const netLiqDeltaMap = {};
-    if (macro.walcl && macro.walcl.length > 0) {
+    const panicCapitulationMap = {};
+
+    let timeline = null;
+    try {
+        if (process.env.DATABASE_URL) {
+            const fe = new FinanceExpert();
+            timeline = await fe.getDailyGroupedData(priceStartDate, { bypassMemoryGuard: true });
+            await fe.close();
+        }
+    } catch (e) {
+        console.warn("FinanceExpert Timeline nicht verfügbar:", e.message);
+    }
+
+    if (timeline && timeline.length > 0) {
+        const panicInd = new PanicCapitulationIndicator();
+        for (let i = 90; i < timeline.length; i++) {
+            const panicRes = panicInd.evaluate(timeline.slice(0, i + 1));
+            if (panicRes && panicRes.status === 'CRITICAL') {
+                panicCapitulationMap[timeline[i].date] = true;
+            }
+        }
+
+        const weeklyNetLiq = [];
+        for (let i = 0; i < timeline.length; i++) {
+            const day = timeline[i];
+            const nl = day.macroGroups?.NetLiquidity;
+            if (nl && nl.WALCL !== undefined && nl.TGA !== undefined && nl.RRPONTSYD !== undefined) {
+                const dObj = new Date(day.date);
+                if (dObj.getDay() === 4 || weeklyNetLiq.length === 0) {
+                    const val = nl.WALCL - nl.TGA - nl.RRPONTSYD;
+                    weeklyNetLiq.push({ date: day.date, netLiq: val });
+                }
+            }
+        }
+
+        for (let i = 8; i < weeklyNetLiq.length; i++) {
+            const cur = weeklyNetLiq[i].netLiq;
+            const past8 = weeklyNetLiq[i - 8].netLiq;
+            const deltaPct = past8 !== 0 ? ((cur - past8) / Math.abs(past8)) * 100 : 0;
+            netLiqDeltaMap[weeklyNetLiq[i].date] = deltaPct;
+        }
+    } else if (macro.walcl && macro.walcl.length > 0) {
+        // Fallback auf bestehende Serie
         const wtregenMap = {};
         for (const w of macro.wtregen) wtregenMap[w.date] = w.value;
         const rrpMap = {};
@@ -278,8 +346,8 @@ async function runMuzzledCathieWoodSimulation(options = {}) {
     const indicators = {};
     const qqqPrices = prices['QQQ'] || [];
     const qqqCloseMap = new Map(qqqPrices.map(q => [q.date, q.close]));
-
-    for (const sym of [...techSymbols, 'COIN', 'HOOD']) {
+    const tradableAssets = [...new Set([...techSymbols, ...kryptoSymbols.filter(k => k !== 'BTC-USD')])];
+    for (const sym of tradableAssets) {
         const quotes = prices[sym] || [];
         const closes = quotes.map(q => q.close);
         const volumes = quotes.map(q => q.volume);
@@ -421,6 +489,8 @@ async function runMuzzledCathieWoodSimulation(options = {}) {
 
     let lastMonth = day0.substring(0, 7);
     let tradeLog = [];
+    let peakPortfolioEUR = totalInvestedEUR;
+    let maxDrawdownPct = 0;
 
     function getTotalDepotUSD(d) {
         let val = usdCash;
@@ -559,8 +629,24 @@ async function runMuzzledCathieWoodSimulation(options = {}) {
         }
 
         const isLiquidityCrisis = latestDelta !== null && latestDelta < -5.0;
-        const isMacroRed = isLiquidityCrisis;
-        const isMacroGreen = latestDelta !== null && latestDelta >= 0.0;
+        let isMacroRed = isLiquidityCrisis;
+        let isMacroGreen = latestDelta !== null && latestDelta >= 0.0;
+        let triggerDetail = `NetLiq-Delta ${latestDelta ? latestDelta.toFixed(2) : '0'}% < -5%`;
+        let recoveryDetail = `NetLiq-Delta ${latestDelta ? latestDelta.toFixed(2) : '0'}% >= 0%`;
+
+        // Panic Capitulation Sniper: Vorzeitiger Re-Entry bei Generationen-Boden (VIX >= 35)
+        if (macroGuardActive && panicCapitulationMap[date]) {
+            isMacroGreen = true;
+            recoveryDetail = 'Panik-Kapitulation Climax (VIX Panik-Boden gesnipert!)';
+        }
+
+        if (options.customMacroSignals && options.customMacroSignals[date]) {
+            const cms = options.customMacroSignals[date];
+            if (cms.isRed !== undefined) isMacroRed = cms.isRed;
+            if (cms.isGreen !== undefined) isMacroGreen = cms.isGreen;
+            if (cms.triggerDetail) triggerDetail = cms.triggerDetail;
+            if (cms.recoveryDetail) recoveryDetail = cms.recoveryDetail;
+        }
 
         // =====================================================================
         // MAKRO-SCHUTZ: 50 % DE-RISKING (OPTION 2: 25 % GOLD + 25 % CASH)
@@ -600,8 +686,6 @@ async function runMuzzledCathieWoodSimulation(options = {}) {
             if (gldPrice > 0) gldShares += toGoldUSD / gldPrice;
             usdCash += toCashUSD;
 
-            const triggerDetail = `NetLiq-Delta ${latestDelta ? latestDelta.toFixed(2) : '0'}% < -5%`;
-
             tradeLog.push({
                 date,
                 action: `MAKRO_GUARD_ON_${(deRiskRate * 100).toFixed(0)}PCT`,
@@ -624,7 +708,7 @@ async function runMuzzledCathieWoodSimulation(options = {}) {
             tradeLog.push({
                 date,
                 action: 'MAKRO_GUARD_OFF',
-                detail: `Makro GRÜN [NetLiq-Delta ${latestDelta.toFixed(2)}% >= 0%]. Schutzschirm aufgelöst ($${totalRecoveryUSD.toFixed(0)}) & vollständig zurück ins S&P 500 Mutterschiff reinvestiert.`
+                detail: `Makro GRÜN [${recoveryDetail}]. Schutzschirm aufgelöst ($${totalRecoveryUSD.toFixed(0)}) & vollständig zurück ins S&P 500 Mutterschiff reinvestiert.`
             });
         }
 
@@ -883,7 +967,13 @@ async function runMuzzledCathieWoodSimulation(options = {}) {
                 const curSpyP = priceMaps['SPY'][date] || 1;
                 const freeMutterschiffUSD = getAvailableMutterschiffForTech(date);
 
-                if (!macroGuardActive && isDip && currentWeight < 0.35 && daysSinceDipBuy >= 20 && freeMutterschiffUSD >= 2000) {
+                // Eiserne Regel: Kein Kauf ohne Fundamentaldaten! (Auch beim Dip-Buying)
+                const curFund = getLatestFundamentals(sym, date);
+                const hasValidFundForDipBuy = curFund && curFund.latest &&
+                    (curFund.latest.yoy_revenue_growth_pct === null || curFund.latest.yoy_revenue_growth_pct >= 15.0 || (curFund.latest.net_income > 0)) &&
+                    !(curFund.latest.net_income < 0 && Math.abs(curFund.latest.net_income) > 2.0 * curFund.latest.revenue);
+
+                if (!macroGuardActive && isDip && currentWeight < 0.35 && daysSinceDipBuy >= 20 && freeMutterschiffUSD >= 2000 && hasValidFundForDipBuy) {
                     const dipAllocUSD = Math.min(freeMutterschiffUSD * 0.15, 5000);
                     spyShares -= dipAllocUSD / curSpyP;
                     const addShares = dipAllocUSD / curPrice;
@@ -924,6 +1014,14 @@ async function runMuzzledCathieWoodSimulation(options = {}) {
             for (const sym of techSymbols) {
                 if (techPositions[sym]) continue;
 
+                // Watchlist-Filter: Nur Titel betrachten, die Cathie Wood bereits entdeckt hat (OBSERVE)
+                const arkSym = sym === 'XYZ' ? 'SQ' : sym;
+                if (arkWatchlistMap && arkWatchlistMap[arkSym]) {
+                    if (date < arkWatchlistMap[arkSym].firstSeenDate) {
+                        continue;
+                    }
+                }
+
                 const ind = indicators[sym] ? indicators[sym][date] : null;
                 if (!ind || !ind.high50d || !ind.sma50 || !ind.sma200 || !ind.sma50Vol) continue;
 
@@ -932,14 +1030,16 @@ async function runMuzzledCathieWoodSimulation(options = {}) {
 
                 if (!isStage2Breakout) continue;
 
-                let isFundamentalPermitted = true;
+                // Eiserne Regel: Kein Kauf ohne Fundamentaldaten! (Keine Daten, kein Kauf)
+                let isFundamentalPermitted = false;
                 const fund = getLatestFundamentals(sym, date);
                 if (fund && fund.latest) {
                     const yoy = fund.latest.yoy_revenue_growth_pct;
                     const isProfitableTurnaround = fund.latest.net_income > 0 && (!fund.prior || fund.prior.net_income <= 0);
                     const isCatastrophic = (fund.latest.net_income < 0 && Math.abs(fund.latest.net_income) > 2.0 * fund.latest.revenue);
-                    if ((yoy !== null && yoy < 15.0 && !isProfitableTurnaround) || isCatastrophic) {
-                        isFundamentalPermitted = false;
+                    const isHealthyGrowth = (yoy !== null && yoy >= 15.0);
+                    if ((isHealthyGrowth || isProfitableTurnaround) && !isCatastrophic) {
+                        isFundamentalPermitted = true;
                     }
                 }
 
@@ -972,6 +1072,13 @@ async function runMuzzledCathieWoodSimulation(options = {}) {
                 }
             }
         }
+
+        // Täglicher Drawdown-Track
+        const curDayDepotUSD = getTotalDepotUSD(date);
+        const curDayDepotEUR = curDayDepotUSD / curEurUsd;
+        if (curDayDepotEUR > peakPortfolioEUR) peakPortfolioEUR = curDayDepotEUR;
+        const curDayDD = ((peakPortfolioEUR - curDayDepotEUR) / peakPortfolioEUR) * 100;
+        if (curDayDD > maxDrawdownPct) maxDrawdownPct = curDayDD;
     }
 
     // =========================================================================
@@ -1103,6 +1210,7 @@ async function runMuzzledCathieWoodSimulation(options = {}) {
         totalPortfolioUSD,
         netProfitEUR,
         returnPct: parseFloat(returnPct),
+        maxDrawdownPct: parseFloat(maxDrawdownPct.toFixed(2)),
         arkkReturn: parseFloat(arkkReturn),
         qqqReturn: parseFloat(qqqReturn),
         spyReturn: parseFloat(spyReturn),
@@ -1119,7 +1227,9 @@ async function runMuzzledCathieWoodSimulation(options = {}) {
 }
 
 if (process.argv[1] && process.argv[1].replace(/\\/g, '/').endsWith('MuzzledCathieWoodSimulation.js')) {
-    runMuzzledCathieWoodSimulation().catch(err => {
+    const is2015 = process.argv.includes('--2015') || process.argv.includes('--expanded');
+    const opts = is2015 ? { startDate: '2015-01-01' } : {};
+    runMuzzledCathieWoodSimulation(opts).catch(err => {
         console.error("Fehler bei Simulation:", err);
         process.exit(1);
     });

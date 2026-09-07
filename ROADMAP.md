@@ -41,6 +41,21 @@
 * **Ziel:** Evaluierung des "Spurenlesen" Konzepts (Säule 2: Gamma Hedging). Da Yahoo Finance keine historischen Optionsdaten bereitstellt, sammeln wir ab dem 04.07.2026 jeden Tag Live-Daten über den Fetcher.
 * **Stichtag für ersten Backtest:** **04.01.2027** (nach ca. 6 Monaten Live-Aufzeichnung). Erst dann haben wir genug Markt-Regime (Bull, Bear, Volatility) und OPEX-Zyklen durchlebt, um die Gamma-Support/Resistance-Mauern belastbar in ML-Modelle oder Indikatoren zu integrieren.
 
+## 6. PortfolioStrategyEngine (Plugin-Architektur & Multi-Strategie Orchestrierung)
+* **Architektur-Ziel:** Neben der `MacroRegimeEngine` (Wetterfrosch) und der `TradingEngine` (Ausführung) etablieren wir eine übergeordnete **`PortfolioStrategyEngine`** als modulares Plugin-System.
+* **Strategie-Registry:** Genau wie Indikatoren über `_indicators` registriert werden, können Portfoliostrategien dynamisch über eine einheitliche Schnittstelle geladen, parallel berechnet und überwacht werden (`MuzzledCathieWoodStrategy`, `KamikazeGrowthStrategy`, `SevenSlotGuruStrategy`, `GoldSpyDcaStrategy`, `GoldGdxStrategy`, `SatelliteStakingStrategy`).
+* **Meilensteine & Strategie-Harmonisierung [IN VORBEREITUNG]:**
+  * **Kamikaze Growth Schärfung:** Integration der parabolischen Climax-Top-Liquidierung (`TOP_CLIMAX_ALERT` nach dem NVTS > $ 30 Case) und Watchlist-Freigabe für Turnarounds.
+  * **Satellite-Strategie Spezifikation:** Fertigstellung von [`docs/architecture/strategies/Satelite.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Satelite.md) für den opportunistischen Solana- & ETH-Staking ETF aus Gehaltsüberschüssen.
+  * **MCW vs. 7-Slot-Guru Abgleich:** Strategischer Vergleich, ob das 7-Slot-Guru-System von seiner statischen 25 % Gold-Quote auf die hocheffektive MCW-Makrosicherung (100 % Notfall-Evakuierung in 50 % Gold / 50 % Cash mit Dual-Re-Entry Panic Sniper) umgestellt wird.
+
+## 7. Telegram-Migration & Multi-Channel Notification-Architektur (Ablösung von Ntfy)
+* **Ziel:** Vollständige Umstellung der Push- und Alerting-Infrastruktur von Ntfy auf Telegram über die offizielle Telegram Bot API.
+* **Kanal- / Gruppen-Architektur (Zielgruppen-Trennung):**
+  * **Makro-Wetter:** Zentraler Kanal für Makro-Ampel, Liquiditäts-Deltas, Rezessions- & Kollisionswarnungen.
+  * **Strategie-Kanäle:** Eigener Kanal für jede aktive Portfoliostrategie (damit Interessierte und Abonnenten gezielt einzelnen Strategien wie `Kamikaze-Growth`, `Muzzled-Cathie-Wood`, `7-Slot-Guru`, `Gold-SPY`, `Satelite` folgen können).
+  * **Lokale Test-Isolation (`-Test` Pendants):** Jeder Kanal und jede Gruppe erhält für lokale Entwicklungs- und Regressionstests ein exaktes `-Test` Pendant (z. B. `Makro-Wetter-Test`, `Kamikaze-Growth-Test`). Umschaltbar per Umgebungskonfiguration, sodass lokale Testläufe niemals die produktiven Kanäle befeuern.
+
 ---
 
 ## 🏆 Erreichte Meilensteine (Abgeschlossen)

@@ -1,0 +1,1666 @@
+{
+  "source": "13F-HR",
+  "cik": "1697748",
+  "reportDate": "2020-03-31",
+  "filingDate": "2020-05-14",
+  "accessionNumber": "0001104659-20-061281",
+  "totalValue_usd": 4012308000,
+  "holdings": [
+    {
+      "name": "Adobe Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "00724F101",
+      "value_k": 7548,
+      "value_usd": 7548000,
+      "shares": 23718
+    },
+    {
+      "name": "Aerojet Rocketdyne Holdings In",
+      "titleOfClass": "Common Stock",
+      "cusip": "007800105",
+      "value_k": 238,
+      "value_usd": 238000,
+      "shares": 5693
+    },
+    {
+      "name": "AeroVironment Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "008073108",
+      "value_k": 22605,
+      "value_usd": 22605000,
+      "shares": 370821
+    },
+    {
+      "name": "Alibaba Group Holding Ltd",
+      "titleOfClass": "ADR",
+      "cusip": "01609W102",
+      "value_k": 20415,
+      "value_usd": 20415000,
+      "shares": 104970
+    },
+    {
+      "name": "Align Technology Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "016255101",
+      "value_k": 258,
+      "value_usd": 258000,
+      "shares": 1484
+    },
+    {
+      "name": "Allegheny Technologies Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "01741R102",
+      "value_k": 18,
+      "value_usd": 18000,
+      "shares": 2130
+    },
+    {
+      "name": "Alphabet Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "02079K305",
+      "value_k": 1571,
+      "value_usd": 1571000,
+      "shares": 1352
+    },
+    {
+      "name": "Altair Engineering Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "021369103",
+      "value_k": 965,
+      "value_usd": 965000,
+      "shares": 36416
+    },
+    {
+      "name": "Amazon.com Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "023135106",
+      "value_k": 27846,
+      "value_usd": 27846000,
+      "shares": 14282
+    },
+    {
+      "name": "AMETEK Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "031100100",
+      "value_k": 294,
+      "value_usd": 294000,
+      "shares": 4084
+    },
+    {
+      "name": "ANSYS Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "03662Q105",
+      "value_k": 2962,
+      "value_usd": 2962000,
+      "shares": 12741
+    },
+    {
+      "name": "Apple Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "037833100",
+      "value_k": 22200,
+      "value_usd": 22200000,
+      "shares": 87302
+    },
+    {
+      "name": "AquaBounty Technologies Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "03842K200",
+      "value_k": 747,
+      "value_usd": 747000,
+      "shares": 458408
+    },
+    {
+      "name": "Howmet Aerospace Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "443201108",
+      "value_k": 127,
+      "value_usd": 127000,
+      "shares": 9850
+    },
+    {
+      "name": "Arcturus Therapeutics Holdings",
+      "titleOfClass": "Common Stock",
+      "cusip": "03969T109",
+      "value_k": 21261,
+      "value_usd": 21261000,
+      "shares": 1564457
+    },
+    {
+      "name": "Autodesk Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "052769106",
+      "value_k": 68359,
+      "value_usd": 68359000,
+      "shares": 437918
+    },
+    {
+      "name": "Baidu Inc",
+      "titleOfClass": "ADR",
+      "cusip": "056752108",
+      "value_k": 1582,
+      "value_usd": 1582000,
+      "shares": 15694
+    },
+    {
+      "name": "Renishaw PLC",
+      "titleOfClass": "Common Stock",
+      "cusip": "G75006117",
+      "value_k": 1358,
+      "value_usd": 1358000,
+      "shares": 34609
+    },
+    {
+      "name": "CareDx Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "14167L103",
+      "value_k": 17205,
+      "value_usd": 17205000,
+      "shares": 788144
+    },
+    {
+      "name": "Carpenter Technology Corp",
+      "titleOfClass": "Common Stock",
+      "cusip": "144285103",
+      "value_k": 16,
+      "value_usd": 16000,
+      "shares": 844
+    },
+    {
+      "name": "Castle Biosciences Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "14843C105",
+      "value_k": 6572,
+      "value_usd": 6572000,
+      "shares": 220452
+    },
+    {
+      "name": "Cellectis SA",
+      "titleOfClass": "ADR",
+      "cusip": "15117K103",
+      "value_k": 14242,
+      "value_usd": 14242000,
+      "shares": 1548046
+    },
+    {
+      "name": "Cellular Biomedicine Group Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "15117P102",
+      "value_k": 6322,
+      "value_usd": 6322000,
+      "shares": 399632
+    },
+    {
+      "name": "Cerus Corp",
+      "titleOfClass": "Common Stock",
+      "cusip": "157085101",
+      "value_k": 65124,
+      "value_usd": 65124000,
+      "shares": 14005056
+    },
+    {
+      "name": "Codexis Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "192005106",
+      "value_k": 11040,
+      "value_usd": 11040000,
+      "shares": 989249
+    },
+    {
+      "name": "Deere &amp; Co",
+      "titleOfClass": "Common Stock",
+      "cusip": "244199105",
+      "value_k": 2410,
+      "value_usd": 2410000,
+      "shares": 17447
+    },
+    {
+      "name": "DuPont de Nemours Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "26614N102",
+      "value_k": 22,
+      "value_usd": 22000,
+      "shares": 648
+    },
+    {
+      "name": "Eastman Chemical Co",
+      "titleOfClass": "Common Stock",
+      "cusip": "277432100",
+      "value_k": 24,
+      "value_usd": 24000,
+      "shares": 512
+    },
+    {
+      "name": "Eastman Kodak Co",
+      "titleOfClass": "Common Stock",
+      "cusip": "277461406",
+      "value_k": 20,
+      "value_usd": 20000,
+      "shares": 11467
+    },
+    {
+      "name": "Editas Medicine Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "28106W103",
+      "value_k": 105812,
+      "value_usd": 105812000,
+      "shares": 5335941
+    },
+    {
+      "name": "Eventbrite Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "29975E109",
+      "value_k": 464,
+      "value_usd": 464000,
+      "shares": 63530
+    },
+    {
+      "name": "ExOne Co/The",
+      "titleOfClass": "Common Stock",
+      "cusip": "302104104",
+      "value_k": 16650,
+      "value_usd": 16650000,
+      "shares": 2605683
+    },
+    {
+      "name": "FLIR Systems Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "302445101",
+      "value_k": 3826,
+      "value_usd": 3826000,
+      "shares": 119984
+    },
+    {
+      "name": "Facebook Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "30303M102",
+      "value_k": 1012,
+      "value_usd": 1012000,
+      "shares": 6066
+    },
+    {
+      "name": "FARO Technologies Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "311642102",
+      "value_k": 332,
+      "value_usd": 332000,
+      "shares": 7462
+    },
+    {
+      "name": "Fate Therapeutics Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "31189P102",
+      "value_k": 12328,
+      "value_usd": 12328000,
+      "shares": 555082
+    },
+    {
+      "name": "General Electric Co",
+      "titleOfClass": "Common Stock",
+      "cusip": "369604103",
+      "value_k": 208,
+      "value_usd": 208000,
+      "shares": 26189
+    },
+    {
+      "name": "Grayscale Bitcoin Trust BTC",
+      "titleOfClass": "Open-End Fund",
+      "cusip": "389637109",
+      "value_k": 20226,
+      "value_usd": 20226000,
+      "shares": 2840675
+    },
+    {
+      "name": "Guardant Health Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "40131M109",
+      "value_k": 17237,
+      "value_usd": 17237000,
+      "shares": 247651
+    },
+    {
+      "name": "Guidewire Software Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "40171V100",
+      "value_k": 975,
+      "value_usd": 975000,
+      "shares": 12292
+    },
+    {
+      "name": "HDFC Bank Ltd",
+      "titleOfClass": "ADR",
+      "cusip": "40415F101",
+      "value_k": 2031,
+      "value_usd": 2031000,
+      "shares": 52809
+    },
+    {
+      "name": "HP Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "40434L105",
+      "value_k": 1329,
+      "value_usd": 1329000,
+      "shares": 76567
+    },
+    {
+      "name": "Hexcel Corp",
+      "titleOfClass": "Common Stock",
+      "cusip": "428291108",
+      "value_k": 19,
+      "value_usd": 19000,
+      "shares": 512
+    },
+    {
+      "name": "HubSpot Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "443573100",
+      "value_k": 6791,
+      "value_usd": 6791000,
+      "shares": 50989
+    },
+    {
+      "name": "Illumina Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "452327109",
+      "value_k": 274220,
+      "value_usd": 274220000,
+      "shares": 1004026
+    },
+    {
+      "name": "Incyte Corp",
+      "titleOfClass": "Common Stock",
+      "cusip": "45337C102",
+      "value_k": 14960,
+      "value_usd": 14960000,
+      "shares": 204284
+    },
+    {
+      "name": "Inovio Pharmaceuticals Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "45773H201",
+      "value_k": 12186,
+      "value_usd": 12186000,
+      "shares": 1637926
+    },
+    {
+      "name": "Intellia Therapeutics Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "45826J105",
+      "value_k": 125226,
+      "value_usd": 125226000,
+      "shares": 10239286
+    },
+    {
+      "name": "Interactive Brokers Group Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "45841N107",
+      "value_k": 1309,
+      "value_usd": 1309000,
+      "shares": 30321
+    },
+    {
+      "name": "Intercontinental Exchange Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "45866F104",
+      "value_k": 3168,
+      "value_usd": 3168000,
+      "shares": 39232
+    },
+    {
+      "name": "Intuit Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "461202103",
+      "value_k": 1961,
+      "value_usd": 1961000,
+      "shares": 8526
+    },
+    {
+      "name": "Intuitive Surgical Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "46120E602",
+      "value_k": 2796,
+      "value_usd": 2796000,
+      "shares": 5647
+    },
+    {
+      "name": "OC Oerlikon Corp AG",
+      "titleOfClass": "Common Stock",
+      "cusip": "H59187106",
+      "value_k": 215,
+      "value_usd": 215000,
+      "shares": 26791
+    },
+    {
+      "name": "Invitae Corp",
+      "titleOfClass": "Common Stock",
+      "cusip": "46185L103",
+      "value_k": 220015,
+      "value_usd": 220015000,
+      "shares": 16094750
+    },
+    {
+      "name": "Ionis Pharmaceuticals Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "462222100",
+      "value_k": 5659,
+      "value_usd": 5659000,
+      "shares": 119681
+    },
+    {
+      "name": "Iovance Biotherapeutics Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "462260100",
+      "value_k": 26558,
+      "value_usd": 26558000,
+      "shares": 887179
+    },
+    {
+      "name": "Iridium Communications Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "46269C102",
+      "value_k": 36575,
+      "value_usd": 36575000,
+      "shares": 1637951
+    },
+    {
+      "name": "JD.com Inc",
+      "titleOfClass": "ADR",
+      "cusip": "47215P106",
+      "value_k": 3117,
+      "value_usd": 3117000,
+      "shares": 76962
+    },
+    {
+      "name": "SGL Carbon SE",
+      "titleOfClass": "Common Stock",
+      "cusip": "D6949M108",
+      "value_k": 21,
+      "value_usd": 21000,
+      "shares": 7817
+    },
+    {
+      "name": "Kaiser Aluminum Corp",
+      "titleOfClass": "Common Stock",
+      "cusip": "483007704",
+      "value_k": 200,
+      "value_usd": 200000,
+      "shares": 2887
+    },
+    {
+      "name": "Komatsu Ltd",
+      "titleOfClass": "ADR",
+      "cusip": "500458401",
+      "value_k": 3356,
+      "value_usd": 3356000,
+      "shares": 204514
+    },
+    {
+      "name": "Kratos Defense &amp; Security Solu",
+      "titleOfClass": "Common Stock",
+      "cusip": "50077B207",
+      "value_k": 3832,
+      "value_usd": 3832000,
+      "shares": 276862
+    },
+    {
+      "name": "Henkel AG &amp; Co KGaA",
+      "titleOfClass": "Preference",
+      "cusip": "D3207M110",
+      "value_k": 31,
+      "value_usd": 31000,
+      "shares": 386
+    },
+    {
+      "name": "Bertrandt AG",
+      "titleOfClass": "Common Stock",
+      "cusip": "D1014N107",
+      "value_k": 175,
+      "value_usd": 175000,
+      "shares": 5157
+    },
+    {
+      "name": "LendingClub Corp",
+      "titleOfClass": "Common Stock",
+      "cusip": "52603A208",
+      "value_k": 43180,
+      "value_usd": 43180000,
+      "shares": 5500633
+    },
+    {
+      "name": "LendingTree Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "52603B107",
+      "value_k": 87236,
+      "value_usd": 87236000,
+      "shares": 475685
+    },
+    {
+      "name": "Dassault Systemes SE",
+      "titleOfClass": "Common Stock",
+      "cusip": "F2457H472",
+      "value_k": 1220,
+      "value_usd": 1220000,
+      "shares": 8237
+    },
+    {
+      "name": "Lincoln Electric Holdings Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "533900106",
+      "value_k": 217,
+      "value_usd": 217000,
+      "shares": 3141
+    },
+    {
+      "name": "Siemens AG",
+      "titleOfClass": "Common Stock",
+      "cusip": "D69671218",
+      "value_k": 200,
+      "value_usd": 200000,
+      "shares": 2399
+    },
+    {
+      "name": "Materialise NV",
+      "titleOfClass": "ADR",
+      "cusip": "57667T100",
+      "value_k": 62751,
+      "value_usd": 62751000,
+      "shares": 3379164
+    },
+    {
+      "name": "MercadoLibre Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "58733R102",
+      "value_k": 23366,
+      "value_usd": 23366000,
+      "shares": 47825
+    },
+    {
+      "name": "Microsoft Corp",
+      "titleOfClass": "Common Stock",
+      "cusip": "594918104",
+      "value_k": 1345,
+      "value_usd": 1345000,
+      "shares": 8527
+    },
+    {
+      "name": "Bezeq The Israeli Telecommunic",
+      "titleOfClass": "Common Stock",
+      "cusip": "M2012Q100",
+      "value_k": 560,
+      "value_usd": 560000,
+      "shares": 774147
+    },
+    {
+      "name": "Bet Shemesh Engines Holdings 1",
+      "titleOfClass": "Common Stock",
+      "cusip": "M20119109",
+      "value_k": 352,
+      "value_usd": 352000,
+      "shares": 14025
+    },
+    {
+      "name": "Moog Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "615394202",
+      "value_k": 163,
+      "value_usd": 163000,
+      "shares": 3224
+    },
+    {
+      "name": "Rakuten Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "J64264104",
+      "value_k": 1158,
+      "value_usd": 1158000,
+      "shares": 152213
+    },
+    {
+      "name": "Danel Adir Yeoshua Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M27013107",
+      "value_k": 438,
+      "value_usd": 438000,
+      "shares": 6275
+    },
+    {
+      "name": "Hilan Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M5299H123",
+      "value_k": 418,
+      "value_usd": 418000,
+      "shares": 13286
+    },
+    {
+      "name": "Nano Dimension Ltd",
+      "titleOfClass": "ADR",
+      "cusip": "63008G203",
+      "value_k": 71,
+      "value_usd": 71000,
+      "shares": 75731
+    },
+    {
+      "name": "NanoString Technologies Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "63009R109",
+      "value_k": 73392,
+      "value_usd": 73392000,
+      "shares": 3051660
+    },
+    {
+      "name": "Elbit Systems Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M3760D101",
+      "value_k": 2369,
+      "value_usd": 2369000,
+      "shares": 18551
+    },
+    {
+      "name": "SBI Holdings Inc/Japan",
+      "titleOfClass": "Common Stock",
+      "cusip": "J6991H100",
+      "value_k": 1893,
+      "value_usd": 1893000,
+      "shares": 129300
+    },
+    {
+      "name": "Partner Communications Co Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M78465107",
+      "value_k": 508,
+      "value_usd": 508000,
+      "shares": 136332
+    },
+    {
+      "name": "Netflix Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "64110L106",
+      "value_k": 13697,
+      "value_usd": 13697000,
+      "shares": 36477
+    },
+    {
+      "name": "Nice Ltd",
+      "titleOfClass": "ADR",
+      "cusip": "653656108",
+      "value_k": 473,
+      "value_usd": 473000,
+      "shares": 3295
+    },
+    {
+      "name": "FirstRand Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "S5202Z131",
+      "value_k": 58,
+      "value_usd": 58000,
+      "shares": 13580
+    },
+    {
+      "name": "NVIDIA Corp",
+      "titleOfClass": "Common Stock",
+      "cusip": "67066G104",
+      "value_k": 41757,
+      "value_usd": 41757000,
+      "shares": 158409
+    },
+    {
+      "name": "NuVasive Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "670704105",
+      "value_k": 198,
+      "value_usd": 198000,
+      "shares": 3907
+    },
+    {
+      "name": "Matrix IT Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M6859E153",
+      "value_k": 433,
+      "value_usd": 433000,
+      "shares": 26419
+    },
+    {
+      "name": "Organovo Holdings Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "68620A104",
+      "value_k": 9394,
+      "value_usd": 9394000,
+      "shares": 22912766
+    },
+    {
+      "name": "Toray Industries Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "J89494116",
+      "value_k": 25,
+      "value_usd": 25000,
+      "shares": 5808
+    },
+    {
+      "name": "PTC Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "69370C100",
+      "value_k": 1089,
+      "value_usd": 1089000,
+      "shares": 17786
+    },
+    {
+      "name": "Pacific Biosciences of Califor",
+      "titleOfClass": "Common Stock",
+      "cusip": "69404D108",
+      "value_k": 12831,
+      "value_usd": 12831000,
+      "shares": 4193059
+    },
+    {
+      "name": "One Software Technologies Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M9866H102",
+      "value_k": 486,
+      "value_usd": 486000,
+      "shares": 7376
+    },
+    {
+      "name": "PayPal Holdings Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "70450Y103",
+      "value_k": 10424,
+      "value_usd": 10424000,
+      "shares": 108882
+    },
+    {
+      "name": "Personalis Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "71535D106",
+      "value_k": 8910,
+      "value_usd": 8910000,
+      "shares": 1104065
+    },
+    {
+      "name": "Straumann Holding AG",
+      "titleOfClass": "Common Stock",
+      "cusip": "H8300N119",
+      "value_k": 1199,
+      "value_usd": 1199000,
+      "shares": 1606
+    },
+    {
+      "name": "Pinduoduo Inc",
+      "titleOfClass": "ADR",
+      "cusip": "722304102",
+      "value_k": 7678,
+      "value_usd": 7678000,
+      "shares": 213112
+    },
+    {
+      "name": "Pinterest Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "72352L106",
+      "value_k": 86602,
+      "value_usd": 86602000,
+      "shares": 5608922
+    },
+    {
+      "name": "Pluristem Therapeutics Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "72940R300",
+      "value_k": 2423,
+      "value_usd": 2423000,
+      "shares": 660150
+    },
+    {
+      "name": "PolyOne Corp",
+      "titleOfClass": "Common Stock",
+      "cusip": "73179P106",
+      "value_k": 22,
+      "value_usd": 22000,
+      "shares": 1171
+    },
+    {
+      "name": "Proto Labs Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "743713109",
+      "value_k": 122012,
+      "value_usd": 122012000,
+      "shares": 1602676
+    },
+    {
+      "name": "Wirecard AG",
+      "titleOfClass": "Common Stock",
+      "cusip": "D22359133",
+      "value_k": 1302,
+      "value_usd": 1302000,
+      "shares": 11536
+    },
+    {
+      "name": "Rakuten Inc",
+      "titleOfClass": "ADR",
+      "cusip": "75102W108",
+      "value_k": 102,
+      "value_usd": 102000,
+      "shares": 13623
+    },
+    {
+      "name": "Redhill Biopharma Ltd",
+      "titleOfClass": "ADR",
+      "cusip": "757468103",
+      "value_k": 436,
+      "value_usd": 436000,
+      "shares": 96151
+    },
+    {
+      "name": "Regeneron Pharmaceuticals Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "75886F107",
+      "value_k": 43,
+      "value_usd": 43000,
+      "shares": 89
+    },
+    {
+      "name": "Roku Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "77543R102",
+      "value_k": 147566,
+      "value_usd": 147566000,
+      "shares": 1686850
+    },
+    {
+      "name": "Rubius Therapeutics Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "78116T103",
+      "value_k": 1416,
+      "value_usd": 1416000,
+      "shares": 318121
+    },
+    {
+      "name": "salesforce.com Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "79466L302",
+      "value_k": 19896,
+      "value_usd": 19896000,
+      "shares": 138189
+    },
+    {
+      "name": "Charles Schwab Corp/The",
+      "titleOfClass": "Common Stock",
+      "cusip": "808513105",
+      "value_k": 1204,
+      "value_usd": 1204000,
+      "shares": 35805
+    },
+    {
+      "name": "Seres Therapeutics Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "81750R102",
+      "value_k": 30871,
+      "value_usd": 30871000,
+      "shares": 8647311
+    },
+    {
+      "name": "Shopify Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "82509L107",
+      "value_k": 168,
+      "value_usd": 168000,
+      "shares": 402
+    },
+    {
+      "name": "Snap Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "83304A106",
+      "value_k": 12667,
+      "value_usd": 12667000,
+      "shares": 1065328
+    },
+    {
+      "name": "SolarEdge Technologies Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "83417M104",
+      "value_k": 465,
+      "value_usd": 465000,
+      "shares": 5683
+    },
+    {
+      "name": "Splunk Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "848637104",
+      "value_k": 95287,
+      "value_usd": 95287000,
+      "shares": 754867
+    },
+    {
+      "name": "Square Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "852234103",
+      "value_k": 250317,
+      "value_usd": 250317000,
+      "shares": 4778869
+    },
+    {
+      "name": "Stryker Corp",
+      "titleOfClass": "Common Stock",
+      "cusip": "863667101",
+      "value_k": 236,
+      "value_usd": 236000,
+      "shares": 1415
+    },
+    {
+      "name": "Syros Pharmaceuticals Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "87184Q107",
+      "value_k": 34983,
+      "value_usd": 34983000,
+      "shares": 5899398
+    },
+    {
+      "name": "Taiwan Semiconductor Manufactu",
+      "titleOfClass": "ADR",
+      "cusip": "874039100",
+      "value_k": 3404,
+      "value_usd": 3404000,
+      "shares": 71236
+    },
+    {
+      "name": "Teladoc Health Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "87918A105",
+      "value_k": 19701,
+      "value_usd": 19701000,
+      "shares": 127094
+    },
+    {
+      "name": "Tencent Holdings Ltd",
+      "titleOfClass": "ADR",
+      "cusip": "88032Q109",
+      "value_k": 22811,
+      "value_usd": 22811000,
+      "shares": 464671
+    },
+    {
+      "name": "Teradyne Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "880770102",
+      "value_k": 39112,
+      "value_usd": 39112000,
+      "shares": 722022
+    },
+    {
+      "name": "Tesla Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "88160R101",
+      "value_k": 312644,
+      "value_usd": 312644000,
+      "shares": 596649
+    },
+    {
+      "name": "Teva Pharmaceutical Industries",
+      "titleOfClass": "ADR",
+      "cusip": "881624209",
+      "value_k": 504,
+      "value_usd": 504000,
+      "shares": 56123
+    },
+    {
+      "name": "Trade Desk Inc/The",
+      "titleOfClass": "Common Stock",
+      "cusip": "88339J105",
+      "value_k": 5778,
+      "value_usd": 5778000,
+      "shares": 29939
+    },
+    {
+      "name": "3D Systems Corp",
+      "titleOfClass": "Common Stock",
+      "cusip": "88554D205",
+      "value_k": 1123,
+      "value_usd": 1123000,
+      "shares": 145604
+    },
+    {
+      "name": "3M Co",
+      "titleOfClass": "Common Stock",
+      "cusip": "88579Y101",
+      "value_k": 32,
+      "value_usd": 32000,
+      "shares": 232
+    },
+    {
+      "name": "TransUnion",
+      "titleOfClass": "Common Stock",
+      "cusip": "89400J107",
+      "value_k": 1067,
+      "value_usd": 1067000,
+      "shares": 16123
+    },
+    {
+      "name": "Trimble Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "896239100",
+      "value_k": 5916,
+      "value_usd": 5916000,
+      "shares": 185873
+    },
+    {
+      "name": "Twilio Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "90138F102",
+      "value_k": 13632,
+      "value_usd": 13632000,
+      "shares": 152325
+    },
+    {
+      "name": "Twist Bioscience Corp",
+      "titleOfClass": "Common Stock",
+      "cusip": "90184D100",
+      "value_k": 19696,
+      "value_usd": 19696000,
+      "shares": 644093
+    },
+    {
+      "name": "Twitter Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "90184L102",
+      "value_k": 34284,
+      "value_usd": 34284000,
+      "shares": 1395937
+    },
+    {
+      "name": "2U Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "90214J101",
+      "value_k": 143422,
+      "value_usd": 143422000,
+      "shares": 6758820
+    },
+    {
+      "name": "Ultra Clean Holdings Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "90385V107",
+      "value_k": 170,
+      "value_usd": 170000,
+      "shares": 12354
+    },
+    {
+      "name": "United Parcel Service Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "911312106",
+      "value_k": 242,
+      "value_usd": 242000,
+      "shares": 2586
+    },
+    {
+      "name": "Veracyte Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "92337F107",
+      "value_k": 79393,
+      "value_usd": 79393000,
+      "shares": 3265859
+    },
+    {
+      "name": "Verisk Analytics Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "92345Y106",
+      "value_k": 1176,
+      "value_usd": 1176000,
+      "shares": 8436
+    },
+    {
+      "name": "Workday Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "98138H101",
+      "value_k": 7729,
+      "value_usd": 7729000,
+      "shares": 59357
+    },
+    {
+      "name": "Xilinx Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "983919101",
+      "value_k": 120968,
+      "value_usd": 120968000,
+      "shares": 1552066
+    },
+    {
+      "name": "Xerox Holdings Corp",
+      "titleOfClass": "Common Stock",
+      "cusip": "98421M106",
+      "value_k": 22,
+      "value_usd": 22000,
+      "shares": 1162
+    },
+    {
+      "name": "Zillow Group Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "98954M101",
+      "value_k": 113760,
+      "value_usd": 113760000,
+      "shares": 3348848
+    },
+    {
+      "name": "Koninklijke DSM NV",
+      "titleOfClass": "Common Stock",
+      "cusip": "N5017D122",
+      "value_k": 37,
+      "value_usd": 37000,
+      "shares": 329
+    },
+    {
+      "name": "Arkema SA",
+      "titleOfClass": "Common Stock",
+      "cusip": "F0392W125",
+      "value_k": 28,
+      "value_usd": 28000,
+      "shares": 408
+    },
+    {
+      "name": "MGI Digital Graphic Technology",
+      "titleOfClass": "Common Stock",
+      "cusip": "F4090S113",
+      "value_k": 1089,
+      "value_usd": 1089000,
+      "shares": 29116
+    },
+    {
+      "name": "Sandvik AB",
+      "titleOfClass": "Common Stock",
+      "cusip": "W74857165",
+      "value_k": 31,
+      "value_usd": 31000,
+      "shares": 2212
+    },
+    {
+      "name": "Hexagon AB",
+      "titleOfClass": "Common Stock",
+      "cusip": "W40063104",
+      "value_k": 312,
+      "value_usd": 312000,
+      "shares": 7347
+    },
+    {
+      "name": "Cellcom Israel Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M2196U109",
+      "value_k": 535,
+      "value_usd": 535000,
+      "shares": 182654
+    },
+    {
+      "name": "Evonik Industries AG",
+      "titleOfClass": "Common Stock",
+      "cusip": "D2R90Y117",
+      "value_k": 30,
+      "value_usd": 30000,
+      "shares": 1430
+    },
+    {
+      "name": "Fattal Holdings 1998 Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M4148G105",
+      "value_k": 126,
+      "value_usd": 126000,
+      "shares": 3668
+    },
+    {
+      "name": "Meituan Dianping",
+      "titleOfClass": "Common Stock",
+      "cusip": "G59669104",
+      "value_k": 2945,
+      "value_usd": 2945000,
+      "shares": 243727
+    },
+    {
+      "name": "SLM Solutions Group AG",
+      "titleOfClass": "Common Stock",
+      "cusip": "D6T690109",
+      "value_k": 837,
+      "value_usd": 837000,
+      "shares": 108313
+    },
+    {
+      "name": "ZhongAn Online P&amp;C Insurance C",
+      "titleOfClass": "Common Stock",
+      "cusip": "Y989DF109",
+      "value_k": 2101,
+      "value_usd": 2101000,
+      "shares": 636100
+    },
+    {
+      "name": "Adyen NV",
+      "titleOfClass": "Common Stock",
+      "cusip": "N3501V104",
+      "value_k": 2432,
+      "value_usd": 2432000,
+      "shares": 2877
+    },
+    {
+      "name": "Atlassian Corp PLC",
+      "titleOfClass": "Common Stock",
+      "cusip": "G06242104",
+      "value_k": 6028,
+      "value_usd": 6028000,
+      "shares": 43915
+    },
+    {
+      "name": "Medtronic PLC",
+      "titleOfClass": "Common Stock",
+      "cusip": "G5960L103",
+      "value_k": 229,
+      "value_usd": 229000,
+      "shares": 2544
+    },
+    {
+      "name": "Aptiv PLC",
+      "titleOfClass": "Common Stock",
+      "cusip": "G6095L109",
+      "value_k": 2715,
+      "value_usd": 2715000,
+      "shares": 55136
+    },
+    {
+      "name": "Sapiens International Corp NV",
+      "titleOfClass": "Common Stock",
+      "cusip": "G7T16G103",
+      "value_k": 431,
+      "value_usd": 431000,
+      "shares": 22637
+    },
+    {
+      "name": "CRISPR Therapeutics AG",
+      "titleOfClass": "Common Stock",
+      "cusip": "H17182108",
+      "value_k": 181754,
+      "value_usd": 181754000,
+      "shares": 4285632
+    },
+    {
+      "name": "Spotify Technology SA",
+      "titleOfClass": "Common Stock",
+      "cusip": "L8681T102",
+      "value_k": 6764,
+      "value_usd": 6764000,
+      "shares": 55695
+    },
+    {
+      "name": "Allot Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M0854Q105",
+      "value_k": 572,
+      "value_usd": 572000,
+      "shares": 60495
+    },
+    {
+      "name": "AudioCodes Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M15342104",
+      "value_k": 494,
+      "value_usd": 494000,
+      "shares": 20677
+    },
+    {
+      "name": "Camtek Ltd/Israel",
+      "titleOfClass": "Common Stock",
+      "cusip": "M20791105",
+      "value_k": 387,
+      "value_usd": 387000,
+      "shares": 46013
+    },
+    {
+      "name": "Ceragon Networks Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M22013102",
+      "value_k": 327,
+      "value_usd": 327000,
+      "shares": 259697
+    },
+    {
+      "name": "Check Point Software Technolog",
+      "titleOfClass": "Common Stock",
+      "cusip": "M22465104",
+      "value_k": 507,
+      "value_usd": 507000,
+      "shares": 5044
+    },
+    {
+      "name": "Compugen Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M25722105",
+      "value_k": 74969,
+      "value_usd": 74969000,
+      "shares": 10326360
+    },
+    {
+      "name": "CyberArk Software Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M2682V108",
+      "value_k": 354,
+      "value_usd": 354000,
+      "shares": 4133
+    },
+    {
+      "name": "Evogene Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M4119S104",
+      "value_k": 302,
+      "value_usd": 302000,
+      "shares": 256129
+    },
+    {
+      "name": "Galmed Pharmaceuticals Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M47238106",
+      "value_k": 305,
+      "value_usd": 305000,
+      "shares": 88243
+    },
+    {
+      "name": "Fiverr International Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M4R82T106",
+      "value_k": 552,
+      "value_usd": 552000,
+      "shares": 21942
+    },
+    {
+      "name": "Mellanox Technologies Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M51363113",
+      "value_k": 585,
+      "value_usd": 585000,
+      "shares": 4826
+    },
+    {
+      "name": "Ituran Location and Control Lt",
+      "titleOfClass": "Common Stock",
+      "cusip": "M6158M104",
+      "value_k": 320,
+      "value_usd": 320000,
+      "shares": 22516
+    },
+    {
+      "name": "Nova Measuring Instruments Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M7516K103",
+      "value_k": 475,
+      "value_usd": 475000,
+      "shares": 14555
+    },
+    {
+      "name": "Radware Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M81873107",
+      "value_k": 473,
+      "value_usd": 473000,
+      "shares": 22426
+    },
+    {
+      "name": "Stratasys Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M85548101",
+      "value_k": 156232,
+      "value_usd": 156232000,
+      "shares": 9795137
+    },
+    {
+      "name": "Taro Pharmaceutical Industries",
+      "titleOfClass": "Common Stock",
+      "cusip": "M8737E108",
+      "value_k": 415,
+      "value_usd": 415000,
+      "shares": 6779
+    },
+    {
+      "name": "Tower Semiconductor Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M87915274",
+      "value_k": 362,
+      "value_usd": 362000,
+      "shares": 22757
+    },
+    {
+      "name": "UroGen Pharma Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M96088105",
+      "value_k": 300,
+      "value_usd": 300000,
+      "shares": 16821
+    },
+    {
+      "name": "Wix.com Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M98068105",
+      "value_k": 408,
+      "value_usd": 408000,
+      "shares": 4047
+    },
+    {
+      "name": "NXP Semiconductors NV",
+      "titleOfClass": "Common Stock",
+      "cusip": "N6596X109",
+      "value_k": 3281,
+      "value_usd": 3281000,
+      "shares": 39559
+    },
+    {
+      "name": "Bayer AG",
+      "titleOfClass": "Common Stock",
+      "cusip": "D0712D163",
+      "value_k": 22,
+      "value_usd": 22000,
+      "shares": 390
+    },
+    {
+      "name": "FANUC Corp",
+      "titleOfClass": "Common Stock",
+      "cusip": "J13440102",
+      "value_k": 30,
+      "value_usd": 30000,
+      "shares": 220
+    },
+    {
+      "name": "Nintendo Co Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "J51699106",
+      "value_k": 66,
+      "value_usd": 66000,
+      "shares": 171
+    },
+    {
+      "name": "SoftBank Group Corp",
+      "titleOfClass": "Common Stock",
+      "cusip": "J75963108",
+      "value_k": 39,
+      "value_usd": 39000,
+      "shares": 1110
+    },
+    {
+      "name": "DocuSign Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "256163106",
+      "value_k": 1246,
+      "value_usd": 1246000,
+      "shares": 13489
+    },
+    {
+      "name": "Zscaler Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "98980G102",
+      "value_k": 6639,
+      "value_usd": 6639000,
+      "shares": 109084
+    },
+    {
+      "name": "Wirecard AG",
+      "titleOfClass": "ADR",
+      "cusip": "97654L108",
+      "value_k": 202,
+      "value_usd": 202000,
+      "shares": 3594
+    },
+    {
+      "name": "GMO internet Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "J1822R104",
+      "value_k": 45,
+      "value_usd": 45000,
+      "shares": 2700
+    },
+    {
+      "name": "Discovery Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "S2192Y109",
+      "value_k": 841,
+      "value_usd": 841000,
+      "shares": 191917
+    },
+    {
+      "name": "Inmode Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M5425M103",
+      "value_k": 280,
+      "value_usd": 280000,
+      "shares": 13013
+    },
+    {
+      "name": "Perion Network Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M78673114",
+      "value_k": 323,
+      "value_usd": 323000,
+      "shares": 66012
+    },
+    {
+      "name": "Silvergate Capital Corp",
+      "titleOfClass": "Common Stock",
+      "cusip": "82837P408",
+      "value_k": 470,
+      "value_usd": 470000,
+      "shares": 49251
+    },
+    {
+      "name": "Alteryx Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "02156B103",
+      "value_k": 5866,
+      "value_usd": 5866000,
+      "shares": 61638
+    },
+    {
+      "name": "Meituan Dianping",
+      "titleOfClass": "ADR",
+      "cusip": "58533E103",
+      "value_k": 401,
+      "value_usd": 401000,
+      "shares": 16871
+    },
+    {
+      "name": "Z Holdings Corp",
+      "titleOfClass": "Common Stock",
+      "cusip": "J9894K105",
+      "value_k": 2868,
+      "value_usd": 2868000,
+      "shares": 888120
+    },
+    {
+      "name": "Sea Ltd",
+      "titleOfClass": "ADR",
+      "cusip": "81141R100",
+      "value_k": 9895,
+      "value_usd": 9895000,
+      "shares": 223322
+    },
+    {
+      "name": "Z Holdings Corp",
+      "titleOfClass": "ADR",
+      "cusip": "98877X101",
+      "value_k": 419,
+      "value_usd": 419000,
+      "shares": 66488
+    },
+    {
+      "name": "Pure Storage Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "74624M102",
+      "value_k": 53112,
+      "value_usd": 53112000,
+      "shares": 4318047
+    },
+    {
+      "name": "Synopsys Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "871607107",
+      "value_k": 7445,
+      "value_usd": 7445000,
+      "shares": 57808
+    },
+    {
+      "name": "HUYA Inc",
+      "titleOfClass": "ADR",
+      "cusip": "44852D108",
+      "value_k": 9384,
+      "value_usd": 9384000,
+      "shares": 553613
+    },
+    {
+      "name": "RADA Electronic Industries Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M81863124",
+      "value_k": 306,
+      "value_usd": 306000,
+      "shares": 87438
+    },
+    {
+      "name": "Sol-Gel Technologies Ltd",
+      "titleOfClass": "Common Stock",
+      "cusip": "M8694L103",
+      "value_k": 290,
+      "value_usd": 290000,
+      "shares": 41098
+    },
+    {
+      "name": "PagerDuty Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "69553P100",
+      "value_k": 45058,
+      "value_usd": 45058000,
+      "shares": 2607525
+    },
+    {
+      "name": "Bellicum Pharmaceuticals Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "079481404",
+      "value_k": 0,
+      "value_usd": 0,
+      "shares": 49
+    },
+    {
+      "name": "Precigen Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "74017N105",
+      "value_k": 1,
+      "value_usd": 1000,
+      "shares": 281
+    },
+    {
+      "name": "Caterpillar Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "149123101",
+      "value_k": 3084,
+      "value_usd": 3084000,
+      "shares": 26577
+    },
+    {
+      "name": "Rockwell Automation Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "773903109",
+      "value_k": 1471,
+      "value_usd": 1471000,
+      "shares": 9747
+    },
+    {
+      "name": "Menlo Therapeutics Inc",
+      "titleOfClass": "Common Stock",
+      "cusip": "586858102",
+      "value_k": 197,
+      "value_usd": 197000,
+      "shares": 73329
+    }
+  ]
+}

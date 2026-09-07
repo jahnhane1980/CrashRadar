@@ -54,6 +54,7 @@ Die Watchlist fungiert als permanenter Pool an Marktoptionen und ist strikt in z
 * Transaktionen und Neuzugänge von ARK Invest für High-Beta-Technologie wandern unmittelbar in den Tech Sub-Bucket mit Status **`OBSERVE`**.
 * **Kaufverbot im Status `OBSERVE`:** Ein Kauf ist zu diesem Zeitpunkt strikt verboten! (Viele ARK-Käufe erfolgen mitten im Abwärtstrend oder in unvollendeten Bodenbildungen).
 * **Status-Wechsel auf `BUY` nur bei Ausbruchs-Validierung:** Erst wenn die Aktie nach den vollständigen Konzeptregeln (Stage-2-Ausbruch über das 50-Tage-Konsolidierungshoch, Kurs > SMA 200, Volumen-Spike $\ge 1,5\times$, intakte Fundamentaldaten $\ge 15\,\%$ YoY oder GAAP-Turnaround und inaktives Zins-Veto) den Ausbruch **eindeutig validiert**, wechselt der Status von `OBSERVE` auf **`BUY`**.
+* **Eiserne Regel: Kein Kauf ohne Fundamentaldaten (Keine Daten, kein Kauf):** Liegen für ein Wertpapier keine verifizierten aktuellen SEC 10-Q/6-K-Quartalszahlen vor, bleibt der Kauf sowie jegliches contrarian Dip-Buying strikt verboten. Fehlende Fundamentaldaten führen niemals zu einem Kauf-Default.
 * Nach dem Kauf wandert die Position aktiv ins Portfolio mit dem Status **`HOLD & BUY`** (geschützter Gewinner).
 
 ##### B. Der Krypto Sub-Bucket (Autonomes Regime ohne Cathie-Abhängigkeit)
@@ -220,9 +221,10 @@ Sobald die Makro-Ampel auf **ROT** schlägt, greift der Schutzschirm nicht nur f
 
 ##### A. Die Makro-Ampel-Kriterien (Wann schaltet die Ampel auf ROT?)
 1. **Druckenmiller Net Fed Liquidity (Relative Liquiditäts-Dynamik):** $8\text{W-Delta} < -5,0\,\%$ (Signal für akuten, systemischen Liquiditätsentzug durch Fed und US-Finanzministerium).
-   $$\text{Net Fed Liquidity} = \text{WALCL} - \text{WTREGEN} - \text{RRPONTSYD}$$
+   $$\text{Net Fed Liquidity} = \text{WALCL} - \text{TGA} - \text{RRPONTSYD}$$
 2. **Keine statischen Schwellenwerte:** Das System verzichtet bewusst auf starre Zins-Nachkommastellen (wie statische Realzinsen $> 2,20\,\%$), um kurzfristiges Markt-Rauschen und Whipsaw-Verluste zu verhindern. Ausschlaggebend ist das makroökonomische Liquiditäts-Aggregat.
 3. **High-Yield Credit Spreads (`BAMLH0A0HYM2`):** Steigen über ihren 50-Tage-Schnitt **und** über $4,0\,\%$ (Akuter Kreditstress).
+4. **Empirisch geprüfter Ausschluss von Banken-Notkrediten:** Ein Notkredit-Schock im Bankensystem (`FiscalFed EmergencyBorrowing > 15B`, z. B. SVB März 2023) löst **keinen** Tech-Ausstieg aus, da fallende Anleiherenditen in Bankenkrisen Flucht-Rallyes in Big-Tech/AI befeuern (empirischer Nachweis: -72.721 € Verlustvermeidung in [`MCW-Hybrid-Macro-Guard-Proof.md`](file:///D:/GitHub/CrashRadar/docs/research/macro-proofs/MCW-Hybrid-Macro-Guard-Proof.md)).
 
 ##### B. Die primäre Master-Schutz-Mechanik: 100 % Voll-Evakuierung (50 % Gold / 50 % Cash)
 * **Wirkung bei ROT:**
@@ -233,9 +235,9 @@ Sobald die Makro-Ampel auf **ROT** schlägt, greift der Schutzschirm nicht nur f
   * Dadurch wird der gesamte Drawdown eines 2022-Crashs (-50 % bis -70 % bei Tech) vollständig abgefedert, während Gold in den Krisenmonaten stabil bleibt oder zulegt.
 * **Neukauf- & Dip-Buying-Sperre:** Strikter Stopp für alle neuen Zündfunken und kein konträres Dip-Buying, solange Makro ROT ist.
 * **Sparplan-Aufteilung:** Während der Schutzschirm aktiv ist, wird auch die monatliche Sparrate defensiv aufgeteilt in **50 % Cash / 50 % Gold**.
-* **Deaktivierung (Hysterese-Regel zur Vermeidung von Whipsaw):**
-  * Liegt das 8-Wochen-Delta der Net Fed Liquidity zwischen $-5,0\,\%$ und $0,0\,\%$, bleibt der Schutzschirm unverändert aktiv (Hysterese-Puffer gegen Fehlsignale).
-  * Erst wenn sich das 8-Wochen-Delta wieder nachhaltig auf **$\ge 0,0\,\%$** erholt hat, wird das **Gold und der Cash-Puffer aufgelöst** und vollständig zurück in das S&P 500 Mutterschiff reinvestiert.
+* **Duales Re-Entry-System (Reguläre Hysterese vs. vorzeitiger Panik-Sniper):**
+  * **Regulärer Re-Entry:** Liegt das 8-Wochen-Delta der Net Fed Liquidity zwischen $-5,0\,\%$ und $0,0\,\%$, bleibt der Schutzschirm aktiv. Erst bei Erholung auf **$\ge 0,0\,\%$** wird das Gold und der Cash-Puffer aufgelöst und zurück ins Mutterschiff reinvestiert.
+  * **Vorzeitiger Re-Entry-Sniper ([`PanicCapitulationIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/PanicCapitulationIndicator.js)):** Schlägt während eines aktiven Schutzschirms der Panik-Kapitulations-Sensor an ($\text{VIX} \ge 35$, CBOE Put/Call Spike, bullische RSI-Divergenz), ist der Verkaufsdruck erschöpft. Das System löst den Schutzschirm **sofort am Boden** auf, ohne wochenlang auf die NetLiq-Erholung zu warten (+27.889 € Mehrrendite!).
   * **Brutale Kaufkraft am Boden:** Das gesamte unbeschadete Spitzen-Kapital steht nun im Mutterschiff bereit, um die frischen Stage-2-Ausbrüche am Boden des neuen Bullenmarkts mit voller Feuerkraft einzusammeln!
 
 ##### C. Dokumentierte Konfigurations-Alternative: Option 2 (50 % Teil-De-Risking)
@@ -245,32 +247,33 @@ Sobald die Makro-Ampel auf **ROT** schlägt, greift der Schutzschirm nicht nur f
 
 #### 8. Empirischer Proof of Concept (PoC) & Versions-Vergleich (V1 vs. V2 vs. Master V3)
 
-Die quantitative Überlegenheit der kombinierten Architektur aus **Sektor-Relativität**, **HOLD & BUY / HOLD & OBSERVE Flag-System**, **3-Stufen-Abbau**, **autonomem Krypto-Sub-Bucket** und **50 % Gold / 50 % Cash Notfall-Voll-Evakuierung** gegenüber der alten starren V1-Baseline und einfachem Buy-and-Hold wurde in der vollständigen Multi-Asset-Simulation empirisch nachgewiesen:
+Die quantitative Überlegenheit der kombinierten Architektur aus **Sektor-Relativität**, **HOLD & BUY / HOLD & OBSERVE Flag-System**, **3-Stufen-Abbau**, **autonomem Krypto-Sub-Bucket** und **50 % Gold / 50 % Cash Notfall-Voll-Evakuierung mit Dual-Re-Entry-Sniper** gegenüber der alten starren V1-Baseline und einfachem Buy-and-Hold wurde in der vollständigen Multi-Asset-Simulation empirisch nachgewiesen:
 
 * 💻 **Vollständige Portfolio-Simulation:** [`scratch/architecture/strategies/MuzzledCathieWoodSimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/MuzzledCathieWoodSimulation.js)
 * 📊 **Fundamentaldaten-Master-Cache (SEC 10-Q):** [`scratch/architecture/strategies/fundamentals_master.json`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/fundamentals_master.json)
+* 🔬 **Makro-Guard Audit:** [`docs/research/macro-proofs/MCW-Hybrid-Macro-Guard-Proof.md`](file:///D:/GitHub/CrashRadar/docs/research/macro-proofs/MCW-Hybrid-Macro-Guard-Proof.md)
 
-##### Direkter Vergleich: V1-Baseline vs. V2 vs. Master V3 (60/40, organischer Tech-Bucket & 50/50 Gold/Cash Notfall-Guard)
+##### Direkter Vergleich: V1-Baseline vs. V2 vs. Master V3 (60/40, organischer Tech-Bucket & 50/50 Gold/Cash Notfall-Guard mit Re-Entry Sniper)
 
-| Kennzahl | V1-Baseline (Starrer SMA-200-Exit & 3 Slots) | V2 (Sektor-Relativität, Flag-System, 80/20) | Master V3 Interim (50 % De-Risking) | Master V3 Final (50 % Gold / 50 % Cash Voll-Evakuierung) | Delta Master V3 Final vs. Benchmarks |
+| Kennzahl | V1-Baseline (Starrer SMA-200-Exit & 3 Slots) | V2 (Sektor-Relativität, Flag-System, 80/20) | Master V3 Interim (50 % De-Risking) | Master V3 Final (50/50 Gold/Cash & Re-Entry Sniper) | Delta Master V3 Final vs. Benchmarks |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Gesamteinzahlung** | 22.000,00 € | 22.000,00 € | 22.000,00 € | **22.000,00 €** | ± 0,00 € |
-| **Endwert Portfolio** | 165.832,90 € ($ 182,416.19) | 168.662,77 € ($ 185,529.05) | 217.543,94 € ($ 239,298.33) | **277.102,26 €** ($ 304,812.49) | **+255.102,26 € Nettogewinn** |
-| **Nettorendite** | +653,79 % | +666,65 % | +888,84 % | **+1.159,56 %** | **+1.083,21 %-Pkt. vs. ARKK** |
-| **Alpha vs. ARKK (+76,35 %)** | +577,44 %-Punkte | +590,30 %-Punkte | +812,49 %-Punkte | **+1.083,21 %-Punkte** | **Massive Deklassierung** |
-| **Alpha vs. QQQ (+245,51 %)** | +408,28 %-Punkte | +421,14 %-Punkte | +643,33 %-Punkte | **+914,05 %-Punkte** | **+914,05 %-Punkte** |
-| **Alpha vs. SPY (+160,09 %)** | +493,70 %-Punkte | +506,56 %-Punkte | +728,75 %-Punkte | **+999,47 %-Punkte** | **+999,47 %-Punkte** |
-| **Drawdown-Schutz** | Schwach (Blind-Ausstoppen) | Mittel (Flag-Hold) | Stark (50 % De-Risking) | **Maximal (100 % Notfall-Evak in 50 % Gold / 50 % Cash)** | 0 % Aktien-Drawdown in Krisen |
+| **Endwert Portfolio** | 165.832,90 € ($ 182,416.19) | 168.662,77 € ($ 185,529.05) | 217.543,94 € ($ 239,298.33) | **304.991,89 €** ($ 335,491.08) | **+282.991,89 € Nettogewinn** |
+| **Nettorendite** | +653,79 % | +666,65 % | +888,84 % | **+1.286,33 %** | **+1.209,98 %-Pkt. vs. ARKK** |
+| **Alpha vs. ARKK (+76,35 %)** | +577,44 %-Punkte | +590,30 %-Punkte | +812,49 %-Punkte | **+1.209,98 %-Punkte** | **Massive Deklassierung** |
+| **Alpha vs. QQQ (+245,51 %)** | +408,28 %-Punkte | +421,14 %-Punkte | +643,33 %-Punkte | **+1.040,82 %-Punkte** | **+1.040,82 %-Punkte** |
+| **Alpha vs. SPY (+160,09 %)** | +493,70 %-Punkte | +506,56 %-Punkte | +728,75 %-Punkte | **+1.126,24 %-Punkte** | **+1.126,24 %-Punkte** |
+| **Drawdown-Schutz** | Schwach (Blind-Ausstoppen) | Mittel (Flag-Hold) | Stark (50 % De-Risking) | **Maximal (-37,93 % Max DD)** | 0 % Aktien-Drawdown in Krisen |
 
 ##### Depotzusammensetzung zum Stichtag (2026-09-04):
-* **S&P 500 Mutterschiff:** 104,90 SPY = **73.450,41 € (26,5 %)**
-* **Krypto-Claim im Mutterschiff:** **$ 51.651 (€ 46.955,71)** [Geparkt als Leihgabe für Tech-Compounding]
-* **Krypto-Silo (BTC-USD):** 0,4980 BTC = **36.071,64 € (13,0 %)** [Tranche 1 aktiv nach Re-Entry am 19.08.2026]
-* **Tech-Bucket (ROKU):** 548,91 Stk. à $ 155,59 = **77.641,09 € (28,0 %)** [`HOLD_AND_BUY` / Stufe 0]
-* **Tech-Bucket (PLTR):** 268,19 Stk. à $ 174,33 = **42.503,76 € (15,3 %)** [`HOLD_AND_BUY` / Stufe 0]
-* **Tech-Bucket (SHOP):** 231,45 Stk. à $ 145,09 = **30.528,03 € (11,0 %)** [`HOLD_AND_BUY` / Stufe 0]
-* **Tech-Bucket (NVDA):** 80,73 Stk. à $ 230,36 = **16.907,33 € (6,1 %)** [`HOLD_AND_BUY` / Stufe 0]
-* **Gold-Guard (GLD):** 0,00 GLD [Kein systemischer Liquiditätsalarm, Net Liq Delta +1,66 %, 100 % produktiv investiert]
+* **S&P 500 Mutterschiff:** 113,47 SPY = **79.452,94 € (23,7 %)**
+* **Krypto-Silo (BTC-USD):** 0,5187 BTC = **37.570,05 € (11,2 %)** [Tranche 1 aktiv nach Re-Entry]
+* **Tech-Bucket (ROKU):** 614,26 Stk. à $ 155,59 = **86.885,02 € (25,9 %)** [`HOLD_AND_BUY` / Stufe 0]
+* **Tech-Bucket (PLTR):** 303,22 Stk. à $ 174,33 = **48.056,58 € (14,3 %)** [`HOLD_AND_BUY` / Stufe 0]
+* **Tech-Bucket (SHOP):** 257,14 Stk. à $ 145,09 = **33.917,21 € (10,1 %)** [`HOLD_AND_BUY` / Stufe 0]
+* **Tech-Bucket (NVDA):** 91,29 Stk. à $ 230,36 = **19.110,08 € (5,7 %)** [`HOLD_AND_BUY` / Stufe 0]
+* **Gold-Guard (GLD):** 0,00 GLD [Kein systemischer Liquiditätsalarm, 100 % produktiv investiert]
+* **Cash-Puffer:** 0,00 USD (Voll investiert)
 
 ---
 
@@ -294,3 +297,16 @@ Die quantitative Überlegenheit der kombinierten Architektur aus **Sektor-Relati
 4. **Zoom (`ZM`) & Teladoc (`TDOC` – Zombie-Abbau & Türsteher-Schutz):**
    * **Zoom (`ZM`):** Beim ersten Wachstumsknick (< 18 %) am 25.05.2022 wurde Stufe 1 (1/3 Teil-Exit @ 102,34 $) ausgelöst. Als der Kurs weiter sank und unter den SMA 200 fiel, griff Stufe 2 (weiteres 1/3 @ 101,01 $). Als das Folgequartal nur noch 7,6 % Wachstum meldete, liquidierte Stufe 3 die restliche Position @ 83,61 $. **Vollständiger Schutz vor dem Absturz auf 55 $ (-85 %)!**
    * **Teladoc (`TDOC`):** Wurde nach dem 2020er Hype über das Stufensystem geordnet abgebaut. Ein erneuter Schein-Ausbruch im Februar 2023 wurde durch den erweiterten Fundamental-Türsteher (Milliardenschwerer Bilanzkollaps von -$3,8 Mrd.) **vollständig geblockt**. Schutz vor dem Absturz auf 7 $.
+
+---
+
+### 5. Langzeit-Validierung über 11,5 Jahre (2015–2026: Gesamte ARK-Historie)
+* 🔬 **Ausführlicher Forschungsbericht:** [`docs/research/macro-proofs/MCW-Historical-Backtest-2015-2026.md`](file:///D:/GitHub/CrashRadar/docs/research/macro-proofs/MCW-Historical-Backtest-2015-2026.md)
+* 📁 **SEC-EDGAR-Watchlist-Master:** [`scratch/architecture/strategies/cache/ark_historical_watchlist_2014_2026.json`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/cache/ark_historical_watchlist_2014_2026.json)
+* ⚙️ **Reproduktions-Skript:** `node scratch/architecture/strategies/MuzzledCathieWoodSimulation.js --2015`
+
+Im 11,5-Jahre-Zyklus (Inception von ARKK am 31.10.2014 bis 06.09.2026) erzielte die Muzzled Cathie Wood Strategie eine Gesamtrendite von **+4.334,16 % (1.374.588,08 €)** bei 31.000 € Einzahlung:
+* **Outperformance vs. ARKK (Cathie Wood unmuzzled +373,68 %):** **+3.960,48 %-Punkte Alpha!**
+* **Outperformance vs. Nasdaq 100 (QQQ Buy & Hold +660,31 %):** **+3.673,85 %-Punkte Alpha!**
+* **Outperformance vs. S&P 500 (SPY Buy & Hold +353,89 %):** **+3.980,27 %-Punkte Alpha!**
+* **Historischer Schutz:** Vollständige Blockade der 3D-Druck-Blase 2014/2015 (Stratasys SSYS, 3D Systems DDD) und unprofitabler Zombie-Biotechs (Invitae NVTA, Organovo ONVO) im Status `OBSERVE`. Früherfassung der Jahrhundert-Rallyes von Nvidia (`NVDA` @ $0,56 in 2015) und Tesla (`TSLA` @ $16,25 in 2017).

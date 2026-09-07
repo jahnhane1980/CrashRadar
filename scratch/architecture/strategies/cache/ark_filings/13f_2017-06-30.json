@@ -1,0 +1,882 @@
+{
+  "source": "13F-HR",
+  "cik": "1697748",
+  "reportDate": "2017-06-30",
+  "filingDate": "2017-08-11",
+  "accessionNumber": "0001140361-17-031327",
+  "totalValue_usd": 513594000,
+  "holdings": [
+    {
+      "name": "2U INC",
+      "titleOfClass": "COM",
+      "cusip": "90214J101",
+      "value_k": 10971,
+      "value_usd": 10971000,
+      "shares": 233833
+    },
+    {
+      "name": "3-D SYS CORP DEL",
+      "titleOfClass": "COM NEW",
+      "cusip": "88554D205",
+      "value_k": 1858,
+      "value_usd": 1858000,
+      "shares": 99378
+    },
+    {
+      "name": "ADOBE SYS INC",
+      "titleOfClass": "COM",
+      "cusip": "00724F101",
+      "value_k": 267,
+      "value_usd": 267000,
+      "shares": 1890
+    },
+    {
+      "name": "AEROVIRONMENT INC",
+      "titleOfClass": "COM",
+      "cusip": "008073108",
+      "value_k": 5457,
+      "value_usd": 5457000,
+      "shares": 142859
+    },
+    {
+      "name": "AGIOS PHARMACEUTICALS INC",
+      "titleOfClass": "COM",
+      "cusip": "00847X104",
+      "value_k": 551,
+      "value_usd": 551000,
+      "shares": 10713
+    },
+    {
+      "name": "AKAMAI TECHNOLOGIES INC",
+      "titleOfClass": "COM",
+      "cusip": "00971T101",
+      "value_k": 5053,
+      "value_usd": 5053000,
+      "shares": 101449
+    },
+    {
+      "name": "ALBEMARLE CORP",
+      "titleOfClass": "COM",
+      "cusip": "012653101",
+      "value_k": 672,
+      "value_usd": 672000,
+      "shares": 6368
+    },
+    {
+      "name": "ALIBABA GROUP HLDG LTD",
+      "titleOfClass": "SPONSORED ADS",
+      "cusip": "01609W102",
+      "value_k": 7815,
+      "value_usd": 7815000,
+      "shares": 55464
+    },
+    {
+      "name": "ALIGN TECHNOLOGY INC",
+      "titleOfClass": "COM",
+      "cusip": "016255101",
+      "value_k": 1917,
+      "value_usd": 1917000,
+      "shares": 12773
+    },
+    {
+      "name": "ALLEGHENY TECHNOLOGIES INC",
+      "titleOfClass": "COM",
+      "cusip": "01741R102",
+      "value_k": 47,
+      "value_usd": 47000,
+      "shares": 2780
+    },
+    {
+      "name": "ALLIED MOTION TECHNOLOGIES",
+      "titleOfClass": "COM",
+      "cusip": "019330109",
+      "value_k": 654,
+      "value_usd": 654000,
+      "shares": 24010
+    },
+    {
+      "name": "ALNYLAM PHARMACEUTICALS INC",
+      "titleOfClass": "COM",
+      "cusip": "02043Q107",
+      "value_k": 421,
+      "value_usd": 421000,
+      "shares": 5276
+    },
+    {
+      "name": "ALPHABET INC",
+      "titleOfClass": "CAP STK CL C",
+      "cusip": "02079K107",
+      "value_k": 14395,
+      "value_usd": 14395000,
+      "shares": 15841
+    },
+    {
+      "name": "AMAZON COM INC",
+      "titleOfClass": "COM",
+      "cusip": "023135106",
+      "value_k": 28934,
+      "value_usd": 28934000,
+      "shares": 29890
+    },
+    {
+      "name": "AMETEK INC NEW",
+      "titleOfClass": "COM",
+      "cusip": "031100100",
+      "value_k": 375,
+      "value_usd": 375000,
+      "shares": 6184
+    },
+    {
+      "name": "ANSYS INC",
+      "titleOfClass": "COM",
+      "cusip": "03662Q105",
+      "value_k": 1148,
+      "value_usd": 1148000,
+      "shares": 9435
+    },
+    {
+      "name": "APPLE INC",
+      "titleOfClass": "COM",
+      "cusip": "037833100",
+      "value_k": 755,
+      "value_usd": 755000,
+      "shares": 5243
+    },
+    {
+      "name": "ARCONIC INC",
+      "titleOfClass": "COM",
+      "cusip": "03965L100",
+      "value_k": 374,
+      "value_usd": 374000,
+      "shares": 16515
+    },
+    {
+      "name": "ATHENAHEALTH INC",
+      "titleOfClass": "COM",
+      "cusip": "04685W103",
+      "value_k": 27318,
+      "value_usd": 27318000,
+      "shares": 194366
+    },
+    {
+      "name": "AUTODESK INC",
+      "titleOfClass": "COM",
+      "cusip": "052769106",
+      "value_k": 2577,
+      "value_usd": 2577000,
+      "shares": 25564
+    },
+    {
+      "name": "BAIDU INC",
+      "titleOfClass": "SPON ADR REP A",
+      "cusip": "056752108",
+      "value_k": 18405,
+      "value_usd": 18405000,
+      "shares": 102901
+    },
+    {
+      "name": "BIOGEN INC",
+      "titleOfClass": "COM",
+      "cusip": "09062X103",
+      "value_k": 798,
+      "value_usd": 798000,
+      "shares": 2940
+    },
+    {
+      "name": "BLUEBIRD BIO INC",
+      "titleOfClass": "COM",
+      "cusip": "09609G100",
+      "value_k": 12573,
+      "value_usd": 12573000,
+      "shares": 119683
+    },
+    {
+      "name": "BOX INC",
+      "titleOfClass": "CL A",
+      "cusip": "10316T104",
+      "value_k": 470,
+      "value_usd": 470000,
+      "shares": 25765
+    },
+    {
+      "name": "CARPENTER TECHNOLOGY CORP",
+      "titleOfClass": "COM",
+      "cusip": "144285103",
+      "value_k": 49,
+      "value_usd": 49000,
+      "shares": 1300
+    },
+    {
+      "name": "CELGENE CORP",
+      "titleOfClass": "COM",
+      "cusip": "151020104",
+      "value_k": 208,
+      "value_usd": 208000,
+      "shares": 1599
+    },
+    {
+      "name": "CELLECTIS S A",
+      "titleOfClass": "SPONSORED ADS",
+      "cusip": "15117K103",
+      "value_k": 104,
+      "value_usd": 104000,
+      "shares": 4038
+    },
+    {
+      "name": "CERUS CORP",
+      "titleOfClass": "COM",
+      "cusip": "157085101",
+      "value_k": 4219,
+      "value_usd": 4219000,
+      "shares": 1680925
+    },
+    {
+      "name": "COMPUGEN LTD",
+      "titleOfClass": "ORD",
+      "cusip": "M25722105",
+      "value_k": 2128,
+      "value_usd": 2128000,
+      "shares": 560103
+    },
+    {
+      "name": "CONFORMIS INC",
+      "titleOfClass": "COM",
+      "cusip": "20717E101",
+      "value_k": 825,
+      "value_usd": 825000,
+      "shares": 192378
+    },
+    {
+      "name": "CORNERSTONE ONDEMAND INC",
+      "titleOfClass": "COM",
+      "cusip": "21925Y103",
+      "value_k": 930,
+      "value_usd": 930000,
+      "shares": 26027
+    },
+    {
+      "name": "CRISPR THERAPEUTICS AG",
+      "titleOfClass": "NAMEN AKT",
+      "cusip": "H17182108",
+      "value_k": 206,
+      "value_usd": 206000,
+      "shares": 12888
+    },
+    {
+      "name": "CTRIP COM INTL LTD",
+      "titleOfClass": "AMERICAN DEP SHS",
+      "cusip": "22943F100",
+      "value_k": 5908,
+      "value_usd": 5908000,
+      "shares": 109685
+    },
+    {
+      "name": "DELPHI AUTOMOTIVE PLC",
+      "titleOfClass": "SHS",
+      "cusip": "G27823106",
+      "value_k": 1127,
+      "value_usd": 1127000,
+      "shares": 12856
+    },
+    {
+      "name": "EASTMAN CHEM CO",
+      "titleOfClass": "COM",
+      "cusip": "277432100",
+      "value_k": 50,
+      "value_usd": 50000,
+      "shares": 600
+    },
+    {
+      "name": "EASTMAN KODAK CO",
+      "titleOfClass": "COM NEW",
+      "cusip": "277461406",
+      "value_k": 40,
+      "value_usd": 40000,
+      "shares": 4438
+    },
+    {
+      "name": "EDITAS MEDICINE INC",
+      "titleOfClass": "COM",
+      "cusip": "28106W103",
+      "value_k": 8561,
+      "value_usd": 8561000,
+      "shares": 510187
+    },
+    {
+      "name": "DU PONT E I DE NEMOURS &amp; CO",
+      "titleOfClass": "COM",
+      "cusip": "263534109",
+      "value_k": 94,
+      "value_usd": 94000,
+      "shares": 1167
+    },
+    {
+      "name": "ELBIT SYS LTD",
+      "titleOfClass": "ORD",
+      "cusip": "M3760D101",
+      "value_k": 757,
+      "value_usd": 757000,
+      "shares": 6121
+    },
+    {
+      "name": "EVOGENE LTD",
+      "titleOfClass": "SHS",
+      "cusip": "M4119S104",
+      "value_k": 67,
+      "value_usd": 67000,
+      "shares": 13232
+    },
+    {
+      "name": "EXA CORP",
+      "titleOfClass": "COM",
+      "cusip": "300614500",
+      "value_k": 1043,
+      "value_usd": 1043000,
+      "shares": 75567
+    },
+    {
+      "name": "EXONE CO",
+      "titleOfClass": "COM",
+      "cusip": "302104104",
+      "value_k": 7980,
+      "value_usd": 7980000,
+      "shares": 696980
+    },
+    {
+      "name": "FACEBOOK INC",
+      "titleOfClass": "CL A",
+      "cusip": "30303M102",
+      "value_k": 10902,
+      "value_usd": 10902000,
+      "shares": 72209
+    },
+    {
+      "name": "FARO TECHNOLOGIES INC",
+      "titleOfClass": "COM",
+      "cusip": "311642102",
+      "value_k": 373,
+      "value_usd": 373000,
+      "shares": 9870
+    },
+    {
+      "name": "FIVE PRIME THERAPEUTICS INC",
+      "titleOfClass": "COM",
+      "cusip": "33830X104",
+      "value_k": 427,
+      "value_usd": 427000,
+      "shares": 14174
+    },
+    {
+      "name": "FLEX LTD",
+      "titleOfClass": "ORD",
+      "cusip": "Y2573F102",
+      "value_k": 642,
+      "value_usd": 642000,
+      "shares": 39366
+    },
+    {
+      "name": "FOUNDATION MEDICINE INC",
+      "titleOfClass": "COM",
+      "cusip": "350465100",
+      "value_k": 10944,
+      "value_usd": 10944000,
+      "shares": 275321
+    },
+    {
+      "name": "GENERAL ELECTRIC CO",
+      "titleOfClass": "COM",
+      "cusip": "369604103",
+      "value_k": 967,
+      "value_usd": 967000,
+      "shares": 35799
+    },
+    {
+      "name": "GENERAL MTRS CO",
+      "titleOfClass": "COM",
+      "cusip": "37045V100",
+      "value_k": 588,
+      "value_usd": 588000,
+      "shares": 16827
+    },
+    {
+      "name": "HORTONWORKS INC",
+      "titleOfClass": "COM",
+      "cusip": "440894103",
+      "value_k": 10787,
+      "value_usd": 10787000,
+      "shares": 837483
+    },
+    {
+      "name": "HP INC",
+      "titleOfClass": "COM",
+      "cusip": "40434L105",
+      "value_k": 1374,
+      "value_usd": 1374000,
+      "shares": 78615
+    },
+    {
+      "name": "HUBSPOT INC",
+      "titleOfClass": "COM",
+      "cusip": "443573100",
+      "value_k": 1229,
+      "value_usd": 1229000,
+      "shares": 18694
+    },
+    {
+      "name": "ILLUMINA INC",
+      "titleOfClass": "COM",
+      "cusip": "452327109",
+      "value_k": 18013,
+      "value_usd": 18013000,
+      "shares": 103809
+    },
+    {
+      "name": "IMPINJ INC",
+      "titleOfClass": "COM",
+      "cusip": "453204109",
+      "value_k": 285,
+      "value_usd": 285000,
+      "shares": 5864
+    },
+    {
+      "name": "INCYTE CORP",
+      "titleOfClass": "COM",
+      "cusip": "45337C102",
+      "value_k": 492,
+      "value_usd": 492000,
+      "shares": 3911
+    },
+    {
+      "name": "INOVIO PHARMACEUTICALS INC",
+      "titleOfClass": "COM NEW",
+      "cusip": "45773H201",
+      "value_k": 517,
+      "value_usd": 517000,
+      "shares": 65901
+    },
+    {
+      "name": "INTELLIA THERAPEUTICS INC",
+      "titleOfClass": "COM",
+      "cusip": "45826J105",
+      "value_k": 2797,
+      "value_usd": 2797000,
+      "shares": 174810
+    },
+    {
+      "name": "INTERNATIONAL BUSINESS MACHS",
+      "titleOfClass": "COM",
+      "cusip": "459200101",
+      "value_k": 706,
+      "value_usd": 706000,
+      "shares": 4588
+    },
+    {
+      "name": "INTUIT INC",
+      "titleOfClass": "COM",
+      "cusip": "461202103",
+      "value_k": 2276,
+      "value_usd": 2276000,
+      "shares": 17139
+    },
+    {
+      "name": "INVITAE CORP",
+      "titleOfClass": "COM",
+      "cusip": "46185L103",
+      "value_k": 9390,
+      "value_usd": 9390000,
+      "shares": 982170
+    },
+    {
+      "name": "IONIS PHARMACEUTICALS INC",
+      "titleOfClass": "COM",
+      "cusip": "462222100",
+      "value_k": 9004,
+      "value_usd": 9004000,
+      "shares": 176991
+    },
+    {
+      "name": "JOUNCE THERAPEUTICS INC",
+      "titleOfClass": "COM",
+      "cusip": "481116101",
+      "value_k": 167,
+      "value_usd": 167000,
+      "shares": 11932
+    },
+    {
+      "name": "JUNO THERAPEUTICS INC",
+      "titleOfClass": "COM",
+      "cusip": "48205A109",
+      "value_k": 14954,
+      "value_usd": 14954000,
+      "shares": 500296
+    },
+    {
+      "name": "K2M GROUP HLDGS INC",
+      "titleOfClass": "COM",
+      "cusip": "48273J107",
+      "value_k": 1725,
+      "value_usd": 1725000,
+      "shares": 70801
+    },
+    {
+      "name": "KITE PHARMA INC",
+      "titleOfClass": "COM",
+      "cusip": "49803L109",
+      "value_k": 11678,
+      "value_usd": 11678000,
+      "shares": 112645
+    },
+    {
+      "name": "LENDINGCLUB CORP",
+      "titleOfClass": "COM",
+      "cusip": "52603A109",
+      "value_k": 7805,
+      "value_usd": 7805000,
+      "shares": 1416570
+    },
+    {
+      "name": "LENDINGTREE INC NEW",
+      "titleOfClass": "COM",
+      "cusip": "52603B107",
+      "value_k": 5983,
+      "value_usd": 5983000,
+      "shares": 34747
+    },
+    {
+      "name": "MATERIALISE NV",
+      "titleOfClass": "SPONSORED ADS",
+      "cusip": "57667T100",
+      "value_k": 3202,
+      "value_usd": 3202000,
+      "shares": 269748
+    },
+    {
+      "name": "MAZOR ROBOTICS LTD",
+      "titleOfClass": "SPONSORED ADS",
+      "cusip": "57886P103",
+      "value_k": 740,
+      "value_usd": 740000,
+      "shares": 21410
+    },
+    {
+      "name": "MEDIDATA SOLUTIONS INC",
+      "titleOfClass": "COM",
+      "cusip": "58471A105",
+      "value_k": 5847,
+      "value_usd": 5847000,
+      "shares": 74769
+    },
+    {
+      "name": "MELLANOX TECHNOLOGIES LTD",
+      "titleOfClass": "SHS",
+      "cusip": "M51363113",
+      "value_k": 608,
+      "value_usd": 608000,
+      "shares": 14037
+    },
+    {
+      "name": "MERCADOLIBRE INC",
+      "titleOfClass": "COM",
+      "cusip": "58733R102",
+      "value_k": 4232,
+      "value_usd": 4232000,
+      "shares": 16870
+    },
+    {
+      "name": "MICROSOFT CORP",
+      "titleOfClass": "COM",
+      "cusip": "594918104",
+      "value_k": 1053,
+      "value_usd": 1053000,
+      "shares": 15271
+    },
+    {
+      "name": "NANO DIMENSION LTD",
+      "titleOfClass": "SPONS ADR",
+      "cusip": "63008G104",
+      "value_k": 167,
+      "value_usd": 167000,
+      "shares": 27315
+    },
+    {
+      "name": "NANOSTRING TECHNOLOGIES INC",
+      "titleOfClass": "COM",
+      "cusip": "63009R109",
+      "value_k": 1828,
+      "value_usd": 1828000,
+      "shares": 110510
+    },
+    {
+      "name": "NETFLIX INC",
+      "titleOfClass": "COM",
+      "cusip": "64110L106",
+      "value_k": 9370,
+      "value_usd": 9370000,
+      "shares": 62715
+    },
+    {
+      "name": "NVIDIA CORP",
+      "titleOfClass": "COM",
+      "cusip": "67066G104",
+      "value_k": 18326,
+      "value_usd": 18326000,
+      "shares": 126769
+    },
+    {
+      "name": "ORBITAL ATK INC",
+      "titleOfClass": "COM",
+      "cusip": "68557N103",
+      "value_k": 650,
+      "value_usd": 650000,
+      "shares": 6609
+    },
+    {
+      "name": "ORGANOVO HLDGS INC",
+      "titleOfClass": "COM",
+      "cusip": "68620A104",
+      "value_k": 3800,
+      "value_usd": 3800000,
+      "shares": 1445039
+    },
+    {
+      "name": "PAYPAL HLDGS INC",
+      "titleOfClass": "COM",
+      "cusip": "70450Y103",
+      "value_k": 6389,
+      "value_usd": 6389000,
+      "shares": 119037
+    },
+    {
+      "name": "PLUG POWER INC",
+      "titleOfClass": "COM NEW",
+      "cusip": "72919P202",
+      "value_k": 397,
+      "value_usd": 397000,
+      "shares": 194433
+    },
+    {
+      "name": "POLYONE CORPORATION",
+      "titleOfClass": "COM",
+      "cusip": "73179P106",
+      "value_k": 52,
+      "value_usd": 52000,
+      "shares": 1332
+    },
+    {
+      "name": "PRAXAIR INC",
+      "titleOfClass": "COM",
+      "cusip": "74005P104",
+      "value_k": 52,
+      "value_usd": 52000,
+      "shares": 396
+    },
+    {
+      "name": "PROTO LABS INC",
+      "titleOfClass": "COM",
+      "cusip": "743713109",
+      "value_k": 13960,
+      "value_usd": 13960000,
+      "shares": 207577
+    },
+    {
+      "name": "PTC INC",
+      "titleOfClass": "COM",
+      "cusip": "69370C100",
+      "value_k": 1064,
+      "value_usd": 1064000,
+      "shares": 19301
+    },
+    {
+      "name": "QUALCOMM INC",
+      "titleOfClass": "COM",
+      "cusip": "747525103",
+      "value_k": 4861,
+      "value_usd": 4861000,
+      "shares": 88022
+    },
+    {
+      "name": "RED HAT INC",
+      "titleOfClass": "COM",
+      "cusip": "756577102",
+      "value_k": 6590,
+      "value_usd": 6590000,
+      "shares": 68822
+    },
+    {
+      "name": "REGENERON PHARMACEUTICALS",
+      "titleOfClass": "COM",
+      "cusip": "75886F107",
+      "value_k": 606,
+      "value_usd": 606000,
+      "shares": 1234
+    },
+    {
+      "name": "ROCKWELL AUTOMATION INC",
+      "titleOfClass": "COM",
+      "cusip": "773903109",
+      "value_k": 552,
+      "value_usd": 552000,
+      "shares": 3409
+    },
+    {
+      "name": "SALESFORCE.COM INC",
+      "titleOfClass": "COM",
+      "cusip": "79466L302",
+      "value_k": 9637,
+      "value_usd": 9637000,
+      "shares": 111279
+    },
+    {
+      "name": "SERES THERAPEUTICS INC",
+      "titleOfClass": "COM",
+      "cusip": "81750R102",
+      "value_k": 8647,
+      "value_usd": 8647000,
+      "shares": 765191
+    },
+    {
+      "name": "SERVICENOW INC",
+      "titleOfClass": "COM",
+      "cusip": "81762P102",
+      "value_k": 818,
+      "value_usd": 818000,
+      "shares": 7713
+    },
+    {
+      "name": "SHOPIFY INC",
+      "titleOfClass": "CL A",
+      "cusip": "82509L107",
+      "value_k": 242,
+      "value_usd": 242000,
+      "shares": 2788
+    },
+    {
+      "name": "SIGMA LABS INC",
+      "titleOfClass": "COM PAR",
+      "cusip": "826598302",
+      "value_k": 77,
+      "value_usd": 77000,
+      "shares": 36461
+    },
+    {
+      "name": "SPLUNK INC",
+      "titleOfClass": "COM",
+      "cusip": "848637104",
+      "value_k": 11470,
+      "value_usd": 11470000,
+      "shares": 201612
+    },
+    {
+      "name": "SQUARE INC",
+      "titleOfClass": "CL A",
+      "cusip": "852234103",
+      "value_k": 6769,
+      "value_usd": 6769000,
+      "shares": 288524
+    },
+    {
+      "name": "STRATASYS LTD",
+      "titleOfClass": "SHS",
+      "cusip": "M85548101",
+      "value_k": 28757,
+      "value_usd": 28757000,
+      "shares": 1233679
+    },
+    {
+      "name": "SYROS PHARMACEUTICALS INC",
+      "titleOfClass": "COM",
+      "cusip": "87184Q107",
+      "value_k": 285,
+      "value_usd": 285000,
+      "shares": 17705
+    },
+    {
+      "name": "TERADYNE INC",
+      "titleOfClass": "COM",
+      "cusip": "880770102",
+      "value_k": 5193,
+      "value_usd": 5193000,
+      "shares": 172918
+    },
+    {
+      "name": "TESLA INC",
+      "titleOfClass": "COM",
+      "cusip": "88160R101",
+      "value_k": 13682,
+      "value_usd": 13682000,
+      "shares": 37836
+    },
+    {
+      "name": "THERMO FISHER SCIENTIFIC INC",
+      "titleOfClass": "COM",
+      "cusip": "883556102",
+      "value_k": 3141,
+      "value_usd": 3141000,
+      "shares": 18005
+    },
+    {
+      "name": "TOYOTA MOTOR CORP",
+      "titleOfClass": "SP ADR REP2COM",
+      "cusip": "892331307",
+      "value_k": 720,
+      "value_usd": 720000,
+      "shares": 6852
+    },
+    {
+      "name": "TRIMBLE INC",
+      "titleOfClass": "COM",
+      "cusip": "896239100",
+      "value_k": 1729,
+      "value_usd": 1729000,
+      "shares": 48462
+    },
+    {
+      "name": "TWILIO INC",
+      "titleOfClass": "CL A",
+      "cusip": "90138F102",
+      "value_k": 6121,
+      "value_usd": 6121000,
+      "shares": 210256
+    },
+    {
+      "name": "TWITTER INC",
+      "titleOfClass": "COM",
+      "cusip": "90184L102",
+      "value_k": 16476,
+      "value_usd": 16476000,
+      "shares": 921982
+    },
+    {
+      "name": "ULTRA CLEAN HLDGS INC",
+      "titleOfClass": "COM",
+      "cusip": "90385V107",
+      "value_k": 461,
+      "value_usd": 461000,
+      "shares": 24560
+    },
+    {
+      "name": "UNITED PARCEL SERVICE INC",
+      "titleOfClass": "CL B",
+      "cusip": "911312106",
+      "value_k": 409,
+      "value_usd": 409000,
+      "shares": 3695
+    },
+    {
+      "name": "VERACYTE INC",
+      "titleOfClass": "COM",
+      "cusip": "92337F107",
+      "value_k": 1358,
+      "value_usd": 1358000,
+      "shares": 163020
+    },
+    {
+      "name": "XILINX INC",
+      "titleOfClass": "COM",
+      "cusip": "983919101",
+      "value_k": 11130,
+      "value_usd": 11130000,
+      "shares": 173041
+    }
+  ]
+}
