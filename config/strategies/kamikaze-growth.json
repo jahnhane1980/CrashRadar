@@ -1,0 +1,188 @@
+{
+  "id": "KAMIKAZE_GROWTH",
+  "name": "Kamikaze Growth Portfolio",
+  "version": "1.0.0",
+  "base_currency": "USD",
+  "last_updated": "2026-09-08",
+
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-09-08",
+      "title": "Initiales Portfolio-Setup & Watchlist-Strukturierung",
+      "summary": "Initialer Aufbau des 50/50 Kamikaze-Growth-Portfolios mit 8 aktiven Positionen (inkl. Phase-Out Kennzeichnung für SEMI, CDNX, PGY), 2-Stufen-Watchlist (Core vs. Fallback), Krypto-Equities und EUR-Staking-Satelliten.",
+      "broadcast": false
+    }
+  ],
+
+  "cash_pots": {
+    "free_usd": 7034.67,
+    "pending_orders_usd": 4287.00,
+    "pending_orders": [
+      {
+        "ticker": "S",
+        "type": "BUY_LIMIT",
+        "shares": 200,
+        "limit_price_usd": 18.80,
+        "total_usd": 3760.00,
+        "status": "OPEN"
+      },
+      {
+        "ticker": "PGY",
+        "type": "BUY_LIMIT",
+        "shares": 25,
+        "limit_price_usd": 21.08,
+        "total_usd": 527.00,
+        "status": "OPEN"
+      }
+    ]
+  },
+
+  "satellite_staking_bucket": {
+    "currency": "EUR",
+    "free_cash_eur": 2088.20,
+    "target_allocation_pct": {
+      "eth_staking": 50,
+      "sol_staking": 50
+    },
+    "positions": [],
+    "observe_candidates": [
+      {
+        "ticker": "ETHE",
+        "asset": "ETH",
+        "currency": "USD",
+        "status": "OBSERVE",
+        "note": "Wird gegen EUR-denominiertes Staking-ETP ausgetauscht"
+      },
+      {
+        "ticker": "SLNC",
+        "asset": "SOL",
+        "currency": "USD",
+        "status": "OBSERVE",
+        "note": "Solana Staking ETP"
+      }
+    ]
+  },
+
+  "positions": [
+    {
+      "ticker": "AIRO",
+      "shares": 2600,
+      "avg_buy_price_usd": 6.38,
+      "invested_capital_usd": 16588.00,
+      "last_buy_date": "2026-07-30",
+      "status": "HOLD_AND_BUY",
+      "bucket": "TECH",
+      "phase_out": false,
+      "return_to_observe": true
+    },
+    {
+      "ticker": "LUMN",
+      "shares": 2500,
+      "avg_buy_price_usd": 6.12,
+      "invested_capital_usd": 15300.00,
+      "last_buy_date": "2026-08-21",
+      "status": "HOLD_AND_BUY",
+      "bucket": "TECH",
+      "phase_out": false,
+      "return_to_observe": true
+    },
+    {
+      "ticker": "SEMI",
+      "shares": 650,
+      "avg_buy_price_usd": 19.325,
+      "invested_capital_usd": 12561.25,
+      "last_buy_date": "2026-08-24",
+      "status": "HOLD_ONLY",
+      "bucket": "ETF_LEGACY",
+      "phase_out": true,
+      "return_to_observe": false,
+      "comment": "Auslaufposition, wird nach Verkauf nicht wieder beobachtet oder gekauft"
+    },
+    {
+      "ticker": "IBRX",
+      "shares": 1875,
+      "avg_buy_price_usd": 7.31,
+      "invested_capital_usd": 13706.25,
+      "last_buy_date": "2026-08-04",
+      "status": "HOLD_AND_BUY",
+      "bucket": "TECH",
+      "phase_out": false,
+      "return_to_observe": true
+    },
+    {
+      "ticker": "CDNX",
+      "shares": 7.5,
+      "avg_buy_price_usd": 1654.04,
+      "invested_capital_usd": 12405.30,
+      "last_buy_date": "2026-08-24",
+      "status": "HOLD_ONLY",
+      "bucket": "ETF_LEGACY",
+      "phase_out": true,
+      "return_to_observe": false,
+      "comment": "Auslaufposition"
+    },
+    {
+      "ticker": "PGY",
+      "shares": 325,
+      "avg_buy_price_usd": 21.68,
+      "invested_capital_usd": 7046.00,
+      "last_buy_date": "2026-08-31",
+      "status": "HOLD_ONLY",
+      "bucket": "TECH_LEGACY",
+      "phase_out": true,
+      "return_to_observe": false,
+      "comment": "Auslaufposition"
+    },
+    {
+      "ticker": "NVTS",
+      "shares": 300,
+      "avg_buy_price_usd": 9.91,
+      "invested_capital_usd": 2973.00,
+      "last_buy_date": "2026-07-30",
+      "status": "HOLD_AND_BUY",
+      "bucket": "TECH",
+      "phase_out": false,
+      "return_to_observe": true
+    },
+    {
+      "ticker": "S",
+      "shares": 125,
+      "avg_buy_price_usd": 19.88,
+      "invested_capital_usd": 2485.00,
+      "last_buy_date": "2026-09-08",
+      "status": "HOLD_AND_BUY",
+      "bucket": "TECH",
+      "phase_out": false,
+      "return_to_observe": true
+    }
+  ],
+
+  "watchlist": {
+    "tech_tier_1_primary": [
+      { "ticker": "PLTR", "status": "OBSERVE", "priority": "CORE" },
+      { "ticker": "SOFI", "status": "OBSERVE", "priority": "CORE" }
+    ],
+    "tech_tier_2_fallback": [
+      { "ticker": "ZETA", "status": "OBSERVE", "priority": "FALLBACK", "note": "Kauf nur wenn Tier 1 nicht konsolidiert" },
+      { "ticker": "SOUN", "status": "OBSERVE", "priority": "FALLBACK", "note": "Kauf nur wenn Tier 1 nicht konsolidiert" }
+    ],
+    "crypto_equities_observe": [
+      { "ticker": "MSTR", "status": "OBSERVE", "trigger": "BTC_21W_EMA_BULL" },
+      { "ticker": "BMNR", "status": "OBSERVE", "trigger": "BTC_21W_EMA_BULL" },
+      { "ticker": "BLSH", "status": "OBSERVE", "trigger": "BTC_21W_EMA_BULL" },
+      { "ticker": "MARA", "status": "OBSERVE", "trigger": "BTC_21W_EMA_BULL" }
+    ]
+  },
+
+  "transactions": [
+    { "date": "2026-07-30", "ticker": "AIRO", "type": "BUY", "shares": 2600, "price_usd": 6.38, "fee_usd": 0.00 },
+    { "date": "2026-07-30", "ticker": "NVTS", "type": "BUY", "shares": 300, "price_usd": 9.91, "fee_usd": 0.00 },
+    { "date": "2026-08-04", "ticker": "IBRX", "type": "BUY", "shares": 1875, "price_usd": 7.31, "fee_usd": 0.00 },
+    { "date": "2026-08-21", "ticker": "LUMN", "type": "BUY", "shares": 2500, "price_usd": 6.12, "fee_usd": 0.00 },
+    { "date": "2026-08-24", "ticker": "SEMI", "type": "BUY", "shares": 650, "price_usd": 19.325, "fee_usd": 0.00 },
+    { "date": "2026-08-24", "ticker": "CDNX", "type": "BUY", "shares": 7.5, "price_usd": 1654.04, "fee_usd": 0.00 },
+    { "date": "2026-08-31", "ticker": "PGY", "type": "BUY", "shares": 325, "price_usd": 21.68, "fee_usd": 0.00 },
+    { "date": "2026-09-08", "ticker": "S", "type": "BUY", "shares": 125, "price_usd": 19.88, "fee_usd": 0.00 }
+  ]
+}
