@@ -1,0 +1,44 @@
+{
+  "id": "GOLD_SPY",
+  "name": "Gold-SPY Dynamic DCA Portfolio",
+  "version": "1.0.0",
+  "base_currency": "USD",
+  "last_updated": "2026-09-08",
+
+  "allocation_rules": {
+    "normal_regime": {
+      "target_asset": "SPY",
+      "target_pct": 100.0,
+      "savings_rate_pct": 100.0
+    },
+    "emergency_shield": {
+      "trigger_net_liq_delta_8w": -0.05,
+      "trigger_credit_spread_hy_pct": 4.0,
+      "trigger_credit_spread_vs_sma50": "ABOVE",
+      "allocation": {
+        "gold_gld_pct": 50.0,
+        "cash_usd_pct": 50.0
+      },
+      "savings_rate_allocation": {
+        "gold_gld_pct": 50.0,
+        "cash_usd_pct": 50.0
+      },
+      "re_entry": {
+        "hysteresis_net_liq_delta_8w": 0.0,
+        "panic_capitulation_vix_threshold": 35.0,
+        "reinvest_target_asset": "SPY",
+        "reinvest_target_pct": 100.0
+      }
+    }
+  },
+
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-09-08",
+      "title": "Initiales Gold-SPY Dynamic DCA Setup",
+      "summary": "Dauerhafter S&P 500 (SPY) Sparplan mit universellem 100% Notfall-Schutzschild (50% Gold / 50% Cash) und Dual-Re-Entry via Panic-Capitulation-Sniper & NetLiq-Hysterese.",
+      "broadcast": true
+    }
+  ]
+}
