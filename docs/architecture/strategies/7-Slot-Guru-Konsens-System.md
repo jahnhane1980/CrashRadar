@@ -106,40 +106,47 @@ Das Alter des Bullenmarktes (gemessen seit dem letzten 20%-Korrekturtief des Nas
 
 ---
 
-## 5. Das Makro-Rebalancing: Die Druckenmiller-Liquiditäts-Regel (25 % Gold-Guard)
+## 5. Das Makro-Rebalancing: Die Druckenmiller-Liquiditäts-Regel (Gold-Guard & Re-Entry-Sniper)
 
-Das Gesamtdepot wird nicht über Einzelaktien-Notbremsen, sondern auf Portfolio-Ebene über Druckenmillers mathematische Liquiditätsformel abgesichert:
+Das Gesamtdepot wird nicht über Einzelaktien-Notbremsen, sondern auf Portfolio-Ebene über Druckenmillers mathematische Liquiditätsformel und den universellen Makro-Türsteher abgesichert:
 
-Net Fed Liquidity = WALCL (Fed-Bilanzsumme) - WTREGEN (TGA Treasury Account) - RRPONTSYD (Reverse Repo)
+$$\text{Net Fed Liquidity} = \text{Fed-Bilanzsumme (WALCL)} - \text{TGA Treasury Account (WTREGEN)} - \text{Reverse Repo (RRPONTSYD)}$$
 
 ```
                       [Wöchentlicher FRED-Check]
              Net Fed Liquidity = WALCL - WTREGEN - RRPONTSYD
                                      |
-                  Fällt die Net Liquidity über 8 Wochen
-                            um MEHR als 5 %?
+               Fällt die Net Liquidity über 8 Wochen um > 5 %
+            UND notieren Credit Spreads > 4 % & über SMA 50?
                                      |
                +---------------------+---------------------+
               JA                                          NEIN
                |                                           |
-      [25 % Gold-Guard AKTIV]                      [Normalzustand: 100 % Tech]
-   Aus allen 7 Slots werden 25 %                Alle 7 Slots voll besetzt.
-   entnommen und in Gold umgeschichtet.         Laufende Sparrate zu 100 %
-   Sparrate: 75 % Tech / 25 % Gold.             in die 7 Tech-Aktien.
+      [Gold-Guard AKTIV]                           [Normalzustand: 100 % Tech]
+   Pauschale Umschichtung in Gold.              Alle 7 Slots voll besetzt.
+   Sparrate: 75 % Tech / 25 % Gold.             Laufende Sparrate zu 100 %
+                                                in die 7 Tech-Aktien.
 ```
 
-### Die beiden Phasen des Rebalancings
+### Die Phasen des Makro-Rebalancings
 
-1. **Aktivierung (Der Schutz-Schirm):**
-   * *Bedingung:* Die Net Fed Liquidity fällt über einen Zeitraum von 8 aufeinanderfolgenden Wochen um **mehr als 5,0 %** (Signal für systemischen Liquiditätsentzug durch Notenbank und Finanzministerium).
-   * *Aktion:* Aus **allen 7 Slots werden pauschal 25 % des Kapitals pro rata entnommen** und in physisch hinterlegtes Gold (z. B. Xetra-Gold ETC) umgeschichtet.
-   * *Sparplan-Anpassung:* Die monatliche Sparrate wird temporär aufgeteilt in **75 % Tech** (auf die aktiven Slots) und **25 % Gold**.
+1. **Aktivierung (Der universelle Makro-Türsteher ROT):**
+   * **Bedingung 1 (Druckenmiller Liquiditätsentzug):** Die Net Fed Liquidity fällt über einen Zeitraum von 8 aufeinanderfolgenden Wochen um **mehr als 5,0 %** ($\Delta_{8\text{W}} < -5,0\,\%$).
+   * **Bedingung 2 (Kreditstress-Filter):** Die High-Yield Credit Spreads (`BAMLH0A0HYM2`) steigen über ihren 50-Tage-Durchschnitt **und** über $4,0\,\%$ (Bestätigung akuter Liquiditätsverknappung).
+   * *(Ausschluss Banken-Notkredite: Notkredite `FiscalFed EmergencyBorrowing > 15B` schalten die Tech-Slots nicht ab, um Liquiditäts-Rallyes in Big-Tech wie im März 2023 nicht zu verpassen).*
+   * **Aktion (Aktuelle Baseline):** Aus **allen 7 Slots werden pauschal 25 % des Kapitals pro rata entnommen** und in physisch hinterlegtes Gold (z. B. Xetra-Gold ETC) umgeschichtet (75 % verbleiben in Tech).
+   * **Sparplan-Anpassung:** Die monatliche Sparrate wird temporär aufgeteilt in **75 % Tech** (auf die aktiven Slots) und **25 % Gold**.
+   * > [!NOTE]
+     > **Geplanter empirischer Backtest-Vergleich (In Prüfung):**  
+     > Neben der aktuellen Baseline (25 % Teil-Gold-Guard) wird in der Simulation ein Vergleichslauf mit der **100 % Notfall-Evakuierung in 50 % Gold / 50 % Cash** (analog zu Kamikaze Growth & MCW) durchgeführt, um zu prüfen, ob der vollständige Bärenmarkt-Ausstieg auch bei Mega-Caps das Alpha weiter steigert und den maximalen Drawdown drastisch senkt.
 
-2. **Deaktivierung (Der Reinvestitions-Kauf via Hysterese-Regel):**
-   * *Bedingung (Nachhaltige Erholung):* Das 8-Wochen-Delta der Net Fed Liquidity erholt sich wieder nachhaltig auf **$\ge 0,0\,\%$** (die Liquiditätskontraktion durch Notenbank und Treasury ist beendet).
-   * *Anti-Whipsaw-Filter:* Liegt das 8-Wochen-Delta zwischen $-5,0\,\%$ und $0,0\,\%$, bleibt der Gold-Guard unverändert aktiv (Hysterese). Kurzfristige 1- bis 2-wöchige Plateaus oder minimales Rauschen lösen KEINEN verfrühten Verkauf aus.
-   * *Aktion:* Sobald das 8-Wochen-Delta wieder $\ge 0,0\,\%$ erreicht, wird die **gesamte Gold-Position zu 100 % aufgelöst**.
-   * *Reinvestition:* Der Erlös fließt vollständig zurück in die aktiven Tech-Slots (Kauf nach überstandener Liquiditätskrise). Die laufende Sparrate fließt wieder zu 100 % in Tech.
+2. **Deaktivierung (Duales Re-Entry-System: Reguläre Hysterese vs. antizyklischer Bottom-Finder):**
+   * **Pfad 1 (Reguläre Hysterese):** Das 8-Wochen-Delta der Net Fed Liquidity erholt sich nachhaltig auf **$\ge 0,0\,\%$** (die Liquiditätskontraktion durch Notenbank und Treasury ist beendet).
+     * *Anti-Whipsaw-Filter:* Liegt das 8-Wochen-Delta zwischen $-5,0\,\%$ und $0,0\,\%$, bleibt der Schutzschirm aktiv.
+   * **Pfad 2 (Vorzeitiger Panic-Capitulation-Sniper am Marktboden):**  
+     Schlägt während des aktiven Schutzschirms der [`PanicCapitulationIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/PanicCapitulationIndicator.js) an ($\text{VIX} \ge 35$, CBOE Put/Call-Options-Spike $\ge 1{,}5\times$, bullische RSI-Divergenz) oder meldet [`SmartDumbMoneyBottomIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/SmartDumbMoneyBottomIndicator.js) Kapitulation ($\text{VIX} > 40$, $\text{AAII} < -25\,\%$, $\text{DIX} > 45\,\%$):
+     * Der Schutzschirm wird **sofort am Panik-Tiefpunkt aufgelöst**, ohne monatelang auf die nachhinkende Net-Liquidity-Erholung der Fed zu warten!
+   * **Aktion:** Die **gesamte Gold-Position wird zu 100 % aufgelöst** und der Erlös fließt vollständig zurück in die aktiven 7 Tech-Slots. Die laufende Sparrate fließt ab sofort wieder zu 100 % in Tech.
 
 ---
 
@@ -161,11 +168,12 @@ Alle 7 Slots sind aktuell belegt und durch mindestens zwei Manager bestätigt:
 
 ## 7. Die operative Routine (Zwei feste Termine)
 
-1. **Wöchentlich jeden Freitag oder Samstag (2 Minuten auf FRED):**  
-   Nach der wöchentlichen Aktualisierung der Fed-Bilanz (Donnerstagabend) die Druckenmiller-Formel ablesen (`WALCL - WTREGEN - RRPONTSYD`) und das 8-Wochen-Delta prüfen:
-   * **Delta < -5,0 %:** 25 % Gold-Guard aktivieren (Umschichtung von 25 % in Gold; Sparrate zu 75 % Tech bzw. Cash / 25 % Gold).
-   * **Delta >= 0,0 %:** Gold-Guard deaktivieren (Gold zu 100 % in Tech auflösen; Sparrate zu 100 % Tech).
-   * **Zwischen -5,0 % und 0,0 %:** Keinerlei Aktion nötig – bestehenden Schutz- bzw. Normalzustand diszipliniert beibehalten (Anti-Whipsaw).
+1. **Wöchentlich jeden Freitag oder Samstag (2 Minuten auf FRED & CrashRadar):**  
+   Nach der wöchentlichen Aktualisierung der Fed-Bilanz (Donnerstagabend) die Druckenmiller-Formel ablesen (`WALCL - WTREGEN - RRPONTSYD`), das 8-Wochen-Delta sowie die High-Yield Credit Spreads (`BAMLH0A0HYM2`) prüfen:
+   * **NetLiq-Delta < -5,0 % UND Credit Spreads > 4,0 % (über SMA 50):** Gold-Guard aktivieren (Umschichtung von 25 % in Gold; Sparrate zu 75 % Tech / 25 % Gold).
+   * **Re-Entry Pfad A (Regulär):** NetLiq-Delta $\ge 0,0\,\%$ $\rightarrow$ Gold-Guard deaktivieren (Gold zu 100 % in Tech auflösen; Sparrate zu 100 % Tech).
+   * **Re-Entry Pfad B (Antizyklischer Panic Sniper am Tiefstkurs):** Schlägt [`PanicCapitulationIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/PanicCapitulationIndicator.js) ($\text{VIX} \ge 35$, CBOE Spike, RSI-Divergenz) während aktivem Gold-Guard an $\rightarrow$ Gold-Guard sofort am Tiefpunkt auflösen und 100 % in die 7 Tech-Slots reinvestieren!
+   * **Zwischen -5,0 % und 0,0 % (ohne Panic Sniper):** Keinerlei Aktion nötig – bestehenden Zustand diszipliniert beibehalten (Anti-Whipsaw).
 2. **Quartalsweise (15 Minuten am 16. Feb, Mai, Aug, Nov auf Dataroma):**  
    * **Ausstiegs-Check:** Halten alle aktuellen Positionen noch mindestens 2 Halter unter den 6 Managern? Fällt einer unter 2 Halter $\rightarrow$ Verkauf zu 100 % und Rebalancing.
    * **Aufnahme- & Verdrängungs-Check:** Gibt es neue Technologie-Aktien mit mindestens 2 aktiven Käufern? Bei freien Slots $\rightarrow$ Aufnahme. Bei vollen 7 Slots $\rightarrow$ Prüfung des 3-Stufen-Base-Schutzes (Verdrängung nur bei $\ge 3$ Neukäufern, $\le 2$ passiven Althaltern und Alttitel unter SMA 200).
