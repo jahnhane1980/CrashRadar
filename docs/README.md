@@ -20,6 +20,7 @@ flowchart TD
     Arch --> A4["🧠 ml/<br>(Strategy Pipeline Blueprint)"]
     Arch --> A5["♟️ strategies/<br>(Portfoliostrategien & Allokation)"]
     Arch --> A6["🌐 api/ & data/<br>(Provider-Schnittstellen)"]
+    Arch --> A7["📱 signal-service/<br>(Telegram & Cloudflare Edge Gateway)"]
     
     Res --> R1["📊 macro-proofs/<br>(21-Jahre-Test & Korrelationen)"]
     Res --> R2["📜 dalio-cycles/<br>(Schuldenkrisen & 3-von-4-Regel)"]
@@ -76,6 +77,10 @@ Hier finden Entwickler und System-Architekten alle operativen Spezifikationen, E
 ### F. 🌐 Externe Schnittstellen & Daten (`docs/architecture/api/` & `docs/architecture/data/`)
 * 📄 **[`FRED-Api.md`](file:///D:/GitHub/CrashRadar/docs/architecture/api/Stlouisfed.md)** | **[`Fiscaldata.md`](file:///D:/GitHub/CrashRadar/docs/architecture/api/Fiscaldata.md)** | **[`Tiingo.md`](file:///D:/GitHub/CrashRadar/docs/architecture/api/Tiingo.md)** | **[`Binance.md`](file:///D:/GitHub/CrashRadar/docs/architecture/api/Binance.md)** | **[`Yahoo-Finance.md`](file:///D:/GitHub/CrashRadar/docs/architecture/api/Yahoo-Finance.md)**
 * 📄 **[`DataStructure.md`](file:///D:/GitHub/CrashRadar/docs/architecture/data/DataStructure.md)**
+
+### G. 📱 Signal- & Benachrichtigungsdienst (`docs/architecture/signal-service/`)
+* 📄 **[`Investment-Signaldienst.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signal-service/Investment-Signaldienst.md):**  
+  *Serverlose 0,00-€-End-to-End-Architektur: Trennung von CrashRadar Intelligence Engine (Pre-Computation Push) und Cloudflare Edge + D1 Gateway (1:1 Telegram Private Chats, dynamisches Onboarding, 3 kuratierte Beweis-Szenarien und Execution Feedback Loop).*
 
 ---
 
