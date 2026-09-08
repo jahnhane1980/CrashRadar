@@ -147,6 +147,7 @@ Ein Kauf aus dem Status `OBSERVE` ist strikt verboten, bis die Aktie alle Kriter
 
 #### C. Dynamische Zündfunken-Allokation:
 * Gibt der Türsteher grünes Licht, investiert das System **35 % des aktuell im S&P 500 Mutterschiff freien Kapitals** in die Aktie.
+* **Tier-Priorisierung:** Tier-1-Werte (`PLTR`, `SOFI`) haben absolute Priorität. Tier-2-Werte (`ZETA`, `SOUN`) dürfen den 35 %-Zündfunken nur beanspruchen, wenn Tier 1 keine Ausbruchssignale liefert und überschüssiges Cash im Mutterschiff liegt.
 * Nach dem Kauf wechselt der Status der Position auf **`HOLD & BUY`** (geschützter Gewinner).
 
 ---
@@ -223,6 +224,7 @@ Echte Hypergrowth-Gewinner (z. B. Palantir oder SentinelOne) dürfen bei unversc
 * **Exit-Prozess:** Der Verkauf erfolgt diszipliniert über Trendbrüche (SMA 200), Climax-Exits oder diskretionäre Zielerreichung.
 * **100 % Re-Allokation ins Mutterschiff:** Die Verkaufserlöse fließen ausnahmslos in das **S&P 500 Mutterschiff (`SPY`)**, um als Liquiditätspool für neue Stage-2-Zündfunken (`PLTR`, `SOFI`) und Krypto-Tranchen zu dienen.
 * **Dauerhafte Archivierung (`return_to_observe: false`):** Nach der vollständigen Liquidation wird der Ticker dauerhaft aus der Watchlist entfernt und rutscht nicht mehr in den Status `OBSERVE` zurück.
+* **Sonderfall offene Limit-Order (`PGY`):** Die bestehende Kauf-Limit-Order über 25 Stk. @ 21,08 $ ($ 527) stammt aus der Vorperiode. Sollte sie im Markt noch bedient werden, erhöht sie den Bestand temporär auf 350 Stk., verbleibt jedoch unverändert im Status `HOLD_ONLY` zur vollständigen Liquidation. Weitere Neukäufe sind ausgeschlossen.
 
 ---
 
@@ -339,7 +341,7 @@ Die Live-Umsetzung in [`config/strategies/kamikaze-growth.json`](file:///D:/GitH
      * **Aktion:** Sofortige Gewinnmitnahme (50 % Skimming oder 100 % Voll-Liquidierung bei Bruch des EMA 20).
      * **Sicherung:** Erlöse fließen sofort als gesicherter Profit in das **S&P 500 Mutterschiff**.
 2. **Watchlist-Klausel für Turnaround- & Explosiv-Kandidaten:**
-   * Da der Investor die Watchlist-Kandidaten (`PLTR`, `NVTS`, `IBRX`, `AIRO`, `SOFI`, `S`) eigenhändig mit Stichtag **19.03.2025** (bzw. IPO-Datum) auswählt:
+   * Da der Investor die Watchlist-Kandidaten (Tier 1 Core: `PLTR`, `SOFI` | Tier 2 Fallback: `ZETA`, `SOUN` | Krypto: `MSTR`, `MARA`, `BMNR`, `BLSH`) eigenhändig auswählt:
      * Bei neuen Stage-2-Ausbrüchen mit massivem Volumen ($\ge 1,8\times$ Durchschnitt) soll die Chart-Qualität den Vorrang vor rückwärtsgewandten SEC 10-Q-Zahlen erhalten, um explosive Turnaround-Wellen nicht zu verpassen.
 3. **Simulation Update:**
    * Nach Freigabe der konkreten Schwellenwerte wird [`KamikazeGrowthSimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/KamikazeGrowthSimulation.js) um das Climax-Modul erweitert und neu gebenchmarkt.
