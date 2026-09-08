@@ -49,12 +49,14 @@ export async function runKamikazeSimulation(options = {}) {
     console.log("   KAMIKAZE GROWTH (KMG) SIMULATION (50/50 TECH & KRYPTO-EQUITIES)");
     console.log("================================================================================\n");
 
-    const startDate = options.startDate || '2021-01-01'; // Default: ab 2021 (wo die meisten Ticker wie SOFI, S, PLTR gelistet sind)
-    const endDate = options.endDate || '2026-09-06';
-    const initialCapitalUSD = options.initialCapitalUSD || 90000;
+    const startDate = options.startDate || '2020-11-01'; // 3 Monate vor dem PLTR-Crash (Januar 2021)
+    const endDate = options.endDate || '2026-09-04';
+    const initialInvestedUSD = options.initialInvestedUSD || 30000; // 15k Tech / 15k Krypto
+    const initialCashUSD = options.initialCashUSD || 10000; // 10k Cash im Pot
+    const monthlySavingsUSD = options.monthlySavingsUSD !== undefined ? options.monthlySavingsUSD : 200;
 
-    const techSymbols = ['PLTR', 'NVTS', 'IBRX', 'AIRO', 'SOFI', 'S'];
-    const kryptoSymbols = ['MSTR', 'MARA', 'BMNR', 'BLSH'];
+    const techUniverse = ['PLTR', 'NVDA', 'GOOG', 'AMZN', 'SOFI', 'NVTS', 'IBRX', 'S'];
+    const kryptoUniverse = ['COIN', 'MSTR', 'CLSK', 'MARA', 'BMNR', 'BLSH'];
     const benchmarkSymbols = ['SPY', 'QQQ', 'BTC-USD'];
     const hedgeSymbols = ['GLD'];
     const sectorSymbols = ['SMH', 'IGV'];
@@ -63,13 +65,26 @@ export async function runKamikazeSimulation(options = {}) {
         PLTR: 'IGV',
         S: 'IGV',
         NVTS: 'SMH',
-        IBRX: 'QQQ',
-        AIRO: 'QQQ',
-        SOFI: 'QQQ'
+        NVDA: 'SMH',
+        GOOG: 'QQQ',
+        AMZN: 'QQQ',
+        SOFI: 'QQQ',
+        IBRX: 'QQQ'
+    };
+
+    const techFirstSeen = {
+        PLTR: '2020-11-01',
+        NVDA: '2020-11-01',
+        GOOG: '2020-11-01',
+        AMZN: '2020-11-01',
+        SOFI: '2023-12-23',
+        NVTS: '2024-11-29',
+        IBRX: '2025-09-19',
+        S: '2025-10-27'
     };
 
     const cacheDir = path.resolve(__dirname, 'cache');
-    const allSymbols = [...new Set([...techSymbols, ...kryptoSymbols, ...benchmarkSymbols, ...hedgeSymbols, ...sectorSymbols])];
+    const allSymbols = [...new Set([...techUniverse, ...kryptoUniverse, ...benchmarkSymbols, ...hedgeSymbols, ...sectorSymbols])];
 
     const prices = {};
     for (const sym of allSymbols) {
@@ -160,9 +175,10 @@ export async function runKamikazeSimulation(options = {}) {
     const qqqPrices = prices['QQQ'] || [];
     const qqqCloseMap = new Map(qqqPrices.map(q => [q.date, q.close]));
 
-    for (const sym of techSymbols) {
+    for (const sym of techUniverse) {
         const quotes = prices[sym] || [];
         const closes = quotes.map(q => q.close);
+        const highs = quotes.map(q => q.high || q.close);
         const volumes = quotes.map(q => q.volume);
 
         const sma50 = calculateSMA(closes, 50);
@@ -189,7 +205,7 @@ export async function runKamikazeSimulation(options = {}) {
         for (let i = 0; i < quotes.length; i++) {
             const d = quotes[i].date;
             let high50d = 0;
-            if (i >= 50) high50d = Math.max(...closes.slice(i - 50, i));
+            if (i >= 50) high50d = Math.max(...highs.slice(i - 50, i));
 
             let sec5dReturn = 0;
             const curSecPrice = secCloseMap.get(d);
@@ -230,46 +246,54 @@ export async function runKamikazeSimulation(options = {}) {
         };
     }
 
-    // Portfolio State (90k $ Start: 50 % Tech / 50 % Krypto)
-    let usdCash = 0;
+    // Portfolio State ($30k Start: 15k Tech / 15k Krypto im SPY Mutterschiff + 10k Cash-Pot)
+    let cashPotUSD = initialCashUSD;
     let spyShares = 0;
     let gldShares = 0;
+    let btcDirectShares = 0; // Direkt gehaltenes BTC aus monatlicher Sparrate
 
-    let kryptoClaimUSD = initialCapitalUSD * 0.50; // 45.000 $ Krypto-Budget
-    let kryptoUndeployedUSD = 0;
+    // Krypto Sub-Bucket (50 % Allokation = 15k Start)
+    let kryptoClaimSpyShares = 0;
+    let kryptoUndeployedSpyShares = 0;
     let btcSiloActive = false;
     let kryptoPyramidStage = 0;
     let kryptoPyramidDays = 0;
 
+    // Aktive Krypto-Watchlist (Start: COIN, MSTR, CLSK; Rotation bei letztem Bärenmarkt-Exit)
+    let activeKryptoSymbols = ['COIN', 'MSTR', 'CLSK'];
+    let kryptoRotationTriggered = false;
+
     // Krypto-Equities Portfolio
     const kryptoPositions = {};
-    for (const k of kryptoSymbols) kryptoPositions[k] = 0;
+    for (const k of kryptoUniverse) kryptoPositions[k] = 0;
 
     // Tech Portfolio
     const techPositions = {};
     const lastProcessedFiling = {};
     const consecutiveBelowSMA200 = {};
-    const skimCooldown = {};
-    for (const sym of techSymbols) {
+    for (const sym of techUniverse) {
         consecutiveBelowSMA200[sym] = 0;
-        skimCooldown[sym] = 0;
     }
 
-    // Kaltstart: Die 45.000 $ Tech-Kapital + 45.000 $ Krypto-Leihgabe starten zu 100 % im S&P 500 Mutterschiff
+    // Kaltstart: Die 15.000 $ Tech-Kapital + 15.000 $ Krypto-Leihgabe starten zu 100 % im S&P 500 Mutterschiff
     const startSpyP = priceMaps['SPY'][tradingDays[0]] || 1;
-    spyShares = (initialCapitalUSD) / startSpyP; // $90.000 komplett im SPY geparkt
+    spyShares = initialInvestedUSD / startSpyP; // $30.000 komplett im SPY geparkt
+    kryptoClaimSpyShares = (initialInvestedUSD * 0.50) / startSpyP; // 15.000 $ Krypto-Leihgabe
 
     let macroGuardActive = false;
-    let peakPortfolioUSD = initialCapitalUSD;
+    let totalSavingsContributed = 0;
+    let lastMonth = '';
+    let peakPortfolioUSD = initialInvestedUSD + initialCashUSD;
     let maxDrawdownPct = 0;
     const tradeLog = [];
 
     function getTotalDepotUSD(d) {
-        let val = usdCash;
+        let val = cashPotUSD;
         val += spyShares * (priceMaps['SPY'][d] || 0);
         val += gldShares * (priceMaps['GLD'][d] || 0);
+        val += btcDirectShares * (btcMap[d]?.close || 0);
 
-        for (const k of kryptoSymbols) {
+        for (const k of kryptoUniverse) {
             val += kryptoPositions[k] * (priceMaps[k][d] || 0);
         }
         for (const s of Object.keys(techPositions)) {
@@ -280,9 +304,9 @@ export async function runKamikazeSimulation(options = {}) {
 
     function getAvailableMutterschiffForTech(d) {
         const curSpyP = priceMaps['SPY'][d] || 1;
-        const totalMutterschiffUSD = spyShares * curSpyP;
-        const totalClaim = kryptoClaimUSD + kryptoUndeployedUSD;
-        return Math.max(0, totalMutterschiffUSD - totalClaim);
+        const totalClaimShares = kryptoClaimSpyShares + kryptoUndeployedSpyShares;
+        const availableShares = Math.max(0, spyShares - totalClaimShares);
+        return availableShares * curSpyP;
     }
 
     function reallocateTechProceeds(proceedsUSD, date, excludedSym, reason) {
@@ -326,7 +350,49 @@ export async function runKamikazeSimulation(options = {}) {
     for (let dIdx = 0; dIdx < tradingDays.length; dIdx++) {
         const date = tradingDays[dIdx];
 
-        // 1. Makro-Ampel Auswertung
+        // 1. Monatlicher Sparplan ($200) am Monatsersten
+        const curMonth = date.substring(0, 7);
+        if (curMonth !== lastMonth) {
+            lastMonth = curMonth;
+            totalSavingsContributed += monthlySavingsUSD;
+
+            const btcData = btcMap[date];
+            const isBtcBull = btcData && btcData.ema21w && btcData.close >= btcData.ema21w;
+
+            if (macroGuardActive) {
+                // Bei Makro-Schutz: 50% Gold, 50% Cash
+                const gldPrice = priceMaps['GLD'][date] || 1;
+                gldShares += (monthlySavingsUSD * 0.50) / gldPrice;
+                cashPotUSD += (monthlySavingsUSD * 0.50);
+                tradeLog.push({
+                    date,
+                    action: 'MONTHLY_SAVINGS_MACRO_DEFENSE',
+                    detail: `Monatliche Sparrate $${monthlySavingsUSD}: Makro ROT -> 50% in Gold, 50% in Cash-Pot.`
+                });
+            } else if (isBtcBull) {
+                // Bullenmarkt: Spart direkt in BTC!
+                const btcPrice = btcData.close;
+                btcDirectShares += monthlySavingsUSD / btcPrice;
+                tradeLog.push({
+                    date,
+                    action: 'MONTHLY_SAVINGS_BUY_BTC',
+                    detail: `Monatliche Sparrate $${monthlySavingsUSD}: BTC ($${btcPrice.toFixed(0)}) > 21W-EMA -> Direkt in BTC investiert.`
+                });
+            } else {
+                // Bärenmarkt: Parkt als Krypto-Claim im Mutterschiff!
+                const curSpyP = priceMaps['SPY'][date] || 1;
+                const addShares = monthlySavingsUSD / curSpyP;
+                spyShares += addShares;
+                kryptoClaimSpyShares += addShares;
+                tradeLog.push({
+                    date,
+                    action: 'MONTHLY_SAVINGS_PARK_SPY_CLAIM',
+                    detail: `Monatliche Sparrate $${monthlySavingsUSD}: BTC im Bärenmarkt -> Als Krypto-Claim im SPY-Mutterschiff geparkt.`
+                });
+            }
+        }
+
+        // 2. Makro-Ampel Auswertung
         let latestDelta = null;
         for (let back = 0; back < 14; back++) {
             const checkD = new Date(new Date(date).getTime() - back * 86400000).toISOString().split('T')[0];
@@ -368,7 +434,7 @@ export async function runKamikazeSimulation(options = {}) {
 
             // Evakuiere Krypto-Equities
             if (btcSiloActive) {
-                for (const k of kryptoSymbols) {
+                for (const k of kryptoUniverse) {
                     const p = priceMaps[k][date] || 0;
                     const v = kryptoPositions[k] * p;
                     totalEvacUSD += v;
@@ -376,14 +442,14 @@ export async function runKamikazeSimulation(options = {}) {
                 }
                 btcSiloActive = false;
                 kryptoPyramidStage = 0;
-                kryptoClaimUSD = 0;
-                kryptoUndeployedUSD = 0;
+                kryptoClaimSpyShares = 0;
+                kryptoUndeployedSpyShares = 0;
             }
 
             const goldAlloc = totalEvacUSD * 0.50;
             const cashAlloc = totalEvacUSD * 0.50;
             gldShares += goldAlloc / gldPrice;
-            usdCash += cashAlloc;
+            cashPotUSD += cashAlloc;
 
             tradeLog.push({
                 date,
@@ -396,20 +462,20 @@ export async function runKamikazeSimulation(options = {}) {
             const curSpyP = priceMaps['SPY'][date] || 1;
 
             const goldVal = gldShares * gldPrice;
-            const cashVal = usdCash;
-            const totalReturnUSD = goldVal + cashVal;
+            const cashVal = cashPotUSD - 10000; // Behalte 10k Basis-Cash
+            const returnCapital = goldVal + Math.max(0, cashVal);
 
             gldShares = 0;
-            usdCash = 0;
-            spyShares += totalReturnUSD / curSpyP;
+            cashPotUSD = 10000;
+            spyShares += returnCapital / curSpyP;
 
-            // Krypto-Claim wieder auf 50% des Portfolios setzen
-            kryptoClaimUSD = totalReturnUSD * 0.50;
+            // Krypto-Claim wieder auf 50% des investierten Mutterschiffs setzen
+            kryptoClaimSpyShares = spyShares * 0.50;
 
             tradeLog.push({
                 date,
                 action: 'MAKRO_GUARD_OFF',
-                detail: `Makro GRÜN / Panic Sniper. Schutzschirm aufgelöst ($${totalReturnUSD.toFixed(0)}) & vollständig zurück ins SPY Mutterschiff investiert.`
+                detail: `Makro GRÜN / Panic Sniper. Schutzschirm aufgelöst ($${returnCapital.toFixed(0)}) & vollständig zurück ins SPY Mutterschiff investiert.`
             });
         }
 
@@ -426,7 +492,7 @@ export async function runKamikazeSimulation(options = {}) {
             if (btcPrice < btcEma && btcSiloActive) {
                 // KRYPTO BÄRENMARKT EXIT
                 let exitProceedsUSD = 0;
-                for (const k of kryptoSymbols) {
+                for (const k of kryptoUniverse) {
                     const p = priceMaps[k][date] || 0;
                     exitProceedsUSD += kryptoPositions[k] * p;
                     kryptoPositions[k] = 0;
@@ -436,34 +502,49 @@ export async function runKamikazeSimulation(options = {}) {
                 kryptoPyramidDays = 0;
 
                 const curSpyP = priceMaps['SPY'][date] || 1;
-                spyShares += exitProceedsUSD / curSpyP;
-                kryptoClaimUSD = exitProceedsUSD;
-                kryptoUndeployedUSD = 0;
+                const addedShares = exitProceedsUSD / curSpyP;
+                spyShares += addedShares;
+                kryptoClaimSpyShares = addedShares;
+                kryptoUndeployedSpyShares = 0;
+
+                // Rotations-Trigger: Wenn wir 2024/2026 rotieren
+                if (!kryptoRotationTriggered && date >= '2024-08-01') {
+                    kryptoRotationTriggered = true;
+                    activeKryptoSymbols = ['MSTR', 'MARA', 'BMNR', 'BLSH'];
+                    tradeLog.push({
+                        date,
+                        action: 'KRYPTO_WATCHLIST_ROTATION',
+                        detail: 'Krypto-Watchlist rotiert: COIN & CLSK entfernt -> Neu aufgenommen: MARA, BMNR, BLSH.'
+                    });
+                }
 
                 tradeLog.push({
                     date,
                     action: 'KRYPTO_SUB_BUCKET_EXIT',
-                    detail: `BTC ($${btcPrice.toFixed(0)}) < 21W-EMA ($${btcEma.toFixed(0)}). 100% Krypto-Equities liquidiert ($${exitProceedsUSD.toFixed(0)}). Krypto-Claim im SPY: $${kryptoClaimUSD.toFixed(0)}.`
+                    detail: `BTC ($${btcPrice.toFixed(0)}) < 21W-EMA ($${btcEma.toFixed(0)}). 100% Krypto-Equities liquidiert ($${exitProceedsUSD.toFixed(0)}). Krypto-Claim im SPY: $${(kryptoClaimSpyShares * curSpyP).toFixed(0)}.`
                 });
             } else if (btcPrice >= btcEma && !btcSiloActive && !macroGuardActive && !isMacroRed) {
                 // KRYPTO BULLENMARKT RE-ENTRY
-                const totalKryptoUSD = kryptoClaimUSD + kryptoUndeployedUSD;
+                const curSpyP = priceMaps['SPY'][date] || 1;
+                const totalClaimShares = kryptoClaimSpyShares + kryptoUndeployedSpyShares;
+                const totalKryptoUSD = totalClaimShares * curSpyP;
+
                 if (totalKryptoUSD > 1000) {
                     btcSiloActive = true;
                     kryptoPyramidStage = 1;
                     kryptoPyramidDays = 0;
 
-                    const curSpyP = priceMaps['SPY'][date] || 1;
-                    const tranche1USD = totalKryptoUSD * 0.40;
-                    spyShares -= tranche1USD / curSpyP;
-                    kryptoClaimUSD = 0;
-                    kryptoUndeployedUSD = totalKryptoUSD - tranche1USD;
+                    const tranche1Shares = totalClaimShares * 0.40;
+                    spyShares -= tranche1Shares;
+                    kryptoUndeployedSpyShares = totalClaimShares - tranche1Shares;
+                    kryptoClaimSpyShares = 0;
+                    const tranche1USD = tranche1Shares * curSpyP;
 
                     // Aufteilen auf aktive Krypto-Equities mit Kursen
-                    const activeKrypto = kryptoSymbols.filter(k => (priceMaps[k][date] || 0) > 0);
-                    if (activeKrypto.length > 0) {
-                        const perSym = tranche1USD / activeKrypto.length;
-                        for (const k of activeKrypto) {
+                    const availableKrypto = activeKryptoSymbols.filter(k => (priceMaps[k][date] || 0) > 0);
+                    if (availableKrypto.length > 0) {
+                        const perSym = tranche1USD / availableKrypto.length;
+                        for (const k of availableKrypto) {
                             const p = priceMaps[k][date];
                             kryptoPositions[k] += perSym / p;
                         }
@@ -472,7 +553,7 @@ export async function runKamikazeSimulation(options = {}) {
                     tradeLog.push({
                         date,
                         action: 'KRYPTO_REENTRY_TRANCHE_1',
-                        detail: `BTC ($${btcPrice.toFixed(0)}) > 21W-EMA. Tranche 1 (40% = $${tranche1USD.toFixed(0)}) gleichmäßig in [${activeKrypto.join(', ')}] investiert.`
+                        detail: `BTC ($${btcPrice.toFixed(0)}) > 21W-EMA. Tranche 1 (40% = $${tranche1USD.toFixed(0)}) gleichmäßig in [${availableKrypto.join(', ')}] investiert.`
                     });
                 }
             } else if (btcSiloActive && kryptoPyramidStage === 1 && !macroGuardActive) {
@@ -480,15 +561,15 @@ export async function runKamikazeSimulation(options = {}) {
                 if (kryptoPyramidDays >= 15) {
                     kryptoPyramidStage = 2;
                     const curSpyP = priceMaps['SPY'][date] || 1;
-                    const totalPool = (kryptoUndeployedUSD / 0.60);
-                    const tranche2USD = Math.min(totalPool * 0.30, kryptoUndeployedUSD);
-                    spyShares -= tranche2USD / curSpyP;
-                    kryptoUndeployedUSD -= tranche2USD;
+                    const tranche2Shares = kryptoUndeployedSpyShares * 0.50; // 30% von ursprünglich 60%
+                    spyShares -= tranche2Shares;
+                    kryptoUndeployedSpyShares -= tranche2Shares;
+                    const tranche2USD = tranche2Shares * curSpyP;
 
-                    const activeKrypto = kryptoSymbols.filter(k => (priceMaps[k][date] || 0) > 0);
-                    if (activeKrypto.length > 0) {
-                        const perSym = tranche2USD / activeKrypto.length;
-                        for (const k of activeKrypto) {
+                    const availableKrypto = activeKryptoSymbols.filter(k => (priceMaps[k][date] || 0) > 0);
+                    if (availableKrypto.length > 0) {
+                        const perSym = tranche2USD / availableKrypto.length;
+                        for (const k of availableKrypto) {
                             const p = priceMaps[k][date];
                             kryptoPositions[k] += perSym / p;
                         }
@@ -497,7 +578,7 @@ export async function runKamikazeSimulation(options = {}) {
                     tradeLog.push({
                         date,
                         action: 'KRYPTO_PYRAMIDE_TRANCHE_2',
-                        detail: `15 Tage Trendbestätigung. Tranche 2 (30% = $${tranche2USD.toFixed(0)}) gleichmäßig in [${activeKrypto.join(', ')}] allokiert.`
+                        detail: `15 Tage Trendbestätigung. Tranche 2 (30% = $${tranche2USD.toFixed(0)}) gleichmäßig in [${availableKrypto.join(', ')}] allokiert.`
                     });
                 }
             } else if (btcSiloActive && kryptoPyramidStage === 2 && !macroGuardActive) {
@@ -505,14 +586,15 @@ export async function runKamikazeSimulation(options = {}) {
                 if (kryptoPyramidDays >= 30) {
                     kryptoPyramidStage = 3;
                     const curSpyP = priceMaps['SPY'][date] || 1;
-                    const tranche3USD = kryptoUndeployedUSD;
-                    spyShares -= tranche3USD / curSpyP;
-                    kryptoUndeployedUSD = 0;
+                    const tranche3Shares = kryptoUndeployedSpyShares;
+                    spyShares -= tranche3Shares;
+                    kryptoUndeployedSpyShares = 0;
+                    const tranche3USD = tranche3Shares * curSpyP;
 
-                    const activeKrypto = kryptoSymbols.filter(k => (priceMaps[k][date] || 0) > 0);
-                    if (activeKrypto.length > 0) {
-                        const perSym = tranche3USD / activeKrypto.length;
-                        for (const k of activeKrypto) {
+                    const availableKrypto = activeKryptoSymbols.filter(k => (priceMaps[k][date] || 0) > 0);
+                    if (availableKrypto.length > 0) {
+                        const perSym = tranche3USD / availableKrypto.length;
+                        for (const k of availableKrypto) {
                             const p = priceMaps[k][date];
                             kryptoPositions[k] += perSym / p;
                         }
@@ -650,17 +732,27 @@ export async function runKamikazeSimulation(options = {}) {
         }
 
         // =====================================================================
-        // TECH SUB-BUCKET: EINSTIEGS-TÜRSTEHER (Stage-2 Breakout)
+        // TECH SUB-BUCKET: EINSTIEGS-TÜRSTEHER (Stage-2 Breakout mit firstSeenDate)
         // =====================================================================
         if (!macroGuardActive && !isMacroRed) {
-            for (const sym of techSymbols) {
+            for (const sym of techUniverse) {
                 if (techPositions[sym]) continue;
+
+                // Watchlist Eintritts-Datum prüfen!
+                const firstSeen = techFirstSeen[sym] || '2099-01-01';
+                if (date < firstSeen) continue;
 
                 const ind = indicators[sym] ? indicators[sym][date] : null;
                 if (!ind || !ind.high50d || !ind.sma50 || !ind.sma200 || !ind.sma50Vol) continue;
 
                 const isVolumeSpike = ind.volume >= 1.5 * ind.sma50Vol;
-                const isStage2Breakout = ind.close > ind.high50d && ind.close > ind.sma200 && ind.close > ind.sma50 && ind.rs > ind.rsSMA50 && isVolumeSpike;
+                // Exakte Weinstein Stage 2 Prüfung:
+                const isStage2Breakout = ind.close > ind.high50d &&
+                    ind.close > ind.sma200 &&
+                    ind.close > ind.sma50 &&
+                    ind.sma50 > ind.sma200 && // Golden Cross / Stage 2
+                    ind.rs > ind.rsSMA50 &&
+                    isVolumeSpike;
 
                 if (!isStage2Breakout) continue;
 
@@ -682,7 +774,7 @@ export async function runKamikazeSimulation(options = {}) {
                     const freeMutterschiffUSD = getAvailableMutterschiffForTech(date);
                     const allocUSD = freeMutterschiffUSD * 0.35; // 35 % des freien Mutterschiffs
 
-                    if (allocUSD >= 1000) {
+                    if (allocUSD >= 500) {
                         spyShares -= allocUSD / curSpyP;
                         const shares = allocUSD / ind.close;
                         techPositions[sym] = {
@@ -717,8 +809,9 @@ export async function runKamikazeSimulation(options = {}) {
     // Finale Bilanz
     const lastDate = tradingDays[tradingDays.length - 1];
     const finalDepotUSD = getTotalDepotUSD(lastDate);
-    const netProfitUSD = finalDepotUSD - initialCapitalUSD;
-    const returnPct = ((netProfitUSD / initialCapitalUSD) * 100).toFixed(2);
+    const totalInvestedUSD = initialInvestedUSD + initialCashUSD + totalSavingsContributed;
+    const netProfitUSD = finalDepotUSD - totalInvestedUSD;
+    const returnPct = ((netProfitUSD / totalInvestedUSD) * 100).toFixed(2);
 
     // Benchmarks
     const spyStartP = priceMaps['SPY'][tradingDays[0]];
@@ -734,30 +827,38 @@ export async function runKamikazeSimulation(options = {}) {
     const btcReturn = (((btcEndP - btcStartP) / btcStartP) * 100).toFixed(2);
 
     console.log("================================================================================");
-    console.log(`   FINALE KAMIKAZE GROWTH BILANZ | STAND: ${lastDate}`);
+    console.log(`   FINALE KAMIKAZE GROWTH BILANZ (30K + 10K CASH + 200$/M) | STAND: ${lastDate}`);
     console.log("================================================================================\n");
-    console.log(`Startkapital:            $ ${initialCapitalUSD.toLocaleString('en-US', { minimumFractionDigits: 2 })} (90k Cash Dollar)`);
-    console.log(`Endwert Portfolio:       $ ${finalDepotUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
-    console.log(`Nettogewinn:             $ ${netProfitUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (+${returnPct} %)`);
-    console.log(`Maximaler Drawdown:      -${maxDrawdownPct.toFixed(2)} %`);
+    console.log(`Startkapital:                 $ ${initialInvestedUSD.toLocaleString('en-US', { minimumFractionDigits: 2 })} (15k Tech / 15k Krypto)`);
+    console.log(`Cash-Pot (Start):             $ ${initialCashUSD.toLocaleString('en-US', { minimumFractionDigits: 2 })}`);
+    console.log(`Eingezahlte Sparpläne (200$/M): $ ${totalSavingsContributed.toLocaleString('en-US', { minimumFractionDigits: 2 })}`);
+    console.log(`Gesamt investiertes Eigenkapital: $ ${totalInvestedUSD.toLocaleString('en-US', { minimumFractionDigits: 2 })}`);
+    console.log(`Endwert Portfolio:            $ ${finalDepotUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
+    console.log(`Nettogewinn:                  $ ${netProfitUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (+${returnPct} %)`);
+    console.log(`Maximaler Drawdown:           -${maxDrawdownPct.toFixed(2)} %`);
     console.log("--------------------------------------------------------------------------------");
     console.log("ALLOKATION ZUM STICHTAG (SILO-ÜBERSICHT):");
+    console.log(`* Cash-Pot:                   $ ${cashPotUSD.toFixed(2)}`);
     const finalSpyVal = spyShares * (priceMaps['SPY'][lastDate] || 0);
-    console.log(`* S&P 500 Mutterschiff:      $ ${finalSpyVal.toFixed(2)} (${((finalSpyVal / finalDepotUSD) * 100).toFixed(1)} %)`);
-    if (kryptoClaimUSD > 0) {
-        console.log(`* Krypto-Claim im Mutterschiff: $ ${kryptoClaimUSD.toFixed(0)} [Geparkt als Leihgabe für Tech-Compounding]`);
+    console.log(`* S&P 500 Mutterschiff:       $ ${finalSpyVal.toFixed(2)} (${((finalSpyVal / finalDepotUSD) * 100).toFixed(1)} %)`);
+    if (kryptoClaimSpyShares > 0) {
+        console.log(`* Krypto-Claim im Mutterschiff: $ ${(kryptoClaimSpyShares * (priceMaps['SPY'][lastDate] || 1)).toFixed(0)} [Parkt als Leihgabe]`);
     }
-    for (const k of kryptoSymbols) {
+    const btcVal = btcDirectShares * (btcMap[lastDate]?.close || 0);
+    if (btcVal > 0) {
+        console.log(`* Direkt gehaltenes BTC:      ${btcDirectShares.toFixed(4)} BTC | $ ${btcVal.toFixed(2)} (${((btcVal / finalDepotUSD) * 100).toFixed(1)} %)`);
+    }
+    for (const k of kryptoUniverse) {
         const p = priceMaps[k][lastDate] || 0;
         const v = kryptoPositions[k] * p;
         if (v > 0) {
-            console.log(`* Krypto-Equity (${k.padEnd(5)}):      ${kryptoPositions[k].toFixed(2).padStart(8)} Stk. à $${p.toFixed(2)} | $ ${v.toFixed(2)} (${((v / finalDepotUSD) * 100).toFixed(1)} %)`);
+            console.log(`* Krypto-Equity (${k.padEnd(5)}):       ${kryptoPositions[k].toFixed(2).padStart(8)} Stk. à $${p.toFixed(2)} | $ ${v.toFixed(2)} (${((v / finalDepotUSD) * 100).toFixed(1)} %)`);
         }
     }
     for (const s of Object.keys(techPositions)) {
         const p = priceMaps[s][lastDate] || 0;
         const v = techPositions[s].shares * p;
-        console.log(`* Tech-Position (${s.padEnd(5)}):      ${techPositions[s].shares.toFixed(2).padStart(8)} Stk. à $${p.toFixed(2)} | $ ${v.toFixed(2)} (${((v / finalDepotUSD) * 100).toFixed(1)} %) [${techPositions[s].flag}]`);
+        console.log(`* Tech-Position (${s.padEnd(5)}):       ${techPositions[s].shares.toFixed(2).padStart(8)} Stk. à $${p.toFixed(2)} | $ ${v.toFixed(2)} (${((v / finalDepotUSD) * 100).toFixed(1)} %) [${techPositions[s].flag}]`);
     }
     console.log("--------------------------------------------------------------------------------");
     console.log("BENCHMARK-VERGLEICH:");
@@ -769,13 +870,16 @@ export async function runKamikazeSimulation(options = {}) {
     console.log(`ALPHA vs. SPY (S&P 500):            +${(parseFloat(returnPct) - parseFloat(spyReturn)).toFixed(2)} %-Punkte Outperformance!`);
     console.log(`ALPHA vs. QQQ (Nasdaq 100):         +${(parseFloat(returnPct) - parseFloat(qqqReturn)).toFixed(2)} %-Punkte Outperformance!\n`);
 
-    console.log("WICHTIGSTE TRANSAKTIONEN:");
-    for (const t of tradeLog.slice(-40)) {
+    console.log("WICHTIGSTE TRANSAKTIONEN (LETZTE 30):");
+    for (const t of tradeLog.slice(-30)) {
         console.log(`  [${t.date}] ${(t.symbol || '').padEnd(6)} | ${t.action.padEnd(28)} | ${t.detail}`);
     }
 
     return {
-        initialCapitalUSD,
+        initialInvestedUSD,
+        initialCashUSD,
+        totalSavingsContributed,
+        totalInvestedUSD,
         finalDepotUSD,
         netProfitUSD,
         returnPct: parseFloat(returnPct),
