@@ -4,6 +4,9 @@ import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import YahooFinance from 'yahoo-finance2';
+import { FinanceExpert } from '../../../src/services/FinanceExpert.js';
+import { PanicCapitulationIndicator } from '../../../src/analysis/indicators/PanicCapitulationIndicator.js';
+import { SmartDumbMoneyBottomIndicator } from '../../../src/analysis/indicators/SmartDumbMoneyBottomIndicator.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -51,52 +54,85 @@ async function getHistoricalPrices(symbols, startDate, endDate) {
 
 async function getMacroData(startDate) {
     const pool = mysql.createPool(process.env.DATABASE_URL);
+    let walcl = [], rrp = [], t10y2y = [], hySpreads = [], borrow = [];
 
-    // 1. WALCL (Fed Assets)
-    const [walcl] = await pool.query(`
-        SELECT observation_date as date, value 
-        FROM econ_fred 
-        WHERE series_id = 'WALCL' AND observation_date >= ?
-        ORDER BY observation_date ASC
-    `, [startDate]);
+    try {
+        // 1. WALCL (Fed Assets)
+        [walcl] = await pool.query(`
+            SELECT observation_date as date, value 
+            FROM econ_fred 
+            WHERE series_id = 'WALCL' AND observation_date >= ?
+            ORDER BY observation_date ASC
+        `, [startDate]);
 
-    // 2. RRPONTSYD (Reverse Repo in Billions)
-    const [rrp] = await pool.query(`
-        SELECT observation_date as date, value 
-        FROM econ_fred 
-        WHERE series_id = 'RRPONTSYD' AND observation_date >= ?
-        ORDER BY observation_date ASC
-    `, [startDate]);
+        // 2. RRPONTSYD (Reverse Repo in Billions)
+        [rrp] = await pool.query(`
+            SELECT observation_date as date, value 
+            FROM econ_fred 
+            WHERE series_id = 'RRPONTSYD' AND observation_date >= ?
+            ORDER BY observation_date ASC
+        `, [startDate]);
 
-    // 3. T10Y2Y (10Y-2Y Yield Curve)
-    const [t10y2y] = await pool.query(`
-        SELECT observation_date as date, value 
-        FROM econ_fred 
-        WHERE series_id = 'T10Y2Y' AND observation_date >= ?
-        ORDER BY observation_date ASC
-    `, [startDate]);
+        // 3. T10Y2Y (10Y-2Y Yield Curve)
+        [t10y2y] = await pool.query(`
+            SELECT observation_date as date, value 
+            FROM econ_fred 
+            WHERE series_id = 'T10Y2Y' AND observation_date >= ?
+            ORDER BY observation_date ASC
+        `, [startDate]);
 
-    await pool.end();
+        // 4. BAMLH0A0HYM2 (High Yield Option-Adjusted Spread)
+        [hySpreads] = await pool.query(`
+            SELECT observation_date as date, value 
+            FROM econ_fred 
+            WHERE series_id = 'BAMLH0A0HYM2' AND observation_date >= ?
+            ORDER BY observation_date ASC
+        `, [startDate]);
 
-    // 4. WTREGEN (TGA from FRED API directly for 100% coverage in Millions)
+        // 5. BORROW (Emergency Borrowing from Fed)
+        [borrow] = await pool.query(`
+            SELECT observation_date as date, value 
+            FROM econ_fred 
+            WHERE series_id = 'BORROW' AND observation_date >= ?
+            ORDER BY observation_date ASC
+        `, [startDate]);
+    } finally {
+        await pool.end();
+    }
+
+    // 6. FRED API für WTREGEN (TGA) und BAMLH0A0HYM2 (Live-Daten)
     let wtregen = [];
+    let fredHySpreads = [];
     const fredApiKey = process.env.FRED_API_KEY;
     if (fredApiKey) {
         try {
-            const url = `https://api.stlouisfed.org/fred/series/observations?series_id=WTREGEN&api_key=${fredApiKey}&file_type=json&observation_start=${startDate}`;
-            const res = await fetch(url);
-            const json = await res.json();
-            if (json.observations) {
-                wtregen = json.observations
+            const urlTga = `https://api.stlouisfed.org/fred/series/observations?series_id=WTREGEN&api_key=${fredApiKey}&file_type=json&observation_start=${startDate}`;
+            const resTga = await fetch(urlTga);
+            const jsonTga = await resTga.json();
+            if (jsonTga.observations) {
+                wtregen = jsonTga.observations
                     .filter(o => o.value !== '.')
                     .map(o => ({ date: o.date, value: parseFloat(o.value) }));
             }
         } catch (e) {
             console.error("Fehler beim Abruf von WTREGEN:", e.message);
         }
+
+        try {
+            const urlHy = `https://api.stlouisfed.org/fred/series/observations?series_id=BAMLH0A0HYM2&api_key=${fredApiKey}&file_type=json&observation_start=${startDate}`;
+            const resHy = await fetch(urlHy);
+            const jsonHy = await resHy.json();
+            if (jsonHy.observations) {
+                fredHySpreads = jsonHy.observations
+                    .filter(o => o.value !== '.')
+                    .map(o => ({ date: o.date, value: parseFloat(o.value) }));
+            }
+        } catch (e) {
+            console.error("Fehler beim Abruf von FRED BAMLH0A0HYM2:", e.message);
+        }
     }
 
-    return { walcl, rrp, t10y2y, wtregen };
+    return { walcl, rrp, t10y2y, wtregen, hySpreads, borrow, fredHySpreads };
 }
 
 async function runSimulation() {
@@ -161,6 +197,67 @@ async function runSimulation() {
         nlDeltaMap[curr.date] = deltaPct;
     }
 
+    // High-Yield Credit Spreads (BAMLH0A0HYM2) & 50-Tage SMA berechnen
+    const spreadMap = {};
+    for (const r of macro.hySpreads || []) {
+        if (r.value !== null && !isNaN(parseFloat(r.value))) {
+            spreadMap[r.date] = parseFloat(r.value);
+        }
+    }
+    for (const r of macro.fredHySpreads || []) {
+        if (r.value !== '.') {
+            spreadMap[r.date] = parseFloat(r.value);
+        }
+    }
+    const spreadDates = Object.keys(spreadMap).sort();
+    const spreadSma50Map = {};
+    for (let i = 0; i < spreadDates.length; i++) {
+        if (i >= 49) {
+            let sum = 0;
+            for (let j = i - 49; j <= i; j++) {
+                sum += spreadMap[spreadDates[j]];
+            }
+            spreadSma50Map[spreadDates[i]] = sum / 50;
+        }
+    }
+
+    // Emergency Borrowing Map
+    const borrowMap = {};
+    for (const b of macro.borrow || []) {
+        if (b.value !== null && !isNaN(parseFloat(b.value))) {
+            borrowMap[b.date] = parseFloat(b.value);
+        }
+    }
+    const borrowDates = Object.keys(borrowMap).sort();
+
+    // Bottom-Finder Indikatoren laden via FinanceExpert
+    const bottomFinderMap = {};
+    try {
+        const fe = new FinanceExpert();
+        const timeline = await fe.getDailyGroupedData('2022-01-01', { bypassMemoryGuard: true });
+        await fe.close();
+
+        if (timeline && timeline.length > 0) {
+            const panicInd = new PanicCapitulationIndicator();
+            const smartInd = new SmartDumbMoneyBottomIndicator();
+
+            for (let i = 90; i < timeline.length; i++) {
+                const slice = timeline.slice(0, i + 1);
+                const date = timeline[i].date;
+                const pRes = panicInd.evaluate(slice);
+                const sRes = smartInd.evaluate(slice);
+
+                if (pRes && pRes.status === 'CRITICAL') {
+                    bottomFinderMap[date] = { isBottom: true, reason: pRes.message };
+                } else if (sRes && sRes.status === 'CRITICAL') {
+                    bottomFinderMap[date] = { isBottom: true, reason: sRes.message };
+                }
+            }
+        }
+    } catch (e) {
+        console.warn("FinanceExpert Timeline nicht geladen:", e.message);
+    }
+
     // Alle Handelstage von 2023-01-01 bis endDate
     const tradingDates = (prices['QQQ'] || [])
         .map(q => q.date)
@@ -207,14 +304,58 @@ async function runSimulation() {
             else break;
         }
 
+        // Neueste Credit Spreads & SMA50 aktualisieren
+        let lastKnownSpread = null;
+        let lastKnownSpreadSma50 = null;
+        for (const sd of spreadDates) {
+            if (sd <= date) {
+                lastKnownSpread = spreadMap[sd];
+                lastKnownSpreadSma50 = spreadSma50Map[sd] || null;
+            } else break;
+        }
+
+        // Neuestes Borrowing aktualisieren
+        let lastKnownBorrow = 0;
+        for (const bd of borrowDates) {
+            if (bd <= date) {
+                lastKnownBorrow = borrowMap[bd];
+            } else break;
+        }
+
         // ==========================================
-        // 1. MACRO REBALANCING: 25 % GOLD-GUARD
+        // 1. MAKRO-TÜRSTEHER & DUALES RE-ENTRY
         // ==========================================
-        if (!goldGuardActive && lastKnownNlDelta < -0.05) {
+        // Bedingung 1: Druckenmiller Liquiditätsentzug: 8W-Delta < -5,0 %
+        const isNetLiqContracting = lastKnownNlDelta < -0.05;
+
+        // Bedingung 2: Kreditstress-Filter: BAMLH0A0HYM2 > 4,0 % UND über 50-Tage SMA
+        const isCreditStress = (lastKnownSpread !== null && lastKnownSpreadSma50 !== null)
+            ? (lastKnownSpread > 4.0 && lastKnownSpread > lastKnownSpreadSma50)
+            : false;
+
+        // Ausschluss Banken-Notkredite: EmergencyBorrowing > 15B schaltet Tech nicht ab
+        const isEmergencyBailout = lastKnownBorrow > 15000;
+
+        // Makro-Türsteher ROT (Universeller Trigger)
+        const isMacroRed = isNetLiqContracting && isCreditStress && !isEmergencyBailout;
+
+        // Re-Entry Pfad 1 (Reguläre NetLiq-Hysterese): Delta >= 0,0 %
+        const isNetLiqRecovered = lastKnownNlDelta >= 0.0;
+
+        // Re-Entry Pfad 2 (Panic-Sniper am Tiefstkurs): Bottom-Finder schlägt CRITICAL an
+        const isPanicBottom = bottomFinderMap[date]?.isBottom || false;
+
+        if (!goldGuardActive && isMacroRed) {
             goldGuardActive = true;
-            const event = { date, type: 'GOLD_GUARD_ACTIVATED', delta: (lastKnownNlDelta * 100).toFixed(2) };
+            const event = {
+                date,
+                type: 'GOLD_GUARD_ACTIVATED',
+                delta: (lastKnownNlDelta * 100).toFixed(2),
+                spread: lastKnownSpread !== null ? lastKnownSpread.toFixed(2) : 'N/A',
+                sma50: lastKnownSpreadSma50 !== null ? lastKnownSpreadSma50.toFixed(2) : 'N/A'
+            };
             goldGuardEvents.push(event);
-            transactions.push(`[${date}] 🛡️ GOLD-GUARD AKTIVIERT (Net Liquidity 8W-Delta: ${event.delta}%)`);
+            transactions.push(`[${date}] 🛡️ GOLD-GUARD AKTIVIERT (NetLiq 8W-Delta: ${event.delta}%, HY-Spread: ${event.spread}% > SMA50: ${event.sma50}%)`);
 
             // Aus allen 7 Slots werden pauschal 25 % verkauft und in Gold umgeschichtet
             let goldCapitalUSD = 0;
@@ -233,12 +374,15 @@ async function runSimulation() {
                 portfolio.goldShares += boughtGold;
                 transactions.push(`       -> Umschichtung: $${goldCapitalUSD.toFixed(0)} (~€${(goldCapitalUSD / eurUsd).toFixed(0)}) in ${boughtGold.toFixed(2)} GLD-Anteile`);
             }
-        } else if (goldGuardActive && lastKnownNlDelta >= 0.0) {
-            // HYSTERESE: Deaktivierung erst bei Delta >= 0.0 %
+        } else if (goldGuardActive && (isNetLiqRecovered || isPanicBottom)) {
+            // HYSTERESE oder PANIC-SNIPER
             goldGuardActive = false;
-            const event = { date, type: 'GOLD_GUARD_DEACTIVATED', delta: (lastKnownNlDelta * 100).toFixed(2) };
+            const triggerReason = isPanicBottom
+                ? `🎯 BOTTOM-FINDER PANIC-SNIPER (${bottomFinderMap[date].reason})`
+                : `Net Liquidity erholt auf ${(lastKnownNlDelta * 100).toFixed(2)}%`;
+            const event = { date, type: 'GOLD_GUARD_DEACTIVATED', reason: triggerReason };
             goldGuardEvents.push(event);
-            transactions.push(`[${date}] 🚀 GOLD-GUARD DEAKTIVIERT (Net Liquidity erholt auf ${event.delta}%)`);
+            transactions.push(`[${date}] 🚀 GOLD-GUARD DEAKTIVIERT (${triggerReason})`);
 
             // Gold vollständig verkaufen und auf die 7 Slots gleichmäßig aufteilen
             const pGold = priceMaps[goldSymbol][date];
