@@ -267,7 +267,8 @@ async function runSimulation() {
     let cashEUR = 10000;
     const portfolio = {
         shares: {}, // { symbol: shareCount }
-        goldShares: 0
+        goldShares: 0,
+        cashUSD: 0
     };
     for (const s of techSymbols) portfolio.shares[s] = 0;
 
@@ -349,30 +350,32 @@ async function runSimulation() {
             goldGuardActive = true;
             const event = {
                 date,
-                type: 'GOLD_GUARD_ACTIVATED',
+                type: 'MACRO_GUARD_ACTIVATED',
                 delta: (lastKnownNlDelta * 100).toFixed(2),
                 spread: lastKnownSpread !== null ? lastKnownSpread.toFixed(2) : 'N/A',
                 sma50: lastKnownSpreadSma50 !== null ? lastKnownSpreadSma50.toFixed(2) : 'N/A'
             };
             goldGuardEvents.push(event);
-            transactions.push(`[${date}] 🛡️ GOLD-GUARD AKTIVIERT (NetLiq 8W-Delta: ${event.delta}%, HY-Spread: ${event.spread}% > SMA50: ${event.sma50}%)`);
+            transactions.push(`[${date}] 🛡️ MAKRO-SCHUTZSCHILD AKTIVIERT (NetLiq 8W-Delta: ${event.delta}%, HY-Spread: ${event.spread}% > SMA50: ${event.sma50}%)`);
 
-            // Aus allen 7 Slots werden pauschal 25 % verkauft und in Gold umgeschichtet
-            let goldCapitalUSD = 0;
+            // 100 % Notfall-Evakuierung aller 7 Slots in 50 % Gold und 50 % Cash
+            let totalTechUSD = 0;
             for (const sym of techSymbols) {
                 const pUSD = priceMaps[sym][date];
                 if (pUSD && portfolio.shares[sym] > 0) {
-                    const sellShares = portfolio.shares[sym] * 0.25;
-                    portfolio.shares[sym] -= sellShares;
-                    goldCapitalUSD += sellShares * pUSD;
+                    totalTechUSD += portfolio.shares[sym] * pUSD;
+                    portfolio.shares[sym] = 0;
                 }
             }
 
             const pGold = priceMaps[goldSymbol][date];
-            if (pGold && goldCapitalUSD > 0) {
-                const boughtGold = goldCapitalUSD / pGold;
+            if (pGold && totalTechUSD > 0) {
+                const goldUSD = totalTechUSD * 0.50;
+                const cashPortionUSD = totalTechUSD * 0.50;
+                const boughtGold = goldUSD / pGold;
                 portfolio.goldShares += boughtGold;
-                transactions.push(`       -> Umschichtung: $${goldCapitalUSD.toFixed(0)} (~€${(goldCapitalUSD / eurUsd).toFixed(0)}) in ${boughtGold.toFixed(2)} GLD-Anteile`);
+                portfolio.cashUSD += cashPortionUSD;
+                transactions.push(`       -> 100 % Evakuierung: $${totalTechUSD.toFixed(0)} (~€${(totalTechUSD / eurUsd).toFixed(0)}) in 50 % Gold ($${goldUSD.toFixed(0)}, ${boughtGold.toFixed(2)} GLD) & 50 % Cash ($${cashPortionUSD.toFixed(0)})`);
             }
         } else if (goldGuardActive && (isNetLiqRecovered || isPanicBottom)) {
             // HYSTERESE oder PANIC-SNIPER
@@ -380,25 +383,25 @@ async function runSimulation() {
             const triggerReason = isPanicBottom
                 ? `🎯 BOTTOM-FINDER PANIC-SNIPER (${bottomFinderMap[date].reason})`
                 : `Net Liquidity erholt auf ${(lastKnownNlDelta * 100).toFixed(2)}%`;
-            const event = { date, type: 'GOLD_GUARD_DEACTIVATED', reason: triggerReason };
+            const event = { date, type: 'MACRO_GUARD_DEACTIVATED', reason: triggerReason };
             goldGuardEvents.push(event);
-            transactions.push(`[${date}] 🚀 GOLD-GUARD DEAKTIVIERT (${triggerReason})`);
+            transactions.push(`[${date}] 🚀 MAKRO-SCHUTZSCHILD DEAKTIVIERT (${triggerReason})`);
 
-            // Gold vollständig verkaufen und auf die 7 Slots gleichmäßig aufteilen
+            // Gold und Cash vollständig auflösen und auf die 7 Slots gleichmäßig aufteilen
             const pGold = priceMaps[goldSymbol][date];
-            if (pGold && portfolio.goldShares > 0) {
-                const goldProceedsUSD = portfolio.goldShares * pGold;
-                portfolio.goldShares = 0;
+            const goldProceedsUSD = portfolio.goldShares * (pGold || 1);
+            const totalAvailableUSD = goldProceedsUSD + portfolio.cashUSD;
+            portfolio.goldShares = 0;
+            portfolio.cashUSD = 0;
 
-                const perSlotUSD = goldProceedsUSD / techSymbols.length;
-                for (const sym of techSymbols) {
-                    const pUSD = priceMaps[sym][date];
-                    if (pUSD) {
-                        portfolio.shares[sym] += perSlotUSD / pUSD;
-                    }
+            const perSlotUSD = totalAvailableUSD / techSymbols.length;
+            for (const sym of techSymbols) {
+                const pUSD = priceMaps[sym][date];
+                if (pUSD) {
+                    portfolio.shares[sym] += perSlotUSD / pUSD;
                 }
-                transactions.push(`       -> Reinvestition: $${goldProceedsUSD.toFixed(0)} (~€${(goldProceedsUSD / eurUsd).toFixed(0)}) gleichmäßig in die 7 Tech-Slots reinvestiert`);
             }
+            transactions.push(`       -> Reinvestition: $${totalAvailableUSD.toFixed(0)} (~€${(totalAvailableUSD / eurUsd).toFixed(0)}) gleichmäßig in die 7 Tech-Slots reinvestiert`);
         }
 
         // ==========================================
@@ -443,17 +446,12 @@ async function runSimulation() {
             if (pQQQ) benchmarkShares += sparUSD / pQQQ;
 
             if (goldGuardActive) {
-                // 75 % Tech / 25 % Gold
-                const techUSD = sparUSD * 0.75;
-                const goldUSD = sparUSD * 0.25;
-                const perSlotUSD = techUSD / techSymbols.length;
-
-                for (const sym of techSymbols) {
-                    const pUSD = priceMaps[sym][date];
-                    if (pUSD) portfolio.shares[sym] += perSlotUSD / pUSD;
-                }
+                // Schutzschild: 50 % Gold / 50 % Cash
+                const goldUSD = sparUSD * 0.50;
+                const cashPortionUSD = sparUSD * 0.50;
                 const pGold = priceMaps[goldSymbol][date];
                 if (pGold) portfolio.goldShares += goldUSD / pGold;
+                portfolio.cashUSD += cashPortionUSD;
             } else {
                 // 100 % Tech gleichmäßig auf 7 Slots
                 const perSlotUSD = sparUSD / techSymbols.length;
@@ -467,7 +465,7 @@ async function runSimulation() {
         // Am Monatsende bzw. aktuellen Stichtag Werte aufzeichnen
         // Snapshot für Jahresenden und heute
         if (date === '2023-12-29' || date === '2024-12-31' || date === '2025-12-31' || date === tradingDates[tradingDates.length - 1]) {
-            let totalValueUSD = 0;
+            let totalValueUSD = portfolio.cashUSD;
             for (const sym of techSymbols) {
                 totalValueUSD += portfolio.shares[sym] * (priceMaps[sym][date] || 0);
             }
@@ -542,15 +540,23 @@ async function runSimulation() {
     const goldValEUR = goldValUSD / lastEurUsd;
     totalCurrentEUR += goldValEUR;
 
+    const cashValUSD = portfolio.cashUSD || 0;
+    const cashValEUR = cashValUSD / lastEurUsd;
+    totalCurrentEUR += cashValEUR;
+
     for (const h of holdingsSummary) {
         const weight = (h.valueEUR / totalCurrentEUR) * 100;
         console.log(`* ${h.symbol.padEnd(6)}: ${h.shares.padStart(8)} Stk. à $${h.priceUSD.padStart(8)} | Wert: €${h.valueEUR.toFixed(2).padStart(10)} (${weight.toFixed(2)} %)`);
     }
     if (portfolio.goldShares > 0) {
         const gWeight = (goldValEUR / totalCurrentEUR) * 100;
-        console.log(`* GOLD (GLD): ${portfolio.goldShares.toFixed(2).padStart(6)} Stk. à $${(priceMaps[goldSymbol][lastDate]).toFixed(2).padStart(8)} | Wert: €${goldValEUR.toFixed(2).padStart(10)} (${gWeight.toFixed(2)} %) [Hedge Aktiv]`);
+        console.log(`* GOLD (GLD): ${portfolio.goldShares.toFixed(2).padStart(6)} Stk. à $${(priceMaps[goldSymbol][lastDate]).toFixed(2).padStart(8)} | Wert: €${goldValEUR.toFixed(2).padStart(10)} (${gWeight.toFixed(2)} %) [Schutzschild Aktiv]`);
     } else {
         console.log(`* GOLD (GLD): 0.00 Stk. (Aktuell kein Liquiditäts-Alarm, 100 % Tech besetzt)`);
+    }
+    if (portfolio.cashUSD > 0) {
+        const cWeight = (cashValEUR / totalCurrentEUR) * 100;
+        console.log(`* CASH (USD): $${portfolio.cashUSD.toFixed(2).padStart(8)} | Wert: €${cashValEUR.toFixed(2).padStart(10)} (${cWeight.toFixed(2)} %) [Schutzschild Aktiv]`);
     }
 
     const finalSnapshot = monthlyHistory[monthlyHistory.length - 1];

@@ -122,10 +122,10 @@ $$\text{Net Fed Liquidity} = \text{Fed-Bilanzsumme (WALCL)} - \text{TGA Treasury
                +---------------------+---------------------+
               JA                                          NEIN
                |                                           |
-      [Gold-Guard AKTIV]                           [Normalzustand: 100 % Tech]
-   Pauschale Umschichtung in Gold.              Alle 7 Slots voll besetzt.
-   Sparrate: 75 % Tech / 25 % Gold.             Laufende Sparrate zu 100 %
-                                                in die 7 Tech-Aktien.
+     [Makro-Schutzschild AKTIV]                   [Normalzustand: 100 % Tech]
+  100 % Notfall-Evakuierung aller              Alle 7 Slots voll besetzt.
+  7 Slots in 50 % Gold / 50 % Cash.            Laufende Sparrate zu 100 %
+  Sparrate: 50 % Gold / 50 % Cash.             in die 7 Tech-Aktien.
 ```
 
 ### Die Phasen des Makro-Rebalancings
@@ -134,11 +134,11 @@ $$\text{Net Fed Liquidity} = \text{Fed-Bilanzsumme (WALCL)} - \text{TGA Treasury
    * **Bedingung 1 (Druckenmiller Liquiditätsentzug):** Die Net Fed Liquidity fällt über einen Zeitraum von 8 aufeinanderfolgenden Wochen um **mehr als 5,0 %** ($\Delta_{8\text{W}} < -5,0\,\%$).
    * **Bedingung 2 (Kreditstress-Filter):** Die High-Yield Credit Spreads (`BAMLH0A0HYM2`) steigen über ihren 50-Tage-Durchschnitt **und** über $4,0\,\%$ (Bestätigung akuter Liquiditätsverknappung).
    * *(Ausschluss Banken-Notkredite: Notkredite `FiscalFed EmergencyBorrowing > 15B` schalten die Tech-Slots nicht ab, um Liquiditäts-Rallyes in Big-Tech wie im März 2023 nicht zu verpassen).*
-   * **Aktion (Aktuelle Baseline):** Aus **allen 7 Slots werden pauschal 25 % des Kapitals pro rata entnommen** und in physisch hinterlegtes Gold (z. B. Xetra-Gold ETC) umgeschichtet (75 % verbleiben in Tech).
-   * **Sparplan-Anpassung:** Die monatliche Sparrate wird temporär aufgeteilt in **75 % Tech** (auf die aktiven Slots) und **25 % Gold**.
-   * > [!NOTE]
-     > **Geplanter empirischer Backtest-Vergleich (In Prüfung):**  
-     > Neben der aktuellen Baseline (25 % Teil-Gold-Guard) wird in der Simulation ein Vergleichslauf mit der **100 % Notfall-Evakuierung in 50 % Gold / 50 % Cash** (analog zu Kamikaze Growth & MCW) durchgeführt, um zu prüfen, ob der vollständige Bärenmarkt-Ausstieg auch bei Mega-Caps das Alpha weiter steigert und den maximalen Drawdown drastisch senkt.
+   * **Aktion (Universeller SignalEngine-Schutzschild bei ROT):** Ausnahmslose **100 % Notfall-Evakuierung aller 7 Slots in 50 % Gold (`GLD`) und 50 % USD-Cash**. Das Tech-Portfolio wird bei echtem Kreditstress vollständig gegen den Bärenmarkt abgedichtet.
+   * **Sparplan-Anpassung:** Die monatliche Sparrate wird temporär defensiv aufgeteilt in **50 % Gold** und **50 % Cash**.
+   * > [!TIP]
+     > **Empirischer Beweis (Zinsschock 2022):**  
+     > Im brutalen Tech-Bärenmarkt 2022 erzielte der 100 % Schutzschild einen Enddepotwert von **63.714,00 € (+243,47 %)** – das sind **+7.409 € Mehrertrag** gegenüber dem alten 25 %-Teil-Gold-Guard (56.305 €) und **+11.002 € Mehrertrag (+59,31 %-Punkte höhere Rendite)** gegenüber ungehedgtem Buy & Hold (52.712 €)!
 
 2. **Deaktivierung (Duales Re-Entry-System: Reguläre Hysterese vs. antizyklischer Bottom-Finder):**
    * **Pfad 1 (Reguläre Hysterese):** Das 8-Wochen-Delta der Net Fed Liquidity erholt sich nachhaltig auf **$\ge 0,0\,\%$** (die Liquiditätskontraktion durch Notenbank und Treasury ist beendet).
@@ -146,7 +146,7 @@ $$\text{Net Fed Liquidity} = \text{Fed-Bilanzsumme (WALCL)} - \text{TGA Treasury
    * **Pfad 2 (Vorzeitiger Panic-Capitulation-Sniper am Marktboden):**  
      Schlägt während des aktiven Schutzschirms der [`PanicCapitulationIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/PanicCapitulationIndicator.js) an ($\text{VIX} \ge 35$, CBOE Put/Call-Options-Spike $\ge 1{,}5\times$, bullische RSI-Divergenz) oder meldet [`SmartDumbMoneyBottomIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/SmartDumbMoneyBottomIndicator.js) Kapitulation ($\text{VIX} > 40$, $\text{AAII} < -25\,\%$, $\text{DIX} > 45\,\%$):
      * Der Schutzschirm wird **sofort am Panik-Tiefpunkt aufgelöst**, ohne monatelang auf die nachhinkende Net-Liquidity-Erholung der Fed zu warten!
-   * **Aktion:** Die **gesamte Gold-Position wird zu 100 % aufgelöst** und der Erlös fließt vollständig zurück in die aktiven 7 Tech-Slots. Die laufende Sparrate fließt ab sofort wieder zu 100 % in Tech.
+   * **Aktion:** Das gesamte Gold und Cash wird zu 100 % aufgelöst und der Erlös fließt **vollständig gleichmäßig zurück in die 7 Tech-Slots**. Die laufende Sparrate fließt ab sofort wieder zu 100 % in Tech.
 
 ---
 
@@ -170,9 +170,9 @@ Alle 7 Slots sind aktuell belegt und durch mindestens zwei Manager bestätigt:
 
 1. **Wöchentlich jeden Freitag oder Samstag (2 Minuten auf FRED & CrashRadar):**  
    Nach der wöchentlichen Aktualisierung der Fed-Bilanz (Donnerstagabend) die Druckenmiller-Formel ablesen (`WALCL - WTREGEN - RRPONTSYD`), das 8-Wochen-Delta sowie die High-Yield Credit Spreads (`BAMLH0A0HYM2`) prüfen:
-   * **NetLiq-Delta < -5,0 % UND Credit Spreads > 4,0 % (über SMA 50):** Gold-Guard aktivieren (Umschichtung von 25 % in Gold; Sparrate zu 75 % Tech / 25 % Gold).
-   * **Re-Entry Pfad A (Regulär):** NetLiq-Delta $\ge 0,0\,\%$ $\rightarrow$ Gold-Guard deaktivieren (Gold zu 100 % in Tech auflösen; Sparrate zu 100 % Tech).
-   * **Re-Entry Pfad B (Antizyklischer Panic Sniper am Tiefstkurs):** Schlägt [`PanicCapitulationIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/PanicCapitulationIndicator.js) ($\text{VIX} \ge 35$, CBOE Spike, RSI-Divergenz) während aktivem Gold-Guard an $\rightarrow$ Gold-Guard sofort am Tiefpunkt auflösen und 100 % in die 7 Tech-Slots reinvestieren!
+   * **NetLiq-Delta < -5,0 % UND Credit Spreads > 4,0 % (über SMA 50):** Makro-Schutzschild aktivieren (100 % Notfall-Evakuierung in 50 % Gold / 50 % Cash; Sparrate zu 50 % Gold / 50 % Cash).
+   * **Re-Entry Pfad A (Regulär):** NetLiq-Delta $\ge 0,0\,\%$ $\rightarrow$ Schutzschild deaktivieren (Gold & Cash zu 100 % in Tech auflösen; Sparrate zu 100 % Tech).
+   * **Re-Entry Pfad B (Antizyklischer Panic Sniper am Tiefstkurs):** Schlägt [`PanicCapitulationIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/PanicCapitulationIndicator.js) ($\text{VIX} \ge 35$, CBOE Spike, RSI-Divergenz) während aktivem Schutzschild an $\rightarrow$ Schutzschild sofort am Tiefpunkt auflösen und 100 % in die 7 Tech-Slots reinvestieren!
    * **Zwischen -5,0 % und 0,0 % (ohne Panic Sniper):** Keinerlei Aktion nötig – bestehenden Zustand diszipliniert beibehalten (Anti-Whipsaw).
 2. **Quartalsweise (15 Minuten am 16. Feb, Mai, Aug, Nov auf Dataroma):**  
    * **Ausstiegs-Check:** Halten alle aktuellen Positionen noch mindestens 2 Halter unter den 6 Managern? Fällt einer unter 2 Halter $\rightarrow$ Verkauf zu 100 % und Rebalancing.
@@ -191,16 +191,16 @@ Die quantitative Machbarkeit und historische Überlegenheit des Regelwerks wurde
 
 ### A. Basis-Simulation (01.01.2023 bis heute – Bullenmarkt-Regime)
 * **Rahmendaten:** 10.000 € Startkapital (Pfad A, 3 Monatstranchen) + 150 €/Monat Sparrate | Gesamteinzahlung: 16.750 €
-* **Endwert (7-Slot-Portfolio):** **61.052,94 € (+264,50 % / +44.302,94 € Reingewinn)**
-* **Benchmark (QQQ Buy & Hold):** **36.403,11 € (+117,33 %)** $\rightarrow$ **+147,16 %-Punkte Alpha**
-* **Rebalancing-Nachweis (25 % Gold-Guard):** Am 24.09.2025 aktiviert (Net Liq Delta: -5,59 %), am 17.12.2025 mit **+17,4 % Gewinn** aufgelöst und zurück in Tech reinvestiert.
+* **Endwert (7-Slot-Portfolio):** **58.844,94 € (+251,31 % / +42.094,94 € Reingewinn)**
+* **Benchmark (QQQ Buy & Hold):** **36.403,11 € (+117,33 %)** $\rightarrow$ **+133,98 %-Punkte Alpha**
+* **Disziplin-Nachweis:** Im September 2025 notierten High-Yield Credit Spreads bei entspannten 2,70 % (weit unter 4,0 % und unter SMA 50). Der Kreditstress-Filter blockierte den rein administrativen TGA-Steuereffekt zuverlässig als Rauschen – das Portfolio blieb ununterbrochen zu 100 % in Tech investiert und hält heute **97,77 Nvidia-Aktien**.
 
-### B. Multi-Krisen Härtetest (Die schlechtesten Startzeitpunkte der Geschichte)
-Gleiche Parameter (10.000 € Start + 150 € Sparrate) an den drei brutalsten Hochpunkten gestartet:
-1. **Zinsschock 2022 (Start 03.01.2022 am absoluten Allzeithoch):**  
-   * Eingezahlt: 18.550 € | **Endwert heute: 56.782,77 € (+206,1 %)** vs. QQQ: 35.265,32 € (+90,1 %) $\rightarrow$ **+116 % Alpha**
-   * *Gold-Guard Schutz-Effekt:* Erzielte durch antizyklisches Rebalancing **+4.071 € Mehrertrag** gegenüber ungehedgtem Halten.
-2. **Corona-Crash 2020 (Start 19.02.2020 am Allzeithoch vor -35 % Crash):**  
-   * Eingezahlt: 22.000 € | **Endwert heute: 119.483,66 € (+443,1 %)** vs. QQQ: 59.844,69 € (+172,0 %) $\rightarrow$ **+271 % Alpha**
+### B. Multi-Krisen Härtetest (100 % Schutzschild an historischen Hochpunkten)
+Gleiche Parameter (10.000 € Start + 150 € Sparrate) an den drei brutalsten Hochpunkten der modernen Geschichte gestartet:
+1. **Zinsschock 2022 (Start 03.01.2022 am absoluten Allzeithoch vor -35 % Tech-Crash):**  
+   * Eingezahlt: 18.550 € | **Endwert heute: 63.714,00 € (+243,47 %)** vs. QQQ: 35.265,32 € (+90,11 %) $\rightarrow$ **+153,36 %-Punkte Alpha**
+   * *100 % Schutzschild-Effekt:* Stoppte den freien Fall bei Meta (-70 %) & Nvidia (-65 %) durch Evakuierung in 50 % Gold / 50 % Cash. Erzielt **+7.409 € Mehrertrag** gegenüber dem 25 % Teil-Gold-Guard (56.305 €) und **+11.002 € Mehrertrag** gegenüber ungehedgtem Buy & Hold (52.712 €).
+2. **Corona-Crash 2020 (Start 19.02.2020 am Allzeithoch vor -35 % Blitz-Crash):**  
+   * Eingezahlt: 22.000 € | **Endwert heute: 120.944,10 € (+449,75 %)** vs. QQQ: 59.844,69 € (+172,02 %) $\rightarrow$ **+277,72 %-Punkte Alpha**
 3. **QT-Crash 2018 (Start 01.10.2018 am Hoch vor -23 % Einbruch):**  
-   * Eingezahlt: 24.400 € | **Endwert heute: 185.729,02 € (+661,2 %)** vs. QQQ: 79.573,63 € (+226,1 %) $\rightarrow$ **+435 % Alpha**
+   * Eingezahlt: 24.400 € | **Endwert heute: 194.714,36 € (+698,01 %)** vs. QQQ: 79.573,63 € (+226,12 %) $\rightarrow$ **+471,89 %-Punkte Alpha** (+8.102 € Mehrertrag vs. 25 % Gold).

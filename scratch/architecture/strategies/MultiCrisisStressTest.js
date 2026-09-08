@@ -153,7 +153,7 @@ function simulateScenario({
         .filter(d => d >= startDate && d <= endDate);
 
     let cashEUR = 0;
-    const portfolio = { shares: {}, goldShares: 0 };
+    const portfolio = { shares: {}, goldShares: 0, cashUSD: 0 };
     for (const s of techSymbols) portfolio.shares[s] = 0;
 
     let benchmarkShares = 0;
@@ -182,35 +182,38 @@ function simulateScenario({
             else break;
         }
 
-        // Sicherheitsregeln: Gold-Guard
+        // Sicherheitsregeln: Makro-Schutzschild (100 % Notfall-Evakuierung: 50 % Gold / 50 % Cash)
         if (useRules) {
             if (!goldGuardActive && lastKnownNlDelta < -0.05) {
                 goldGuardActive = true;
                 goldGuardTriggerCount++;
-                let goldUSD = 0;
+                let totalTechUSD = 0;
                 for (const sym of techSymbols) {
                     const pUSD = priceMaps[sym][date];
                     if (pUSD && portfolio.shares[sym] > 0) {
-                        const sell = portfolio.shares[sym] * 0.25;
-                        portfolio.shares[sym] -= sell;
-                        goldUSD += sell * pUSD;
+                        totalTechUSD += portfolio.shares[sym] * pUSD;
+                        portfolio.shares[sym] = 0;
                     }
                 }
                 const pGold = priceMaps[goldSymbol][date];
-                if (pGold && goldUSD > 0) {
+                if (pGold && totalTechUSD > 0) {
+                    const goldUSD = totalTechUSD * 0.50;
+                    const cashUSD = totalTechUSD * 0.50;
                     portfolio.goldShares += goldUSD / pGold;
+                    portfolio.cashUSD += cashUSD;
                 }
             } else if (goldGuardActive && lastKnownNlDelta >= 0.0) {
                 goldGuardActive = false;
                 const pGold = priceMaps[goldSymbol][date];
-                if (pGold && portfolio.goldShares > 0) {
-                    const goldUSD = portfolio.goldShares * pGold;
-                    portfolio.goldShares = 0;
-                    const perSlotUSD = goldUSD / techSymbols.length;
-                    for (const sym of techSymbols) {
-                        const pUSD = priceMaps[sym][date];
-                        if (pUSD) portfolio.shares[sym] += perSlotUSD / pUSD;
-                    }
+                const goldUSD = portfolio.goldShares * (pGold || 1);
+                const totalAvailableUSD = goldUSD + portfolio.cashUSD;
+                portfolio.goldShares = 0;
+                portfolio.cashUSD = 0;
+
+                const perSlotUSD = totalAvailableUSD / techSymbols.length;
+                for (const sym of techSymbols) {
+                    const pUSD = priceMaps[sym][date];
+                    if (pUSD) portfolio.shares[sym] += perSlotUSD / pUSD;
                 }
             }
         }
@@ -242,15 +245,11 @@ function simulateScenario({
             if (pQQQ) benchmarkShares += sparUSD / pQQQ;
 
             if (useRules && goldGuardActive) {
-                const techUSD = sparUSD * 0.75;
-                const goldUSD = sparUSD * 0.25;
-                const perSlotUSD = techUSD / techSymbols.length;
-                for (const sym of techSymbols) {
-                    const pUSD = priceMaps[sym][date];
-                    if (pUSD) portfolio.shares[sym] += perSlotUSD / pUSD;
-                }
+                const goldUSD = sparUSD * 0.50;
+                const cashUSD = sparUSD * 0.50;
                 const pGold = priceMaps[goldSymbol][date];
                 if (pGold) portfolio.goldShares += goldUSD / pGold;
+                portfolio.cashUSD += cashUSD;
             } else {
                 const perSlotUSD = sparUSD / techSymbols.length;
                 for (const sym of techSymbols) {
@@ -261,7 +260,7 @@ function simulateScenario({
         }
 
         // Portfolio-Bewertung heute
-        let curValUSD = 0;
+        let curValUSD = portfolio.cashUSD;
         for (const sym of techSymbols) {
             curValUSD += portfolio.shares[sym] * (priceMaps[sym][date] || 0);
         }

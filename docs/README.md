@@ -64,7 +64,7 @@ Hier finden Entwickler und System-Architekten alle operativen Spezifikationen, E
 
 ### E. ♟️ Portfoliostrategien & Allokations-Regeln (`docs/architecture/strategies/`)
 * 📄 **[`7-Slot-Guru-Konsens-System.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/7-Slot-Guru-Konsens-System.md):**  
-  *Masterplan Version 2.0: 6er-Guru-Gremium (13F-Konsens >= 2 Halter), Einstiegs-Ampelsystem, 7 Slots Tech-Fokus und mathematischer 25 % Gold-Guard via Druckenmiller Net Fed Liquidity Formel (inkl. PoC-Simulation in [`SevenSlotGuruSimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/SevenSlotGuruSimulation.js)).*
+  *Masterplan Version 2.0: 6er-Guru-Gremium (13F-Konsens >= 2 Halter), Einstiegs-Ampelsystem, 7 Slots Tech-Fokus und universeller 100 % Schutzschild (50 % Gold / 50 % Cash) mit Dual-Trigger & Bottom-Finder Re-Entry via Druckenmiller Net Fed Liquidity & Credit-Spread-Filter (inkl. PoC-Simulation in [`SevenSlotGuruSimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/SevenSlotGuruSimulation.js)).*
 * 📄 **[`Gold-GDX.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Gold-GDX.md):**  
   *Quantitative Tranchen-Exit- und Regime-Strategie für Gold & GDX (Selling Climax, Divergenzen, ROC-Erschöpfung und Catastrophe Stop).*
 * 📄 **[`Gold-SPY.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Gold-SPY.md):**  
