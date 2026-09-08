@@ -1,0 +1,62 @@
+{
+  "id": "SATELITE",
+  "name": "Satellite Core-Satellite Portfolio",
+  "version": "1.0.0",
+  "base_currency": "USD",
+  "last_updated": "2026-09-08",
+
+  "allocation_targets": {
+    "core": {
+      "ticker": "SPY",
+      "name": "SPDR S&P 500 ETF Trust",
+      "target_pct": 80.0
+    },
+    "defense_satellite": {
+      "ticker": "DFNS.L",
+      "name": "VanEck Defense UCITS ETF",
+      "isin": "IE000YYE6WK5",
+      "target_pct": 15.0
+    },
+    "crypto_satellite": {
+      "ticker": "BTC-USD",
+      "name": "Bitcoin",
+      "target_pct": 5.0
+    }
+  },
+
+  "rebalancing_policy": {
+    "hodl_mode_in_bull_market": true,
+    "trim_winners": false,
+    "rebalance_only_on_emergency_reset": true
+  },
+
+  "emergency_shield": {
+    "trigger_net_liq_delta_8w": -0.05,
+    "trigger_credit_spread_hy_pct": 4.0,
+    "trigger_credit_spread_vs_sma50": "ABOVE",
+    "emergency_allocation": {
+      "gold_gld_pct": 50.0,
+      "cash_usd_pct": 50.0
+    },
+    "savings_rate_allocation": {
+      "gold_gld_pct": 50.0,
+      "cash_usd_pct": 50.0
+    },
+    "re_entry": {
+      "hysteresis_net_liq_delta_8w": 0.0,
+      "panic_capitulation_vix_threshold": 35.0,
+      "smart_dumb_money_vix_threshold": 40.0,
+      "reinvest_target": "EXACT_ALLOCATION_TARGETS"
+    }
+  },
+
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-09-08",
+      "title": "Initiales Core-Satellite Setup (80% SPY / 15% DFNS / 5% BTC)",
+      "summary": "Initialer Aufbau der Core-Satellite-Strategie mit HODL-Prinzip bei BTC und VanEck Defense ETF DFNS sowie Notfall-Stecker (100% Notfall-Evakuierung in 50% Gold / 50% Cash bei NetLiq-Delta < -5% und Credit Spreads > 4%).",
+      "broadcast": true
+    }
+  ]
+}

@@ -123,7 +123,7 @@ Der Bot führt den Nutzer nach dem ersten Startbefehl (`/start`) durch eine Stat
    * `[⚡ Kamikaze Growth]` (50/50 High-Beta Turnarounds mit Climax-Exit)
    * `[🏛️ 7-Slot-Guru]` (Superinvestor 13F-Konsens mit Makro-Schutzschild)
    * `[🥇 Gold-SPY DCA]` (Dynamisches S&P 500 DCA mit Gold-Skimming)
-   * `[🛰️ Satellite Staking]` (Opportunistischer Krypto-Cashflow)
+   * `[🛰️ Satellite Core]` (80 % SPY / 15 % DFNS Defense / 5 % BTC HODL mit Notfall-Stecker)
 3. **Startkapital:** Numerischer Geldbetrag (z. B. in Euro), der initial zur Verfügung steht.
 4. **Monatliche Sparrate:** Numerischer Geldbetrag (kann `0` sein).
 5. **Option Sonderzahlungen:** Flag (`Ja` / `Nein`), ob künftige Zuzahlungen via `/topup` aktiv verwaltet werden sollen.
@@ -150,7 +150,7 @@ Die im Signaldienst wählbaren Strategien im Überblick:
    Quantitative Makro-Schild- und Tranchen-Strategie für dynamisches DCA im S&P 500 mit Gold-Absicherung. In euphorischen Phasen wird parabolischer Gewinn in physisches Gold umgeleitet (Skimming). Bei makroökonomischem Alarm (Net Liquidity Einbruch) evakuiert das System in 50 % Gold / 50 % Cash und kauft den Boden über einen 40/30/30-Tranchen-Sniper antizyklisch zurück.
 
 5. 📄 **[`Satelite.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Satelite.md) (`SATELITE`):**  
-   Opportunistisches Satelliten-Portfolio für unregelmäßige Gehaltsüberschüsse und Sonderzahlungen. Es fokussiert auf renditestarke Solana- und Ethereum-Staking-ETFs zur Generierung passiven Cashflows. Das Kapital wird zyklisch gesteuert und dient als Rendite-Booster neben den konservativeren Kern-Strategien.
+   Geopolitisch gehärtetes Core-Satellite-Depot: **80 % SPY (S&P 500)** als Core-Mutterschiff, **15 % DFNS (VanEck Defense ETF)** als asymmetrischer Rüstungs- & Verteidigungs-Satellit und **5 % BTC (Bitcoin)** als makroökonomischer Wertspeicher. Im Normalbetrieb gilt eisernes **HODL** (keine unterjährigen Verkäufe). Einziges Rebalancing erfolgt über den **universellen Notfall-Stecker** (100 % Notfall-Evakuierung in 50 % Gold / 50 % Cash bei Makro ROT und Rebalancing-Reset bei Re-Entry).
 
 6. 📄 **[`Gold-GDX.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Gold-GDX.md):**  
    *(Aktuell nicht im Signaldienst angeboten)*: Quantitative Regime- und Tranchen-Exit-Strategie für Edelmetall-Minenwerte (GDX). Steuert Gewinnmitnahmen über Selling Climaxes, ROC-Erschöpfung und Divergenzen. Verbleibt vorerst als reine Analyse- und Forschungsreferenz in `CrashRadar` und wird Nutzern im Bot nicht zur Auswahl gestellt.
@@ -162,7 +162,7 @@ Die im Signaldienst wählbaren Strategien im Überblick:
 Um Code-Duplikate, Widersprüche und uneinheitliches Signalverhalten über verschiedene Strategien hinweg auszuschließen, gelten für die `CrashRadar` SignalEngine drei **unverrückbare System-Standards**:
 
 #### 1. Der universelle Makro-Türsteher (100 % Notfall-Evakuierung in 50 % Gold / 50 % Cash)
-* **Standard-Geltung:** Gilt ausnahmslos für **alle** aktiven Strategien (`MUZZLED_CATHIE_WOOD`, `KAMIKAZE_GROWTH`, `7_SLOT_GURU`, `GOLD_SPY`).
+* **Standard-Geltung:** Gilt ausnahmslos für **alle** aktiven Strategien (`MUZZLED_CATHIE_WOOD`, `KAMIKAZE_GROWTH`, `7_SLOT_GURU`, `GOLD_SPY`, `SATELITE`).
 * **Trigger Makro ROT:**
   1. **Druckenmiller Net Fed Liquidity:** $8\text{W-Delta} < -5,0\,\%$.
   2. **High-Yield Credit Spreads (`BAMLH0A0HYM2`):** $> 4,0\,\%$ und über ihrem 50-Tage-Durchschnitt.
