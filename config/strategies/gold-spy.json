@@ -1,7 +1,7 @@
 {
   "id": "GOLD_SPY",
   "name": "Gold-SPY Dynamic DCA Portfolio",
-  "version": "2.0.0",
+  "version": "2.2.0",
   "base_currency": "USD",
   "last_updated": "2026-09-08",
 
@@ -10,34 +10,47 @@
       "target_asset": "SPY",
       "target_pct": 100.0,
       "savings_rate_pct": 100.0,
-      "description": "100% S&P 500 DCA im Normalbetrieb, kein Vorzeitiger Verkauf, ungestörter Zinseszins."
+      "description": "100% S&P 500 DCA im Normalbetrieb, kein vorzeitiger Verkauf, ungestörter Zinseszins."
     },
     "emergency_shield": {
       "trigger_trend_filter": {
         "benchmark": "SPY",
         "condition": "BELOW_SMA200",
         "min_ath_drawdown_pct": 8.0,
-        "description": "Notfall-Trigger löst aus, wenn SPY unter seinen 200-Tage-Durchschnitt schließt UND mind. 8% Drawdown vom Allzeithoch aufweist."
+        "description": "Basis-Signal: SPY schließt unter seinem 200-Tage-Durchschnitt UND weist mind. 8% Drawdown vom Allzeithoch auf."
       },
-      "macro_secondary_confirmation": {
-        "enabled": false,
-        "comment": "Reine NetLiq-Filterung versagte in 2008 & 2020 wegen Notkrediten. Trendfilter agiert als primärer Sensor."
+      "macro_catastrophe_confirmation": {
+        "enabled": true,
+        "mode": "OR_ANY",
+        "description": "3-Säulen-Katastrophen-Matrix: Verhindert Fehlausstiege bei gesunden Korrekturen. Trendbruch evakuiert NUR, wenn mind. 1 System-Alarm aktiv ist.",
+        "sensors": {
+          "vix_shock_threshold": 28.0,
+          "chicago_fed_index_threshold": -0.20,
+          "net_liq_delta_8w_threshold": -0.05,
+          "margin_debt_drawdown_threshold": -0.05,
+          "sahm_rule_recession_threshold": 0.40
+        }
+      },
+      "hysteresis_and_cooldown": {
+        "min_holding_period_days": 15,
+        "re_trigger_cooldown_days": 20,
+        "description": "Anti-Whipsaw-Schutz gegen Day-to-Day-Churn im Bärenmarkt."
       },
       "allocation_options": {
         "gold_focused_mode": {
           "gold_gld_pct": 75.0,
           "cash_usd_pct": 25.0,
-          "description": "75% Gold / 25% Cash: Optimaler Sweet Spot (+624% / 357k €). Fängt Margin-Call-Sog von Gold über 25% Cash ab und schöpft 75% der asymmetrischen Krisen-Rallye ab."
+          "description": "Standard Sweet Spot (+674% / 381k €): 25% Cash federn den Margin-Call-Dip ab; 75% Gold sichern die asymmetrische Bärenmarkt-Rallye."
         },
         "maximum_alpha_mode": {
           "gold_gld_pct": 100.0,
           "cash_usd_pct": 0.0,
-          "description": "100% Gold (GLD) Evakuierung für maximalen Krisen-Hedge und Reingewinn (+809% / 448k € über 21,8 Jahre)."
+          "description": "100% Gold (GLD) Evakuierung für maximales Alpha."
         },
         "maximum_stability_mode": {
           "gold_gld_pct": 50.0,
           "cash_usd_pct": 50.0,
-          "description": "50% Gold / 50% Cash Evakuierung für maximale Drawdown-Dämpfung (-26% bis -30% Max Drawdown)."
+          "description": "50% Gold / 50% Cash Evakuierung für maximale Drawdown-Dämpfung."
         }
       },
       "active_mode": "gold_focused_mode",
@@ -57,17 +70,24 @@
 
   "changelog": [
     {
+      "version": "2.2.0",
+      "date": "2026-09-08",
+      "title": "3-Säulen-Katastrophen-Matrix & Anti-Whipsaw-Hysterese",
+      "summary": "Integration der globalen CrashRadar Katastrophen-Matrix (VIX >= 28, Chicago Fed > -0.20, NetLiq < -5%, Margin Debt <= -5%, Sahm Rule >= 0.40) zur Eliminierung von Fehlausstiegen in normalen Korrekturen. Begrenzt Notfall-Ausstiege auf 23 Manöver in 21,8 Jahren (~1/Jahr) bei Max DD von nur -28,61%.",
+      "broadcast": true
+    },
+    {
       "version": "2.1.0",
       "date": "2026-09-08",
       "title": "Standard-Allokation auf 75% Gold / 25% Cash kalibriert",
-      "summary": "Implementierung des 75/25 Sweet Spots im Notfall-Schutzschild: 25% Cash federn den anfänglichen Margin-Call-Dip von Gold (-12% bis -26%) ab und sichern trockenes Pulver am Panik-Boden; 75% Gold schöpfen die asymmetrische Bärenmarkt-Rallye ab (+624% / 357k €).",
-      "broadcast": true
+      "summary": "Implementierung des 75/25 Sweet Spots im Notfall-Schutzschild mit Margin-Call-Airbag.",
+      "broadcast": false
     },
     {
       "version": "2.0.0",
       "date": "2026-09-08",
       "title": "Upgrade auf Trend-Filter & Panik-Boden-Hedge (SMA 200 + VIX-Sniper)",
-      "summary": "Beseitigung der 2008er-NetLiq-Blindheit (Fed-Notkredite blockierten Ausstieg). Notfall-Evakuierung triggert nun bei SPY < SMA 200 & Drawdown >= 8%. Re-Entry via VIX >= 35 Panik-Reversal oder SMA 200 Rückeroberung.",
+      "summary": "Beseitigung der 2008er-NetLiq-Blindheit via SPY < SMA 200 & Drawdown >= 8%.",
       "broadcast": false
     },
     {

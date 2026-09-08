@@ -147,7 +147,7 @@ Die im Signaldienst wählbaren Strategien im Überblick:
    Fokussiertes 7-Slot-System, das ausschließlich Aktien kauft, die im 13F-Konsens von mindestens 2 legendären Superinvestoren gehalten werden. Die Einstiegs-Ampel kombiniert Fair-Value-Discounts mit technischem Momentum. Ein Druckenmiller-Makroschutzschild (Net Fed Liquidity) steuert eine defensive Absicherung oder Evakuierung zum Schutz des Kernkapitals.
 
 4. 📄 **[`Gold-SPY.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Gold-SPY.md) (`GOLD_SPY`):**  
-   Quantitative Makro-Schild- und Tranchen-Strategie für dynamisches DCA im S&P 500 mit Gold-Absicherung. In euphorischen Phasen wird parabolischer Gewinn in physisches Gold umgeleitet (Skimming). Bei makroökonomischem Alarm (Net Liquidity Einbruch) evakuiert das System in 50 % Gold / 50 % Cash und kauft den Boden über einen 40/30/30-Tranchen-Sniper antizyklisch zurück.
+   Quantitative Trend-Schild & Gold-Hedge-Strategie für dynamisches DCA im S&P 500. Im Normalbetrieb gilt ungestörtes 100 % S&P 500 DCA. Bei Bärenmarkt-Gefahr schützt die **globale 3-Säulen-Katastrophen-Matrix** vor Fehlausstiegen: Erst wenn der S&P 500 unter den SMA 200 fällt (Drawdown $\ge 8\,\%$) **und** ein echter System-Alarm (Kreditstress, VIX-Panik, Deleveraging oder QT) aktiv ist, evakuiert das System in den **75 % Gold / 25 % Cash Sweet Spot** (Margin-Call-Airbag). Der Re-Entry erfolgt antizyklisch am Panik-Tiefpunkt über den VIX-Panic-Sniper ($\text{VIX} \ge 35$ Reversal) oder SMA 200 Rückeroberung (+674 % Rendite / 381.741 € über 21,8 Jahre bei nur -28,61 % Max Drawdown).
 
 5. 📄 **[`Satelite.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Satelite.md) (`SATELITE`):**  
    Geopolitisch gehärtetes Core-Satellite-Depot: **80 % SPY (S&P 500)** als Core-Mutterschiff, **15 % DFNS (VanEck Defense ETF)** als asymmetrischer Rüstungs- & Verteidigungs-Satellit und **5 % BTC (Bitcoin)** als makroökonomischer Wertspeicher. Im Normalbetrieb gilt eisernes **HODL** (keine unterjährigen Verkäufe). Einziges Rebalancing erfolgt über den **universellen Notfall-Stecker** (100 % Notfall-Evakuierung in 50 % Gold / 50 % Cash bei Makro ROT und Rebalancing-Reset bei Re-Entry).
@@ -161,13 +161,19 @@ Die im Signaldienst wählbaren Strategien im Überblick:
 
 Um Code-Duplikate, Widersprüche und uneinheitliches Signalverhalten über verschiedene Strategien hinweg auszuschließen, gelten für die `CrashRadar` SignalEngine drei **unverrückbare System-Standards**:
 
-#### 1. Der universelle Makro-Türsteher (100 % Notfall-Evakuierung in 50 % Gold / 50 % Cash)
-* **Standard-Geltung:** Gilt ausnahmslos für **alle** aktiven Strategien (`MUZZLED_CATHIE_WOOD`, `KAMIKAZE_GROWTH`, `7_SLOT_GURU`, `GOLD_SPY`, `SATELITE`).
-* **Trigger Makro ROT:**
-  1. **Druckenmiller Net Fed Liquidity:** $8\text{W-Delta} < -5,0\,\%$.
-  2. **High-Yield Credit Spreads (`BAMLH0A0HYM2`):** $> 4,0\,\%$ und über ihrem 50-Tage-Durchschnitt.
-  3. *(Ausschluss Banken-Notkredite: Notkredite $> 15\text{ Mrd. \$}$ schalten nicht ab, um Flucht-Rallyes in Tech nicht zu verpassen).*
-* **Aktion:** Ausnahmslose 100 % Evakuierung aller Aktien- und Krypto-Bestände sowie des Mutterschiffs in **50 % Gold (`GLD`) und 50 % Cash**. Laufende Sparpläne fließen zu 50 % in Gold und 50 % in Cash.
+#### 1. Die globale 3-Säulen-Katastrophen-Matrix (Universeller Notfall-Schutzschild)
+* **Standard-Geltung:** Steht als übergeordnetes Makro-Fundament **allen** aktiven Strategien (`MUZZLED_CATHIE_WOOD`, `KAMIKAZE_GROWTH`, `7_SLOT_GURU`, `GOLD_SPY`, `SATELITE`) zur Verfügung.
+* **Architektonische Erkenntnis:** Ein reiner Notenbank-Liquiditäts-Sensor (`NetLiq < -5 %`) war in Schock- und Solvenzkrisen (2008 & 2020) blind, weil die Fed Notkredite druckte (`WALCL` stieg auf +115 % bzw. +47 %). Die globale Katastrophen-Matrix koppelt daher den realen **Chart-Trendbruch an 3 unabhängige Makro-Säulen**:
+* **Die Alarm-Logik:** Ein Notfall-Schutzschild löst **NUR DANN** aus, wenn:
+  1. **Chart-Bedingung:** Die jeweilige Benchmark (`SPY` unter SMA 200 bei $\ge 8\,\%$ Drawdown; bzw. `BTC` unter 21-Wochen-EMA) ihren Trend bricht  
+     **UND**
+  2. **Mindestens eine Katastrophen-Säule leuchtet ROT:**
+     * **Säule A (Schock-Panik):** $\text{VIX} \ge 28{,}0$ *(fängt exogene Black Swans wie Corona 2020 ab)*.
+     * **Säule B (Kredit- & Solvenzstress):** $\text{ChicagoFedIndex} > -0{,}20$ oder High-Yield Spreads $> 4{,}0\,\%$ *(fängt Banken- & Krediteinbrüche wie 2008 ab)*.
+     * **Säule C (Liquiditäts-Entzug & Deleveraging):** $\Delta\text{NetLiq} < -5{,}0\,\%$ *(Zinsschock 2022)* **ODER** $\text{FINRA Margin Debt} \le -5{,}0\,\%$ *(institutioneller Hebel-Kollaps)*.
+* **Schutz vor Fehlausstiegen:** In gesunden Korrekturen (-5 % bis -10 %) bleiben die Makro-Säulen grün $\rightarrow$ Die Strategien bleiben zu 100 % investiert und sparen stur weiter (eliminiert über 50 Fehlausstiege in 21,8 Jahren).
+* **Aktion:** Sofortige Evakuierung der risikobehafteten Positionen in Gold und Cash (Standard: **75 % Gold / 25 % Cash** bei `GOLD_SPY` als Margin-Call-Airbag; **50 % Gold / 50 % Cash** als defensiver Standard bei `MCW`, `KAMIKAZE`, `7_SLOT_GURU` und `SATELITE`).
+* **Anti-Whipsaw-Hysterese:** Mindestens 15 Handelstage Haltedauer im Hedge gegen zermürbenden Day-to-Day-Churn im Bärenmarkt.
 
 #### 2. Der universelle Bottom-Finder (Antizyklischer Re-Entry-Sniper)
 * **Standard-Geltung:** Löst den Schutzschirm am Panik-Tief vorzeitig auf, ohne Wochen auf die NetLiq-Hysterese warten zu müssen.
