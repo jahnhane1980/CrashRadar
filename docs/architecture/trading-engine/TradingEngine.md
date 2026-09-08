@@ -120,23 +120,23 @@ export class TradingEngine {
     let nextState = this.currentState;
     const actions = [];
 
-    // TRANSITION 1: GENERATION_BOTTOM_BUY (Panik-Kapitulation VIX > 45 oder RSI Divergenz)
-    if (panic.status === 'BUY_SETUP' || (capacity.status === 'OK' && this.currentState === 'FULL_DEFENSIVE_CASH')) {
+    // TRANSITION 1: GENERATION_BOTTOM_BUY (Panik-Kapitulation VIX >= 35, CBOE Spike, RSI Divergenz)
+    if (panic.status === 'CRITICAL' || panic.status === 'BUY_SETUP' || (capacity.status === 'OK' && this.currentState === 'FULL_DEFENSIVE_EVACUATION')) {
       nextState = 'GENERATION_BOTTOM_BUY';
-      actions.push({ type: 'ALL_IN_BUY', assets: ['MSTR', 'COIN', 'PLTR', 'SOFI', 'NVTS'], urgency: 'HIGH' });
+      actions.push({ type: 'ALL_IN_BUY', assets: ['MSTR', 'MARA', 'PLTR', 'SOFI', 'S'], urgency: 'HIGH' });
     }
-    // TRANSITION 2: FULL_DEFENSIVE_CASH (Kollision / Roter Alarm / Veto)
-    else if (capacity.status === 'CRITICAL' || vetos.includes('TREASURY_CAPACITY_CRITICAL')) {
-      nextState = 'FULL_DEFENSIVE_CASH';
-      actions.push({ type: 'LIQUIDATE_ALL_TO_CASH', reason: 'Treasury Capacity Collision active' });
+    // TRANSITION 2: FULL_DEFENSIVE_EVACUATION (Universeller Makro-Türsteher: NetLiq < -5% & Spreads > 4%)
+    else if (capacity.status === 'CRITICAL' || vetos.includes('TREASURY_CAPACITY_CRITICAL') || vetos.includes('MACRO_RED_LIQUIDITY_DRAIN')) {
+      nextState = 'FULL_DEFENSIVE_EVACUATION';
+      actions.push({ type: 'EVACUATE_50_GOLD_50_CASH', reason: 'Universal Macro-Türsteher active (NetLiq 8W-Delta < -5% & Credit Spreads > 4%)' });
     }
     // TRANSITION 3: PARABOLIC_PROFIT_TAKING & STEALTH_EXIT (Countdown < 14d oder Deleveraging)
     else if (isBuffered && (ttcDays < 14 || marginDebt.status === 'WARNING')) {
       nextState = 'PARABOLIC_PROFIT_TAKING';
       actions.push({ type: 'SCALE_DOWN', targetCashPct: 0.50, reason: 'Collision Countdown < 14d / Deleveraging' });
     }
-    // TRANSITION 4: CRYPTO_CYCLE_EXIT (Bitcoin Run beendet)
-    else if (btcExit.status === 'WARNING' || vetos.includes('BTC_CYCLE_TOP')) {
+    // TRANSITION 4: CRYPTO_CYCLE_EXIT (Bitcoin Run beendet via 21W-EMA oder MSTR/COIN Bruch)
+    else if (btcExit.status === 'CRITICAL' || btcExit.status === 'WARNING' || vetos.includes('BTC_CYCLE_TOP')) {
       nextState = 'CRYPTO_CYCLE_EXIT';
       actions.push({ type: 'SELL_CRYPTO_EQUITIES', assets: ['MSTR', 'COIN', 'MARA'], targetCashPct: 0.50 });
     }
@@ -162,22 +162,22 @@ export class TradingEngine {
   _calculateTargetAllocation(state) {
     switch (state) {
       case 'MAX_BULL_GROWTH':
-        return { CryptoEquities: 0.50, HighBetaGrowth: 0.50, Cash: 0.00 };
+        return { CryptoEquities: 0.50, HighBetaGrowth: 0.50, Gold: 0.00, Cash: 0.00 };
       case 'CRYPTO_CYCLE_EXIT':
-        return { CryptoEquities: 0.00, HighBetaGrowth: 0.50, Cash: 0.50 };
+        return { CryptoEquities: 0.00, HighBetaGrowth: 0.50, Gold: 0.00, Cash: 0.50 };
       case 'PARABOLIC_PROFIT_TAKING':
-        return { CryptoEquities: 0.20, HighBetaGrowth: 0.30, Cash: 0.50 };
-      case 'FULL_DEFENSIVE_CASH':
-        return { CryptoEquities: 0.00, HighBetaGrowth: 0.00, Cash: 1.00 };
+        return { CryptoEquities: 0.20, HighBetaGrowth: 0.30, Gold: 0.00, Cash: 0.50 };
+      case 'FULL_DEFENSIVE_EVACUATION':
+        return { CryptoEquities: 0.00, HighBetaGrowth: 0.00, Gold: 0.50, Cash: 0.50 };
       case 'GENERATION_BOTTOM_BUY':
-        return { CryptoEquities: 0.50, HighBetaGrowth: 0.50, Cash: 0.00 };
+        return { CryptoEquities: 0.50, HighBetaGrowth: 0.50, Gold: 0.00, Cash: 0.00 };
       default:
-        return { CryptoEquities: 0.00, HighBetaGrowth: 0.00, Cash: 1.00 };
+        return { CryptoEquities: 0.00, HighBetaGrowth: 0.00, Gold: 0.50, Cash: 0.50 };
     }
   }
 
   _generateStateMessage(state, alloc) {
-    return `[Trading State: ${state}] Allokation -> Krypto: ${(alloc.CryptoEquities*100)}%, Growth: ${(alloc.HighBetaGrowth*100)}%, Cash: ${(alloc.Cash*100)}%`;
+    return `[Trading State: ${state}] Allokation -> Krypto: ${(alloc.CryptoEquities*100)}%, Growth: ${(alloc.HighBetaGrowth*100)}%, Gold: ${(alloc.Gold*100)}%, Cash: ${(alloc.Cash*100)}%`;
   }
 }
 ```
@@ -186,13 +186,13 @@ export class TradingEngine {
 
 ### 2.3 Die Zustandsübergangs-Matrix (State Transition Matrix)
 
-| Vorheriger Zustand | Auslösendes Sensor-Signal | Neuer Zustand | Portfolio-Aktion | Ziel-Allokation (Krypto / Growth / Cash) |
+| Vorheriger Zustand | Auslösendes Sensor-Signal | Neuer Zustand | Portfolio-Aktion | Ziel-Allokation (Krypto / Growth / Gold / Cash) |
 | :--- | :--- | :--- | :--- | :--- |
-| **Jeder Zustand** | `PanicCapitulation = BUY_SETUP` (VIX > 45) | 🚀 `GENERATION_BOTTOM_BUY` | **Aggressiver Re-Entry am Tief** | **50 % Krypto / 50 % Growth / 0 % Cash** |
-| `FULL_DEFENSIVE_CASH` | `CapacityRadar = OK/WARNING` & Kollision > 45d | 🟢 `MAX_BULL_GROWTH` | **Wiedereinstieg in den Melt-Up** | **50 % Krypto / 50 % Growth / 0 % Cash** |
-| `MAX_BULL_GROWTH` | `BTC Gefahrenzone > 970d` / `MSTR < SMA 200` | 🟣 `CRYPTO_CYCLE_EXIT` | **100 % Verkauf aller Krypto-Aktien** | **0 % Krypto / 50 % Growth / 50 % Cash** |
-| `MAX_BULL_GROWTH` | `TTC Countdown < 14d` / `Margin Debt < -5 %` | 🟡 `PARABOLIC_PROFIT_TAKING` | **Stufenweiser Abbau (Scale Down)** | **20 % Krypto / 30 % Growth / 50 % Cash** |
-| `Jeder Zustand` | `CapacityRadar = CRITICAL` / `RedAlert = ALERT`| 🔴 `FULL_DEFENSIVE_CASH` | **100 % Notfall-Exit in Geldmarkt** | **0 % Krypto / 0 % Growth / 100 % Cash** |
+| **Jeder Zustand** | `PanicCapitulation = CRITICAL` (VIX $\ge 35$, CBOE, RSI-Div) | 🚀 `GENERATION_BOTTOM_BUY` | **Aggressiver Re-Entry am Tief ins Mutterschiff** | **50 % Krypto / 50 % Growth / 0 % Gold / 0 % Cash** |
+| `FULL_DEFENSIVE_EVACUATION` | `NetLiq 8W-Delta >= 0.0%` & Makro GRÜN | 🟢 `MAX_BULL_GROWTH` | **Wiedereinstieg in den Bullenmarkt** | **50 % Krypto / 50 % Growth / 0 % Gold / 0 % Cash** |
+| `MAX_BULL_GROWTH` | `CryptoPortfolioExit = CRITICAL` / `BTC < 21W-EMA` | 🟣 `CRYPTO_CYCLE_EXIT` | **100 % Verkauf aller Krypto-Aktien** ins Mutterschiff | **0 % Krypto / 50 % Growth / 0 % Gold / 50 % Cash (Claim)** |
+| `MAX_BULL_GROWTH` | `TTC Countdown < 14d` / `Margin Debt < -5 %` | 🟡 `PARABOLIC_PROFIT_TAKING` | **Stufenweiser Abbau (Scale Down)** | **20 % Krypto / 30 % Growth / 0 % Gold / 50 % Cash** |
+| **Jeder Zustand** | `NetLiq 8W < -5 %` & `Credit Spreads > 4 %` | 🔴 `FULL_DEFENSIVE_EVACUATION` | **100 % Notfall-Evakuierung** | **0 % Krypto / 0 % Growth / 50 % Gold / 50 % Cash** |
 
 ---
 
@@ -203,47 +203,49 @@ export class TradingEngine {
   * `Treasury Capacity Radar` = `OK` oder `WARNING (BUFFERED)` mit $T_{\text{collision}} > 45\text{ Tagen}$.
   * Kein aktiver Krypto-Top-Alarm oder akutes Liquiditäts-Veto.
 * **Allokation:**
-  * **50 % Krypto-Proxies** (`MSTR`, `COIN`)
-  * **50 % Small/Mid-Cap Growth** (`NVTS`, `PLTR`, `SOFI`, `ZETA`, `ARKK`)
-  * **0 % Cash**
+  * **50 % Krypto-Proxies** (`MSTR`, `MARA`, `BMNR`, `BLSH`)
+  * **50 % Small/Mid-Cap Growth** (`PLTR`, `SOFI`, `NVTS`, `S`, `AIRO`)
+  * **0 % Cash / 0 % Gold**
 * **Ziel:** Maximale Partizipation am 4x bis 15x Beta-Hebel des TGA-Abbaus.
 
 ---
 
 ### 🟣 Zustand 2: `CRYPTO_CYCLE_EXIT` (Bitcoin-Top-Schutz)
 * **Bedingung:**
-  * Krypto-Portfolio-Exit triggert (Zyklus-Tag > 970 & Bruch des SMA 50) **ODER** `MSTR` bricht den SMA 200 **ODER** LSTM meldet `BTC: CYCLE_TOP (>90 %)`.
+  * [`CryptoPortfolioExitIndicator`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/CryptoPortfolioExitIndicator.js) triggert (`MSTR`/`COIN` bricht SMA 50 in Gefahrenzone > 970 Tage) **ODER** `BTC < 21W-EMA` **ODER** [`CryptoCycleDivergenceIndicator`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/CryptoCycleDivergenceIndicator.js) meldet Liquiditäts-Drain.
 * **Aktion:**
-  * **100 % Verkauf aller Krypto-Aktien** (`MSTR`, `COIN`, Miner) in Cash / T-Bills.
-  * Growth-Aktien verbleiben im Portfolio, sofern der Treasury Capacity Radar noch Puffer signalisiert.
+  * **100 % Verkauf aller Krypto-Aktien** (`MSTR`, `MARA`, etc.) und Parken als Krypto-Claim im S&P 500 Mutterschiff (oder T-Bills).
+  * Growth-Aktien verbleiben im Portfolio, sofern der Makro-Radar noch GRÜN signalisiert.
 
 ---
 
 ### 🟡 Zustand 3: `PARABOLIC_PROFIT_TAKING & STEALTH_EXIT` (Countdown & Deleveraging)
 * **Bedingung:**
-  * `Treasury Capacity Radar` Kollisions-Countdown $< 14\text{ Tagen}$ (z. B. Mitte Oktober vor dem 04.11.2026) **ODER** `Margin Debt` fällt rasant (`-5.6 %` Deleveraging) **ODER** Einzelaktien verzeichnen parabolische Blow-Off-Spikes (> 100 % in 30 Tagen).
+  * `Treasury Capacity Radar` Kollisions-Countdown $< 14\text{ Tagen}$ **ODER** `Margin Debt` fällt rasant (`-5.6 %` Deleveraging) **ODER** Einzelaktien verzeichnen parabolische Climax-Spikes (`TOP_CLIMAX_ALERT` > 35 % über EMA 20).
 * **Aktion:**
-  * **Schrittweise Gewinnmitnahmen (Scale Down):** Täglicher Abbau der High-Growth-Positionen um 20–33 %.
-  * Gewinne fließen direkt in risikolosen Geldmarkt (3–5 % Rendite).
+  * **Schrittweise Gewinnmitnahmen (Scale Down):** Abbau der High-Growth-Positionen um 20–50 %.
+  * Gewinne fließen direkt in das S&P 500 Mutterschiff oder risikolosen Geldmarkt.
   * **Keine neuen Long-Positionen mehr!**
 
 ---
 
-### 🔴 Zustand 4: `FULL_DEFENSIVE_CASH` (Kollision & Bärenmarkt)
+### 🔴 Zustand 4: `FULL_DEFENSIVE_EVACUATION` (Universeller Makro-Schutzschild)
 * **Bedingung:**
-  * `Treasury Capacity Radar` = `CRITICAL` / `IMMINENT_DRAIN` **ODER** Veto `TREASURY_CAPACITY_CRITICAL` aktiv **ODER** `RedAlert` schlägt an.
+  * Druckenmiller Net Fed Liquidity $8\text{W-Delta} < -5,0\,\%$ **UND** High-Yield Credit Spreads (`BAMLH0A0HYM2`) $> 4,0\,\%$ und über dem 50-Tage-Durchschnitt.
 * **Allokation:**
-  * **100 % Cash / US-Treasury T-Bills**
-* **Ziel:** Vollständige Immunität gegen -30 % bis -80 % Abstürze. Tägliche Zinserträge kassieren, während der Markt blutet.
+  * **100 % Notfall-Evakuierung aller Tech- und Krypto-Aktien sowie des Mutterschiffs:**
+    * **50 % physisches Gold (`GLD`)**
+    * **50 % Cash (USD/EUR)**
+* **Ziel:** Vollständige Immunität gegen -30 % bis -80 % systemische Bärenmärkte. Reales Vermögen sichern und Krisengewinne über Gold mitnehmen.
 
 ---
 
-### 🚀 Zustand 5: `GENERATION_BOTTOM_BUY` (Die Kapitulation / Der Re-Entry)
+### 🚀 Zustand 5: `GENERATION_BOTTOM_BUY` (Die Panik-Kapitulation / Der Re-Entry-Sniper)
 * **Bedingung:**
-  * [`PanicCapitulationIndicator`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/PanicCapitulationIndicator.js) meldet `BUY_SETUP` ($VIX > 35-50$, CBOE Options-Spike, bullische RSI-Divergenz) **ODER** Gold bildet den Selling-Climax-Boden **ODER** Treasury Capacity Radar springt nach dem Crash von ROT zurück auf GRÜN/GELB.
+  * [`PanicCapitulationIndicator`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/PanicCapitulationIndicator.js) meldet `CRITICAL` ($\text{VIX} \ge 35$, CBOE Options-Spike $\ge 1{,}5\times$, bullische RSI-Divergenz) **ODER** [`SmartDumbMoneyBottomIndicator`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/SmartDumbMoneyBottomIndicator.js) schlägt an ($\text{VIX} > 40$, $\text{AAII} < -25\,\%$, $\text{DIX} > 45\,\%$) **ODER** reguläre Net-Liquidity-Erholung ($\ge 0,0\,\%$) tritt ein.
 * **Aktion:**
-  * **Aggressiver Re-Entry:** Schrittweises Umschichten des 100 % Cash-Bestands in ausgebombte Growth- und Krypto-Werte.
-  * Start eines neuen Zyklus.
+  * **Aggressiver Re-Entry:** 100 % Auflösung des Gold- und Cash-Schutzschirms und vollständiger Rückfluss in das S&P 500 Mutterschiff.
+  * Startklarer Zustand für neue Stage-2-Zündfunken am absoluten Marktboden!
 
 ---
 

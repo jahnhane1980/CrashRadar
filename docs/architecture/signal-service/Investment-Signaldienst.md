@@ -149,6 +149,37 @@ Die im Signaldienst wählbaren Strategien im Überblick:
 6. 📄 **[`Gold-GDX.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Gold-GDX.md):**  
    *(Aktuell nicht im Signaldienst angeboten)*: Quantitative Regime- und Tranchen-Exit-Strategie für Edelmetall-Minenwerte (GDX). Steuert Gewinnmitnahmen über Selling Climaxes, ROC-Erschöpfung und Divergenzen. Verbleibt vorerst als reine Analyse- und Forschungsreferenz in `CrashRadar` und wird Nutzern im Bot nicht zur Auswahl gestellt.
 
+---
+
+### 3.2 Verbindliche Kern-Standards der SignalEngine (Universal-Architektur)
+
+Um Code-Duplikate, Widersprüche und uneinheitliches Signalverhalten über verschiedene Strategien hinweg auszuschließen, gelten für die `CrashRadar` SignalEngine drei **unverrückbare System-Standards**:
+
+#### 1. Der universelle Makro-Türsteher (100 % Notfall-Evakuierung in 50 % Gold / 50 % Cash)
+* **Standard-Geltung:** Gilt ausnahmslos für **alle** aktiven Strategien (`MUZZLED_CATHIE_WOOD`, `KAMIKAZE_GROWTH`, `7_SLOT_GURU`, `GOLD_SPY`).
+* **Trigger Makro ROT:**
+  1. **Druckenmiller Net Fed Liquidity:** $8\text{W-Delta} < -5,0\,\%$.
+  2. **High-Yield Credit Spreads (`BAMLH0A0HYM2`):** $> 4,0\,\%$ und über ihrem 50-Tage-Durchschnitt.
+  3. *(Ausschluss Banken-Notkredite: Notkredite $> 15\text{ Mrd. \$}$ schalten nicht ab, um Flucht-Rallyes in Tech nicht zu verpassen).*
+* **Aktion:** Ausnahmslose 100 % Evakuierung aller Aktien- und Krypto-Bestände sowie des Mutterschiffs in **50 % Gold (`GLD`) und 50 % Cash**. Laufende Sparpläne fließen zu 50 % in Gold und 50 % in Cash.
+
+#### 2. Der universelle Bottom-Finder (Antizyklischer Re-Entry-Sniper)
+* **Standard-Geltung:** Löst den Schutzschirm am Panik-Tief vorzeitig auf, ohne Wochen auf die NetLiq-Hysterese warten zu müssen.
+* **Sensor 1 ([`PanicCapitulationIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/PanicCapitulationIndicator.js)):**  
+  $\text{VIX} \ge 35$, CBOE Put/Call-Options-Spike $\ge 1{,}5\times$, bullische RSI-Divergenz (neues Kurs-Tief bei höherem RSI). Status: `CRITICAL` (Generationen-Kaufsignal).
+* **Sensor 2 ([`SmartDumbMoneyBottomIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/SmartDumbMoneyBottomIndicator.js)):**  
+  $\text{VIX} > 40$, AAII Sentiment $< -25\,\%$ (Retail-Panik) und Dark Pool Index $\text{DIX} > 45\,\%$ (Wal-Akkumulation).
+* **Aktion:** Sofortige Auflösung des Gold/Cash-Schutzschirms und 100 % Reinvestition in das S&P 500 Mutterschiff, um neue Stage-2-Ausbrüche am absoluten Marktboden mit maximaler Liquidität einzusammeln!
+
+#### 3. Standardisierte Krypto-Hebel- & Bitcoin-Sensorik
+* **Bitcoin-Regime (Master-Taktgeber):** BTC 21-Wochen-EMA und [`MlRegimeRadarBtcIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/MlRegimeRadarBtcIndicator.js) bestimmen das Krypto-Gesamtregime.
+* **Hebel-Aktien-Sensoren ([`CryptoPortfolioExitIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/CryptoPortfolioExitIndicator.js)):**  
+  Überwacht `MSTR` und `COIN` in der Krypto-Zyklus-Gefahrenzone ($> 970\text{ Tage}$ seit dem letzten Bitcoin-Boden). Ein Durchbruch des SMA 50 unter Volumen $> 1{,}2\times$ triggert sofortigen Krypto-Equity-Exit ins Mutterschiff.
+* **Frühwarn-Divergenzen ([`CryptoCycleDivergenceIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/CryptoCycleDivergenceIndicator.js) & [`BtcTrailingStopIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/BtcTrailingStopIndicator.js)):**  
+  Warnen vor Liquiditäts-Austrocknung, wenn `MSTR` den SMA 200 verliert oder die Hebel-Aktien trotz hohem Bitcoin-Kurs ausbluten.
+
+---
+
 ### Modul 2: Proaktives Sparplan-Signal & Execution Feedback
 * **Trigger:** Zeitgesteuerter Batch-Workflow am 1. Werktag des Monats um 08:00 UTC.
 * **Funktion:**
