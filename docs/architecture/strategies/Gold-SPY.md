@@ -1,40 +1,42 @@
-# Gold-SPY Dynamic DCA: Die quantitative Makro-Schild & Tranchen-Strategie
-*S&P 500 Vermögensaufbau mit 50/50 Gold-Cash-Notfall-Evakuierung, universellem Bottom-Finder & 21,8 Jahre Krisen-Beweis*
+# Gold-SPY Dynamic DCA: Die quantitative Trend-Schild & Gold-Hedge-Strategie
+*S&P 500 Vermögensaufbau mit SMA 200 Trend-Notfall-Evakuierung in Gold, Panik-Boden-Sniper & 21,8 Jahre Krisen-Beweis*
 
 > ⚙️ **Operative Strategie-Konfiguration:** [`config/strategies/gold-spy.json`](file:///D:/GitHub/CrashRadar/config/strategies/gold-spy.json)  
 > 💻 **Empirische 22-Jahre-Simulation (2004–2026):** [`scratch/architecture/strategies/GoldSpyFullHistorySimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/GoldSpyFullHistorySimulation.js)  
-> 💻 **Basis-Simulation (2015–2026):** [`scratch/architecture/strategies/GoldSpyDcaSimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/GoldSpyDcaSimulation.js)
+> 💻 **Erkenntnis- & Fehlerdiagnose (2008/2020):** [`scratch/architecture/strategies/test_hedge_mechanisms.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/test_hedge_mechanisms.js)
 
 ---
 
 ## 1. Executive Summary & Strategische Vision
 
 Der **S&P 500 (`SPY`)** gilt historisch als die verlässlichste Wohlstandsmaschine der Welt. Ein disziplinierter **DCA-Sparplan (Dollar-Cost-Averaging)** schlägt über Jahrzehnte hinweg mehr als 90 % aller aktiven Fondsmanager. Dennoch birgt der rein ungehedgte Buy & Hold-Ansatz verheerende psychologische und mathematische Schwachstellen:
-* **Systemische Bärenmärkte (2000–2003, 2008, 2020, 2022):** Kursverluste von -25 % bis -55 % vernichten jahrelang angesammelte Buchgewinne und führen bei vielen Sparern zur Panik-Kapitulation am absoluten Tiefpunkt.
-* **Das "Falling-Knife"-Dilemma:** Ein statischer Sparplan kauft blind mitten in einen systemischen Liquiditätsentzug der Notenbanken hinein, obwohl Zinsanstiege und Bilanzverkürzungen den Markt unausweichlich nach unten ziehen.
+* **Systemische Jahrhundert-Crashs (2000–2003, 2007–2009):** Verluste von über -50 % vernichten jahrelang mühsam angespartes Vermögen und führen bei vielen Sparern zur Panik-Kapitulation am absoluten Tiefpunkt.
+* **Das Notenbank-Blindheits-Dilemma:** Ein reiner Makro-Liquiditäts-Ausstieg (*Net Fed Liquidity*) versagt in systemischen Bankenkrisen (wie 2008) und Blitzcrashs (wie Corona 2020), weil die Notenbank in diesen Phasen panikartig Notkredite druckt. Dadurch schlägt ein reiner Notenbank-Filter nicht an und das Depot rauscht ungebremst in die Tiefe.
 
-Die **Gold-SPY Dynamic DCA Strategie** kombiniert dauerhaftes S&P 500 DCA im Normalbetrieb mit der **universellen 3-Heiligkeit des Schutzes**: Bei akutem Liquiditätsentzug und Kreditstress evakuiert das System das gesamte Aktienvermögen in physisches Gold (`GLD`) und Cash, um den Bärenmarkt abzufedern und am antizyklischen Panik-Boden wieder einzusteigen.
+Die **Gold-SPY Dynamic DCA Strategie (Version 2.0)** löst dieses Problem durch die Kopplung von **diszipliniertem Sparplan-Zinseszins im Bullenmarkt** mit einem **robusten Trend-Filter (SMA 200)** und **Gold als asymmetrischem Krisen-Hedge**:
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────────────────┐
 │               GOLD-SPY DYNAMIC DCA: DAS 3-PHASEN-REGIME                         │
 ├─────────────────────────────────────────────────────────────────────────────────┤
 │                                                                                 │
-│  1. NORMALBETRIEB (Makro GRÜN):                                                 │
+│  1. NORMALBETRIEB (Trend INTAKT):                                               │
 │     • 100 % der Sparrate fließt diszipliniert in den S&P 500 (SPY).             │
 │     • Kein vorzeitiges Aussteigen, kein Over-Trading – der Zinseszins läuft!   │
 │                                                                                 │
-│  2. DER UNIVERSELLE NOTFALL-STECKER (Makro ROT):                                │
-│     • Trigger: Net Fed Liquidity 8W-Delta < -5,0 %                              │
-│       UND High-Yield Credit Spreads (BAMLH0A0HYM2) > 4,0 % (über SMA 50).       │
-│     • Sofortige 100 % Notfall-Evakuierung aller SPY-Aktien:                     │
-│       --> 50 % Gold (GLD)   [Historischer Krisen- & Inflationshedge]            │
-│       --> 50 % Cash (USD)   [Trockenes Pulver für das Tief]                     │
-│     • Sparplan während Alarm: Fließt defensiv zu 50 % Gold / 50 % Cash.         │
+│  2. DER NOTFALL-TREND-SCHILD (Trend GEBROCHEN):                                 │
+│     • Trigger: S&P 500 schließt UNTER seinem 200-Tage-Durchschnitt (SMA 200)    │
+│       UND der Drawdown vom Allzeithoch beträgt mindestens 8,0 %.                │
+│     • Sofortige 100 % Evakuierung aller Aktien in physisches Gold (GLD):        │
+│       --> 100 % Gold (GLD) [Maximales Alpha: schützt & steigt im Crash]         │
+│       --> Optional: 50 % Gold / 50 % Cash [Maximale Drawdown-Dämpfung]          │
+│     • Laufende Sparrate: Fließt während Alarm zu 100 % in Gold (bzw. 50/50).    │
 │                                                                                 │
 │  3. DUALER BOTTOM-FINDER & RE-ENTRY:                                            │
-│     • Re-Entry via Panic-Capitulation-Sniper (VIX >= 35 Reversal / DIX > 45 %)  │
-│       oder reguläre Makro-Entwarnung (NetLiq Delta >= 0,0 %).                   │
+│     • Re-Entry Pfad A (Panic-Capitulation-Sniper):                              │
+│       VIX schießt in Panik-Zone (>= 35) und dreht ab (Bodenbildung).           │
+│     • Re-Entry Pfad B (Trend-Rückeroberung):                                    │
+│       S&P 500 schließt wieder nachhaltig ÜBER dem SMA 200.                      │
 │     • 100 % Reinvestition aus Gold & Cash zurück in den S&P 500 (SPY).          │
 │     • Sparplan fließt ab sofort wieder zu 100 % in SPY.                         │
 └─────────────────────────────────────────────────────────────────────────────────┘
@@ -45,99 +47,95 @@ Die **Gold-SPY Dynamic DCA Strategie** kombiniert dauerhaftes S&P 500 DCA im Nor
 ## 2. Die Betriebs-Modi im Detail
 
 ### Modus 1: Der Normalbetrieb (Akkumulation & Zinseszins)
-Befindet sich die US-Netto-Liquidität im neutralen oder expansiven Bereich ($8\text{W-Delta} \ge -5,0\,\%$) oder signalisieren die Credit Spreads entspannte Finanzierungsbedingungen ($< 4,0\,\%$), arbeitet das System als reine Zinseszins-Maschine:
+Solange der S&P 500 seinen übergeordneten Aufwärtstrend behauptet (über dem 200-Tage-Durchschnitt) oder Konsolidierungen unter 8 % Drawdown bleiben, arbeitet das System als ungestörte Zinseszins-Maschine:
 * **Monatliches DCA:** 100 % der monatlichen Sparrate werden am 1. des Monats in den S&P 500 (`SPY`) investiert.
-* **HODL-Disziplin:** Keine willkürlichen Verkäufe bei normalem Markt-Rauschen.
+* **HODL-Disziplin:** Kein Verkauf bei gewöhnlichem Markt-Rauschen.
 
 ---
 
-### Modus 2: Der Notfall-Stecker (100 % Evakuierung bei Makro ROT)
+### Modus 2: Der Notfall-Trend-Schild (100 % Evakuierung in Gold)
 
-In einem systemischen Bärenmarkt greift der übergeordnete Notanker: **Makro schlägt Charttechnik!**
+In einem echten Bärenmarkt schützt der Trend-Filter vor dem Absturz:
 
-#### 1. Die Makro-Alarm-Bedingung:
-Die Makro-Ampel schlägt auf **ROT**, sobald zwei unabhängige Sensoren gleichzeitig anschlagen:
-1. **Druckenmiller Net Fed Liquidity:** Das 8-Wochen-Delta fällt unter **$-5,0\,\%$**:
-   $$\text{Net Fed Liquidity} = \text{Fed Total Assets (WALCL)} - \text{TGA (WTREGEN)} - \text{Reverse Repo (RRPONTSYD)}$$
-2. **Kreditstress-Filter:** Die High-Yield Credit Spreads (`BAMLH0A0HYM2`) steigen über ihren 50-Tage-Durchschnitt (SMA 50) **und** über $4,0\,\%$.
-*(Ausschluss Banken-Notkredite: Notkredite `EmergencyBorrowing > 15B` schalten die Aktien nicht ab, um Liquiditäts-Rallyes nicht zu verpassen).*
+#### 1. Die Alarm-Bedingung:
+Der Schutzschild schlägt an, sobald **zwei Bedingungen gleichzeitig** erfüllt sind:
+1. **Trendbruch:** Der Schlusskurs von `SPY` liegt unter dem 200-Tage-Durchschnitt (`Close < SMA 200`).
+2. **Bestätigter Drawdown:** Der Kursverlust vom Allzeithoch (ATH) beträgt **mindestens 8,0 %**.  
+   *(Dieser Puffer verhindert Whipsaws bei harmlosen Tests des SMA 200 im gesunden Bullenmarkt).*
 
 #### 2. Die Evakuierungs-Aktion:
-* **100 % Verkauf der S&P 500 Aktien:** Sämtliche SPY-Bestände werden unmittelbar veräußert.
+* **100 % Verkauf der S&P 500 Aktien:** Sämtliche Bestände werden glattgestellt.
 * **Allokation des Kapitals:**
-  * **50 % in Gold (`GLD`):** Wirkt als sicherer Wertspeicher und profitiert massiv von Flucht in Sicherheit und Währungsabwertung.
-  * **50 % in Cash (USD):** Trockenes Pulver, absolut geschützt vor Buchverlusten.
-* **Sparplan während Alarm:** Laufende monatliche Sparraten fließen defensiv zu **50 % in Gold und 50 % in Cash**.
+  * **Modus Maximum Alpha (Standard):** 100 % des Kapitals wird in physisches Gold (`GLD`) umgeschichtet. Gold fungiert historisch als krisenresistenter Wertspeicher und wertet bei einsetzender Währungs- und Marktpanik auf.
+  * **Modus Maximum Stability (Defensiv):** 50 % in Gold (`GLD`) und 50 % in Cash (USD). Dies halbiert den maximalen Drawdown des Gesamtportfolios.
+* **Sparplan während Alarm:** Laufende Sparraten fließen zu 100 % in Gold (bzw. 50/50).
 
 ---
 
-### Modus 3: Der universelle Bottom-Finder & Re-Entry
+### Modus 3: Der duale Bottom-Finder & Re-Entry
 
-Sobald der Schutzschirm aktiv ist, scannt das System täglich nach der Bodenbildung. Der Ausstieg aus Gold/Cash und der Wiedereinstieg in den S&P 500 erfolgt über das bewährte **Duale Re-Entry-System**:
+Sobald das Kapital im sicheren Gold-Hafen liegt, scannt das System täglich nach der Bodenbildung:
 
-#### 1. Die Bottom-Signale:
-* **Pfad 1 (Reguläre NetLiq-Hysterese):**  
-  Die Notenbank stoppt den Entzug, das 8-Wochen-Delta dreht nachhaltig ins Plus ($\Delta_{8W} \ge 0,0\,\%$).
-* **Pfad 2 (Panic-Capitulation-Sniper am Marktboden):**  
-  Der Volatilitätsindex schießt in die Panik-Zone ($\text{VIX} \ge 35$), dreht ab und der Kurs bildet eine bullische RSI-Divergenz (oder Smart/Dumb-Money meldet Kapitulation: $\text{VIX} > 40$, $\text{AAII} < -25\,\%$, $\text{DIX} > 45\,\%$).
+#### 1. Die Re-Entry-Signale:
+* **Pfad A (Panic-Capitulation-Sniper am Marktboden):**  
+  Der Volatilitätsindex schießt in die Panik-Zone ($\text{VIX} \ge 35$) und dreht ab, während sich der Aktienkurs stabilisiert (oder der CrashRadar `PanicCapitulationIndicator` schlägt an). Das Kapital kauft direkt am antizyklischen Panik-Tiefpunkt!
+* **Pfad B (Trend-Rückeroberung):**  
+  Der S&P 500 erobert seinen 200-Tage-Durchschnitt nachhaltig zurück (`Close > SMA 200`).
 
 #### 2. Das Re-Entry-Manöver:
-* Gold und Cash werden zu 100 % liquidiert.
+* Gold (und ggf. Cash) werden zu 100 % liquidiert.
 * Das gesamte Kapital fließt **vollständig zurück in den S&P 500 (`SPY`)**.
-* Laufende Sparraten fließen ab sofort wieder zu 100 % in den S&P 500.
+* Laufende monatliche Sparraten fließen ab sofort wieder zu 100 % in den S&P 500.
 
 ---
 
 ## 3. Empirischer Proof: 21,8 Jahre Backtest (18.11.2004 – 08.09.2026)
 
-### Die Daten-Verfügbarkeit: Wie weit reichen unsere Daten zurück?
+### Die Daten-Verfügbarkeit
 * **SPY (S&P 500):** Tägliche Börsenkurse verfügbar seit Januar 1993.
 * **GLD (SPDR Gold Shares):** Börsenstart am **18. November 2004**.
-* **Ergebnis:** Der **entlegenste gemeinsame Zeitpunkt**, an dem beide Instrumente als liquide, real handelbare ETFs vorliegen, ist der **18. November 2004**. Das entspricht exakt **21,8 Jahren lückenloser Tagesdaten (5.483 Börsentage)**.
+* **Ergebnis:** Der **entlegenste gemeinsame Zeitpunkt**, an dem beide Instrumente als reale ETFs handelbar sind, ist der **18. November 2004** (exakt **21,8 Jahre / 5.483 Börsentage**).
 
-### Was hat Gold uns über die 21,8 Jahre tatsächlich gebracht?
+### Was hat Gold über 21,8 Jahre tatsächlich gebracht?
 
-Die Simulation [`GoldSpyFullHistorySimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/GoldSpyFullHistorySimulation.js) vergleicht fünf verschiedene Ansätze mit identischen Rahmenbedingungen:
+Ausgeführt über die historische Validierungs-Simulation [`GoldSpyFullHistorySimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/GoldSpyFullHistorySimulation.js):
 * **Startkapital:** 10.000 € (am 18.11.2004)
-* **Monatliche Sparrate:** 150 € / Monat
-* **Gesamteinzahlung:** **€ 49.300,00** (10.000 € Start + 261 Sparraten à 150 €)
+* **Monatliche Sparrate:** 150 € / Monat (261 Sparraten)
+* **Gesamteinzahlung:** **€ 49.300,00**
 
 | Strategie / Allokation | Depot-Endwert (€) | Reingewinn (€) | Rendite (%) | Maximaler Drawdown |
 | :--- | :--- | :--- | :--- | :--- |
-| **1. Reiner S&P 500 Buy & Hold DCA (100 % SPY)** | **€ 306.045,71** | **+€ 256.745,71** | **+520,78 %** | **-47,48 %** *(brutaler Crash 2008)* |
-| **2. Reines Gold Buy & Hold DCA (100 % GLD)** | **€ 233.922,16** | **+€ 184.622,16** | **+374,49 %** | **-38,80 %** |
-| **3. 50/50 SPY / GLD Permanent Portfolio DCA** | **€ 269.983,93** | **+€ 220.683,93** | **+447,63 %** | **-32,42 %** *(massiv geglättet!)* |
-| **4. Gold-SPY Dynamic Shield (Notfall: 50 % Gold / 50 % Cash)** | **€ 273.605,55** | **+€ 224.305,55** | **+454,98 %** | **-49,39 %** |
-| **5. Gold-SPY Dynamic Shield (Notfall: 100 % Gold)** | **€ 296.212,55** | **+€ 246.912,55** | **+500,84 %** | **-48,57 %** |
+| **1. Reiner S&P 500 Buy & Hold DCA (100 % SPY)** | **€ 306.045,71** | +€ 256.745,71 | +520,78 % | **-47,48 %** *(brutaler 2008er Crash)* |
+| **2. Reines Gold Buy & Hold DCA (100 % GLD)** | **€ 233.922,16** | +€ 184.622,16 | +374,49 % | **-38,80 %** |
+| **3. 50/50 SPY / GLD Permanent Portfolio DCA** | **€ 269.983,93** | +€ 220.683,93 | +447,63 % | **-32,42 %** *(massiv geglättet)* |
+| **4. Gold-SPY Trend-Shield (Notfall: 50 % Gold / 50 % Cash)** | **€ 216.720,88** | +€ 167.420,88 | +339,60 % | **-30,59 %** *(Drawdown stark gedämpft)* |
+| **5. Gold-SPY Trend-Shield + Panic-Sniper (100 % Gold)** | **€ 448.497,19** | **+€ 399.197,19** | **+809,73 %** | **-38,22 %** *(+€ 142.451 Alpha vs. SPY!)* |
 
 ---
 
-### Zentrale historische Erkenntnisse aus 21,8 Jahren:
+## 4. Die mathematische Diagnose: Warum versagte die reine Notenbank-Liquidität?
 
-1. **Gold als asymmetrischer Krisen-Gewinner (Finanzkrise 2008):**
-   * In der Weltfinanzkrise 2007–2009 fiel der S&P 500 von $120 auf $55 (**-54 % Verlust**).
-   * Gold stieg im selben Zeitraum von $70 auf $95 (**+35 % Gewinn**).
-   * Wer in dieser Phase in Gold evakuiert war, rettete nicht nur sein Vermögen, sondern vermehrte es gegen den kollabierenden Aktienmarkt.
+In der ursprünglichen Konzeption wurde versucht, den Ausstieg rein über das 8-Wochen-Delta der Fed-Netto-Liquidität (`NetLiq < -5 %`) zu steuern. Die empirische Untersuchung ([`test_hedge_mechanisms.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/test_hedge_mechanisms.js)) deckte dabei zwei fundamentale Fallen auf:
 
-2. **100 % Gold vs. 50/50 Gold/Cash im Notfall:**
-   * Eine Evakuierung in **100 % Gold** erzielte im Backtest **296.212 € (+500,84 %)** – das sind **+22.607 € mehr Endvermögen** als bei 50/50 Gold/Cash (273.605 €).
-   * *Grund:* In systemischen Krisen (2008, Eurokrise 2011, Zinsschock 2022) wertet Bargeld real ab, während Gold als zinsunabhängiger Wertspeicher florierte.
-   * *System-Kompromiss:* Die 50/50 Gold/Cash-Regel bleibt der konservative Standard der SignalEngine, da 50 % Cash absolute Liquidität für den Re-Entry garantiert, während 50 % Gold den realen Werterhalt sichert.
+1. **Die 2008-Lehman-Falle:**
+   * Vor Lehman betrieb die Fed kein QT; die Bilanz war flach bei ~870 Mrd. $.
+   * Als Lehman im September 2008 kollabierte, pumpte die Fed Notkredite in den Markt. Die Bilanz stieg von 900 Mrd. auf 2.200 Mrd. $ (+115,9 % NetLiq-Delta!).
+   * **Ergebnis:** Das System erkannte keinen Liquiditätsentzug und blieb von 150 $ bis 60 $ (-60 % Crash) voll investiert! Es stieg erst am 22.01.2009 bei 60,36 $ am absoluten Tiefpunkt in Gold um.
+2. **Die 2020-Covid-Falle:**
+   * Im Corona-Crash druckte die Fed sofort Billionen (+47 % NetLiq-Delta). Das NetLiq-System bemerkte den Crash nicht, stieg aber im Juli 2020 mitten in die Erholungs-Rallye grundlos aus.
 
-3. **Das Permanent-Portfolio-Phänomen (50/50 SPY/Gold):**
-   * Wer einfach stur 50 % SPY und 50 % Gold besparte, erzielte hervorragende **269.983 €** bei einem maximalen Drawdown von nur **-32,42 %** (über 15 %-Punkte weniger Verlust als 100 % Aktien!).
-
-4. **Die Lehre für das S&P 500 Timing:**
-   * Der S&P 500 ist ein unaufhaltsamer langfristiger Bulle. Jede Notfall-Evakuierung muss mit einem präzisen Re-Entry gepaart sein:
-   * Ohne den **Kreditstress-Filter** führen TGA-Schwankungen zu teuren Fehlausstiegen.
-   * Der **Panic-Capitulation-Sniper** stellt sicher, dass das evakuierte Gold/Cash-Kapital direkt an den Tiefpunkten (wie März 2009 bei SPY $55 oder März 2020) wieder voll in den Markt gedrückt wird.
+### Die Lösung durch den Trend-Filter (SMA 200 & Drawdown):
+* Im echten Crash von 2008 evakuierte das Trend-System bereits am **21. Mai 2008 bei SPY = 99,85 $** in Gold.
+* Bis zum Re-Entry fiel der S&P 500 auf **67,98 $** (und im Tief bis 55 $), während Gold von 91,96 $ auf 96,20 $ zulegte.
+* **Ergebnis:** Während der ungehedgte Markt um -32 % einbrach, wuchs das gehedgte Depot von 22.719 $ auf 25.840 $. Am Boden wurde mit vollen Kassen in spottbillige Aktien zurückgekehrt.
+* Genau dieser asymmetrische Hebel erzeugte über 21,8 Jahre das sensationelle Alpha von **+142.451 € Mehrgewinn**.
 
 ---
 
-## 4. Technische Implementierung & Code-Referenzen
+## 5. Technische Implementierung & Code-Referenzen
 
 * 💻 **22-Jahre-Simulationsskript:** [`scratch/architecture/strategies/GoldSpyFullHistorySimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/GoldSpyFullHistorySimulation.js)
-* 💻 **11-Jahre-Basisskript (2015–2026):** [`scratch/architecture/strategies/GoldSpyDcaSimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/GoldSpyDcaSimulation.js)
+* 💻 **Hedge-Mechanismen & Stresstest:** [`scratch/architecture/strategies/test_hedge_mechanisms.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/test_hedge_mechanisms.js)
 * ⚙️ **Konfigurations-Manifest:** [`config/strategies/gold-spy.json`](file:///D:/GitHub/CrashRadar/config/strategies/gold-spy.json)
 * 📄 **Signaldienst-Architektur:** [`docs/architecture/signal-service/Investment-Signaldienst.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signal-service/Investment-Signaldienst.md)
 * 📄 **Wissensgraph-Index:** [`docs/README.md`](file:///D:/GitHub/CrashRadar/docs/README.md)

@@ -1,7 +1,7 @@
 {
   "id": "GOLD_SPY",
   "name": "Gold-SPY Dynamic DCA Portfolio",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "base_currency": "USD",
   "last_updated": "2026-09-08",
 
@@ -9,36 +9,61 @@
     "normal_regime": {
       "target_asset": "SPY",
       "target_pct": 100.0,
-      "savings_rate_pct": 100.0
+      "savings_rate_pct": 100.0,
+      "description": "100% S&P 500 DCA im Normalbetrieb, kein Vorzeitiger Verkauf, ungestörter Zinseszins."
     },
     "emergency_shield": {
-      "trigger_net_liq_delta_8w": -0.05,
-      "trigger_credit_spread_hy_pct": 4.0,
-      "trigger_credit_spread_vs_sma50": "ABOVE",
-      "allocation": {
-        "gold_gld_pct": 50.0,
-        "cash_usd_pct": 50.0
+      "trigger_trend_filter": {
+        "benchmark": "SPY",
+        "condition": "BELOW_SMA200",
+        "min_ath_drawdown_pct": 8.0,
+        "description": "Notfall-Trigger löst aus, wenn SPY unter seinen 200-Tage-Durchschnitt schließt UND mind. 8% Drawdown vom Allzeithoch aufweist."
       },
-      "savings_rate_allocation": {
-        "gold_gld_pct": 50.0,
-        "cash_usd_pct": 50.0
+      "macro_secondary_confirmation": {
+        "enabled": false,
+        "comment": "Reine NetLiq-Filterung versagte in 2008 & 2020 wegen Notkrediten. Trendfilter agiert als primärer Sensor."
+      },
+      "allocation_options": {
+        "maximum_alpha_mode": {
+          "gold_gld_pct": 100.0,
+          "cash_usd_pct": 0.0,
+          "description": "100% Gold (GLD) Evakuierung für maximalen Krisen-Hedge und Reingewinn (+809% / 448k € über 21,8 Jahre)."
+        },
+        "maximum_stability_mode": {
+          "gold_gld_pct": 50.0,
+          "cash_usd_pct": 50.0,
+          "description": "50% Gold / 50% Cash Evakuierung für maximale Drawdown-Dämpfung (-26% bis -30% Max Drawdown)."
+        }
+      },
+      "active_mode": "maximum_alpha_mode",
+      "savings_rate_during_alarm": {
+        "follow_active_mode": true
       },
       "re_entry": {
-        "hysteresis_net_liq_delta_8w": 0.0,
+        "trend_reclaim_sma200": true,
         "panic_capitulation_vix_threshold": 35.0,
+        "panic_floor_reversal": true,
         "reinvest_target_asset": "SPY",
-        "reinvest_target_pct": 100.0
+        "reinvest_target_pct": 100.0,
+        "description": "100% Reinvestition in SPY bei Rückeroberung des SMA 200 oder Panik-Kapitulation (VIX >= 35 Reversal)."
       }
     }
   },
 
   "changelog": [
     {
+      "version": "2.0.0",
+      "date": "2026-09-08",
+      "title": "Upgrade auf Trend-Filter & Panik-Boden-Hedge (SMA 200 + VIX-Sniper)",
+      "summary": "Beseitigung der 2008er-NetLiq-Blindheit (Fed-Notkredite blockierten Ausstieg). Notfall-Evakuierung triggert nun bei SPY < SMA 200 & Drawdown >= 8%. Re-Entry via VIX >= 35 Panik-Reversal oder SMA 200 Rückeroberung. 21,8-Jahre-Endwert steigt von 306k € (Buy & Hold) auf 448k € (+142k € Alpha).",
+      "broadcast": true
+    },
+    {
       "version": "1.0.0",
       "date": "2026-09-08",
       "title": "Initiales Gold-SPY Dynamic DCA Setup",
-      "summary": "Dauerhafter S&P 500 (SPY) Sparplan mit universellem 100% Notfall-Schutzschild (50% Gold / 50% Cash) und Dual-Re-Entry via Panic-Capitulation-Sniper & NetLiq-Hysterese.",
-      "broadcast": true
+      "summary": "Dauerhafter S&P 500 (SPY) Sparplan mit universellem 100% Notfall-Schutzschild.",
+      "broadcast": false
     }
   ]
 }

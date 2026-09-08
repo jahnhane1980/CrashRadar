@@ -249,22 +249,25 @@ async function runFullHistorySimulation() {
     let lastNetLiqDelta = 0;
     const crisisEvents = [];
 
+    let spyAth = indicators[tradingDays[0]].close;
+
     for (let i = 0; i < tradingDays.length; i++) {
         const d = tradingDays[i];
         const ind = indicators[d];
         const m = d.substring(0, 7);
 
-        // Update Net Liquidity Delta
-        if (netLiqDeltaMap[d] !== undefined) {
-            lastNetLiqDelta = netLiqDeltaMap[d];
-        }
+        if (ind.close > spyAth) spyAth = ind.close;
+        const spyDdFromAth = ((spyAth - ind.close) / spyAth) * 100;
 
-        // Trigger Definition: NetLiq 8W-Delta < -5.0% AND (VIX > 25 oder ChicagoFedIndex > -0.2 oder Kurs unter SMA50)
-        // Bei akutem Liquiditätsentzug + Marktstress
-        const isPanicCapitulation = panicCapitulationMap[d] || (ind.vix >= 35 && ind.close > ind.ema20);
-        const isCreditStress = (ind.stress > -0.25 || ind.vix > 28);
-        const shouldTriggerRed = (lastNetLiqDelta < -5.0 && isCreditStress);
-        const shouldReEnter = (lastNetLiqDelta >= 0.0 || isPanicCapitulation);
+        // Trigger-Definition: Trendbruch (SPY < SMA200) UND bestätigter Drawdown >= 8.0% vom Allzeithoch
+        const shouldTriggerRed = ind.sma200 && ind.close < ind.sma200 && spyDdFromAth >= 8.0;
+
+        // Re-Entry Bedingungen:
+        // Standard Re-Entry: Kurs schließt wieder über SMA 200
+        const shouldReEnterTrend = ind.sma200 && ind.close > ind.sma200;
+        // Panic-Capitulation Sniper: VIX schießt in Panikzone (>= 35) und Bodenbildung setzt ein
+        const isPanicCapitulation = panicCapitulationMap[d] || (ind.vix >= 35 && ind.close > (ind.sma200 ? ind.sma200 * 0.85 : 0));
+        const shouldReEnterPanic = shouldReEnterTrend || isPanicCapitulation;
 
         // Monatliche Sparplanausführung
         if (m !== bLastMonth) {
@@ -293,16 +296,16 @@ async function runFullHistorySimulation() {
 
             fInvestedEUR += MONTHLY_RATE_EUR;
             if (fMacroRed) {
+                // Bei Notfall: 100% Gold
                 fGldShares += (MONTHLY_RATE_EUR * ind.eurUsd) / ind.gld;
             } else {
+                // Bei Normalzustand: 100% SPY
                 fSpyShares += (MONTHLY_RATE_EUR * ind.eurUsd) / ind.close;
             }
         }
 
-        // NOTFALL-STECKER LOGIK FÜR MODELL 4 (50% Gold / 50% Cash)
-        // Anti-Whipsaw: Nach einem Re-Entry mindestens 30 Handelstage Cooldown vor neuem Trigger
-        const canTriggerS = (i - sLastReEntryIdx > 30);
-        if (!sMacroRed && shouldTriggerRed && canTriggerS) {
+        // NOTFALL-STECKER LOGIK FÜR MODELL 4 (50% Gold / 50% Cash mit SMA200 Re-Entry)
+        if (!sMacroRed && shouldTriggerRed) {
             sMacroRed = true;
             sTriggerCount++;
             const totalUSD = (sSpyShares * ind.close) + (sGldShares * ind.gld) + sCashUSD;
@@ -310,24 +313,23 @@ async function runFullHistorySimulation() {
             sGldShares = (totalUSD * 0.50) / ind.gld;
             sCashUSD = totalUSD * 0.50;
             crisisEvents.push({ date: d, event: 'NOTFALL-EVAKUIERUNG (50/50 Gold/Cash)', spyPrice: ind.close, gldPrice: ind.gld, vix: ind.vix, totalUSD });
-        } else if (sMacroRed && shouldReEnter) {
+        } else if (sMacroRed && shouldReEnterTrend) {
             sMacroRed = false;
             sLastReEntryIdx = i;
             const totalUSD = (sGldShares * ind.gld) + sCashUSD;
             sGldShares = 0;
             sCashUSD = 0;
             sSpyShares = totalUSD / ind.close;
-            crisisEvents.push({ date: d, event: 'RE-ENTRY IN SPY', spyPrice: ind.close, gldPrice: ind.gld, vix: ind.vix, totalUSD });
+            crisisEvents.push({ date: d, event: 'RE-ENTRY IN SPY (SMA 200)', spyPrice: ind.close, gldPrice: ind.gld, vix: ind.vix, totalUSD });
         }
 
-        // NOTFALL-LOGIK FÜR MODELL 5 (100% Gold)
-        const canTriggerF = (i - fLastReEntryIdx > 30);
-        if (!fMacroRed && shouldTriggerRed && canTriggerF) {
+        // NOTFALL-LOGIK FÜR MODELL 5 (100% Gold mit VIX-Panic Bottom Sniper)
+        if (!fMacroRed && shouldTriggerRed) {
             fMacroRed = true;
             const totalUSD = (fSpyShares * ind.close) + (fGldShares * ind.gld);
             fSpyShares = 0;
             fGldShares = totalUSD / ind.gld;
-        } else if (fMacroRed && shouldReEnter) {
+        } else if (fMacroRed && shouldReEnterPanic) {
             fMacroRed = false;
             fLastReEntryIdx = i;
             const totalUSD = fGldShares * ind.gld;
@@ -380,8 +382,8 @@ async function runFullHistorySimulation() {
         { name: '1. Reiner S&P 500 Buy & Hold DCA (100% SPY)', endVal: finalValB_EUR, profit: finalValB_EUR - bInvestedEUR, ret: (finalValB_EUR - bInvestedEUR) / bInvestedEUR * 100, maxDD: bMaxDD },
         { name: '2. Reiner Gold Buy & Hold DCA (100% GLD)', endVal: finalValG_EUR, profit: finalValG_EUR - gInvestedEUR, ret: (finalValG_EUR - gInvestedEUR) / gInvestedEUR * 100, maxDD: gMaxDD },
         { name: '3. 50/50 SPY / GLD Permanent Portfolio DCA', endVal: finalValP_EUR, profit: finalValP_EUR - pInvestedEUR, ret: (finalValP_EUR - pInvestedEUR) / pInvestedEUR * 100, maxDD: pMaxDD },
-        { name: '4. Gold-SPY Dynamic Shield (Notfall: 50% Gold / 50% Cash)', endVal: finalValS_EUR, profit: finalValS_EUR - sInvestedEUR, ret: (finalValS_EUR - sInvestedEUR) / sInvestedEUR * 100, maxDD: sMaxDD },
-        { name: '5. Gold-SPY Dynamic Shield (Notfall: 100% Gold)', endVal: finalValF_EUR, profit: finalValF_EUR - fInvestedEUR, ret: (finalValF_EUR - fInvestedEUR) / fInvestedEUR * 100, maxDD: fMaxDD }
+        { name: '4. Gold-SPY Trend-Shield (Notfall: 50% Gold / 50% Cash | SMA 200 Re-Entry)', endVal: finalValS_EUR, profit: finalValS_EUR - sInvestedEUR, ret: (finalValS_EUR - sInvestedEUR) / sInvestedEUR * 100, maxDD: sMaxDD },
+        { name: '5. Gold-SPY Trend-Shield + Panic-Sniper (Notfall: 100% Gold | VIX Bottom Sniper)', endVal: finalValF_EUR, profit: finalValF_EUR - fInvestedEUR, ret: (finalValF_EUR - fInvestedEUR) / fInvestedEUR * 100, maxDD: fMaxDD }
     ];
 
     results.forEach(r => {
