@@ -315,3 +315,84 @@ GitHub Actions verbraucht Rechenzeit nur noch für geplante Großläufe:
    * **Cloudflare Workers:** Mit wenigen tausend Requests pro Tag weit unter dem Free-Limit (100.000 Req/Tag).
    * **Cloudflare D1:** Nur wenige Megabyte des 5-GB-Speicherkontingents belegt.
    * **GitHub Actions:** Reduzierung auf reine Batch-Cronjobs (< 30 Minuten/Monat), wodurch das 2.000-Minuten-Kontingent zu 98 % frei bleibt.
+
+---
+
+## 8. Konfigurations-Architektur & Strategie-Manifeste
+
+Um maximale Entkopplung, einfache Wartung und saubere Git-Deltas zu gewährleisten, folgt die Konfiguration dem **modularen Manifest-Prinzip**: Statt einer unübersichtlichen, monolithischen Master-Datei besitzt jede Strategie ein eigenes Manifest in `config/strategies/`.
+
+```
+config/
+├── Signal-Engine-Config.json          <-- Globale Steuerung der Engine (Webhooks, Scheduling)
+└── strategies/                        <-- Autarke Strategie-Manifeste (Auto-Discovery)
+    ├── muzzled-cathie-wood.json       <-- Parameter, Version & Changelog für MCW
+    ├── kamikaze-growth.json           <-- Parameter, Version & Changelog für Kamikaze
+    ├── seven-slot-guru.json           <-- Parameter, Version & Changelog für 7-Slot-Guru
+    ├── gold-spy.json                  <-- Parameter, Version & Changelog für Gold-SPY
+    └── satellite.json                 <-- Parameter, Version & Changelog für Satellite
+```
+
+### 1. Aufbau eines Strategie-Manifests (`config/strategies/<strategie-id>.json`)
+Jedes Manifest ist die Single Source of Truth für Parameter, Revisionsstand und Historie der Strategie:
+
+```json
+{
+  "id": "MUZZLED_CATHIE_WOOD",
+  "name": "Muzzled Cathie Wood",
+  "version": "2.1.0",
+  "status": "ACTIVE",
+  "allocation": {
+    "tech_weight_pct": 60,
+    "crypto_weight_pct": 40,
+    "emergency_evacuation": {
+      "gold_pct": 50,
+      "cash_pct": 50,
+      "trigger_net_liq_delta": -0.05
+    }
+  },
+  "changelog": [
+    {
+      "version": "2.1.0",
+      "date": "2026-09-08",
+      "title": "Makrosicherung modifiziert",
+      "summary": "Die Makrosicherung wurde modifiziert. Bei Überschreiten der Net-Liquidity-Gefahrenschwelle evakuiert das System nun in 50 % Gold / 50 % Cash mit Re-Entry Sniper.",
+      "broadcast": true
+    },
+    {
+      "version": "2.0.0",
+      "date": "2026-08-15",
+      "title": "Krypto-Pyramide 40/30/30 eingeführt",
+      "summary": "Dynamische Tranchensteuerung über den BTC 21-Wochen-EMA implementiert.",
+      "broadcast": true
+    }
+  ]
+}
+```
+
+### 2. Globale Signal-Engine-Konfiguration (`config/Signal-Engine-Config.json`)
+Beherbergt ausschließlich übergeordnete Parameter zur Ausführung und Schnittstellenanbindung:
+
+```json
+{
+  "snapshot_export": {
+    "enabled": true,
+    "webhook_env_url": "CF_SNAPSHOT_WEBHOOK_URL",
+    "frequency": "after_daily_analysis"
+  },
+  "active_strategies": [
+    "MUZZLED_CATHIE_WOOD",
+    "KAMIKAZE_GROWTH",
+    "7_SLOT_GURU",
+    "GOLD_SPY",
+    "SATELITE"
+  ]
+}
+```
+
+### 3. Automatisierter Versionierungs- & Push-Workflow:
+1. **Änderung in CrashRadar:** Entwickler passt z. B. in `kamikaze-growth.json` einen Parameter an, erhöht `version` auf `"1.2.0"` und fügt einen Changelog-Eintrag mit `broadcast: true` hinzu.
+2. **Auto-Discovery:** Die `PortfolioStrategyEngine` lädt alle Manifeste dynamisch ein und erfasst den Versionssprung im täglichen Snapshot `daily_intelligence.json`.
+3. **D1-Ingestion:** Der Webhook aktualisiert `strategy_changelogs` in Cloudflare D1.
+4. **Proaktiver Push:** Der Cloudflare Worker erkennt die neue Version für aktive Portfolios (`strategy_version < new_version`) und sendet den Changelog-Text automatisch in die 1:1-Privatchats der betroffenen Nutzer.
+
