@@ -250,6 +250,29 @@ Wenn das Finanzsystem unter Liquiditätsentzug leidet, greift der übergeordnete
 
 ---
 
+### 7. Live-Broker-Anbindung, Discretionary Override & Telegram-Rolle
+
+Das Kamikaze-Growth-System ist keine theoretische Modellauswertung, sondern steuert das **reale Handelskonto** des Investors:
+
+#### A. Live-Broker-Anbindung (Trading-Konto Ingestion):
+* Die SignalEngine zapft über einen Ingestion-Adapter die Schnittstelle des Broker-Kontos an.
+* **Permanenter Datenabgleich:**
+  * Tatsächlich freies USD-Cash (`cash_pots.free_usd`).
+  * In offenen Limit-Orders reserviertes Kapital (`cash_pots.pending_orders_usd`).
+  * Alle realen Positionen mit Stückzahl und Einstandskursen.
+
+#### B. Discretionary Override („Broker-Realität ist Gesetz“):
+* Weicht der Investor in der Praxis bewusst oder opportunistisch von den Modell-Signalen ab (z. B. vorzeitiger manueller Teilverkauf, Vorwegnahme eines Ausbruchs, Neujustierung von Kauflimits wie bei `S` oder `PGY`):
+* **Die Broker-Realität überschreibt bedingungslos den Modell-Zustand.**
+* Das System zwingt das Depot nicht in ein theoretisches Schema zurück, sondern übernimmt den Broker-Ist-Zustand als neue Berechnungsbasis (*State Reconciliation*).
+* Alle abgeleiteten Berechnungen (z. B. der 35 %-Zündfunken aus dem freien Mutterschiff oder die Krypto-Claim-Allokation) passen sich sofort an das tatsächlich vorhandene Portfolio an.
+
+#### C. Telegram Read-Only Flaggschiff-Stream:
+* Auf Telegram wird Kamikaze Growth für alle externen Nutzer als **striktes Read-Only-Flaggschiff** geführt.
+* Abonnenten sehen alle realen Transaktionen, Zündfunken, Climax-Exits und Cash-Quoten als unzensierten „Skin in the Game“-Beweis, können das Portfolio im Bot jedoch nicht interaktiv konfigurieren.
+
+---
+
 ## 3. Empirischer Proof of Concept (PoC) & Simulations-Ergebnisse (2020–2026)
 
 Die quantitative Leistungsfähigkeit der **Kamikaze-Growth-Architektur** (50/50 Allokation Tech & Krypto-Equities, $ 30.000 Startkapital geparkt im S&P 500 Mutterschiff, $ 10.000 Cash-Pot-Reserve, $ 200/Monat dynamischer BTC-Sparplan, kein Blind-Kauf ohne 10-Q Fundamentaldaten, Sektor-Dip-Buying, 3-Stufen-Abbau und 100 % Notfall-Evakuierung in 50 % Gold / 50 % Cash) wurde über den Zeitraum vom **01.11.2020 (3 Monate vor PLTR-Peak/Crash) bis 04.09.2026** simuliert:

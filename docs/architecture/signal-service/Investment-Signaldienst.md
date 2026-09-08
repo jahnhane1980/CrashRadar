@@ -79,6 +79,12 @@ Telegram unterscheidet grundlegend zwischen verschiedenen Chat-Arten. Das System
   * Es gibt standardmäßig **keine Kommentar- oder Diskussionsfunktion**.
   * Die **Mitgliederliste ist verborgen** (Abonnenten sehen sich nicht gegenseitig).
 
+### 3. Read-Only Flaggschiff-Stream – Kamikaze Growth (Echtgeld-Live-Feed)
+* **Zweck:** Maximal transparenter „Skin in the Game“-Beweis für Follower. Kamikaze Growth ist das **reale Echtgeld-Depot des Autors** (aktuell ~94.000 $ USD-Depotvolumen).
+* **Funktionsweise:**
+  * **Strikter Read-Only-Modus für alle:** Externe Telegram-Abonnenten können sämtliche Transaktionen, Zündfunken, Climax-Exits und Depot-Kennzahlen in Echtzeit mitverfolgen, haben jedoch **keine Möglichkeit, eigene Sparraten, Tranchen oder Portfolios dafür zu konfigurieren**.
+  * **Trennung von Onboarding-Strategien:** Während `MUZZLED_CATHIE_WOOD`, `7_SLOT_GURU` oder `GOLD_SPY` über das interaktive 1:1-Onboarding für eigene Depots parametrisiert und per `[✅ Ausgeführt]` bestätigt werden, wird Kamikaze Growth als reines beobachtbares Echtgeld-Flaggschiff geführt.
+
 ---
 
 ## 3. Telegram-Schnittstellendefinition (Funktionsumfang)
@@ -135,7 +141,7 @@ Die im Signaldienst wählbaren Strategien im Überblick:
    Disziplinierte 60/40 Tech- und Krypto-Strategie mit 3-Säulen-ARK-Ingestion (`OBSERVE` vor Kauf). Der Krypto-Anteil wird dynamisch über den 21-Wochen-EMA mit einer 40/30/30-Pyramide gesteuert und über ein Leihgabe-Verrechnungskonto im S&P-500-Mutterschiff geparkt. Bei Makro-Kollaps greift eine 100 % Notfall-Evakuierung in 50 % Gold / 50 % Cash mit antizyklischem Panic-Capitulation-Sniper für den Wiedereinstieg.
 
 2. 📄 **[`Kamikaze-Growth.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Growth.md) (`KAMIKAZE_GROWTH`):**  
-   Aggressive 50/50 High-Beta-Turnaround-Strategie für Tech-Aktien (`PLTR`, `NVTS`, `SOFI`) und Krypto-Equities (`MSTR`, `MARA`) ohne laufende Sparrate. Sie erfordert Weinstein Stage-2-Ausbrüche sowie den strikten 'Kein Kauf ohne SEC-10-Q'-Fundamental-Türsteher. Parabolische Überhitzungen werden über einen Climax-Top Exit abgeschöpft, während dieselbe 50/50 Gold/Cash Notfall-Evakuierung vor Bärenmärkten schützt.
+   Aggressive 50/50 High-Beta-Turnaround-Strategie für Tech-Aktien (`PLTR`, `NVTS`, `SOFI`) und Krypto-Equities (`MSTR`, `MARA`) ohne laufende Sparrate. Sie fungiert als **reales Echtgeld-Flaggschiff des Autors** und ist auf Telegram für alle externen Nutzer **strikt Read-Only**. Im Gegensatz zu rein algorithmischen Modellen ist Kamikaze **direkt an das reale Handelskonto (Broker-API) angebunden**, wodurch Portfolio-Positionen und freies USD-Cash permanent synchronisiert werden. Handelt der Investor beim Broker abweichend von der Modell-Vorgabe, gilt das Prinzip **Discretionary Override („Broker-Realität ist Gesetz“)** – die SignalEngine passt ihre Berechnungen (Zündfunken, freier Pool) dynamisch an die echte Kontoführung an. Parabolische Überhitzungen werden über einen Climax-Top Exit abgeschöpft, während dieselbe 50/50 Gold/Cash Notfall-Evakuierung vor Bärenmärkten schützt.
 
 3. 📄 **[`7-Slot-Guru-Konsens-System.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/7-Slot-Guru-Konsens-System.md) (`7_SLOT_GURU`):**  
    Fokussiertes 7-Slot-System, das ausschließlich Aktien kauft, die im 13F-Konsens von mindestens 2 legendären Superinvestoren gehalten werden. Die Einstiegs-Ampel kombiniert Fair-Value-Discounts mit technischem Momentum. Ein Druckenmiller-Makroschutzschild (Net Fed Liquidity) steuert eine defensive Absicherung oder Evakuierung zum Schutz des Kernkapitals.
@@ -177,6 +183,57 @@ Um Code-Duplikate, Widersprüche und uneinheitliches Signalverhalten über versc
   Überwacht `MSTR` und `COIN` in der Krypto-Zyklus-Gefahrenzone ($> 970\text{ Tage}$ seit dem letzten Bitcoin-Boden). Ein Durchbruch des SMA 50 unter Volumen $> 1{,}2\times$ triggert sofortigen Krypto-Equity-Exit ins Mutterschiff.
 * **Frühwarn-Divergenzen ([`CryptoCycleDivergenceIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/CryptoCycleDivergenceIndicator.js) & [`BtcTrailingStopIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/BtcTrailingStopIndicator.js)):**  
   Warnen vor Liquiditäts-Austrocknung, wenn `MSTR` den SMA 200 verliert oder die Hebel-Aktien trotz hohem Bitcoin-Kurs ausbluten.
+
+---
+
+### 3.3 Kamikaze Growth: Live-Broker-Anbindung & Discretionary Override („Broker-Realität ist Gesetz“)
+
+Im Unterschied zu den rein theoretisch simulierten oder per Chat-Feedback quittierten Strategien basiert Kamikaze Growth auf einer direkten Kopplung mit dem **realen Handelskonto** des Investors:
+
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│             BROKER-LIVE-SYNCHRONISATION & RECONCILIATION               │
+├────────────────────────────────┬───────────────────────────────────────┤
+│ 1. Broker Read-Only Adapter    │ Zapft das Trading-Konto per API an:   │
+│    (CrashRadar Engine Ingestion)│ • Realer Cash-Bestand (USD)           │
+│                                │ • Real gebundenes Order-Cash          │
+│                                │ • Exakte Stückzahlen & Einstandspreise│
+├────────────────────────────────┼───────────────────────────────────────┤
+│ 2. Discretionary Human Override│ Handelt der Investor abweichend:      │
+│    ("Broker Reality is Law")   │ • Vorzeitiger manueller Teilverkauf   │
+│                                │ • Manueller Zukauf / Limit-Orders     │
+│                                │ ➔ Broker-Ist überschreibt Modell-Soll! │
+├────────────────────────────────┼───────────────────────────────────────┤
+│ 3. Dynamische Weiterrechnung   │ Alle mathematischen Kenngrößen:       │
+│    (Adaptive SignalEngine)     │ • Freies Mutterschiff-Volumen         │
+│                                │ • 35 % Zündfunken-Betrag              │
+│                                │ • Krypto-Claim & Cash-Quoten          │
+│                                │ passen sich an die reale Liquidität an│
+├────────────────────────────────┼───────────────────────────────────────┤
+│ 4. Read-Only Telegram Broadcast│ Follower erhalten den Live-Stream des │
+│    (100 % Transparenz)         │ realen Depots als "Skin in the Game"  │
+└────────────────────────────────┴───────────────────────────────────────┘
+```
+
+#### 1. Die Broker-Ingestion-Pipeline
+* Der Ingestion-Adapter in `CrashRadar` liest in regelmäßigen Intervallen (z. B. vor/nach Marktschluss sowie bei Strategieausführung) die aktuellen Konto-Rohdaten aus:
+  * `free_usd`: Tatsächlich frei verfügbares Barvermögen (USD).
+  * `pending_orders_usd`: Durch offene Kauf-Limits (z. B. Limit-Buy Orders auf `S` oder `PGY`) reserviertes Kapital.
+  * `positions`: Array aller tatsächlich im Depot eingebuchten Wertpapiere mit Stückzahl, Durchschnittspreis und aktuellem Marktwert.
+* Diese Rohdaten werden in den täglichen Snapshot (`daily_intelligence.json`) eingespielt und fließen in die D1-Datenbank für das Telegram-Reporting.
+
+#### 2. Das Prinzip des Discretionary Override (Menschliche Übersteuerung)
+* Ein starres algorithmisches Modell neigt bei manuellen Eingriffen des Händlers dazu, zu desynchronisieren (Ghost Trades, falsche Cash-Annahmen).
+* In CrashRadar gilt für Kamikaze Growth ein klares Primat: **Die Realität des Brokers hat immer Recht.**
+* Wenn der Investor:
+  * eine Position vor Erreichen des Climax-Tops ganz oder teilweise abstößt,
+  * eine Aktie opportunistisch kauft, bevor das Modell das Kaufsignal finalisiert hat,
+  * Limit-Orders storniert, ändert oder neue Orders einstellt:
+* **Verhalten der SignalEngine:**
+  1. Das System erzwingt keinen Rückbau auf das theoretische Modell.
+  2. Der tatsächliche Bestand wird bedingungslos als neuer Ausgangszustand (*Reconciled State*) übernommen.
+  3. Die dynamische Zündfunken-Logik (35 % des freien Mutterschiffs) berechnet sich ab sofort auf Basis des *tatsächlich* vorhandenen freien Cashs im Broker-Konto.
+  4. Alle Risikokennzahlen (z. B. Stop-Losses, Climax-Alarme) werden sofort für die neu erfassten Positionen scharf geschaltet.
 
 ---
 
@@ -257,13 +314,14 @@ CREATE TABLE IF NOT EXISTS user_portfolios (
     risk_profile TEXT DEFAULT 'BALANCED',     -- 'CONSERVATIVE', 'BALANCED', 'AGGRESSIVE'
     onboarding_step TEXT DEFAULT 'COMPLETED', -- Status für State-Machine
     start_capital REAL NOT NULL,              -- Initiales Investitionskapital
-    monthly_rate REAL DEFAULT 0.0,            -- Monatliche Sparrate
+    monthly_rate REAL DEFAULT 0.0,            -- Monatliche Sparrate (bei Kamikaze Growth = 0.0)
     flexible_topups_enabled INTEGER DEFAULT 0,-- Flag: Sonderzahlungen erwünscht (0 = Nein, 1 = Ja)
     pending_topup REAL DEFAULT 0.0,           -- Angemeldete, noch nicht investierte Sonderzahlung
     topup_status TEXT DEFAULT 'IDLE',         -- 'IDLE', 'WAITING_FOR_SIGNAL', 'ALLOCATED'
     cash_reserve REAL DEFAULT 0.0,            -- Aktuell auf Verrechnungskonto geparktes Kapital
     current_tranche INTEGER DEFAULT 0,        -- Fortschritt der Tranchenkäufe (z. B. 0 bis 3)
     strategy_version TEXT DEFAULT 'v1.0',     -- Revisionsstand der Strategie beim Nutzer
+    is_read_only_flagship INTEGER DEFAULT 0,  -- 1 = Reines Read-Only Flaggschiff-Abo (Kamikaze Growth)
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
@@ -275,7 +333,7 @@ CREATE TABLE IF NOT EXISTS market_regime_snapshot (
     macro_regime TEXT NOT NULL,               -- 'EXPANSION', 'SLOWDOWN', 'CRISIS_ALERT'
     veto_active INTEGER NOT NULL,             -- 0 = Inaktiv, 1 = Aktiv
     crash_risk_pct REAL NOT NULL,             -- z. B. 14.5
-    strategy_payload TEXT NOT NULL,           -- JSON: Detaillierte Allokationen & Tranchen je Strategie
+    strategy_payload TEXT NOT NULL,           -- JSON: Detaillierte Allokationen & Tranchen je Strategie (inkl. Broker-Ist & Cash für Kamikaze)
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 

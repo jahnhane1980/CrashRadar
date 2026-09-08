@@ -10,18 +10,25 @@
 ### 1. Portfoliostrategien: Detail-Ausarbeitung, Harmonisierung & Backtest-Validierung
 * **Architektonische Priorität:** Sämtliche Portfoliostrategien müssen zuerst einzeln und vollständig in `CrashRadar` ausformuliert, mathematisch harmonisiert und im Code implementiert werden, **bevor** mit der Umsetzung des echten Signal-Services (Punkt 3) begonnen wird!
 * **Betroffene Strategie-Dokumente & Spezifikationen:**
-  * **Kamikaze Growth Schärfung:** Integration des parabolischen Climax-Top Exits (`TOP_CLIMAX_ALERT` bei Distanz zum EMA 20 $\ge 35-45\,\%$) und Watchlist-Klausel für Turnaround-Kandidaten in [`docs/architecture/strategies/Kamikaze-Growth.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Growth.md).
+  * **Kamikaze Growth Schärfung:** Integration des parabolischen Climax-Top Exits (`TOP_CLIMAX_ALERT` bei Distanz zum EMA 20 $\ge 35-45\,\%$) und Watchlist-Klausel für Turnaround-Kandidaten in [`docs/architecture/strategies/Kamikaze-Growth.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Growth.md). Spezifikation der **Live-Broker-Anbindung (Trading-Konto Ingestion & Discretionary Override)** sowie des **Read-Only Telegram Broadcasts** für Follower.
   * **Satellite-Strategie Ausarbeitung:** Vollständige Spezifikation und Ausarbeitung von [`docs/architecture/strategies/Satelite.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Satelite.md) (irregulärer Solana- & Ethereum-Staking ETF aus Gehaltsüberschüssen).
-  * **MCW vs. 7-Slot-Guru Abgleich:** Abgleich der Makro-Schutzschilde: Prüfung, ob das 7-Slot-Guru-System von der statischen 25 % Gold-Quote auf die hocheffektive MCW-Notfall-Evakuierung (100 % in 50 % Gold / 50 % Cash mit Re-Entry Sniper) gehoben wird ([`docs/architecture/strategies/7-Slot-Guru-Konsens-System.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/7-Slot-Guru-Konsens-System.md)).
+  * **MCW vs. 7-Slot-Guru Abgleich [ERLEDIGT]:** 7-Slot-Guru erfolgreich auf den universellen 100 % Notfall-Schutzschild (50 % Gold / 50 % Cash) mit Dual-Trigger (NetLiq + Credit Spreads) und Dual-Re-Entry gehoben ([`docs/architecture/strategies/7-Slot-Guru-Konsens-System.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/7-Slot-Guru-Konsens-System.md)).
   * **Gold-SPY DCA & Tranchen:** Finaler Abgleich des 40/30/30 Bottom-Sniper Re-Entry-Regelwerks in [`docs/architecture/strategies/Gold-SPY.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Gold-SPY.md).
   * **Gold-GDX Status:** Bleibt als reine Forschungs- und Minenreferenz dokumentiert ([`docs/architecture/strategies/Gold-GDX.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Gold-GDX.md)), wird jedoch vorerst nicht im aktiven Signaldienst angeboten.
 
 ### 2. PortfolioStrategyEngine (Plugin-Architektur, Interface & Strategie-Registry)
 * **Ziel:** Etablierung einer autarken `PortfolioStrategyEngine` zur modularen Kapselung und parallelen Ausführung aller Portfoliostrategien (analog zur Indikatoren-Registry via `_indicators` in `MacroRegimeEngine`).
 * **Operative Umsetzungsschritte [OFFEN]:**
+  * **Schritt 0 (Daten-Audit der Strategien & Fetcher-Registrierung):**
+    * Systematische Überprüfung aller von den 5 Strategien benötigten Marktdaten, Ticker (Tech, Krypto-Equities, ETFs, Gold), Notenbank- und Makro-Reihen sowie Sentiment-Daten.
+    * Gründlicher Abgleich mit der Datenbank und [`config/Database-Fetcher-Config.json`](file:///D:/GitHub/CrashRadar/config/Database-Fetcher-Config.json): Identifikation aller Datenreihen, die noch nicht regelmäßig bezogen werden.
+    * Neuregistrierung der fehlenden Ticker/Zeitreihen im Fetcher (inkl. Zuordnung zu Yahoo, Polygon, FRED, Tiingo oder SEC 10-Q).
   * **Schritt 1 (`BasePortfolioStrategy.js` Interface):** Einheitliche Basisklasse mit Standard-Methoden (`initialize()`, `evaluateDaily(date, marketData, macroState)`, `executeTrades()`, `getPortfolioStatus()`, `getHistory()`, `generateAlerts()`).
   * **Schritt 2 (`PortfolioStrategyEngine.js`):** Orchestrator-Klasse zur parallelen Ausführung aller registrierten Strategien, aggregiertem Reporting und Schnittstelle zur Notification-Engine.
   * **Schritt 3 (Strategie-Klassen anlegen):** Kapselung von `MuzzledCathieWoodStrategy.js`, `KamikazeGrowthStrategy.js`, `SevenSlotGuruStrategy.js`, `GoldSpyDcaStrategy.js` und `SatelliteStakingStrategy.js` in `src/strategies/`.
+  * **Schritt 4 (Broker-Live-Ingestion & Discretionary Override für Kamikaze):**
+    * Anbindung des realen Handelskonto (Cash USD, offene Limit-Orders, Bestände).
+    * Reconciliation-Logik: Discretionary Override ("Broker-Realität überschreibt Modell-Zustand").
 
 ### 3. Notification- & Signal-System: Telegram, Edge-Gateway & Architektur-Review
 * **Master-Spezifikation:** Vollständig dokumentiert in [`docs/architecture/signal-service/Investment-Signaldienst.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signal-service/Investment-Signaldienst.md).

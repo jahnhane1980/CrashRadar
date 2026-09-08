@@ -1,11 +1,31 @@
 {
   "id": "KAMIKAZE_GROWTH",
   "name": "Kamikaze Growth Portfolio",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "base_currency": "USD",
   "last_updated": "2026-09-08",
 
+  "telegram": {
+    "read_only": true,
+    "stream_type": "FLAGSHIP_BROADCAST"
+  },
+
+  "broker_sync": {
+    "enabled": true,
+    "ground_truth": "BROKER_REALITY_OVERRIDES_MODEL",
+    "sync_cash": true,
+    "sync_positions": true,
+    "sync_pending_orders": true
+  },
+
   "changelog": [
+    {
+      "version": "1.1.0",
+      "date": "2026-09-08",
+      "title": "Telegram Read-Only Stream & Broker-Live-Sync mit Discretionary Override",
+      "summary": "Kamikaze Growth als striktes Read-Only-Flaggschiff für Telegram definiert. Integration der Live-Broker-Anbindung mit Discretionary Override ('Broker-Realität überschreibt Modell-Zustand').",
+      "broadcast": false
+    },
     {
       "version": "1.0.0",
       "date": "2026-09-08",
