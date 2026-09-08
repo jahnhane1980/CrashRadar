@@ -40,8 +40,8 @@
   * **Schritt 5 (Runner-Refactoring):** Aktualisierung der Runner ([`IndicatorAnalysisRunner.js`](file:///D:/GitHub/CrashRadar/src/runners/IndicatorAnalysisRunner.js), [`MacroScorecardRunner.js`](file:///D:/GitHub/CrashRadar/src/runners/MacroScorecardRunner.js), [`StandardRunner.js`](file:///D:/GitHub/CrashRadar/src/runners/StandardRunner.js)) zur Übergabe von Nachrichten an den neuen `TelegramService`.
 * **Ausblick: Neues Repo `CrashRadar-Signals` (Cloudflare Worker + D1):**
   * Setup des Workers als Webhook-Receiver für private 1:1 Telegram-Chats.
-  * D1-Tabellen `user_portfolios` (inkl. `strategy_id`), `market_regime_snapshot` und `signal_logs`.
-  * Geführtes Onboarding, Ad-hoc `/topup` mit Sofort-Feedback (< 50 ms), Inline-Buttons `[✅ Ausgeführt]` / `[⏳ Überspringen]` und die 3 Beweis-Szenarien (Worst Case, Best Case, Neutral).
+  * D1-Tabellen `user_portfolios` (inkl. `strategy_id` & `strategy_version`), `market_regime_snapshot`, `strategy_changelogs` und `signal_logs`.
+  * Geführtes Onboarding, Ad-hoc `/topup` mit Sofort-Feedback (< 50 ms), Inline-Buttons `[✅ Ausgeführt]` / `[⏳ Überspringen]`, die 3 Beweis-Szenarien und automatischer Transparenz-Push bei Strategie-Updates (z. B. "Strategie modifiziert: Makrosicherung V2.1").
 
 ### 4. Dynamischer Makro-Wirtschaftskalender & Szenario-Framework (`Option A: Full DB`)
 * **Architektur-Konzept & Spezifikation:** Vollständig dokumentiert in [`docs/architecture/macro/Makro-Kalender-Szenarien-Konzept.md`](file:///D:/GitHub/CrashRadar/docs/architecture/macro/Makro-Kalender-Szenarien-Konzept.md).

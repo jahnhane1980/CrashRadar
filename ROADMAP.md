@@ -29,7 +29,7 @@
   * **Architektur-Review der Indikatoren & Notifications:** Gründliche Überprüfung der aktuellen Pipeline auf Ineffizienzen, Vermeidung doppelter Indikatoren-Auswertungen und saubere Trennung der Zuständigkeiten (Separation of Concerns).
   * **Dynamisches Debouncing & Krisen-Aufwach-Logik:** Dynamische Koppelung des Spam-Schutzes an das Makro-Klima (14 Tage Normalbetrieb, 1–2 Tage bei Kollisionsfenster, 0 Tage / Sofort-Push bei Veto oder Flash Crash).
   * **Säule 1 (CrashRadar - Broadcast & Pre-Computation):** Öffentlicher Einweg-Kanal `Makro-Wetter` für Markt-Ampel und Kollisionswarnungen sowie täglicher Webhook-Push des `daily_intelligence.json` Snapshots.
-  * **Säule 2 (CrashRadar-Signals - Personalisiertes 1:1 Edge-Gateway):** Cloudflare Worker + D1 SQLite für diskrete 1:1-Nutzerchats, Sparplan-Allokationen nach Strategie (`strategy_id`), lückenloses Feedback (`[✅ Ausgeführt]`) und die 3 Beweisszenarien (Worst Case, Best Case, Neutral).
+  * **Säule 2 (CrashRadar-Signals - Personalisiertes 1:1 Edge-Gateway):** Cloudflare Worker + D1 SQLite für diskrete 1:1-Nutzerchats, Sparplan-Allokationen nach Strategie (`strategy_id`), lückenloses Feedback (`[✅ Ausgeführt]`), die 3 Beweisszenarien (Worst Case, Best Case, Neutral) und proaktiver Transparenz-Push bei Strategie-Updates (Changelog-Broadcasting).
   * **Lokale Test-Isolation (`-Test` Pendants):** Jeder Kanal und jede Gruppe erhält für lokale Tests ein gespiegeltes `-Test` Pendant via `TELEGRAM_ENV`.
 
 ## 4. Dynamisches Makro-Szenario- & Kalender-Framework (Vom Event-Tracker zum Regime-Indikator)

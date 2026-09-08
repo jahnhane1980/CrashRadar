@@ -103,6 +103,9 @@ Die Schnittstelle umfasst fünf verbindliche Kernmodule:
 ├────────────────────────────────┼───────────────────────────────────────┤
 │ 5. Die 3 Beweis-Szenarien      │ 3 kuratierte Fälle (Worst, Best,      │
 │    (Simulation / Modul 5)      │ Neutral) mit Sofort-Skalierung        │
+├────────────────────────────────┼───────────────────────────────────────┤
+│ 6. Versions-Changelog          │ Proaktiver Transparenz-Push bei       │
+│    (Modell-Governance)         │ Anpassung der quantitativen Logik     │
 └────────────────────────────────┴───────────────────────────────────────┘
 ```
 
@@ -196,6 +199,18 @@ Statt rechenintensiver, freier Backtests im Chat greift der Bot auf **3 empirisc
   3. Nutzer klickt auf eines der 3 Szenarios.
   4. **Antwortzeit < 20 ms:** Der Cloudflare Worker skaliert die vorberechnete Rendite- und Drawdown-Matrix linear per Dreisatz und liefert sofort das Ergebnis.
 
+### Modul 6: Strategie-Governance & Versions-Changelog (Transparenz-Push)
+* **Zweck:** Absolute Transparenz und Nachvollziehbarkeit für den Nutzer, wenn an der quantitativen Logik oder den Absicherungsregeln einer Strategie Anpassungen vorgenommen werden.
+* **Trigger:** Sobald in `CrashRadar` ein Regelwerk modifiziert wird (z. B. Schärfung der Makrosicherung, Aktualisierung der Veto-Schwellenwerte oder Tranchenaufteilung), wird die neue Versionsnummer und ein kurzer Changelog-Text übergeben (via `daily_intelligence.json` Snapshot oder gezieltem Push).
+* **Zielgerichtete Ausspielung:**
+  * **1:1-Privatchat:** Alle aktiven Abonnenten der betroffenen `strategy_id` erhalten automatisch eine proaktive Push-Nachricht:
+    > ℹ️ **Strategie-Update: Muzzled Cathie Wood (V2.1)**  
+    > *Die quantitative Logik deiner gewählten Strategie wurde aktualisiert:*  
+    > • **Änderung:** Die Makrosicherung wurde modifiziert. Bei Überschreiten der Net-Liquidity-Gefahrenschwelle evakuiert das System nun in 50 % physisches Gold / 50 % Cash mit Re-Entry Sniper.  
+    > • **Auswirkung:** Dein bestehendes Portfolio bleibt unberührt; künftige Signale greifen automatisch nach dem optimierten Regelwerk V2.1.
+  * **Broadcast-Kanal:** Kurzer Versionshinweis für alle Marktbeobachter im öffentlichen Kanal.
+* **Persistenz & Quittierung:** Der Stand wird in D1 (`user_portfolios.strategy_version`) vermerkt, sodass der Nutzer bei `/status` jederzeit seinen aktuellen Versionsstand sieht.
+
 ---
 
 ## 4. Datenbank-Design (Cloudflare D1 / SQLite)
@@ -217,6 +232,7 @@ CREATE TABLE IF NOT EXISTS user_portfolios (
     topup_status TEXT DEFAULT 'IDLE',         -- 'IDLE', 'WAITING_FOR_SIGNAL', 'ALLOCATED'
     cash_reserve REAL DEFAULT 0.0,            -- Aktuell auf Verrechnungskonto geparktes Kapital
     current_tranche INTEGER DEFAULT 0,        -- Fortschritt der Tranchenkäufe (z. B. 0 bis 3)
+    strategy_version TEXT DEFAULT 'v1.0',     -- Revisionsstand der Strategie beim Nutzer
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
@@ -232,11 +248,22 @@ CREATE TABLE IF NOT EXISTS market_regime_snapshot (
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Tabelle: Strategie-Versionen & Transparenz-Changelog
+CREATE TABLE IF NOT EXISTS strategy_changelogs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    strategy_id TEXT NOT NULL,                -- 'MUZZLED_CATHIE_WOOD', 'KAMIKAZE_GROWTH', etc.
+    version TEXT NOT NULL,                    -- z. B. 'v2.1'
+    title TEXT NOT NULL,                      -- Kurztitel (z. B. 'Makrosicherung modifiziert')
+    change_summary TEXT NOT NULL,             -- Detailbeschreibung der Regelanpassung
+    broadcast_sent INTEGER DEFAULT 0,         -- Flag: 1 = An Telegram-Kanal gepusht
+    released_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Tabelle: Transaktions- und Signalisierungshistorie
 CREATE TABLE IF NOT EXISTS signal_logs (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
-    signal_type TEXT NOT NULL,                -- 'BUY_TRANCHE', 'MONTHLY_EXECUTION', 'PARK_CASH', 'VETO_HOLD', 'TOPUP_DEPLOY'
+    signal_type TEXT NOT NULL,                -- 'BUY_TRANCHE', 'MONTHLY_EXECUTION', 'PARK_CASH', 'VETO_HOLD', 'TOPUP_DEPLOY', 'VERSION_UPDATE'
     strategy_id TEXT NOT NULL,                -- Zugehörige Strategie
     details TEXT,                             -- Allokationsdetails (z. B. "40% QQQ, 20% BTC, 40% Cash")
     status TEXT DEFAULT 'SENT',               -- 'SENT', 'CONFIRMED', 'SKIPPED'
