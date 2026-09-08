@@ -10,7 +10,9 @@
 ```text
 ┌─────────────────────────────────────────────────────────────────────────────────┐
 │                      KAMIKAZE USER-CURATED MASTER-WATCHLIST                     │
-│  (Manuelle Selektion durch den Investor bei Anlage-Ideen: Status: OBSERVE)      │
+│  • Tier 1 (Core Observe): PLTR, SOFI (Primäre Einstiegsziele)                  │
+│  • Tier 2 (Fallback Observe): ZETA, SOUN (Opportunistisch, falls Tier 1 teuer) │
+│  • Krypto-Equities: MSTR, MARA, BMNR, BLSH (Gesteuert via BTC 21W-EMA)          │
 └────────────────────────────────────────┬────────────────────────────────────────┘
                                          │
              ┌───────────────────────────┴───────────────────────────┐
@@ -19,15 +21,17 @@
 │            TECH SUB-BUCKET             │ │          KRYPTO SUB-BUCKET          │
 │     (50 % Strategische Allokation)     │ │    (50 % Strategische Allokation)   │
 ├────────────────────────────────────────┤ ├─────────────────────────────────────┤
-│ • High-Conviction Tech-Universum:      │ │ • High-Beta Krypto-Equities:        │
-│   PLTR, NVTS, IBRX, AIRO, SOFI, S      │ │   MSTR, MARA, BMNR, BLSH            │
-│ • Keine starre Slot-Limitierung        │ │ • Kein Direktinvestment in BTC!     │
-│ • Türsteher: Weinstein Stage-2, SMA200 │ │ • Regime-Master: BTC 21-Wochen-EMA  │
-│ • Fundamental-Gate: >= 15 % YoY / Turn │ │ • 40/30/30-Gleichgewichts-Pyramide  │
-│ • Zündfunken: 35 % aus freiem SPY-Pool │ │ • Bärenmarkt-Parkplatz:             │
-│ • 3-Stufen-Exit (1/3 Knick, 1/3 SMA200)│ │   Interner Krypto-Claim im SPY-Pool │
-│ • Sektor-Relativität (IGV, SMH, QQQ...)│ │ • Taktischer Satellit: Irreguläres  │
-│                                        │ │   Solana- & ETH-Staking aus Gehalt  │
+│ • Aktive Kern-Bestände (HOLD & BUY):   │ │ • High-Beta Krypto-Equities:        │
+│   AIRO, LUMN, IBRX, NVTS, S            │ │   MSTR, MARA, BMNR, BLSH            │
+│ • Phase-Out Bestände (HOLD_ONLY):      │ │ • Kein Direktinvestment in BTC!     │
+│   SEMI, CDNX, PGY (Verkaufserlöse      │ │ • Regime-Master: BTC 21-Wochen-EMA  │
+│   fließen zu 100% ins Mutterschiff)    │ │ • 40/30/30-Gleichgewichts-Pyramide  │
+│ • Türsteher: Weinstein Stage-2, SMA200 │ │ • Bärenmarkt-Parkplatz:             │
+│ • Fundamental-Gate: >= 15 % YoY / Turn │ │   Interner Krypto-Claim im SPY-Pool │
+│ • Zündfunken: 35 % aus freiem SPY-Pool │ │                                     │
+│ • 3-Stufen-Exit (1/3 Knick, 1/3 SMA200)│ │ 🛰️ EIGENER STAKING-SATELLIT (EUR):  │
+│ • Sektor-Relativität (IGV, SMH, QQQ...)│ │ • 2.088,20 € Startkapital (50/50    │
+│                                        │ │   ETH- & SOL-Staking aus Gehalt)    │
 └───────────────────┬────────────────────┘ └───────────────────┬─────────────────┘
                     │                                          │
                     └────────────────────┬─────────────────────┘
@@ -36,9 +40,9 @@
 ┌─────────────────────────────────────────────────────────────────────────────────┐
 │                           DAS S&P 500 MUTTERSCHIFF                              │
 │                         (Renditestarker Master-Pool)                            │
-│  • Basis-Kapital: 90.000 $ Start-Cash (keine starre monatliche Sparrate)        │
-│  • Start-Allokation: 45.000 $ Tech-Reserve / 45.000 $ Krypto-Claim im SPY       │
-│  • Beherbergt im Krypto-Bärenmarkt das gesamte Krypto-Kapital als Leihgabe      │
+│  • Basis-Kapital: ~94.000 $ USD-Depotvolumen (keine monatliche Core-Sparrate)   │
+│  • Liquidität: $7.034 freies USD-Cash + $4.287 Limit-Orders (200x S, 25x PGY)   │
+│  • Absorbiert ~32.000 $ Erlöse aus den auslaufenden Beständen (SEMI, CDNX, PGY) │
 │  • Schüttet dynamische Zündfunken (35 % des freien Mutterschiffs) an Tech aus   │
 └────────────────────────────────────────┬────────────────────────────────────────┘
                                          │
@@ -63,40 +67,65 @@ Im Unterschied zum *Muzzled-Cathie-Wood (MCW)* System wird die Watchlist nicht d
 * **Status standardmäßig `OBSERVE`:** Ein manuell hinzugefügter Titel landet ausnahmslos mit dem Status **`OBSERVE`** auf der Watchlist. Ein sofortiger Kauf ist streng verboten!
 * **Historischer Anker (`firstSeenDate`):** Jeder Ticker führt ein Registrierungsdatum, ab wann er auf der Beobachtungsliste stand. Ein Stage-2-Ausbruch vor diesem Datum wird vom System ignoriert.
 
-#### Das definierte Start-Universum & Watchlist-Stammdaten:
+#### A. Das reale Start-Depot (Aktive Bestände zum Stichtag 08.09.2026):
 
-Als einheitliches Startdatum für den Status `OBSERVE` gilt der **19.03.2025** (bzw. das offizielle **IPO- / Erstnotiz-Datum**, falls das Unternehmen zu diesem Stichtag noch nicht an der Börse handelbar war):
+Das Portfolio startet nicht auf der grünen Wiese, sondern übernimmt einen konkreten Realbestand von **8 Positionen** im Gegenwert von **$ 83.064,80**:
 
-| Ticker | Sub-Bucket | Sektor / Geschäftsmodell | Börsen-Notiz seit | Status auf Watchlist | Observe Startdatum (`firstSeenDate`) |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **PLTR** | Tech (50 %) | Enterprise AI & Big Data | 30.09.2020 | `OBSERVE` | **19.03.2025** |
-| **NVTS** | Tech (50 %) | GaN / SiC Next-Gen Power Chips | 20.10.2021 | `OBSERVE` | **19.03.2025** |
-| **IBRX** | Tech (50 %) | Immuntherapie & Onkologie | 28.07.2015 | `OBSERVE` | **19.03.2025** |
-| **AIRO** | Tech (50 %) | KI-Autonomie & Aerospace Tech | 13.06.2025 | `OBSERVE` | **13.06.2025 (IPO)** |
-| **SOFI** | Tech (50 %) | Digital Banking & Fintech | 04.01.2021 | `OBSERVE` | **19.03.2025** |
-| **S** | Tech (50 %) | Autonome Endpoint-Cybersecurity | 30.06.2021 | `OBSERVE` | **19.03.2025** |
-| **MSTR** | Krypto (50 %) | Bitcoin-Treasury-Strategy | < 2014 | `OBSERVE` | **19.03.2025** |
-| **MARA** | Krypto (50 %) | Groß-Mining & Energie-Infrastruktur| < 2014 | `OBSERVE` | **19.03.2025** |
-| **BMNR** | Krypto (50 %) | Mining-Equities | 05.06.2025 | `OBSERVE` | **05.06.2025 (IPO)** |
-| **BLSH** | Krypto (50 %) | Blockchain & Digital-Asset Growth | 13.08.2025 | `OBSERVE` | **13.08.2025 (IPO)** |
+| Ticker | Bezeichnung / Sektor | Bestand (Stk.) | Ø Kaufpreis | Investiertes Kapital | Status | Phase-Out / Re-Observe Flag |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **AIRO** | KI-Autonomie & Aerospace Tech | 2.600 | 6,38 $ | 16.588,00 $ | `HOLD & BUY` | Standard (`return_to_observe: true`) |
+| **LUMN** | Lumen Tech / Fiber AI Infra | 2.500 | 6,12 $ | 15.300,00 $ | `HOLD & BUY` | Standard (`return_to_observe: true`) |
+| **SEMI** | Semiconductor ETF | 650 | 19,325 $ | 12.561,25 $ | `HOLD_ONLY` | **Auslaufposition (`return_to_observe: false`)** |
+| **IBRX** | Immuntherapie & Onkologie | 1.875 | 7,31 $ | 13.706,25 $ | `HOLD & BUY` | Standard (`return_to_observe: true`) |
+| **CDNX** | CleanTech Energy ETF | 7,5 | 1.654,04 $ | 12.405,30 $ | `HOLD_ONLY` | **Auslaufposition (`return_to_observe: false`)** |
+| **PGY** | Pagaya Technologies (Fintech) | 325 | 21,68 $ | 7.046,00 $ | `HOLD_ONLY` | **Auslaufposition (`return_to_observe: false`)** |
+| **NVTS** | GaN / SiC Power Chips | 300 | 9,91 $ | 2.973,00 $ | `HOLD & BUY` | Standard (`return_to_observe: true`) |
+| **S** | SentinelOne (Cybersecurity) | 125 | 19,88 $ | 2.485,00 $ | `HOLD & BUY` | Standard (`return_to_observe: true`) |
 
-* **Besonderheit Krypto Sub-Bucket:** **Kein Direktinvestment in Bitcoin (`BTC`)!** Die Allokation erfolgt ausschließlich in die hochbeta Krypto-Aktien der Watchlist.
-* **Übergeordneter Taktgeber:** **Bitcoin (`BTC-USD`) über seinen 21-Wochen-EMA** fungiert als alleiniger Regime-Schalter für das gesamte Krypto-Universum.
-* **Irregulärer Satellit (Gehaltsüberschuss-Staking):**
-  * Unabhängig vom 90k $ Core-Portfolio führt der Investor einen separaten **Solana- (`SOL`) und Ethereum- (`ETH`) Staking-ETF**.
-  * Zuspitzung: Wird opportunistisch und unregelmäßig aus frei verfügbaren Gehaltsüberschüssen bespart, um passive Staking-Yields zu vereinnahmen, ohne das Risikobudget des Hauptdepots zu belasten.
+> [!IMPORTANT]
+> **Die Auslauf-Positionen (`SEMI`, `CDNX`, `PGY`):**  
+> Diese 3 Positionen binden aktuell **$ 32.012,55 (über 38 % des investierten Kapitals)**. Sie erhalten den Status `HOLD_ONLY` (keine Zündfunken-Nachkäufe). Bei Exit fließen die Erlöse zu 100 % in das S&P 500 Mutterschiff, und die Ticker werden archiviert (`return_to_observe: false`), sodass sie nicht wieder als Kaufsignal aufpoppen.
+
+#### B. Die Zweistufige Watchlist (Core vs. Fallback) & Krypto-Silo:
+
+Die Beobachtungsliste (`OBSERVE`) unterscheidet strikt zwischen primären Kern-Zielen und opportunistischen Fallbacks:
+
+| Ticker | Kategorie | Priorität / Ebene | Logik & Auslöser |
+| :--- | :--- | :--- | :--- |
+| **PLTR** | Tech | **Tier 1 (Core)** | Primäres Einstiegsziel bei charttechnischer Konsolidierung |
+| **SOFI** | Tech | **Tier 1 (Core)** | Primäres Einstiegsziel bei gesundem Stage-2-Rücklauf |
+| **ZETA** | Tech | **Tier 2 (Fallback)** | Opportunistisch: Kauf nur wenn Tier 1 nicht konsolidiert / zu heiß läuft |
+| **SOUN** | Tech | **Tier 2 (Fallback)** | Opportunistisch: Kauf nur wenn Tier 1 nicht konsolidiert / zu heiß läuft |
+| **MSTR** | Krypto-Equity | Krypto-Silo | Zündet über 40/30/30-Pyramide, sobald BTC > 21-Wochen-EMA schließt |
+| **MARA** | Krypto-Equity | Krypto-Silo | Zündet über 40/30/30-Pyramide, sobald BTC > 21-Wochen-EMA schließt |
+| **BMNR** | Krypto-Equity | Krypto-Silo | Zündet über 40/30/30-Pyramide, sobald BTC > 21-Wochen-EMA schließt |
+| **BLSH** | Krypto-Equity | Krypto-Silo | Zündet über 40/30/30-Pyramide, sobald BTC > 21-Wochen-EMA schließt |
+
+* **Besonderheit Krypto Sub-Bucket:** **Kein Direktinvestment in Bitcoin (`BTC`)!** Die Allokation erfolgt ausschließlich in die hochbeta Krypto-Aktien der Watchlist, gesteuert durch den BTC 21W-EMA als Regime-Schalter.
+* **Separater Staking-Satellit (EUR):**
+  * Unabhängig vom USD-Core-Depot führt der Investor einen eigenen **EUR-Staking-Topf** (Startkapital: **2.088,20 €**).
+  * Zielallokation: **50 % Ethereum-Staking / 50 % Solana-Staking** ETPs (`ETHE` wird gegen EUR-Pendant getauscht, `SLNC`).
+  * Wird opportunistisch aus Gehaltsüberschüssen dotiert und dient als externer Cashflow-Beschleuniger.
 
 ---
 
-### 2. Kapitalallokation & Die 90k $ Dollar-Basis
+### 2. Kapitalallokation & Die realen Cash-Pots
 
-* **Währungs-Regime:** Die gesamte Strategie wird nativ auf **US-Dollar-Basis ($ USD)** geführt.
-* **Startkapital:** **90.000 $ Cash**, keine kontinuierliche monatliche Sparrate.
-* **Strategische 50/50-Grundaufteilung beim Kaltstart:**
-  * **50 % Tech-Reserve (45.000 $):** Fließt beim Start zu 100 % in das **S&P 500 Mutterschiff (`SPY`)**.
-  * **50 % Krypto-Budget (45.000 $):**
-    * Notiert Bitcoin *über* seinem 21-Wochen-EMA $\rightarrow$ Das Kapital wird über die 40/30/30-Pyramide in die Krypto-Aktien investiert.
-    * Notiert Bitcoin *unter* seinem 21-Wochen-EMA $\rightarrow$ Das Kapital wird als **Krypto-Forderung (`kryptoClaimUSD = $45.000`)** registriert und parkt als zinstragende Leihgabe im S&P 500 Mutterschiff.
+* **Währungs-Regime:** Die Kernstrategie wird nativ auf **US-Dollar-Basis ($ USD)** geführt.
+* **Aktives Gesamt-Depotvolumen (Stichtag 08.09.2026):** **$ 94.386,47**
+  * **Investiert in 8 Bestände:** **$ 83.064,80**
+  * **Freies USD-Cash (verzinst auf Verrechnungskonto):** **$ 7.034,67**
+  * **Gebunden in offenen Limit-Orders:** **$ 4.287,00**
+    * SentinelOne (`S`): 200 Stk. @ 18,80 $ = $ 3.760,00
+    * Pagaya (`PGY`): 25 Stk. @ 21,08 $ = $ 527,00
+* **Autarke Finanzierung ohne Sparrate:**
+  * In das USD-Hauptdepot fließt keine starre monatliche Sparrate.
+  * Das System finanziert sich vollständig autark: Bei Teilverkäufen und insbesondere bei der Liquidation der 3 Auslaufpositionen (~32.000 $) fließt das freiwerdende Kapital in das **S&P 500 Mutterschiff** und nährt neue Zündfunken für `PLTR`, `SOFI` oder das Krypto-Silo.
+* **Strategische 50/50-Grundaufteilung:**
+  * **50 % Tech-Reserve:** Investiert in aktive Kernbestände bzw. im S&P 500 Mutterschiff (`SPY`).
+  * **50 % Krypto-Budget:**
+    * Notiert Bitcoin *über* seinem 21-Wochen-EMA $\rightarrow$ Das Kapital wird über die 40/30/30-Pyramide in die 4 Krypto-Aktien investiert.
+    * Notiert Bitcoin *unter* seinem 21-Wochen-EMA $\rightarrow$ Das Kapital parkt als zinstragende Leihgabe (`kryptoClaimUSD`) im S&P 500 Mutterschiff.
 
 ---
 
@@ -189,6 +218,12 @@ Echte Hypergrowth-Gewinner (z. B. Palantir oder SentinelOne) dürfen bei unversc
 * Befindet sich eine Aktie im Status `HOLD & BUY` und erleidet einen Branchen-Dip ($\text{Sektor-Return}_{5d} \le -3,5\,\%$ oder Aktie $\le -10\,\%$ vom 50T-Hoch unter EMA 20):
 * Liegt freies Kapital im Mutterschiff vor und ist Makro GRÜN $\rightarrow$ Nachkauf von **15 % des freien Mutterschiff-Kapitals** (mindestens 20 Handelstage Cooldown).
 
+#### D. Phase-Out & Legacy-Positionen-Liquidierung (`SEMI`, `CDNX`, `PGY`):
+* **Status `HOLD_ONLY`:** Diese 3 Bestände binden aktuell **$ 32.012,55**. Sie sind von allen künftigen Zündfunken-Nachkäufen strikt ausgeschlossen.
+* **Exit-Prozess:** Der Verkauf erfolgt diszipliniert über Trendbrüche (SMA 200), Climax-Exits oder diskretionäre Zielerreichung.
+* **100 % Re-Allokation ins Mutterschiff:** Die Verkaufserlöse fließen ausnahmslos in das **S&P 500 Mutterschiff (`SPY`)**, um als Liquiditätspool für neue Stage-2-Zündfunken (`PLTR`, `SOFI`) und Krypto-Tranchen zu dienen.
+* **Dauerhafte Archivierung (`return_to_observe: false`):** Nach der vollständigen Liquidation wird der Ticker dauerhaft aus der Watchlist entfernt und rutscht nicht mehr in den Status `OBSERVE` zurück.
+
 ---
 
 ### 6. Übergeordneter Makro-Schutz: 100 % Notfall-Evakuierung (50 % Gold / 50 % Cash)
@@ -221,7 +256,7 @@ Die quantitative Leistungsfähigkeit der **Kamikaze-Growth-Architektur** (50/50 
 * 📊 **Fundamentaldaten-Master-Cache (SEC EDGAR):** [`scratch/architecture/strategies/fundamentals_master.json`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/fundamentals_master.json)
 * ⚙️ **Realer Portfolio-Zustand & Live-Konfiguration:** [`config/strategies/kamikaze-growth.json`](file:///D:/GitHub/CrashRadar/config/strategies/kamikaze-growth.json)
 
-### A. Performance- und Benchmark-Vergleich:
+### A. Performance- und Benchmark-Vergleich (2021–2026 Backtest):
 
 | Kennzahl | S&P 500 (SPY Buy & Hold) | Nasdaq 100 (QQQ Buy & Hold) | Bitcoin (BTC Buy & Hold) | KAMIKAZE GROWTH STRATEGIE | Delta KMG vs. Benchmarks |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -236,19 +271,25 @@ Die quantitative Leistungsfähigkeit der **Kamikaze-Growth-Architektur** (50/50 
 
 ---
 
-### B. Allokation zum Stichtag (2026-09-04):
+### B. Reale Depot-Allokation zum Stichtag (08.09.2026):
 
-* **S&P 500 Mutterschiff (Freie Liquidität & Krypto-Claim):** **$ 159.693,76 (26,4 %)**
-* **Krypto-Equity Sub-Bucket (Aktive Tranche 1 via BTC > 21W-EMA):** **$ 3.026,09 (0,5 %)**
-  * MicroStrategy (`MSTR`): 5,68 Stk. à $ 142,80 = $ 810,73 (0,1 %)
-  * Bitdeer / BLSH (`BLSH`): 21,99 Stk. à $ 36,00 = $ 791,50 (0,1 %)
-  * Bitmine Immersion (`BMNR`): 29,24 Stk. à $ 24,97 = $ 730,18 (0,1 %)
-  * Marathon Digital (`MARA`): 61,33 Stk. à $ 11,31 = $ 693,68 (0,1 %)
-* **Tech Sub-Bucket (Konzentrierte Kern-Gewinner):** **$ 442.985,83 (73,1 %)**
-  * SentinelOne (`S`): 11.303,39 Stk. à $ 19,88 = **$ 224.711,37 (37,1 %)** [`HOLD & BUY`]
-  * Palantir (`PLTR`): 858,35 Stk. à $ 174,33 = **$ 149.636,52 (24,7 %)** [`HOLD & BUY`]
-  * AIRO Group (`AIRO`): 9.275,40 Stk. à $ 7,40 = **$ 68.637,94 (11,3 %)** [`HOLD & BUY`]
-* **Gold-Guard (`GLD`) & Cash-Puffer:** **$ 0,00** (Schutzschirm nach Panik-Sniper aufgelöst, Markt im Bull-Modus).
+Die Live-Umsetzung in [`config/strategies/kamikaze-growth.json`](file:///D:/GitHub/CrashRadar/config/strategies/kamikaze-growth.json) gliedert sich in folgende konkrete Bausteine:
+
+* **Aktive Kern-Positionen (`HOLD & BUY`):** **$ 51.052,25 (54,1 %)**
+  * AIRO: 2.600 Stk. @ 6,38 $ = $ 16.588,00
+  * LUMN: 2.500 Stk. @ 6,12 $ = $ 15.300,00
+  * IBRX: 1.875 Stk. @ 7,31 $ = $ 13.706,25
+  * NVTS: 300 Stk. @ 9,91 $ = $ 2.973,00
+  * S: 125 Stk. @ 19,88 $ = $ 2.485,00
+* **Auslauf-Bestände (`HOLD_ONLY` - Phase-Out):** **$ 32.012,55 (33,9 %)**
+  * SEMI (Halbleiter-ETF): 650 Stk. @ 19,325 $ = $ 12.561,25
+  * CDNX (CleanTech-ETF): 7,5 Stk. @ 1.654,04 $ = $ 12.405,30
+  * PGY (Pagaya Tech): 325 Stk. @ 21,68 $ = $ 7.046,00
+* **Liquidität & Offene Orders:** **$ 11.321,67 (12,0 %)**
+  * Freies verzinstes USD-Cash: **$ 7.034,67**
+  * Reserviert in Limit-Orders: **$ 4.287,00** (200x `S` @ 18,80 $ = $ 3.760,00 | 25x `PGY` @ 21,08 $ = $ 527,00)
+* **Gesamtes USD-Portfolio:** **$ 94.386,47**
+* **Autarker EUR-Satellit:** **2.088,20 €** bereitgestellt für 50/50 Staking-ETPs (ETH & SOL).
 
 ---
 
