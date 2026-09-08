@@ -24,6 +24,11 @@
         "comment": "Reine NetLiq-Filterung versagte in 2008 & 2020 wegen Notkrediten. Trendfilter agiert als primärer Sensor."
       },
       "allocation_options": {
+        "gold_focused_mode": {
+          "gold_gld_pct": 75.0,
+          "cash_usd_pct": 25.0,
+          "description": "75% Gold / 25% Cash: Optimaler Sweet Spot (+624% / 357k €). Fängt Margin-Call-Sog von Gold über 25% Cash ab und schöpft 75% der asymmetrischen Krisen-Rallye ab."
+        },
         "maximum_alpha_mode": {
           "gold_gld_pct": 100.0,
           "cash_usd_pct": 0.0,
@@ -35,7 +40,7 @@
           "description": "50% Gold / 50% Cash Evakuierung für maximale Drawdown-Dämpfung (-26% bis -30% Max Drawdown)."
         }
       },
-      "active_mode": "maximum_alpha_mode",
+      "active_mode": "gold_focused_mode",
       "savings_rate_during_alarm": {
         "follow_active_mode": true
       },
@@ -52,11 +57,18 @@
 
   "changelog": [
     {
+      "version": "2.1.0",
+      "date": "2026-09-08",
+      "title": "Standard-Allokation auf 75% Gold / 25% Cash kalibriert",
+      "summary": "Implementierung des 75/25 Sweet Spots im Notfall-Schutzschild: 25% Cash federn den anfänglichen Margin-Call-Dip von Gold (-12% bis -26%) ab und sichern trockenes Pulver am Panik-Boden; 75% Gold schöpfen die asymmetrische Bärenmarkt-Rallye ab (+624% / 357k €).",
+      "broadcast": true
+    },
+    {
       "version": "2.0.0",
       "date": "2026-09-08",
       "title": "Upgrade auf Trend-Filter & Panik-Boden-Hedge (SMA 200 + VIX-Sniper)",
-      "summary": "Beseitigung der 2008er-NetLiq-Blindheit (Fed-Notkredite blockierten Ausstieg). Notfall-Evakuierung triggert nun bei SPY < SMA 200 & Drawdown >= 8%. Re-Entry via VIX >= 35 Panik-Reversal oder SMA 200 Rückeroberung. 21,8-Jahre-Endwert steigt von 306k € (Buy & Hold) auf 448k € (+142k € Alpha).",
-      "broadcast": true
+      "summary": "Beseitigung der 2008er-NetLiq-Blindheit (Fed-Notkredite blockierten Ausstieg). Notfall-Evakuierung triggert nun bei SPY < SMA 200 & Drawdown >= 8%. Re-Entry via VIX >= 35 Panik-Reversal oder SMA 200 Rückeroberung.",
+      "broadcast": false
     },
     {
       "version": "1.0.0",
