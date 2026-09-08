@@ -250,26 +250,29 @@ Wenn das Finanzsystem unter Liquiditätsentzug leidet, greift der übergeordnete
 
 ---
 
-## 3. Empirischer Proof of Concept (PoC) & Simulations-Ergebnisse (2021–2026)
+## 3. Empirischer Proof of Concept (PoC) & Simulations-Ergebnisse (2020–2026)
 
-Die quantitative Leistungsfähigkeit der **Kamikaze-Growth-Architektur** (50/50 Allokation Tech & Krypto-Equities, $90.000 Startpool, kein Blind-Kauf ohne 10-Q Fundamentaldaten, Sektor-Dip-Buying, 3-Stufen-Abbau und 100 % Notfall-Evakuierung in 50 % Gold / 50 % Cash) wurde über den Zeitraum vom **04.01.2021 bis 04.09.2026** simuliert:
+Die quantitative Leistungsfähigkeit der **Kamikaze-Growth-Architektur** (50/50 Allokation Tech & Krypto-Equities, $ 30.000 Startkapital geparkt im S&P 500 Mutterschiff, $ 10.000 Cash-Pot-Reserve, $ 200/Monat dynamischer BTC-Sparplan, kein Blind-Kauf ohne 10-Q Fundamentaldaten, Sektor-Dip-Buying, 3-Stufen-Abbau und 100 % Notfall-Evakuierung in 50 % Gold / 50 % Cash) wurde über den Zeitraum vom **01.11.2020 (3 Monate vor PLTR-Peak/Crash) bis 04.09.2026** simuliert:
 
 * 💻 **Vollständige Portfolio-Simulation:** [`scratch/architecture/strategies/KamikazeGrowthSimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/KamikazeGrowthSimulation.js)
 * 📊 **Fundamentaldaten-Master-Cache (SEC EDGAR):** [`scratch/architecture/strategies/fundamentals_master.json`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/fundamentals_master.json)
 * ⚙️ **Realer Portfolio-Zustand & Live-Konfiguration:** [`config/strategies/kamikaze-growth.json`](file:///D:/GitHub/CrashRadar/config/strategies/kamikaze-growth.json)
 
-### A. Performance- und Benchmark-Vergleich (2021–2026 Backtest):
+### A. Performance- und Benchmark-Vergleich (Backtest 01.11.2020 – 04.09.2026):
 
 | Kennzahl | S&P 500 (SPY Buy & Hold) | Nasdaq 100 (QQQ Buy & Hold) | Bitcoin (BTC Buy & Hold) | KAMIKAZE GROWTH STRATEGIE | Delta KMG vs. Benchmarks |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Startkapital** | $ 90.000,00 | $ 90.000,00 | $ 90.000,00 | **$ 90.000,00** | ± $ 0,00 |
-| **Endwert Portfolio** | $ 202.419,00 | $ 216.081,00 | $ 224.271,00 | **$ 605.705,67** | **+$ 403.286,67 Mehrwert vs. SPY** |
-| **Nettorendite** | +124,91 % | +140,09 % | +149,19 % | **+573,01 %** | **+448,10 %-Pkt. vs. SPY** |
-| **Nettogewinn** | +$ 112.419,00 | +$ 126.081,00 | +$ 134.271,00 | **+$ 515.705,67** | **+$ 381.434,67 vs. BTC** |
-| **Alpha vs. SPY** | Baseline | +15,18 %-Pkt. | +24,28 %-Pkt. | **+448,10 %-Punkte** | **Massive Outperformance** |
-| **Alpha vs. QQQ** | -15,18 %-Pkt. | Baseline | +9,10 %-Pkt. | **+432,92 %-Punkte** | **+432,92 %-Punkte** |
-| **Alpha vs. BTC** | -24,28 %-Pkt. | -9,10 %-Pkt. | Baseline | **+423,82 %-Punkte** | **+423,82 %-Punkte** |
-| **Maximaler Drawdown** | -24,50 % | -33,10 % | -76,80 % | **-42,76 %** | **Vollständiger Schutz vor Krypto-Winter (-76 %)** |
+| **Startkapital (Tech + Krypto in SPY)** | $ 30.000,00 | $ 30.000,00 | $ 30.000,00 | **$ 30.000,00** | ± $ 0,00 |
+| **Cash-Pot (Reserve)** | $ 10.000,00 | $ 10.000,00 | $ 10.000,00 | **$ 10.000,00** | ± $ 0,00 |
+| **Eingezahlte Sparraten (200 $/M)** | $ 14.200,00 | $ 14.200,00 | $ 14.200,00 | **$ 14.200,00** | ± $ 0,00 |
+| **Gesamt investiertes Eigenkapital** | $ 54.200,00 | $ 54.200,00 | $ 54.200,00 | **$ 54.200,00** | ± $ 0,00 |
+| **Endwert Portfolio (04.09.2026)** | $ 136.730,34 | $ 149.353,52 | $ 318.674,32 | **$ 477.560,07** | **+$ 340.829,73 Mehrwert vs. SPY** |
+| **Nettorendite** | +152,27 % | +175,56 % | +487,96 % | **+781,11 %** | **+628,84 %-Pkt. vs. SPY** |
+| **Nettogewinn** | +$ 82.530,34 | +$ 95.153,52 | +$ 264.474,32 | **+$ 423.360,07** | **+$ 158.885,75 vs. BTC** |
+| **Alpha vs. SPY** | Baseline | +23,29 %-Pkt. | +335,69 %-Pkt. | **+628,84 %-Punkte** | **Massive Outperformance** |
+| **Alpha vs. QQQ** | -23,29 %-Pkt. | Baseline | +312,40 %-Pkt. | **+605,55 %-Punkte** | **Massive Outperformance** |
+| **Alpha vs. BTC** | -335,69 %-Pkt. | -312,40 %-Pkt. | Baseline | **+293,15 %-Punkte** | **Deutliche Krypto-Überflügelung** |
+| **Maximaler Drawdown** | -24,50 % | -33,10 % | -76,80 % | **-40,94 %** | **Vollständiger Schutz vor Krypto-Winter (-77 %)** |
 
 ---
 
@@ -297,11 +300,10 @@ Die Live-Umsetzung in [`config/strategies/kamikaze-growth.json`](file:///D:/GitH
 
 ### C. Empirische Verhaltens-Highlights der Strategie:
 
-1. **Navitas Semiconductor (`NVTS` – Perfekter Zombie-Schutz via 3-Stufen-Abbau):**
-   * Stieg nach einem Stage-2-Ausbruch ins Depot ein.
-   * Am **05.08.2024** meldete NVTS ein abflauendes YoY-Umsatzwachstum von nur noch 13,3 %. Sofort griff **Stufe 1** (1/3 Teil-Exit @ $ 3,05 zur Gewinnsicherung, Status auf `HOLD & OBSERVE`).
-   * Da NVTS gleichzeitig unter den SMA 200 fiel und relative Branchen-Schwäche zeigte, feuerte am selben Tag **Stufe 2** (weiteres 1/3 Exit @ $ 3,05). Die freigewordenen Mittel ($ 9.224) wurden unverzüglich in die aktiven `HOLD & BUY` Spitzenreiter (`PLTR`, `SOFI`) umgeschichtet!
-   * Am **05.11.2024** bestätigte der nächste 10-Q-Report den Einbruch mit negativem Wachstum (-1,4 %). Sofort liquidierte **Stufe 3** den Restbestand @ $ 2,36. NVTS wurde vollständig abgestoßen, bevor die Aktie weiter in den Boden versank.
+1. **PLTR-Crash-Beweis (Schutz vor dem -87 % Absturz von $ 45 auf $ 5,92):**
+   * Obwohl `PLTR` ab Tag 1 (01.11.2020) auf der Watchlist stand, kaufte das System die Aktie **kein einziges Mal während des gesamten zweijährigen Crashs**.
+   * Der 10-Q-Türsteher (massive SBC-Verluste) und der Weinstein-Filter (`Kurs < SMA 200`) sperrten den Einstieg absolut zuverlässig.
+   * Erst am **09.05.2023** bei **$ 9,55** – nach dem ersten GAAP-profitablen Quartal und sauberem Stage-2-Ausbruch – stieg das System ein und ritt die Position bis über $ 157 aus!
 
 2. **Krypto-Equity Taktung via BTC 21W-EMA:**
    * Anstatt in harten Bärenmärkten 70–80 % Drawdown bei Krypto-Minern und High-Beta-Aktien auszusitzen, liquidierte das System bei jedem Bruch des 21-Wochen-EMA von Bitcoin (z. B. August 2024, Januar 2026, Mai 2026) 100 % der Krypto-Aktien und parkte das Kapital als verzinslichen Krypto-Claim im S&P 500 Mutterschiff.
@@ -309,8 +311,21 @@ Die Live-Umsetzung in [`config/strategies/kamikaze-growth.json`](file:///D:/GitH
 
 3. **Makro-Notfall-Evakuierung (September – Dezember 2025):**
    * Am **18.09.2025** schlug die Makro-Ampel durch akuten Liquiditätsentzug (Net Fed Liquidity $8\text{W-Delta} = -6,44\,\%$) auf **ROT**.
-   * Die Strategie evakuierte das gesamte Portfolio (**$ 523.540**) vollständig zu 50 % in Gold (`GLD`) und 50 % in USD-Cash.
-   * Am **11.12.2025** triggerte der Panik-Capitulation-Sniper am Marktboden. Der Schutzschirm wurde bei einem Depotwert von **$ 568.482** (+8,58 % Wertzuwachs während der Krise!) aufgelöst und das gesamte Kapital floss unbeschadet zurück in das S&P 500 Mutterschiff, um die Ausbrüche von `S`, `PLTR` und `AIRO` massiv zu befeuern!
+   * Die Strategie evakuierte das gesamte Portfolio (**$ 408.002**) vollständig zu 50 % in Gold (`GLD`) und 50 % in USD-Cash.
+   * Am **11.12.2025** triggerte der Panik-Capitulation-Sniper am Marktboden. Der Schutzschirm wurde bei einem Depotwert von **$ 443.643** (+8,74 % Wertzuwachs während der Krise!) aufgelöst und das gesamte Kapital floss unbeschadet zurück in das S&P 500 Mutterschiff, um die Ausbrüche von `GOOG`, `S`, `AMZN` und `NVDA` massiv zu befeuern!
+
+---
+
+### D. Detaillierte Watchlist- & Observe-Analyse (SOFI, NVTS, IBRX, S):
+
+Im Backtest wurden vier vom Investor manuell ausgewählte Tech-Aktien zu konkreten Stichtagen auf die Observe-Liste gesetzt. Der empirische Abgleich zwischen Algorithmus-Entscheidung und realer Investor-Erfahrung liefert fundamentale Lehren für die Weiterentwicklung:
+
+| Ticker | Observe seit | Trades im Backtest | Realer Investor-Verlauf | Algorithmus-Befund & Ursachenanalyse |
+| :--- | :--- | :---: | :--- | :--- |
+| **SOFI** | 23.12.2023 | **5 Trades** (Kauf @ 10,04 $, 4 Dips, Exit @ 28,11 $) | Früh gekauft, am Hoch verkauft | **Voller Erfolg:** Einstieg am 14.10.2024 nach Stage-2-Ausbruch. Hielt bis 18.09.2025 und wurde bei 28,11 $ durch Makro-Notfall-Schutzschirm evakuiert (+180 % Gewinn gesichert!). 2026 kein Wiedereinstieg, da Kurs unter 20 $ konsolidierte und kein neues Stage-2-Signal lieferte. |
+| **NVTS** | 29.11.2024 | **0 Trades** | Squeeze bis > 30 $ beobachtet; unruhig ausgestiegen („Schiss gekriegt“) | **Türsteher-Blockade:** 13 Stage-2-Chart-Ausbrüche (u. a. Mai 2026 Squeeze auf 34 $). Wurde **0-mal gekauft**, weil SEC 10-Q Berichte katastrophal negativ blieben (YoY -1,4 % bis -53,4 % und hohe Nettoverluste). Verpasstes Hyper-Beta-„Zubrot“. |
+| **IBRX** | 19.09.2025 | **0 Trades** | Real von ~2 $ auf > 10 $ gehandelt; Aktie hält sich stabil > 6 $ | **Biotech-Cash-Burn-Filter:** 4 Stage-2-Ausbrüche im Frühjahr 2026 (Run auf 11,55 $ bei 2,5x Volumen). Trotz gigantischem Umsatzsprung (+425 % bis +2.400 % durch ANKTIVA) blockierte die Regel $|\text{Net Income}| > 2 \times \text{Umsatz}$ (Verluste von -$67M bis -$632M wegen F&E/Markteinführung) den Kauf als unkalkulierbare Verbrennungsfalle. |
+| **S** | 27.10.2025 | **3 Trades** (Kauf @ 19,92 $, 2 Dips, 119k $ Endwert) | Real viel früher aufgebaut (Trade von ca. 12 auf 18 $) | **Spätzünder durch MCW-Altlast:** Kauf erfolgte erst am 14.07.2026 bei 19,92 $. Durch die historische Vorsicht gegenüber Cathie-Wood-Fehlgriffen („Klogriffe“) verlangte das System eine extrem späte institutionelle Bestätigung (Golden Cross `SMA 50 > SMA 200` + 50T-Hoch), wodurch die frühe Boden-Rallye von 12 auf 18 $ ungenutzt blieb. |
 
 ---
 
@@ -326,23 +341,30 @@ Die Live-Umsetzung in [`config/strategies/kamikaze-growth.json`](file:///D:/GitH
 
 ---
 
-## 5. TODO: Weiterentwicklung für explosives High-Beta Growth (Lehre aus dem NVTS > $ 30 Case)
+## 5. TODO: Weiterentwicklung für explosives High-Beta Growth & Watchlist-Kalibrierung
 
 > [!IMPORTANT]
-> **Erkenntnis aus der NVTS-Historie (Mai/Juni 2026):**
-> Navitas Semiconductor (`NVTS`) explodierte im Frühjahr 2026 vertikal von ca. $ 10 auf ein Allzeithoch von **$ 34,17** (Close bei **$ 31,79** am 26.05.2026 und Double-Top am 03.06.2026 bei 112 Mio. Stück Float-Turnover), bevor der Kurs wieder auf **$ 11,80** (-65 %) kollabierte. 
-> Das war der **ideale Punkt zur Voll- oder Teil-Liquidierung**, der im klassischen MCW-Regelwerk (reine Verkaufsblockade bei `HOLD & BUY` und fehlender parabolischer Exit) ungenutzt geblieben wäre. Zudem wurde NVTS durch die rigide 10-Q-Zombie-Klausel im November 2024 ausgestoßen und durfte trotz der Jahrhundert-Rallye wegen verzögerter SEC-Zahlen nicht wieder einsteigen.
+> **Lehren aus dem empirischen Abgleich (NVTS, IBRX, S):**
+> 1. **Das NVTS-Dilemma:** Der starre 10-Q-Türsteher schützt zwar brillant vor fallenden Messern (wie PLTR 2021–2022), blockiert aber explosive Turnarounds und Short-Squeezes (> 30 $), weil SEC-Berichte 6–9 Monate nachhinken.
+> 2. **Das IBRX-Dilemma:** Bei revolutionären Biotech-Werten mit zugelassenen Blockbustern (ANKTIVA) explodiert der Umsatz zwar um hunderte Prozent, aber extreme F&E- und Markteinführungskosten führen zu Verlusten $> 2\times$ Umsatz. Wenn eine Aktie sich danach stabil über $ 6 hält, ist dies kein Betrug („kein Lug und Trug“), sondern Markt-Substanz, die das aktuelle Modell noch als „Zombie“ einstuft.
+> 3. **Die SentinelOne-Altlast (MCW):** Aus historischer Furcht vor spekulativen ARK-Fehlgriffen („Cathie Woods Klogriffe“) ist die Eintrittshysterese so träge, dass frühe Verdoppler (12 $ auf 18 $) verpasst werden und erst am Allzeithoch über dem SMA 200 eingestiegen wird.
 
-### Konkrete TODO-Aufgaben für die nächste Entwicklungsstufe:
+### Konkrete Entwicklungs-Aufgaben für die nächste Evolutionsstufe:
 
 1. **Einführung des parabolischen Climax-Top Exits (`TOP_CLIMAX_ALERT`):**
    * Verknüpfung der erprobten Katapult-Logik aus [`GrowthStockTradingEngine.js`](file:///D:/GitHub/CrashRadar/scratch/tools/GrowthStockTradingEngine.js) mit dem Portfolio-Manager:
      * **Trigger:** Distanz zum 20er EMA $\ge +35\,\%$ bis $+45\,\%$ **ODER** RSI(14) $\ge 80 - 85$ nach starkem Kursanstieg ($> +100\,\%$).
      * **Aktion:** Sofortige Gewinnmitnahme (50 % Skimming oder 100 % Voll-Liquidierung bei Bruch des EMA 20).
      * **Sicherung:** Erlöse fließen sofort als gesicherter Profit in das **S&P 500 Mutterschiff**.
-2. **Watchlist-Klausel für Turnaround- & Explosiv-Kandidaten:**
-   * Da der Investor die Watchlist-Kandidaten (Tier 1 Core: `PLTR`, `SOFI` | Tier 2 Fallback: `ZETA`, `SOUN` | Krypto: `MSTR`, `MARA`, `BMNR`, `BLSH`) eigenhändig auswählt:
-     * Bei neuen Stage-2-Ausbrüchen mit massivem Volumen ($\ge 1,8\times$ Durchschnitt) soll die Chart-Qualität den Vorrang vor rückwärtsgewandten SEC 10-Q-Zahlen erhalten, um explosive Turnaround-Wellen nicht zu verpassen.
-3. **Simulation Update:**
-   * Nach Freigabe der konkreten Schwellenwerte wird [`KamikazeGrowthSimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/KamikazeGrowthSimulation.js) um das Climax-Modul erweitert und neu gebenchmarkt.
+2. **Watchlist-Klausel für Turnaround- & Explosiv-Kandidaten (NVTS-Regel):**
+   * Wenn ein Kandidat explizit vom Investor auf die Watchlist gesetzt wurde und ein massives Volume-Breakout-Signal zeigt (relatives Volumen $\ge 1,8\times$ 50-Tage-Schnitt mit Kurs über EMA 20 und SMA 50):
+     * Der 10-Q-Umsatzfilter wird temporär außer Kraft gesetzt, um Squeeze- und Turnaround-Wellen mitzunehmen (gesichert durch strikten EMA-20-Trailing-Stop).
+3. **Biotech-Katalysator-Klausel (IBRX-Regel):**
+   * Bei Biotech-/MedTech-Unternehmen wird die Restriktion $|\text{Net Income}| > 2 \times \text{Umsatz}$ ausgesetzt, sofern:
+     * Das YoY-Umsatzwachstum $\ge 100\,\%$ beträgt (Nachweis kommerzieller Marktdurchdringung wie ANKTIVA).
+     * Der Kurs relative Stärke gegenüber dem Biotech-Sektor (`XBI`) beweist.
+4. **Frühzeitiger Stage-2-Einstieg für Core-Watchlist (Abbau der MCW-Altlast bei S):**
+   * Erlaubnis einer ersten 50 %-Starttranche bereits bei Trendlinien-Durchbruch über den SMA 50 und positivem RS-Momentum, ohne zwingend auf ein monatelang verzögertes Golden Cross über dem SMA 200 warten zu müssen.
+5. **Simulation Update:**
+   * Nach Feinabstimmung dieser Schwellenwerte wird [`KamikazeGrowthSimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/KamikazeGrowthSimulation.js) um diese 4 Module erweitert und im Backtest evaluiert.
 
