@@ -82,7 +82,7 @@ Hier finden Entwickler und System-Architekten alle operativen Spezifikationen, E
 
 ### G. 📱 Signal- & Benachrichtigungsdienst (`docs/architecture/signal-service/`)
 * 📄 **[`Investment-Signaldienst.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signal-service/Investment-Signaldienst.md):**  
-  *Serverlose 0,00-€-End-to-End-Architektur: Trennung von CrashRadar Intelligence Engine (Pre-Computation Push) und Cloudflare Edge + D1 Gateway (1:1 Telegram Private Chats, dynamisches Onboarding, Read-Only Flaggschiff-Stream für Kamikaze Growth inkl. Live-Broker-Anbindung & Discretionary Override, 3 kuratierte Beweis-Szenarien und Execution Feedback Loop).*
+  *Serverlose 0,00-€-End-to-End-Architektur: Trennung von CrashRadar Intelligence Engine (Pre-Computation Push via `PortfolioStrategyEngine` Plugin-Registry, Standard-Makrosignale als Service, autonomes Bucket- & Order-Management, Kamikaze Live-Broker Sync mit Discretionary Override) und Cloudflare Edge + D1 Gateway (1:1 Telegram Private Chats, dynamisches Onboarding, 3 kuratierte Beweis-Szenarien, Execution Feedback Loop und 4-Punkte-Roadmap für die evolutorische Entwicklung).*
 
 ---
 

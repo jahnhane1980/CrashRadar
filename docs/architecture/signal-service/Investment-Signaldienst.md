@@ -61,6 +61,89 @@ Zur Wahrung der Produktionsstabilität des bestehenden Marktdatensystems und zur
 
 ---
 
+## 1.1 High-Level SignalEngine-Architektur & Strategie-Lifecycle (Core-Modell)
+
+Um die evolutorische Entwicklung der SignalEngine und der fünf Portfoliostrategien sauber aufzusetzen, definiert dieses Kapitel das verbindliche Zusammenspiel zwischen Engine, Strategien und dem Cloudflare D1 Gateway:
+
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│ CRASHRADAR SIGNALENGINE (Core Orchestrator & Registry)                 │
+│                                                                        │
+│ 1. Marktdaten- & Makro-Vorberechnung:                                  │
+│    • Regime-Ampel (EXPANSION, SLOWDOWN, CRISIS_ALERT)                  │
+│    • Globale 3-Säulen-Katastrophen-Matrix (Trendbruch + Makro-Alarm)   │
+│    • Universeller Bottom-Finder (Panic-Capitulation & DIX-Whales)      │
+│    • Net Liquidity Delta (ΔNetLiq 4W) & Krypto-Zyklus (21W-EMA)        │
+│                                                                        │
+│ 2. Strategy Registry (Plugin-Muster analog zu _indicators):            │
+│    ┌──────────────────────────────────────────────────────────────┐    │
+│    │ registerStrategy(strategyInstance)                           │    │
+│    ├───────────────────────┬──────────────────────────────────────┤    │
+│    │ BasePortfolioStrategy │ • MuzzledCathieWoodStrategy          │    │
+│    │ (Einheitliches        │ • KamikazeGrowthStrategy (Broker-API)│    │
+│    │  Interface)           │ • SevenSlotGuruStrategy              │    │
+│    │                       │ • GoldSpyDcaStrategy                 │    │
+│    │                       │ • SatelliteCoreStrategy              │    │
+│    └───────────────────────┴──────────────────────────────────────┘    │
+│                                │                                       │
+│ 3. Autonome Portfolio-Verwaltung je Strategie (Bucket-Management):     │
+│    • Core-Bucket (z. B. SPY Mutterschiff)                              │
+│    • Satelliten-Bucket (z. B. DFNS, Tech-Picks, Krypto-Pyramide)       │
+│    • Hedge-Bucket (Gold & Cash Notfall-Schirm)                         │
+│    • Order-Generierung: Ziel-Allokation (%) & Tranchen-Aktionen        │
+│                                │                                       │
+│ 4. Snapshot-Export (Täglicher Pre-Computation Push):                   │
+│    • Aggregiert alle Strategie-Zustände in 'daily_intelligence.json'   │
+└────────────────────────────────┬───────────────────────────────────────┘
+                                 │ HTTPS Webhook Push (daily_intelligence.json)
+                                 ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│ CLOUDFLARE D1 & WORKER GATEWAY (Skalierung & Personalisierung)         │
+│ • Nimmt abstrakte Modell-Prozente (%) der SignalEngine entgegen        │
+│ • Multipliziert Modell-Gewichte mit dem individuellen Euro-Budget:     │
+│   (Ziel-Quote %) ✕ (Monatliche Sparrate / Topup-Betrag in €)           │
+│ • Steuert interaktive 1:1 Telegram-Dialoge & [✅ Ausgeführt] Feedback   │
+└────────────────────────────────────────────────────────────────────────┘
+```
+
+### 1. Die 5 Kern-Prinzipien des High-Level-Modells:
+
+1. **Strategie-Registry (Plugin-Architektur via `BasePortfolioStrategy.js`):**  
+   * Analog zur Indikatoren-Registry (`_indicators` in `MacroRegimeEngine`) werden alle Strategien als modulare Klassen implementiert und in der `PortfolioStrategyEngine` registriert.
+   * Jede Strategie erbt von `BasePortfolioStrategy` und implementiert verbindliche Lebenszyklus-Methoden: `initialize(config)`, `evaluateDaily(date, marketData, macroSignalContext)`, `getPortfolioStatus()` und `generateOrderInstructions()`.
+   * Neue Strategien können hinzugeschaltet oder deaktiviert werden, ohne den Orchestrator oder bestehende Strategien zu modifizieren.
+
+2. **Standard-Signale der Engine („Signals as a Service“):**  
+   * Die Strategien berechnen keine komplexen Makro-Indikatoren redundant selbst.
+   * Die Engine stellt allen registrierten Strategien einen vorberechneten, standardisierten Signal-Kontext (`macroSignalContext`) zur Verfügung:
+     * **Regime-Ampel:** Übergeordnetes Makro-Klima (`EXPANSION`, `SLOWDOWN`, `CRISIS_ALERT`).
+     * **3-Säulen-Katastrophen-Matrix:** Globaler Notfall-Schutzschild (Trendbruch + VIX-Panik / Kreditstress / Deleveraging).
+     * **Universeller Bottom-Finder:** Antizyklisches Generationen-Kaufsignal (`CRITICAL` Re-Entry an Panik-Böden).
+     * **Liquiditäts-Metriken:** Net Liquidity Delta ($\Delta\text{NetLiq}_{4W}$) und K-Faktor.
+     * **Krypto-Master-Sensorik:** Bitcoin 21-Wochen-EMA und Zyklus-Divergenzen.
+
+3. **Autonome Portfolio- & Bucket-Verwaltung der Strategien:**  
+   * Jede Strategie ist eigenverantwortlich für die Verwaltung ihres Portfolios zuständig.
+   * Sie unterteilt ihr Kapital in definierte **Asset-Buckets** (z. B. Core-Mutterschiff, Wachstums-Satelliten, Krypto-Pyramide, Hedge-Bucket).
+   * Anhand der Engine-Signale entscheidet die Strategie autonom über Rebalancing, Tranchenkäufe, Zündfunken-Aktivierungen oder Evakuierungen in den Hedge-Bucket (Gold/Cash).
+   * **Rückgabe an die Engine:** Jede Strategie gibt einen standardisierten Ergebnis-Kontrakt zurück:
+     * `target_allocation_pct`: Relative Zielgewichtung aller Assets (z. B. `{ SPY: 0.0, GLD: 0.75, CASH: 0.25 }`).
+     * `tranche_action`: Konkrete Aktion (z. B. `BUY_TRANCHE_1`, `HOLD`, `EVACUATE_TO_HEDGE`, `RE_ENTRY_SNIPER`).
+     * `rebalance_delta_pct`: Benötigte Umschichtungsquote gegenüber dem Vortag.
+     * `reason`: Menschlich lesbare Begründung für das Telegram-Signal.
+
+4. **Sonderfall Kamikaze Growth (Echtgeld-Broker-Kopplung):**  
+   * Während die übrigen Strategien als algorithmische Referenz-Portfolios laufen, ist Kamikaze Growth direkt mit dem **realen Trading-Konto (Broker-API)** verknüpft (~94.000 $ Realdepot).
+   * **Discretionary Human Override:** Weicht der Händler manuell ab, gilt das Prinzip „Broker-Realität ist Gesetz“ – die Engine übernimmt den echten Kontostand als Reconciled State und passt Zündfunken und freie Quoten adaptiv an.
+   * **Telegram-Rolle:** Für Abonnenten fungiert Kamikaze als reines Read-Only Echtgeld-Flaggschiff (keine individuellen Sparplan-Multiplikationen im Bot).
+
+5. **Schnittstelle zu Cloudflare D1 (`daily_intelligence.json`):**  
+   * CrashRadar berechnet **keine** individuellen Kunden-Depots und führt keine Euro-Multiplikation durch.
+   * Nach dem täglichen Rechenlauf exportiert die Engine den aggregierten Snapshot `daily_intelligence.json` per Webhook an Cloudflare D1.
+   * **Aufgabe von D1 & Cloudflare Worker:** Der Worker liest den Snapshot, matcht ihn mit den hinterlegten User-Profilen (`user_portfolios`) und multipliziert die relativen Modell-Prozente linear mit der monatlichen Sparrate oder dem Topup-Betrag des jeweiligen Nutzers.
+
+---
+
 ## 2. Telegram Chat-Typen & Berechtigungskonzepte
 
 Telegram unterscheidet grundlegend zwischen verschiedenen Chat-Arten. Das System nutzt gezielt zwei getrennte Typen, um Privatsphäre und passive Signale sauber zu trennen:
@@ -490,4 +573,82 @@ Beherbergt ausschließlich übergeordnete Parameter zur Ausführung und Schnitts
 2. **Auto-Discovery:** Die `PortfolioStrategyEngine` lädt alle Manifeste dynamisch ein und erfasst den Versionssprung im täglichen Snapshot `daily_intelligence.json`.
 3. **D1-Ingestion:** Der Webhook aktualisiert `strategy_changelogs` in Cloudflare D1.
 4. **Proaktiver Push:** Der Cloudflare Worker erkennt die neue Version für aktive Portfolios (`strategy_version < new_version`) und sendet den Changelog-Text automatisch in die 1:1-Privatchats der betroffenen Nutzer.
+
+---
+
+## 9. Zu klärende Punkte für die evolutorische Entwicklung (Roadmap & Klärungsbedarf)
+
+Für die anstehende evolutorische Umsetzung der SignalEngine und der fünf Portfoliostrategien müssen vier zentrale Architektur- und Integrationsfragen verbindlich fixiert werden:
+
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│             DIE 4 ZU KLÄRENDEN PUNKTE (EVOLUTORISCHE ROADMAP)          │
+├───────────────────────────────┬────────────────────────────────────────┤
+│ 1. Schritt 0: Daten-Audit &   │ Vollständige Registrierung aller       │
+│    Fetcher-Vollständigkeit    │ Ticker (DFNS, GLD, Equities, 13F)      │
+├───────────────────────────────┼────────────────────────────────────────┤
+│ 2. Abstraktes Modell (%) vs.  │ Mathematische Gewichtung in CrashRadar │
+│    Euro-Ausführung (€)        │ ✕ Nutzer-Budget & Mindestorder in D1   │
+├───────────────────────────────┼────────────────────────────────────────┤
+│ 3. Bidirektionale Feedback-   │ State-Machine für [✅ Ausgeführt] und   │
+│    Schleife & Quittierung     │ Toleranz bei verspäteter Bestätigung   │
+├───────────────────────────────┼────────────────────────────────────────┤
+│ 4. Dynamisches Debouncing &   │ Sparplan-Ruhe (1x/Monat) vs.           │
+│    Alert-Priorisierung        │ 0ms Notfall-Push bei Katastrophen-Alarm│
+└───────────────────────────────┴────────────────────────────────────────┘
+```
+
+### 9.1 Schritt 0: Daten-Audit & Fetcher-Vollständigkeit (`config/Database-Fetcher-Config.json`)
+* **Hintergrund:** Ein Live-Audit von [`config/Database-Fetcher-Config.json`](file:///D:/GitHub/CrashRadar/config/Database-Fetcher-Config.json) zeigt, dass zwar die Provider (Tiingo, YahooFinance, CBOE, FINRA) konfiguriert sind, die konkreten `tasks` jedoch primär auf FRED-Makrodaten und Binance-BTC beschränkt sind.
+* **Erforderliche Datenreihen der 5 Strategien:**
+  1. **ETFs & Rohstoffe:** `SPY` (Benchmark / Mutterschiff), `DFNS` (VanEck Defense UCITS ETF für Satellite), `GLD` / `IAU` (physisches Gold für Notfall-Schirm), `GDX` (Goldminen).
+  2. **High-Beta Equities & Krypto-Aktien (Kamikaze & MCW):** `MSTR`, `MARA`, `COIN`, `HOOD`, `PLTR`, `NVTS`, `SOFI`, `PGY`, `S`.
+  3. **Superinvestor-Konsens (7-Slot-Guru):** 13F-Filing-Daten (Scraper oder SEC Edgar Pipeline für die 6 Top-Gurus: Druckenmiller, Buffett, Klarman, Tepper, Li Lu, Burry).
+  4. **Sentiment & Flow-Daten (Bottom-Finder):** CBOE Total Put/Call Ratio (`PUTCALL`), SqueezeMetrics Dark Pool Index (`DIX`), AAII Sentiment (`AAII_BULL` / `AAII_BEAR`), FINRA Margin Debt.
+* **Verbindliche Festlegung für Schritt 0:**  
+  Bevor die Strategy-Klassen im Runner instanziiert werden, muss jede fehlende Datenreihe mit Ticker, Intervall und Provider in `Database-Fetcher-Config.json` eingetragen und via Live-Fetch in die lokale MySQL-Datenbank ingestiert worden sein (keine Signalberechnung auf Blindwerten).
+
+### 9.2 Abstraktes Modell (%) vs. Personalisierte Euro-Ausführung (€ & Währung)
+* **Klare Trennung der Zuständigkeit:**
+  * **CrashRadar SignalEngine:** Berechnet ausschließlich relative Ziel-Gewichte ($0{,}00$ bis $1{,}00$ bzw. $0\,\%$ bis $100\,\%$) sowie tranchenbasierte Delta-Anweisungen (`BUY_TRANCHE_1`, `EVACUATE_HEDGE`). Die Engine rechnet **währungsneutral** auf Portfolio-Prozente.
+  * **Cloudflare Worker & D1 Gateway:** Ist für die Personalisierung zuständig. Er multipliziert:
+    $$\text{Orderbetrag (€)} = \text{Zielgewicht (\%)} \times \text{User-Monatsrate oder Topup (€)}$$
+* **Zu klärende Detailregeln für D1:**
+  1. **Mindest-Ordergrößen & Split-Handling:** Wenn ein 5 % Bitcoin-Satellit bei einer 100-€-Sparrate nur 5 € ergäbe, viele Broker aber eine Mindest-Sparrate von 25 € oder keine Fractional Shares für Small Caps erlauben.  
+     *Lösungsansatz:* D1 implementiert einen konfigurierbaren Mindest-Schwellenwert (`min_order_threshold_eur`, z. B. 25 €). Beträge darunter verbleiben auf dem Verrechnungskonto (`cash_reserve`), bis die Tranche die Mindestgröße erreicht.
+  2. **Währungsumrechnung:** Alle Modelle rechnen in USD-Benchmarks (`SPY`, `BTC-USD`), während Privatanleger im D1-Gateway Euro (€) besparen. Der Cloudflare Worker zieht den EUR/USD-Tageskurs aus dem Snapshot, um Beträge korrekt in Euro auszugeben.
+  3. **Ausnahme Kamikaze:** Kamikaze läuft als reines 94.000-$ USD-Echtgelddepot. Es findet keine Euro-Skalierung statt; Abonnenten sehen die Original-Dollar-Positionen und Zündfunken als Read-Only Stream.
+
+### 9.3 Bidirektionale State-Machine & Feedback-Loop (`[✅ Ausgeführt]`)
+* **Die Herausforderung:** Ein Nutzer erhält am 1. des Monats die Sparplan-Anweisung, führt den Kauf bei seinem Broker aber erst 3 Tage später oder gar nicht aus.
+* **Status-Übergänge in Cloudflare D1 (`user_portfolios` & `signal_logs`):**
+  * `SIGNAL_SENT`: Anweisung wurde per Telegram zugestellt.
+  * `[✅ Ausgeführt]` geklickt:
+    * `current_tranche` wird inkrementiert.
+    * Das investierte Kapital wird von `cash_reserve` abgezogen.
+    * Status wechselt auf `CONFIRMED`.
+  * `[⏳ Diesen Monat überspringen]` geklickt:
+    * Die Sparrate wird der internen `cash_reserve` gutgeschrieben (Bereitschaft für antizyklische Re-Entry-Sniper oder Nachkäufe).
+    * Status wechselt auf `SKIPPED`.
+* **Umgang mit Ausführungs-Latenz (Slippage):**
+  * Da CrashRadar kein direkter Broker-Executor für Privatanleger ist, erfasst D1 den Ausführungstag und den Richtkurs des Snapshots. Eine exakte Cent-Abrechnung auf Nachkommastellen ist für die Signalführung nicht erforderlich; die relative Tranchen- und Disziplin-Treue steht im Vordergrund.
+
+### 9.4 Dynamisches Debouncing & Alert-Priorisierung (Monats-DCA vs. Notfall-Push)
+* **Das Problem:** Ein Benachrichtigungsdienst darf Privatanleger nicht mit täglichem Marktrauschen überschütten, muss aber bei einem Crash-Event in Echtzeit warnen.
+* **3-Stufige Prioritäts-Hierarchie:**
+  1. **Priorität 3 – Geplanter Monats- & Wochenzyklus (Vollkommene Chat-Ruhe):**
+     * Monatliche Sparrate: Nur 1x pro Monat am 1. Werktag um 08:00 UTC.
+     * Wöchentlicher Statusbericht: Nur 1x pro Woche montags um 07:00 UTC.
+     * Dazwischen herrscht im 1:1-Chat absolute Ruhe (kein tägliches Ping-Pong).
+  2. **Priorität 2 – Antizyklischer Re-Entry (Sniper-Alert):**
+     * Schlägt der universelle Bottom-Finder an (`VIX >= 35` Reversal, Dark Pool DIX Wal-Akkumulation), wird innerhalb von 24h nach Marktschluss ein einmaliges Reinvestitions-Signal gepusht.
+  3. **Priorität 1 – Globaler Katastrophen-Alarm (3-Säulen-Matrix schlägt an):**
+     * Trendbruch (`SPY < SMA 200` mit $\text{DD} \ge 8\,\%$) **und** mind. 1 Makro-Alarm (VIX $\ge 28$, Credit Spreads, Deleveraging).
+     * Hier wird jedes reguläre Debounce sofort auf **0 ms** übersteuert:
+     * **Sofortiger Push:** Push-Benachrichtigung in alle privaten 1:1-Chats der betroffenen Strategien:  
+       > 🚨 **NOTFALL-SCHUTZSCHILD AKTIVIERT (3-Säulen-Matrix)**  
+       > *System-Trend gebrochen & Kredit-/Volatilitäts-Alarm aktiv.*  
+       > **Handlungsanweisung:** Positionen evakuieren in den Schutzschirm (Gold & Cash).
+     * **Anti-Whipsaw-Hysterese:** Nach Auslösen des Notfall-Schutzschirms bleibt die Evakuierung für mindestens 15 Handelstage verriegelt, um Fehlsignale und Whipsaws im Bärenmarkt zu unterbinden.
+
 
