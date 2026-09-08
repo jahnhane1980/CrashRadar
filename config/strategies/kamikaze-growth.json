@@ -15,6 +15,21 @@
     }
   ],
 
+  "allocation_rules": {
+    "tech_target_pct": 50,
+    "crypto_target_pct": 50,
+    "fire_spark_pct_of_free_mothership": 35,
+    "crypto_pyramid_tranches_pct": [40, 30, 30],
+    "emergency_evacuation": {
+      "trigger_net_liq_delta_8w": -0.05,
+      "trigger_credit_spread_hy_pct": 4.0,
+      "allocation": {
+        "gold_pct": 50,
+        "cash_pct": 50
+      }
+    }
+  },
+
   "cash_pots": {
     "free_usd": 7034.67,
     "pending_orders_usd": 4287.00,
