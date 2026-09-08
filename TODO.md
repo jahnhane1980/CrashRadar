@@ -19,16 +19,19 @@
 ### 2. PortfolioStrategyEngine (Plugin-Architektur, Interface & Strategie-Registry)
 * **Ziel:** Etablierung einer autarken `PortfolioStrategyEngine` zur modularen Kapselung und parallelen Ausführung aller Portfoliostrategien (analog zur Indikatoren-Registry via `_indicators` in `MacroRegimeEngine`).
 * **Operative Umsetzungsschritte [OFFEN]:**
-  * **Schritt 0 (Daten-Audit der Strategien & Fetcher-Registrierung):**
-    * Systematische Überprüfung aller von den 5 Strategien benötigten Marktdaten, Ticker (Tech, Krypto-Equities, ETFs, Gold), Notenbank- und Makro-Reihen sowie Sentiment-Daten.
-    * Gründlicher Abgleich mit der Datenbank und [`config/Database-Fetcher-Config.json`](file:///D:/GitHub/CrashRadar/config/Database-Fetcher-Config.json): Identifikation aller Datenreihen, die noch nicht regelmäßig bezogen werden.
-    * Neuregistrierung der fehlenden Ticker/Zeitreihen im Fetcher (inkl. Zuordnung zu Yahoo, Polygon, FRED, Tiingo oder SEC 10-Q).
-  * **Schritt 1 (`BasePortfolioStrategy.js` Interface):** Einheitliche Basisklasse mit Standard-Methoden (`initialize()`, `evaluateDaily(date, marketData, macroState)`, `executeTrades()`, `getPortfolioStatus()`, `getHistory()`, `generateAlerts()`).
-  * **Schritt 2 (`PortfolioStrategyEngine.js`):** Orchestrator-Klasse zur parallelen Ausführung aller registrierten Strategien, aggregiertem Reporting und Schnittstelle zur Notification-Engine.
-  * **Schritt 3 (Strategie-Klassen anlegen):** Kapselung von `MuzzledCathieWoodStrategy.js`, `KamikazeGrowthStrategy.js`, `SevenSlotGuruStrategy.js`, `GoldSpyDcaStrategy.js` und `SatelliteStakingStrategy.js` in `src/strategies/`.
+  * **Schritt 0 (Daten-Audit der Strategien [Geparkt für Live-Rollout]):**
+    * Fetcher-Konfiguration (`config/Database-Fetcher-Config.json`) und Adapter bleiben in dieser Phase unberührt.
+    * Strategie- und Engine-Entwicklung erfolgt testgetrieben (TDD) via bestehender Datenbank-Zeitreihen, Fixtures und synthetischer Szenarien (`tests/fixtures/`).
+  * **Schritt 1 (`BasePortfolioStrategy.js` Interface & Contract):** Einheitliche Basisklasse in `src/strategies/BasePortfolioStrategy.js` mit Standard-Methoden (`initialize(config)`, `evaluateDaily(date, marketData, macroContext)`, `getPortfolioStatus()`, `generateOrderInstructions()`).
+  * **Schritt 2 (`PortfolioStrategyEngine.js`):** Orchestrator & Registry in `src/strategies/PortfolioStrategyEngine.js` zur parallelen Ausführung aller registrierten Strategien, Bereitstellung der Standard-Makrosignale und Aggregation in `daily_intelligence.json`.
+  * **Schritt 3 (Strategie-Klassen anlegen):** Kapselung von `GoldSpyDcaStrategy.js`, `KamikazeGrowthStrategy.js`, `MuzzledCathieWoodStrategy.js`, `SevenSlotGuruStrategy.js` und `SatelliteCoreStrategy.js` in `src/strategies/`.
   * **Schritt 4 (Broker-Live-Ingestion & Discretionary Override für Kamikaze):**
-    * Anbindung des realen Handelskonto (Cash USD, offene Limit-Orders, Bestände).
-    * Reconciliation-Logik: Discretionary Override ("Broker-Realität überschreibt Modell-Zustand").
+    * Broker-Adapter in `src/core/adapters/broker/` (`BrokerAdapterInterface.js`, `InteractiveBrokersAdapter.js`, `MockBrokerAdapter.js`).
+    * Reconciliation-Service in `src/services/BrokerReconciliationService.js` ("Broker-Realität überschreibt Modell-Zustand").
+  * **Schritt 5 (Snapshot-Export & Runner):**
+    * Snapshot-Push-Dienst `src/services/SnapshotExporterService.js` (an Cloudflare D1 Webhook).
+    * Telegram-Dienst `src/services/TelegramService.js` (Public Channel).
+    * Orchestrierender Runner `src/runners/PortfolioStrategyRunner.js`.
 
 ### 3. Notification- & Signal-System: Telegram, Edge-Gateway & Architektur-Review
 * **Master-Spezifikation:** Vollständig dokumentiert in [`docs/architecture/signal-service/Investment-Signaldienst.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signal-service/Investment-Signaldienst.md).

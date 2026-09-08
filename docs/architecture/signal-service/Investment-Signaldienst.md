@@ -144,6 +144,122 @@ Um die evolutorische Entwicklung der SignalEngine und der fünf Portfoliostrateg
 
 ---
 
+## 1.2 Technische Code-Architektur & Dateistruktur in `CrashRadar` (Domain-Language & Mapping)
+
+Gemäß der bestehenden Architekturprinzipien und Domänensprache von `CrashRadar` (strikte Trennung von `analysis/`, `core/adapters/`, `services/`, `runners/` und `config/`) wird das Portfolio- und Signalsystem als modulare Struktur verankert. 
+
+> [!IMPORTANT]
+> **Fetcher-Schutz & Phasen-Trennung:**  
+> Die Ingestion-Pipeline (`config/Database-Fetcher-Config.json` und `src/core/adapters/fetch/`) bleibt in dieser Entwicklungsphase **vollständig unberührt**. Die Entwicklung, das TDD-Design und die Verifikation der Strategie-Logik erfolgen isoliert über historische Fixtures, bestehende DB-Zeitreihen und synthetische Marktszenarien. Die Fetcher-Erweiterung erfolgt als separater Schritt vor dem Live-Rollout.
+
+### 1. Das Dateibaum-Mapping in `CrashRadar`
+
+```
+CrashRadar/
+├── config/
+│   ├── Signal-Engine-Config.json                 <-- Globale Steuerung (Webhooks, aktive Strategien, Scheduler)
+│   └── strategies/                               <-- Autarke Strategie-Manifeste (JSON Single-Source-of-Truth)
+│       ├── gold-spy.json                         <-- Manifest v2.2.0 (SPY DCA, 3-Säulen-Matrix, 75/25 Gold/Cash)
+│       ├── kamikaze-growth.json                  <-- Manifest v1.1.0 (High-Beta, Climax-Exit, Broker-Sync)
+│       ├── satellite.json                        <-- Manifest v1.0.0 (80 SPY / 15 DFNS / 5 BTC)
+│       ├── muzzled-cathie-wood.json              <-- Manifest v2.1.0 (60 Tech / 40 Krypto, 40/30/30 Pyramide)
+│       └── seven-slot-guru.json                  <-- Manifest v2.0.0 (13F-Konsens, 7 Slots, NetLiq-Schutz)
+│
+├── src/
+│   ├── strategies/                               <-- NEUE DOMÄNE: Portfolio- & Strategie-Engine
+│   │   ├── BasePortfolioStrategy.js              <-- Abstrakte Basisklasse: Lifecycle, Buckets, Validierung, Manifest-Loader
+│   │   ├── PortfolioStrategyEngine.js            <-- Orchestrator & Registry (analog zu MacroRegimeEngine.js)
+│   │   ├── GoldSpyDcaStrategy.js                 <-- SPY DCA + 3-Säulen-Katastrophen-Matrix + 75/25 Sweet Spot
+│   │   ├── KamikazeGrowthStrategy.js             <-- High-Beta + Climax-Exit + Discretionary Override
+│   │   ├── MuzzledCathieWoodStrategy.js          <-- Tech-ARK + BTC 21W-EMA Pyramide + Notfall-Schirm
+│   │   ├── SevenSlotGuruStrategy.js              <-- 13F-Konsens (>=2 Gurus) + Druckenmiller NetLiq Shield
+│   │   └── SatelliteCoreStrategy.js              <-- 80 SPY / 15 DFNS / 5 BTC + Notfall-Stecker
+│   │
+│   ├── core/
+│   │   └── adapters/
+│   │       ├── broker/                           <-- NEUER ADAPTER-TYP (analog zu fetch/ und storage/)
+│   │       │   ├── BrokerAdapterInterface.js     <-- Interface: getBalance(), getPositions(), getOpenOrders()
+│   │       │   ├── InteractiveBrokersAdapter.js  <-- Live-Broker Ingestion für Kamikaze Realdepot (~94k $)
+│   │       │   └── MockBrokerAdapter.js          <-- Test-Adapter für deterministische TDD-Simulationen
+│   │       ├── fetch/                            <-- UNBERÜHRT (Yahoo, Tiingo, Binance, Fred, CBOE, Finra, SecEdgar)
+│   │       └── storage/                          <-- UNBERÜHRT (MySQL & SQLite Storage)
+│   │
+│   ├── services/
+│   │   ├── SnapshotExporterService.js            <-- Formatiert 'daily_intelligence.json' & pusht an Cloudflare D1
+│   │   ├── TelegramService.js                    <-- Bot-Client für Public Channel (chat.type == "channel") & Admin-Alerts
+│   │   ├── NotificationManager.js                <-- Dynamisches Debouncing (Sparplan 1x/Monat vs. 0ms Notfall-Push)
+│   │   └── BrokerReconciliationService.js        <-- Führt Discretionary Override aus ("Broker-Realität ist Gesetz")
+│   │
+│   ├── runners/
+│   │   └── PortfolioStrategyRunner.js            <-- Täglicher Cron-Runner: Daten -> Engine -> Exporter -> Telegram
+│   │
+│   └── analysis/                                 <-- BESTEHEND: Bereitstellung der Standard-Signale
+│       ├── MacroRegimeEngine.js                  <-- Makro-Ampel, NetLiq, Treasury Capacity, NFCI
+│       ├── TradeSetupEngine.js                   <-- Bottom-Finder (PanicCapitulation, DIX), Climax-Exits
+│       └── indicators/                           <-- Alle 35 atomaren Indikatoren
+│
+└── tests/
+    └── strategies/                               <-- TDD & Unit-Tests für alle Strategien & die Engine
+        ├── PortfolioStrategyEngine.test.js       <-- Registry, parallele Ausführung, Snapshot-Validierung
+        ├── BasePortfolioStrategy.test.js         <-- Lifecycle-Methoden, Bucket-Berechnung, Fehlerbehandlung
+        ├── GoldSpyDcaStrategy.test.js            <-- Normales DCA vs. Evakuierung 75/25
+        ├── KamikazeGrowthStrategy.test.js        <-- Broker-Override, Climax-Exits, Zündfunken
+        ├── MuzzledCathieWoodStrategy.test.js     <-- Krypto-Pyramide 40/30/30, Notfall-Schirm
+        ├── SevenSlotGuruStrategy.test.js         <-- 13F-Konsens, NetLiq-Shield
+        └── SatelliteCoreStrategy.test.js         <-- Core-Satellite HODL, Rebalancing-Reset
+```
+
+### 2. Klassen- und Schnittstellen-Mapping (Domain-Language)
+
+| Datei | Schicht | Rolle / Verantwortung | Primäre Schnittstelle / Methoden |
+| :--- | :--- | :--- | :--- |
+| **[`BasePortfolioStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/BasePortfolioStrategy.js)** | `src/strategies/` | Abstrakte Basisklasse für alle Strategien | `initialize(config)`, `evaluateDaily(date, marketData, macroContext)`, `getPortfolioStatus()`, `generateOrderInstructions()` |
+| **[`PortfolioStrategyEngine.js`](file:///D:/GitHub/CrashRadar/src/strategies/PortfolioStrategyEngine.js)** | `src/strategies/` | Orchestrator & Registry (analog zu `MacroRegimeEngine.js`) | `registerStrategy(instance)`, `evaluateAll(date, marketData, macroContext)`, `buildDailySnapshot()` |
+| **`*Strategy.js` (5 Klassen)** | `src/strategies/` | Konkrete Strategie-Logiken mit autonomem Bucket-Management | Implementieren die Lifecycle-Methoden; managen Core-, Satellite-, Hedge- und Cash-Buckets |
+| **[`BrokerAdapterInterface.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/broker/BrokerAdapterInterface.js)** | `src/core/adapters/` | Vertrag für Broker-Kopplung (Kamikaze) | `getBalance()`, `getPositions()`, `getOpenOrders()` |
+| **[`InteractiveBrokersAdapter.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/broker/InteractiveBrokersAdapter.js)** | `src/core/adapters/` | Realer Broker-Adapter für Kamikaze-Depot | Liest Kontostand, Cash und Positionen via Broker-API ein |
+| **[`BrokerReconciliationService.js`](file:///D:/GitHub/CrashRadar/src/services/BrokerReconciliationService.js)** | `src/services/` | Reconciliation & Discretionary Override | `reconcile(strategyState, brokerHoldings)`: Übersteuert Modell mit Broker-Realität |
+| **[`SnapshotExporterService.js`](file:///D:/GitHub/CrashRadar/src/services/SnapshotExporterService.js)** | `src/services/` | Pre-Computation Push an Cloudflare D1 | `exportSnapshot(snapshotPayload)` via HTTPS POST Webhook (`CF_SNAPSHOT_WEBHOOK_URL`) |
+| **[`TelegramService.js`](file:///D:/GitHub/CrashRadar/src/services/TelegramService.js)** | `src/services/` | Telegram-Bot Client für Broadcast & Admin | `sendChannelBroadcast(markdownMessage)`, `sendAdminAlert(text)` |
+| **[`PortfolioStrategyRunner.js`](file:///D:/GitHub/CrashRadar/src/runners/PortfolioStrategyRunner.js)** | `src/runners/` | Täglicher Ausführungs-Runner | `run()`: Data-Load $\rightarrow$ Indikatoren $\rightarrow$ StrategyEngine $\rightarrow$ Exporter $\rightarrow$ Telegram |
+
+### 3. Der Datenfluss durch die Komponenten (End-to-End Execution Flow)
+
+```
+[1. Datenbank (MySQL / SQLite)] (Unangetastet)
+       │
+       ▼ (getDailyGroupedData)
+[2. FinanceExpert / Repository]
+       │
+       ▼ (Timeline + Preise)
+[3. IndicatorEngine / MacroRegimeEngine]
+       │
+       ├─────────────────────────────────────────┐
+       ▼                                         ▼
+ (Standard-Signale:                     [4. Broker API / Adapter] (Nur Kamikaze)
+  Ampel, Katastrophen-Matrix,                     │
+  Bottom-Finder, NetLiq, BTC-EMA)                 ▼ (Reale Positionen & USD-Cash)
+       │                                [BrokerReconciliationService]
+       │                                         │
+       └───────────────────┬─────────────────────┘
+                           ▼
+[5. PortfolioStrategyEngine (Registry)]
+       │
+       ├──> GoldSpyDcaStrategy.evaluateDaily(...)
+       ├──> KamikazeGrowthStrategy.evaluateDaily(...) (inkl. Broker-Override)
+       ├──> MuzzledCathieWoodStrategy.evaluateDaily(...)
+       ├──> SevenSlotGuruStrategy.evaluateDaily(...)
+       └──> SatelliteCoreStrategy.evaluateDaily(...)
+                           │
+                           ▼ (Aggregiertes JSON: Quoten %, Tranchen, Gründe)
+[6. SnapshotExporterService] ───────────► [Cloudflare D1 Webhook] (daily_intelligence.json)
+                           │
+                           ▼ (Makro-Wetter & Status)
+[7. TelegramService] ───────────────────► [Telegram Broadcast-Kanal] (Öffentlich)
+```
+
+---
+
 ## 2. Telegram Chat-Typen & Berechtigungskonzepte
 
 Telegram unterscheidet grundlegend zwischen verschiedenen Chat-Arten. Das System nutzt gezielt zwei getrennte Typen, um Privatsphäre und passive Signale sauber zu trennen:
@@ -605,8 +721,9 @@ Für die anstehende evolutorische Umsetzung der SignalEngine und der fünf Portf
   2. **High-Beta Equities & Krypto-Aktien (Kamikaze & MCW):** `MSTR`, `MARA`, `COIN`, `HOOD`, `PLTR`, `NVTS`, `SOFI`, `PGY`, `S`.
   3. **Superinvestor-Konsens (7-Slot-Guru):** 13F-Filing-Daten (Scraper oder SEC Edgar Pipeline für die 6 Top-Gurus: Druckenmiller, Buffett, Klarman, Tepper, Li Lu, Burry).
   4. **Sentiment & Flow-Daten (Bottom-Finder):** CBOE Total Put/Call Ratio (`PUTCALL`), SqueezeMetrics Dark Pool Index (`DIX`), AAII Sentiment (`AAII_BULL` / `AAII_BEAR`), FINRA Margin Debt.
-* **Verbindliche Festlegung für Schritt 0:**  
-  Bevor die Strategy-Klassen im Runner instanziiert werden, muss jede fehlende Datenreihe mit Ticker, Intervall und Provider in `Database-Fetcher-Config.json` eingetragen und via Live-Fetch in die lokale MySQL-Datenbank ingestiert worden sein (keine Signalberechnung auf Blindwerten).
+* **Verbindliche Festlegung & Phasen-Trennung für den Fetcher:**  
+  * **Aktuelle Entwicklungsphase:** Der Fetcher (`config/Database-Fetcher-Config.json` und `src/core/adapters/fetch/`) bleibt in dieser Phase **vollständig unberührt**. Die Entwicklung der `PortfolioStrategyEngine` und der fünf Strategien erfolgt strikt testgetrieben (TDD) auf Basis vorhandener Datenbank-Zeitreihen, historischer Simulations-Fixtures (`tests/fixtures/`) und synthetischer Marktdaten.
+  * **Nachgelagerte Produktiv-Registrierung:** Die Ergänzung der neuen Ticker in `Database-Fetcher-Config.json` erfolgt als eigenständiger, nachgelagerter Schritt, sobald die Core-Strategie-Logiken fehlerfrei getestet und verifiziert sind.
 
 ### 9.2 Abstraktes Modell (%) vs. Personalisierte Euro-Ausführung (€ & Währung)
 * **Klare Trennung der Zuständigkeit:**
