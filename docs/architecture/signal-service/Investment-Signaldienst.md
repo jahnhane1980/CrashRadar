@@ -75,7 +75,17 @@ Um die evolutorische Entwicklung der SignalEngine und der fünf Portfoliostrateg
 │    • Universeller Bottom-Finder (Panic-Capitulation & DIX-Whales)      │
 │    • Net Liquidity Delta (ΔNetLiq 4W) & Krypto-Zyklus (21W-EMA)        │
 │                                                                        │
-│ 2. Strategy Registry (Plugin-Muster analog zu _indicators):            │
+│ 2. Autarke Stock- & Asset-Radare (src/radars/ - Asset-Ebene):          │
+│    ┌──────────────────────────────────────────────────────────────┐    │
+│    │ BaseStockRadar (Einheitliches Scan- & Signal-Interface)      │    │
+│    ├──────────────────────────────────────────────────────────────┤    │
+│    │ • GrowthStockRadar (Weinstein Stage-2, 10-Q Gate, Climax-Top)│    │
+│    │ • Institutional13FRadar (6 Gurus Konsens >= 2, Base-Schutz)  │    │
+│    │ • CryptoRegimeRadar (BTC 21W-EMA Schalter, Krypto-Equities)  │    │
+│    └──────────────────────────────┬───────────────────────────────┘    │
+│                                   │ Normierte Asset-Signale            │
+│                                   ▼ (BREAKOUT, CLIMAX, CONSENSUS)      │
+│ 3. Strategy Registry (Plugin-Muster analog zu _indicators):            │
 │    ┌──────────────────────────────────────────────────────────────┐    │
 │    │ registerStrategy(strategyInstance)                           │    │
 │    ├───────────────────────┬──────────────────────────────────────┤    │
@@ -86,13 +96,13 @@ Um die evolutorische Entwicklung der SignalEngine und der fünf Portfoliostrateg
 │    │                       │ • SatelliteCoreStrategy              │    │
 │    └───────────────────────┴──────────────────────────────────────┘    │
 │                                │                                       │
-│ 3. Autonome Portfolio-Verwaltung je Strategie (Bucket-Management):     │
+│ 4. Autonome Portfolio-Verwaltung je Strategie (Bucket-Management):     │
 │    • Core-Bucket (z. B. SPY Mutterschiff)                              │
 │    • Satelliten-Bucket (z. B. DFNS, Tech-Picks, Krypto-Pyramide)       │
 │    • Hedge-Bucket (Gold & Cash Notfall-Schirm)                         │
 │    • Order-Generierung: Ziel-Allokation (%) & Tranchen-Aktionen        │
 │                                │                                       │
-│ 4. Snapshot-Export (Täglicher Pre-Computation Push):                   │
+│ 5. Snapshot-Export (Täglicher Pre-Computation Push):                   │
 │    • Aggregiert alle Strategie-Zustände in 'daily_intelligence.json'   │
 └────────────────────────────────┬───────────────────────────────────────┘
                                  │ HTTPS Webhook Push (daily_intelligence.json)
@@ -106,11 +116,11 @@ Um die evolutorische Entwicklung der SignalEngine und der fünf Portfoliostrateg
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
-### 1. Die 5 Kern-Prinzipien des High-Level-Modells:
+### 1. Die 6 Kern-Prinzipien des High-Level-Modells:
 
 1. **Strategie-Registry (Plugin-Architektur via `BasePortfolioStrategy.js`):**  
    * Analog zur Indikatoren-Registry (`_indicators` in `MacroRegimeEngine`) werden alle Strategien als modulare Klassen implementiert und in der `PortfolioStrategyEngine` registriert.
-   * Jede Strategie erbt von `BasePortfolioStrategy` und implementiert verbindliche Lebenszyklus-Methoden: `initialize(config)`, `evaluateDaily(date, marketData, macroSignalContext)`, `getPortfolioStatus()` und `generateOrderInstructions()`.
+   * Jede Strategie erbt von `BasePortfolioStrategy` und implementiert verbindliche Lebenszyklus-Methoden: `initialize(config)`, `evaluateDaily(date, marketData, macroSignalContext, radarSignals)`, `getPortfolioStatus()` und `generateOrderInstructions()`.
    * Neue Strategien können hinzugeschaltet oder deaktiviert werden, ohne den Orchestrator oder bestehende Strategien zu modifizieren.
 
 2. **Standard-Signale der Engine („Signals as a Service“):**  
@@ -122,7 +132,19 @@ Um die evolutorische Entwicklung der SignalEngine und der fünf Portfoliostrateg
      * **Liquiditäts-Metriken:** Net Liquidity Delta ($\Delta\text{NetLiq}_{4W}$) und K-Faktor.
      * **Krypto-Master-Sensorik:** Bitcoin 21-Wochen-EMA und Zyklus-Divergenzen.
 
-3. **Autonome Portfolio- & Bucket-Verwaltung der Strategien:**  
+3. **Die 2-Ebenen-Signal-Hierarchie (Stock-Radare vs. Portfolio-Strategien):**  
+   * **Strikte Separation of Concerns:** Um Code-Duplizierung und unübersichtliche Strategie-Monolithen zu verhindern, trennt das System strikt zwischen Asset-Signal-Erzeugung und Portfolio-Kapitalverwaltung:
+     * **Ebene 1: Autarke Stock- & Asset-Radare (`src/radars/` via `BaseStockRadar.js`):**
+       * Zustandslose, wiederverwendbare Signal-Scanner auf Einzelwert- und Watchlist-Ebene.
+       * Analysieren technische Kerzenmuster (Daily & M5), Konsolidierungs-Basen, Bollinger-Band-Squeezes, Intraday-VWAP-Stabilität, SEC 10-Q Bilanzen und SEC 13F Hedgefonds-Filings.
+       * Liefern normierte Asset-Zustände (`BREAKOUT_ACTIVE`, `READY_TO_FIRE`, `RIDE_TREND`, `TOP_CLIMAX_ALERT`, `TREND_BROKEN`, `STOP_LOSS`, `CONSENSUS_LOST`).
+       * Kennen **weder Depotstände noch Cash-Salden** und erzeugen **keine Trades**.
+     * **Ebene 2: Portfolio- & Capital-Engine (`src/strategies/` via `BasePortfolioStrategy.js`):**
+       * Konsumieren die normierten Asset-Signale der Radare sowie den Makro-Kontext (`macroSignalContext`).
+       * Verwalten Kapital, Allokationen, Cash-Pots, Zündfunken-Größen (z. B. 35 % aus freiem Mutterschiff), Slot-Besetzungen (7 Slots gleichgewichtet) und Notfall-Evakuierungen (100 % in 50 % Gold / 50 % Cash).
+       * Übersetzen die Radar-Zustände in konkrete Order-Instruktionen (`generateOrderInstructions()`) und synchronisieren sich bei Bedarf mit dem echten Broker (*Discretionary Override*).
+
+4. **Autonome Portfolio- & Bucket-Verwaltung der Strategien:**  
    * Jede Strategie ist eigenverantwortlich für die Verwaltung ihres Portfolios zuständig.
    * Sie unterteilt ihr Kapital in definierte **Asset-Buckets** (z. B. Core-Mutterschiff, Wachstums-Satelliten, Krypto-Pyramide, Hedge-Bucket).
    * Anhand der Engine-Signale entscheidet die Strategie autonom über Rebalancing, Tranchenkäufe, Zündfunken-Aktivierungen oder Evakuierungen in den Hedge-Bucket (Gold/Cash).
@@ -132,12 +154,12 @@ Um die evolutorische Entwicklung der SignalEngine und der fünf Portfoliostrateg
      * `rebalance_delta_pct`: Benötigte Umschichtungsquote gegenüber dem Vortag.
      * `reason`: Menschlich lesbare Begründung für das Telegram-Signal.
 
-4. **Sonderfall Kamikaze Growth (Echtgeld-Broker-Kopplung):**  
+5. **Sonderfall Kamikaze Growth (Echtgeld-Broker-Kopplung):**  
    * Während die übrigen Strategien als algorithmische Referenz-Portfolios laufen, ist Kamikaze Growth direkt mit dem **realen Trading-Konto (Broker-API)** verknüpft (~94.000 $ Realdepot).
    * **Discretionary Human Override:** Weicht der Händler manuell ab, gilt das Prinzip „Broker-Realität ist Gesetz“ – die Engine übernimmt den echten Kontostand als Reconciled State und passt Zündfunken und freie Quoten adaptiv an.
    * **Telegram-Rolle:** Für Abonnenten fungiert Kamikaze als reines Read-Only Echtgeld-Flaggschiff (keine individuellen Sparplan-Multiplikationen im Bot).
 
-5. **Schnittstelle zu Cloudflare D1 (`daily_intelligence.json`):**  
+6. **Schnittstelle zu Cloudflare D1 (`daily_intelligence.json`):**  
    * CrashRadar berechnet **keine** individuellen Kunden-Depots und führt keine Euro-Multiplikation durch.
    * Nach dem täglichen Rechenlauf exportiert die Engine den aggregierten Snapshot `daily_intelligence.json` per Webhook an Cloudflare D1.
    * **Aufgabe von D1 & Cloudflare Worker:** Der Worker liest den Snapshot, matcht ihn mit den hinterlegten User-Profilen (`user_portfolios`) und multipliziert die relativen Modell-Prozente linear mit der monatlichen Sparrate oder dem Topup-Betrag des jeweiligen Nutzers.
@@ -166,14 +188,20 @@ CrashRadar/
 │       └── seven-slot-guru.json                  <-- Manifest v2.0.0 (13F-Konsens, 7 Slots, NetLiq-Schutz)
 │
 ├── src/
-│   ├── strategies/                               <-- NEUE DOMÄNE: Portfolio- & Strategie-Engine
+│   ├── radars/                                   <-- NEUE DOMÄNE: Autarke Stock- & Asset-Radare (Asset-Ebene)
+│   │   ├── BaseStockRadar.js                     <-- Abstrakte Basisklasse: evaluateSymbol(), scanUniverse(), Signal-Kontrakt
+│   │   ├── GrowthStockRadar.js                   <-- Weinstein Stage-2 + SEC 10-Q Gate + M5 Climax-Exit (für Kamikaze & MCW)
+│   │   ├── Institutional13FRadar.js              <-- 13F-Konsens (>=2 Gurus) + Verdrängungs- & Base-Schutz (für 7-Slot Guru)
+│   │   └── CryptoRegimeRadar.js                  <-- BTC 21W-EMA Binärschalter & Krypto-Equity-Ranking
+│   │
+│   ├── strategies/                               <-- REINES PORTFOLIO- & KAPITALMANAGEMENT
 │   │   ├── BasePortfolioStrategy.js              <-- Abstrakte Basisklasse: Lifecycle, Buckets, Validierung, Manifest-Loader
 │   │   ├── PortfolioStrategyEngine.js            <-- Orchestrator & Registry (analog zu MacroRegimeEngine.js)
 │   │   ├── GoldSpyDcaStrategy.js                 <-- SPY DCA + 3-Säulen-Katastrophen-Matrix + 75/25 Sweet Spot
-│   │   ├── KamikazeGrowthStrategy.js             <-- High-Beta + Climax-Exit + Discretionary Override
-│   │   ├── MuzzledCathieWoodStrategy.js          <-- Tech-ARK + BTC 21W-EMA Pyramide + Notfall-Schirm
-│   │   ├── SevenSlotGuruStrategy.js              <-- 13F-Konsens (>=2 Gurus) + Druckenmiller NetLiq Shield
-│   │   └── SatelliteCoreStrategy.js              <-- 80 SPY / 15 DFNS / 5 BTC + Notfall-Stecker
+│   │   ├── KamikazeGrowthStrategy.js             <-- High-Beta (nutzt GrowthStockRadar + CryptoRegimeRadar) + Broker-Sync
+│   │   ├── MuzzledCathieWoodStrategy.js          <-- Tech-ARK (nutzt GrowthStockRadar + CryptoRegimeRadar) + Sparplan
+│   │   ├── SevenSlotGuruStrategy.js              <-- 13F-Konsens (nutzt Institutional13FRadar) + NetLiq Shield
+│   │   └── SatelliteCoreStrategy.js              <-- 80 SPY / 15 DFNS / 5 BTC (nutzt CryptoRegimeRadar) + Notfall-Stecker
 │   │
 │   ├── core/
 │   │   └── adapters/
@@ -768,4 +796,55 @@ Für die anstehende evolutorische Umsetzung der SignalEngine und der fünf Portf
        > **Handlungsanweisung:** Positionen evakuieren in den Schutzschirm (Gold & Cash).
      * **Anti-Whipsaw-Hysterese:** Nach Auslösen des Notfall-Schutzschirms bleibt die Evakuierung für mindestens 15 Handelstage verriegelt, um Fehlsignale und Whipsaws im Bärenmarkt zu unterbinden.
 
+---
 
+## 10. Anhang / Versuchs-Spezifikation: High-Beta Growth Lebenszyklus-Radar (7-Phasen-Modell)
+
+> 🧪 **Experimenteller Status (In Erprobung):**  
+> Diese Spezifikation definiert das differenzierte Verhalten des Stock-Radars für **High-Beta Wachstums- und Disruptions-Aktien** (z. B. IBRX, NVTS, S, SOFI, HIMS). Sie trennt die Wachstumsdynamik strikt von reifen Mega-Caps (META, NOW) und bildet das empirisch beobachtete 7-Phasen-Post-IPO-Verhalten über einen **4- bis 6-Jahres-Historien-Blick** ab. Bewährt sich dieses Modell in den Scratch-Simulationen, wird es final in das Core-Radar-Framework überführt.
+
+### 10.1 Das 7-Phasen-Wachstums-Muster im Überblick
+
+```text
+┌────────────────────────────────────────────────────────────────────────┐
+│              DER 7-STUFEN HIGH-BETA GROWTH LEBENSZYKLUS                │
+├────────────────────────────────────────────────────────────────────────┤
+│ 1. IPO / De-SPAC              │ Erstnotiz & anfängliche Euphorie.      │
+│ 2. Post-IPO Boom (Hype 1)     │ 1. Spekulationswelle (S: 70 $,         │
+│                               │ NVTS: 18 $, SOFI: 25 $, HIMS: 25 $).   │
+│ 3. Post-IPO Sellout (Kater)   │ Enttäuschungs-Crash um -75 % bis -95 %.│
+│                               │ ⚠️ STRIKTES KAUF-VERBOT FÜR DAS RADAR! │
+│ 4. Boden-Findung (Inflection) │ • Reifegrad: Mind. 9–12 Monate Kater.  │
+│                               │ • Chart: Wyckoff-Base, VCP, L2 >= L1.  │
+│                               │ • Fundamental: Runway > 12m, Debt = 0, │
+│                               │   Bruttomarge >= 60-75 % stabil.       │
+│                               │ • Multiple: Kompression vs. Peers      │
+│                               │   (z. B. S bei 3,5x vs. PANW bei 14x). │
+│                               │ • Whales: Leise Akkumulations-Blöcke.  │
+│ 5. Buy-Trigger & Trend-Ritt   │ • Kauf bei AVWAP- & EMA20-Ausbruch.    │
+│                               │ • Ruhige Hand: Normale -20 % Pullbacks │
+│                               │   über steigendem SMA50 werden GEHALTEN│
+│ 6. Parabolik-Notbremse        │ • Ausstieg bei vertikaler Eskalation:  │
+│                               │   Distanz SMA 50 >= 70-100 %, RVOL > 4x│
+│                               │   Shooting-Star-Reversal -> 100 % Exit!│
+│ 7. Base-Reset & Boom 2        │ • Aktie kühlt über 5–8 Monate ab.      │
+│                               │ • Re-Entry bei Bestätigung von Base 2  │
+│                               │   (z. B. NVTS auf 34 $, S 2. Anlauf).  │
+└───────────────────────────────┴────────────────────────────────────────┘
+```
+
+### 10.2 Die 4 Growth-Spezifischen Kern-Filter des Radars
+
+1. **4–6 Jahre Historien-Blick & Reifegrad-Gate (Kein Messer-Fangen):**  
+   Wird eine Wachstumsaktie in das Radar eingespeist, analysiert die Engine mindestens **4 bis 6 Jahre Historie** (oder bis zum IPO zurück). Ein Einstieg ist in Phase 3 kategorisch gesperrt, solange seit dem Post-IPO-Hoch nicht mindestens **9 bis 12 Monate Verweildauer** und ein Drawdown von $\ge 60\,\%$ vergangen sind.
+
+2. **Der Bestätigungs-Einstieg (Patience Gate):**  
+   Das Radar kauft niemals den absoluten Panik-Tiefpunkt $L_1$, sondern wartet die Bestätigung eines höheren Tiefs ($L_2 \ge L_1 \times 1{,}05$) und das Schneiden des Event-AVWAPs nach mindestens **25 bis 35 Tagen Basis-Konsolidierung** ab. Lieber 20–30 % über dem Tiefpunkt einsteigen, dafür aber mit realem institutionellem Fundament.
+
+3. **Ruhige Hand im Trend (Trend-Immunität gegen Markt-Zucken):**  
+   Im Gegensatz zu engen Trailing-Stops hält das Growth-Radar normale Rücksetzer von 20–30 % (wie bei IBRX von 8 $ auf 6 $ oder HIMS von 25 $ auf 18 $) stoisch aus, solange der übergeordnete **50-Tage-SMA steigt** und keine parabolische Erschöpfung vorliegt.
+
+4. **Die Parabolik-Notbremse (Climax Blow-Off Sensor):**  
+   Eskaliert die Bewegung in eine vertikale Short-Covering-Hysterie:
+   $$\text{Notbremse} = \left( \text{Kurs} \ge \text{SMA}_{50} \times 1{,}70 \right) \;\mathbf{UND}\; \left( \text{RVOL} \ge 3{,}5\times \right) \;\mathbf{UND}\; \left( \text{Close} < \frac{\text{High} + \text{Low}}{2} \right)$$
+   $\rightarrow$ Löst die sofortige 100 %-Gewinnmitnahme aus. Die Aktie wechselt anschließend in den Zustand `WATCH_NEW_BASE` für den 2. Anlauf.

@@ -357,6 +357,7 @@ Im Backtest wurden vier vom Investor manuell ausgewählte Tech-Aktien zu konkret
 * **PoC-Simulation:** [`scratch/architecture/strategies/KamikazeGrowthSimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/KamikazeGrowthSimulation.js)
 * **Single-Asset Katapult-Engine (NVTS, IBRX, PLTR):** [`scratch/tools/GrowthStockTradingEngine.js`](file:///D:/GitHub/CrashRadar/scratch/tools/GrowthStockTradingEngine.js)
 * **Single-Asset Trading Framework:** [`docs/architecture/single-asset-radar/SingleAssetTrading.md`](file:///D:/GitHub/CrashRadar/docs/architecture/single-asset-radar/SingleAssetTrading.md)
+* **Stock Radar & Bewertungs-Framework (Turnaround-Entwurf):** [`docs/architecture/strategies/Stock-Radar-Turnaround-Framework.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Stock-Radar-Turnaround-Framework.md)
 * **Wissensgraph & Architektur:** Verlinkt in [`docs/README.md`](file:///D:/GitHub/CrashRadar/docs/README.md).
 * **Verwandte Core-Strategien:**
   * [`docs/architecture/strategies/Muzzled-Cathie-Wood.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Muzzled-Cathie-Wood.md) (60/40 ARK-Modell auf Euro-Basis mit Sparplan)
@@ -365,6 +366,9 @@ Im Backtest wurden vier vom Investor manuell ausgewählte Tech-Aktien zu konkret
 ---
 
 ## 5. TODO: Weiterentwicklung für explosives High-Beta Growth & Watchlist-Kalibrierung
+
+> [!NOTE]
+> Das analytische Fundament für die Turnaround-Bewertung (Net Cash Runway, EV/Sales Kompression, AVWAP und VCP-Bodenbildung) ist als eigenständiger Entwurf in [`docs/architecture/strategies/Stock-Radar-Turnaround-Framework.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Stock-Radar-Turnaround-Framework.md) hinterlegt und wird in dieser Evolutionsstufe in das Regelwerk überführt.
 
 > [!IMPORTANT]
 > **Lehren aus dem empirischen Abgleich (NVTS, IBRX, S):**

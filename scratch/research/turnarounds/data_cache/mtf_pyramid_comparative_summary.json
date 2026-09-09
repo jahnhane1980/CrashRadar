@@ -1,0 +1,52 @@
+[
+  {
+    "Symbol": "PLTR",
+    "TageGesamt": 563,
+    "DumpSignale3D": 4,
+    "VorWochenschluss": 4,
+    "MittlererZeitvorteil": "2.0 Tage vor Fr.",
+    "M5_OpenVolShare": "32.6 %",
+    "M5_CloseVolShare": "6.9 %",
+    "IntradayAnteil": "39.5 %"
+  },
+  {
+    "Symbol": "NVTS",
+    "TageGesamt": 563,
+    "DumpSignale3D": 9,
+    "VorWochenschluss": 7,
+    "MittlererZeitvorteil": "2.0 Tage vor Fr.",
+    "M5_OpenVolShare": "30.8 %",
+    "M5_CloseVolShare": "7.4 %",
+    "IntradayAnteil": "38.2 %"
+  },
+  {
+    "Symbol": "IBRX",
+    "TageGesamt": 568,
+    "DumpSignale3D": 8,
+    "VorWochenschluss": 6,
+    "MittlererZeitvorteil": "2.8 Tage vor Fr.",
+    "M5_OpenVolShare": "28.6 %",
+    "M5_CloseVolShare": "7.7 %",
+    "IntradayAnteil": "36.3 %"
+  },
+  {
+    "Symbol": "SOFI",
+    "TageGesamt": 567,
+    "DumpSignale3D": 2,
+    "VorWochenschluss": 1,
+    "MittlererZeitvorteil": "3.0 Tage vor Fr.",
+    "M5_OpenVolShare": "30.5 %",
+    "M5_CloseVolShare": "7.3 %",
+    "IntradayAnteil": "37.7 %"
+  },
+  {
+    "Symbol": "S",
+    "TageGesamt": 568,
+    "DumpSignale3D": 7,
+    "VorWochenschluss": 4,
+    "MittlererZeitvorteil": "3.5 Tage vor Fr.",
+    "M5_OpenVolShare": "24.0 %",
+    "M5_CloseVolShare": "10.6 %",
+    "IntradayAnteil": "34.6 %"
+  }
+]

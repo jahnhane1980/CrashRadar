@@ -16,19 +16,30 @@
   * **Gold-SPY DCA & Tranchen [ERLEDIGT]:** Vollständige Harmonisierung von [`docs/architecture/strategies/Gold-SPY.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Gold-SPY.md) mit der universellen 3-Heiligkeit des Schutzes (100 % Notfall-Evakuierung in 50 % Gold / 50 % Cash) und Bottom-Finder Re-Entry bei reinem SPY DCA im Normalbetrieb. Inkl. Konfigurations-Manifest [`config/strategies/gold-spy.json`](file:///D:/GitHub/CrashRadar/config/strategies/gold-spy.json) und 21,8-Jahre-Empirie-Backtest (2004–2026) in [`GoldSpyFullHistorySimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/GoldSpyFullHistorySimulation.js).
   * **Gold-GDX Status:** Bleibt als reine Forschungs- und Minenreferenz dokumentiert ([`docs/architecture/strategies/Gold-GDX.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Gold-GDX.md)), wird jedoch vorerst nicht im aktiven Signaldienst angeboten.
 
-### 2. PortfolioStrategyEngine (Plugin-Architektur, Interface & Strategie-Registry)
-* **Ziel:** Etablierung einer autarken `PortfolioStrategyEngine` zur modularen Kapselung und parallelen Ausführung aller Portfoliostrategien (analog zur Indikatoren-Registry via `_indicators` in `MacroRegimeEngine`).
+### 2. PortfolioStrategyEngine & Stock-Radare (2-Ebenen-Signal-Hierarchie, Plugin-Architektur & Registry)
+* **Ziel:** Etablierung einer 2-Ebenen-Signal-Hierarchie zur strikten Entkopplung von Einzelwert-Signalerkennung (`src/radars/`) und Portfolio-/Kapitalverwaltung (`src/strategies/`), analog zur Indikatoren-Registry via `_indicators` in `MacroRegimeEngine`.
 * **Operative Umsetzungsschritte [OFFEN]:**
-  * **Schritt 0 (Daten-Audit der Strategien [Geparkt für Live-Rollout]):**
+  * **Schritt 0 (Daten-Audit der Strategien & Radare [Geparkt für Live-Rollout]):**
     * Fetcher-Konfiguration (`config/Database-Fetcher-Config.json`) und Adapter bleiben in dieser Phase unberührt.
-    * Strategie- und Engine-Entwicklung erfolgt testgetrieben (TDD) via bestehender Datenbank-Zeitreihen, Fixtures und synthetischer Szenarien (`tests/fixtures/`).
-  * **Schritt 1 (`BasePortfolioStrategy.js` Interface & Contract):** Einheitliche Basisklasse in `src/strategies/BasePortfolioStrategy.js` mit Standard-Methoden (`initialize(config)`, `evaluateDaily(date, marketData, macroContext)`, `getPortfolioStatus()`, `generateOrderInstructions()`).
-  * **Schritt 2 (`PortfolioStrategyEngine.js`):** Orchestrator & Registry in `src/strategies/PortfolioStrategyEngine.js` zur parallelen Ausführung aller registrierten Strategien, Bereitstellung der Standard-Makrosignale und Aggregation in `daily_intelligence.json`.
-  * **Schritt 3 (Strategie-Klassen anlegen):** Kapselung von `GoldSpyDcaStrategy.js`, `KamikazeGrowthStrategy.js`, `MuzzledCathieWoodStrategy.js`, `SevenSlotGuruStrategy.js` und `SatelliteCoreStrategy.js` in `src/strategies/`.
-  * **Schritt 4 (Broker-Live-Ingestion & Discretionary Override für Kamikaze):**
+    * Strategie-, Radar- und Engine-Entwicklung erfolgt testgetrieben (TDD) via bestehender Datenbank-Zeitreihen, Fixtures und synthetischer Szenarien (`tests/fixtures/`).
+  * **Schritt 1 (Base-Interfaces & Contracts):**
+    * **Schritt 1a (`BaseStockRadar.js`):** Einheitliches Radar-Interface in `src/radars/BaseStockRadar.js` (`initialize(config)`, `evaluateSymbol(symbol, date, marketData, contextData)`, `scanUniverse()`, normiertes `RadarSignalResult` Objekt).
+    * **Schritt 1b (`BasePortfolioStrategy.js`):** Einheitliche Strategie-Basisklasse in `src/strategies/BasePortfolioStrategy.js` (`initialize(config)`, `evaluateDaily(date, marketData, macroSignalContext, radarSignals)`, `getPortfolioStatus()`, `generateOrderInstructions()`).
+  * **Schritt 2 (`PortfolioStrategyEngine.js`):** Orchestrator & Registry in `src/strategies/PortfolioStrategyEngine.js` zur parallelen Ausführung aller registrierten Strategien, Bereitstellung der Standard-Makrosignale, Übergabe der Radar-Signale und Aggregation in `daily_intelligence.json`.
+  * **Schritt 3 (Autarke Radare implementieren):**
+    * `GrowthStockRadar.js` in `src/radars/` (Weinstein Stage-2, SEC 10-Q Gate, Intraday M5 Bollinger Squeeze / VWAP, Climax-Top Detektor aus Single-Asset Engine für Kamikaze & MCW).
+    * `Institutional13FRadar.js` in `src/radars/` (13F-Konsens der 6 Hedgefonds >= 2 Manager, Base-Schutz, SMA 200 für 7-Slot Guru).
+    * `CryptoRegimeRadar.js` in `src/radars/` (BTC 21W-EMA Binärschalter, Krypto-Equity-Ranking).
+  * **Schritt 4 (Strategie-Klassen anlegen):**
+    * `GoldSpyDcaStrategy.js` (Autark: reines SPY DCA + 3-Säulen-Matrix Notfall-Schirm).
+    * `KamikazeGrowthStrategy.js` (nutzt `GrowthStockRadar` + `CryptoRegimeRadar` + 35 % Zündfunke + Broker-Sync).
+    * `MuzzledCathieWoodStrategy.js` (nutzt `GrowthStockRadar` + `CryptoRegimeRadar` + 60/40 Sparplan).
+    * `SevenSlotGuruStrategy.js` (nutzt `Institutional13FRadar` + 7-Slot-Gleichgewichtung).
+    * `SatelliteCoreStrategy.js` (nutzt `CryptoRegimeRadar` + 80 SPY / 15 DFNS / 5 BTC).
+  * **Schritt 5 (Broker-Live-Ingestion & Discretionary Override für Kamikaze):**
     * Broker-Adapter in `src/core/adapters/broker/` (`BrokerAdapterInterface.js`, `InteractiveBrokersAdapter.js`, `MockBrokerAdapter.js`).
     * Reconciliation-Service in `src/services/BrokerReconciliationService.js` ("Broker-Realität überschreibt Modell-Zustand").
-  * **Schritt 5 (Snapshot-Export & Runner):**
+  * **Schritt 6 (Snapshot-Export & Runner):**
     * Snapshot-Push-Dienst `src/services/SnapshotExporterService.js` (an Cloudflare D1 Webhook).
     * Telegram-Dienst `src/services/TelegramService.js` (Public Channel).
     * Orchestrierender Runner `src/runners/PortfolioStrategyRunner.js`.

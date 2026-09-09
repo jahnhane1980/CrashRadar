@@ -16,11 +16,14 @@
   * **Gold-SPY DCA & Tranchen [ERLEDIGT]:** Vollständige Harmonisierung von [`docs/architecture/strategies/Gold-SPY.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Gold-SPY.md) mit der universellen 3-Heiligkeit des Schutzes (50 % Gold / 50 % Cash Notfall-Hedge) und Bottom-Finder Re-Entry inkl. 21,8-Jahre-Stresstest (2004–2026) und [`config/strategies/gold-spy.json`](file:///D:/GitHub/CrashRadar/config/strategies/gold-spy.json).
   * **Gold-GDX Minen-Referenz:** Verbleibt als reine Forschungs- und Minenreferenz in [`docs/architecture/strategies/Gold-GDX.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Gold-GDX.md) und wird Nutzern im Bot vorerst nicht angeboten.
 
-## 2. PortfolioStrategyEngine (Plugin-Architektur & Multi-Strategie Orchestrierung)
-* **Architektur-Ziel:** Etablierung einer übergeordneten **`PortfolioStrategyEngine`** als modulares Plugin-System in `CrashRadar`.
-* **Strategie-Registry:** Genau wie Indikatoren über `_indicators` registriert werden, können Portfoliostrategien dynamisch über eine einheitliche Schnittstelle geladen, parallel berechnet und überwacht werden (`MuzzledCathieWoodStrategy`, `KamikazeGrowthStrategy`, `SevenSlotGuruStrategy`, `GoldSpyDcaStrategy`, `SatelliteStakingStrategy`).
+## 2. PortfolioStrategyEngine & Stock-Radare (2-Ebenen-Signal-Hierarchie & Plugin-Architektur)
+* **Architektur-Ziel:** Etablierung einer übergeordneten **`PortfolioStrategyEngine`** als modulares Plugin-System in `CrashRadar` mit strikter Entkopplung zwischen zustandslosen Einzelwert-Signalradaren (`src/radars/`) und Portfolio-Kapitalmanagement (`src/strategies/`).
+* **Strategie- & Radar-Registry:**
+  * **Ebene 1 (Stock-Radare):** Autarke Signal-Scanner auf Asset-Ebene (`BaseStockRadar.js`, `GrowthStockRadar.js`, `Institutional13FRadar.js`, `CryptoRegimeRadar.js`).
+  * **Ebene 2 (Portfoliostrategien):** Dynamisch geladene, parallel berechnete Kapitalmanager (`MuzzledCathieWoodStrategy`, `KamikazeGrowthStrategy`, `SevenSlotGuruStrategy`, `GoldSpyDcaStrategy`, `SatelliteCoreStrategy`).
 * **Meilensteine:**
-  * Definition der Standard-Schnittstelle `BasePortfolioStrategy.js`.
+  * Definition der Standard-Schnittstellen `BaseStockRadar.js` und `BasePortfolioStrategy.js`.
+  * Kapselung der Radare und Strategien mit isolierten TDD-Tests.
   * Parallele Auswertung und Reporting über `PortfolioStrategyEngine.js`.
 
 ## 3. Notification- & Signal-System: Telegram, Edge-Gateway & Architektur-Review
