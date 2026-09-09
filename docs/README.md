@@ -131,6 +131,9 @@ Hier liegen alle empirischen Auswertungen, historischen Krisen-Härtetests und m
   *Detaillierte M5-Volumen- & Korrektur-Analyse über 5 Wachstumsaktien (PLTR, NVTS, IBRX, SOFI, S): Empirische Zerlegung der 1,5h Eröffnungs- und Schlussfenster, Gegenüberstellung gesunder Dips (Volumen-Dry-Up < 0,85x + positives Schlussfenster-Delta > +10 %) vs. institutioneller Dumps (> 1,35x Volumen + negatives Schlussfenster-Delta < -25 %).*
 * 📄 **[`Multi-Timeframe-Pyramide-Analysis.md`](file:///D:/GitHub/CrashRadar/docs/research/turnarounds/Multi-Timeframe-Pyramide-Analysis.md):**  
   *Konzept und Härtetest der 5-Ebenen-Multi-Timeframe-Pyramide (M5 Session-Fenster -> D1 -> 3D-Rolling -> W1 -> M1) sowie **Event-verankerter Timeframes ($t_0$-Anchored Rolling 3D, 5D, 21D)**: Beseitigung der Kalender-Willkür (Wyckoff-Zyklen ab Ausbruch) und empirischer Nachweis des 2,0 bis 3,5 Tage Zeitvorsprungs der rollierenden 3-Tage-Swing-Ebene gegenüber dem klassischen Freitags-Wochenschluss.*
+* 📄 **[`Generational-Growth-Hypothesis.md`](file:///D:/GitHub/CrashRadar/docs/research/turnarounds/Generational-Growth-Hypothesis.md):**  
+  *Strategische Forschungs-Hypothese: Auflösung des „Pseudo-Trading“-Dilemmas im Spätzyklus. Klare 2-Phasen-Architektur zur Trennung des Geburtshelfers (Turnaround-Radar als L2-Boden-Sniper zur Vermeidung der 2-3-jährigen Post-IPO Kater-Falle) vom unerschütterlichen Lebenszeit-Besitz fundamentaler Monopol-Diamanten (PLTR, SentinelOne S) ohne verfrühte Climax-Ausstiege.*
+
 
 
 
