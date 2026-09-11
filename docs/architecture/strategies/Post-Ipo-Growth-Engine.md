@@ -26,6 +26,9 @@ Jedes Listing mit folgenden Merkmalen wird vorab ohne weitere Prüfung aussortie
 * **Konventionelle Kleinwaffen & Munition:** SIC 3482 (Small Arms Ammunition), SIC 3484 (Small Arms), SIC 3489 (Ordnance & Accessories).
 * **Unvollendete Blank-Check / SPAC-Mäntel:** SIC 6770 (Blank Checks – vor vollzogenem De-SPAC).
 * **Penny-Stocks & OTC:** Nicht an NASDAQ oder NYSE notierte Werte (OTC, Pink Sheets) sowie Titel mit Marktkapitalisierung $< 300\text{ Mio. \$}$.
+* **Biotech / BioPharma & frühe Wirkstoffforschung (SIC 2833–2836):**
+  * *Begründung des bewussten Ausschlusses:* Unternehmen in der klinischen Phase I bis III operieren ohne planbare Umsätze, weisen chronisch negative FCF-Margen von oft $-300\,\%$ auf und scheitern zwangsläufig an der Rule of 40. Ein mechanischer Post-IPO-Screener würde entweder alle echten Biotech-Chancen fälschlich aussortieren oder durch Not-Ausnahmeregeln die Filter für gesunde Software- und Hardware-Monopole zerstören.
+  * *Strategische Einordnung:* Biotech-Werte (wie `IBRX`) werden **bewusst nicht** über PIGE gescreent. Sie verbleiben im Kamikaze-System als manuell kuratierte, asymmetrische `BINARY`-Sonderwetten mit eigenem Event-Katalysator-Risikomanagement!
 
 ---
 
@@ -130,9 +133,13 @@ flowchart TD
 * **Cash Runway (in Monaten):**
   $$\text{Runway}_{\text{Months}} = \frac{\text{Cash \& Cash Equivalents} + \text{Short-Term Marketable Securities}}{BC_{\text{Monthly}}}$$
 
-* **Gatekeeper-Schwellenwert:**
-  * Ist $\text{FCF}_Q \ge 0$ (Free Cash Flow positiv): **Bestanden** (Selbstragend).
-  * Ist $\text{FCF}_Q < 0$: Es gilt die harte Bedingung:
+* **Gatekeeper-Schwellenwert & Die Wall-Street-SBC-Falle:**
+  * **Die SBC-Täuschung:** Gemäß US-GAAP wird aktienbasierte Vergütung (Stock-Based Compensation / SBC) im operativen Cashflow addiert. Dadurch kann ein Unternehmen rechnerisch „FCF-positiv“ wirken, obwohl es operativ Geld verbrennt und Altaktionäre durch massive Aktienausgabe enteignet.
+  * **Kombinierte Gatekeeper-Regel:**
+    * Ein positiver FCF ($\text{FCF}_Q \ge 0$) wird nur dann als echter, selbstragender Status anerkannt, wenn die jährliche Verwässerung zeitgleich unter Kontrolle ist:
+      $$\text{Dilution}_{\text{Rate}} < 5{,}0\,\%\text{ p.a.}$$
+    * Liegt $\text{Dilution}_{\text{Rate}} \ge 5{,}0\,\%$, greift trotz positivem FCF die strikte Solvenz-Bedingung: Die Cash-Runway muss zwingend $\ge 12{,}0\text{ Monate}$ betragen!
+  * Ist $\text{FCF}_Q < 0$ (negativer FCF), gilt ausnahmslos:
     $$\text{Runway}_{\text{Months}} \ge 12{,}0\text{ Monate}$$
     *(Schutz vor Not-Kapitalerhöhungen und Verwässerungs-Tod).*
 
@@ -151,7 +158,7 @@ Frühe Wachstumsunternehmen kompensieren Mitarbeiter oft exzessiv über Stock-Ba
 
 ---
 
-### 4.4 Technische Bodenbildung & Base-Building
+### 4.4 Technische Bodenbildung & Die Re-Admission-Regel
 
 * **Distanz zum 52-Wochen-Tief ($D_{\text{Low}}$):**
   $$D_{\text{Low}} = \frac{P_{\text{Aktuell}} - P_{\text{52W Low}}}{P_{\text{52W Low}}} \times 100$$
@@ -162,6 +169,11 @@ Frühe Wachstumsunternehmen kompensieren Mitarbeiter oft exzessiv über Stock-Ba
   *Bedingung:* $D_{\text{ATH}} \ge -85{,}0\,\%$ bis $-88{,}0\,\%$.
   > [!NOTE]
   > Ein zu enger Filter (z. B. $-70\,\%$) würde Jahrhundert-Chancen wie Palantir ($ 45 \to \$ 6 = -86\,\%$) oder SentinelOne ($ 78 \to \$ 12{,}50 = -84\,\%$) am perfekten Boden eliminieren. Der $-85\,\%$-Filter trennt überlebensfähige Plattform-Turnarounds von ausradierten Penny-Stocks ($-98\,\%$).
+
+* **Die Re-Admission-Regel (Zweite Chance bei echtem Turnaround):**
+  * Erhält eine Aktie in einem monatlichen Screening den Status `'FAILED_GATE'` (z. B. wegen temporärer Verwässerungs-Spikes, Cash-Runway $< 12$ Monate oder Kurs im freien Fall), ist sie **nicht** permanent ausgeschlossen!
+  * Solange das Unternehmen im Zeitfenster $365 \le t_{\text{age}} \le 1.825$ Tage notiert, wird es an jedem Monatsersten erneut vollautomatisch evaluiert.
+  * Sobald der operative Turnaround vollzogen ist (z. B. Palantir erreicht 2023 GAAP-Profitabilität oder SentinelOne stabilisiert die Runway und verteidigt den Boden $\ge +20\,\%$ über dem 52W-Tief), wechselt der Status automatisch von `'FAILED_GATE'` zurück auf `'TRACKING'` und die Aktie wandert auf die `OBSERVE`-Watchlist.
 
 ---
 
@@ -178,8 +190,9 @@ Zur Vermeidung von Medienbrüchen und Doppel-Infrastrukturen fügt sich PIGE in 
 ├───────────────────┼─────────────────────────────────────────────────────────────┤
 │ Marktdaten        │ Bestehender Polygon.io- & Tiingo-Adapter in CrashRadar       │
 ├───────────────────┼─────────────────────────────────────────────────────────────┤
-│ Fundamentaldaten  │ SEC EDGAR Company Submissions & Facts API (JSON/XBRL)        │
-│                   │ mit Token-Bucket Pacer (strikt <= 10 Requests/Sekunde)      │
+│ Fundamentaldaten  │ Offizielle SEC EDGAR Facts API (JSON/XBRL, data.sec.gov)    │
+│                   │ 100 % kostenlos & Public Domain (10 Req/s Token-Pacer)      │
+│                   │ Flankiert durch yahoo-finance2 für schnelle Snapshots       │
 ├───────────────────┼─────────────────────────────────────────────────────────────┤
 │ Speicherung       │ Native MySQL Tabellen in CrashRadar                         │
 │                   │ (`post_ipo_companies`, `post_ipo_fundamentals`,             │
@@ -189,6 +202,12 @@ Zur Vermeidung von Medienbrüchen und Doppel-Infrastrukturen fügt sich PIGE in 
 │                   │ Status 'OBSERVE' in die Kamikaze- / MCW-Watchlist-Tabelle   │
 └───────────────────┴─────────────────────────────────────────────────────────────┘
 ```
+
+> [!NOTE]
+> **API-Prüfung Tiingo Fundamentals vs. SEC EDGAR:**  
+> Während Tiingo End-of-Day-Preise und IEX-Echtzeitkurse im Basistarif liefert, liegt die **Tiingo Fundamental Data API hinter einer Paywall** (im Free-Tier künstlich auf die 30 DOW-Aktien beschränkt).  
+> Für den dauerhaften 0,00-€-Betrieb in CrashRadar nutzt PIGE daher die offizielle, unbeschränkte **SEC EDGAR API (`https://data.sec.gov/api/xbrl/companyfacts/`)** als regulatorische Primärquelle für FCF, SBC, Diluted Shares und Umsatz.
+
 
 ---
 
