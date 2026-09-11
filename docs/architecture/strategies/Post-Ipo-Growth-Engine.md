@@ -1,7 +1,11 @@
 # System-Architektur & Master-Spezifikation: Post-IPO Growth Engine (PIGE)
 
 > 📄 **Dokumenttyp:** Architektur-Konzept & Spezifikation (V2-Zukunftsprojekt)  
+> 🧭 **Pipeline-Rolle: STUFE 1 (Aktien FINDEN — Scouting & Screening)**  
 > 🎯 **Fokus:** Automatisierte Markt-Screening-Pipeline für qualitative Wachstums- und Turnaround-Aktien im Reife- und Bodenbildungs-Zeitfenster von **1 bis 5 Jahren nach Börsengang**.  
+> 
+> * **Kernaufgabe:** Durchforstet das gesamte US-Marktuniversum (~4.000 Ticker) nach fundamental gesunden Wachstumsunternehmen nach dem IPO-Kater.  
+> * **Übergabe:** Qualifizierte Titel erhalten den Status **`status = 'OBSERVE'`** und werden an [Stufe 2: Stock-Radar-Turnaround-Framework](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Stock-Radar-Turnaround-Framework.md) zur Kauf-Validierung und zum Timing übergeben.  
 > ⚙️ **Technologie-Ausrichtung für V2:** Node.js, MySQL (`market_data`), REST-APIs (SEC EDGAR, NASDAQ Screener, Polygon/Tiingo).
 
 ---

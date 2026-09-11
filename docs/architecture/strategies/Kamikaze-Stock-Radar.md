@@ -1,7 +1,7 @@
 # Das Kamikaze-Stock-Radar-Regelwerk
 
-> 📄 **Kontext:** Dedizierte Radar- und Signal-Spezifikation für die Einzeltitel-Auswahl und das Timing des [Kamikaze Growth Portfolios](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Growth.md).  
-> 🔗 **Verwandte Dokumente:** [Stock-Radar Turnaround-Framework (Entwurf)](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Stock-Radar-Turnaround-Framework.md) | [Single-Asset Katapult-Engine](file:///D:/GitHub/CrashRadar/scratch/tools/GrowthStockTradingEngine.js)
+> 📄 **Kontext:** Operative Radar- und Watchlist-Spezifikation für die Einzeltitel-Auswahl des [Kamikaze Growth Portfolios](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Growth.md).  
+> 🏛️ **Single Source of Truth:** Die vollständige fundamentale Bilanzprüfung (Solvenz-Airbag), das Wyckoff-Boden-Timing ($L_1 \to L_2$), der Event-Pivot ($t_0$) und die Parabolik-Notbremse sind verbindlich in **[Stock-Radar-Turnaround-Framework.md](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Stock-Radar-Turnaround-Framework.md)** definiert.
 
 ---
 
@@ -28,21 +28,13 @@ Im Gegensatz zu anderen Systemen (z. B. Cathie-Wood-Radar via ARK-Trades oder 7-
 
 ---
 
-## 2. Der Einstiegs-Türsteher: Von `OBSERVE` zu `BUY`
+## 2. Der Einstiegs-Türsteher: Von `OBSERVE` zu `BUY` (Delegiert an Stufe 2)
 
-Ein Kauf aus dem Status `OBSERVE` ist strikt verboten, bis die Aktie alle Kriterien des **Einstiegs-Türstehers** kumulativ erfüllt:
+Ein Kauf aus dem Status `OBSERVE` ist strikt verboten, bis die Aktie alle Kriterien des **[Stock-Radar Turnaround-Frameworks (Stufe 2)](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Stock-Radar-Turnaround-Framework.md)** erfüllt:
 
-### A. Charttechnischer Weinstein Stage-2 Ausbruch:
-1. **50-Tage-Konsolidierungs-Ausbruch:** $\text{Kurs} > \max_{50d}(\text{High})$.
-2. **Nachhaltiger Trend:** $\text{Kurs} > \text{SMA}_{200}$ **und** $\text{Kurs} > \text{SMA}_{50}$ **und** $\text{SMA}_{50} > \text{SMA}_{200}$.
-3. **Relative Stärke:** $\text{RS}(\text{Aktie vs. QQQ}) > \text{SMA}_{50}(\text{RS})$.
-4. **Institutioneller Volumen-Spike:** $\text{Volumen} \ge 1,5 \times \text{SMA}_{50}(\text{Volumen})$.
-
-### B. Eiserne Regel: Kein Kauf ohne Fundamentaldaten (Keine Daten, kein Kauf):
-* Liegen für ein Wertpapier keine verifizierten aktuellen SEC 10-Q/6-K-Quartalszahlen im System vor, bleibt der Kauf **strikt verboten**!
-* **Qualifikations-Kriterien:**
-  * YoY-Umsatzwachstum $\ge 15,0\,\%$ **ODER** operativer GAAP-Profitabilitäts-Turnaround ($\text{Net Income} > 0$).
-  * **Ausschluss von Bilanzkollapsen:** Ist $\text{Net Income} < 0$ und $|\text{Net Income}| > 2,0 \times \text{Umsatz}$, wird der Titel trotz Chartausbruchs als unkalkulierbare Cash-Burn-Falle abgewiesen.
+1. **Fundamentaler Solvenz-Airbag:** Net Cash Runway $\ge 12\text{ Monate}$ ($BC_{\text{Monthly}} = |\text{FCF}_Q|/3$), Deleveraging, Peer-Discount $\ge 60\,\%$ und Verwässerung $< 5\,\%$ p.a.
+2. **Technisches Wyckoff-Retest-Timing:** Panik-Tief $L_1$ $\to$ Higher-Low Retest $L_2$ $\to$ Institutional Event-Pivot ($t_0$) mit Ausbruch über AVWAP und EMA 20.
+3. **Asymmetrischer Makro-Guard:** Kauf nur bei freigegebenem Makro-Regime (Makro GRÜN). Bei Makro ROT gilt striktes Zündfunken- und Kaufverbot.
 
 ---
 

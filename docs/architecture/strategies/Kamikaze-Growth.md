@@ -1,7 +1,9 @@
 # Kamikaze Growth (KMG): Das 50/50 High-Conviction Radar-Regelwerk
 *Organischer High-Beta Tech- & Krypto-Equity-Accelerator mit 90k $ Startpool, S&P 500 Mutterschiff, Makro-Gold-Schild & irregulärem Staking-Satelliten*
 
-> ⚙️ **Operative Strategie-Konfiguration & Live-Bestand:** [`config/strategies/kamikaze-growth.json`](file:///D:/GitHub/CrashRadar/config/strategies/kamikaze-growth.json)
+> 🧭 **Pipeline-Rolle: STUFE 3 (PORTFOLIO-ALLOKATION & EXECUTION — Risk Management)**  
+> ⚙️ **Operative Strategie-Konfiguration & Live-Bestand:** [`config/strategies/kamikaze-growth.json`](file:///D:/GitHub/CrashRadar/config/strategies/kamikaze-growth.json)  
+> 🔗 **Schnittstelle zur Einzeltitel-Bewertung:** Die fundamentale Bilanzprüfung und das Einstiegs-Timing für Einzeltitel erfolgen **nicht** hier, sondern sind an [Stufe 2: Stock-Radar-Turnaround-Framework](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Stock-Radar-Turnaround-Framework.md) delegiert.
 
 ---
 
@@ -26,8 +28,8 @@
 │ • Phase-Out Bestände (HOLD_ONLY):      │ │ • Kein Direktinvestment in BTC!     │
 │   SEMI, CDNX, PGY (Verkaufserlöse      │ │ • Regime-Master: BTC 21-Wochen-EMA  │
 │   fließen zu 100% ins Mutterschiff)    │ │ • 40/30/30-Gleichgewichts-Pyramide  │
-│ • Türsteher: Weinstein Stage-2, SMA200 │ │ • Bärenmarkt-Parkplatz:             │
-│ • Fundamental-Gate: >= 15 % YoY / Turn │ │   Interner Krypto-Claim im SPY-Pool │
+│ • Türsteher: Turnaround-Radar (Stufe 2)│ │ • Bärenmarkt-Parkplatz:             │
+│ • Solvenz-Airbag: Runway, Deleveraging │ │   Interner Krypto-Claim im SPY-Pool │
 │ • Zündfunken: 35 % aus freiem SPY-Pool │ │                                     │
 │ • 3-Stufen-Exit (1/3 Knick, 1/3 SMA200)│ │ 🛰️ EIGENER STAKING-SATELLIT (EUR):  │
 │ • Sektor-Relativität (IGV, SMH, QQQ...)│ │ • 2.088,20 € Startkapital (50/50    │
@@ -129,25 +131,16 @@ Die Beobachtungsliste (`OBSERVE`) unterscheidet strikt zwischen primären Kern-Z
 
 ---
 
-### 3. Der Einstiegs-Türsteher: Weinstein Stage-2 & SEC 10-Q Gate
+### 3. Einzeltitel-Validierung & Einstiegs-Timing (Delegiert an Stufe 2)
 
-Ein Kauf aus dem Status `OBSERVE` ist strikt verboten, bis die Aktie alle Kriterien des **Einstiegs-Türstehers** erfüllt:
+Die fundamentale Solvenzprüfung und das präzise Einstiegs-Timing für alle Einzeltitel auf der Watchlist (`status = 'OBSERVE'`) erfolgen **nicht** in diesem Portfolio-Dokument, sondern sind vollständig an das **[Stock-Radar Turnaround-Framework (Stufe 2)](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Stock-Radar-Turnaround-Framework.md)** ausgelagert:
 
-#### A. Charttechnischer Stage-2-Ausbruch:
-1. **50-Tage-Konsolidierungs-Ausbruch:** $\text{Kurs} > \max_{50d}(\text{High})$.
-2. **Nachhaltiger Trend:** $\text{Kurs} > \text{SMA}_{200}$ **und** $\text{Kurs} > \text{SMA}_{50}$ **und** $\text{SMA}_{50} > \text{SMA}_{200}$.
-3. **Relative Stärke:** $\text{RS}(\text{Aktie vs. QQQ}) > \text{SMA}_{50}(\text{RS})$.
-4. **Institutioneller Volumen-Spike:** $\text{Volumen} \ge 1,5 \times \text{SMA}_{50}(\text{Volumen})$.
+* **Der Solvenz-Airbag:** Prüfung auf Net Cash Runway $\ge 12\text{ Monate}$ ($BC_{\text{Monthly}} = |\text{FCF}_Q|/3$), Deleveraging ($\text{Debt}_t \le \text{Debt}_{t-1}$), Peer-Discount $\ge 60\,\%$ und Verwässerung $< 5\,\%$ p.a.
+* **Das Einstiegs-Timing:** Wyckoff-Higher-Low Retest ($L_1 \to L_2$) und Institutional Event-Pivot ($t_0$) mit Ausbruch über AVWAP und EMA 20 (beseitigt die Verzögerung des alten SMA-200 Golden Cross).
 
-#### B. Eiserne Regel: Kein Kauf ohne Fundamentaldaten (Keine Daten, kein Kauf):
-* Liegen für ein Wertpapier keine verifizierten aktuellen SEC 10-Q/6-K-Quartalszahlen im System vor, bleibt der Kauf **strikt verboten**!
-* **Qualifikations-Kriterien:**
-  * YoY-Umsatzwachstum $\ge 15,0\,\%$ **ODER** operativer GAAP-Profitabilitäts-Turnaround ($\text{Net Income} > 0$).
-  * **Ausschluss von Bilanzkollapsen:** Ist $\text{Net Income} < 0$ und $|\text{Net Income}| > 2,0 \times \text{Umsatz}$, wird der Titel trotz Chartausbruchs abgewiesen.
-
-#### C. Dynamische Zündfunken-Allokation:
-* Gibt der Türsteher grünes Licht, investiert das System **35 % des aktuell im S&P 500 Mutterschiff freien Kapitals** in die Aktie.
-* **Tier-Priorisierung:** Tier-1-Werte (`PLTR`, `SOFI`) haben absolute Priorität. Tier-2-Werte (`ZETA`, `SOUN`) dürfen den 35 %-Zündfunken nur beanspruchen, wenn Tier 1 keine Ausbruchssignale liefert und überschüssiges Cash im Mutterschiff liegt.
+#### Dynamische Zündfunken-Allokation:
+* Gibt das Turnaround-Radar ein verifiziertes `BUY`-Signal, investiert die Portfolio-Engine **35 % des aktuell im S&P 500 Mutterschiff freien Kapitals** in die Aktie (entspricht ca. 5–10 % des Gesamt-Portfolios).
+* **Tier-Priorisierung:** Tier-1-Werte (`PLTR`, `SOFI`) haben absolute Priorität. Tier-2-Werte (`ZETA`, `SOUN`) dürfen den 35 %-Zündfunken nur beanspruchen, wenn Tier 1 keine Ausbruchssignale liefert und freies Cash im Mutterschiff liegt.
 * Nach dem Kauf wechselt der Status der Position auf **`HOLD & BUY`** (geschützter Gewinner).
 
 ---

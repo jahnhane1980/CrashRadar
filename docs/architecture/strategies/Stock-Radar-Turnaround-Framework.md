@@ -1,7 +1,11 @@
 # Stock Radar & Bewertungs-Framework: Turnarounds & High-Beta Growth
 
-> 🏛️ **Status: Produktions-Architektur (Freigegeben)**  
-> Spezifikation des zustandslosen Single-Asset Radars (`TurnaroundStockRadar.js`) für das [Kamikaze Growth Portfolio](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Growth.md). Dient als analytische Entscheidungs-Engine zur Identifikation, fundamentalen Validierung und dem präzisen Timing von abgestraften Qualitäts-Wachstumswerten (Small/Mid-Caps wie `IBRX`, `NVTS`, `S`, `SOFI`, `PLTR`) sowie Plattform-Monopolen (`META`, `NFLX`, `NOW`).
+> 🏛️ **Status: Produktions-Architektur (Freigegeben) — Single Source of Truth**  
+> 🧭 **Pipeline-Rolle: STUFE 2 (Aktien PRÜFEN & KAUFEN — Scharfschütze & Timing)**  
+> Dient als analytische Entscheidungs-Engine zur Identifikation, fundamentalen Validierung und dem präzisen Timing von abgestraften Qualitäts-Wachstumswerten (Small/Mid-Caps wie `IBRX`, `NVTS`, `S`, `SOFI`, `PLTR`) sowie Plattform-Monopolen (`META`, `NFLX`, `NOW`).  
+> 
+> * **Vorgelagert:** [Stufe 1: Post-IPO Growth Engine](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Post-Ipo-Growth-Engine.md) (Automatisierter Markt-Screener) liefert qualifizierte Kandidaten mit Status `status = 'OBSERVE'`. Ergänzend fließen manuell kuratierte Ideen des Investors ein.  
+> * **Nachgelagert:** Kauf- und Verkaufsentscheidungen (`BUY`, `TOP_CLIMAX_ALERT`, `SELL_STAGE`) werden an [Stufe 3: Kamikaze Growth Portfolio](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Growth.md) übergeben, wo die Depot-Allokation (50/50) und Execution erfolgen.
 
 ---
 
@@ -72,7 +76,7 @@ Die fundamentale Prüfung dient als **Airbag**: Sie schließt vor jeder technisc
 *Fokus-Sektoren: Next-Gen Halbleiter, Cybersecurity, Biotech, Cloud-Infrastruktur, FinTech.*
 
 * **1. Net Cash Runway (Liquiditäts-Check):**  
-  $$\text{Net Cash Runway (Monate)} = \frac{\text{Barmittel} + \text{Kurzfristige Finanzanlagen} - \text{Finanzschulden}}{\text{Quartalsweiser FCF-Burn}} \times 3$$
+  $$\text{Net Cash Runway (Monate)} = \frac{\text{Barmittel} + \text{Kurzfristige Finanzanlagen} - \text{Finanzschulden}}{|\text{FCF}_Q| / 3}$$
   * *Standard-Regel:* Mindestens **12 bis 18 Monate operative Liquidität**, um Not-Kapitalerhöhungen zu Tiefstkursen auszuschließen.
   * *Founder/Sponsor-Backing Klausel (`IBRX`-Regel):* Bei Unternehmen mit nachgewiesenem Gründer-/Großinvestor-Backing ($> 50\,\%$ Anteilsbesitz, bestätigte Gesellschafterdarlehen oder Promissory Notes im SEC Form 8-K) genügt eine operative Runway von **3 bis 6 Monaten**, da Liquiditätsengpässe über Insider-Kreditlinien überbrückt werden.
 * **2. Deleveraging-Gate (Finanzschulden-Disziplin):**  
@@ -270,6 +274,16 @@ Das Framework arbeitet vollintegriert mit dem [Kamikaze-Portfolio](file:///D:/Gi
   3. Unerklärte Massenverwässerung: Ausstehende Aktien steigen um $> 20\,\%$ im Quartal.
 * **Übergang in Kamikaze Stage-2 Trendfolge:**  
   Etabliert die Aktie nach dem Turnaround ein nachhaltiges Golden Cross (`SMA 50 > SMA 200`), übernimmt das reguläre [Kamikaze-Stock-Radar](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Stock-Radar.md) die Betreuung mit dem Status `HOLD & BUY`.
+
+### 7.1 Differenzierung nach Investment-Typen (`investmentType`)
+
+Um Fehlausstiege bei echten Generations-Monopolen zu verhindern, differenziert das Radar das Exit-Verhalten strikt nach dem hinterlegten `investmentType`:
+
+| Typ | Primäre Vertreter | Verhalten bei Stufe 1 (Climax Overheat) & Stufe 2 (Trailing Stop) | Rebalancing & Exit-Bedingung |
+| :--- | :--- | :--- | :--- |
+| **`LASTING_HOLD`** | `PLTR`, `S`, später `SOFI`, `AIRO` | **TECHNISCHE EXITS DEAKTIVIERT!** Kein Verkauf an Spitzen, kein Stoppen in Dips. Stoisches Halten durch Korrekturen hindurch. | Verkauf **ausschließlich bei Fundamentaler Thesis-Bruch** (Runway-Kollaps, Bruttomargen-Verfall, Betrug). Bei parabolischen Spitzen ist maximal ein Rebalancing (Teil-Gewinnmitnahme) ins S&P 500 Mutterschiff erlaubt. |
+| **`CYCLICAL`** | `NVTS` | **VOLLER 2-STUFEN-EXIT AKTIV!** Parabolik-Notbremse und Major Higher-Low Stop greifen vollumfänglich. | Schützt das Kapital vor den brutalen -70 % bis -85 % Bärenmärkten des Halbleiter-Schweinezyklus. Re-Entry erst am nächsten Wyckoff-Boden. |
+| **`BINARY`** | `IBRX` | **EVENT-GESTEUERTES RISK-MANAGEMENT:** Fester Portfolio-Deckel (2–4 % maximales Risiko). Runway-Filter auf 3–6 Monate verkürzt (Founder-Backing). | Systematisches De-Risking (50 % Gewinnmitnahme) im Vorfeld binärer Zulassungs- und Studienergebnisse (z. B. PDUFA-Entscheidungen). |
 
 ---
 
