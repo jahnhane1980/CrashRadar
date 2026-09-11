@@ -18,10 +18,10 @@ Empirische 10-Jahres-Backtests, M5-Volumen-Messungen und Verifikations-Protokoll
 ```mermaid
 flowchart TD
     subgraph Gate1 ["1. Fundamentaler Airbag & Historie"]
-        H["4–6 Jahre Historie-Scan\n(Post-IPO Kater-Filter >= 6-12 Monate)"] --> F1["Net Cash Runway >= 12-18 Monate\n(oder Founder-Sponsor-Backing)"]
+        H["Historie-Scan: 4–6J (Megacaps) / ab Börsenstart t0 (Post-IPO)\n(Kater-Konsolidierung >= 6-12 Monate seit IPO/Crash)"] --> F1["Net Cash Runway >= 12-18 Monate\n(oder Founder-Sponsor-Backing)"]
         F1 --> F2["Deleveraging: Schuldenabbau oder Schuldenfreiheit"]
-        F2 --> F3["Multiple-Kompression: EV/Sales am 3J-Tief\n+ Peer-Discount >= 60% & Trend-Boden"]
-        F3 --> F4["Verwässerung < 3-5% p.a. & Bruttomarge stabil"]
+        F2 --> F3["Multiple-Kompression: EV/Sales am 3J-Tief (10. Perzentil)\n+ Peer-Discount >= 60% (oder hist. Fallback) & Trend-Boden"]
+        F3 --> F4["Verwässerung < 3-5% p.a. & Rule of 40 stabil"]
     end
 
     subgraph Gate2 ["2. Bodenfindung & Event-Pivot (t0)"]
@@ -55,7 +55,7 @@ Die fundamentale Prüfung dient als **Airbag**: Sie schließt vor jeder technisc
 
 ### 1.1 Der Mindest-Historie-Filter & Watchlist-Lifecycle
 * **Watchlist-Lifecycle & Metadaten-Schema:**  
-  Eine Aktie wird vom Investor mit `firstSeenDate`, ihrem Branchenführer (`sector_peer`) und dem Sektor-ETF (`sector_etf`) auf die Beobachtungsliste gesetzt:
+  Eine Aktie wird vom Investor oder automatisiert durch [Stufe 1: Post-IPO Growth Engine](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/01-Post-Ipo-Growth-Engine.md) mit `firstSeenDate`, optionalem Branchenführer (`sector_peer`) und Sektor-ETF (`sector_etf`) auf die Beobachtungsliste gesetzt:
   ```json
   {
     "ticker": "S",
@@ -66,11 +66,13 @@ Die fundamentale Prüfung dient als **Airbag**: Sie schließt vor jeder technisc
     "sector_etf": "CIBR"
   }
   ```
-  Das Radar startet daraufhin den 4–6-Jahres-Scan. Ein Einstieg erfolgt niemals instantan am Tag der Aufnahme, sondern erst nach Durchlaufen aller 4 Gates.
-* **Post-IPO Kater-Regel:**  
-  Wachstumsaktien durchlaufen nach dem Börsengang regelmäßig ein typisches Muster: IPO-Hype $\rightarrow$ Kater-Phase (Lockup-Ablauf, Bewertungs-Kompression, Marktbereinigung) $\rightarrow$ Bodenbildung.
-* **Boden-Zwang (Kein Griff ins fallende Messer):**  
-  Eine Aktie darf nach dem IPO oder einem Crash **niemals im freien Fall** gekauft werden. Das Radar fordert zwingend eine **Mindest-Konsolidierung von 6 bis 12 Monaten**, in der sich die Bewertung normalisiert und ein stabiles Preis-Fundament etabliert.
+* **Differenzierter Historie-Scan (Megacap vs. Post-IPO):**  
+  * *Etablierte Plattform-Monopole (`META`, `NFLX`):* 4–6 Jahre Historie-Scan zur Bewertung von Zyklik und langfristiger Bewertung.  
+  * *Post-IPO Wachstums- und Turnaround-Werte (`PLTR`, `S`, `SOFI`, `NVTS`, `IBRX`):* Historie-Scan **ab Börsendatum $t_0$** (1 bis 5 Jahre Historie).
+* **Post-IPO Kater-Regel (Bodenbildung seit IPO/Crash, KEINE künstliche Watchlist-Wartezeit!):**  
+  Wachstumsaktien durchlaufen nach dem Börsengang regelmäßig ein typisches Muster: IPO-Hype $\rightarrow$ Kater-Phase (Lockup-Ablauf, Bewertungs-Kompression, Marktbereinigung) $\rightarrow$ Bodenbildung.  
+  * *Boden-Zwang (Kein Griff ins fallende Messer):* Eine Aktie darf nach dem IPO oder einem Crash **niemals im freien Fall** gekauft werden. Das Radar fordert zwingend eine **Mindest-Konsolidierung von 6 bis 12 Monaten seit dem Börsendatum $t_0$ bzw. dem ersten Crash-Tief $L_1$**, in der sich die Bewertung normalisiert und ein stabiles Preis-Fundament etabliert.  
+  * *Wichtige Klarstellung zum Watchlist-Eintritt:* Liegt das Börsen- oder Crash-Datum bereits $\ge 6-12$ Monate zurück (wie bei `PLTR` im Frühjahr 2023, 2,5 Jahre nach IPO), darf das System den Einstieg **nicht** durch eine künstliche Wartezeit ab `firstSeenDate` verzögern! Sobald alle 4 Gates inklusive Wyckoff-Retest und Event-Pivot erfüllt sind, erfolgt die Kauf-Freigabe unmittelbar.
 
 ### 1.2 Qualitätskriterien für Small/Mid-Caps
 *Fokus-Sektoren: Next-Gen Halbleiter, Cybersecurity, Biotech, Cloud-Infrastruktur, FinTech.*
@@ -85,22 +87,26 @@ Die fundamentale Prüfung dient als **Airbag**: Sie schließt vor jeder technisc
 * **3. Automatisches Multiple-Tracking & Sektor-Peer-Abschlag (EV / Sales TTM):**  
   Das Radar ruft im täglichen Scan vollautomatisch (0,00 € via `yahoo-finance2` `quoteSummary`) das aktuelle $\text{EV / Sales}$ Multiple des Kandidaten sowie seines hinterlegten `sector_peer` ab:
   $$\text{PeerDiscount}(t) = 1 - \left( \frac{\text{EV/Sales}_{\text{Kandidat}}(t)}{\text{EV/Sales}_{\text{Peer}}(t)} \right)$$
-  * **Historische Multiple-Kompression:**  
+  * **Historische Multiple-Kompression (Universeller Benchmark):**  
     $$\text{EV / Sales}_{\text{Kandidat}}(t) \le \text{3-Jahres-Tief} \quad \text{ODER} \quad \le \text{10. Perzentil der Historie}$$
-  * **Sektor-Peer-Benchmark (Das SentinelOne-Kriterium):**  
+  * **Sektor-Peer-Benchmark (Wenn Peer konfiguriert):**  
     $\text{PeerDiscount}(t) \ge 60 - 75\,\%$ gegenüber dem profitablen Sektor-Primus (z. B. `S` bei EV/Sales ~5,5x vs. `PANW` bei ~24x $\rightarrow$ **77 % Bewertungsabschlag**).
+  * **Automatischer Fallback bei fehlendem Peer:**  
+    Wird eine Aktie vollautomatisch über PIGE importiert und verfügt über keinen manuell gepflegten `sector_peer`, genügt die **historische Multiple-Kompression (3-Jahres-Tief / 10. Perzentil)** als quantitative Multiple-Freigabe.
   * **Tracking des Kompressions-Trends (Wird noch komprimiert oder steht der Boden?):**  
     Das Radar trackt die Zeitreihe von $\text{PeerDiscount}(t)$ und $\text{EV/Sales}(t)$:
     * *Aktive Kompression (Gefahr / Fallendes Messer):* $\text{EV/Sales}(t) < \text{EV/Sales}(t-20d)$ und $\text{PeerDiscount}$ weitet sich weiter aus $\rightarrow$ Kein Kauf!
     * *Boden-Inflection (Freigabe):* Die Multiple-Kompression flacht über mindestens 4 bis 8 Wochen ab ($\Delta\text{EV/Sales}_{20d} \ge 0$) und bildet ein höheres Tief im Gleichschritt mit dem Chart.
-  * **Bruttomargen-Parität (Qualitäts-Beweis):**  
+  * **Bruttomargen-Parität (Qualitäts-Beweis bei Peer-Vergleich):**  
     $$\text{GrossMargin}_{\text{Kandidat}} \ge \text{GrossMargin}_{\text{Peer}} - 5\,\%$$
     Beweist, dass der Bewertungsabschlag rein marktpsychologisch ist und nicht auf einem minderwertigen Produkt beruht (`S` 72,5 % vs. `PANW` 70,5 %).
-* **4. Bereinigte Rule of 40 (SBC-bereinigt):**  
-  $$\text{Bereinigte Rule of 40} = \text{YoY Umsatzwachstum (\%)} + \text{Bereinigte FCF-Marge (\%)} \ge 20 - 30\,\%$$
-  * *SBC-Abzug:* $\text{Echter FCF} = \text{Operativer Cashflow} - \text{Capex} - \text{Stock-Based Compensation}$.
-* **5. Verwässerungsquote (Dilution Rate):**  
-  * Jährlicher Zuwachs der ausstehenden Aktien (Weighted Average Diluted Shares) $< 3 - 5\,\%$ p.a.
+* **4. Rule of 40 (Effizienz-Check ohne SBC-Doppelbestrafung):**  
+  $$\text{Score}_{\text{Rule40}} = g_{\text{Rev YoY}} + \text{FCF Margin} \ge 20 - 25\,\% \quad \text{mit} \quad \text{FCF Margin} = \frac{\text{Operating Cash Flow} - \text{CapEx}}{\text{Revenue}} \times 100$$
+  * *Empirischer Beweis gegen den pauschalen SBC-Abzug:* Ein Subtrahieren von Stock-Based Compensation (SBC) vom Cashflow drückt die Rule of 40 massiv ins Minus (bei `PLTR` im Turnaround 2023 von $+32{,}0\,\%$ auf $+6{,}7\,\%$) und blockiert den Einstieg um 10 Monate ($+171{,}8\,\%$ Preisnachteil).  
+  * *Harmonisierte Architektur:* FCF misst den reinen Cash-Zufluss; Verwässerung durch SBC wird direkt und unbestechlich an den ausstehenden Aktien (Gate 5) sowie der 12-Monats-Runway (Gate 1) überwacht.
+* **5. Verwässerungsquote (Dilution Control als echter SBC-Wachhund):**  
+  $$\text{Dilution}_{\text{Rate}} = \frac{\text{Shares}_{\text{Diluted}, Q} - \text{Shares}_{\text{Diluted}, Q-4}}{\text{Shares}_{\text{Diluted}, Q-4}} \times 100 < 3{,}0 - 5{,}0\,\%\text{ p.a.}$$
+  * Liegt $\text{Dilution}_{\text{Rate}} \ge 5{,}0\,\%$, greift trotz positivem FCF die strikte Solvenz-Bedingung: Die Cash-Runway muss zwingend $\ge 12{,}0\text{ Monate}$ betragen (Schutz vor Verwässerungs-Tod).
 * **6. Bruttomargen-Stabilität & Deferred Revenue:**  
   * Bruttomarge $\ge 70 - 80\,\%$ stabil (kein Preisverfall).
   * $\text{Deferred Revenue}_t \ge \text{Deferred Revenue}_{t-1}$ (Kunden schließen weiterhin mehrjährige Vorauszahlungsverträge ab).
