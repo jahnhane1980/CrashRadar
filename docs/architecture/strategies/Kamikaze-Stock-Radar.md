@@ -149,3 +149,15 @@ Das Radar erzeugt rein den Zustand des Assets und übergibt folgendes normiertes
 }
 ```
 Die Strategie entscheidet anschließend, wie viele Stücke verkauft und wie viel Liquidität ins S&P 500 Mutterschiff transferiert wird.
+
+---
+
+## 7. TODO / RFC: Integration der Investment-Typen (`LASTING_HOLD`, `CYCLICAL`, `BINARY`)
+
+> 🔗 Siehe die übergeordnete Strategie-Spezifikation in [`Kamikaze-Growth.md` (Abschnitt 6)](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Growth.md).
+
+* [ ] **Signal-Differenzierung nach `investmentType`:**
+  * **`LASTING_HOLD` (`PLTR`, `S`):** Keine Emittierung technischer Verkaufs-Signale. `SELL_FULL` und `SELL_PARTIAL` bei SMA 200-Brüchen oder Climax-Spikes werden blockiert; Status verbleibt stoisch auf `HOLD`.
+  * **`CYCLICAL` (`NVTS`):** Die vollständige Katapult-Engine mit Climax-Gewinnmitnahme (`TOP_CLIMAX_ALERT`) und Trendbruch-Exits bleibt uneingeschränkt aktiv.
+  * **`BINARY` (`IBRX`):** Pre-Event De-Risking und asymmetrischer Risikofilter für das Schlüssel-Event im Januar 2027.
+

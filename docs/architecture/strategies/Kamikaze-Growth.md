@@ -395,3 +395,72 @@ Im Backtest wurden vier vom Investor manuell ausgewählte Tech-Aktien zu konkret
 5. **Simulation Update:**
    * Nach Feinabstimmung dieser Schwellenwerte wird [`KamikazeGrowthSimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/KamikazeGrowthSimulation.js) um diese 4 Module erweitert und im Backtest evaluiert.
 
+---
+
+## 6. Strategischer Ausblick & RFC: Das Zwei-Phasen-Restrukturierungsmodell (Oktober-Liquidierung & Investment-Typen)
+
+> 💡 **Status:** Strategische Diskussionsgrundlage & Anforderungs-Sammlung (RFC / Change-Log)  
+> **Ziel:** Geordnete Dokumentation des bevorstehenden Übergangs vom aktuellen Spätzyklus-Bestand in ein entspanntes, langfristiges Wachstums- und Monopol-Portfolio nach der nächsten großen Bereinigung.
+
+### A. Phase 1: Taktisches Zeitfenster & Spätzyklus-Liquidierung (Mitte / Ende Oktober 2026)
+* **Aktuelle Ausgangslage:**
+  * Das aktuelle Depot (`AIRO`, `LUMN`, `NVTS`, `S`, `IBRX` sowie die Ausläufer `SEMI`, `CDNX`, `PGY`) befindet sich im Spätzyklus eines überdehnten Gesamtmarktes.
+  * Ziel ist es, diese Positionen nicht blind durch einen drohenden systemischen Bärenmarkt oder eine schwere Makro-Korrektur hindurchzuschleppen.
+* **Liquidierungs-Horizont:**
+  * **Geplantes Ausstiegsfenster:** Mitte bis Ende Oktober 2026.
+  * **Frühzeitiger Climax-Exit:** Sollte der Markt oder Einzeltitel bereits vor diesem Zeitfenster neue Höchststände / parabolische Übertreibungen erreichen, werden Positionen über die Climax-Ausstiegsregeln (`TOP_CLIMAX_ALERT`) vorzeitig liquidiert.
+  * **Kapital-Sicherung:** Sämtliche Verkaufserlöse fließen zu 100 % in Cash / T-Bills bzw. das S&P 500 Mutterschiff, um eine maximale „War Chest“ (trockenes Pulver) für die Neuausrichtung aufzubauen.
+
+### B. Phase 2: Post-Korrektur-Neustart (Das echte Langzeit-Wachstumsportfolio)
+* Nach der Bereinigung wird das Portfolio am Boden neu aufgestellt – frei von kurzfristigem Pseudo-Swing-Trading und getrieben von fundamentaler Überzeugung.
+* **Die Krypto-Kapital-Pipeline (50 % Krypto-Silo):**
+  * Krypto-Equities (`MSTR`, Miner, `BTC`) bleiben als berechenbare 4-Jahres-Zyklus- und M2-Liquiditäts-Maschine bestehen.
+  * **Die Abschöpfungs-Doktrin:** Peak-Gewinne aus dem Krypto-Bucket werden **nicht** wieder zu 100 % in Krypto reinvestiert, sondern planmäßig in den Tech-Bucket kanalisiert. Dies dient als Kapitalhebel, um auf eine langsame monatliche Sparrate verzichten zu können.
+
+### C. Die 3 differenzierten Investment-Typen im Tech-Bucket (50 %)
+Um zu verhindern, dass alle Tech-Werte fälschlicherweise über dieselbe starre Ausstiegs-Schablone gesteuert werden, wird das Universum in drei distinkte Investment-Typen unterteilt:
+
+```mermaid
+flowchart TD
+    subgraph TechBucket["Kamikaze Tech-Bucket (50 %)"]
+        direction TB
+        
+        subgraph T1["1. LASTING_HOLD (Monopole & Plattformen)"]
+            P1["PLTR, S (perspektivisch SOFI, AIRO)"]
+            R1["• Einstieg: Geduldiges Warten auf Boden/Kater-Ende\n• Technischer Ausstieg: STRIKT VERBOTEN!\n• Kein Verkauf bei SMA-Brüchen oder Hypes\n• Exit nur bei fundamentalem Thesis-Bruch"]
+        end
+
+        subgraph T2["2. CYCLICAL (Hardware & Halbleiter)"]
+            P2["NVTS, Semis, Hardware"]
+            R2["• Vollständige Trendfolge & Katapult-Engine\n• Parabolische Climax-Gewinnmitnahme aktiv\n• Ausstieg bei Trendbruch (SMA50/200), um\n  -70% Branchen-Drawdowns zu vermeiden"]
+        end
+
+        subgraph T3["3. BINARY (Katalysator / Event-Driven)"]
+            P3["IBRX (Schlüssel-Event Januar 2027)"]
+            R3["• Asymmetrisches Risiko (Positionsgröße 2-4 %)\n• Event-Tracking & De-Risking vor dem Event\n• Schutz vor binärem Totalverlust"]
+        end
+    end
+```
+
+1. **Typ `LASTING_HOLD` (Plattform-Monopole & Generationen-Werte):**
+   * **Zielwerte:** `PLTR`, `S` (später evtl. `SOFI`, `AIRO`).
+   * **Einstieg:** Selektiv am Wyckoff-Boden nach abgeschlossener Post-IPO-Kater-Phase bzw. nach dem Bärenmarkt.
+   * **Ausstiegs-Regel:** **Strikte Verkaufsblockade für technische Signale.** Weder SMA 200-Brüche noch temporäre RSI-Überhitzungen lösen einen Verkauf aus. Die Positionen werden stoisch gehalten, um über Jahre durch Aktiensplits und Plattform-Monopole zu wachsen.
+   * **Einziger Not-Ausstieg:** Fundamentaler Bruch der Kern-These (Betrug, Verlust der technologischen Vormachtstellung, irreparable Bilanzschäden).
+2. **Typ `CYCLICAL` (Hardware, Halbleiter & CapEx-Zyklen):**
+   * **Zielwerte:** `NVTS`, Halbleiter- und Hardware-Hersteller.
+   * **Charakteristik:** Unterliegen zyklischen Überangeboten und Nachfrage-Dellen. Ein ungeschütztes Halten führt regelmäßig zu -70 % bis -85 % Drawdowns.
+   * **Ausstiegs-Regel:** Die **Katapult-Engine und Climax-Notbremse** bleiben voll aktiv. Bei parabolischen Spitzen (`TOP_CLIMAX_ALERT`) werden Gewinne mitgenommen; bei Trendbruch unter SMA 50/200 wird liquidiert.
+3. **Typ `BINARY` (Biotech / Event-Driven Katalysatoren):**
+   * **Zielwert:** `IBRX` (Fokus auf das klinische/regulatorische Event im **Januar 2027**).
+   * **Charakteristik:** Hohe asymmetrische Chance, aber extremes binäres Risiko (Zulassung vs. Fehlschlag).
+   * **Regeln:**
+     * Strikte Positions-Deckelung (maximal 2–4 % des Tech-Buckets), um das Gesamtdepot vor Fehlschlägen zu schützen.
+     * Gezieltes Pre-Event De-Risking (Gewinnmitnahme des Einsatzes bei Hype-Runs vor dem Event-Stichtag).
+
+### D. Nächste Schritte im Backlog (TODO)
+* [ ] Erweiterung der Strategie-Konfiguration [`config/strategies/kamikaze-growth.json`](file:///D:/GitHub/CrashRadar/config/strategies/kamikaze-growth.json) um das Feld `investmentType` (`LASTING_HOLD`, `CYCLICAL`, `BINARY`).
+* [ ] Anpassung des Signal-Generators in [`Kamikaze-Stock-Radar.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Stock-Radar.md): Deaktivierung technischer Exit-Signale für Ticker mit `LASTING_HOLD`.
+* [ ] Erstellung eines Event-Monitorings für `BINARY`-Werte (Countdown bis Januar 2027 für `IBRX`).
+
+

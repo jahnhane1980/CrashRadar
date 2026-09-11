@@ -1,7 +1,8 @@
 # CrashRadar Refactoring - Status & TODOs
 
 > **Zweck:** Unmittelbare, operative Arbeitsliste für das laufende Entwicklungs-Sprint auf Code-Ebene (Mikro-Ebene).  
-> **Fokus:** Konkrete Dateipfade, Klassennamen, Konfigurationsstrukturen und Entscheidungslogiken (if/else), die unmittelbar im Code implementiert werden müssen.
+> **Fokus:** Konkrete Dateipfade, Klassennamen, Konfigurationsstrukturen und Entscheidungslogiken (if/else), die unmittelbar im Code implementiert werden müssen.  
+> 🎯 **Aktueller Fokus:** Für die verbindlichen Sprints und Scope-Cuts bis zum Stichtag 15. Dezember 2026 gilt die operative [`DECEMBER-ROADMAP.md`](file:///D:/GitHub/CrashRadar/DECEMBER-ROADMAP.md).
 
 ---
 

@@ -3,7 +3,8 @@
 > **Zweck:** Überblick über den übergeordneten, strategischen Entwicklungsplan, architektonische Meilensteine und langfristige Zeithorizonte (Makro-Ebene).  
 > **Fokus:** Übergreifende Features, externe Schnittstellen (Supabase/Datacenter), historische Meilensteine, Release-Zyklen und Priorisierung größerer Baustellen.
 
-*Hinweis: Die Reihenfolge der Aufgaben spiegelt ihre Dringlichkeit und architektonische Priorität wider und korrespondiert exakt mit der operativen [`TODO.md`](file:///D:/GitHub/CrashRadar/TODO.md).*
+*Hinweis: Die Reihenfolge der Aufgaben spiegelt ihre Dringlichkeit und architektonische Priorität wider und korrespondiert exakt mit der operativen [`TODO.md`](file:///D:/GitHub/CrashRadar/TODO.md).*  
+*🎯 **Aktueller Fokus:** Für die verbindlichen Sprints und Scope-Cuts bis zum Stichtag 15. Dezember 2026 gilt die operative [`DECEMBER-ROADMAP.md`](file:///D:/GitHub/CrashRadar/DECEMBER-ROADMAP.md).*
 
 ---
 
