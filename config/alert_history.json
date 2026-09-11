@@ -12,7 +12,8 @@
   "scenarioEvents": {
     "jolts_july": "2026-09-01",
     "nfp_august": "2026-09-04",
-    "ppi_august": "2026-09-10"
+    "ppi_august": "2026-09-10",
+    "cpi_core_august": "2026-09-11"
   },
   "ML Regime Radar (BTC)_CRITICAL": 1789105368956
 }
