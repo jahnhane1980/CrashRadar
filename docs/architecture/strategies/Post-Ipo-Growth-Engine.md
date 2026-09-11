@@ -208,6 +208,20 @@ Zur Vermeidung von Medienbrüchen und Doppel-Infrastrukturen fügt sich PIGE in 
 > Während Tiingo End-of-Day-Preise und IEX-Echtzeitkurse im Basistarif liefert, liegt die **Tiingo Fundamental Data API hinter einer Paywall** (im Free-Tier künstlich auf die 30 DOW-Aktien beschränkt).  
 > Für den dauerhaften 0,00-€-Betrieb in CrashRadar nutzt PIGE daher die offizielle, unbeschränkte **SEC EDGAR API (`https://data.sec.gov/api/xbrl/companyfacts/`)** als regulatorische Primärquelle für FCF, SBC, Diluted Shares und Umsatz.
 
+### 5.1 Verbindlicher Architekturbeschluss: SEC EDGAR Facts API als Single Source of Truth
+
+* **Status des Beschlusses:** Einstimmig beschlossen für die V2-Implementierung (0,00 € dauerhafte Betriebskosten).
+* **Technischer Endpunkt:**
+  ```text
+  GET https://data.sec.gov/api/xbrl/companyfacts/CIK{cik_10_digits}.json
+  ```
+* **Verbindliche Spezifikations-Vorgaben:**
+  1. **Compliance & Header-Pflicht:** Gemäß SEC-Fair-Access-Richtlinie muss jeder Request einen deklarierten User-Agent im Header führen (z. B. `User-Agent: CrashRadar/2.0 (contact@crashradar.local)`).
+  2. **Rate-Limiting (Token-Bucket Pacer):** Das SEC-Limit liegt bei maximal 10 Requests/Sekunde. Der Node.js Ingestion-Adapter nutzt den bereits in CrashRadar erprobten Pacer mit einem Sicherheitsabstand von **max. 8 Requests/Sekunde**.
+  3. **Laufzeit-Optimierung:** Durch die vorherige Filterung via NASDAQ-Screener CSV (Filter 0) müssen monatlich nur ca. 150 CIKs abgefragt werden $\to$ **Laufzeit unter 25 Sekunden für den gesamten Monatslauf!**
+  4. **Datenhoheit & Audit-Sicherheit:** Da die SEC Facts direkt aus den eingereichten 10-Q- und 10-K-XBRL-Dateien generiert werden, gibt es keine Verzerrungen oder Verzögerungen durch Drittanbieter.
+
+
 
 ---
 
