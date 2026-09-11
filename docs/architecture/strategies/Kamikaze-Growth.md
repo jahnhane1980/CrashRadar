@@ -1,9 +1,13 @@
 # Kamikaze Growth (KMG): Das 50/50 High-Conviction Radar-Regelwerk
 *Organischer High-Beta Tech- & Krypto-Equity-Accelerator mit 90k $ Startpool, S&P 500 Mutterschiff, Makro-Gold-Schild & irregulärem Staking-Satelliten*
 
-> 🧭 **Pipeline-Rolle: STUFE 3 (PORTFOLIO-ALLOKATION & EXECUTION — Risk Management)**  
+> 🧭 **Pipeline-Rolle: MASTER-STRATEGIE (PORTFOLIO-ALLOKATION & EXECUTION — Risk Management)**  
 > ⚙️ **Operative Strategie-Konfiguration & Live-Bestand:** [`config/strategies/kamikaze-growth.json`](file:///D:/GitHub/CrashRadar/config/strategies/kamikaze-growth.json)  
-> 🔗 **Schnittstelle zur Einzeltitel-Bewertung:** Die fundamentale Bilanzprüfung und das Einstiegs-Timing für Einzeltitel erfolgen **nicht** hier, sondern sind an [Stufe 2: Stock-Radar-Turnaround-Framework](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Stock-Radar-Turnaround-Framework.md) delegiert.
+> 
+> 📂 **Die modulare Kamikaze-Architektur (`kamikaze/`):**
+> * 📄 **[`01-Post-Ipo-Growth-Engine.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/01-Post-Ipo-Growth-Engine.md):** *Stufe 1 — Marktweites Screening (4.000 Aktien) & Scouting nach IPO-Kater $\to$ Status `OBSERVE`.*
+> * 📄 **[`02-Turnaround-Framework.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/02-Turnaround-Framework.md):** *Stufe 2 (Single Source of Truth) — Solvenz-Airbag (Runway, Schulden, Verwässerung), Wyckoff-Boden, Event-Pivot ($t_0$) & Parabolik-Notbremse $\to$ Status `BUY` / `HOLD & BUY`.*
+> * 📄 **[`03-Stock-Radar-Interface.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/03-Stock-Radar-Interface.md):** *Operative Watchlist-Verwaltung & Schnittstelle zur Portfolio-Engine (`GrowthStockRadar.js`).*
 
 ---
 
@@ -133,7 +137,7 @@ Die Beobachtungsliste (`OBSERVE`) unterscheidet strikt zwischen primären Kern-Z
 
 ### 3. Einzeltitel-Validierung & Einstiegs-Timing (Delegiert an Stufe 2)
 
-Die fundamentale Solvenzprüfung und das präzise Einstiegs-Timing für alle Einzeltitel auf der Watchlist (`status = 'OBSERVE'`) erfolgen **nicht** in diesem Portfolio-Dokument, sondern sind vollständig an das **[Stock-Radar Turnaround-Framework (Stufe 2)](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Stock-Radar-Turnaround-Framework.md)** ausgelagert:
+Die fundamentale Solvenzprüfung und das präzise Einstiegs-Timing für alle Einzeltitel auf der Watchlist (`status = 'OBSERVE'`) erfolgen **nicht** in diesem Portfolio-Dokument, sondern sind vollständig an das **[Stock-Radar Turnaround-Framework (Stufe 2)](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/02-Turnaround-Framework.md)** ausgelagert:
 
 * **Der Solvenz-Airbag:** Prüfung auf Net Cash Runway $\ge 12\text{ Monate}$ ($BC_{\text{Monthly}} = |\text{FCF}_Q|/3$), Deleveraging ($\text{Debt}_t \le \text{Debt}_{t-1}$), Peer-Discount $\ge 60\,\%$ und Verwässerung $< 5\,\%$ p.a.
 * **Das Einstiegs-Timing:** Wyckoff-Higher-Low Retest ($L_1 \to L_2$) und Institutional Event-Pivot ($t_0$) mit Ausbruch über AVWAP und EMA 20 (beseitigt die Verzögerung des alten SMA-200 Golden Cross).
@@ -350,7 +354,7 @@ Im Backtest wurden vier vom Investor manuell ausgewählte Tech-Aktien zu konkret
 * **PoC-Simulation:** [`scratch/architecture/strategies/KamikazeGrowthSimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/KamikazeGrowthSimulation.js)
 * **Single-Asset Katapult-Engine (NVTS, IBRX, PLTR):** [`scratch/tools/GrowthStockTradingEngine.js`](file:///D:/GitHub/CrashRadar/scratch/tools/GrowthStockTradingEngine.js)
 * **Single-Asset Trading Framework:** [`docs/architecture/single-asset-radar/SingleAssetTrading.md`](file:///D:/GitHub/CrashRadar/docs/architecture/single-asset-radar/SingleAssetTrading.md)
-* **Stock Radar & Bewertungs-Framework (Turnaround-Entwurf):** [`docs/architecture/strategies/Stock-Radar-Turnaround-Framework.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Stock-Radar-Turnaround-Framework.md)
+* **Stock Radar & Bewertungs-Framework (Turnaround-Entwurf):** [`docs/architecture/strategies/kamikaze/02-Turnaround-Framework.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/02-Turnaround-Framework.md)
 * **Wissensgraph & Architektur:** Verlinkt in [`docs/README.md`](file:///D:/GitHub/CrashRadar/docs/README.md).
 * **Verwandte Core-Strategien:**
   * [`docs/architecture/strategies/Muzzled-Cathie-Wood.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Muzzled-Cathie-Wood.md) (60/40 ARK-Modell auf Euro-Basis mit Sparplan)
@@ -361,7 +365,7 @@ Im Backtest wurden vier vom Investor manuell ausgewählte Tech-Aktien zu konkret
 ## 5. TODO: Weiterentwicklung für explosives High-Beta Growth & Watchlist-Kalibrierung
 
 > [!NOTE]
-> Das analytische Fundament für die Turnaround-Bewertung (Net Cash Runway, EV/Sales Kompression, AVWAP und VCP-Bodenbildung) ist als eigenständiger Entwurf in [`docs/architecture/strategies/Stock-Radar-Turnaround-Framework.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Stock-Radar-Turnaround-Framework.md) hinterlegt und wird in dieser Evolutionsstufe in das Regelwerk überführt.
+> Das analytische Fundament für die Turnaround-Bewertung (Net Cash Runway, EV/Sales Kompression, AVWAP und VCP-Bodenbildung) ist als eigenständiger Entwurf in [`docs/architecture/strategies/kamikaze/02-Turnaround-Framework.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/02-Turnaround-Framework.md) hinterlegt und wird in dieser Evolutionsstufe in das Regelwerk überführt.
 
 > [!IMPORTANT]
 > **Lehren aus dem empirischen Abgleich (NVTS, IBRX, S):**
@@ -453,7 +457,7 @@ flowchart TD
 
 ### D. Nächste Schritte im Backlog (TODO)
 * [ ] Erweiterung der Strategie-Konfiguration [`config/strategies/kamikaze-growth.json`](file:///D:/GitHub/CrashRadar/config/strategies/kamikaze-growth.json) um das Feld `investmentType` (`LASTING_HOLD`, `CYCLICAL`, `BINARY`).
-* [ ] Anpassung des Signal-Generators in [`Kamikaze-Stock-Radar.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Stock-Radar.md): Deaktivierung technischer Exit-Signale für Ticker mit `LASTING_HOLD`.
+* [ ] Anpassung des Signal-Generators in [`03-Stock-Radar-Interface.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/03-Stock-Radar-Interface.md): Deaktivierung technischer Exit-Signale für Ticker mit `LASTING_HOLD`.
 * [ ] Erstellung eines Event-Monitorings für `BINARY`-Werte (Countdown bis Januar 2027 für `IBRX`).
 
 

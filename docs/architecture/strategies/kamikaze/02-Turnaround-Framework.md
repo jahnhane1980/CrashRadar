@@ -4,8 +4,8 @@
 > 🧭 **Pipeline-Rolle: STUFE 2 (Aktien PRÜFEN & KAUFEN — Scharfschütze & Timing)**  
 > Dient als analytische Entscheidungs-Engine zur Identifikation, fundamentalen Validierung und dem präzisen Timing von abgestraften Qualitäts-Wachstumswerten (Small/Mid-Caps wie `IBRX`, `NVTS`, `S`, `SOFI`, `PLTR`) sowie Plattform-Monopolen (`META`, `NFLX`, `NOW`).  
 > 
-> * **Vorgelagert:** [Stufe 1: Post-IPO Growth Engine](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Post-Ipo-Growth-Engine.md) (Automatisierter Markt-Screener) liefert qualifizierte Kandidaten mit Status `status = 'OBSERVE'`. Ergänzend fließen manuell kuratierte Ideen des Investors ein.  
-> * **Nachgelagert:** Kauf- und Verkaufsentscheidungen (`BUY`, `TOP_CLIMAX_ALERT`, `SELL_STAGE`) werden an [Stufe 3: Kamikaze Growth Portfolio](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Growth.md) übergeben, wo die Depot-Allokation (50/50) und Execution erfolgen.
+> * **Vorgelagert:** [Stufe 1: Post-IPO Growth Engine](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/01-Post-Ipo-Growth-Engine.md) (Automatisierter Markt-Screener) liefert qualifizierte Kandidaten mit Status `status = 'OBSERVE'`. Ergänzend fließen manuell kuratierte Ideen des Investors ein.  
+> * **Nachgelagert:** Kauf- und Verkaufsentscheidungen (`BUY`, `TOP_CLIMAX_ALERT`, `SELL_STAGE`) werden an [Stufe 3: Kamikaze-Growth Master-Strategie](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Growth.md) übergeben, wo die Depot-Allokation (50/50) und Execution erfolgen.
 
 ---
 
@@ -273,7 +273,7 @@ Das Framework arbeitet vollintegriert mit dem [Kamikaze-Portfolio](file:///D:/Gi
   2. Bruttomarge bricht im Folgequartal um $> 15\,\%$ ein (Preisverfall / Produktentwertung).
   3. Unerklärte Massenverwässerung: Ausstehende Aktien steigen um $> 20\,\%$ im Quartal.
 * **Übergang in Kamikaze Stage-2 Trendfolge:**  
-  Etabliert die Aktie nach dem Turnaround ein nachhaltiges Golden Cross (`SMA 50 > SMA 200`), übernimmt das reguläre [Kamikaze-Stock-Radar](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Stock-Radar.md) die Betreuung mit dem Status `HOLD & BUY`.
+  Etabliert die Aktie nach dem Turnaround ein nachhaltiges Golden Cross (`SMA 50 > SMA 200`), übernimmt das [Stock-Radar Interface](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/03-Stock-Radar-Interface.md) die Betreuung mit dem Status `HOLD & BUY`.
 
 ### 7.1 Differenzierung nach Investment-Typen (`investmentType`)
 

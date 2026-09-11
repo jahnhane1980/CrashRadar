@@ -1,7 +1,7 @@
-﻿# Die Generational-Growth-Hypothese: Vom Post-IPO Kater-Boden zum ewigen Monopol-Besitz
+# Die Generational-Growth-Hypothese: Vom Post-IPO Kater-Boden zum ewigen Monopol-Besitz
 
 > 💡 **Status:** Strategische Forschungs-Hypothese & Reflexions-Dokument  
-> **Kontext:** Schärfung des [Kamikaze Growth Portfolios](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Growth.md) und des [Stock-Radar-Turnaround-Frameworks](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Stock-Radar-Turnaround-Framework.md).  
+> **Kontext:** Schärfung des [Kamikaze Growth Portfolios](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Growth.md) und des [Turnaround-Frameworks](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/02-Turnaround-Framework.md).  
 > **Ziel:** Auflösung des „Pseudo-Trading“-Konflikts zwischen kurzfristigen Climax-Mitnahmen und dem lebenslangen Halten echter Plattform-Monopole (wie `PLTR` und `S`).
 
 ---

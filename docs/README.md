@@ -67,14 +67,14 @@ Hier finden Entwickler und System-Architekten alle operativen Spezifikationen, E
 ```mermaid
 flowchart LR
     subgraph S1 ["1. FINDEN (Scouting)"]
-        PIGE["📄 Post-Ipo-Growth-Engine.md<br>• 4.000 US-Aktien Scan (SEC XBRL)<br>• IPO-Kater 1-5J, Rule of 40<br>• Composite Score >= 65"]
+        PIGE["📄 kamikaze/01-Post-Ipo-Growth-Engine.md<br>• 4.000 US-Aktien Scan (SEC XBRL)<br>• IPO-Kater 1-5J, Rule of 40<br>• Composite Score >= 65"]
     end
     
     subgraph S2 ["2. PRÜFEN & KAUFEN (Scharfschütze)"]
-        TF["📄 Stock-Radar-Turnaround-Framework.md<br>(Single Source of Truth)<br>• Solvenz-Airbag (Runway, Schulden)<br>• Wyckoff-Boden & Event-Pivot (t0)<br>• Parabolik-Notbremse & 3 Typen"]
+        TF["📄 kamikaze/02-Turnaround-Framework.md<br>(Single Source of Truth)<br>• Solvenz-Airbag (Runway, Schulden)<br>• Wyckoff-Boden & Event-Pivot (t0)<br>• Parabolik-Notbremse & 3 Typen"]
     end
     
-    subgraph S3 ["3. ALLOKATION & EXECUTION (Portfolio)"]
+    subgraph S3 ["3. ALLOKATION & EXECUTION (Master)"]
         KMG["📄 Kamikaze-Growth.md<br>• 50/50 Tech & Krypto-Equities<br>• S&P 500 Mutterschiff (35% Funke)<br>• Krypto 21W-EMA & War Chest"]
     end
 
@@ -92,13 +92,11 @@ flowchart LR
 * 📄 **[`Muzzled-Cathie-Wood.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Muzzled-Cathie-Wood.md):**  
   *Master V3 des Cathie-Wood-Radars: 60/40 Strategische Allokation (60 % Tech / 40 % Krypto), 3-Säulen-ARK-Ingestion (Watchlist `OBSERVE` $\rightarrow$ `BUY` erst nach Chart-Validierung), organischer Tech Sub-Bucket ohne Slot-Limit mit S&P 500 Mutterschiff, autonom gesteuerter Krypto Sub-Bucket (`BTC`, `COIN`, `HOOD`) via 21-Wochen-EMA mit 40/30/30-Pyramide & internem Leihgabe-Verrechnungskonto (`kryptoClaimUSD`), Sektor-Relativität (SMH/IGV), Flag-System (`HOLD & BUY` Verkaufsblockade vs. `HOLD & OBSERVE`) mit 3-Stufen-Abbau (1/3 bei Growth-Knick, 1/3 bei SMA 200, 100 % bei Folge-Knick), konträres Dip-Buying, 100 % Notfall-Evakuierung in 50 % Gold / 50 % Cash mit Dual-Re-Entry-Sniper (+1.286,33 % Nettorendite / 304.991,89 €) inkl. PoC in [`MuzzledCathieWoodSimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/MuzzledCathieWoodSimulation.js).*
 * 📄 **[`Kamikaze-Growth.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Growth.md):**  
-  *Pipeline-Stufe 3 (Portfolio-Allokation & Execution): 50/50 High-Conviction Realdepot-Pool (~94.000 $ Basis) mit S&P 500 Mutterschiff, 35 % Zündfunken-Allokation, Krypto-21W-EMA Master-Regime, 100 % Notfall-Evakuierung (50 Gold / 50 Cash), Broker-Realität ('Broker ist Gesetz') sowie Zwei-Phasen-Restrukturierungsmodell (Oktober-Liquidierung & War Chest).*
-* 📄 **[`Kamikaze-Stock-Radar.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Stock-Radar.md):**  
-  *Operative Watchlist- & Radar-Spezifikation für das Kamikaze-Depot: User-kuratierte Master-Watchlist (`OBSERVE` Pflicht, Tier-1/Tier-2 & Krypto-Silo) und Schnittstelle von `GrowthStockRadar.js` zur Single Source of Truth (`Stock-Radar-Turnaround-Framework.md`).*
-* 📄 **[`Stock-Radar-Turnaround-Framework.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Stock-Radar-Turnaround-Framework.md):**  
-  *Pipeline-Stufe 2 (Single Source of Truth für Einzeltitel-Bewertung & Timing): Vollständiger Lebenszyklus für abgestrafte Qualitäts-Wachstumswerte (Small/Mid-Caps wie IBRX, NVTS, S, SOFI, PLTR) und Big Tech (META, NFLX) – vom fundamentalen Solvenz-Airbag (Net Cash Runway, Deleveraging, Peer-Discount, Verwässerungs-Matrix) über Wyckoff-Boden ($L_1 \to L_2$) und Event-Pivot ($t_0$) bis zur Parabolik-Notbremse und den 3 Investment-Typen (`LASTING_HOLD`, `CYCLICAL`, `BINARY`).*
-* 📄 **[`Post-Ipo-Growth-Engine.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Post-Ipo-Growth-Engine.md):**  
-  *Pipeline-Stufe 1 (Scouting & Markt-Screening - V2): Automatisierte Screening-Pipeline für qualitative Wachstums- und Turnaround-Aktien im Reife- und Kater-Zeitfenster von 1 bis 5 Jahren nach Börsengang (SIC/NAICS-Filter, De-SPAC Super 8-K Klausel, SEC EDGAR Facts API, Runway-Formel, Rule of 40, Verwässerungs-Matrix und 2027-Skalierungsmodell für 300 Ticker im Freetier).*
+  *Master-Strategie für das private High-Conviction Realdepot (~94.000 $ Basis): 50/50 Tech- & Krypto-Equity-Allokation mit S&P 500 Mutterschiff, 35 % Zündfunken-Allokation, Krypto-21W-EMA Regime, 100 % Notfall-Evakuierung (50 Gold / 50 Cash), Broker-Realität ('Broker ist Gesetz') sowie Zwei-Phasen-Restrukturierungsmodell (Oktober-Liquidierung & War Chest).*
+  * 📁 **Modulare Kamikaze-Architektur ([`docs/architecture/strategies/kamikaze/`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/)):**
+    * 📄 **[`01-Post-Ipo-Growth-Engine.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/01-Post-Ipo-Growth-Engine.md):** *Pipeline-Stufe 1 (Scouting & Markt-Screening - V2): Automatisierte Screening-Pipeline für qualitative Wachstums- und Turnaround-Aktien im Reife- und Kater-Zeitfenster von 1 bis 5 Jahren nach Börsengang (SIC/NAICS-Filter, De-SPAC Super 8-K Klausel, SEC EDGAR Facts API, Runway-Formel, Rule of 40, Verwässerungs-Matrix und 2027-Skalierungsmodell für 300 Ticker im Freetier).*
+    * 📄 **[`02-Turnaround-Framework.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/02-Turnaround-Framework.md):** *Pipeline-Stufe 2 (Single Source of Truth für Einzeltitel-Bewertung & Timing): Vollständiger Lebenszyklus für abgestrafte Qualitäts-Wachstumswerte (Small/Mid-Caps wie IBRX, NVTS, S, SOFI, PLTR) und Big Tech (META, NFLX) – vom fundamentalen Solvenz-Airbag (Net Cash Runway, Deleveraging, Peer-Discount, Verwässerungs-Matrix) über Wyckoff-Boden ($L_1 \to L_2$) und Event-Pivot ($t_0$) bis zur Parabolik-Notbremse und den 3 Investment-Typen (`LASTING_HOLD`, `CYCLICAL`, `BINARY`).*
+    * 📄 **[`03-Stock-Radar-Interface.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/03-Stock-Radar-Interface.md):** *Operative Watchlist- & Radar-Schnittstelle für das Kamikaze-Depot: User-kuratierte Master-Watchlist (`OBSERVE` Pflicht, Tier-1/Tier-2 & Krypto-Silo) und operative Signal-Übergabe via `GrowthStockRadar.js`.*
 * 📄 **[`Satelite.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Satelite.md):**  
   *Geopolitisch gehärtetes Core-Satellite-Depot: 80 % SPY (S&P 500 Mutterschiff), 15 % DFNS (VanEck Defense UCITS ETF) und 5 % BTC (Bitcoin). Im Normalbetrieb gilt kompromissloses HODL (keine unterjährigen Verkäufe). Rebalancing erfolgt ausschließlich über den universellen Notfall-Stecker (100 % Notfall-Evakuierung in 50 % Gold / 50 % Cash bei NetLiq < -5 % & Credit Spreads > 4 % sowie Rebalancing-Reset bei Re-Entry am Marktboden) (+83,40 % Rendite / +12,68 %-Pkt. Alpha vs. SPY) inkl. PoC in [`SatelliteCoreSimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/SatelliteCoreSimulation.js).*
 

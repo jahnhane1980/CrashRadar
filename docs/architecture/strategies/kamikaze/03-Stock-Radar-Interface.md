@@ -1,13 +1,14 @@
-# Das Kamikaze-Stock-Radar-Regelwerk
+# Das Kamikaze-Stock-Radar: Watchlist- & Radar-Interface
+*Operative Schnittstelle zwischen der kuratierten Watchlist, dem Turnaround-Framework und der Portfolio-Engine*
 
-> 📄 **Kontext:** Operative Radar- und Watchlist-Spezifikation für die Einzeltitel-Auswahl des [Kamikaze Growth Portfolios](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Growth.md).  
-> 🏛️ **Single Source of Truth:** Die vollständige fundamentale Bilanzprüfung (Solvenz-Airbag), das Wyckoff-Boden-Timing ($L_1 \to L_2$), der Event-Pivot ($t_0$) und die Parabolik-Notbremse sind verbindlich in **[Stock-Radar-Turnaround-Framework.md](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Stock-Radar-Turnaround-Framework.md)** definiert.
+> 📄 **Kontext:** Operative Watchlist- und Signal-Schnittstelle (`GrowthStockRadar.js`) für das [Kamikaze-Growth Portfolio](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Growth.md).  
+> 🏛️ **Single Source of Truth:** Die vollständige fundamentale Bilanzprüfung (Solvenz-Airbag), das Wyckoff-Boden-Timing ($L_1 \to L_2$), der Event-Pivot ($t_0$) und die Parabolik-Notbremse sind verbindlich in **[02-Turnaround-Framework.md](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/02-Turnaround-Framework.md)** definiert.
 
 ---
 
 ## 1. Das Anlage-Universum: Die User-Curated Master-Watchlist
 
-Im Gegensatz zu anderen Systemen (z. B. Cathie-Wood-Radar via ARK-Trades oder 7-Slot-Guru via 13F-Filings) scannt das Kamikaze-Radar nicht den Gesamtmarkt, sondern stützt sich ausschließlich auf eine **vom Investor eigenhändig kuratierte Beobachtungsliste**:
+Im Gegensatz zu anderen Systemen (z. B. Cathie-Wood-Radar via ARK-Trades oder 7-Slot-Guru via 13F-Filings) scannt das Kamikaze-Radar nicht den Gesamtmarkt, sondern stützt sich primär auf eine **vom Investor eigenhändig kuratierte Beobachtungsliste** (ergänzt um automatisierte Vorschläge aus [Stufe 1: Post-IPO Growth Engine](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/01-Post-Ipo-Growth-Engine.md)):
 
 * **Ideen-Pool:** Sobald der Investor eine disruptive High-Growth- oder Turnaround-Idee identifiziert, wird der Ticker manuell auf die Watchlist gesetzt.
 * **Status standardmäßig `OBSERVE`:** Ein manuell hinzugefügter Titel landet ausnahmslos mit dem Status **`OBSERVE`**. Ein sofortiger Kauf ist streng verboten!
@@ -30,7 +31,7 @@ Im Gegensatz zu anderen Systemen (z. B. Cathie-Wood-Radar via ARK-Trades oder 7-
 
 ## 2. Der Einstiegs-Türsteher: Von `OBSERVE` zu `BUY` (Delegiert an Stufe 2)
 
-Ein Kauf aus dem Status `OBSERVE` ist strikt verboten, bis die Aktie alle Kriterien des **[Stock-Radar Turnaround-Frameworks (Stufe 2)](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Stock-Radar-Turnaround-Framework.md)** erfüllt:
+Ein Kauf aus dem Status `OBSERVE` ist strikt verboten, bis die Aktie alle Kriterien des **[Turnaround-Frameworks (Stufe 2)](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/02-Turnaround-Framework.md)** erfüllt:
 
 1. **Fundamentaler Solvenz-Airbag:** Net Cash Runway $\ge 12\text{ Monate}$ ($BC_{\text{Monthly}} = |\text{FCF}_Q|/3$), Deleveraging, Peer-Discount $\ge 60\,\%$ und Verwässerung $< 5\,\%$ p.a.
 2. **Technisches Wyckoff-Retest-Timing:** Panik-Tief $L_1$ $\to$ Higher-Low Retest $L_2$ $\to$ Institutional Event-Pivot ($t_0$) mit Ausbruch über AVWAP und EMA 20.

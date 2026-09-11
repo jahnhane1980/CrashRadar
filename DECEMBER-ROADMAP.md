@@ -114,7 +114,7 @@ Um den Terminplan nicht zu gefährden, werden folgende komplexe Themen offiziell
 
 | Thema / Baustein | Grund für die Verschiebung | V1-Ersatzlösung |
 | :--- | :--- | :--- |
-| **Kamikaze: Autonome Aktiensuche & Post-IPO Growth Engine (PIGE)** | Die marktweite Suche ([`Post-Ipo-Growth-Engine.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Post-Ipo-Growth-Engine.md)) über tausende US-Aktien (SIC/NAICS-Filter, IPO-Altersfenster, SEC 10-Q XBRL-Parsing) und die 2. Reihe (Tier-2 Fallbacks) sind zu komplex für V1. | **Curated Watchlist Radar:** In V1 überwacht Kamikaze nur deine feste, handverlesene Watchlist (`PLTR`, `SOFI`, `S`, `NVTS`, `AIRO`, `IBRX`, Krypto). |
+| **Kamikaze: Autonome Aktiensuche & Post-IPO Growth Engine (PIGE)** | Die marktweite Suche ([`01-Post-Ipo-Growth-Engine.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/01-Post-Ipo-Growth-Engine.md)) über tausende US-Aktien (SIC/NAICS-Filter, IPO-Altersfenster, SEC 10-Q XBRL-Parsing) und die 2. Reihe (Tier-2 Fallbacks) sind zu komplex für V1. | **Curated Watchlist Radar:** In V1 überwacht Kamikaze nur deine feste, handverlesene Watchlist (`PLTR`, `SOFI`, `S`, `NVTS`, `AIRO`, `IBRX`, Krypto). |
 | **Cloudflare Worker & D1 Repo** | Zu hoher Infrastruktur- und Test-Aufwand (1:1 Dialoge, Budgets, Buttons). | Direkter Telegram-Broadcast aus CrashRadar mit 4-Fälle-Matrix. |
 | **Full-DB Makro-Wirtschaftskalender** | Riesige DDL-, Parsing- & Nowcast-Pipeline. | Bestehende `Macro-Scenarios-Config.json` genügt vollauf. |
 | **Einzeltitel-ML & FINRA LSTMs** | Hohes Overfitting-Risiko, unvollständige Tests. | Bewährte Heuristik (Weinstein Stage-2 + Makro-Radar). |
