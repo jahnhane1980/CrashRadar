@@ -238,7 +238,65 @@ Zur Vermeidung von Medienbrüchen und Doppel-Infrastrukturen fügt sich PIGE in 
   3. **Laufzeit-Optimierung:** Durch die vorherige Filterung via NASDAQ-Screener CSV (Filter 0) müssen monatlich nur ca. 150 CIKs abgefragt werden $\to$ **Laufzeit unter 25 Sekunden für den gesamten Monatslauf!**
   4. **Datenhoheit & Audit-Sicherheit:** Da die SEC Facts direkt aus den eingereichten 10-Q- und 10-K-XBRL-Dateien generiert werden, gibt es keine Verzerrungen oder Verzögerungen durch Drittanbieter.
 
+### 5.2 Skalierungs- & Freetier-Architektur 2027 (300-Ticker-Universum, Speicher-Footprint & Supabase-Rolle)
 
+Im voll ausgebauten V2-System (2027) laufen PIGE, das 7-Slot-Guru-Konsenssystem, Muzzled-Cathie-Wood und Kamikaze-Growth parallel. Damit wächst das aggregierte Marktuniversum auf **rund 300 beobachtete Ticker**.  
+Um dieses Volumen **dauerhaft zu 100 % im Freetier (0,00 €)** und ohne Speicher- oder Quoten-Engpässe zu betreiben, gilt folgendes verbindliches Architektur-Modell:
+
+#### 1. Die 2-Ebenen-Trennung (Scouting vs. Hotlist)
+Das System fragt niemals 300 Ticker im 5-Minuten-Intraday-Takt (M5) ab. Dies verbietet sich rechnerisch bereits durch das Polygon-Free-Tier-Limit ($300 \text{ Ticker} / 5 \text{ Calls/Min} = 60 \text{ Minuten Laufzeit}$ je Zyklus!). Die Ingestion wird strikt zweigeteilt:
+
+```text
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                      2027 UNIVERSUM (ca. 300 Ticker)                        │
+└──────────────────────────────────────┬──────────────────────────────────────┘
+                                       │
+         ┌─────────────────────────────┴─────────────────────────────┐
+         ▼                                                           ▼
+┌──────────────────────────────────┐        ┌──────────────────────────────────┐
+│ EBENE 1: SCOUTING & SCREENING    │        │ EBENE 2: DIE HOTLIST & PORTFOLIO │
+│ (~280 Ticker)                    │        │ (~10 bis 20 Ticker)              │
+├──────────────────────────────────┤        ├──────────────────────────────────┤
+│ • PIGE-Kandidaten, Gurus, Cathie │        │ • Aktive Bestände (Kamikaze)     │
+│ • Nur TAGESKERZEN (1D / EOD)     │        │ • Akute Stage-2 Ausbruchskand.   │
+│ • 1x täglich um 22:30 Uhr MEZ    │        │ • INTRADAY-KERZEN (M5)           │
+│ • Trendfolge, SMA50/200, RS      │        │ • Climax-Tops & Katapult-Trigger │
+└──────────────────────────────────┘        └──────────────────────────────────┘
+```
+
+#### 2. Freetier-API-Kontingente & Abruf-Orchestrierung
+1. **Tagesendkurse (Daily EOD für ~300 Ticker):**
+   * **Tiingo Free Tier:** Bietet 500 Requests/Tag (50/Stunde). Ein einzelner Abruflauf nach US-Börsenschluss (22:30 Uhr MEZ) verbraucht exakt **300 Requests/Tag** ($\mathbf{60\,\% \text{ Quoten-Auslastung}}$).
+   * **Yahoo Finance (`yahoo-finance2`):** Als robuster Fallback direkt in `package.json` integriert. Ermöglicht parallele Batch-Abrufe ohne harte Key-Quota für EOD-Historien.
+2. **Fundamentaldaten (SEC EDGAR Facts API für ~150–300 Ticker):**
+   * **100 % kostenlos & unlimitiert** (US-Regierungs-API, data.sec.gov).
+   * Mit dem 8 Req/s Token-Pacer läuft das monatliche Screening aller CIKs in **unter 30 Sekunden** durch.
+3. **M5-Intraday-Kerzen (nur 10–20 Hotlist-Ticker):**
+   * Verbleibt auf Polygon.io (5 Calls/Minute). Der Delta-Sync für 20 Ticker ist in **4 Minuten** abgeschlossen.
+
+#### 3. Empirischer Speicherplatz-Bedarf (Datenbank-Footprint)
+Entgegen intuitiven Befürchtungen generiert ein 300-Ticker-Universum bei relationaler Datensparsamkeit nur minimales Datenvolumen:
+* **Tagesdaten (1D EOD) für 300 Ticker:**  
+  $300 \text{ Ticker} \times 250 \text{ Handelstage} = 75.000 \text{ Zeilen/Jahr} \approx \mathbf{3{,}75 \text{ MB / Jahr}}$!  
+  *(Selbst 5 Jahre Historie für 300 Aktien belegen unter 20 MB).*
+* **SEC 10-Q Fundamentaldaten (PIGE):**  
+  Es werden keine unstrukturierten 2-MB-Roh-JSONs gespeichert, sondern ausschließlich die 5 extrahierten Kennzahlen ($g_{\text{Rev}}$, $\text{FCF}$, $\text{Cash}$, $\text{Diluted Shares}$, $\text{Debt}$).  
+  $300 \text{ Ticker} \times 4 \text{ Quartale} \times 5 \text{ Kennzahlen} = 6.000 \text{ Werte} \approx \mathbf{0{,}2 \text{ MB / Jahr}}$.
+* **M5-Kerzen für die 20 Hotlist-Aktien:**  
+  $20 \text{ Ticker} \times 78 \text{ Kerzen/Tag} \times 250 \text{ Tage} = 390.000 \text{ Zeilen} \approx \mathbf{29{,}2 \text{ MB / Jahr}}$.
+
+$$\mathbf{\text{Gesamter DB-Zuwachs im Vollbetrieb 2027: }} 3{,}75 + 0{,}2 + 29{,}2 \approx \mathbf{33 \text{ MB pro Jahr!}}$$
+
+#### 4. Die architektonische Rolle von Supabase (Free-Tier 500 MB)
+Die freie Supabase-Instanz (Free Tier: **500 MB Postgres Disk**) wird gezielt positioniert:
+* **NICHT als Rohdaten- oder Kursdaten-Speicher:**
+  * **Die 7-Tage-Pause-Falle (Auto-Pausing):** Supabase Free Tier versetzt inaktive Projekte nach 7 Tagen ohne externe Web-Requests in den Schlafmodus. Lokale Cronjobs würden blockieren.
+  * **Latenz-Vorteil:** Die bestehende lokale MySQL/TiDB-Datenbank (`src/core/Storage.js`) arbeitet mit 0–3 ms Latenz, ist wartungsfrei, schläft niemals ein und besitzt auf der lokalen SSD unbegrenzte Kapazität.
+* **SONDERN als Cloud-Signal-Hub & Mobile-Bridge (V2-Feature):**
+  * CrashRadar berechnet alle Kennzahlen, Radar-Indikatoren und Regime lokal auf dem Hauptrechner.
+  * Entsteht ein scharfes Signal (`BUY`, `CLIMAX_TOP`, `GURU_CONSENSUS_ENTRY`), pusht CrashRadar **nur diesen kompakten Alert-Datensatz** (wenige Kilobyte) in eine schlanke Supabase-Tabelle `signals_feed`.
+  * **Einsatzzweck:** Ermöglicht ein mobiles Smartphone-Dashboard / Webhook-Zugriff von unterwegs über Supabase Realtime, ohne den lokalen PC per Port-Forwarding oder VPN ins offene Internet exposen zu müssen.
+  * **Kapazität:** Für reine Signal-Logs reichen die 500 MB der Supabase-DB für Jahrzehnte.
 
 ---
 
