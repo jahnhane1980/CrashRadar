@@ -28,12 +28,13 @@ flowchart TD
         F4 --> W1["Wyckoff-Boden: Panik-Tief L1 -> Higher-Low Retest L2"]
         W1 --> T0["Institutional Event-Pivot (t0):\nCatalyst-Volumensprung RVOL >= 2.5x\n+ HL-Bestätigungsflagge (2-4 Wochen)"]
         T0 --> MG{"Makro-Guard Grün?\n(Einlass-Kontrolle)"}
-        MG -- "Ja" --> Buy["🟢 KAUF-SIGNAL: Breakout über AVWAP & Pivot-Hoch"]
+        MG -- "Ja" --> Buy["🟢 KAUF-SIGNAL: Breakout über AVWAP & Pivot-Hoch\n(Tranche 1: 35% via 50/50 Ausbruch & Retest)"]
         MG -- "Nein (Rot)" --> Block["🔴 KAUF-SPERRE: Warten auf Makro-Beruhigung"]
     end
 
-    subgraph Gate3 ["3. Überwachung & Adaptive Dip-DNA (ab t0)"]
-        Buy --> RBlocks["t0-Anchored Rolling Blöcke: 3D / 5D / 21D\n+ M5 Power-Hour Schlussfenster (CloseDelta)"]
+    subgraph Gate3 ["3. Progressive Pyramidisierung & Adaptive Dip-DNA"]
+        Buy --> Pyr["Progressive Livermore-Pyramidisierung:\nTranche 2 (+35% bei +15-20% Bestätigung)\nTranche 3 (+30% bei erstem Major HL)"]
+        Pyr --> RBlocks["t0-Anchored Rolling Blöcke: 3D / 5D / 21D\n+ M5 Power-Hour Schlussfenster (CloseDelta)"]
         RBlocks --> DipLearn["Adaptive Dip-DNA:\nModell lernt individuelle gesunde Atmung (-15% bis -35%)\nStoisches Halten bei Trockenvolumen (VolRatio <= 0.66-0.90x)"]
         RBlocks --> HLStop["Major Higher-Low Trailing Stop (14-20 Tage Fenster)\nStop wandert ab +25% Gewinn unter strukturelle HLs"]
     end
@@ -161,9 +162,16 @@ Klassische gleitende Durchschnitte (z. B. Golden Cross `SMA 50 > SMA 200`) erzeu
 2. **Schritt 2: Die Higher-Low Konsolidierungs-Flagge:**  
    In den folgenden 2 bis 4 Wochen konsolidiert die Aktie in einer engen Spanne.  
    $\rightarrow$ **Bedingung:** Es entstehen keine tieferen Tiefs mehr unter das Vor-Event-Niveau ($HL \ge \text{Pre-Gap Low}$). Das Smart Money verteidigt den Event-Kurs.
-3. **Schritt 3: Der finale Kauf-Trigger ($t_{\text{entry}}$):**  
+3. **Schritt 3: Der finale Kauf-Trigger ($t_{\text{entry}}$) & Tranche-1-Order-Split:**  
    Sobald der Tagesschlusskurs über den **Event-AVWAP** und gleichzeitig über das lokale Pivot-Hoch der Konsolidierungsflagge ausbricht:  
-   $\rightarrow$ **Aktion:** Das Radar schaltet von `OBSERVE` auf **`BUY_TURNAROUND`** zum aktuellen Ausbruchskurs $P(t_{\text{entry}})$ (z. B. Palantir im April 2023 bei 8,61 $).
+   * **Intraday Fakeout-Schutz (M5 Power-Hour Confirmation):**  
+     Um frühe Eröffnungs-Fakes durch Privatanleger („Morning Hype“) auszuschließen, fordert das Radar im M5-Schlussfenster (14:30–16:00 ET) ein institutionell gestütztes **$CloseDelta \ge -5{,}0\,\%$**. Nur wenn institutionelle Käufer den Ausbruch bis zum Handelsschluss verteidigen, wird das Signal freigegeben.  
+   * **Order-Ausführung via 50/50 Split (Tranche 1 = 35 % des Ziel-Budgets):**  
+     Die Einstiegstranche wird nicht unüberlegt mit einer einzigen Market-Order ausgeführt, sondern in zwei Tranchen-Blöcke geteilt:
+     * **50 % der Tranche (17,5 % Budget):** Sofortiger Kauf direkt beim bestätigten Ausbruch über das Pivot-Hoch ($P_{\text{breakout}}$).
+     * **50 % der Tranche (17,5 % Budget):** Limit-Kauf am Retest des **Event-AVWAP** ($P_{\text{AVWAP}}$) bzw. bei nächstem Tagesschluss darüber.
+     * *Vorteil:* Drückt den mittleren Einstiegspreis ($P_{\text{avg1}}$), minimiert Slippage und verhindert den Einstieg am oberen Tages-Docht.  
+   $\rightarrow$ **Aktion:** Das Radar schaltet von `OBSERVE` auf **`BUY_TURNAROUND`** (z. B. Palantir im April 2023 bei 8,61 $ / AVWAP 8,28 $ $\rightarrow$ mittlerer Einstieg 8,44 $).
 
 ---
 
@@ -261,45 +269,70 @@ Handelt es sich um eine schleppende Bodenbildung ohne substanzielles Katalysator
 
 ---
 
-## 7. Risikomanagement & Portfolio-Integration
+## 7. Risikomanagement & Positions-Sizing (Livermore-Pyramidisierung)
 
-Das Framework arbeitet vollintegriert mit dem [Kamikaze-Portfolio](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Growth.md):
+Das Framework arbeitet vollintegriert mit der [Kamikaze-Growth Master-Strategie](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Growth.md):
 
-* **Positions-Sizing:**  
-  Jeder Kauf erfolgt standardmäßig als **35 %-Zündfunke aus dem freien Mutterschiff-Kapital** (entspricht ca. 5–10 % des Gesamt-Portfolios). Kein Turnaround-Wert erhält eine übergroße Klumpen-Allokation.
-* **Makro-Guard Interaktion (Asymmetrische Einlass-Kontrolle):**  
-  Der übergeordnete [Makro-Guard](file:///D:/GitHub/CrashRadar/docs/architecture/macro/Makro-Kalender-Szenarien-Konzept.md) (Katastrophen-Matrix / Net Fed Liquidity / VIX-Spikes) agiert **ausschließlich als Einstiegs-Sperre (Kauf-Verbot)**:
-  * *Bei Makro ROT:* Strikter Neukauf- und Zündfunken-Stopp aus dem Mutterschiff.
-  * *Verbot des Makro-Notverkaufs laufender Positionen:* Ein Makro-Alarm darf **niemals** eine bestehende, gesunde Parabolik zwangsliquidieren.  
-    *Empirischer Beweis:* Ein Makro-Zwangsverkauf hätte `PLTR` im Frühjahr 2025 bei 76,38 $ (+224 %) aus der Hand geschlagen und den weiteren Anstieg auf 157,75 $ / 187 $ (**+345 %-Punkte Renditeverlust**) vernichtet. Bei `NVTS` hätte ein Makro-Exit im März 2026 bei 8,28 $ mit **-9,2 % Verlust** liquidiert – unmittelbar vor der Kursexplosion auf 31 $ (+238 %).  
-    *Führung im Trade:* Laufende Positionen werden im Aufwärtstrend ausschließlich durch die einzelwert-spezifische **Dip-DNA**, den **3D-Dump** (Stufe 1) und den **Major Higher-Low Stop** (Stufe 2, $HL_{\text{aktiv}} \times 0{,}97$) geschützt.
-* **Der Fundamentale Thesis-Stop:**  
-  Ein Not-Ausstieg mit Verlust erfolgt unabhängig vom Chart, wenn fundamentale Eckdaten brechen:
-  1. Net Cash Runway sinkt im Folge-10-Q unter 3 Monate (ohne neue Kreditlinien im 8-K).
-  2. Bruttomarge bricht im Folgequartal um $> 15\,\%$ ein (Preisverfall / Produktentwertung).
-  3. Unerklärte Massenverwässerung: Ausstehende Aktien steigen um $> 20\,\%$ im Quartal.
-* **Übergang in Kamikaze Stage-2 Trendfolge:**  
-  Etabliert die Aktie nach dem Turnaround ein nachhaltiges Golden Cross (`SMA 50 > SMA 200`), übernimmt das [Stock-Radar Interface](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/03-Stock-Radar-Interface.md) die Betreuung mit dem Status `HOLD & BUY`.
+### 7.1 Die progressive Livermore-Pyramidisierung (35 % → 70 % → 100 %)
+Statt bei unbestätigten Ausbrüchen mit 100 % des allokierten Budgets „All-In“ zu gehen, skaliert das Radar die Positionsgröße streng nach Jesse Livermores Prinzip der **Gewinnbestätigung**:
 
-### 7.1 Differenzierung nach Investment-Typen (`investmentType`)
+* **Tranche 1: Der 35 %-Zündfunke (Initialer Breakout):**
+  * *Allokation:* 35 % des Ziel-Budgets (entspricht ca. 3,5–5 % des Gesamt-Portfolios).
+  * *Execution:* 50/50 Split (50 % bei Breakout über Konsolidierungs-Pivot + 50 % am Event-AVWAP Retest).
+  * *Asymmetrischer Schutz:* Scheitert der Ausbruch sofort (Fakeout), stehen **nur 35 % des Budgets im Risiko**. Der Verlust beträgt im Schnitt lediglich ~$400 bis ~$700 statt ~$2.000 (V1 Baseline).
+* **Tranche 2: Die +35 %-Trendbestätigung (70 % Gesamt-Exposure):**
+  * *Bedingung:* Die Aktie bestätigt die Aufwärtsdynamik und steigt $\ge +15\,\%$ bis $+20\,\%$ über den mittleren Einstiegskurs der Tranche 1 ($P_{\text{avg1}} \times 1{,}15$) **ODER** bricht nach einer ersten gesunden Konsolidierungsflagge über das Folge-Hoch aus.
+  * *Stop-Nachzug:* Der Stop-Loss für das Gesamtexposure (Tranche 1 + 2) wird unverzüglich auf **Break-Even von Tranche 1** nachgezogen. Das Trade-Risiko sinkt rechnerisch auf Null.
+* **Tranche 3: Die +30 %-Trendreife (100 % Vollauslastung):**
+  * *Bedingung:* Etablierung des ersten strukturellen *Major Higher Lows* ($HL_1$, Bestätigung über 14–20 Tage) im Trend und Ausbruch auf ein neues relatives Bewegungshoch ($> Peak_1$).
+  * *Vorteil:* Erst wenn die Aktie bewiesen hat, dass Smart Money die Rücksetzer absorbiert, wird das volle 100 %-Kapital freigegeben.
+
+### 7.2 Schutz der Pyramide: Livermore-Trailingschutz für Satelliten (`LASTING_HOLD`)
+Bei Werten der Kategorie `LASTING_HOLD` (`PLTR`, `SOFI`, `S`, `NET`) gilt eine strikte 2-Ebenen-Architektur:
+1. **Core-Position (Tranche 1 = 35 %):**  
+   * **Stoisches Halten:** Technische Exits (Stufe 1 Climax und Stufe 2 Trailing Stop) sind für den Core **vollständig deaktiviert**. Kein Verkauf in Korrekturen, kein Peak-Selling.
+   * *Verkaufsgrund:* Ausschließlich bei einem **fundamentalen Thesis-Bruch** (Cash Runway $< 3$ Monate, Bruttomargen-Kollaps $> 15\,\%$, Dilution $> 20\,\%$ p.a.) oder bei absolutem Liquiditätsbedarf für neue Einstiege, sofern Bar- und Krypto-Reserven (z. B. Solana/ETH Sparkonto über ETF) erschöpft sind.
+2. **Satelliten-Position (Tranche 2 & 3 = +65 %):**  
+   * **Aktiver Stufe 2 Trailing Stop ($HL_{\text{aktiv}} \times 0{,}97$):** Die aufgestockten Tranchen dienen als Rendite-Verstärker in intakten Trendphasen. Kippt der Markt in einen übergeordneten Bärenmarkt (wie 2022), werden Tranche 2 und Tranche 3 am bestätigten Major Higher Low glattgestellt.
+   * *Empirischer Beweis:* Verhindert das Reiten von 100 % Kapital durch -60 % bis -80 % Bärenmärkte, senkt den maximalen Einzelverlust von -$7.270 auf -$2.866 und steigerte den Portfoliogewinn im 10-Jahres-Test um **+112,0 % (+$98.150 Mehrertrag)** bei einem Profit Factor von **6,54** (vs. 4,39).
+
+### 7.3 Makro-Guard Interaktion (Asymmetrische Einlass-Kontrolle)
+Der übergeordnete [Makro-Guard](file:///D:/GitHub/CrashRadar/docs/architecture/macro/Makro-Kalender-Szenarien-Konzept.md) (Katastrophen-Matrix / Net Fed Liquidity / VIX-Spikes) agiert **ausschließlich als Einstiegs-Sperre (Kauf-Verbot)**:
+* *Bei Makro ROT:* Strikter Neukauf- und Zündfunken-Stopp aus dem Mutterschiff.
+* *Verbot des Makro-Notverkaufs laufender Positionen:* Ein Makro-Alarm darf **niemals** eine bestehende, gesunde Parabolik zwangsliquidieren.  
+  *Empirischer Beweis:* Ein Makro-Zwangsverkauf hätte `PLTR` im Frühjahr 2025 bei 76,38 $ (+224 %) aus der Hand geschlagen und den weiteren Anstieg auf 157,75 $ / 187 $ (**+345 %-Punkte Renditeverlust**) vernichtet. Bei `NVTS` hätte ein Makro-Exit im März 2026 bei 8,28 $ mit **-9,2 % Verlust** liquidiert – unmittelbar vor der Kursexplosion auf 31 $ (+238 %).  
+  *Führung im Trade:* Laufende Positionen werden im Aufwärtstrend ausschließlich durch die einzelwert-spezifische **Dip-DNA**, den **3D-Dump** (Stufe 1) und den **Major Higher-Low Stop** (Stufe 2, $HL_{\text{aktiv}} \times 0{,}97$) geschützt.
+
+### 7.4 Der Fundamentale Thesis-Stop
+Ein Not-Ausstieg mit Verlust erfolgt unabhängig vom Chart, wenn fundamentale Eckdaten brechen:
+1. Net Cash Runway sinkt im Folge-10-Q unter 3 Monate (ohne neue Kreditlinien im 8-K).
+2. Bruttomarge bricht im Folgequartal um $> 15\,\%$ ein (Preisverfall / Produktentwertung).
+3. Unerklärte Massenverwässerung: Ausstehende Aktien steigen um $> 20\,\%$ im Quartal.
+
+### 7.5 Übergang in Kamikaze Stage-2 Trendfolge
+Etabliert die Aktie nach dem Turnaround ein nachhaltiges Golden Cross (`SMA 50 > SMA 200`), übernimmt das [Stock-Radar Interface](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/03-Stock-Radar-Interface.md) die Betreuung mit dem Status `HOLD & BUY`.
+
+### 7.6 Differenzierung nach Investment-Typen (`investmentType`)
 
 Um Fehlausstiege bei echten Generations-Monopolen zu verhindern, differenziert das Radar das Exit-Verhalten strikt nach dem hinterlegten `investmentType`:
 
-| Typ | Primäre Vertreter | Verhalten bei Stufe 1 (Climax Overheat) & Stufe 2 (Trailing Stop) | Rebalancing & Exit-Bedingung |
-| :--- | :--- | :--- | :--- |
-| **`LASTING_HOLD`** | `PLTR`, `S`, später `SOFI`, `AIRO` | **TECHNISCHE EXITS DEAKTIVIERT!** Kein Verkauf an Spitzen, kein Stoppen in Dips. Stoisches Halten durch Korrekturen hindurch. | Verkauf **ausschließlich bei Fundamentaler Thesis-Bruch** (Runway-Kollaps, Bruttomargen-Verfall, Betrug). Bei parabolischen Spitzen ist maximal ein Rebalancing (Teil-Gewinnmitnahme) ins S&P 500 Mutterschiff erlaubt. |
-| **`CYCLICAL`** | `NVTS` | **VOLLER 2-STUFEN-EXIT AKTIV!** Parabolik-Notbremse und Major Higher-Low Stop greifen vollumfänglich. | Schützt das Kapital vor den brutalen -70 % bis -85 % Bärenmärkten des Halbleiter-Schweinezyklus. Re-Entry erst am nächsten Wyckoff-Boden. |
-| **`BINARY`** | `IBRX` | **EVENT-GESTEUERTES RISK-MANAGEMENT:** Fester Portfolio-Deckel (2–4 % maximales Risiko). Runway-Filter auf 3–6 Monate verkürzt (Founder-Backing). | Systematisches De-Risking (50 % Gewinnmitnahme) im Vorfeld binärer Zulassungs- und Studienergebnisse (z. B. PDUFA-Entscheidungen). |
+| Typ | Primäre Vertreter | Verhalten bei Tranche 1 (Core 35 %) | Verhalten bei Tranche 2 & 3 (Satelliten 65 %) | Rebalancing & Exit-Bedingung |
+| :--- | :--- | :--- | :--- | :--- |
+| **`LASTING_HOLD`** | `PLTR`, `S`, später `SOFI`, `AIRO`, `NET` | **TECHNISCHE EXITS DEAKTIVIERT!** Stoisches Halten durch alle Marktzyklen. | **STUFE 2 TRAILING STOP AKTIV!** Glattstellung am $HL_{\text{aktiv}} \times 0{,}97$ bei übergeordnetem Trendbruch. | Verkauf des Cores **ausschließlich bei Fundamentalem Thesis-Bruch** oder Liquiditätsnot für Neukäufe (nach Aufbrauchen von Cash & Krypto-ETF Sparkonto). |
+| **`CYCLICAL`** | `NVTS`, `APP`, `HIMS` | **VOLLER 2-STUFEN-EXIT AKTIV!** Parabolik-Notbremse (Stufe 1) und Trailing Stop (Stufe 2). | **VOLLER 2-STUFEN-EXIT AKTIV!** Parabolik-Notbremse (Stufe 1) und Trailing Stop (Stufe 2). | Schützt das Kapital vor den brutalen -70 % bis -85 % Bärenmärkten von Hardware-/Schweinezyklen. Re-Entry erst am nächsten Wyckoff-Boden. |
+| **`BINARY`** | `IBRX` | **EVENT-RISK-MANAGEMENT:** Fester Portfolio-Deckel (2–4 % maximales Risiko). | **EVENT-RISK-MANAGEMENT:** Fester Portfolio-Deckel (2–4 % maximales Risiko). | Systematisches De-Risking (50 % Gewinnmitnahme) im Vorfeld binärer Zulassungs- und Studienergebnisse (z. B. FDA PDUFA-Termine). |
 
 ---
 
 ## 8. Referenzen & Verifizierte Test-Artefakte
 
 * 📄 **Forschungsberichte & Mathematische Beweise:**
-  * 10-Jahres-Gesamtbeweis (2016–2026, 8 Ticker): [`docs/research/turnarounds/Turnaround-Research-Proof.md`](file:///D:/GitHub/CrashRadar/docs/research/turnarounds/Turnaround-Research-Proof.md)
+  * Multi-Ticker Gesamtbeweis V1 vs. V2 (2016–2026, 60 Trades, 8 Ticker): [`docs/research/turnarounds/Turnaround-Research-Proof.md`](file:///D:/GitHub/CrashRadar/docs/research/turnarounds/Turnaround-Research-Proof.md)
   * M5-Volumen- & Schlussauktions-Analyse: [`docs/research/turnarounds/Parabolic-Volume-Analysis.md`](file:///D:/GitHub/CrashRadar/docs/research/turnarounds/Parabolic-Volume-Analysis.md)
   * 5-Ebenen-Pyramide & 3D-Vorlauf-Nachweis: [`docs/research/turnarounds/Multi-Timeframe-Pyramide-Analysis.md`](file:///D:/GitHub/CrashRadar/docs/research/turnarounds/Multi-Timeframe-Pyramide-Analysis.md)
-* 🧪 **Ausführbare Test-Skripte:**
+* 🧪 **Ausführbare Test-Skripte & Backtest-Engines:**
+  * Multi-Ticker Vergleich V1 vs. V2 (+112 % Mehrertrag, PF 6,54): [`scratch/architecture/strategies/kamikaze/run_multi_ticker_v1_vs_v2.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/kamikaze/run_multi_ticker_v1_vs_v2.js)
+  * Palantir End-to-End V2 Pyramidisierungs-Engine: [`scratch/architecture/strategies/kamikaze/evaluate_pltr_pipeline_v2.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/kamikaze/evaluate_pltr_pipeline_v2.js)
   * Validierter 2-Stufen-Exit Prototyp: [`scratch/research/turnarounds/adaptive_growth_prototype.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/adaptive_growth_prototype.js)
   * Multi-Timeframe M5 Aggregator: [`scratch/research/turnarounds/aggregate_all_growth_m5.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/aggregate_all_growth_m5.js)
   * 10-Jahres-Gesamtsimulation: [`scratch/research/turnarounds/run_refined_growth_test.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/run_refined_growth_test.js)

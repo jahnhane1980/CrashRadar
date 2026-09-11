@@ -1,0 +1,149 @@
+{
+  "portfolioSummary": {
+    "currentSecuritiesValueEur": 78215.50,
+    "availableCashEur": 8424.43,
+    "totalCapitalEur": 86639.93,
+    "maxPositionPct": 12.0,
+    "baseCurrency": "EUR",
+    "rule": "Posten über 12% Portfolio-Anteil werden geblockt (kein Aufbau). Posten unter 12% werden konträr aufgefüllt. Geschlossenes System: Euro pumpen verboten."
+  },
+  "positions": [
+    {
+      "symbol": "AIRO",
+      "name": "AIRO Group Holdings",
+      "shares": 2600,
+      "costBasis": 6.38,
+      "valueEur": 15562.42,
+      "portfolioPct": 19.90
+    },
+    {
+      "symbol": "LUMN",
+      "name": "Lumen Technologies",
+      "shares": 2500,
+      "costBasis": 6.12,
+      "valueEur": 14856.05,
+      "portfolioPct": 18.99
+    },
+    {
+      "symbol": "IBRX",
+      "name": "ImmunityBio",
+      "shares": 1875,
+      "costBasis": 7.31,
+      "valueEur": 12581.29,
+      "portfolioPct": 16.09
+    },
+    {
+      "symbol": "SEMI.AS",
+      "displayName": "SEMI",
+      "name": "iShares MSCI Global Semiconductor",
+      "shares": 650,
+      "costBasis": 19.325,
+      "valueEur": 11175.12,
+      "portfolioPct": 14.29
+    },
+    {
+      "symbol": "CNDX.L",
+      "displayName": "CNDX",
+      "name": "iShares NASDAQ 100",
+      "shares": 7.5,
+      "costBasis": 1654.04,
+      "valueEur": 10884.01,
+      "portfolioPct": 13.92
+    },
+    {
+      "symbol": "PGY",
+      "name": "Pagaya Technologies",
+      "shares": 400,
+      "costBasis": 21.52,
+      "valueEur": 6999.81,
+      "portfolioPct": 8.95
+    },
+    {
+      "symbol": "S",
+      "name": "SentinelOne",
+      "shares": 187.5,
+      "costBasis": 19.69,
+      "valueEur": 3234.26,
+      "portfolioPct": 4.13
+    },
+    {
+      "symbol": "NVTS",
+      "name": "Navitas Semiconductor",
+      "shares": 300,
+      "costBasis": 9.91,
+      "valueEur": 2921.19,
+      "portfolioPct": 3.73
+    }
+  ],
+  "buyZoneSettings": {
+    "NVTS": {
+      "zones": [
+        { "name": "Haupt-Shakeout (Stop-Fishing)", "targetPriceUsd": 9.91, "budgetShare": 0.65, "strategy": "Stop-Fishing unter $10.00 (-21.5% vom Pivot $12.63)" },
+        { "name": "Extrem-Panik / Docht", "targetPriceUsd": 9.25, "budgetShare": 0.35, "strategy": "Wyckoff Spring Panik-Docht (VIX > 28)" }
+      ]
+    },
+    "S": {
+      "zones": [
+        { "name": "Haupt-Shakeout (Stop-Fishing)", "targetPriceUsd": 18.80, "budgetShare": 0.65, "strategy": "Stop-Fishing unter $19.00 (-21.5% vom Hoch $23.95)" },
+        { "name": "Extrem-Panik / Docht", "targetPriceUsd": 16.80, "budgetShare": 0.35, "strategy": "Panik-Docht / Maximaler Ausverkauf (VIX > 28)" }
+      ]
+    },
+    "PGY": {
+      "zones": [
+        { "name": "Haupt-Shakeout (-21.5% Peak)", "targetPriceUsd": 18.50, "budgetShare": 0.65, "strategy": "-21.5% Shakeout vom Hoch $23.68" },
+        { "name": "Extrem-Panik / Docht", "targetPriceUsd": 17.20, "budgetShare": 0.35, "strategy": "Tiefster Akkumulations-Docht vor Rallye" }
+      ]
+    }
+  },
+  "observeList": [
+    "PLTR",
+    "SOFI",
+    "APP",
+    "HIMS",
+    "NET"
+  ],
+  "macroThresholds": {
+    "vixScenarios": [
+      {
+        "id": "MODERATE",
+        "label": "Moderater Vorwahl-Spike",
+        "targetVix": 23.5,
+        "spyDdMed": -4.0,
+        "qqqDdMed": -4.18
+      },
+      {
+        "id": "STRONG",
+        "label": "Starker Shakeout / Pre-Tax-Day",
+        "targetVix": 27.5,
+        "spyDdMed": -6.22,
+        "qqqDdMed": -6.27
+      },
+      {
+        "id": "PANIC",
+        "label": "Extrem-Panik / Margin-Call",
+        "targetVix": 32.0,
+        "spyDdMed": -12.68,
+        "qqqDdMed": -12.87
+      }
+    ],
+    "highBetaAverageMultiplier": 4.0,
+    "typicalHighBetaShakeoutPct": -21.5,
+    "bankReserves": {
+      "gdpBillion": 32486,
+      "warnLinePct": 10.0,
+      "hardFloorPct": 8.0,
+      "hardFloorBillion": 2598
+    },
+    "tga": {
+      "targetBillion": 750,
+      "burnRateDailyBillion": 7.5,
+      "collisionStart": "2026-10-26",
+      "collisionEnd": "2026-11-10"
+    },
+    "sentiment": {
+      "pcrExtreme": 1.3,
+      "skewExtreme": 140,
+      "dixAkkumulation": 45
+    }
+  }
+}
