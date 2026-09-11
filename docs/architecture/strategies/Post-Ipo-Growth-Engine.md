@@ -177,6 +177,23 @@ Frühe Wachstumsunternehmen kompensieren Mitarbeiter oft exzessiv über Stock-Ba
 
 ---
 
+### 4.5 Der Composite Growth Score (Gewichtung & Ranking)
+
+Zur Priorisierung der qualifizierten Kandidaten für die `OBSERVE`-Watchlist berechnet die Engine einen standardisierten Gesamt-Score von 0 bis 100 Punkten:
+
+$$\text{Composite Score} = 0{,}35 \times S_{\text{Growth}} + 0{,}25 \times S_{\text{Rule40}} + 0{,}20 \times S_{\text{Dilution}} + 0{,}20 \times S_{\text{Momentum}}$$
+
+| Säule | Metrik | Gewichtung | Punkte-Verteilung (0 bis 100) |
+| :--- | :--- | :---: | :--- |
+| **Top-Line ($S_{\text{Growth}}$)** | $g_{\text{Rev YoY}}$ & Beschleunigung $\Delta g_{\text{Rev}}$ | **35 %** | 100 Pkt bei $g \ge 35\,\%$ & $\Delta g > 0$; 0 Pkt bei $g < 0\,\%$ |
+| **Effizienz ($S_{\text{Rule40}}$)** | $\text{Score}_{\text{Rule40}} = g + \text{FCF Margin}$ | **25 %** | 100 Pkt bei $\ge 40\,\%$; 50 Pkt bei $25\,\%$; 0 Pkt bei $< 0\,\%$ |
+| **Kapitaldisziplin ($S_{\text{Dilution}}$)** | Verwässerung $\text{Dilution}_{\text{Rate}}$ | **20 %** | 100 Pkt bei $< 3\,\%$; 50 Pkt bei $3-7\,\%$; 0 Pkt bei $> 10\,\%$ |
+| **Boden & Trend ($S_{\text{Momentum}}$)** | $D_{\text{Low}}$ & Relative Stärke vs. QQQ | **20 %** | 100 Pkt bei $D_{\text{Low}} \ge 35\,\%$ & $\text{RS} > \text{SMA}_{50}$; 0 Pkt bei Schwäche |
+
+* **Mindestschwelle:** Nur qualifizierte Titel mit $\text{Composite Score} \ge 65{,}0$ Punkten werden an das Kamikaze- und MCW-System zur weiteren Ausbruchs-Beobachtung übergeben (`status = 'OBSERVE'`).
+
+---
+
 ## 5. Datenquellen & CrashRadar-Integrationsstrategie (Node.js & MySQL)
 
 Zur Vermeidung von Medienbrüchen und Doppel-Infrastrukturen fügt sich PIGE in die bestehende CrashRadar-Architektur ein:
