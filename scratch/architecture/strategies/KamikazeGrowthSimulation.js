@@ -804,6 +804,29 @@ export async function runKamikazeSimulation(options = {}) {
         if (curDayDepotUSD > peakPortfolioUSD) peakPortfolioUSD = curDayDepotUSD;
         const curDayDD = ((peakPortfolioUSD - curDayDepotUSD) / peakPortfolioUSD) * 100;
         if (curDayDD > maxDrawdownPct) maxDrawdownPct = curDayDD;
+
+        if (options.onDailyStep) {
+            options.onDailyStep({
+                date,
+                totalDepotUSD: curDayDepotUSD,
+                totalInvestedUSD: initialInvestedUSD + initialCashUSD + totalSavingsContributed,
+                cashPotUSD,
+                spyShares,
+                curSpyPrice: priceMaps['SPY'][date] || 0,
+                kryptoClaimSpyShares,
+                kryptoUndeployedSpyShares,
+                gldShares,
+                curGldPrice: priceMaps['GLD'][date] || 0,
+                btcDirectShares,
+                curBtcPrice: btcMap[date]?.close || 0,
+                kryptoPositions: { ...kryptoPositions },
+                techPositions: JSON.parse(JSON.stringify(techPositions)),
+                macroGuardActive,
+                btcSiloActive,
+                kryptoPyramidStage,
+                priceMaps
+            });
+        }
     }
 
     // Finale Bilanz

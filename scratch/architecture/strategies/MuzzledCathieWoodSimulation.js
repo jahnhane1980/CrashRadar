@@ -1079,6 +1079,29 @@ async function runMuzzledCathieWoodSimulation(options = {}) {
         if (curDayDepotEUR > peakPortfolioEUR) peakPortfolioEUR = curDayDepotEUR;
         const curDayDD = ((peakPortfolioEUR - curDayDepotEUR) / peakPortfolioEUR) * 100;
         if (curDayDD > maxDrawdownPct) maxDrawdownPct = curDayDD;
+
+        if (typeof options.onDailyStep === 'function') {
+            options.onDailyStep({
+                date,
+                dIdx,
+                curDayDepotUSD,
+                curDayDepotEUR,
+                totalInvestedEUR,
+                spyShares,
+                curSpyPrice: priceMaps['SPY'][date] || 0,
+                gldShares,
+                curGldPrice: priceMaps['GLD'][date] || 0,
+                usdCash,
+                kryptoClaimUSD,
+                kryptoUndeployedUSD,
+                kryptoPositions: { ...kryptoPositions },
+                techPositions: JSON.parse(JSON.stringify(techPositions)),
+                macroGuardActive,
+                btcSiloActive,
+                curEurUsd,
+                priceMaps
+            });
+        }
     }
 
     // =========================================================================
