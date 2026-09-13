@@ -27,6 +27,25 @@ export class YieldCurveIndicator {
         } else if (current < 0) {
             return { status: 'WARNING', value: current.toFixed(2), message: 'Invertiert (Late Cycle). Noch keine Panik, bis sie un-invertiert.' };
         }
+
+        // 180-Tage Gedächtnis für Un-Inversion (Rezessions-Gefahrenfenster):
+        // Historisch bricht die Rezession erst 6 bis 18 Monate NACH der Un-Inversion aus.
+        // Wenn die Kurve in den letzten 180 Handelstagen invertiert war und jetzt positiv ist,
+        // bleibt das System in erhöhter Wachsamkeit (WARNING), statt verfrüht auf OK zu schalten.
+        const lookback = Math.min(timeline.length, 180);
+        let hadRecentInversion = false;
+        for (let i = timeline.length - 1; i >= timeline.length - lookback; i--) {
+            const spread = timeline[i]?.macroGroups?.YieldCurve?.Spread10y2y;
+            if (spread != null && Number(spread) < 0) {
+                hadRecentInversion = true;
+                break;
+            }
+        }
+
+        if (hadRecentInversion) {
+            return { status: 'WARNING', value: current.toFixed(2), message: 'UN-INVERTING DANGER ZONE! Kurve hat vor kurzem un-invertiert. 180-Tage Rezessions-Warnfenster aktiv.' };
+        }
+
         return { status: 'OK', value: current.toFixed(2), message: 'Normale Kurve (positiv).' };
     }
 }

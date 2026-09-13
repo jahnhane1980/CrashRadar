@@ -15,15 +15,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "UNKNOWN",
@@ -160,15 +151,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -313,15 +295,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "UNKNOWN",
@@ -462,15 +435,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "UNKNOWN",
@@ -607,15 +571,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -768,15 +723,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "UNKNOWN",
@@ -921,15 +867,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -1082,15 +1019,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "UNKNOWN",
@@ -1235,15 +1163,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -1396,15 +1315,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "UNKNOWN",
@@ -1549,15 +1459,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -1710,15 +1611,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "UNKNOWN",
@@ -1863,15 +1755,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -2024,15 +1907,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "UNKNOWN",
@@ -2177,15 +2051,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -2338,15 +2203,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "UNKNOWN",
@@ -2491,15 +2347,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -2652,15 +2499,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "UNKNOWN",
@@ -2805,15 +2643,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -2966,15 +2795,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "UNKNOWN",
@@ -3119,15 +2939,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -3288,15 +3099,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "UNKNOWN",
@@ -3449,15 +3251,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -3618,15 +3411,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "UNKNOWN",
@@ -3779,15 +3563,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -3948,15 +3723,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "UNKNOWN",
@@ -4109,15 +3875,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -4278,15 +4035,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "UNKNOWN",
@@ -4439,15 +4187,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -4608,15 +4347,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -4769,15 +4499,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -4938,15 +4659,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -5099,15 +4811,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -5268,15 +4971,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -5429,15 +5123,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -5600,15 +5285,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -5763,15 +5439,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -5934,15 +5601,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -6097,15 +5755,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -6268,15 +5917,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -6431,15 +6071,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -6602,15 +6233,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -6765,15 +6387,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -6936,15 +6549,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -7099,15 +6703,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -7270,15 +6865,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -7433,15 +7019,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -7604,15 +7181,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -7767,15 +7335,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -7938,15 +7497,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -8101,15 +7651,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -8270,15 +7811,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -8431,15 +7963,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -8600,15 +8123,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -8761,15 +8275,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -8930,15 +8435,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -9091,15 +8587,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -9260,15 +8747,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -9421,15 +8899,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -9590,15 +9059,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -9751,15 +9211,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -9920,15 +9371,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -10081,15 +9523,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -10250,15 +9683,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -10411,15 +9835,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -10580,15 +9995,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -10741,15 +10147,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -10910,15 +10307,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -11071,15 +10459,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -11240,15 +10619,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -11401,15 +10771,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -11570,15 +10931,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -11731,15 +11083,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -11900,15 +11243,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -12061,15 +11395,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -12230,15 +11555,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -12391,15 +11707,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -12560,15 +11867,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -12721,15 +12019,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -12890,15 +12179,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -13051,15 +12331,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -13220,15 +12491,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -13381,15 +12643,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -13550,15 +12803,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -13711,15 +12955,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -13880,15 +13115,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -14041,15 +13267,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -14210,15 +13427,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -14371,15 +13579,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -14540,15 +13739,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -14701,15 +13891,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -14872,15 +14053,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -15035,15 +14207,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -15206,15 +14369,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -15369,15 +14523,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -15537,15 +14682,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -15714,15 +14850,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -15883,15 +15010,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -16060,15 +15178,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -16229,15 +15338,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -16406,15 +15506,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -16575,15 +15666,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -16752,15 +15834,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -16921,15 +15994,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -17098,15 +16162,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -17267,15 +16322,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -17444,15 +16490,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -17613,15 +16650,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -17790,15 +16818,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -17959,15 +16978,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -18136,15 +17146,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -18305,15 +17306,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -18482,15 +17474,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -18651,15 +17634,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -18828,15 +17802,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -18997,15 +17962,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -19174,15 +18130,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -19343,15 +18290,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -19520,15 +18458,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -19689,15 +18618,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -19866,15 +18786,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -20038,15 +18949,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -20201,15 +19103,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -20372,15 +19265,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -20535,15 +19419,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -20706,15 +19581,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -20869,15 +19735,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -21040,15 +19897,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -21203,15 +20051,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -21374,15 +20213,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -21537,15 +20367,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -21706,15 +20527,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -21867,15 +20679,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -22036,15 +20839,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -22197,15 +20991,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -22366,15 +21151,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -22527,15 +21303,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -22696,15 +21463,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -22857,15 +21615,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -23026,15 +21775,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -23187,15 +21927,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -23356,15 +22087,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -23517,15 +22239,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -23686,15 +22399,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -23847,15 +22551,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -24016,15 +22711,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -24177,15 +22863,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -24346,15 +23023,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -24507,15 +23175,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -24676,15 +23335,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -24837,15 +23487,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -25006,15 +23647,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -25167,15 +23799,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -25336,15 +23959,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -25497,15 +24111,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -25666,15 +24271,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -25827,15 +24423,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -25996,15 +24583,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -26157,15 +24735,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -26326,15 +24895,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -26487,15 +25047,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -26656,15 +25207,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -26817,15 +25359,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -26986,15 +25519,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -27147,15 +25671,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -27316,15 +25831,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -27477,15 +25983,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -27646,15 +26143,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -27807,15 +26295,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -27976,15 +26455,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -28137,15 +26607,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -28306,15 +26767,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -28467,15 +26919,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -28636,15 +27079,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -28797,15 +27231,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -28966,15 +27391,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -29127,15 +27543,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -29296,15 +27703,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -29457,15 +27855,6 @@
           "status": "UNKNOWN",
           "value": null,
           "message": "Keine SKEW oder AAII Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
           "details": null,
           "projectedCollision": null
         },
@@ -29628,15 +28017,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -29657,9 +28037,9 @@
         {
           "name": "Margin Debt (Gier & Hebel)",
           "category": "EARLY_WARNING",
-          "status": "WARNING",
+          "status": "CRITICAL",
           "value": "-36.5%",
-          "message": "Margin Debt ist um 36.5% von seinem Hoch gefallen. Das Smart Money baut rasant Hebel ab!",
+          "message": "Margin Debt kollabiert (36.5% vom Hoch). Akute Liquidierungswelle!",
           "details": null,
           "projectedCollision": null
         },
@@ -29795,15 +28175,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -29824,9 +28195,9 @@
         {
           "name": "Margin Debt (Gier & Hebel)",
           "category": "EARLY_WARNING",
-          "status": "WARNING",
+          "status": "CRITICAL",
           "value": "-36.5%",
-          "message": "Margin Debt ist um 36.5% von seinem Hoch gefallen. Das Smart Money baut rasant Hebel ab!",
+          "message": "Margin Debt kollabiert (36.5% vom Hoch). Akute Liquidierungswelle!",
           "details": null,
           "projectedCollision": null
         },
@@ -29962,15 +28333,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -29991,9 +28353,9 @@
         {
           "name": "Margin Debt (Gier & Hebel)",
           "category": "EARLY_WARNING",
-          "status": "WARNING",
+          "status": "CRITICAL",
           "value": "-36.5%",
-          "message": "Margin Debt ist um 36.5% von seinem Hoch gefallen. Das Smart Money baut rasant Hebel ab!",
+          "message": "Margin Debt kollabiert (36.5% vom Hoch). Akute Liquidierungswelle!",
           "details": null,
           "projectedCollision": null
         },
@@ -30129,15 +28491,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -30158,9 +28511,9 @@
         {
           "name": "Margin Debt (Gier & Hebel)",
           "category": "EARLY_WARNING",
-          "status": "WARNING",
+          "status": "CRITICAL",
           "value": "-36.5%",
-          "message": "Margin Debt ist um 36.5% von seinem Hoch gefallen. Das Smart Money baut rasant Hebel ab!",
+          "message": "Margin Debt kollabiert (36.5% vom Hoch). Akute Liquidierungswelle!",
           "details": null,
           "projectedCollision": null
         },
@@ -30296,15 +28649,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -30325,9 +28669,9 @@
         {
           "name": "Margin Debt (Gier & Hebel)",
           "category": "EARLY_WARNING",
-          "status": "WARNING",
+          "status": "CRITICAL",
           "value": "-36.5%",
-          "message": "Margin Debt ist um 36.5% von seinem Hoch gefallen. Das Smart Money baut rasant Hebel ab!",
+          "message": "Margin Debt kollabiert (36.5% vom Hoch). Akute Liquidierungswelle!",
           "details": null,
           "projectedCollision": null
         },
@@ -30463,15 +28807,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -30492,9 +28827,9 @@
         {
           "name": "Margin Debt (Gier & Hebel)",
           "category": "EARLY_WARNING",
-          "status": "WARNING",
+          "status": "CRITICAL",
           "value": "-36.5%",
-          "message": "Margin Debt ist um 36.5% von seinem Hoch gefallen. Das Smart Money baut rasant Hebel ab!",
+          "message": "Margin Debt kollabiert (36.5% vom Hoch). Akute Liquidierungswelle!",
           "details": null,
           "projectedCollision": null
         },
@@ -30630,15 +28965,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -30659,9 +28985,9 @@
         {
           "name": "Margin Debt (Gier & Hebel)",
           "category": "EARLY_WARNING",
-          "status": "WARNING",
+          "status": "CRITICAL",
           "value": "-36.5%",
-          "message": "Margin Debt ist um 36.5% von seinem Hoch gefallen. Das Smart Money baut rasant Hebel ab!",
+          "message": "Margin Debt kollabiert (36.5% vom Hoch). Akute Liquidierungswelle!",
           "details": null,
           "projectedCollision": null
         },
@@ -30797,15 +29123,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -30826,9 +29143,9 @@
         {
           "name": "Margin Debt (Gier & Hebel)",
           "category": "EARLY_WARNING",
-          "status": "WARNING",
+          "status": "CRITICAL",
           "value": "-36.5%",
-          "message": "Margin Debt ist um 36.5% von seinem Hoch gefallen. Das Smart Money baut rasant Hebel ab!",
+          "message": "Margin Debt kollabiert (36.5% vom Hoch). Akute Liquidierungswelle!",
           "details": null,
           "projectedCollision": null
         },
@@ -30964,15 +29281,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -30993,9 +29301,9 @@
         {
           "name": "Margin Debt (Gier & Hebel)",
           "category": "EARLY_WARNING",
-          "status": "WARNING",
+          "status": "CRITICAL",
           "value": "-36.5%",
-          "message": "Margin Debt ist um 36.5% von seinem Hoch gefallen. Das Smart Money baut rasant Hebel ab!",
+          "message": "Margin Debt kollabiert (36.5% vom Hoch). Akute Liquidierungswelle!",
           "details": null,
           "projectedCollision": null
         },
@@ -31131,15 +29439,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -31160,9 +29459,9 @@
         {
           "name": "Margin Debt (Gier & Hebel)",
           "category": "EARLY_WARNING",
-          "status": "WARNING",
+          "status": "CRITICAL",
           "value": "-36.5%",
-          "message": "Margin Debt ist um 36.5% von seinem Hoch gefallen. Das Smart Money baut rasant Hebel ab!",
+          "message": "Margin Debt kollabiert (36.5% vom Hoch). Akute Liquidierungswelle!",
           "details": null,
           "projectedCollision": null
         },
@@ -31298,15 +29597,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -31327,9 +29617,9 @@
         {
           "name": "Margin Debt (Gier & Hebel)",
           "category": "EARLY_WARNING",
-          "status": "WARNING",
+          "status": "CRITICAL",
           "value": "-36.5%",
-          "message": "Margin Debt ist um 36.5% von seinem Hoch gefallen. Das Smart Money baut rasant Hebel ab!",
+          "message": "Margin Debt kollabiert (36.5% vom Hoch). Akute Liquidierungswelle!",
           "details": null,
           "projectedCollision": null
         },
@@ -31465,15 +29755,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -31494,9 +29775,9 @@
         {
           "name": "Margin Debt (Gier & Hebel)",
           "category": "EARLY_WARNING",
-          "status": "WARNING",
+          "status": "CRITICAL",
           "value": "-36.5%",
-          "message": "Margin Debt ist um 36.5% von seinem Hoch gefallen. Das Smart Money baut rasant Hebel ab!",
+          "message": "Margin Debt kollabiert (36.5% vom Hoch). Akute Liquidierungswelle!",
           "details": null,
           "projectedCollision": null
         },
@@ -31632,15 +29913,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -31661,9 +29933,9 @@
         {
           "name": "Margin Debt (Gier & Hebel)",
           "category": "EARLY_WARNING",
-          "status": "WARNING",
+          "status": "CRITICAL",
           "value": "-36.5%",
-          "message": "Margin Debt ist um 36.5% von seinem Hoch gefallen. Das Smart Money baut rasant Hebel ab!",
+          "message": "Margin Debt kollabiert (36.5% vom Hoch). Akute Liquidierungswelle!",
           "details": null,
           "projectedCollision": null
         },
@@ -31799,15 +30071,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -31828,9 +30091,9 @@
         {
           "name": "Margin Debt (Gier & Hebel)",
           "category": "EARLY_WARNING",
-          "status": "WARNING",
+          "status": "CRITICAL",
           "value": "-36.5%",
-          "message": "Margin Debt ist um 36.5% von seinem Hoch gefallen. Das Smart Money baut rasant Hebel ab!",
+          "message": "Margin Debt kollabiert (36.5% vom Hoch). Akute Liquidierungswelle!",
           "details": null,
           "projectedCollision": null
         },
@@ -31966,15 +30229,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -31995,9 +30249,9 @@
         {
           "name": "Margin Debt (Gier & Hebel)",
           "category": "EARLY_WARNING",
-          "status": "WARNING",
+          "status": "CRITICAL",
           "value": "-36.5%",
-          "message": "Margin Debt ist um 36.5% von seinem Hoch gefallen. Das Smart Money baut rasant Hebel ab!",
+          "message": "Margin Debt kollabiert (36.5% vom Hoch). Akute Liquidierungswelle!",
           "details": null,
           "projectedCollision": null
         },
@@ -32133,15 +30387,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -32162,9 +30407,9 @@
         {
           "name": "Margin Debt (Gier & Hebel)",
           "category": "EARLY_WARNING",
-          "status": "WARNING",
+          "status": "CRITICAL",
           "value": "-36.5%",
-          "message": "Margin Debt ist um 36.5% von seinem Hoch gefallen. Das Smart Money baut rasant Hebel ab!",
+          "message": "Margin Debt kollabiert (36.5% vom Hoch). Akute Liquidierungswelle!",
           "details": null,
           "projectedCollision": null
         },
@@ -32300,15 +30545,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -32329,9 +30565,9 @@
         {
           "name": "Margin Debt (Gier & Hebel)",
           "category": "EARLY_WARNING",
-          "status": "WARNING",
+          "status": "CRITICAL",
           "value": "-36.5%",
-          "message": "Margin Debt ist um 36.5% von seinem Hoch gefallen. Das Smart Money baut rasant Hebel ab!",
+          "message": "Margin Debt kollabiert (36.5% vom Hoch). Akute Liquidierungswelle!",
           "details": null,
           "projectedCollision": null
         },
@@ -32467,15 +30703,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -32496,9 +30723,9 @@
         {
           "name": "Margin Debt (Gier & Hebel)",
           "category": "EARLY_WARNING",
-          "status": "WARNING",
+          "status": "CRITICAL",
           "value": "-36.5%",
-          "message": "Margin Debt ist um 36.5% von seinem Hoch gefallen. Das Smart Money baut rasant Hebel ab!",
+          "message": "Margin Debt kollabiert (36.5% vom Hoch). Akute Liquidierungswelle!",
           "details": null,
           "projectedCollision": null
         },
@@ -32634,15 +30861,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -32663,9 +30881,9 @@
         {
           "name": "Margin Debt (Gier & Hebel)",
           "category": "EARLY_WARNING",
-          "status": "WARNING",
+          "status": "CRITICAL",
           "value": "-36.5%",
-          "message": "Margin Debt ist um 36.5% von seinem Hoch gefallen. Das Smart Money baut rasant Hebel ab!",
+          "message": "Margin Debt kollabiert (36.5% vom Hoch). Akute Liquidierungswelle!",
           "details": null,
           "projectedCollision": null
         },
@@ -32801,15 +31019,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -32830,9 +31039,9 @@
         {
           "name": "Margin Debt (Gier & Hebel)",
           "category": "EARLY_WARNING",
-          "status": "WARNING",
+          "status": "CRITICAL",
           "value": "-36.5%",
-          "message": "Margin Debt ist um 36.5% von seinem Hoch gefallen. Das Smart Money baut rasant Hebel ab!",
+          "message": "Margin Debt kollabiert (36.5% vom Hoch). Akute Liquidierungswelle!",
           "details": null,
           "projectedCollision": null
         },
@@ -32968,15 +31177,6 @@
           "projectedCollision": null
         },
         {
-          "name": "Smart vs Dumb Money (The Bottom)",
-          "category": "BOTTOM_FINDER",
-          "status": "UNKNOWN",
-          "value": null,
-          "message": "Keine VIX, AAII oder DIX Daten vorhanden",
-          "details": null,
-          "projectedCollision": null
-        },
-        {
           "name": "Yield Curve (T10Y2Y)",
           "category": "EARLY_WARNING",
           "status": "OK",
@@ -32997,9 +31197,9 @@
         {
           "name": "Margin Debt (Gier & Hebel)",
           "category": "EARLY_WARNING",
-          "status": "WARNING",
+          "status": "CRITICAL",
           "value": "-36.5%",
-          "message": "Margin Debt ist um 36.5% von seinem Hoch gefallen. Das Smart Money baut rasant Hebel ab!",
+          "message": "Margin Debt kollabiert (36.5% vom Hoch). Akute Liquidierungswelle!",
           "details": null,
           "projectedCollision": null
         },

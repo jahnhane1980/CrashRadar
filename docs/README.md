@@ -65,6 +65,8 @@ Hier finden Entwickler und System-Architekten alle operativen Spezifikationen, E
 ### E. 📡 Signal- & SensorHub-Architektur (`docs/architecture/signals/`)
 * 📄 **[`Composite-SensorHub-Architektur.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signals/Composite-SensorHub-Architektur.md):**  
   *Composite-Pattern für die SignalEngine: Trennung von atomaren Messfühlern (`MstrLeadSensor`, `BtcTrendSensor`, `DarkPoolSensor`, `VixShockSensor`, `SpyTrendSensor`, `CreditStressSensor`) und aggregierenden Sensor-Hubs (`CryptoSensorHub`, `MacroStressSensorHub`, `LiquiditySensorHub`, `MarketBottomSensorHub`) mit rein deskriptiven Markt-Regimes ohne Strategie-Bevormundung.*
+* 📄 **[`Makrowetter-Audit-und-Refactoring.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signals/Makrowetter-Audit-und-Refactoring.md):**  
+  *Code-Audit & Bereinigung des Makrowetter-Berichts: Stilllegung veralteter Monolithen (`SmartDumbMoneyBottom`), Entschärfung von Margin-Debt Fehleskalationen (-5% Warning / -10% Critical), 180-Tage Un-Inversions-Gedächtnis für die Renditekurve und Einhängen der Katastrophen-Matrix in die Pipeline.*
 
 ### F. ♟️ Portfoliostrategien & Allokations-Regeln (`docs/architecture/strategies/`)
 

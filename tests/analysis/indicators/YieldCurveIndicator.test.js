@@ -54,6 +54,24 @@ describe('YieldCurveIndicator - HARDCORE TESTS', () => {
         expect(result.message).toContain('Normale Kurve (positiv)');
     });
 
+    it('INTEGRATION: Un-inverted between 31 and 180 days ago -> WARNING (UN-INVERTING DANGER ZONE)', () => {
+        const timeline = [];
+        for (let i = 0; i < 200; i++) {
+            // Tag 100 war invertiert (-0.30)
+            const spread = i === 100 ? -0.30 : 0.50;
+            timeline.push({
+                macroGroups: {
+                    YieldCurve: { Spread10y2y: spread }
+                }
+            });
+        }
+        // An Tag 170 (past30) war die Kurve bereits positiv (0.50), heute an Tag 199 ebenfalls positiv (0.50)
+        // Aber vor 99 Tagen war sie noch invertiert (-0.30) -> Gefahrenzone!
+        const result = indicator.evaluate(timeline);
+        expect(result.status).toBe('WARNING');
+        expect(result.message).toContain('UN-INVERTING DANGER ZONE');
+    });
+
     // --- RAZOR EDGE BOUNDARY TESTS ---
     it('BOUNDARY: Exakt auf der 0-Linie nach Inversion (-0.01 zu 0.00) -> CRITICAL', () => {
         const result = indicator.evaluate(buildTimeline(-0.01, 0.00));

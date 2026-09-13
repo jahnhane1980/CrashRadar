@@ -77,7 +77,24 @@ describe('MarginDebtIndicator', () => {
         expect(result.value).toBe('-5.6%');
     });
 
-    it('returns WARNING (Moderate) if drawdown is between -2.0% and -5.0%', () => {
+    it('returns CRITICAL if drawdown is -10.0% or worse (Severe Liquidation)', () => {
+        const timeline = createTimeline(180, 800000);
+        
+        timeline[100].macroGroups.Leading.MarginDebt = 1000000;
+        // -12.0% Drawdown -> 880000
+        timeline[179].macroGroups.Leading.MarginDebt = 880000;
+
+        for(let i=0; i<180; i++) {
+            if(i !== 100 && i !== 179) timeline[i].macroGroups.Leading.MarginDebt = 800000;
+        }
+
+        const result = indicator.evaluate(timeline);
+        expect(result.status).toBe('CRITICAL');
+        expect(result.message).toContain('kollabiert');
+        expect(result.value).toBe('-12.0%');
+    });
+
+    it('returns OK (Noise Filter) if drawdown is mild between 0% and -4.9% (e.g. -3.0%)', () => {
         const timeline = createTimeline(180, 800000);
         
         timeline[100].macroGroups.Leading.MarginDebt = 900000;
@@ -89,9 +106,9 @@ describe('MarginDebtIndicator', () => {
         }
 
         const result = indicator.evaluate(timeline);
-        expect(result.status).toBe('WARNING');
-        expect(result.message).toContain('Kreditlinien');
-        expect(result.value).toBe('-3.0%');
+        expect(result.status).toBe('OK');
+        expect(result.message).toContain('Hebel (Margin Debt) steigt');
+        expect(result.value).toBe('873000M');
     });
 
     it('returns OK if drawdown is less severe than -2.0% (e.g. -1.0%)', () => {

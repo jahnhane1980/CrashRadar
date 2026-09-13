@@ -30,6 +30,23 @@
   ],
   "macroIndicators": [
     {
+      "id": "katastrophen_matrix",
+      "name": "Katastrophen-Matrix (System-Crash Schutzschild)",
+      "className": "KatastrophenMatrixIndicator",
+      "stage": "STAGE_3_ACUTE_PANIC",
+      "reportOrder": 0,
+      "enabled": false,
+      "rules": {
+        "onCritical": {
+          "setRegime": "FLASH_CRASH",
+          "addVetos": ["SYSTEMIC_COLLAPSE_RISK"]
+        },
+        "onWarning": {
+          "addVetos": ["ELEVATED_VOLATILITY_RISK"]
+        }
+      }
+    },
+    {
       "id": "smart_dumb_money_top",
       "name": "Smart vs Dumb Money (The Top)",
       "className": "SmartDumbMoneyTopIndicator",
@@ -49,7 +66,7 @@
       "className": "SmartDumbMoneyBottomIndicator",
       "stage": "STAGE_4_BOTTOM_FINDER",
       "reportOrder": 2,
-      "enabled": true,
+      "enabled": false,
       "rules": {
         "onCritical": {
           "addVetos": ["SMART_MONEY_ACCUMULATION"],
@@ -93,8 +110,7 @@
       "enabled": true,
       "rules": {
         "onWarning": {
-          "addVetos": ["DELEVERAGING_ONGOING"],
-          "setRegimeIf": { "currentRegime": ["NORMAL"], "targetRegime": "BEAR_MARKET" }
+          "addVetos": ["DELEVERAGING_ONGOING"]
         },
         "onCritical": {
           "addVetos": ["DELEVERAGING_ONGOING"],
