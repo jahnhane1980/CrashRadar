@@ -158,17 +158,19 @@ gantt
 
 #### Sprint 2 (01.10. – 25.10.2026): Liquidierung & Strategie-Klassen (Teil 1)
 * [ ] Begleitung der geplanten Portfolio-Liquidierung (Mitte/Ende Oktober).
-* [ ] Definition der Interfaces `BaseStockRadar.js` und `BasePortfolioStrategy.js`.
-* [ ] Implementierung der ersten zwei Strategien als autarke Klassen:
-  * [`SatelliteCoreStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/SatelliteCoreStrategy.js)
-  * [`GoldSpyDcaStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/GoldSpyDcaStrategy.js)
+* [x] **Definition der Interfaces & Verträge:** [`PortfolioStrategyInterface.js`](file:///D:/GitHub/CrashRadar/src/strategies/PortfolioStrategyInterface.js) und [`SignalComponent.js`](file:///D:/GitHub/CrashRadar/src/signals/contracts/SignalComponent.js) (Composite-Pattern mit Leaf-Sensoren und Sensor-Hubs).
+* [x] **Implementierung der ersten zwei Strategien als autarke Klassen:**
+  * [`SatelliteStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/SatelliteStrategy.js) (Core-Satellite 80/15/5 inkl. Notfall-Stecker 50/50 Gold/Cash, Krypto-Airbag & 10-Tage Anti-Whipsaw Hysterese).
+  * [`GoldSpyDcaStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/GoldSpyDcaStrategy.js) (Dynamisches DCA mit 75/25 Gold/Cash Notfall-Schirm & Pre-Margin Cash-Lock).
 
 #### Sprint 3 (26.10. – 20.11.2026): Radare & Strategie-Klassen (Teil 2)
+* [x] **Implementierung der [`PortfolioStrategyEngine.js`](file:///D:/GitHub/CrashRadar/src/strategies/PortfolioStrategyEngine.js) als Orchestrator:** (Vorgezogen! Vollständig modular mit Plugin-Registry, Zero-Leakage-Garantie & 21,8-Jahre-Historienprüfung).
+* [x] **Aufbau der Composite Sensor-Hubs:** [`MacroStressSensorHub`](file:///D:/GitHub/CrashRadar/src/signals/hubs/MacroStressSensorHub.js), [`CryptoSensorHub`](file:///D:/GitHub/CrashRadar/src/signals/hubs/CryptoSensorHub.js), [`LiquiditySensorHub`](file:///D:/GitHub/CrashRadar/src/signals/hubs/LiquiditySensorHub.js), [`MarketBottomSensorHub`](file:///D:/GitHub/CrashRadar/src/signals/hubs/MarketBottomSensorHub.js).
+* [x] **Fundamentale Makrowetter- & Notification-Härtung:** Bereinigung von [`config/Indicator-Pipeline-Config.json`](file:///D:/GitHub/CrashRadar/config/Indicator-Pipeline-Config.json) (Stilllegung `smart_dumb_bottom`, Entschärfung `MarginDebtIndicator`, 180-Tage-Un-Inversions-Gedächtnis für `YieldCurveIndicator`) sowie Stille Rückkehr im [`StrategyNotificationService.js`](file:///D:/GitHub/CrashRadar/src/services/StrategyNotificationService.js).
 * [ ] Implementierung [`GrowthStockRadar.js`](file:///D:/GitHub/CrashRadar/src/radars/GrowthStockRadar.js) und [`CryptoRegimeRadar.js`](file:///D:/GitHub/CrashRadar/src/radars/CryptoRegimeRadar.js).
-* [ ] Implementierung der Wachstums-Strategien:
-  * [`KamikazeGrowthStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/KamikazeGrowthStrategy.js) (inkl. `LASTING_HOLD`, `CYCLICAL`, `BINARY`).
+* [ ] Fertigstellung der Wachstums-Strategien:
+  * [`KamikazeGrowthStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/KamikazeGrowthStrategy.js) (Erweiterung um `LASTING_HOLD`, `CYCLICAL`, `BINARY` Details).
   * [`MuzzledCathieWoodStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/MuzzledCathieWoodStrategy.js).
-* [ ] Implementierung der [`PortfolioStrategyEngine.js`](file:///D:/GitHub/CrashRadar/src/strategies/PortfolioStrategyEngine.js) als Orchestrator.
 
 #### Sprint 4 (21.11. – 05.12.2026): Telegram V1 Broadcast & 4-Fälle-Matrix
 * [ ] Implementierung [`TelegramService.js`](file:///D:/GitHub/CrashRadar/src/services/TelegramService.js) mit MarkdownV2-Unterstützung.
