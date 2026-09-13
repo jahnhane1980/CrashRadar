@@ -1,0 +1,117 @@
+{
+  "schema_version": "2.1.0",
+  "snapshot_date": "2026-09-30",
+  "timestamp": "2026-09-13T12:55:57.805Z",
+  "macro_regime": "SLOWDOWN",
+  "macro_context": {
+    "date": "2026-09-30",
+    "regime": "SLOWDOWN",
+    "katastrophenMatrix": {
+      "status": "WARNING",
+      "signal": "MONITOR",
+      "isShieldActive": false,
+      "isHysteresisActive": false,
+      "daysInAlarm": 0,
+      "triggeredDate": null,
+      "benchmark": "SPY",
+      "spyPrice": 764.29,
+      "spySma200": 728.9312999999993,
+      "spyDrawdownPct": -1.7470561011981325,
+      "chartBreak": false,
+      "activePillars": [
+        "Säule C: Deleveraging Margin Debt DD (-5.6% <= -5%)"
+      ],
+      "macroSensors": {
+        "vix": 15.84000015258789,
+        "chicagoFedIndex": -0.564,
+        "highYieldSpread": null,
+        "netLiqDelta8w": 2.144828486222347,
+        "marginDebtDd": -5.648663978823918
+      },
+      "value": "SPY_DD:-1.7%|Pillars:1",
+      "message": "⚠️ MAKRO-ALARM: Säule C: Deleveraging Margin Debt DD (-5.6% <= -5%), aber Chart-Trend intakt (SPY über SMA 200). Erhöhte Wachsamkeit. Signal: MONITOR."
+    },
+    "goldSniper": {
+      "status": "OK",
+      "state": "NORMAL",
+      "signal": "NONE",
+      "isShieldActive": false,
+      "isGoldHedgeActive": false,
+      "isCashLockActive": false,
+      "isMarginCallActive": false,
+      "isBottomSniperActive": false,
+      "benchmark": "SPY",
+      "goldAsset": "GLD",
+      "spyPrice": 764.29,
+      "spyDrawdownPct": -1.7470561011981325,
+      "goldPrice": 4408.89990234375,
+      "goldReturnDuringHedgePct": null,
+      "triggeredDate": null,
+      "goldExitDate": null,
+      "bottomSniperDate": null,
+      "daysInHedge": 0,
+      "value": "STATE:NORMAL|SIGNAL:NONE|SPY_DD:-1.7%",
+      "message": "Normalbetrieb: Markt-Trend intakt & kein Gold-Hedge aktiv."
+    },
+    "treasuryCapacity": {
+      "status": "WARNING",
+      "value": "58.5/100",
+      "projectedCollision": "26.10.2026 - 10.11.2026 (Nach Zwischenwahlen / QRA)",
+      "catalystStatus": "BUFFERED_TILL_ELECTION",
+      "message": "Puffer-Phase ($68B TGA-Cushion, $8.5B/Mo Buybacks). Melt-Up-Fenster aktiv (Mid/Small-Cap Hebel). Projizierte Kollision & Exit: 26.10.2026 - 10.11.2026 (Nach Zwischenwahlen / QRA).",
+      "details": {
+        "liquidSlackBillion": 5.3,
+        "effectiveSlackBillion": 29.1,
+        "tgaBillion": 818.1,
+        "tgaRefillDeficitB": 0,
+        "tgaCushionB": 68.1,
+        "netCouponsBillion": 1094,
+        "monthlyBuybacksBillion": 8.5,
+        "ttcDays": 365,
+        "liquidityStress": 50.9,
+        "rateValuationStress": 17.7,
+        "catalystStatus": "BUFFERED_TILL_ELECTION",
+        "projectedCollision": "26.10.2026 - 10.11.2026 (Nach Zwischenwahlen / QRA)"
+      }
+    },
+    "bottomSniper": {
+      "status": "OK",
+      "isCritical": false,
+      "panicCapitulation": {
+        "status": "OK",
+        "value": "-",
+        "message": "Kein Panik-Climax aktiv."
+      },
+      "smartDumbBottom": {
+        "status": "UNKNOWN",
+        "message": "Keine VIX, AAII oder DIX Daten vorhanden"
+      }
+    },
+    "cryptoRegime": {
+      "status": "BULL",
+      "btcPrice": 77231.97
+    }
+  },
+  "active_strategies_count": 1,
+  "strategies": {
+    "GOLD_SPY": {
+      "strategy_id": "GOLD_SPY",
+      "name": "Gold-SPY Dynamic DCA Portfolio",
+      "version": "2.2.0",
+      "snapshot_date": "2026-09-30",
+      "status": "NORMAL_DCA",
+      "tranche_action": "HOLD",
+      "target_allocation_pct": {
+        "SPY": 100,
+        "GLD": 0,
+        "CASH": 0
+      },
+      "savings_rate_allocation": {
+        "SPY": 100,
+        "GLD": 0,
+        "CASH": 0
+      },
+      "reason": "100% S&P 500 DCA im Normalbetrieb, ungestörter Zinseszins."
+    }
+  }
+}

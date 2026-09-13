@@ -44,3 +44,16 @@ describe('CLI --check-scenario', () => {
     expect(loggerInfoSpy).toHaveBeenCalledWith(expect.stringContaining('bereits gemeldet'));
   });
 });
+
+describe('CLI --signals', () => {
+  it('instantiates and runs PortfolioStrategyRunner when --signals is passed', async () => {
+    const { PortfolioStrategyRunner } = await import('../src/runners/PortfolioStrategyRunner.js');
+    const runSpy = vi.spyOn(PortfolioStrategyRunner.prototype, 'run').mockResolvedValue({});
+
+    await runCLI(['node', 'index.js', '--signals']);
+
+    expect(runSpy).toHaveBeenCalled();
+    runSpy.mockRestore();
+  });
+});
+

@@ -164,4 +164,8 @@ Hier liegen alle empirischen Auswertungen, historischen Krisen-Härtetests und m
 * 📄 **[`Disruptive-Candidates-Bullshit-Test.md`](file:///D:/GitHub/CrashRadar/docs/research/turnarounds/Disruptive-Candidates-Bullshit-Test.md):**  
   *Empirischer Härtetest & SEC-XBRL-Audit für 6 disruptive Technologiewerte (SYM, TEM, PATH, CRSP, RXRX, INFQ): Burggraben-Prüfung, SOFI-Moment (GAAP-Profitabilität bei SYM & PATH vs. Cash-Burn bei RXRX & INFQ), Wall-Street-Katalysatoren, cent-genaue Schnäppchenpreise, Zyklus-Beweis der Anti-KI-Kopplung sowie Validierung des 2029/30-Zeithorizonts für Quantentechnologie (INFQ).*
 
+### F. ♟️ Portfoliostrategien & Engine-Stresstests (`docs/research/strategies/`)
+* 📄 **[`GoldSpyDailyStressTest.md`](file:///D:/GitHub/CrashRadar/docs/research/strategies/GoldSpyDailyStressTest.md):**  
+  *Empirischer 21,8-Jahre Daily-Stresstest der CrashRadar SignalEngine (2004–2026, 7.760 Handelstage): Lückenloser Tages-Härtetest der echten Engine-Klassen (`PortfolioStrategyEngine` & `GoldSpyDcaStrategy`) mit 10.000 € Start + 150 €/Monat Sparplan. Beweis des Zinseszins-Schutzes (+41.425,84 € Mehrertrag / +85,59 % Alpha vs. stures SPY DCA) durch Notfall-Evakuierung in Gold/Cash (nur 19 Manöver in 21,8 Jahren, +72 % Alpha in 2008 Lehman, +11,5 % Alpha im Bärenmarkt 2022 und Dämpfung des Max Drawdown von -47,90 % auf -40,67 %) inkl. Skript in [`GoldSpyDailyStressTest.js`](file:///D:/GitHub/CrashRadar/scratch/research/strategies/GoldSpyDailyStressTest.js).*
+
 

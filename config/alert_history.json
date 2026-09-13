@@ -15,5 +15,19 @@
     "ppi_august": "2026-09-10",
     "cpi_core_august": "2026-09-11"
   },
-  "ML Regime Radar (BTC)_CRITICAL": 1789105368956
+  "ML Regime Radar (BTC)_CRITICAL": 1789105368956,
+  "strategyStates": {
+    "GOLD_SPY": {
+      "lastStatus": "NORMAL_DCA",
+      "lastAction": "HOLD",
+      "lastAlertDate": "2026-09-30",
+      "lastMonthlyAlertDate": null,
+      "lastTargetAllocation": {
+        "SPY": 100,
+        "GLD": 0,
+        "CASH": 0
+      },
+      "updatedAt": "2026-09-13T12:28:05.849Z"
+    }
+  }
 }

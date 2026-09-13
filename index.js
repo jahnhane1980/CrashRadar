@@ -6,6 +6,7 @@ import { IndicatorAnalysisRunner } from './src/runners/IndicatorAnalysisRunner.j
 import { MacroScorecardRunner } from './src/runners/MacroScorecardRunner.js';
 import { TimeSeriesFetchRunner } from './src/runners/TimeSeriesFetchRunner.js';
 import { Trading212Runner } from './src/runners/Trading212Runner.js';
+import { PortfolioStrategyRunner } from './src/runners/PortfolioStrategyRunner.js';
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -37,11 +38,14 @@ export async function runCLI(argv) {
     .option('-p, --profile <profile>', 'Filter data fetching tasks by profile / frequency (e.g. daily, intraday_m5, all)', 'daily')
     .option('--t212-sync', 'Run Trading 212 portfolio sync and delta analysis')
     .option('--mode <mode>', 'Trading 212 run mode: "weekly" (default) or "trades"', 'weekly')
-    .option('--send-ntfy', 'Broadcast portfolio update to Ntfy topic');
+    .option('--send-ntfy', 'Broadcast portfolio update to Ntfy topic')
+    .option('-g, --signals', 'Run portfolio strategy engine and signal analysis');
 
   program.action(async (options) => {
     try {
-      if (options.t212Sync) {
+      if (options.signals) {
+        activeRunner = new PortfolioStrategyRunner(options);
+      } else if (options.t212Sync) {
         activeRunner = new Trading212Runner(options);
       } else if (options.checkIndikator) {
         activeRunner = new IndicatorAnalysisRunner(options);

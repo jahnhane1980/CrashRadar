@@ -5,6 +5,24 @@
   "base_currency": "USD",
   "last_updated": "2026-09-08",
 
+  "notifications": {
+    "enabled": true,
+    "channels": [
+      {
+        "provider": "ntfy",
+        "env_topic_key": "NTFY_PORTFOLIO_GOLD_SPY",
+        "title": "CrashRadar: Gold-SPY DCA",
+        "tags": ["gold", "chart_with_upwards_trend"],
+        "priority": "high"
+      }
+    ],
+    "triggers": {
+      "on_state_change": true,
+      "on_emergency": true,
+      "monthly_savings_day": 1
+    }
+  },
+
   "allocation_rules": {
     "normal_regime": {
       "target_asset": "SPY",

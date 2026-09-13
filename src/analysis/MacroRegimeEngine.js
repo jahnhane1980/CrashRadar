@@ -24,6 +24,8 @@ import { InterestRateCycleIndicator } from './indicators/InterestRateCycleIndica
 import { DalioTwoStageRegimeIndicator } from './indicators/DalioTwoStageRegimeIndicator.js';
 import { MlRegimeRadarMacroIndicator } from './indicators/MlRegimeRadarMacroIndicator.js';
 import { TreasuryCapacityRadarIndicator } from './indicators/TreasuryCapacityRadarIndicator.js';
+import { KatastrophenMatrixIndicator } from './indicators/KatastrophenMatrixIndicator.js';
+import { GoldSniperIndicator } from './indicators/GoldSniperIndicator.js';
 
 export class MacroRegimeEngine {
     constructor(indicatorConfig = null) {
@@ -45,7 +47,9 @@ export class MacroRegimeEngine {
             InterestRateCycleIndicator,
             DalioTwoStageRegimeIndicator,
             MlRegimeRadarMacroIndicator,
-            TreasuryCapacityRadarIndicator
+            TreasuryCapacityRadarIndicator,
+            KatastrophenMatrixIndicator,
+            GoldSniperIndicator
         };
 
         let resolvedConfig = indicatorConfig;
