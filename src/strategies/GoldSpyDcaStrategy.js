@@ -66,9 +66,9 @@ export class GoldSpyDcaStrategy extends PortfolioStrategyInterface {
     const { date, marketData = {}, timeline = [], macroSignalContext = {} } = context;
     const todayStr = date || new Date().toISOString().split('T')[0];
 
-    const km = macroSignalContext.katastrophenMatrix || {};
+    const macroStress = macroSignalContext.macroStressHub || macroSignalContext.katastrophenMatrix || {};
+    const bottom = macroSignalContext.bottomHub || macroSignalContext.bottomSniper || {};
     const gs = macroSignalContext.goldSniper || {};
-    const bs = macroSignalContext.bottomSniper || {};
 
     // Aktuellen SPY-Kurs und 20-Tage-SMA ermitteln (falls Timeline vorhanden)
     let currentSpyPrice = null;
@@ -87,8 +87,10 @@ export class GoldSpyDcaStrategy extends PortfolioStrategyInterface {
       currentSpyPrice = Number(marketData.SPY);
     }
 
-    const dpIsCritical = bs.darkPoolAccumulation?.status === 'CRITICAL' ||
-                         (bs.darkPoolAccumulation?.currentDix >= 48.0);
+    const dpIsCritical = bottom.regime === 'BOTTOM_FORMING' ||
+                         bottom.status === 'CRITICAL' ||
+                         bottom.darkPoolAccumulation?.status === 'CRITICAL' ||
+                         (bottom.darkPoolAccumulation?.currentDix >= 48.0);
 
     let status = 'NORMAL_DCA';
     let trancheAction = 'HOLD';
@@ -96,24 +98,35 @@ export class GoldSpyDcaStrategy extends PortfolioStrategyInterface {
     let reason = '100% S&P 500 DCA im Normalbetrieb, ungestörter Zinseszins.';
 
     // 1. Fail-Safe: Wenn Markt nach Re-Entry weiter kollabiert und Margincall auslöst
-    const isMarginCall = (gs.signal === 'HOLD_CASH' && gs.state === 'MARGIN_CALL_ACTIVE') ||
+    const isMarginCall = macroStress.regime === 'LIQUIDATION_CASCADE' ||
+                         Boolean(macroStress.isMarginCallZone) ||
+                         (gs.signal === 'HOLD_CASH' && gs.state === 'MARGIN_CALL_ACTIVE') ||
                          (gs.signal === 'EXIT_GOLD_TO_CASH' || gs.state === 'PRE_MARGIN_LOCK');
 
-    if (isMarginCall && gs.signal !== 'DEPLOY_CASH') {
+    const isDeployCash = bottom.regime === 'CAPITULATION_CONFIRMED' ||
+                         bottom.status === 'CRITICAL' ||
+                         gs.signal === 'DEPLOY_CASH';
+
+    const isSystemicStress = macroStress.regime === 'SYSTEMIC_STRESS' ||
+                             macroStress.status === 'CRITICAL' ||
+                             Boolean(macroStress.isShieldActive) ||
+                             Boolean(gs.isGoldHedgeActive);
+
+    if (isMarginCall && !isDeployCash) {
       this.trancheLevel = 0;
       this.daysInTranche = 0;
       this.t1SpyPrice = null;
       this.t1Date = null;
 
-      status = gs.state === 'MARGIN_CALL_ACTIVE' ? 'MARGIN_CALL_ACTIVE' : 'PRE_MARGIN_CASH_LOCK';
-      trancheAction = gs.signal === 'EXIT_GOLD_TO_CASH' ? 'EXIT_GOLD_TO_CASH' : 'HOLD_CASH';
+      status = (macroStress.regime === 'LIQUIDATION_CASCADE' || gs.state === 'MARGIN_CALL_ACTIVE') ? 'MARGIN_CALL_ACTIVE' : 'PRE_MARGIN_CASH_LOCK';
+      trancheAction = (gs.signal === 'EXIT_GOLD_TO_CASH' || macroStress.regime === 'LIQUIDATION_CASCADE') ? 'EXIT_GOLD_TO_CASH' : 'HOLD_CASH';
       targetAllocationPct = { SPY: 0.0, GLD: 0.0, CASH: 100.0 };
-      reason = gs.state === 'MARGIN_CALL_ACTIVE'
+      reason = status === 'MARGIN_CALL_ACTIVE'
         ? '⚠️ Margin-Call Kaskade im Gange (SPY <= -20%). Tranchen-Kauf pausiert, 100% Cash eisern halten.'
         : '💰 Pre-Margin-Call Gewinnsicherung (-18%/-19% SPY DD): Gold glattstellen und in 100% Cash wechseln!';
     }
     // 2. Re-Entry via 30 / 40 / 30% Asymmetrisches Tranchenmodell
-    else if (gs.signal === 'DEPLOY_CASH' || this.trancheLevel > 0) {
+    else if (isDeployCash || this.trancheLevel > 0) {
       status = 'RE_ENTRY_SNIPER';
 
       if (this.trancheLevel === 0) {
@@ -143,7 +156,7 @@ export class GoldSpyDcaStrategy extends PortfolioStrategyInterface {
       if (this.trancheLevel === 2) {
         const spyAboveSma20 = (sma20 && currentSpyPrice) ? currentSpyPrice > sma20 : false;
         const reached12DaysT2 = this.daysInTranche >= 12;
-        const shieldOff = !km.isShieldActive;
+        const shieldOff = !macroStress.isShieldActive && macroStress.regime !== 'SYSTEMIC_STRESS' && macroStress.regime !== 'LIQUIDATION_CASCADE';
 
         if (spyAboveSma20 || reached12DaysT2 || shieldOff) {
           this.trancheLevel = 3;
@@ -165,7 +178,8 @@ export class GoldSpyDcaStrategy extends PortfolioStrategyInterface {
         reason = '🚀 Re-Entry Tranche 3 (+30% auf 100% SPY): Trendbestätigung erfolgt. Vollständige Rückkehr in 100% S&P 500 DCA.';
 
         // Wenn der Schutzschild komplett erloschen ist, schaltet das System sauber zurück in Normalbetrieb
-        if (!km.isShieldActive) {
+        const isShieldOff = !macroStress.isShieldActive && macroStress.regime !== 'SYSTEMIC_STRESS' && macroStress.regime !== 'LIQUIDATION_CASCADE';
+        if (isShieldOff) {
           status = 'NORMAL_DCA';
           trancheAction = 'HOLD';
           reason = '100% S&P 500 DCA im Normalbetrieb, ungestörter Zinseszins.';
@@ -177,7 +191,7 @@ export class GoldSpyDcaStrategy extends PortfolioStrategyInterface {
       }
     }
     // 3. Katastrophen-Matrix Notfall-Hedge (75% Gold / 25% Cash Sweet Spot)
-    else if (km.isShieldActive || gs.isGoldHedgeActive) {
+    else if (isSystemicStress) {
       this.trancheLevel = 0;
       this.daysInTranche = 0;
       this.t1SpyPrice = null;

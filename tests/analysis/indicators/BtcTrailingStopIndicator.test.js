@@ -136,5 +136,43 @@ describe('BtcTrailingStopIndicator', () => {
         const result = indicator.evaluate(timeline);
         expect(result.status).toBe('CRITICAL');
         expect(result.value).toContain('-74.9%');
+        expect(result.signal).toBe('BEAR_EXIT');
+        expect(result.isAboveSma200).toBe(false);
+        expect(result.isFreshBreak).toBe(true);
+        expect(result.mstrPrice).toBe(50);
+        expect(result.mstrSma200).toBe(199.25);
+        expect(result.dropPct).toBe(-74.91);
+    });
+
+    it('sollte ein Golden Cross erkennen (isFreshCrossAbove: true, signal: BULL_HOLD)', () => {
+        const timeline = generateTimeline(205, {
+            // Bis gestern unter SMA (90), heute Sprung auf 120 (SMA ca. 100.1)
+            mstr: (i) => {
+                if (i === 203) return 90; // Gestern unter SMA
+                if (i === 204) return 120; // Heute über SMA
+                return 100;
+            }
+        });
+
+        const result = indicator.evaluate(timeline);
+        expect(result.status).toBe('OK');
+        expect(result.signal).toBe('BULL_HOLD');
+        expect(result.isAboveSma200).toBe(true);
+        expect(result.isFreshBreak).toBe(false);
+        expect(result.isFreshCrossAbove).toBe(true);
+        expect(result.mstrPrice).toBe(120);
+        expect(result.dropPct).toBeGreaterThan(0);
+    });
+
+    it('sollte auch flache Timeline-Objekte mit t.MSTR direkt unterstützen', () => {
+        const timeline = Array(205).fill(0).map((_, i) => ({
+            MSTR: i === 204 ? 120 : 100
+        }));
+
+        const result = indicator.evaluate(timeline);
+        expect(result.status).toBe('OK');
+        expect(result.signal).toBe('BULL_HOLD');
+        expect(result.isAboveSma200).toBe(true);
     });
 });
+

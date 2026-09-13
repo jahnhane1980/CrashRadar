@@ -6,6 +6,11 @@ import { TreasuryCapacityRadarIndicator } from '../analysis/indicators/TreasuryC
 import { PanicCapitulationIndicator } from '../analysis/indicators/PanicCapitulationIndicator.js';
 import { SmartDumbMoneyBottomIndicator } from '../analysis/indicators/SmartDumbMoneyBottomIndicator.js';
 import { DarkPoolAccumulationIndicator } from '../analysis/indicators/DarkPoolAccumulationIndicator.js';
+import { BtcTrailingStopIndicator } from '../analysis/indicators/BtcTrailingStopIndicator.js';
+import { CryptoSensorHub } from '../signals/hubs/CryptoSensorHub.js';
+import { MacroStressSensorHub } from '../signals/hubs/MacroStressSensorHub.js';
+import { LiquiditySensorHub } from '../signals/hubs/LiquiditySensorHub.js';
+import { MarketBottomSensorHub } from '../signals/hubs/MarketBottomSensorHub.js';
 
 /**
  * PortfolioStrategyEngine
@@ -14,10 +19,9 @@ import { DarkPoolAccumulationIndicator } from '../analysis/indicators/DarkPoolAc
  * 
  * AUFGABEN:
  * 1. Vorberechnung des standardisierten Makro-Signalkontexts (macroSignalContext):
- *    - 3-Säulen-Katastrophen-Matrix (Trendbruch + Makro-Türsteher)
- *    - Gold-Sniper (Pre-Margin-Call Exit bei -18%/-19% & Re-Entry)
- *    - Liquiditäts-Radar (Treasury Capacity, Slack, Imminent Drain)
- *    - Bottom-Sniper (Panic Capitulation, Dark Pool Whales & Smart/Dumb Money)
+ *    - Moderne Sensor-Hubs (Composite-Pattern): CryptoHub, MacroStressHub, LiquidityHub, BottomHub
+ *    - 3-Säulen-Katastrophen-Matrix & Gold-Sniper (Abwärtskompatibilitäts-Brücke)
+ *    - Liquiditäts-Radar & TTC-Zeitprognose
  * 2. Autonome Ausführung der registrierten Strategien (evaluateDaily).
  * 3. Erstellung des aggregierten Tages-Snapshots (daily_intelligence.json) für Cloudflare D1.
  */
@@ -26,7 +30,13 @@ export class PortfolioStrategyEngine {
     this.config = config;
     this._strategies = new Map();
 
-    // Standard-Sensoren der SignalEngine
+    // Moderne Sensor-Hubs (Composite-Pattern)
+    this.cryptoHub = dependencies.cryptoHub || new CryptoSensorHub(config.cryptoHub || {});
+    this.macroStressHub = dependencies.macroStressHub || new MacroStressSensorHub(config.macroStressHub || {});
+    this.liquidityHub = dependencies.liquidityHub || new LiquiditySensorHub(config.liquidityHub || {});
+    this.bottomHub = dependencies.bottomHub || new MarketBottomSensorHub(config.bottomHub || {});
+
+    // Standard-Sensoren / Legacy-Kompatibilität
     this.katastrophenMatrix = dependencies.katastrophenMatrix || new KatastrophenMatrixIndicator(config.katastrophenMatrix || {});
     this.panicCapitulation = dependencies.panicCapitulation || new PanicCapitulationIndicator();
     this.goldSniper = dependencies.goldSniper || new GoldSniperIndicator(config.goldSniper || {}, {
@@ -36,6 +46,7 @@ export class PortfolioStrategyEngine {
     this.treasuryCapacity = dependencies.treasuryCapacity || new TreasuryCapacityRadarIndicator(config.treasuryCapacity || {});
     this.smartDumbBottom = dependencies.smartDumbBottom || new SmartDumbMoneyBottomIndicator();
     this.darkPoolAccumulation = dependencies.darkPoolAccumulation || new DarkPoolAccumulationIndicator(config.darkPoolAccumulation || {});
+    this.btcTrailingStop = dependencies.btcTrailingStop || new BtcTrailingStopIndicator(config.btcTrailingStop || {});
   }
 
   /**
@@ -77,113 +88,93 @@ export class PortfolioStrategyEngine {
   buildMacroSignalContext(timeline, precalculated = {}) {
     if (!Array.isArray(timeline) || timeline.length === 0) {
       return {
+        date: new Date().toISOString().split('T')[0],
         status: 'UNKNOWN',
-        regime: 'NORMAL',
-        katastrophenMatrix: { status: 'UNKNOWN', signal: 'NONE', isShieldActive: false },
-        goldSniper: { status: 'UNKNOWN', state: 'NORMAL', signal: 'NONE', isGoldHedgeActive: false, isCashLockActive: false },
-        treasuryCapacity: { status: 'UNKNOWN' },
-        bottomSniper: { status: 'UNKNOWN', isCritical: false },
-        cryptoRegime: { status: 'UNKNOWN' }
+        regime: 'EXPANSION',
+        cryptoHub: { status: 'UNKNOWN', regime: 'UNKNOWN', message: 'Keine Daten' },
+        macroStressHub: { status: 'UNKNOWN', regime: 'UNKNOWN', isShieldActive: false, isMarginCallZone: false, daysInAlarm: 0, message: 'Keine Daten' },
+        liquidityHub: { status: 'UNKNOWN', regime: 'UNKNOWN', ttcDays: null, message: 'Keine Daten' },
+        bottomHub: { status: 'UNKNOWN', regime: 'UNKNOWN', isCritical: false, message: 'Keine Daten' }
       };
     }
 
     const currentDay = timeline[timeline.length - 1];
     const dateStr = currentDay?.date || new Date().toISOString().split('T')[0];
 
-    // 1. Katastrophen-Matrix
-    const kmRes = precalculated.katastrophenMatrix || this.katastrophenMatrix.evaluate(timeline);
-
-    // 2. Gold-Sniper
-    const gsRes = precalculated.goldSniper || this.goldSniper.evaluate(timeline, {
-      katastrophenMatrix: kmRes,
-      panicCapitulation: precalculated.panicCapitulation
-    });
-
-    // 3. Liquiditäts-Radar (Treasury Capacity)
-    let tcRes = precalculated.treasuryCapacity;
-    if (!tcRes) {
+    // 1. Moderne Sensor-Hubs (Composite-Pattern)
+    let bottomHubRes = precalculated.bottomHub;
+    if (!bottomHubRes) {
       try {
-        tcRes = this.treasuryCapacity.evaluate(timeline);
+        bottomHubRes = this.bottomHub.evaluate(timeline);
       } catch (e) {
-        tcRes = { status: 'UNKNOWN', message: e.message };
+        bottomHubRes = { status: 'UNKNOWN', regime: 'UNKNOWN', isCritical: false, message: e.message };
       }
     }
 
-    // 4. Bottom-Sniper
-    let pcRes = precalculated.panicCapitulation;
-    if (!pcRes) {
+    let macroStressRes = precalculated.macroStressHub;
+    if (!macroStressRes) {
       try {
-        pcRes = this.panicCapitulation.evaluate(timeline);
+        macroStressRes = this.macroStressHub.evaluate(timeline, { bottomHubResult: bottomHubRes });
       } catch (e) {
-        pcRes = { status: 'UNKNOWN', message: e.message };
+        macroStressRes = { status: 'UNKNOWN', regime: 'UNKNOWN', isShieldActive: false, message: e.message };
       }
     }
 
-    // 5. Smart / Dumb Money Bottom (Legacy)
-    let sdRes = precalculated.smartDumbBottom;
-    if (!sdRes) {
+    let cryptoHubRes = precalculated.cryptoHub;
+    if (!cryptoHubRes) {
       try {
-        sdRes = this.smartDumbBottom.evaluate(timeline);
+        cryptoHubRes = this.cryptoHub.evaluate(timeline, { bottomHubResult: bottomHubRes });
       } catch (e) {
-        sdRes = { status: 'UNKNOWN', message: e.message };
+        cryptoHubRes = { status: 'UNKNOWN', regime: 'UNKNOWN', message: e.message };
       }
     }
 
-    // 6. Dark Pool Wal-Akkumulation (DIX)
-    let dpRes = precalculated.darkPoolAccumulation;
-    if (!dpRes) {
+    let liquidityHubRes = precalculated.liquidityHub;
+    if (!liquidityHubRes) {
       try {
-        dpRes = this.darkPoolAccumulation.evaluate(timeline);
+        liquidityHubRes = this.liquidityHub.evaluate(timeline);
       } catch (e) {
-        dpRes = { status: 'UNKNOWN', message: e.message };
+        liquidityHubRes = { status: 'UNKNOWN', regime: 'UNKNOWN', message: e.message };
       }
     }
 
-    const isBottomCritical = (pcRes?.status === 'CRITICAL') || (sdRes?.status === 'CRITICAL') || (dpRes?.status === 'CRITICAL');
-
-    // Übergeordnetes Regime
+    // Übergeordnetes Makro-Regime
     let regime = 'EXPANSION';
-    if (kmRes.isShieldActive) {
+    if (macroStressRes.regime === 'SYSTEMIC_STRESS' || macroStressRes.regime === 'LIQUIDATION_CASCADE' || macroStressRes.status === 'CRITICAL') {
       regime = 'CRISIS_ALERT';
-    } else if (tcRes?.status === 'CRITICAL' || kmRes.status === 'WARNING') {
+    } else if (liquidityHubRes?.status === 'CRITICAL' || macroStressRes.status === 'WARNING' || liquidityHubRes?.regime === 'CRITICAL_DRAIN') {
       regime = 'SLOWDOWN';
-    }
-
-    // Krypto 21W-EMA (147 Tage)
-    let btcPrice = currentDay?.assets?.BTC || currentDay?.assets?.['BTC-USD'] || null;
-    let btcRegime = 'UNKNOWN';
-    if (btcPrice !== null && timeline.length >= 147) {
-      let btcSum = 0;
-      let count = 0;
-      for (let i = timeline.length - 147; i < timeline.length; i++) {
-        const p = timeline[i]?.assets?.BTC || timeline[i]?.assets?.['BTC-USD'];
-        if (p) {
-          btcSum += Number(p);
-          count++;
-        }
-      }
-      if (count > 100) {
-        const sma147 = btcSum / count;
-        btcRegime = btcPrice >= sma147 ? 'BULL' : 'BEAR';
-      }
     }
 
     return {
       date: dateStr,
       regime,
-      katastrophenMatrix: kmRes,
-      goldSniper: gsRes,
-      treasuryCapacity: tcRes,
-      bottomSniper: {
-        status: isBottomCritical ? 'CRITICAL' : (dpRes?.status === 'WARNING' || pcRes?.status === 'WARNING' ? 'WARNING' : 'OK'),
-        isCritical: isBottomCritical,
-        panicCapitulation: pcRes,
-        smartDumbBottom: sdRes,
-        darkPoolAccumulation: dpRes
+      // Strikte 4 Sensor-Hubs (Composite Pattern)
+      cryptoHub: {
+        status: cryptoHubRes.status,
+        regime: cryptoHubRes.regime,
+        message: cryptoHubRes.message
       },
-      cryptoRegime: {
-        status: btcRegime,
-        btcPrice: btcPrice ? Number(btcPrice) : null
+      macroStressHub: {
+        status: macroStressRes.status,
+        regime: macroStressRes.regime,
+        isShieldActive: Boolean(macroStressRes.isShieldActive),
+        isMarginCallZone: Boolean(macroStressRes.isMarginCallZone),
+        daysInAlarm: macroStressRes.daysInAlarm || 0,
+        message: macroStressRes.message
+      },
+      liquidityHub: {
+        status: liquidityHubRes.status,
+        regime: liquidityHubRes.regime,
+        ttcDays: liquidityHubRes.ttcDays ?? null,
+        projectedCollision: liquidityHubRes.projectedCollision ?? null,
+        message: liquidityHubRes.message
+      },
+      bottomHub: {
+        status: bottomHubRes.status,
+        regime: bottomHubRes.regime,
+        isCritical: Boolean(bottomHubRes.isCritical),
+        message: bottomHubRes.message
       }
     };
   }

@@ -62,7 +62,11 @@ Hier finden Entwickler und System-Architekten alle operativen Spezifikationen, E
 * 📄 **[`Makro-ML.md`](file:///D:/GitHub/CrashRadar/docs/architecture/ml/Makro-ML.md):**  
   *Technisches Konzept für das multivariate Makro-ML-Regime-Modell (XGBoost, Purged Walk-Forward CV & JS-Inferenz).*
 
-### E. ♟️ Portfoliostrategien & Allokations-Regeln (`docs/architecture/strategies/`)
+### E. 📡 Signal- & SensorHub-Architektur (`docs/architecture/signals/`)
+* 📄 **[`Composite-SensorHub-Architektur.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signals/Composite-SensorHub-Architektur.md):**  
+  *Composite-Pattern für die SignalEngine: Trennung von atomaren Messfühlern (`MstrLeadSensor`, `BtcTrendSensor`, `DarkPoolSensor`, `VixShockSensor`, `SpyTrendSensor`, `CreditStressSensor`) und aggregierenden Sensor-Hubs (`CryptoSensorHub`, `MacroStressSensorHub`, `LiquiditySensorHub`, `MarketBottomSensorHub`) mit rein deskriptiven Markt-Regimes ohne Strategie-Bevormundung.*
+
+### F. ♟️ Portfoliostrategien & Allokations-Regeln (`docs/architecture/strategies/`)
 
 ```mermaid
 flowchart LR
@@ -100,11 +104,11 @@ flowchart LR
   *Geopolitisch gehärtetes Core-Satellite-Depot: 80 % SPY (S&P 500 Mutterschiff), 15 % DFNS (VanEck Defense UCITS ETF) und 5 % BTC (Bitcoin). Im Normalbetrieb gilt kompromissloses HODL (keine unterjährigen Verkäufe). Rebalancing erfolgt ausschließlich über den universellen Notfall-Stecker (100 % Notfall-Evakuierung in 50 % Gold / 50 % Cash bei NetLiq < -5 % & Credit Spreads > 4 % sowie Rebalancing-Reset bei Re-Entry am Marktboden) (+83,40 % Rendite / +12,68 %-Pkt. Alpha vs. SPY) inkl. PoC in [`SatelliteCoreSimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/SatelliteCoreSimulation.js).*
 
 
-### F. 🌐 Externe Schnittstellen & Daten (`docs/architecture/api/` & `docs/architecture/data/`)
+### G. 🌐 Externe Schnittstellen & Daten (`docs/architecture/api/` & `docs/architecture/data/`)
 * 📄 **[`FRED-Api.md`](file:///D:/GitHub/CrashRadar/docs/architecture/api/Stlouisfed.md)** | **[`Fiscaldata.md`](file:///D:/GitHub/CrashRadar/docs/architecture/api/Fiscaldata.md)** | **[`Tiingo.md`](file:///D:/GitHub/CrashRadar/docs/architecture/api/Tiingo.md)** | **[`Binance.md`](file:///D:/GitHub/CrashRadar/docs/architecture/api/Binance.md)** | **[`Yahoo-Finance.md`](file:///D:/GitHub/CrashRadar/docs/architecture/api/Yahoo-Finance.md)**
 * 📄 **[`DataStructure.md`](file:///D:/GitHub/CrashRadar/docs/architecture/data/DataStructure.md)**
 
-### G. 📱 Signal- & Benachrichtigungsdienst (`docs/architecture/signal-service/`)
+### H. 📱 Signal- & Benachrichtigungsdienst (`docs/architecture/signal-service/`)
 * 📄 **[`Investment-Signaldienst.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signal-service/Investment-Signaldienst.md):**  
   *Serverlose 0,00-€-End-to-End-Architektur: 2-Ebenen-Signal-Hierarchie mit Trennung von zustandslosen Stock- & Asset-Radaren (`src/radars/`) und Portfolio-Kapitalmanagement (`src/strategies/`), CrashRadar Intelligence Engine (Pre-Computation Push via `PortfolioStrategyEngine` Plugin-Registry, Standard-Makrosignale als Service, autonomes Bucket- & Order-Management, Kamikaze Live-Broker Sync mit Discretionary Override) sowie moderne Chat- und Broadcast-Kanäle (Discord-Webhooks, 4-Fälle-Matrix, Rich Embeds).*
 * 📄 **[`Trading212-Portfolio-Broadcast.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signal-service/Trading212-Portfolio-Broadcast.md):**  
@@ -130,6 +134,8 @@ Hier liegen alle empirischen Auswertungen, historischen Krisen-Härtetests und m
   *Empirischer Matrix-Test auf Muzzled Cathie Wood: Warum FiscalFed Emergency Borrowing als Exit scheitert (-72.721 €), während der Panic-Capitulation-Sniper als Re-Entry-Beschleuniger auf +1.286,33 % (304.991,89 €) boostet.*
 * 📄 **[`MCW-Historical-Backtest-2015-2026.md`](file:///D:/GitHub/CrashRadar/docs/research/macro-proofs/MCW-Historical-Backtest-2015-2026.md):**  
   *Historischer 11,5-Jahre-Härtetest (2015–2026) aus 50 SEC-EDGAR-Filings: Rekonstruktion aller ARK-Bestände seit Fondsgründung, OBSERVE-Filterung, SEC-XBRL-Parser-Upgrade (3-Monats-Isolation) und 'Kein Kauf ohne Fundamentaldaten'-Gate (+5.698,28 % / 1.797.466,07 € vs. ARKK +373,68 % und QQQ +660,31 %).*
+* 📄 **[`MSTR-Krypto-Taktgeber-Analyse.md`](file:///D:/GitHub/CrashRadar/docs/research/macro-proofs/MSTR-Krypto-Taktgeber-Analyse.md):**  
+  *Empirischer Beweis für MicroStrategy (MSTR) als Krypto-Taktgeber: Warum MSTR SMA-200 mit +150,3 % Rendite und nur 9 Umschichtungen in 5 Jahren (+130,2 %P Alpha vs. BTC Buy & Hold) der optimale Taktgeber für stressfreies Krypto-Timing ist.*
 
 ### B. 📜 Ray Dalio Schuldenkrisen-Zyklen (`docs/research/dalio-cycles/`)
 * 📄 **[`These.md`](file:///D:/GitHub/CrashRadar/docs/research/dalio-cycles/These.md)** | **[`Daten_zur_These.md`](file:///D:/GitHub/CrashRadar/docs/research/dalio-cycles/Daten_zur_These.md)**

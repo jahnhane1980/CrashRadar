@@ -54,7 +54,8 @@ describe('PortfolioStrategyEngine', () => {
     }
 
     evaluateDaily(context) {
-      const shield = context.macroSignalContext?.katastrophenMatrix?.isShieldActive;
+      const msh = context.macroSignalContext?.macroStressHub;
+      const shield = msh?.regime === 'SYSTEMIC_STRESS' || msh?.isShieldActive;
       return {
         strategy_id: this.getId(),
         status: shield ? 'HEDGE_75_25' : '100_SPY_DCA'
@@ -107,9 +108,13 @@ describe('PortfolioStrategyEngine', () => {
   it('should build a complete macroSignalContext even with empty/minimal timeline', () => {
     const engine = new PortfolioStrategyEngine();
     const ctxEmpty = engine.buildMacroSignalContext([]);
-    expect(ctxEmpty.status).toBe('UNKNOWN');
-    expect(ctxEmpty.katastrophenMatrix.status).toBe('UNKNOWN');
-    expect(ctxEmpty.goldSniper.status).toBe('UNKNOWN');
+    expect(ctxEmpty.regime).toBe('EXPANSION');
+    expect(ctxEmpty.macroStressHub.status).toBe('UNKNOWN');
+    expect(ctxEmpty.macroStressHub.regime).toBe('UNKNOWN');
+    expect(ctxEmpty.cryptoHub.status).toBe('UNKNOWN');
+    expect(ctxEmpty.cryptoHub.regime).toBe('UNKNOWN');
+    expect(ctxEmpty.liquidityHub.status).toBe('UNKNOWN');
+    expect(ctxEmpty.bottomHub.status).toBe('UNKNOWN');
   });
 
   it('should build macroSignalContext with precalculated signals correctly', () => {
@@ -119,29 +124,83 @@ describe('PortfolioStrategyEngine', () => {
     ];
 
     const ctx = engine.buildMacroSignalContext(timeline, {
-      katastrophenMatrix: { status: 'OK', isShieldActive: false },
-      goldSniper: { status: 'OK', state: 'NORMAL', signal: 'NONE' },
-      treasuryCapacity: { status: 'OK', score: 20 },
-      panicCapitulation: { status: 'OK' }
+      macroStressHub: { status: 'OK', regime: 'NORMAL_EXPANSION', isShieldActive: false },
+      bottomHub: { status: 'OK', regime: 'NONE', isCritical: false },
+      cryptoHub: { status: 'OK', regime: 'BULL_EXPANSION' },
+      liquidityHub: { status: 'OK', regime: 'EXPANSION' }
     });
 
     expect(ctx.date).toBe('2025-05-01');
     expect(ctx.regime).toBe('EXPANSION');
-    expect(ctx.katastrophenMatrix.isShieldActive).toBe(false);
-    expect(ctx.bottomSniper.isCritical).toBe(false);
+    expect(ctx.macroStressHub.isShieldActive).toBe(false);
+    expect(ctx.bottomHub.isCritical).toBe(false);
+    expect(ctx.cryptoHub.regime).toBe('BULL_EXPANSION');
   });
 
-  it('should set regime to CRISIS_ALERT when katastrophenMatrix isShieldActive is true', () => {
+  it('should evaluate cryptoHub standardly in SignalEngine and emit signals for crypto strategies', () => {
+    const engine = new PortfolioStrategyEngine();
+    const timeline = Array(205).fill(0).map((_, i) => ({
+      date: `2025-01-${String(i + 1).padStart(2, '0')}`,
+      assets: {
+        SPY: 500,
+        BTC: 60000,
+        MSTR: i === 204 ? 150 : 100 // Tag 204 springt über SMA-200
+      }
+    }));
+
+    const ctx = engine.buildMacroSignalContext(timeline);
+
+    expect(ctx.cryptoHub).toBeDefined();
+    expect(ctx.cryptoHub.status).toBe('OK');
+    expect(ctx.cryptoHub.regime).toBe('BULL_EXPANSION');
+  });
+
+  it('should expose all modern Sensor Hubs (CryptoHub, MacroStressHub, LiquidityHub, BottomHub) with descriptive regimes', () => {
+    const engine = new PortfolioStrategyEngine();
+    const timeline = Array(260).fill(0).map((_, i) => ({
+      date: `2025-01-${String((i % 28) + 1).padStart(2, '0')}`,
+      assets: {
+        SPY: 550,
+        BTC: 65000,
+        MSTR: 160,
+        VIX: 17.5,
+        DIX: 43.0
+      },
+      macroGroups: {
+        NetLiquidity: { BankReserves: 3500000, RRPONTSYD: 200, TGA: 600, WALCL: 7000 },
+        BankingHealth: { BankReserves: 3500 },
+        TreasuryCapacity: { GDP: 28000, THREEFYTP10: 0.5, USGSEC: 100 }
+      }
+    }));
+
+    const ctx = engine.buildMacroSignalContext(timeline);
+
+    expect(ctx.cryptoHub).toBeDefined();
+    expect(ctx.cryptoHub.regime).toBe('BULL_EXPANSION');
+    expect(ctx.cryptoHub.status).toBe('OK');
+
+    expect(ctx.macroStressHub).toBeDefined();
+    expect(ctx.macroStressHub.regime).toBe('NORMAL_EXPANSION');
+    expect(ctx.macroStressHub.isShieldActive).toBe(false);
+
+    expect(ctx.liquidityHub).toBeDefined();
+    expect(ctx.liquidityHub.regime).toBe('EXPANSION');
+    expect(ctx.liquidityHub.projectedCollision).toBeDefined();
+
+    expect(ctx.bottomHub).toBeDefined();
+    expect(ctx.bottomHub.regime).toBe('NONE');
+  });
+
+  it('should set regime to CRISIS_ALERT when macroStressHub is in SYSTEMIC_STRESS', () => {
     const engine = new PortfolioStrategyEngine();
     const timeline = [{ date: '2025-05-01', assets: { SPY: 450, VIX: 32 } }];
 
     const ctx = engine.buildMacroSignalContext(timeline, {
-      katastrophenMatrix: { status: 'CRITICAL', isShieldActive: true, signal: 'ALLOCATE_GOLD' },
-      goldSniper: { status: 'CRITICAL', state: 'HEDGE_ACTIVE', signal: 'ALLOCATE_GOLD' }
+      macroStressHub: { status: 'CRITICAL', regime: 'SYSTEMIC_STRESS', isShieldActive: true, isMarginCallZone: false }
     });
 
     expect(ctx.regime).toBe('CRISIS_ALERT');
-    expect(ctx.katastrophenMatrix.isShieldActive).toBe(true);
+    expect(ctx.macroStressHub.isShieldActive).toBe(true);
   });
 
   it('should evaluate all registered strategies and pass context, timeline and brokerState', async () => {
@@ -160,7 +219,7 @@ describe('PortfolioStrategyEngine', () => {
       timeline,
       brokerStates,
       precalculatedSignals: {
-        katastrophenMatrix: { status: 'OK', isShieldActive: false }
+        macroStressHub: { status: 'OK', regime: 'NORMAL_EXPANSION', isShieldActive: false }
       }
     });
 
@@ -216,9 +275,8 @@ describe('PortfolioStrategyEngine', () => {
       date: '2026-09-13',
       timeline: [{ date: '2026-09-13', assets: { SPY: 560, GLD: 250 } }],
       precalculatedSignals: {
-        katastrophenMatrix: { isShieldActive: false },
-        goldSniper: { signal: 'NONE', isGoldHedgeActive: false },
-        bottomSniper: { isCritical: false }
+        macroStressHub: { status: 'OK', regime: 'NORMAL_EXPANSION', isShieldActive: false },
+        bottomHub: { status: 'OK', regime: 'NONE', isCritical: false }
       }
     });
 
@@ -232,9 +290,8 @@ describe('PortfolioStrategyEngine', () => {
       date: '2026-09-13',
       timeline: [{ date: '2026-09-13', assets: { SPY: 450, GLD: 270 } }],
       precalculatedSignals: {
-        katastrophenMatrix: { isShieldActive: true, signal: 'ALLOCATE_GOLD' },
-        goldSniper: { isGoldHedgeActive: true, signal: 'ALLOCATE_GOLD' },
-        bottomSniper: { isCritical: false }
+        macroStressHub: { status: 'CRITICAL', regime: 'SYSTEMIC_STRESS', isShieldActive: true },
+        bottomHub: { status: 'OK', regime: 'NONE', isCritical: false }
       }
     });
 

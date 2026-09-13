@@ -5,6 +5,7 @@ import { Logger } from '../core/Logger.js';
 import { FinanceExpert } from '../services/FinanceExpert.js';
 import { PortfolioStrategyEngine } from '../strategies/PortfolioStrategyEngine.js';
 import { GoldSpyDcaStrategy } from '../strategies/GoldSpyDcaStrategy.js';
+import { SatelliteStrategy } from '../strategies/SatelliteStrategy.js';
 import { StrategyNotificationService } from '../services/StrategyNotificationService.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -65,7 +66,9 @@ export class PortfolioStrategyRunner {
       if (!this.engine) {
         this.engine = new PortfolioStrategyEngine();
         const goldSpy = new GoldSpyDcaStrategy();
+        const satellite = new SatelliteStrategy();
         this.engine.registerStrategy(goldSpy);
+        this.engine.registerStrategy(satellite);
       }
 
       // 3. Ausführung aller registrierten Strategien
@@ -76,7 +79,10 @@ export class PortfolioStrategyRunner {
         brokerStates
       });
 
-      Logger.info(`[PortfolioStrategyRunner] Makro-Regime: ${evalResults.macroSignalContext.regime} | Katastrophen-Matrix: ${evalResults.macroSignalContext.katastrophenMatrix.status} | Gold-Sniper: ${evalResults.macroSignalContext.goldSniper.signal}`);
+      const msh = evalResults.macroSignalContext.macroStressHub;
+      const ch = evalResults.macroSignalContext.cryptoHub;
+      const lh = evalResults.macroSignalContext.liquidityHub;
+      Logger.info(`[PortfolioStrategyRunner] Makro: ${evalResults.macroSignalContext.regime} | Stress-Hub: ${msh?.regime} (${msh?.status}) | Krypto-Hub: ${ch?.regime} | Liq-Hub: ${lh?.regime}`);
 
       for (const [sId, sRes] of Object.entries(evalResults.strategyResults)) {
         Logger.info(`  • [${sId}] Status: ${sRes.status} | Aktion: ${sRes.trancheAction || sRes.action || 'HOLD'} | Grund: ${sRes.reason}`);

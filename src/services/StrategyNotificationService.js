@@ -75,7 +75,7 @@ export class StrategyNotificationService {
     let statusEmoji = '🟢';
     let alertBanner = '';
 
-    if (status === 'EMERGENCY_HEDGE') {
+    if (status === 'EMERGENCY_HEDGE' || status === 'EMERGENCY_SHIELD') {
       statusEmoji = '🚨';
       alertBanner = '> ⚠️ **KATASTROPHEN-SCHUTZSCHILD AKTIVIERT!**\n> System-Trend gebrochen & Makro-Panik aktiv. Risikopositionen evakuiert.\n\n';
     } else if (status === 'PRE_MARGIN_CASH_LOCK') {
@@ -84,7 +84,7 @@ export class StrategyNotificationService {
     } else if (status === 'MARGIN_CALL_ACTIVE') {
       statusEmoji = '⚠️';
       alertBanner = '> ⚠️ **MARGIN-CALL KASKADE IM GANGE (SPY <= -20%)!**\n> Liquidierungswelle läuft. Füße stillhalten, Cash-Airbag sichert das Kapital.\n\n';
-    } else if (status === 'RE_ENTRY_SNIPER') {
+    } else if (status === 'RE_ENTRY_SNIPER' || status === 'RE_ENTRY_RESET') {
       statusEmoji = '🎯';
       alertBanner = '> 🎯 **GENERATIONEN-BODEN SNIPER AKTIV!**\n> Panik-Tiefpunkt bestätigt. Jetzt antizyklisch Cash in den Markt deployen!\n\n';
     }
@@ -111,28 +111,29 @@ export class StrategyNotificationService {
     msg += `### ℹ️ Handlungsanweisung\n${reason}\n\n`;
 
     // Makro-Wetter Kurzübersicht
-    msg += `### 🔍 Makro-Fundament & Sensorik\n`;
-    const km = macroSignalContext.katastrophenMatrix;
-    const gs = macroSignalContext.goldSniper;
-    const tc = macroSignalContext.treasuryCapacity;
+    msg += `### 🔍 Makro-Fundament & Sensor-Hubs\n`;
+    const msh = macroSignalContext.macroStressHub;
+    const lh = macroSignalContext.liquidityHub;
+    const ch = macroSignalContext.cryptoHub;
+    const bh = macroSignalContext.bottomHub;
 
-    if (km) {
-      const kmIcon = km.isShieldActive ? '🔴' : (km.status === 'WARNING' ? '🟡' : '🟢');
-      const spyPriceStr = km.spyPrice ? `$${km.spyPrice.toFixed(2)}` : '-';
-      const spyDdStr = km.spyDrawdownPct != null ? `${km.spyDrawdownPct.toFixed(1)}%` : '-';
-      msg += `• **SPY Benchmark:** ${spyPriceStr} (DD: ${spyDdStr})\n`;
-      msg += `• **Katastrophen-Matrix:** ${kmIcon} \`${km.status}\` (${km.signal || 'NONE'})\n`;
+    if (msh) {
+      const mshIcon = msh.status === 'CRITICAL' ? '🔴' : (msh.status === 'WARNING' ? '🟡' : '🟢');
+      msg += `• **Makro-Stress Hub:** ${mshIcon} \`${msh.regime}\` (${msh.status})\n`;
     }
 
-    if (gs) {
-      const gsIcon = gs.isCashLockActive ? '💰' : (gs.isGoldHedgeActive ? '🥇' : '🟢');
-      msg += `• **Gold-Sniper:** ${gsIcon} \`${gs.state}\` (${gs.signal || 'NONE'})\n`;
+    if (lh) {
+      const lhIcon = lh.status === 'CRITICAL' ? '🔴' : (lh.status === 'WARNING' ? '🟡' : '🟢');
+      msg += `• **Liquiditäts-Hub:** ${lhIcon} \`${lh.regime}\` (${lh.status})\n`;
     }
 
-    if (tc) {
-      const tcIcon = tc.status === 'CRITICAL' ? '🔴' : (tc.status === 'WARNING' ? '🟡' : '🟢');
-      const tcScore = tc.value || (tc.details?.score != null ? `${tc.details.score}/100` : '-');
-      msg += `• **Liquiditäts-Radar:** ${tcIcon} Score ${tcScore}\n`;
+    if (ch) {
+      const chIcon = ch.status === 'CRITICAL' ? '🔴' : (ch.status === 'WARNING' ? '🟡' : '🟢');
+      msg += `• **Krypto-Hub:** ${chIcon} \`${ch.regime}\` (${ch.status})\n`;
+    }
+
+    if (bh && (bh.regime !== 'NONE' || bh.status === 'CRITICAL')) {
+      msg += `• **Boden-Hub:** 🎯 \`${bh.regime}\` (${bh.status})\n`;
     }
 
     return msg.trim();
@@ -180,7 +181,16 @@ export class StrategyNotificationService {
 
       const prevState = alertHistory.strategyStates[strategyId] || null;
       const currentStatus = result.status;
+      const currentAction = result.trancheAction || result.action || 'HOLD';
       const isStateChange = !prevState || (prevState.lastStatus !== currentStatus);
+
+      // Stille Rückkehr in den Normalbetrieb:
+      // Nach einem RE_ENTRY_RESET oder RE_ENTRY_SNIPER (wo am Vortag bereits alle Rebalancing-Orders erteilt wurden)
+      // erfordert der automatische Folgetag-Übergang zu NORMAL_HODL / NORMAL_DCA keine erneute Order/Nachricht.
+      const isSilentReturnToNormal = prevState &&
+        (prevState.lastStatus === 'RE_ENTRY_RESET' || prevState.lastStatus === 'RE_ENTRY_SNIPER') &&
+        (currentStatus === 'NORMAL_HODL' || currentStatus === 'NORMAL_DCA' || currentStatus === 'NORMAL') &&
+        (currentAction === 'HOLD' || currentAction === 'HODL');
 
       // Monatsprüfung (z.B. am 1. des Monats)
       const isMonthlySavingsDay = notifConfig.triggers?.monthly_savings_day !== undefined
@@ -190,10 +200,23 @@ export class StrategyNotificationService {
       const shouldSendMonthly = isMonthlySavingsDay && !monthlyAlreadySent;
 
       // Entscheidung ob Benachrichtigung erfolgen soll
-      const shouldSend = forceSend || isStateChange || shouldSendMonthly;
+      const shouldSend = (forceSend || isStateChange || shouldSendMonthly) && !isSilentReturnToNormal;
 
       if (!shouldSend) {
-        Logger.info(`[StrategyNotificationService] [${strategyId}] Status unverändert (${currentStatus}) & kein Stichtag. Smartphone-Ruhe gewahrt.`);
+        if (isStateChange) {
+          alertHistory.strategyStates[strategyId] = {
+            ...(prevState || {}),
+            lastStatus: currentStatus,
+            lastAction: currentAction,
+            lastTargetAllocation: result.targetAllocationPct || null,
+            updatedAt: new Date().toISOString()
+          };
+        }
+        if (isSilentReturnToNormal) {
+          Logger.info(`[StrategyNotificationService] [${strategyId}] Stille Rückkehr in den Normalbetrieb (${prevState.lastStatus} -> ${currentStatus}). Smartphone-Ruhe gewahrt.`);
+        } else {
+          Logger.info(`[StrategyNotificationService] [${strategyId}] Status unverändert (${currentStatus}) & kein Stichtag. Smartphone-Ruhe gewahrt.`);
+        }
         continue;
       }
 
@@ -210,7 +233,7 @@ export class StrategyNotificationService {
           }
 
           const ntfyService = this.ntfyServiceBuilder(topic);
-          const priority = (currentStatus === 'EMERGENCY_HEDGE' || currentStatus === 'PRE_MARGIN_CASH_LOCK' || currentStatus === 'RE_ENTRY_SNIPER')
+          const priority = (currentStatus === 'EMERGENCY_HEDGE' || currentStatus === 'EMERGENCY_SHIELD' || currentStatus === 'PRE_MARGIN_CASH_LOCK' || currentStatus === 'RE_ENTRY_SNIPER' || currentStatus === 'RE_ENTRY_RESET')
             ? 'high'
             : (channel.priority || 'default');
           const tags = channel.tags || ['chart_with_upwards_trend'];

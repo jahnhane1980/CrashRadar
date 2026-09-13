@@ -50,9 +50,10 @@ describe('StrategyNotificationService', () => {
         targetAllocationPct: { SPY: 100, CASH: 0 }
       };
       const macroContext = {
-        katastrophenMatrix: { status: 'NORMAL', isShieldActive: false, spyPrice: 560, spyDrawdownPct: -2.5 },
-        goldSniper: { state: 'IDLE', signal: 'NONE', isCashLockActive: false, isGoldHedgeActive: false },
-        treasuryCapacity: { status: 'NORMAL', value: '45/100' }
+        macroStressHub: { status: 'OK', regime: 'NORMAL_EXPANSION' },
+        liquidityHub: { status: 'OK', regime: 'EXPANSION' },
+        cryptoHub: { status: 'OK', regime: 'BULL_EXPANSION' },
+        bottomHub: { status: 'OK', regime: 'NONE' }
       };
       const manifest = { id: 'GOLD_SPY', name: 'Gold-SPY DCA' };
 
@@ -64,7 +65,7 @@ describe('StrategyNotificationService', () => {
       expect(msg).toContain('SPY');
       expect(msg).toContain('100.0%');
       expect(msg).toContain('Normaler Sparplan aktiv.');
-      expect(msg).toContain('Katastrophen-Matrix:');
+      expect(msg).toContain('Makro-Stress Hub:');
     });
 
     it('should include warning banner for EMERGENCY_HEDGE', () => {
@@ -201,6 +202,56 @@ describe('StrategyNotificationService', () => {
 
       expect(alerts.length).toBe(0);
       expect(mockSend).not.toHaveBeenCalled();
+    });
+
+    it('should suppress alert during silent return from RE_ENTRY_RESET to NORMAL_HODL but update history', async () => {
+      process.env.NTFY_PORTFOLIO_SATELITE = 'portfolio-satellite-test-topic';
+
+      // Pre-seed history with RE_ENTRY_RESET from yesterday
+      const initialHistory = {
+        strategyStates: {
+          SATELITE: {
+            lastStatus: 'RE_ENTRY_RESET',
+            lastAction: 'REINVEST_TARGET_ALLOCATION',
+            lastAlertDate: '2026-09-12'
+          }
+        }
+      };
+      fs.writeFileSync(TEST_HISTORY_PATH, JSON.stringify(initialHistory, null, 2), 'utf8');
+
+      const mockSend = vi.fn().mockResolvedValue({});
+      const mockNtfyBuilder = vi.fn().mockReturnValue({ send: mockSend });
+
+      const service = new StrategyNotificationService({
+        historyPath: TEST_HISTORY_PATH
+      }, {
+        ntfyServiceBuilder: mockNtfyBuilder
+      });
+
+      const evalResult = {
+        date: '2026-09-13',
+        strategyResults: {
+          SATELITE: {
+            status: 'NORMAL_HODL',
+            action: 'HODL',
+            reason: 'Bullenmarkt intakt.',
+            targetAllocationPct: { SPY: 80, DFNS: 15, BTC: 5, GLD: 0, CASH: 0 }
+          }
+        }
+      };
+
+      const alerts = await service.dispatchStrategyAlerts(evalResult, { forceSend: false });
+
+      // Stille Rückkehr: Keine Push-Nachricht!
+      expect(alerts.length).toBe(0);
+      expect(mockSend).not.toHaveBeenCalled();
+
+      // Aber State History muss aktualisiert sein auf NORMAL_HODL
+      const updatedHistory = service.loadAlertHistory();
+      expect(updatedHistory.strategyStates.SATELITE.lastStatus).toBe('NORMAL_HODL');
+      expect(updatedHistory.strategyStates.SATELITE.lastAction).toBe('HODL');
+
+      delete process.env.NTFY_PORTFOLIO_SATELITE;
     });
 
     it('should dispatch alert when forceSend is true even if state is unchanged', async () => {

@@ -65,6 +65,12 @@
       "panic_capitulation_vix_threshold": 35.0,
       "smart_dumb_money_vix_threshold": 40.0,
       "reinvest_target": "EXACT_ALLOCATION_TARGETS"
+    },
+    "hysteresis_and_cooldown": {
+      "min_holding_period_days": 15,
+      "re_trigger_cooldown_days": 20,
+      "min_btc_hedge_days": 10,
+      "description": "Anti-Whipsaw-Schutz: Nach Notfall-Aktivierung bleibt das Portfolio mindestens 15 Handelstage im 50/50 Gold/Cash Schutzhafen verriegelt. Nach Re-Entry schützt ein 20-Tage Cooldown vor erneutem Hin- und Herspringen. Der 5% Krypto-Airbag verweilt mindestens 10 Handelstage in Cash bei Bärenmarkt-Erkennung."
     }
   },
 

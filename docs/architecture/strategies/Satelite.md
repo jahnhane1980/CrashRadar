@@ -57,57 +57,61 @@ Das **Satellite-System** ist ein defensiv gehärtetes, geopolitisch zukunftssich
 
 ---
 
-## 3. Das HODL-Prinzip im Normalbetrieb (Makro GRÜN)
+## 3. Das HODL-Prinzip & der aktive Krypto-Airbag (Makro GRÜN)
 
-Im normalen Markt-Regime (Makro GRÜN / kein systemischer Notfall) gilt eine strikte, unerschütterliche Regel:
-
-> [!IMPORTANT]
-> **Kein Verkaufs-Rebalancing im laufenden Bullenmarkt – WE HODL!**  
-> * Es gibt **keine bandbasierten Teilverkäufe** und **kein Abschöpfen von Gewinnen** bei Bitcoin oder DFNS.
-> * Steigt Bitcoin durch eine parabolische Krypto-Rallye auf 8 %, 12 % oder 18 % des Portfolios an, wird **nicht verkauft**. Gewinner werden nicht beschnitten (*Let your winners run*).
-> * Das laufende Kapital aus monatlichen Sparraten fließt stets diszipliniert nach der Grundregel:
->   * **80 % in SPY**
->   * **15 % in DFNS**
->   * **5 % in BTC**
-> * Das **einzige Rebalancing** des gesamten Systems findet am **Notfall-Stecker** statt!
+Im normalen Markt-Regime (Makro GRÜN / kein systemischer Notfall) gilt für das Core-Mutterschiff und den Defense-Satelliten eine strikte HODL-Regel (*"Let your winners run"*):
+* Es gibt **keine bandbasierten Teilverkäufe** und **kein Abschöpfen von Gewinnen** bei SPY oder DFNS.
+* **Aktiver Krypto-Airbag via `CryptoSensorHub` (Option B):**
+  * Solange der Krypto-Taktgeber bullisch ist (`BULL_EXPANSION`, `BULL_WARNING`, `CYCLE_BOTTOM_CLOSE`): **100 % HODL** im Krypto-Satelliten (80 % SPY / 15 % DFNS / 5 % BTC).
+  * Sobald MicroStrategy die 200-Tage-Linie verliert (`BULL_CRITICAL` oder `BEAR_REGIME`): Der 5%-BTC-Slot wird temporär in **USD-Cash geparkt** (`BTC_HEDGE_CASH`: 80 % SPY / 15 % DFNS / 5 % CASH). Laufende Sparraten für diesen Slot fließen in Cash, statt in das fallende Krypto-Messer zu greifen.
+  * Sobald der Taktgeber wieder nach oben dreht: Reinvestition der 5 % Cash zurück in Bitcoin.
+* **Empirischer Backtest-Beweis (2023–2026):**
+  * Endwert Option A (Pure HODL): **28.841,13 $** (+76,94 % Rendite / Max DD: -8,50 %)
+  * Endwert Option B (Aktiver Airbag): **29.473,70 $** (+80,82 % Rendite / Max DD: -7,53 %)
+  * **Ergebnis:** **+$632,57 Mehrertrag (+3,88 %-Punkte Mehrrendite)** bei gleichzeitig **-0,97 %-Punkte geringerem Drawdown**!
 
 ---
 
-## 4. Der Notfall-Stecker (Die 3-Heiligkeit des Schutzes bei Makro ROT)
+## 4. Der Notfall-Stecker (SignalEngine Katastrophen-Schutz & Boden-Sniper)
 
-Das Gesamtdepot wird durch denselben bewährten, universellen Makro-Türsteher geschützt, der auch in `Kamikaze-Growth`, `7-Slot-Guru` und `TradingEngine` verankert ist:
+Das Gesamtdepot wird durch dieselben bewährten, standardisierten Signale der **CrashRadar SignalEngine** (`macroSignalContext`) geschützt, die auch in `Gold-SPY` und `Kamikaze-Growth` arbeiten:
 
 ```
-                        [Makro-Türsteher ROT]
-             Net Fed Liquidity 8W-Delta < -5,0 %
-             UND notieren Credit Spreads > 4,0 % (über SMA 50)?
-                                |
-                +---------------+---------------+
-               JA                               NEIN
-                |                               |
-      [Notfall-Stecker GEZOGEN]        [Normalzustand: HODL]
-   100 % Notfall-Evakuierung ALLER     Alle 3 Bausteine bleiben
-   3 Bausteine in 50 % Gold / 50 % Cash. zu 100 % investiert.
-   Sparrate: 50 % Gold / 50 % Cash.    Sparrate: 80% SPY / 15% DFNS / 5% BTC
+                  [SignalEngine: macroSignalContext]
+                                   │
+              Ist katastrophenMatrix.isShieldActive aktiv?
+                                   │
+                 ┌─────────────────┴─────────────────┐
+                JA                                  NEIN
+                 │                                   │
+       [Notfall-Stecker GEZOGEN]            [Normalzustand: HODL]
+    Status: EMERGENCY_SHIELD             Status: NORMAL_HODL
+    100 % Evakuierung in:                Alle 3 Bausteine bleiben investiert:
+    • 50 % Gold (GLD)                    • 80 % SPY
+    • 50 % USD-Cash                      • 15 % DFNS
+    Sparrate: 50 % Gold / 50 % Cash      • 5 % BTC
+                                         Sparrate: 80% SPY / 15% DFNS / 5% BTC
 ```
 
 ### Die Phasen des Notfall-Schutzschilds:
 
 1. **Aktivierung (Notfall-Stecker ziehen):**
-   * **Bedingung 1 (Druckenmiller Liquiditätsentzug):** Net Fed Liquidity ($\text{Fed-Bilanz} - \text{TGA} - \text{RRP}$) fällt über 8 Wochen um mehr als 5,0 % ($\Delta_{8\text{W}} < -5,0\,\%$).
-   * **Bedingung 2 (Kreditstress-Filter):** High-Yield Credit Spreads (`BAMLH0A0HYM2`) steigen über ihren 50-Tage-Durchschnitt **und** über $4,0\,\%$.
-   * **Aktion:** **Ausnahmslose 100 %-Liquidierung aller Bestände (SPY, DFNS, BTC).**
+   * **Signalgeber:** `macroSignalContext.katastrophenMatrix.isShieldActive === true` (bestätigter Chart-Trendbruch unter SMA 200 gekoppelt an makroökonomische System-Panik).
+   * **Strategie-Status:** `EMERGENCY_SHIELD`.
+   * **Aktion:** `EVACUATE_50_GOLD_50_CASH`.
    * **Evakuierungs-Ziel:**
      * **50 % in physisches Gold (`GLD`)**
      * **50 % in USD-Cash**
+     * **0 % SPY / 0 % DFNS / 0 % BTC**
    * **Sparplan-Anpassung:** Laufende monatliche Sparraten fließen zu 50 % in Gold und 50 % in Cash.
 
-2. **Deaktivierung & Rebalancing-Reset (Duales Re-Entry-System):**
-   * **Pfad 1 (Reguläre Hysterese):** Das 8-Wochen-Delta der Net Fed Liquidity erholt sich nachhaltig auf **$\ge 0,0\,\%$**.
-   * **Pfad 2 (Panic-Capitulation-Sniper am Marktboden):**  
-     Schlägt während des aktiven Notfall-Schutzschilds der [`PanicCapitulationIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/PanicCapitulationIndicator.js) an ($\text{VIX} \ge 35$, CBOE Put/Call-Options-Spike $\ge 1{,}5\times$, bullische RSI-Divergenz) oder meldet [`SmartDumbMoneyBottomIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/SmartDumbMoneyBottomIndicator.js) Panik-Kapitulation ($\text{VIX} > 40$, $\text{AAII} < -25\,\%$, $\text{DIX} > 45\,\%$):
-     * Der Notfall-Schutzschild wird **sofort am Panik-Tiefpunkt** aufgelöst, um maximale Erholungsgewinne mitzunehmen!
-   * **Aktion (Das Rebalancing-Reset):**  
+2. **Deaktivierung & Rebalancing-Reset (Re-Entry am Boden):**
+   * **Signalgeber:**
+     * *Pfad A (Panik-Boden Sniper am Markttief):* `macroSignalContext.bottomSniper.isCritical === true` (VIX-Spike $\ge 35$, CBOE Put/Call-Panik oder DarkPool-Whales steigen massiv ein).
+     * *Pfad B (Trend-Entwarnung):* Katastrophen-Matrix deaktiviert den Schutzschirm (`katastrophenMatrix.isShieldActive === false`).
+   * **Strategie-Status:** `RE_ENTRY_RESET`.
+   * **Aktion:** `REINVEST_TARGET_ALLOCATION`.
+   * **Das Rebalancing-Reset:**  
      Die gesamte Gold- und Cash-Position wird zu 100 % aufgelöst. Das gesamte Kapital wird **exakt nach der Zielallokation neu verteilt**:
      * **80 % in SPY**
      * **15 % in DFNS**
@@ -144,26 +148,26 @@ Die quantitative Leistungsfähigkeit der Strategie wurde in einer lückenlosen B
 
 ---
 
-## 6. Operative Checkliste & Routine
+## 6. Operative SignalEngine-Routine
 
-1. **Wöchentlich jeden Samstag (2 Minuten auf FRED / CrashRadar):**
-   * Druckenmiller Net Fed Liquidity 8-Wochen-Delta prüfen.
-   * High-Yield Credit Spreads (`BAMLH0A0HYM2`) vs. 4,0 % & SMA 50 prüfen.
-   * **Signal ROT:** Notfall-Stecker ziehen $\rightarrow$ 100 % in 50 % Gold / 50 % Cash umschichten.
-   * **Signal GRÜN:** Keine Handlung erforderlich $\rightarrow$ Entspannt HODLN.
-2. **Monatlich am 1. des Monats (Sparplan-Ausführung):**
-   * Bei Makro GRÜN: Sparrate zu **80 % in SPY, 15 % in DFNS, 5 % in BTC** investieren.
-   * Bei Notfall-Schutzschild ROT: Sparrate zu **50 % in Gold (`GLD`) und 50 % in Cash** parken.
-3. **Bei aktivem Schutzschild (Tägliche Boden-Überwachung):**
-   * VIX-Spikes ($> 35$) und CBOE/RSI-Divergenzen im CrashRadar prüfen.
-   * Sobald Panik-Kapitulation bestätigt: Notfall-Stecker lösen $\rightarrow$ 100 % Reinvestition in 80 % SPY / 15 % DFNS / 5 % BTC.
+1. **Täglicher SignalEngine-Lauf:**
+   * Auswertung des zentralen `macroSignalContext`.
+   * **Signal `isShieldActive === true`:** Notfall-Stecker gezogen $\rightarrow$ Status `EMERGENCY_SHIELD`, Allokation 50 % Gold / 50 % Cash.
+   * **Signal `isShieldActive === false`:** Normalbetrieb $\rightarrow$ Status `NORMAL_HODL`, entspannt HODLN.
+2. **Monatlich am 1. des Monats (Sparplan-Ausführung via `StrategyNotificationService`):**
+   * Bei Status `NORMAL_HODL`: Sparrate zu **80 % in SPY, 15 % in DFNS, 5 % in BTC** investieren.
+   * Bei Status `EMERGENCY_SHIELD`: Sparrate zu **50 % in Gold (`GLD`) und 50 % in Cash** parken.
+3. **Bei aktivem Schutzschild (Boden-Überwachung):**
+   * `bottomSniper.isCritical` (VIX-Spikes $\ge 35$, CBOE-Panik, Dark-Pool-Whales) im CrashRadar.
+   * Sobald Boden bestätigt oder Entwarnung: Notfall-Stecker lösen $\rightarrow$ Status `RE_ENTRY_RESET`, 100 % Reinvestition in 80 % SPY / 15 % DFNS / 5 % BTC.
 
 ---
 
 ## 7. Verwandte Dokumente & Wissensgraph
 
+* 💻 **Strategie-Klasse:** [`src/strategies/SatelliteStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/SatelliteStrategy.js)
+* ⚙️ **Konfigurations-Manifest:** [`config/strategies/satellite.json`](file:///D:/GitHub/CrashRadar/config/strategies/satellite.json)
 * 📄 **Signaldienst-Architektur:** [`docs/architecture/signal-service/Investment-Signaldienst.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signal-service/Investment-Signaldienst.md)
 * 📄 **Kamikaze Growth Strategie:** [`docs/architecture/strategies/Kamikaze-Growth.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Growth.md)
 * 📄 **7-Slot-Guru Konsens-System:** [`docs/architecture/strategies/7-Slot-Guru-Konsens-System.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/7-Slot-Guru-Konsens-System.md)
 * 📄 **Gold-SPY DCA Strategie:** [`docs/architecture/strategies/Gold-SPY.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Gold-SPY.md)
-* ⚙️ **Konfigurations-Manifest:** [`config/strategies/satellite.json`](file:///D:/GitHub/CrashRadar/config/strategies/satellite.json)

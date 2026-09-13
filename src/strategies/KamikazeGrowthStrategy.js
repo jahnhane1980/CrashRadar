@@ -69,9 +69,9 @@ export class KamikazeGrowthStrategy extends PortfolioStrategyInterface {
     const pendingOrders = brokerState?.pending_orders || this.manifest.cash_pots?.pending_orders || [];
 
     // 2. Makro-Signalkontext analysieren
-    const km = macroSignalContext.katastrophenMatrix || {};
+    const macroStress = macroSignalContext.macroStressHub || macroSignalContext.katastrophenMatrix || {};
+    const bottom = macroSignalContext.bottomHub || macroSignalContext.bottomSniper || {};
     const gs = macroSignalContext.goldSniper || {};
-    const bs = macroSignalContext.bottomSniper || {};
 
     // 3. Asset-Klassifizierung trennen
     const lastingHoldPositions = positions.filter(p => p.investmentType === 'LASTING_HOLD');
@@ -84,21 +84,27 @@ export class KamikazeGrowthStrategy extends PortfolioStrategyInterface {
     let reason = 'Normalbetrieb: Wachstums- und Dauerhold-Positionen aktiv. Zündfunken-Pool bereit.';
 
     // Priorität 1: Bottom-Sniper Re-Entry
-    if (gs.signal === 'DEPLOY_CASH' || bs.isCritical) {
+    const isDeployCash = bottom.regime === 'CAPITULATION_CONFIRMED' || bottom.status === 'CRITICAL' || gs.signal === 'DEPLOY_CASH';
+    const isMarginCall = macroStress.regime === 'LIQUIDATION_CASCADE' || Boolean(macroStress.isMarginCallZone) ||
+                         gs.signal === 'EXIT_GOLD_TO_CASH' || gs.state === 'PRE_MARGIN_LOCK' || gs.state === 'MARGIN_CALL_ACTIVE';
+    const isSystemicStress = macroStress.regime === 'SYSTEMIC_STRESS' || macroStress.status === 'CRITICAL' ||
+                             Boolean(macroStress.isShieldActive) || Boolean(gs.isGoldHedgeActive);
+
+    if (isDeployCash) {
       status = 'RE_ENTRY_SNIPER';
       action = 'DEPLOY_SPARK';
       reason = `🎯 Generationen-Boden Sniper aktiv! Zündfunken-Pool (${fireSparkUsd.toFixed(2)} $) für antizyklische Dip-Buys freigeschaltet.`;
     }
     // Priorität 2: Pre-Margin-Call Cash-Lock (-18%/-19% SPY Drawdown)
-    else if (gs.signal === 'EXIT_GOLD_TO_CASH' || gs.state === 'PRE_MARGIN_LOCK' || gs.state === 'MARGIN_CALL_ACTIVE') {
-      status = gs.state === 'MARGIN_CALL_ACTIVE' ? 'MARGIN_CALL_ACTIVE' : 'PRE_MARGIN_CASH_LOCK';
-      action = gs.signal === 'EXIT_GOLD_TO_CASH' ? 'EXIT_GOLD_TO_CASH' : 'HOLD_CASH';
+    else if (isMarginCall) {
+      status = (macroStress.regime === 'LIQUIDATION_CASCADE' || gs.state === 'MARGIN_CALL_ACTIVE') ? 'MARGIN_CALL_ACTIVE' : 'PRE_MARGIN_CASH_LOCK';
+      action = (macroStress.regime === 'LIQUIDATION_CASCADE' || gs.signal === 'EXIT_GOLD_TO_CASH') ? 'EXIT_GOLD_TO_CASH' : 'HOLD_CASH';
       hedgeAllocation = { gold_pct: 0, cash_pct: 100 };
       const lastingHoldTickers = lastingHoldPositions.map(p => p.ticker).join(', ') || 'Keine';
       reason = `💰 Pre-Margin-Call Gewinnsicherung: Gold-Hedge glattgestellt in 100% Cash. LASTING_HOLD Positionen (${lastingHoldTickers}) bleiben unberührt geschützt.`;
     }
     // Priorität 3: Katastrophen-Matrix aktiv (50% Gold / 50% Cash Schutzschirm)
-    else if (km.isShieldActive || gs.isGoldHedgeActive) {
+    else if (isSystemicStress) {
       status = 'EMERGENCY_HEDGE';
       action = 'EVACUATE_HEDGE';
       hedgeAllocation = { gold_pct: 50, cash_pct: 50 };
