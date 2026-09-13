@@ -1,0 +1,73 @@
+name: Trading 212 Portfolio & Trade Alerts
+
+on:
+  schedule:
+    # 1. Trades-Check (3x täglich Mo-Fr):
+    # 10:00 UTC = 12:00 Uhr MESZ (Mittag)
+    # 16:00 UTC = 18:00 Uhr MESZ (US-Handel Mitte)
+    # 20:00 UTC = 22:00 Uhr MESZ (US-Börsenschluss)
+    - cron: '0 10,16,20 * * 1-5'
+    
+    # 2. Wöchentliches Portfolio-Update (Freitagabend):
+    # 20:15 UTC = Freitag 22:15 Uhr MESZ (nach US-Close)
+    - cron: '15 20 * * 5'
+
+  # Manuelle Auslösung über GitHub Actions UI
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Ausführungs-Modus'
+        required: true
+        default: 'trades'
+        type: choice
+        options:
+          - 'trades'
+          - 'weekly'
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  t212-sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: ⚙️ Setup Node.js (22.x)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: npm ci
+
+      - name: 🚀 Run Trading 212 Sync & Alerting
+        env:
+          TRADING212_API_KEY: ${{ secrets.TRADING212_API_KEY }}
+          TRADING212_API_SECRET: ${{ secrets.TRADING212_API_SECRET }}
+          NTFY_PORTFOLIO_TOPIC: ${{ secrets.NTFY_PORTFOLIO_TOPIC }}
+        run: |
+          # Modus dynamisch nach Zeitplan oder manuellem Input bestimmen
+          RUN_MODE="trades"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            RUN_MODE="${{ inputs.mode }}"
+          elif [ "${{ github.event.schedule }}" = "15 20 * * 5" ]; then
+            RUN_MODE="weekly"
+          fi
+          
+          echo "Ausführung im Modus: $RUN_MODE"
+          node index.js --t212-sync --mode=$RUN_MODE --send-ntfy
+
+      - name: 💾 Commit and Push Updated Portfolio Snapshot
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/trading212_portfolio_snapshot.json
+          git diff --staged --quiet || (git commit -m "chore(portfolio): update trading212 snapshot [skip ci]" && git push)

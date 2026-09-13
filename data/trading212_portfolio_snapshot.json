@@ -1,0 +1,124 @@
+{
+  "timestamp": "2026-09-13T10:03:05.825Z",
+  "cashPct": 10.88,
+  "freeCashPct": 5.36,
+  "blockedCashPct": 5.53,
+  "ib01CashPct": 0,
+  "investedPct": 89.12,
+  "allTimeReturnPct": 185.58,
+  "openReturnPct": 5.78,
+  "positionsCount": 8,
+  "positions": [
+    {
+      "ticker": "AIRO",
+      "rawTicker": "AIRO_US_EQ",
+      "quantity": 2600,
+      "averagePrice": 6.38407692,
+      "currentPrice": 7.15,
+      "weightPct": 17.89,
+      "pnlPct": 12
+    },
+    {
+      "ticker": "LUMN",
+      "rawTicker": "CTL_US_EQ",
+      "quantity": 2500,
+      "averagePrice": 6.121672,
+      "currentPrice": 6.96,
+      "weightPct": 16.75,
+      "pnlPct": 13.69
+    },
+    {
+      "ticker": "IBRX",
+      "rawTicker": "NK_US_EQ",
+      "quantity": 1875,
+      "averagePrice": 7.312464,
+      "currentPrice": 7.92,
+      "weightPct": 14.29,
+      "pnlPct": 8.31
+    },
+    {
+      "ticker": "SEMI",
+      "rawTicker": "SEMIa_EQ",
+      "quantity": 650,
+      "averagePrice": 19.32527692,
+      "currentPrice": 20.215,
+      "weightPct": 12.65,
+      "pnlPct": 4.6
+    },
+    {
+      "ticker": "CDNX",
+      "rawTicker": "CNDXl_EQ",
+      "quantity": 7.5,
+      "averagePrice": 1654.04,
+      "currentPrice": 1693.2,
+      "weightPct": 12.22,
+      "pnlPct": 2.37
+    },
+    {
+      "ticker": "PGY",
+      "rawTicker": "EJFA_US_EQ",
+      "quantity": 434,
+      "averagePrice": 21.3997235,
+      "currentPrice": 20.03,
+      "weightPct": 8.37,
+      "pnlPct": -6.4
+    },
+    {
+      "ticker": "S",
+      "rawTicker": "S_US_EQ",
+      "quantity": 187.5,
+      "averagePrice": 19.68736,
+      "currentPrice": 19.83,
+      "weightPct": 3.58,
+      "pnlPct": 0.72
+    },
+    {
+      "ticker": "NVTS",
+      "rawTicker": "LOKB_US_EQ",
+      "quantity": 300,
+      "averagePrice": 9.91333333,
+      "currentPrice": 11.65,
+      "weightPct": 3.36,
+      "pnlPct": 17.52
+    }
+  ],
+  "pendingOrdersCount": 3,
+  "pendingOrders": [
+    {
+      "id": 57200843682,
+      "ticker": "NVTS",
+      "rawTicker": "LOKB_US_EQ",
+      "side": "BUY",
+      "type": "LIMIT",
+      "quantity": 100,
+      "limitPrice": 9.91,
+      "currency": "USD",
+      "status": "NEW",
+      "targetWeightPct": 0.95
+    },
+    {
+      "id": 57200845891,
+      "ticker": "PGY",
+      "rawTicker": "EJFA_US_EQ",
+      "side": "BUY",
+      "type": "LIMIT",
+      "quantity": 50,
+      "limitPrice": 19.8,
+      "currency": "USD",
+      "status": "NEW",
+      "targetWeightPct": 0.95
+    },
+    {
+      "id": 56751414476,
+      "ticker": "S",
+      "rawTicker": "S_US_EQ",
+      "side": "BUY",
+      "type": "LIMIT",
+      "quantity": 200,
+      "limitPrice": 18.8,
+      "currency": "USD",
+      "status": "NEW",
+      "targetWeightPct": 3.62
+    }
+  ]
+}

@@ -5,6 +5,7 @@ import { Logger } from './src/core/Logger.js';
 import { IndicatorAnalysisRunner } from './src/runners/IndicatorAnalysisRunner.js';
 import { MacroScorecardRunner } from './src/runners/MacroScorecardRunner.js';
 import { TimeSeriesFetchRunner } from './src/runners/TimeSeriesFetchRunner.js';
+import { Trading212Runner } from './src/runners/Trading212Runner.js';
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -33,11 +34,16 @@ export async function runCLI(argv) {
     .option('-t, --test', 'Run the fetcher in test mode')
     .option('-c, --check-indikator', 'Run the macro financial indicator analysis')
     .option('-s, --check-scenario', 'Run targeted macro scenario fetch, evaluation and alerting')
-    .option('-p, --profile <profile>', 'Filter data fetching tasks by profile / frequency (e.g. daily, intraday_m5, all)', 'daily');
+    .option('-p, --profile <profile>', 'Filter data fetching tasks by profile / frequency (e.g. daily, intraday_m5, all)', 'daily')
+    .option('--t212-sync', 'Run Trading 212 portfolio sync and delta analysis')
+    .option('--mode <mode>', 'Trading 212 run mode: "weekly" (default) or "trades"', 'weekly')
+    .option('--send-ntfy', 'Broadcast portfolio update to Ntfy topic');
 
   program.action(async (options) => {
     try {
-      if (options.checkIndikator) {
+      if (options.t212Sync) {
+        activeRunner = new Trading212Runner(options);
+      } else if (options.checkIndikator) {
         activeRunner = new IndicatorAnalysisRunner(options);
       } else if (options.checkScenario) {
         activeRunner = new MacroScorecardRunner(options);
@@ -58,9 +64,9 @@ export async function runCLI(argv) {
 // Nur ausführen, wenn die Datei direkt per "node index.js" gestartet wird
 if (process.argv[1] === __filename) {
   runCLI(process.argv).then(() => {
-    process.exit(0);
+    process.exitCode = 0;
   }).catch((err) => {
-    process.exit(1);
+    process.exitCode = 1;
   });
 }
 
