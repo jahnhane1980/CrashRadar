@@ -1,3 +1,23 @@
+/**
+ * @deprecated Dieser Indikator ist veraltet und wird nicht mehr als primärer Boden-Trigger empfohlen.
+ * 
+ * EMPIRISCHE KRITIK & SCHWACHSTELLEN-ANALYSE (2007–2026):
+ * 1. Asynchroner Publikations-Lag (AAII Sentiment):
+ *    - Das AAII-Sentiment wird nur 1x wöchentlich donnerstags publiziert.
+ *    - Wenn ein Crash-Boden an einem Montag oder Dienstag markiert wird (z. B. 23.03.2020 Corona),
+ *      hinkt AAII bis zu 6 Handelstage hinterher und blockiert den zeitnahen Einstieg.
+ * 2. Starre VIX > 40 Schwelle:
+ *    - In strukturellen Zins- und Bewertungs-Crashs (z. B. Q4 2018 bei VIX 36.1, oder 2022 bei VIX 36.5)
+ *      erreicht die Volatilität die harte 40er-Marke nie, wodurch das Signal komplett ausbleibt.
+ * 3. Mangelnde Atomarität (Monolithische Überladung):
+ *    - Durch die starre UND-Verknüpfung von drei voneinander völlig unabhängigen Datenwelten
+ *      (wöchentliches Retail-Sentiment, tägliche Volatilität, Dark-Pool-Wal-Akkumulation)
+ *      entsteht ein Signal-Flaschenhals, der in realen Krisen fast nie feuerte.
+ * 
+ * NACHFOLGER / MODERNE ARCHITEKTUR:
+ * Trennung in atomare Sensoren (z. B. Dark-Pool Wal-Akkumulation, VIX Volatility Dynamics)
+ * und Orchestrierung über die PortfolioStrategyEngine / GoldSniperIndicator.
+ */
 export class SmartDumbMoneyBottomIndicator {
     constructor() {
         this.name = 'Smart vs Dumb Money (The Bottom)';

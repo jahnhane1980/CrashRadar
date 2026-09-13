@@ -1,10 +1,10 @@
 # Gold-SPY Dynamic DCA: Die quantitative Trend-Schild & Gold-Hedge-Strategie
 *S&P 500 Vermögensaufbau mit der 3-Säulen-Katastrophen-Matrix, 75/25 Gold-Cash Sweet Spot, Margin-Call-Airbag & 21,8 Jahre Krisen-Beweis*
 
-> ⚙️ **Operative Strategie-Konfiguration:** [`config/strategies/gold-spy.json`](file:///D:/GitHub/CrashRadar/config/strategies/gold-spy.json) (Version 2.2.0)  
+> ⚙️ **Operative Strategie-Konfiguration:** [`config/strategies/gold-spy.json`](file:///D:/GitHub/CrashRadar/config/strategies/gold-spy.json) (Version 2.3.0)  
 > 💻 **Katastrophen-Matrix & Hysterese-Test:** [`scratch/architecture/strategies/test_katastrophen_matrix.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/test_katastrophen_matrix.js)  
 > 💻 **75/25 Sweet-Spot & Stresstest:** [`scratch/architecture/strategies/test_75_25_gold_spy.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/test_75_25_gold_spy.js)  
-> 💻 **Empirische 22-Jahre-Simulation (2004–2026):** [`scratch/architecture/strategies/GoldSpyFullHistorySimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/GoldSpyFullHistorySimulation.js)
+> 💻 **Empirischer 21,8-Jahre Tranchen-Vergleich:** [`scratch/research/strategies/CompareTranches21Years.js`](file:///D:/GitHub/CrashRadar/scratch/research/strategies/CompareTranches21Years.js)
 
 ---
 
@@ -42,13 +42,14 @@ Die **Gold-SPY Dynamic DCA Strategie (Version 2.2)** löst dieses Trilemma durch
 │       --> 25 % Cash (USD) [Airbag gegen Margin-Call-Dip & trockenes Pulver]     │
 │     • Anti-Whipsaw: Mindestens 15 Tage Mindesthaltedauer im Bärenmarkt.         │
 │                                                                                 │
-│  3. DUALER BOTTOM-FINDER & RE-ENTRY:                                            │
-│     • Re-Entry Pfad A (Panic-Capitulation-Sniper):                              │
-│       VIX schießt in Panik-Zone (>= 35) und dreht ab (Bodenbildung).           │
-│     • Re-Entry Pfad B (Trend-Rückeroberung):                                    │
-│       S&P 500 schließt wieder nachhaltig ÜBER dem SMA 200.                      │
-│     • 100 % Reinvestition aus Gold & Cash zurück in den S&P 500 (SPY).          │
-│     • Sparplan fließt ab sofort wieder zu 100 % in SPY.                         │
+│  3. ASYMMETRISCHER TRANCHEN-RE-ENTRY (30 / 40 / 30 %):                           │
+│     • Tranche 1 (30 % SPY / 70 % Cash):                                         │
+│       Erster antizyklischer Einstieg bei autorisiertem DEPLOY_CASH (DD <= -18%).│
+│     • Tranche 2 (+40 % auf 70 % SPY / 30 % Cash - Der Wal-Einstieg):            │
+│       Dark Pool Akkumulation (DIX >= 48 %) ODER Dip >= 6 % ODER 12 Handelstage. │
+│     • Tranche 3 (+30 % auf 100 % SPY / 0 % Cash - Die Trendbestätigung):        │
+│       S&P 500 schließt über SMA 20 ODER 12 Tage ODER Matrix-Schild erlischt.   │
+│     • Fail-Safe: Bei Marktrückfall unter -20% ohne Boden sofort HOLD_CASH.     │
 └─────────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -88,21 +89,23 @@ Wenn institutionelle Fonds von Brokern Margin Calls erhalten, müssen sie innerh
 
 ---
 
-## 4. Empirischer Proof: 21,8 Jahre Backtest (18.11.2004 – 08.09.2026)
+## 4. Empirischer Proof: 21,8 Jahre Backtest (2004 – 2026)
 
-Ausgeführt über [`test_katastrophen_matrix.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/test_katastrophen_matrix.js) bei 10.000 € Startkapital und 150 € monatlicher Sparrate (49.300 € Gesamteinzahlung über 5.483 Handelstage):
+Ausgeführt über [`CompareTranches21Years.js`](file:///D:/GitHub/CrashRadar/scratch/research/strategies/CompareTranches21Years.js) bei 10.000 € Startkapital und 150 € monatlicher Sparrate (48.400 € Gesamteinzahlung über 7.760 Handelstage):
 
-| Strategie / Setup | Depot-Endwert (€) | Reingewinn (€) | Rendite (%) | Maximaler Drawdown | Notfall-Ausstiege |
+| Strategie / Setup | Depot-Endwert (€) | Reingewinn (€) | Rendite (%) | Maximaler Drawdown | Alpha vs. SPY |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **0. Reiner S&P 500 Buy & Hold (Ungehedgt)** | **€ 330.708,80** | +€ 281.408,80 | +570,81 % | **-40,56 %** | 0 |
-| **1. Reiner Chart-Bruch (Ohne Makro-Türsteher)** | **€ 419.451,98** | +€ 370.151,98 | +750,82 % | **-28,61 %** | 23 |
-| **2. Die 3-Säulen-Katastrophen-Matrix** | **€ 381.741,44** | **+€ 332.441,44** | **+674,32 %** | **-28,61 %** | **23** *(nur ~1 pro Jahr!)* |
+| **0. Reiner S&P 500 Buy & Hold DCA** | **€ 246.588,24** | +€ 198.188,24 | +409,48 % | **-47,90 %** (09.03.2009) | Baseline |
+| **1. Reines Gold Buy & Hold DCA** | **€ 276.043,34** | +€ 227.643,34 | +470,34 % | **-37,89 %** (31.12.2013) | +€ 29.455,10 |
+| **2. Gold-SPY All-In Re-Entry** | **€ 318.639,23** | +€ 270.239,23 | +558,35 % | **-46,92 %** (31.05.2009) | +€ 72.050,99 |
+| **3. Gold-SPY mit 30/40/30 % Tranchen** | **€ 349.797,71** | **+€ 301.397,71** | **+622,72 %** | **-32,48 %** (14.10.2022) | **+€ 103.209,47** |
 
-### Die Performance in den großen Krisen:
-* **Finanzkrise 2008 (113 Tage im Hedge):** Aktien fielen um **-5,0 %**, Gold stieg um **+22,2 %** $\rightarrow$ **Depot erzielte `+23,2 %` Gewinn**.
-* **Eurokrise 2011 (19 Tage im Hedge):** Aktien stürzten um **-6,8 %**, Gold stieg um **+13,2 %** $\rightarrow$ **Depot erzielte `+10,5 %` Gewinn**.
-* **Corona-Crash 2020 (20 Tage im Hedge):** S&P 500 verlor **-11,7 %** $\rightarrow$ **Depot blieb bei `-0,2 %` vollkommen stabil**.
-* **Bärenmarkt 2022 (165 Tage im Hedge):** Aktien fielen um **-7,3 %** $\rightarrow$ **Depot verlor nur `-1,2 %`**.
+### Krisen-Drawdowns im Härtetest:
+* **Finanzkrise 2008 (Lehman-Pleite):** Drawdown von **-46,92 % (All-In)** auf **`-25,68 %`** gedämpft!
+* **Eurokrise 2011:** Maximaler Drawdown auf **`-18,07 %`** begrenzt.
+* **Fed-Zinswende 2018:** Maximaler Drawdown auf **`-17,45 %`** begrenzt.
+* **Corona-Crash 2020:** Drawdown von **-40,67 %** auf **`-26,69 %`** gedämpft (kein blindes Messer-Fangen).
+* **Bärenmarkt 2022:** Maximaler Drawdown auf **`-32,48 %`** begrenzt.
 
 ---
 

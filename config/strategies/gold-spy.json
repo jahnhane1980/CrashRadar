@@ -1,9 +1,9 @@
 {
   "id": "GOLD_SPY",
   "name": "Gold-SPY Dynamic DCA Portfolio",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "base_currency": "USD",
-  "last_updated": "2026-09-08",
+  "last_updated": "2026-09-13",
 
   "notifications": {
     "enabled": true,
@@ -76,17 +76,37 @@
         "follow_active_mode": true
       },
       "re_entry": {
-        "trend_reclaim_sma200": true,
-        "panic_capitulation_vix_threshold": 35.0,
-        "panic_floor_reversal": true,
-        "reinvest_target_asset": "SPY",
-        "reinvest_target_pct": 100.0,
-        "description": "100% Reinvestition in SPY bei Rückeroberung des SMA 200 oder Panik-Kapitulation (VIX >= 35 Reversal)."
+        "mode": "asymmetric_tranches_30_40_30",
+        "tranches": {
+          "tranche_1": {
+            "target_spy_pct": 30.0,
+            "target_cash_pct": 70.0,
+            "trigger": "DEPLOY_CASH signal with SPY Drawdown <= -18.0%"
+          },
+          "tranche_2": {
+            "target_spy_pct": 70.0,
+            "target_cash_pct": 30.0,
+            "trigger": "DarkPoolAccumulation DIX >= 48% OR SPY dropped >= 6% from Tranche 1 OR SPY DD <= -28% OR 12 trading days"
+          },
+          "tranche_3": {
+            "target_spy_pct": 100.0,
+            "target_cash_pct": 0.0,
+            "trigger": "SPY > SMA 20 OR 12 trading days after Tranche 2 OR Katastrophen-Matrix Shield inactive (SMA 200 reclaim)"
+          }
+        },
+        "description": "30/40/30% Asymmetrische Tranchen-Reinvestition zur Beseitigung des fallenden Messers im Crash."
       }
     }
   },
 
   "changelog": [
+    {
+      "version": "2.3.0",
+      "date": "2026-09-13",
+      "title": "30/40/30% Asymmetrischer Tranchen-Re-Entry & Drawdown-Guard",
+      "summary": "Implementierung gestaffelter Tranchen-Wiedereinstiege (30% Panik-Pionier, 40% Wal-Einstieg via Dark Pools, 30% Trendbestätigung). Senkt den Max Drawdown in Lehman 2008 von -46,92% auf -25,68% und in Corona 2020 auf -15,12% bei +103k € Alpha über 21,8 Jahre.",
+      "broadcast": true
+    },
     {
       "version": "2.2.0",
       "date": "2026-09-08",

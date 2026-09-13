@@ -5,6 +5,7 @@ import { GoldSniperIndicator } from '../analysis/indicators/GoldSniperIndicator.
 import { TreasuryCapacityRadarIndicator } from '../analysis/indicators/TreasuryCapacityRadarIndicator.js';
 import { PanicCapitulationIndicator } from '../analysis/indicators/PanicCapitulationIndicator.js';
 import { SmartDumbMoneyBottomIndicator } from '../analysis/indicators/SmartDumbMoneyBottomIndicator.js';
+import { DarkPoolAccumulationIndicator } from '../analysis/indicators/DarkPoolAccumulationIndicator.js';
 
 /**
  * PortfolioStrategyEngine
@@ -16,7 +17,7 @@ import { SmartDumbMoneyBottomIndicator } from '../analysis/indicators/SmartDumbM
  *    - 3-Säulen-Katastrophen-Matrix (Trendbruch + Makro-Türsteher)
  *    - Gold-Sniper (Pre-Margin-Call Exit bei -18%/-19% & Re-Entry)
  *    - Liquiditäts-Radar (Treasury Capacity, Slack, Imminent Drain)
- *    - Bottom-Sniper (Panic Capitulation & Smart/Dumb Money)
+ *    - Bottom-Sniper (Panic Capitulation, Dark Pool Whales & Smart/Dumb Money)
  * 2. Autonome Ausführung der registrierten Strategien (evaluateDaily).
  * 3. Erstellung des aggregierten Tages-Snapshots (daily_intelligence.json) für Cloudflare D1.
  */
@@ -34,6 +35,7 @@ export class PortfolioStrategyEngine {
     });
     this.treasuryCapacity = dependencies.treasuryCapacity || new TreasuryCapacityRadarIndicator(config.treasuryCapacity || {});
     this.smartDumbBottom = dependencies.smartDumbBottom || new SmartDumbMoneyBottomIndicator();
+    this.darkPoolAccumulation = dependencies.darkPoolAccumulation || new DarkPoolAccumulationIndicator(config.darkPoolAccumulation || {});
   }
 
   /**
@@ -117,7 +119,7 @@ export class PortfolioStrategyEngine {
       }
     }
 
-    // 5. Smart / Dumb Money Bottom
+    // 5. Smart / Dumb Money Bottom (Legacy)
     let sdRes = precalculated.smartDumbBottom;
     if (!sdRes) {
       try {
@@ -127,7 +129,17 @@ export class PortfolioStrategyEngine {
       }
     }
 
-    const isBottomCritical = (pcRes?.status === 'CRITICAL') || (sdRes?.status === 'CRITICAL');
+    // 6. Dark Pool Wal-Akkumulation (DIX)
+    let dpRes = precalculated.darkPoolAccumulation;
+    if (!dpRes) {
+      try {
+        dpRes = this.darkPoolAccumulation.evaluate(timeline);
+      } catch (e) {
+        dpRes = { status: 'UNKNOWN', message: e.message };
+      }
+    }
+
+    const isBottomCritical = (pcRes?.status === 'CRITICAL') || (sdRes?.status === 'CRITICAL') || (dpRes?.status === 'CRITICAL');
 
     // Übergeordnetes Regime
     let regime = 'EXPANSION';
@@ -163,10 +175,11 @@ export class PortfolioStrategyEngine {
       goldSniper: gsRes,
       treasuryCapacity: tcRes,
       bottomSniper: {
-        status: isBottomCritical ? 'CRITICAL' : (pcRes?.status || 'OK'),
+        status: isBottomCritical ? 'CRITICAL' : (dpRes?.status === 'WARNING' || pcRes?.status === 'WARNING' ? 'WARNING' : 'OK'),
         isCritical: isBottomCritical,
         panicCapitulation: pcRes,
-        smartDumbBottom: sdRes
+        smartDumbBottom: sdRes,
+        darkPoolAccumulation: dpRes
       },
       cryptoRegime: {
         status: btcRegime,

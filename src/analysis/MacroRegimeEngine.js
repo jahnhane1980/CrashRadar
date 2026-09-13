@@ -26,12 +26,14 @@ import { MlRegimeRadarMacroIndicator } from './indicators/MlRegimeRadarMacroIndi
 import { TreasuryCapacityRadarIndicator } from './indicators/TreasuryCapacityRadarIndicator.js';
 import { KatastrophenMatrixIndicator } from './indicators/KatastrophenMatrixIndicator.js';
 import { GoldSniperIndicator } from './indicators/GoldSniperIndicator.js';
+import { DarkPoolAccumulationIndicator } from './indicators/DarkPoolAccumulationIndicator.js';
 
 export class MacroRegimeEngine {
     constructor(indicatorConfig = null) {
         const registry = {
             SmartDumbMoneyTopIndicator,
             SmartDumbMoneyBottomIndicator,
+            DarkPoolAccumulationIndicator,
             YieldCurveIndicator,
             RedAlertIndicator,
             MarginDebtIndicator,

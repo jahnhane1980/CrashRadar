@@ -1,6 +1,8 @@
 import { MathUtils } from '../../utils/MathUtils.js';
 import { KatastrophenMatrixIndicator } from './KatastrophenMatrixIndicator.js';
 import { PanicCapitulationIndicator } from './PanicCapitulationIndicator.js';
+import { DarkPoolAccumulationIndicator } from './DarkPoolAccumulationIndicator.js';
+import { VixSpikeCrushIndicator } from './VixSpikeCrushIndicator.js';
 
 /**
  * GoldSniperIndicator
@@ -39,10 +41,13 @@ export class GoldSniperIndicator {
     this.exitDrawdownMin = config.exitDrawdownMin ?? -18.0; // Ab -18.0% SPY DD Gewinne sichern
     this.exitDrawdownMax = config.exitDrawdownMax ?? -19.0; // Spätestens bei -19.0% vor dem Margin Call
     this.marginCallThreshold = config.marginCallThreshold ?? -20.0; // Ab -20.0% akute Liquidierungswelle
+    this.bottomDrawdownMin = config.bottomDrawdownMin ?? -18.0; // Re-Entry erst ab echter Mindest-Korrekturtiefe
     this.athLookback = config.athLookback || 252;
 
     this.katastrophenMatrix = dependencies.katastrophenMatrix || new KatastrophenMatrixIndicator(config.katastrophenMatrixConfig || {});
     this.panicCapitulation = dependencies.panicCapitulation || new PanicCapitulationIndicator();
+    this.darkPoolAccumulation = dependencies.darkPoolAccumulation || new DarkPoolAccumulationIndicator();
+    this.vixSpikeCrush = dependencies.vixSpikeCrush || new VixSpikeCrushIndicator();
   }
 
   evaluate(timeline, precalculated = {}) {
@@ -137,14 +142,32 @@ export class GoldSniperIndicator {
       const ddLookback = Math.min(sliceUntilI.length, this.athLookback);
       const spyDdAtI = MathUtils.getDrawdownFromMax(sliceUntilI, t => t.assets?.[this.benchmark], ddLookback) ?? 0;
 
-      // 3. Bottom Sniper an Tag i
+      // 3. Bottom Sniper an Tag i (Atomare Sensoren)
       let bottomRes;
       if (i === n - 1 && precalculated.panicCapitulation) {
         bottomRes = precalculated.panicCapitulation;
       } else {
         bottomRes = this.panicCapitulation.evaluate(sliceUntilI);
       }
-      const isBottomCrit = bottomRes && bottomRes.status === 'CRITICAL';
+
+      let dpRes;
+      if (i === n - 1 && precalculated.darkPoolAccumulation) {
+        dpRes = precalculated.darkPoolAccumulation;
+      } else {
+        dpRes = this.darkPoolAccumulation.evaluate(sliceUntilI);
+      }
+
+      let vixCrushRes;
+      if (i === n - 1 && precalculated.vixSpikeCrush) {
+        vixCrushRes = precalculated.vixSpikeCrush;
+      } else {
+        vixCrushRes = this.vixSpikeCrush.evaluate(sliceUntilI);
+      }
+
+      const isBottomCrit = (bottomRes && bottomRes.status === 'CRITICAL') ||
+                           (dpRes && dpRes.status === 'CRITICAL') ||
+                           (vixCrushRes && vixCrushRes.status === 'CRITICAL');
+      const isDeepEnoughForBottom = spyDdAtI <= this.bottomDrawdownMin;
 
       // State-Machine Transitionen:
       if (matrixRes.isShieldActive) {
@@ -162,8 +185,8 @@ export class GoldSniperIndicator {
         } else if (state === 'HEDGE_ACTIVE') {
           daysInHedge++;
 
-          // Prüfung auf Bottom Sniper V-Umkehr (auch vor -18% möglich)
-          if (isBottomCrit) {
+          // Prüfung auf Bottom Sniper V-Umkehr (NUR bei echter Mindest-Korrekturtiefe <= -18%)
+          if (isBottomCrit && isDeepEnoughForBottom) {
             state = 'RE_ENTRY';
             signal = 'DEPLOY_CASH';
             bottomSniperDate = day.date || `Day-${i}`;
@@ -179,7 +202,7 @@ export class GoldSniperIndicator {
           }
         } else if (state === 'PRE_MARGIN_LOCK' || state === 'MARGIN_CALL_ACTIVE') {
           // Wir sind bereits aus Gold in Cash gewechselt
-          if (isBottomCrit) {
+          if (isBottomCrit && isDeepEnoughForBottom) {
             state = 'RE_ENTRY';
             signal = 'DEPLOY_CASH';
             bottomSniperDate = day.date || `Day-${i}`;
@@ -191,8 +214,15 @@ export class GoldSniperIndicator {
             signal = 'HOLD_CASH';
           }
         } else if (state === 'RE_ENTRY') {
-          // Nach Auslösen des Re-Entry Signals
-          signal = 'DEPLOY_CASH';
+          // Nach Auslösen des Re-Entry Signals:
+          // Fail-Safe: Wenn nach Re-Entry der Markt weiter einbricht und kein Bottom mehr vorliegt
+          if (spyDdAtI <= this.marginCallThreshold && !isBottomCrit) {
+            state = 'MARGIN_CALL_ACTIVE';
+            signal = 'HOLD_CASH';
+            isMarginCallActive = true;
+          } else {
+            signal = 'DEPLOY_CASH';
+          }
         }
       } else {
         // Schutzschild der Katastrophen-Matrix ist inaktiv
