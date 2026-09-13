@@ -5,6 +5,24 @@
   "base_currency": "USD",
   "last_updated": "2026-09-13",
 
+  "notifications": {
+    "enabled": true,
+    "channels": [
+      {
+        "provider": "ntfy",
+        "env_topic_key": "NTFY_PORTFOLIO_TOPIC",
+        "title": "CrashRadar: Kamikaze Growth",
+        "tags": ["rocket", "fire"],
+        "priority": "high"
+      }
+    ],
+    "triggers": {
+      "on_state_change": true,
+      "on_emergency": true,
+      "monthly_savings_day": 1
+    }
+  },
+
   "telegram": {
     "read_only": true,
     "stream_type": "FLAGSHIP_BROADCAST"

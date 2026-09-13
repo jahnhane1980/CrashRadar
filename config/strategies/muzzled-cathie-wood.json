@@ -1,0 +1,109 @@
+{
+  "id": "MUZZLED_CATHIE_WOOD",
+  "name": "Muzzled Cathie Wood Portfolio",
+  "version": "1.0.0",
+  "base_currency": "USD",
+  "last_updated": "2026-09-13",
+
+  "notifications": {
+    "enabled": true,
+    "channels": [
+      {
+        "provider": "ntfy",
+        "env_topic_key": "NTFY_PORTFOLIO_MCW",
+        "title": "CrashRadar: Muzzled Cathie Wood",
+        "tags": ["wolf", "shield"],
+        "priority": "high"
+      }
+    ],
+    "triggers": {
+      "on_state_change": true,
+      "on_emergency": true,
+      "monthly_savings_day": 1
+    }
+  },
+
+  "strategic_allocation": {
+    "tech_bucket_pct": 60.0,
+    "crypto_bucket_pct": 40.0,
+    "mothership_pool": {
+      "ticker": "SPY",
+      "name": "SPDR S&P 500 ETF Trust",
+      "role": "Master-Liquiditäts-Pool und Parkplatz für unallokiertes Tech- und Krypto-Kapital"
+    }
+  },
+
+  "crypto_regime": {
+    "benchmark": "BTC",
+    "regime_indicator": "BTC_21W_EMA",
+    "bear_market_exit": {
+      "condition": "BELOW_EMA21W",
+      "action": "100_PERCENT_EXIT_TO_MOTHERSHIP_CLAIM",
+      "claim_registered": true
+    },
+    "bull_market_reentry": {
+      "condition": "ABOVE_EMA21W",
+      "tranches": [
+        { "tranche": 1, "pct": 40.0, "timing": "IMMEDIATE_ON_CONFIRMED_WEEKLY_CLOSE" },
+        { "tranche": 2, "pct": 30.0, "timing": "AFTER_2_TO_3_WEEKS_CONFIRMATION" },
+        { "tranche": 3, "pct": 30.0, "timing": "FULL_POSITIONING" }
+      ],
+      "allocation": "EQUAL_WEIGHT_ACROSS_BUY_CANDIDATES"
+    }
+  },
+
+  "tech_breakout_rules": {
+    "stage_2_breakout": {
+      "min_consolidation_days": 50,
+      "price_above_sma200": true,
+      "price_above_sma50": true,
+      "volume_spike_factor": 1.5,
+      "fundamental_10q_check": true,
+      "min_yoy_growth_pct": 15.0
+    },
+    "fire_spark_allocation": {
+      "min_pct_of_mothership": 30.0,
+      "max_pct_of_mothership": 40.0
+    },
+    "dip_buying": {
+      "enabled": true,
+      "max_pct_of_mothership": 15.0,
+      "cooldown_days": 20
+    }
+  },
+
+  "tech_exit_rules": {
+    "flags": {
+      "hold_and_buy": "Verkaufsblockade bei intakten Zahlen (YoY >= 20% oder Turnaround)",
+      "hold_and_observe": "Auf Bewährung bei Knick; 3-Stufen-Abbau bei SMA200-Verlust und relativer Sektorschwäche"
+    },
+    "sector_benchmarks": {
+      "semiconductors": "SMH",
+      "software_cloud": "IGV",
+      "consumer_tech": "XLY",
+      "fintech": "FINX",
+      "tech_umbrella": "QQQ"
+    }
+  },
+
+  "macro_emergency": {
+    "trigger_net_liq_delta_8w": -0.05,
+    "trigger_real_yields_pct": 2.2,
+    "trigger_credit_spread_hy_pct": 4.0,
+    "de_risking_pct": 50.0,
+    "allocation": {
+      "gold_pct": 25.0,
+      "cash_usd_pct": 25.0
+    }
+  },
+
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-09-13",
+      "title": "Initiales Muzzled Cathie Wood Manifest",
+      "summary": "Master-Watchlist mit 60/40 Tech/Krypto-Split, autonomem BTC 21W-EMA Krypto-Regime (40/30/30 Pyramide), S&P 500 Mutterschiff und Ntfy-Alarmierung NTFY_PORTFOLIO_MCW.",
+      "broadcast": true
+    }
+  ]
+}

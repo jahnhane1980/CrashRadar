@@ -342,5 +342,42 @@ describe('StrategyNotificationService', () => {
 
       await expect(service.dispatchStrategyAlerts(evalResult, { forceSend: true })).resolves.toEqual([]);
     });
+
+    it('should correctly dispatch alerts for all configured strategies with their respective topic keys', async () => {
+      process.env.NTFY_PORTFOLIO_TOPIC = 'topic-kamikaze';
+      process.env.NTFY_PORTFOLIO_SATELITE = 'topic-satellite';
+      process.env.NTFY_PORTFOLIO_7SLOT_GURU = 'topic-guru';
+      process.env.NTFY_PORTFOLIO_MCW = 'topic-mcw';
+
+      const mockSend = vi.fn().mockResolvedValue({});
+      const mockNtfyBuilder = vi.fn().mockReturnValue({ send: mockSend });
+
+      const service = new StrategyNotificationService({
+        historyPath: TEST_HISTORY_PATH
+      }, {
+        ntfyServiceBuilder: mockNtfyBuilder
+      });
+
+      const evalResult = {
+        date: '2026-09-13',
+        strategyResults: {
+          KAMIKAZE_GROWTH: { status: 'ACTIVE_MANAGEMENT', action: 'HOLD' },
+          SATELITE: { status: 'NORMAL', action: 'HODL' },
+          SEVEN_SLOT_GURU: { status: 'ACTIVE', action: 'HOLD' },
+          MUZZLED_CATHIE_WOOD: { status: 'OBSERVE', action: 'HOLD' }
+        }
+      };
+
+      const alerts = await service.dispatchStrategyAlerts(evalResult, { forceSend: true });
+
+      expect(alerts.length).toBe(4);
+      expect(alerts.map(a => a.strategyId)).toEqual(['KAMIKAZE_GROWTH', 'SATELITE', 'SEVEN_SLOT_GURU', 'MUZZLED_CATHIE_WOOD']);
+      expect(alerts.map(a => a.topic)).toEqual(['topic-kamikaze', 'topic-satellite', 'topic-guru', 'topic-mcw']);
+
+      delete process.env.NTFY_PORTFOLIO_TOPIC;
+      delete process.env.NTFY_PORTFOLIO_SATELITE;
+      delete process.env.NTFY_PORTFOLIO_7SLOT_GURU;
+      delete process.env.NTFY_PORTFOLIO_MCW;
+    });
   });
 });

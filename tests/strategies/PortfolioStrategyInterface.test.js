@@ -77,6 +77,22 @@ describe('PortfolioStrategyInterface', () => {
     const kamikazeManifest = PortfolioStrategyInterface.loadManifest('kamikaze-growth');
     expect(kamikazeManifest).toBeDefined();
     expect(kamikazeManifest.id).toBe('KAMIKAZE_GROWTH');
+    expect(kamikazeManifest.notifications?.channels[0]?.env_topic_key).toBe('NTFY_PORTFOLIO_TOPIC');
+
+    const satelliteManifest = PortfolioStrategyInterface.loadManifest('SATELITE');
+    expect(satelliteManifest).toBeDefined();
+    expect(satelliteManifest.id).toBe('SATELITE');
+    expect(satelliteManifest.notifications?.channels[0]?.env_topic_key).toBe('NTFY_PORTFOLIO_SATELITE');
+
+    const guruManifest = PortfolioStrategyInterface.loadManifest('7_SLOT_GURU');
+    expect(guruManifest).toBeDefined();
+    expect(guruManifest.id).toBe('SEVEN_SLOT_GURU');
+    expect(guruManifest.notifications?.channels[0]?.env_topic_key).toBe('NTFY_PORTFOLIO_7SLOT_GURU');
+
+    const mcwManifest = PortfolioStrategyInterface.loadManifest('MCW');
+    expect(mcwManifest).toBeDefined();
+    expect(mcwManifest.id).toBe('MUZZLED_CATHIE_WOOD');
+    expect(mcwManifest.notifications?.channels[0]?.env_topic_key).toBe('NTFY_PORTFOLIO_MCW');
   });
 
   it('should throw if manifest does not exist', () => {

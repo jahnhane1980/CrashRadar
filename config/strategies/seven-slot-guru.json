@@ -1,0 +1,99 @@
+{
+  "id": "SEVEN_SLOT_GURU",
+  "name": "7-Slot Guru-Konsens Portfolio",
+  "version": "2.0.0",
+  "base_currency": "USD",
+  "last_updated": "2026-09-13",
+
+  "notifications": {
+    "enabled": true,
+    "channels": [
+      {
+        "provider": "ntfy",
+        "env_topic_key": "NTFY_PORTFOLIO_7SLOT_GURU",
+        "title": "CrashRadar: 7-Slot Guru",
+        "tags": ["brain", "classical_building"],
+        "priority": "high"
+      }
+    ],
+    "triggers": {
+      "on_state_change": true,
+      "on_emergency": true,
+      "monthly_savings_day": 1
+    }
+  },
+
+  "committee": {
+    "core_managers": [
+      { "name": "Stanley Druckenmiller", "entity": "Duquesne Family Office", "focus": "Makro-Liquidität und asymmetrische Technologietrends" },
+      { "name": "Philippe Laffont", "entity": "Coatue Management", "focus": "Dediziertes Technologie-, Cloud- und Halbleiter-Research" },
+      { "name": "Chase Coleman", "entity": "Tiger Global Management", "focus": "Marktführende Software- und Plattform-Monopole" },
+      { "name": "David Tepper", "entity": "Appaloosa Management", "focus": "Opportunistischer Tech- und Value-Fokus" },
+      { "name": "Brad Gerstner", "entity": "Altimeter Capital", "focus": "B2B-Software, Cloud und KI-Infrastruktur" },
+      { "name": "Zach Schreiber", "entity": "PointState Capital", "focus": "Halbleiter- und makroökonomische Spezialthemen" }
+    ],
+    "succession_list": [
+      { "order": 1, "name": "Gavin Baker", "entity": "Atreides Management", "focus": "Halbleiter-Supply-Chains & Enterprise-Software" },
+      { "order": 2, "name": "Alex Sacerdote", "entity": "Whale Rock Capital Management", "focus": "TMT-Wellen, Cloud & KI-Infrastruktur" },
+      { "order": 3, "name": "Christopher Hohn", "entity": "TCI Fund Management", "focus": "Konzentrierte globale Tech-Monopole" }
+    ],
+    "filing_schedule": {
+      "q4": "02-16",
+      "q1": "05-16",
+      "q2": "08-16",
+      "q3": "11-16",
+      "filing_lag_days": 45
+    }
+  },
+
+  "portfolio_structure": {
+    "max_slots": 7,
+    "sector_focus": "TECHNOLOGY",
+    "slot_weight_pct": 14.2857,
+    "min_active_buyers_for_entry": 2,
+    "min_holders_for_retention": 2,
+    "base_protection": {
+      "seasoning_period_months": 6,
+      "override_buyer_threshold": 3,
+      "sma200_trend_filter": true
+    }
+  },
+
+  "macro_gate": {
+    "yield_curve_t10y2y": {
+      "green_condition": "T10Y2Y < 0.0 OR (T10Y2Y < 0.30 AND delta_30d < 0.20)",
+      "red_condition": "T10Y2Y >= 0.30 AND delta_30d >= 0.20"
+    },
+    "high_yield_spread": {
+      "green_condition": "HY_SPREAD < SMA50 OR HY_SPREAD < 4.0",
+      "red_condition": "HY_SPREAD >= SMA50 AND HY_SPREAD >= 4.0"
+    }
+  },
+
+  "macro_liquidity_guard": {
+    "trigger_net_liq_delta_8w": -0.05,
+    "trigger_credit_spread_hy_pct": 4.0,
+    "emergency_allocation": {
+      "gold_pct": 25.0,
+      "cash_usd_pct": 75.0
+    },
+    "savings_rate_allocation": {
+      "gold_pct": 25.0,
+      "cash_usd_pct": 75.0
+    },
+    "re_entry": {
+      "nasdaq_dip_threshold_pct": -10.0,
+      "reinvest_target": "TECH_SLOTS_EQUAL_WEIGHT"
+    }
+  },
+
+  "changelog": [
+    {
+      "version": "2.0.0",
+      "date": "2026-09-13",
+      "title": "Initiales 7-Slot Guru-Konsens Manifest",
+      "summary": "Verbindliches Regelwerk mit 6er-Gremium, Druckenmiller Net Fed Liquidity Rebalancing (25% Gold / 75% Cash) und Ntfy-Alarmierung NTFY_PORTFOLIO_7SLOT_GURU.",
+      "broadcast": true
+    }
+  ]
+}

@@ -76,9 +76,28 @@ export class PortfolioStrategyInterface {
    */
   static loadManifest(manifestIdOrPath) {
     let resolvedPath = manifestIdOrPath;
+    const aliases = {
+      'satelite': 'satellite',
+      'satellite': 'satellite',
+      '7-slot-guru': 'seven-slot-guru',
+      'seven-slot-guru': 'seven-slot-guru',
+      'mcw': 'muzzled-cathie-wood',
+      'muzzled-cathie-wood': 'muzzled-cathie-wood'
+    };
+
     if (!path.isAbsolute(resolvedPath) && !resolvedPath.endsWith('.json')) {
-      const filename = manifestIdOrPath.toLowerCase().replace(/_/g, '-') + '.json';
-      resolvedPath = path.resolve(__dirname, '../../config/strategies', filename);
+      const normalized = manifestIdOrPath.toLowerCase().replace(/_/g, '-');
+      const key = aliases[normalized] || normalized;
+      resolvedPath = path.resolve(__dirname, '../../config/strategies', key + '.json');
+    }
+    if (!fs.existsSync(resolvedPath)) {
+      const basename = path.basename(resolvedPath, '.json').toLowerCase();
+      if (aliases[basename]) {
+        const alt = path.resolve(path.dirname(resolvedPath), aliases[basename] + '.json');
+        if (fs.existsSync(alt)) {
+          resolvedPath = alt;
+        }
+      }
     }
     if (!fs.existsSync(resolvedPath)) {
       throw new Error(`[PortfolioStrategyInterface] Manifest-Datei nicht gefunden: ${resolvedPath}`);
