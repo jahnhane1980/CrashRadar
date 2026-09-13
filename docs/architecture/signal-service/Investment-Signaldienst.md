@@ -1,6 +1,12 @@
-# Architektur- & Implementierungsdokument: Investment- & Signaldienst (V2.1)
+# Architektur- & Implementierungsdokument: Investment- & Signaldienst (V2.2)
 
-Dieses Dokument definiert die End-to-End-Architektur für die Bereitstellung von automatisierten Anlagestrategien, Signalbenachrichtigungen und Portfolio-Trackings über Telegram. Das Gesamtsystem arbeitet serverlos, vollständig innerhalb der kostenfreien Kontingente (0,00 € Betriebskosten) und strikt nach dem Prinzip der **Separation of Concerns**: Trennung von schwerer Analyse-Engine (Pre-Computation) und leichtgewichtigem Edge-Gateway (Personalisierung).
+> 📢 **Kanal-Strategie (Dezember 2026):**  
+> Ursprünglich war eine Telegram-Bot-Architektur angedacht. Aufgrund von Installations- und Konfigurations-Hürden wurde Telegram abgelöst.  
+> **Phase 1 (V1 MVP):** Direkter, serverloser **Discord-Broadcast** via Webhooks (Rich Embeds, Rollen-Mentions, 4-Fälle-Matrix direkt aus GitHub Actions).  
+> **Mobile Community-Option:** Bidirektionale **WhatsApp-Gitter-Bridge** für Gruppen-Interaktion.  
+> Die konkreten Blueprints und PDF-Konzepte sind hinterlegt in [`docs/architecture/signal-service/channels/`](file:///D:/GitHub/CrashRadar/docs/architecture/signal-service/channels/).
+
+Dieses Dokument definiert die End-to-End-Architektur für die Bereitstellung von automatisierten Anlagestrategien, Signalbenachrichtigungen und Portfolio-Trackings über moderne Chat- und Broadcast-Kanäle (Discord & WhatsApp). Das Gesamtsystem arbeitet serverlos, vollständig innerhalb der kostenfreien Kontingente (0,00 € Betriebskosten) und strikt nach dem Prinzip der **Separation of Concerns**: Trennung von schwerer Analyse-Engine (Pre-Computation) und leichtgewichtigem Edge-Gateway.
 
 ---
 

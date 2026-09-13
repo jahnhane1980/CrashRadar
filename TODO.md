@@ -44,24 +44,24 @@
     * Reconciliation-Service in `src/services/BrokerReconciliationService.js` ("Broker-Realität überschreibt Modell-Zustand").
   * **Schritt 6 (Snapshot-Export & Runner):**
     * Snapshot-Push-Dienst `src/services/SnapshotExporterService.js` (an Cloudflare D1 Webhook).
-    * Telegram-Dienst `src/services/TelegramService.js` (Public Channel).
+    * Discord-Dienst `src/services/DiscordService.js` (Discord-Webhooks mit Rich Embeds & Rollen-Mentions).
     * Orchestrierender Runner `src/runners/PortfolioStrategyRunner.js`.
 
-### 3. Notification- & Signal-System: Telegram, Edge-Gateway & Architektur-Review
-* **Master-Spezifikation:** Vollständig dokumentiert in [`docs/architecture/signal-service/Investment-Signaldienst.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signal-service/Investment-Signaldienst.md).
-* **Ziel:** Vollständige Ablösung von [`src/services/NtfyService.js`](file:///D:/GitHub/CrashRadar/src/services/NtfyService.js) durch einen zweigeteilten Telegram- & Signaldienst (Public Broadcast in CrashRadar + personalisiertes 1:1 Edge-Gateway im neuen Repo `CrashRadar-Signals`) inklusive tiefem Architektur-Review und dynamischem Krisen-Debouncing.
+### 3. Notification- & Signal-System: Discord-Webhooks, WhatsApp-Bridge & Chat-Channels
+* **Master-Spezifikation:** Vollständig dokumentiert in [`docs/architecture/signal-service/Investment-Signaldienst.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signal-service/Investment-Signaldienst.md) mit Kanal-Blueprints in [`docs/architecture/signal-service/channels/`](file:///D:/GitHub/CrashRadar/docs/architecture/signal-service/channels/).
+* **Ziel:** Ablösung von Telegram & ntfy durch eine schlanke, serverlose Discord-Webhook-Architektur (Phase 1: Rich Embeds, 4-Fälle-Matrix) sowie optionalem WhatsApp-Gitter-Bridge-Blueprint für mobile Gruppen.
 * **Operative Umsetzungsschritte in `CrashRadar` [OFFEN]:**
   * **Schritt 1 (Architektur-Review der Indikatoren & Notifications):** Kritische Prüfung der Datenfluss-Pipeline auf Redundanzen, Mehrfachberechnungen und saubere Trennung (Separation of Concerns) zwischen Indikatoren-Auswertung und Alarm-Erzeugung.
   * **Schritt 2 (Dynamisches Debouncing & Krisen-Aufwach-Logik):**
     * Normalzustand: 14 Tage Spam-Schutz für reguläre Warnungen in [`src/services/NotificationManager.js`](file:///D:/GitHub/CrashRadar/src/services/NotificationManager.js) und [`config/Notification-Config.json`](file:///D:/GitHub/CrashRadar/config/Notification-Config.json).
     * Spätzyklus / Kollisions-Fenster aktiv: Dynamische Verkürzung auf 1–2 Tage oder sofortige Alarmierung bei Zustands-/Statuswechsel.
     * Akute Panik / Flash Crash: 0 Tage / Sofort-Push für Re-Entry- und Exit-Signale.
-  * **Schritt 3 (`TelegramService.js` & Test-Isolation):**
-    * Implementierung des Telegram Bot Clients in `src/services/TelegramService.js` mit MarkdownV2-Unterstützung, Fehlerbehandlung und Broadcast-Channel-Routing (`chat.type == "channel"`).
-    * Öffentlicher Kanal `Makro-Wetter` und gespiegeltes Test-Pendant `Makro-Wetter-Test` via `TELEGRAM_ENV=test` vs `TELEGRAM_ENV=prod`.
+  * **Schritt 3 (`DiscordService.js` & Test-Isolation):**
+    * Implementierung des Discord Webhook Clients in `src/services/DiscordService.js` mit Rich Embeds, Farbcodierung (Rot/Grün/Gold) und Rollen-Mentions (`@Subscriber`).
+    * Getrennte Webhooks: `#makro-wetter` (öffentlich) und `#crashradar-signale` (geschlossene Gruppe).
   * **Schritt 4 (Pre-Computation Push & Snapshot-Exporter):**
-    * Implementierung eines Dispatchers/Exporters, der nach dem täglichen Auswertungslauf den `daily_intelligence.json` Payload (Makro-Regime, Veto-Status, Allokationen pro Strategie) per Webhook an den Cloudflare Worker (`POST /api/snapshot`) pusht.
-  * **Schritt 5 (Runner-Refactoring):** Aktualisierung der Runner ([`IndicatorAnalysisRunner.js`](file:///D:/GitHub/CrashRadar/src/runners/IndicatorAnalysisRunner.js), [`MacroScorecardRunner.js`](file:///D:/GitHub/CrashRadar/src/runners/MacroScorecardRunner.js), [`StandardRunner.js`](file:///D:/GitHub/CrashRadar/src/runners/StandardRunner.js)) zur Übergabe von Nachrichten an den neuen `TelegramService`.
+    * Implementierung eines Dispatchers/Exporters, der nach dem täglichen Auswertungslauf den `daily_intelligence.json` Payload (Makro-Regime, Veto-Status, Allokationen pro Strategie) via Discord-Webhook pusht.
+  * **Schritt 5 (Runner-Refactoring):** Aktualisierung der Runner ([`IndicatorAnalysisRunner.js`](file:///D:/GitHub/CrashRadar/src/runners/IndicatorAnalysisRunner.js), [`MacroScorecardRunner.js`](file:///D:/GitHub/CrashRadar/src/runners/MacroScorecardRunner.js), [`StandardRunner.js`](file:///D:/GitHub/CrashRadar/src/runners/StandardRunner.js)) zur Übergabe von Nachrichten an den neuen `DiscordService`.
 * **Ausblick: Neues Repo `CrashRadar-Signals` (Cloudflare Worker + D1):**
   * Setup des Workers als Webhook-Receiver für private 1:1 Telegram-Chats.
   * D1-Tabellen `user_portfolios` (inkl. `strategy_id` & `strategy_version`), `market_regime_snapshot`, `strategy_changelogs` und `signal_logs`.

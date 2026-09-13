@@ -20,7 +20,7 @@ flowchart TD
     Arch --> A4["🧠 ml/<br>(Strategy Pipeline Blueprint)"]
     Arch --> A5["♟️ strategies/<br>(Portfoliostrategien & Allokation)"]
     Arch --> A6["🌐 api/ & data/<br>(Provider-Schnittstellen)"]
-    Arch --> A7["📱 signal-service/<br>(Telegram & Cloudflare Edge Gateway)"]
+    Arch --> A7["📱 signal-service/<br>(Discord, WhatsApp & Broadcasts)"]
     
     Res --> R1["📊 macro-proofs/<br>(21-Jahre-Test & Korrelationen)"]
     Res --> R2["📜 dalio-cycles/<br>(Schuldenkrisen & 3-von-4-Regel)"]
@@ -106,9 +106,12 @@ flowchart LR
 
 ### G. 📱 Signal- & Benachrichtigungsdienst (`docs/architecture/signal-service/`)
 * 📄 **[`Investment-Signaldienst.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signal-service/Investment-Signaldienst.md):**  
-  *Serverlose 0,00-€-End-to-End-Architektur: 2-Ebenen-Signal-Hierarchie mit Trennung von zustandslosen Stock- & Asset-Radaren (`src/radars/`) und Portfolio-Kapitalmanagement (`src/strategies/`), CrashRadar Intelligence Engine (Pre-Computation Push via `PortfolioStrategyEngine` Plugin-Registry, Standard-Makrosignale als Service, autonomes Bucket- & Order-Management, Kamikaze Live-Broker Sync mit Discretionary Override) und Cloudflare Edge + D1 Gateway (1:1 Telegram Private Chats, dynamisches Onboarding, 3 kuratierte Beweis-Szenarien, Execution Feedback Loop und Roadmap für die evolutorische Entwicklung).*
+  *Serverlose 0,00-€-End-to-End-Architektur: 2-Ebenen-Signal-Hierarchie mit Trennung von zustandslosen Stock- & Asset-Radaren (`src/radars/`) und Portfolio-Kapitalmanagement (`src/strategies/`), CrashRadar Intelligence Engine (Pre-Computation Push via `PortfolioStrategyEngine` Plugin-Registry, Standard-Makrosignale als Service, autonomes Bucket- & Order-Management, Kamikaze Live-Broker Sync mit Discretionary Override) sowie moderne Chat- und Broadcast-Kanäle (Discord-Webhooks, 4-Fälle-Matrix, Rich Embeds).*
 * 📄 **[`Trading212-Portfolio-Broadcast.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signal-service/Trading212-Portfolio-Broadcast.md):**  
   *Vollautomatisierter, datenbankfreier Read-Only Broadcast des realen Broker-Depots via Trading 212 API: Zero Absolute Leakage (ausschließlich relative Allokation in % und Gesamtrenditen), 2 Modi (`weekly` Freitags nach Börsenschluss inkl. ASCII-Balken vs. `trades` 3x täglich stumm mit Ausführungs-Alerts), automatische Delta-Erkennung (Käufe, Verkäufe, Aufstockungen, Order-Buch), Normalisierung von Legacy-SPAC-Tickern und Auslieferung an Ntfy-Topic `JahnsPortfolio-baLvp3m0KdnYQdAC`.*
+* 📁 **Kanal-Blueprints & Referenzen (`docs/architecture/signal-service/channels/`):**
+  * 📑 **[`Discord-Bot-Chat-Benachrichtigung.pdf`](file:///D:/GitHub/CrashRadar/docs/architecture/signal-service/channels/Discord-Bot-Chat-Benachrichtigung.pdf):** *Konzept-Blueprint für serverlosen Discord-Broadcast via Webhooks (Phase 1: Rich Embeds, Rollen-Mentions `@Subscriber`) und interaktive Bot-Phase (Phase 2).*
+  * 📑 **[`Whtsapp-Bot-Chat-Benachrichtigung.pdf`](file:///D:/GitHub/CrashRadar/docs/architecture/signal-service/channels/Whtsapp-Bot-Chat-Benachrichtigung.pdf):** *Master-Blueprint für bidirektionale Gitter-WhatsApp-Bridge (`whatsapp-web.js` + Gitter REST/Stream API) zur Gruppen-Interaktion.*
 
 ---
 

@@ -40,7 +40,7 @@ Um die Deadline im Dezember garantiert einzuhalten, wird das bisher in [`Investm
 4. **Keine Inline-Feedback-Buttons:** Keine `[✅ Ausgeführt]` State-Machines, die Datenbank-Synchronisation verlangen.
 
 ### ✅ Was wir in V1 BAUEN (Der Selbst-Selektierende Broadcast):
-* Der bestehende `CrashRadar` Runner schickt nach dem täglichen Berechnungslauf **fertig formatierte Handlungsanweisungen** direkt in den Telegram-Kanal bzw. die Telegram-Gruppe.
+* Der bestehende `CrashRadar` Runner schickt nach dem täglichen Berechnungslauf **fertig formatierte Handlungsanweisungen** direkt in den Discord-Kanal bzw. die WhatsApp-Gruppe (via Discord-Webhooks).
 * Jedes Signal bedient in **einer einzigen Nachricht** die 4 typischen Lebenslagen eines Gruppenmitglieds:
 
 ```markdown
@@ -101,10 +101,11 @@ Diese 5 Komponenten müssen bis zum 15. Dezember 2026 programmiert und getestet 
 * Versorgt sie mit den vorverarbeiteten Makro-Zuständen der `MacroRegimeEngine`.
 * Aggregiert die täglichen Signale für den Export.
 
-### 5. `TelegramService.js` (Broadcast mit 4-Fälle-Matrix)
-* Direkte Anbindung an die Telegram Bot API via HTTPS (ohne Cloudflare Worker).
+### 5. `DiscordNotificationService.js` (Broadcast mit 4-Fälle-Matrix)
+* Direkte, schlanke Anbindung via Discord Webhook API (HTTP POST ohne Server oder Middleware) mit Rich Embeds.
 * Formatierung der Signale nach dem 4-Fälle-Schema (Bereits investiert / Noch nicht investiert / Sparplan / Cash).
-* Getrennte Kanäle/Gruppen: `Makro-Wetter` (öffentlich) und `CrashRadar-Signale` (für deine Gruppe).
+* Getrennte Kanäle/Webhooks: `#makro-wetter` (öffentlich) und `#crashradar-signale` (für die private Gruppe).
+* Optionaler Blueprint für WhatsApp-Gitter-Bridge hinterlegt in [`docs/architecture/signal-service/channels/`](file:///D:/GitHub/CrashRadar/docs/architecture/signal-service/channels/).
 
 ---
 
@@ -115,7 +116,7 @@ Um den Terminplan nicht zu gefährden, werden folgende komplexe Themen offiziell
 | Thema / Baustein | Grund für die Verschiebung | V1-Ersatzlösung |
 | :--- | :--- | :--- |
 | **Kamikaze: Autonome Aktiensuche & Post-IPO Growth Engine (PIGE)** | Die marktweite Suche ([`01-Post-Ipo-Growth-Engine.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/01-Post-Ipo-Growth-Engine.md)) über tausende US-Aktien (SIC/NAICS-Filter, IPO-Altersfenster, SEC 10-Q XBRL-Parsing) und die 2. Reihe (Tier-2 Fallbacks) sind zu komplex für V1. | **Curated Watchlist Radar:** In V1 überwacht Kamikaze nur deine feste, handverlesene Watchlist (`PLTR`, `SOFI`, `S`, `NVTS`, `AIRO`, `IBRX`, Krypto). |
-| **Cloudflare Worker & D1 Repo** | Zu hoher Infrastruktur- und Test-Aufwand (1:1 Dialoge, Budgets, Buttons). | Direkter Telegram-Broadcast aus CrashRadar mit 4-Fälle-Matrix. |
+| **Cloudflare Worker & D1 Repo** | Zu hoher Infrastruktur- und Test-Aufwand (1:1 Dialoge, Budgets, Buttons). Telegram-Installation verworfen. | Direkter Discord-Webhook-Broadcast aus CrashRadar mit 4-Fälle-Matrix. |
 | **Full-DB Makro-Wirtschaftskalender** | Riesige DDL-, Parsing- & Nowcast-Pipeline. | Bestehende `Macro-Scenarios-Config.json` genügt vollauf. |
 | **Einzeltitel-ML & FINRA LSTMs** | Hohes Overfitting-Risiko, unvollständige Tests. | Bewährte Heuristik (Weinstein Stage-2 + Makro-Radar). |
 | **Gold-GDX Minen-Strategie** | Reines Forschungsthema. | Verbleibt als Referenz in `docs/research/`. |
@@ -140,8 +141,8 @@ gantt
     GrowthStockRadar & CryptoRegime   :c1, 2026-10-26, 2026-11-08
     Kamikaze & MCW Strategie-Klassen  :c2, 2026-11-01, 2026-11-15
     PortfolioStrategyEngine Registry  :c3, 2026-11-08, 2026-11-20
-    section Sprint 4: Telegram V1
-    TelegramService mit 4-Fälle-Matrix:d1, 2026-11-15, 2026-11-28
+    section Sprint 4: Discord Broadcast V1
+    DiscordService mit 4-Fälle-Matrix :d1, 2026-11-15, 2026-11-28
     End-to-End Testläufe & Fixtures   :d2, 2026-11-22, 2026-12-05
     section Sprint 5: Rollout
     Produktiv-Schaltung für Gruppe    :e1, 2026-12-01, 2026-12-15
