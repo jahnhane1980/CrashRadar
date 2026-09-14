@@ -83,9 +83,7 @@
       "market_value_usd_desc"
     ],
     "base_protection": {
-      "seasoning_period_months": 6,
-      "override_buyer_threshold": 3,
-      "sma200_trend_filter": true,
+      "description": "Bestandstitel sind vor reiner Scout-Hype-Verdrängung geschützt, solange Wächter investiert bleiben und kein technischer Trendbruch vorliegt.",
       "guardian_confirmed_rebalancing": {
         "enabled": true,
         "guardian_trim_required": true,
@@ -93,7 +91,26 @@
           "sma50_break": true,
           "sma200_overextension_pct": 30.0
         },
-        "description": "Bestandstitel verliert Base-Schutz, wenn mindestens 1 Wächter trimmt/verkauft UND (Kurs < SMA50 ODER Kurs > SMA200 + 30%)."
+        "description": "Bestandstitel verliert Schutz und wird verdrängt, wenn mindestens 1 Wächter trimmt/verkauft UND (Kurs < SMA50 ODER Kurs > SMA200 + 30%)."
+      }
+    },
+    "eviction_tie_breaker": [
+      "lowest_holder_count",
+      "lowest_13f_market_value_usd",
+      "furthest_below_sma50_pct"
+    ],
+    "under_allocation_and_cascading_entry": {
+      "rule": "EQUAL_WEIGHT_ACTIVE_SLOTS",
+      "description": "Sind am Marktboden oder nach Ausstiegen weniger als 7 Slots qualifiziert (N < 7), wird das Kapital zu 100% gleichmäßig auf die N qualifizierten Slots verteilt (Gewicht = 100% / N).",
+      "slot_funding_doctrine": {
+        "method": "PROPORTIONAL_TRIM_EXISTING",
+        "formula": "Rückt ein neuer Kandidat in Slot N+1 ein, wird von allen N Bestandsaktien jeweils exakt 1 / (N * (N + 1)) des Portfoliowerts abgetrennt, sodass alle N+1 Slots exakt 100% / (N + 1) wiegen (z.B. von 4x 25% auf 5x 20% = je 5% Trimmen von 1-4 zur Finanzierung von Slot 5).",
+        "savings_plan_support": "Der monatliche Sparplan wird vorübergehend bevorzugt in neue, untergewichtete Slots geleitet."
+      },
+      "zero_candidate_fallback": {
+        "action": "BROAD_MARKET_ETF_PROXY",
+        "fallback_ticker": "QQQ",
+        "description": "Sollte am Marktboden bei Capitulation-Signal ausnahmsweise kein Einzeltitel die Wächter-Kriterien erfüllen (N = 0), wird das Rebound-Kapital zu 100% in QQQ investiert, bis die nächsten 13Fs Einzeltitel-Akkumulationen ausweisen."
       }
     },
     "whitelist": {
@@ -102,20 +119,16 @@
       "comment": "Rechtsräume mit gesicherten Eigentums- und einklagbaren Aktionärsrechten. Taiwan (TSM) explizit zugelassen; China VIE-Konstrukte strikt geblockt."
     },
     "sector_caps": {
+      "policy": "PERMANENT_STRUCTURAL_LIMIT",
       "max_slots_per_subsector": 2,
       "max_weight_pct_per_subsector": 28.57,
-      "active_caps": [
-        {
-          "subsector": "SEMICONDUCTORS",
-          "trigger_manager": "Zach Schreiber (PointState Capital)",
-          "trigger_instrument": "SMH Put Option",
-          "trigger_value_usd": 601100000,
-          "trigger_threshold_usd": 250000000,
-          "status": "ACTIVE",
-          "slots_allocated": ["TSM", "NVDA"],
-          "on_deck_reserve": "LRCX"
-        }
-      ]
+      "skip_policy": "SKIP_TO_NEXT_ELIGIBLE_NON_SECTOR_CANDIDATE",
+      "description": "Strikter 2-Slot-Deckel (max. 28,57% pro Subbranche) verhindert Klumpenrisiken. Ist ein Sektor voll besetzt (z.B. Halbleiter mit TSM und NVDA), wird Platz 1 der Nachrückerliste übersprungen und der nächste berechtigte Kandidat eines anderen Sektors (z.B. UBER) rückt ein.",
+      "semiconductors": {
+        "status": "PERMANENT_CAP_ACTIVE",
+        "slots_allocated": ["TSM", "NVDA"],
+        "rationale": "Dauerhafter Schutz vor zyklischer Halbleiter-Überhitzung (bestätigt durch Schreibers $601M SMH-Put)."
+      }
     },
     "current_slots": [
       {
@@ -211,26 +224,11 @@
         "ticker": "LRCX",
         "name": "Lam Research Corp.",
         "subsector": "Halbleiter",
-        "holders_count": 5,
+        "holders_count": 4,
+        "guardians": ["Zach Schreiber"],
+        "scouts": ["Brad Gerstner", "Philippe Laffont", "Chase Coleman"],
         "block_reason": "SECTOR_CAP_SEMIS",
-        "trigger": "Schreiber SMH-Put > $250M. Rückt sofort nach, wenn TSM oder NVDA ausscheidet oder Cap entfällt."
-      },
-      {
-        "ticker": "MU",
-        "name": "Micron Technology",
-        "subsector": "Halbleiter",
-        "holders_count": 3,
-        "guardians": ["David Tepper"],
-        "block_reason": "SECTOR_CAP_SEMIS",
-        "trigger": "Wächter-Zukauf durch Tepper. Nachrücker Rang 2."
-      },
-      {
-        "ticker": "AVGO",
-        "name": "Broadcom Inc.",
-        "subsector": "Halbleiter",
-        "holders_count": 2,
-        "guardians": [],
-        "block_reason": "SECTOR_CAP_SEMIS"
+        "trigger": "Strikter 2-Slot-Halbleiter-Deckel (TSM & NVDA belegen die Slots). Rückt nach, falls TSM oder NVDA ausscheidet."
       },
       {
         "ticker": "AMAT",
@@ -238,6 +236,43 @@
         "subsector": "Halbleiter",
         "holders_count": 3,
         "guardians": [],
+        "scouts": ["Philippe Laffont", "Chase Coleman", "Brad Gerstner"],
+        "block_reason": "SECTOR_CAP_SEMIS"
+      },
+      {
+        "ticker": "MU",
+        "name": "Micron Technology",
+        "subsector": "Halbleiter",
+        "holders_count": 3,
+        "guardians": ["Zach Schreiber"],
+        "scouts": ["Brad Gerstner", "Philippe Laffont"],
+        "block_reason": "SECTOR_CAP_SEMIS"
+      },
+      {
+        "ticker": "AVGO",
+        "name": "Broadcom Inc.",
+        "subsector": "Halbleiter",
+        "holders_count": 2,
+        "guardians": [],
+        "scouts": ["Philippe Laffont", "Chase Coleman"],
+        "block_reason": "SECTOR_CAP_SEMIS"
+      },
+      {
+        "ticker": "INTC",
+        "name": "Intel Corp.",
+        "subsector": "Halbleiter",
+        "holders_count": 2,
+        "guardians": [],
+        "scouts": ["Philippe Laffont", "Chase Coleman"],
+        "block_reason": "SECTOR_CAP_SEMIS"
+      },
+      {
+        "ticker": "AMD",
+        "name": "Advanced Micro Devices",
+        "subsector": "Halbleiter",
+        "holders_count": 2,
+        "guardians": ["Zach Schreiber"],
+        "scouts": ["Chase Coleman"],
         "block_reason": "SECTOR_CAP_SEMIS"
       }
     ],
@@ -247,20 +282,11 @@
         "name": "Uber Technologies Inc.",
         "subsector": "Plattform / Mobility",
         "holders_count": 2,
-        "guardians": ["David Tepper"],
+        "guardians": ["Zach Schreiber"],
         "scouts": ["Brad Gerstner"],
         "rebuy_flag": "CONDITIONAL",
         "status": "NEXT_IN_LINE_NON_SEMI",
-        "note": "Erster Nachrücker bei Schwäche von GEV oder MSFT (0% Halbleiter-Exposure)."
-      },
-      {
-        "ticker": "SQ",
-        "name": "Block Inc.",
-        "subsector": "FinTech / Bitcoin-Infrastruktur",
-        "holders_count": 2,
-        "guardians": ["Zach Schreiber"],
-        "scouts": ["Chase Coleman"],
-        "rebuy_flag": "CONDITIONAL"
+        "note": "Erster Nachrücker außerhalb des Halbleiter-Sektors (0% Halbleiter-Risiko, Wächter Schreiber an Bord)."
       },
       {
         "ticker": "SE",
@@ -269,7 +295,18 @@
         "holders_count": 2,
         "guardians": ["Stanley Druckenmiller"],
         "scouts": ["Chase Coleman"],
-        "rebuy_flag": "CONDITIONAL"
+        "rebuy_flag": "CONDITIONAL",
+        "note": "Druckenmiller hält Position. Nachrücker Rang 2."
+      },
+      {
+        "ticker": "SQ",
+        "name": "Block Inc.",
+        "subsector": "FinTech / Bitcoin-Infrastruktur",
+        "holders_count": 2,
+        "guardians": ["David Tepper"],
+        "scouts": ["Chase Coleman"],
+        "rebuy_flag": "CONDITIONAL",
+        "note": "Tepper hält Position. Nachrücker Rang 3."
       },
       {
         "ticker": "SPOT",
@@ -279,6 +316,16 @@
         "guardians": [],
         "scouts": ["Philippe Laffont", "Chase Coleman"],
         "rebuy_flag": "FORBIDDEN"
+      },
+      {
+        "ticker": "STX",
+        "name": "Seagate Technology Holdings",
+        "subsector": "Hardware / Speicher",
+        "holders_count": 2,
+        "guardians": ["Stanley Druckenmiller"],
+        "scouts": ["Chase Coleman"],
+        "rebuy_flag": "CONDITIONAL",
+        "note": "Druckenmiller hält Position. Berechtigter Hardware-Nachrücker außerhalb des Halbleiter-Caps."
       }
     ],
     "veto_blocked": [
@@ -324,12 +371,12 @@
       },
       "tier_2_conditional": {
         "rule": "Genau 1 Makro-Wächter investiert.",
-        "eligible_now": ["NVDA", "MSFT", "UBER"],
+        "eligible_now": ["NVDA", "MSFT", "UBER", "SE", "SQ", "STX"],
         "allocation_action": "KAUF_NUR_WENN_WÄCHTER_BEI_CRASH_NICHT_VERKAUFT_HAT"
       },
       "tier_3_forbidden": {
         "rule": "0 Makro-Wächter investiert ODER aktiver Wächter-Put.",
-        "blocked_now": ["GEV", "AAPL", "LRCX", "BABA", "JD", "PDD"],
+        "blocked_now": ["GEV", "AAPL", "LRCX", "AMAT", "MU", "AVGO", "INTC", "AMD", "SPOT", "BABA", "JD", "PDD"],
         "allocation_action": "STRIKTES_KAUFVERBOT"
       }
     }
@@ -348,33 +395,22 @@
     }
   },
 
-  "macro_gate": {
-    "yield_curve_t10y2y": {
-      "green_condition": "T10Y2Y < 0.0 OR (T10Y2Y < 0.30 AND delta_30d < 0.20)",
-      "red_condition": "T10Y2Y >= 0.30 AND delta_30d >= 0.20"
-    },
-    "high_yield_spread": {
-      "green_condition": "HY_SPREAD < SMA50 OR HY_SPREAD < 4.0",
-      "red_condition": "HY_SPREAD >= SMA50 AND HY_SPREAD >= 4.0"
-    }
-  },
-
-  "macro_liquidity_guard": {
-    "trigger_net_liq_delta_8w": -0.05,
-    "trigger_credit_spread_hy_pct": 4.0,
-    "emergency_allocation": {
-      "gold_pct": 50.0,
-      "cash_usd_pct": 50.0
-    },
-    "savings_rate_allocation": {
-      "gold_pct": 50.0,
-      "cash_usd_pct": 50.0
-    },
-    "re_entry": {
-      "nasdaq_dip_threshold_pct": -10.0,
-      "panic_capitulation_indicator": true,
-      "reinvest_target": "TECH_SLOTS_EQUAL_WEIGHT",
-      "apply_vetoed_no_rebuy": true
+  "macro_execution": {
+    "signal_provider": "CrashRadar SignalEngine",
+    "description": "Die Strategie importiert keine Rohdaten oder Makro-Indikatoren selbst. Sie konsumiert ausschließlich die aggregierten Signale der SignalEngine.",
+    "rules": {
+      "on_systemic_stress": {
+        "trigger": "SignalEngine.isShieldActive === true OR regime === 'SYSTEMIC_STRESS'",
+        "action": "EVACUATE_TO_HEDGE",
+        "hedge_allocation": { "gold_pct": 50.0, "cash_usd_pct": 50.0 },
+        "savings_rate_allocation": { "gold_pct": 50.0, "cash_usd_pct": 50.0 }
+      },
+      "on_capitulation_re_entry": {
+        "trigger": "SignalEngine.bottomHub.regime === 'CAPITULATION_CONFIRMED' OR SignalEngine.isDeployCash === true",
+        "action": "REINVEST_TECH_BOTTOM_REBUY_DOCTRINE",
+        "reinvest_target": "QUALIFIED_GURU_SLOTS_EQUAL_WEIGHT",
+        "fallback_if_empty": "QQQ"
+      }
     }
   },
 
@@ -383,7 +419,7 @@
       "version": "3.1.0",
       "date": "2026-09-14",
       "title": "Wächter-bestätigtes Rebalancing, Sektor-Öffnung KI-Infrastruktur & Vollständige Governance-Matrix",
-      "summary": "Erweiterung des Sektor-Fokus auf Tech & KI-Infrastruktur (GEV). Base-Schutz-Ausnahme bei Wächter-Trimmen UND (Kurs < SMA50 ODER Kurs > SMA200 + 30%). Einführung von Re-Buy-Flags (HIGH_CONVICTION, CONDITIONAL, FORBIDDEN) für jedes Slot-Item und strukturierte Verwaltung des Zukunftspools (on_deck_reserve, watch_pool, veto_blocked) sowie bottom_rebuy_doctrine.",
+      "summary": "Erweiterung des Sektor-Fokus auf Tech & KI-Infrastruktur (GEV in Slot 7). Wächter-bestätigtes Rebalancing (Trimmen UND Kurs < SMA50 / > SMA200 + 30%), Abschaffung der starren 6-Monats-Frist und Eviction-Tie-Breaker. Dauerhafter 2-Slot Halbleiter-Deckel (TSM, NVDA) mit Skip-to-Next-Eligible-Candidate Regel. Unterbelegungs-Doktrin (100% / N Gleichgewichtung, symmetrisches 1/(N*(N+1)) Funding und QQQ-Fallback bei N=0). Bereinigung von macro_gate auf reinen SignalEngine-Konsum.",
       "broadcast": true
     },
     {

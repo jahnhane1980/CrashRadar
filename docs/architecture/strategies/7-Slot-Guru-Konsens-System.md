@@ -1,4 +1,4 @@
-# Masterplan: Das 7-Slot-Guru-Konsens-System (Version 3.0 – Dual-Engine Governance)
+# Masterplan: Das 7-Slot-Guru-Konsens-System (Version 3.1.0 – Dual-Engine Governance & Rebalancing)
 
 > 🏛️ **Dokumenten-Typ:** Verbindliche operative Master-Spezifikation (System Architecture & Strategy)  
 > 📁 **Bereich:** `docs/architecture/strategies/`  
@@ -75,12 +75,13 @@ CrashRadar folgt einer unumstößlichen **2-Ebenen-Befehlskette**:
 │                   EBENE 1: CrashRadar SignalEngine                     │
 │                  (Der universelle Makro-Türsteher)                     │
 ├────────────────────────────────────────────────────────────────────────┤
-│ • Net Fed Liquidity Delta < -5 % UND High-Yield Spreads > 4 %          │
+│ • Makro-Signal: Katastrophen-Matrix (SYSTEMIC_STRESS / isShieldActive) │
 │ • OBERSTE EXEKUTIV-GEWALT: Schlägt alle 6 Gurus!                       │
-│ • Wenn Alarm: 100 % Notfall-Evakuierung in 50 % Gold / 50 % Cash       │
+│ • Wenn Alarm: 100 % Notfall-Evakuierung in 50 % Gold / 50 % USD-Cash   │
 │ • Völlig egal, was Druckenmiller, Tepper oder Coleman im 13F melden.   │
+│ • Die Strategie importiert keine Rohdaten, sondern konsumiert Signale! │
 └───────────────────────────────────┬────────────────────────────────────┘
-                                    │ (Nur wenn Makro-Wetter GRÜN ist)
+                                    │ (Nur wenn SignalEngine GRÜN meldet)
                                     ▼
 ┌────────────────────────────────────────────────────────────────────────┐
 │                   EBENE 2: 7-Slot-Guru-Konsens-Engine                  │
@@ -93,7 +94,7 @@ CrashRadar folgt einer unumstößlichen **2-Ebenen-Befehlskette**:
 ```
 
 **Die Konsequenz:**  
-Im Bullenmarkt (Schutzschild ist AUS) wollen wir die ungedrosselte Power der Scouts. Wenn jedoch ein echter Makro-Liquiditätskollaps eintritt (wie 2022 oder 2020), **zieht die SignalEngine den Stecker für das gesamte Depot**. Die Scouts müssen den Crash nicht selbst erkennen – CrashRadar evakuiert rechtzeitig.
+Im Bullenmarkt (Schutzschild ist AUS) wollen wir die ungedrosselte Power der Scouts. Wenn jedoch ein echter Makro-Liquiditätskollaps eintritt (wie 2022 oder 2020), **zieht die SignalEngine den Stecker für das gesamte Depot**. Die Scouts müssen den Crash nicht selbst erkennen – CrashRadar evakuiert rechtzeitig. Die 7-Slot-Strategie führt rein reaktiv die Portfolioallokation aus.
 
 ---
 
@@ -114,13 +115,12 @@ Im Bullenmarkt (Schutzschild ist AUS) wollen wir die ungedrosselte Power der Sco
 * Meldet ein Makro-Wächter (Druckenmiller, Schreiber, Tepper) eine Put-Option auf einen Einzeltitel mit Nominalwert $> 50$ Mio. $, ist dieser Titel **für Neuaufnahmen in die 7 Slots absolut gesperrt**.
 * *Aktuelles Beispiel:* David Teppers **241,6 Mio. $ Apple-Put** blockiert `AAPL` zuverlässig.
 
-### Säule 3: Das Sektor-Put-Veto & Klumpen-Cap
-* **Sektor-Put-Trigger:** Meldet ein Makro-Wächter einen Sektor-Put $> 250$ Mio. $ (wie Zach Schreibers **601 Mio. $ Put auf den Halbleiter-ETF `SMH`**), greift ein sofortiges **Sektor-Cap**:
-* **Maximal 2 Slots (28,57 %)** dürfen an dieselbe Sub-Branche (z. B. Halbleiter) vergeben werden.
-* *Wirkung im Ist-Stand:* Von den Halbleiter-Kandidaten (`TSM`, `NVDA`, `LRCX`) dürfen maximal 2 ins Depot. Der 3. Slot geht an den stärksten Compounder außerhalb des Hardware-Zyklus (`UBER`).
+#### Säule 3: Das Sektor-Cap & Klumpen-Prävention (Dauerhafter 2-Slot-Deckel)
+* **Dauerhafte Obergrenze:** **Maximal 2 Slots (28,57 %)** dürfen an dieselbe Sub-Branche (z. B. Halbleiter) vergeben werden. Dies verhindert, dass das Portfolio zu einem zyklischen Halbleiter-Klumpen mutiert (bestätigt durch Zach Schreibers 601 Mio. $ Put auf den Halbleiter-ETF `SMH`).
+* **„Skip-to-Next-Eligible-Candidate“-Regel:** Ist ein Sektor voll belegt (wie aktuell Halbleiter durch `TSM` und `NVDA`), wird ein neuer Herausforderer aus diesem Sektor (wie `LRCX`, `AMAT` oder `MU`) in der Nachrückerliste **übersprungen**. Es rückt automatisch der am höchsten gerankte Kandidat außerhalb des gesperrten Sektors nach (z. B. `UBER`).
 
 ### Säule 4: Das Makro-Exodus-Veto
-* Haben **beide primären Makro-Wächter (Stanley Druckenmiller UND Zach Schreiber)** eine Aktie vollständig aus ihren Beständen entfernt (Bestand = 0 $), verliert die Aktie ihren Bestandsschutz.
+* Haben **beide primären Makro-Wächter (Stanley Druckenmiller UND Zach Schreiber)** eine Aktie vollständig aus ihren Beständen entfernt (Bestand = 0 $), verliert die Aktie sofort jeglichen Schutz.
 * Fällt das aggregierte Kapital der verbleibenden Scouts über 2 Quartale um $> 40\,\%$, wird die Position geräumt – unabhängig davon, ob noch 2 Scouts daran festhalten.
 
 ---
@@ -128,7 +128,7 @@ Im Bullenmarkt (Schutzschild ist AUS) wollen wir die ungedrosselte Power der Sco
 ### Säule 5: Fall-B-Rebalancing & Das Wächter-bestätigte Rotationsrecht
 Sind alle 7 Slots belegt und qualifiziert sich bei der 13F-Prüfung ein neuer Herausforderer ($\ge 2$ aktive Käufer), greift die **doppelt gesicherte Rebalancing-Regel**:
 
-1. **Scout-Hype-Schutz (Base-Schutz intakt):**  
+1. **Scout-Hype-Schutz (Keine starre 6-Monats-Frist nötig):**  
    Wird der neue Herausforderer **ausschließlich von Scouts gekauft (0 Wächter-Käufer)**, bleibt der schwächste Bestandstitel geschützt. Es findet keine Verdrängung statt.  
    *(Empirischer Beweis: Verhindert in 53,1 % der Fälle Fehlausstiege in überhitzte IPO-Kater wie Snowflake, DoorDash, Okta).*
 2. **Wächter-bestätigtes Rebalancing (Sofortiges Verdrängungsrecht):**  
@@ -138,21 +138,29 @@ Sind alle 7 Slots belegt und qualifiziert sich bei der 13F-Prüfung ein neuer He
      * **Entweder SMA-50-Knick:** `Kurs < SMA 50` (Momentum nach Allzeithoch gebrochen, wie bei AMD 2024 oder Netflix 2021 vor dem Crash).  
      * **Oder parabolische SMA-200-Überdehnung:** `(Kurs - SMA 200) / SMA 200 > 30 %` (Parabolische Überhitzung / Gewinnmitnahme am Manie-Peak, wie Nvidia 2024 oder Micron 2020).
    * *(Empirischer Beweis: Erzielte in 70,8 % der Fälle signifikanten Mehrertrag und steigerte das 10,5-Jahre-Gesamtergebnis von 122.826 $ auf 152.940 $ / +24,5 % Alpha!).*
+3. **Eviction Tie-Breaker (Deterministische Verdrängungsreihenfolge):**  
+   Kommen mehrere Bestandstitel für eine Verdrängung infrage, scheidet der Titel nach folgender Rangfolge aus:
+   * 1. Geringste Anzahl an Gesamthaltern im 6er-Gremium.
+   * 2. Bei Gleichstand: Geringstes aggregiertes 13F-Kapital.
+   * 3. Bei Gleichstand: Größter prozentualer Kursabstand unter dem SMA 50.
 
 ---
 
-## 5. Der „Vetoed-No-Rebuy“-Filter am Marktboden
+## 5. Der „Vetoed-No-Rebuy“-Filter & Unterbelegungs-Doktrin am Marktboden
 
-Nach einer Notfall-Evakuierung durch den Makro-Schutzschild schlägt am Marktboden der **PanicCapitulationIndicator** an: Das Depot reinvestiert 100 % in Tech.
+Nach einer Notfall-Evakuierung durch den Makro-Schutzschirm schlägt am Marktboden das Signal `CAPITULATION_CONFIRMED` der SignalEngine an: Das Depot reinvestiert in Tech.
 
-Um zu verhindern, dass das Depot beim Re-Entry in kaputte Zombie-Aktien der Scouts greift, gilt die **Vetoed-No-Rebuy-Regel**:
+### A. Vetoed-No-Rebuy Doktrin (Schutz vor Zombie-Aktien)
 1. Jeder Konsens-Titel, bei dem die Makro-Wächter vor oder während des Crashs ausgestiegen sind (Wächter-Bestand = 0 $) oder Puts halten, ist **für den Re-Entry absolut gesperrt** (selbst wenn Scouts daran festhalten).
 2. Es werden ausschließlich Titel zurückgekauft, bei denen **mindestens ein Makro-Wächter am Boden investiert ist oder neu einsteigt**.
+   * *(Empirischer Beweis: +33,05 %-Punkte Mehrertrag beim Rebound 2022–2026).*
 
-> 📊 **Empirischer Beweis (Re-Entry am Bärenmarkt-Boden Q4-2022 bis Q2-2026):**  
-> * Reiner Scout-Rebuy (kaufte gefallene Engel wie Snowflake): **+422,01 %**  
-> * Vetoed-No-Rebuy mit Whitelist (`NVDA, META, MSFT, AMZN, UBER, AMD, GOOGL`): **+455,06 %**  
-> * **Ergebnis: +33,05 %-Punkte Mehrertrag**, weil lahme Nachzügler blockiert und das Rebound-Kapital auf echte Wächter-Akkumulationen gebündelt wurde!
+### B. Unterbelegungs-Doktrin & Kaskadierendes Einrücken
+Was geschieht, wenn am Boden weniger als 7 Aktien die Wächter-Kriterien erfüllen ($N < 7$)?
+1. **Gleichgewichtung über aktive Slots:** Das gesamte Aktienkapital wird zu 100 % gleichmäßig auf die $N$ berechtigten Titel aufgeteilt ($100\,\% / N$, z. B. bei 4 Wächter-Titeln `AMZN, TSM, META, GOOGL` jeweils **25,0 % pro Slot**).
+2. **Kaskadierendes Nachrücken (Slot $N+1$):** Sobald ein neuer Kandidat qualifiziert ist, rückt er ohne Verdrängungs-Hürde direkt in den freien Slot ein.
+3. **Symmetrisches Funding:** Zur Finanzierung des neuen Slots $N+1$ wird von allen $N$ Bestandsaktien jeweils exakt der Anteil $\frac{1}{N \cdot (N+1)}$ abgetrennt (z. B. von $4 \times 25\,\%$ auf $5 \times 20\,\%$ = jeweils $5\,\%$ Trimmen von Slot 1–4). Der laufende Sparplan wird vorübergehend bevorzugt in neue, untergewichtete Slots geleitet.
+4. **Zero-Candidate Fallback (Ultimative Ausfallsicherung):** Sollte am Marktboden bei Capitulation-Signal ausnahmsweise kein Einzeltitel die Wächter-Kriterien erfüllen ($N = 0$), wird das Rebound-Kapital zu 100 % in den Leitindex **`QQQ`** (Nasdaq 100) investiert, bis die nächsten 13F-Filings Einzeltitel-Akkumulationen ausweisen.
 
 ---
 
@@ -172,35 +180,35 @@ Da der Erfolg des Makro-Flügels maßgeblich an Ausnahmegestalten wie Stanley Dr
 
 ---
 
-## 7. Aktueller Soll-Zustand des Portfolios (Version 3.0 / Stand: September 2026)
+## 7. Aktueller Soll-Zustand des Portfolios (Version 3.1.0 / Stand: September 2026)
 
-Unter Berücksichtigung der Dual-Engine-Governance, des Halbleiter-Sektor-Caps (Schreiber SMH-Put) und der Geopolitischen Whitelist (China-Ausschluss) ergibt sich folgende Soll-Allokation:
+Unter Berücksichtigung der Dual-Engine-Governance, des dauerhaften Halbleiter-Sektor-Caps und der Geopolitischen Whitelist (China-Ausschluss) ergibt sich folgende operative Soll-Allokation:
 
-| Slot | Ticker | Unternehmen | Halter & Konviktion | Sub-Branche | Soll-Gewichtung | Sparrate (100 €) |
+| Slot | Ticker | Unternehmen | Halter & Konviktion | Sub-Branche | Soll-Gewichtung | Rebuy-Status am Boden |
 | :---: | :--- | :--- | :--- | :--- | :---: | :---: |
-| **1** | **MSFT** | Microsoft Corp. | 4 Halter (Laffont, Coleman, Gerstner, Schreiber) | Cloud / Software | 14,29 % | 14,29 € |
-| **2** | **AMZN** | Amazon.com Inc. | 6 Halter (Alle 3 Scouts + alle 3 Wächter!) | Cloud / Plattform | 14,29 % | 14,29 € |
-| **3** | **GOOGL**| Alphabet Inc. | 5 Halter (Coleman, Laffont, Gerstner, Tepper, Druckenmiller)| KI / Werbung | 14,28 % | 14,28 € |
-| **4** | **META** | Meta Platforms Inc. | 5 Halter (Coleman, Laffont, Gerstner, Tepper, Schreiber) | KI / Social Media | 14,29 % | 14,29 € |
-| **5** | **TSM**  | Taiwan Semi | 5 Halter (Scouts 7,3B $ + Tepper & Druckenmiller 1,1B $) | Halbleiter (Slot 1) | 14,28 % | 14,28 € |
-| **6** | **NVDA** | Nvidia Corp. | 4 Halter (Scouts 5,3B $ + Tepper 305M $) | Halbleiter (Slot 2) | 14,29 % | 14,29 € |
-| **7** | **UBER** | Uber Technologies | 5 Halter (Gerstner 580M, Laffont 300M, Tepper 308M) | Plattform / Mobility | 14,28 % | 14,28 € |
+| **1** | **AMZN** | Amazon.com Inc. | 6 Halter (3 Wächter / 3 Scouts, > $6,7 Mrd.) | Cloud / Plattform | 14,29 % | **HIGH_CONVICTION** (Sofort-Kauf) |
+| **2** | **TSM**  | Taiwan Semi | 5 Halter (2 Wächter / 3 Scouts, > $6,6 Mrd.) | Halbleiter (Slot 1/2) | 14,28 % | **HIGH_CONVICTION** (Sofort-Kauf) |
+| **3** | **META** | Meta Platforms Inc. | 5 Halter (2 Wächter / 3 Scouts, > $3,9 Mrd.) | KI / Social Media | 14,29 % | **HIGH_CONVICTION** (Sofort-Kauf) |
+| **4** | **GOOGL**| Alphabet Inc. | 4 Halter (2 Wächter / 2 Scouts, > $4,1 Mrd.) | KI / Cloud | 14,28 % | **HIGH_CONVICTION** (Sofort-Kauf) |
+| **5** | **NVDA** | Nvidia Corp. | 4 Halter (1 Wächter / 3 Scouts, > $5,2 Mrd.) | Halbleiter (Slot 2/2) | 14,29 % | **CONDITIONAL** (Nur wenn Wächter hält) |
+| **6** | **MSFT** | Microsoft Corp. | 3 Halter (0 Wächter / 3 Scouts, > $2,2 Mrd.) | Cloud / Software | 14,29 % | **CONDITIONAL** (Restbestand Wächter) |
+| **7** | **GEV**  | GE Vernova Inc. | 2 Halter (0 Wächter / 2 Scouts, > $4,0 Mrd.) | KI-Infrastruktur / Power | 14,28 % | **FORBIDDEN** (0 Wächter – Zombie-Schutz) |
 
-> 🔒 **Sektor-Cap Ausführung:**  
-> Da Zach Schreiber einen **601 Mio. $ Put auf den Halbleiter-ETF `SMH`** hält, sind Halbleiter auf **maximal 2 Slots (28,57 %)** gedeckelt. Die beiden Slots sind an die absoluten Leader **`TSM`** und **`NVDA`** vergeben.  
-> Lam Research (`LRCX`) rückt trotz hohem Konsens zugunsten des Plattform-Monopolisten **`UBER`** (4,2 % Ø-Depotgewicht, 0 % Halbleiter-Risiko) in die Wartestellung, um das 42,8 % Halbleiter-Klumpenrisiko des Spätzyklus abzuwenden.
+> 🔒 **Sektor-Cap & Zukunftspool:**  
+> * **Halbleiter-Cap (Max. 2 Slots):** Voll belegt durch `TSM` und `NVDA`. Die Halbleiter-Herausforderer `LRCX` (4 Halter), `AMAT` (3 Halter), `MU` (3 Halter), `AVGO` (2 Halter), `INTC` (2 Halter) und `AMD` (2 Halter) sind in der `on_deck_reserve` gesperrt.  
+> * **Nicht-Halbleiter-Warteliste (`watch_pool`):** Erster Nachrücker bei Schwäche eines Bestandstitels ist **`UBER`** (2 Halter: Wächter Zach Schreiber mit $555 Mio. + Scout Brad Gerstner mit $532 Mio., 0 % Halbleiter-Risiko). Dahinter folgen **`SE`** (Druckenmiller), **`SQ`** (Tepper), **`SPOT`** (Laffont/Coleman) und **`STX`** (Druckenmiller).
 
 ---
 
 ## 8. Die operative Routine (Zwei feste Termine)
 
 1. **Wöchentlich jeden Freitag oder Samstag (2 Minuten via SignalEngine):**  
-   Prüfung der Net Fed Liquidity (`WALCL - WTREGEN - RRPONTSYD`) und High-Yield Credit Spreads (`BAMLH0A0HYM2`):
-   * **NetLiq < -5 % UND Spreads > 4 %:** 100 % Notfall-Evakuierung aller 7 Slots in 50 % Gold (`GLD`) / 50 % USD-Cash. Sparplan auf 50/50 Gold/Cash umstellen.
-   * **Re-Entry (Regulär NetLiq $\ge 0\,\%$ ODER PanicCapitulationIndicator am Boden):** 100 % Rückkehr in die 7 Tech-Slots unter Anwendung des **Vetoed-No-Rebuy-Filters**.
+   Prüfung des systemischen Markt-Zustands über die CrashRadar SignalEngine:
+   * **SignalEngine meldet Katastrophen-Matrix (`SYSTEMIC_STRESS` / `isShieldActive`):** 100 % Notfall-Evakuierung aller 7 Slots in 50 % Gold (`GLD`) / 50 % USD-Cash. Sparplan auf 50/50 Gold/Cash umstellen.
+   * **Re-Entry (SignalEngine meldet `CAPITULATION_CONFIRMED` oder Entwarnung):** 100 % Rückkehr in die Tech-Slots unter Anwendung der **Vetoed-No-Rebuy-Matrix** und der **Unterbelegungs-Doktrin** (Equal Weighting über $N$ qualifizierte Titel; bei $N=0$ Fallback in `QQQ`).
 2. **Quartalsweise (15 Minuten am 16. Feb, Mai, Aug, Nov via SEC EDGAR / 13F):**  
-   * **Whitelist- & Veto-Prüfung:** Puts der Wächter (SMH, AAPL), Konviktions-Prüfung $\ge 1,0\,\%$, Ausschluss nicht-westlicher Werte.
-   * **Slot-Besetzung:** Nachrücker-Priorität bei freien Plätzen, Prüfung des Sektor-Caps (max. 2 Slots pro Subbranche).
+   * **Whitelist- & Veto-Prüfung:** Einzelaktien-Puts der Wächter (z. B. Tepper AAPL-Put), Konviktions-Prüfung $\ge 1,0\,\%$, Ausschluss nicht-westlicher Werte (China VIE).
+   * **Slot-Besetzung & Rebalancing:** Fall-B-Prüfung (Wächter-Trim + SMA 50 / SMA 200), Einrücken freier Plätze, Skip-Rule beim Sektor-Cap.
    * **Signature-Block Check:** Prüfung auf personelle Kontinuität der 6 Stamm-Manager.
 
 ---
