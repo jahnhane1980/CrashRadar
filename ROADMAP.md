@@ -31,6 +31,7 @@
 * **Master-Architektur & Spezifikation:** Vollständig dokumentiert in [`docs/architecture/signal-service/Investment-Signaldienst.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signal-service/Investment-Signaldienst.md).
 * **Ziel:** Vollständige Umstellung von Ntfy auf Telegram nach dem 2-Säulen-Prinzip (0,00 € Serverless-Betrieb) inkl. Bereinigung der Notification-Pipeline:
   * **Architektur-Review der Indikatoren & Notifications:** Gründliche Überprüfung der aktuellen Pipeline auf Ineffizienzen, Vermeidung doppelter Indikatoren-Auswertungen und saubere Trennung der Zuständigkeiten (Separation of Concerns).
+    * *Überlegung Öl- & Liquiditäts-Analyse:* Aufnahme der Signale aus dem [`MacroLiquiditySensorHub`](file:///D:/GitHub/CrashRadar/src/signals/hubs/MacroLiquiditySensorHub.js) (Ölpreis-Spikes, Kupfer/Öl-Ratio, Frachtdruck) ins Makrowetter. Die Überarbeitung der `MacroRegimeEngine` auf die moderne SensorHub-Architektur ist architektonisch vorgemerkt, hat jedoch aktuell nachgelagerte Priorität.
   * **Dynamisches Debouncing & Krisen-Aufwach-Logik:** Dynamische Koppelung des Spam-Schutzes an das Makro-Klima (14 Tage Normalbetrieb, 1–2 Tage bei Kollisionsfenster, 0 Tage / Sofort-Push bei Veto oder Flash Crash).
   * **Säule 1 (CrashRadar - Broadcast & Pre-Computation):** Öffentlicher Einweg-Kanal `Makro-Wetter` für Markt-Ampel und Kollisionswarnungen sowie täglicher Webhook-Push des `daily_intelligence.json` Snapshots.
   * **Säule 2 (CrashRadar-Signals - Personalisiertes 1:1 Edge-Gateway):** Cloudflare Worker + D1 SQLite für diskrete 1:1-Nutzerchats, Sparplan-Allokationen nach Strategie (`strategy_id`), lückenloses Feedback (`[✅ Ausgeführt]`), die 3 Beweisszenarien (Worst Case, Best Case, Neutral) und proaktiver Transparenz-Push bei Strategie-Updates (Changelog-Broadcasting).
@@ -39,12 +40,11 @@
 ## 4. Dynamisches Makro-Szenario- & Kalender-Framework (Vom Event-Tracker zum Regime-Indikator)
 * **Konzept-Blaupause:** Ausführliche Spezifikation unter [`docs/architecture/macro/Makro-Kalender-Szenarien-Konzept.md`](file:///D:/GitHub/CrashRadar/docs/architecture/macro/Makro-Kalender-Szenarien-Konzept.md).
 * **Zweigeteilte Entwicklungs-Pipeline:**
-  * **Phase 1 (Autarke Datenbank-Scorecard):**
-    * Ablösung der statischen `Macro-Scenarios-Config.json` durch MySQL-Tabelle `macro_calendar_events`.
-    * Automatische Termin-Ingestion über FRED Release API (`/fred/release/dates`).
-    * Offizieller Wall-Street-Konsens über ForexFactory JSON-Feed & Cleveland Fed Inflation Nowcasting.
-    * 2-Stufen-Regel-Engine (`TWO_STAGE_CONSENSUS` mit Makro-Guards) und Scorecard-Alerting.
-  * **Phase 2 (Nativer Regime-Indikator & TradingEngine-Anbindung):**
+  * **Phase 1 (Autarke Datenbank-Scorecard) [ABGESCHLOSSEN & LIVE VERIFIZIERT]:**
+    * Vollständige Ablösung der statischen JSON-Konfigurationen durch die MySQL-Tabelle `macro_calendar_events`.
+    * Automatische Termin-Ingestion über FRED Release API (`/fred/release/dates`), Treasury DTS Headroom- und X-Date-Berechnung sowie ForexFactory Consensus Enrichment.
+    * DB-First Integration in `FiscalCalendarService.js`, `ScenarioChecklistService.js` und `MacroScorecardRunner.js` mit direkter Ist-Wert-Persistenz.
+  * **Phase 2 (Nativer Regime-Indikator & TradingEngine-Anbindung) [OFFEN]:**
     * Kapselung der Szenario-Auswertung als vollwertiger Indikator (`MacroScenarioIndicator.js`) in der `MacroEngine`.
     * Anbindung an die Trading Engine als Fundamental-Watchdog und Fractional-Kelly-Risikobremse (`action.scaleDown`).
 
@@ -71,6 +71,13 @@
 ---
 
 ## 🏆 Erreichte Meilensteine (Abgeschlossen)
+
+### ✅ Autarke Datenbank-Scorecard & Makro-Wirtschaftskalender (Phase 1)
+* **Status [ABGESCHLOSSEN & LIVE VERIFIZIERT]:**
+  * Ablösung der statischen `Macro-Scenarios-Config.json` und `Fiscal-Calendar-Config.json` durch MySQL-Tabelle `macro_calendar_events`.
+  * Automatische Termin-Ingestion über FRED Release API (`/fred/release/dates`), dynamische DTS Debt-Ceiling-Berechnung und ForexFactory Consensus Enrichment.
+  * DB-First-Umstellung von [`FiscalCalendarService.js`](file:///D:/GitHub/CrashRadar/src/services/FiscalCalendarService.js), [`ScenarioChecklistService.js`](file:///D:/GitHub/CrashRadar/src/services/ScenarioChecklistService.js) und [`MacroScorecardRunner.js`](file:///D:/GitHub/CrashRadar/src/runners/MacroScorecardRunner.js) mit direkter Ergebnispersistenz (`actual_value`, `details_json`, `status`).
+  * Vollständig dokumentiert in [`docs/architecture/database/Macro-Calendar-Events.md`](file:///D:/GitHub/CrashRadar/docs/architecture/database/Macro-Calendar-Events.md).
 
 ### ✅ Multivariates Makro-ML-Regime-Modell (Liquidität, Smart Money, Zinsen)
 * **Status [ABGESCHLOSSEN]:**

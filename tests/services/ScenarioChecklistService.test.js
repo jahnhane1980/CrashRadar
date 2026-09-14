@@ -418,5 +418,41 @@ describe('ScenarioChecklistService', () => {
       expect(pceEvent.passed).toBe(true);
       expect(pceEvent.value).toBe(3.0);
     });
+
+    it('lädt Events direkt aus einem MySQL Pool und baut dynamisches Szenario auf', async () => {
+      const mockRows = [
+        {
+          id: 'payems_2026_10_02',
+          category: 'MACRO_RELEASE',
+          subcategory: 'LABOR',
+          title: 'US-Arbeitsmarktbericht / Nonfarm Payrolls (NFP)',
+          event_date: '2026-10-02',
+          event_time: '14:30 MESZ',
+          status: 'SCHEDULED',
+          criticality: 'CRITICAL',
+          metadata_json: JSON.stringify({
+            targetObservationDate: '2026-09-01',
+            rules: [
+              { metric: 'PAYEMS_DIFF', type: 'MIN', min: 40, passMsg: 'OK', failMsg: 'FAIL' }
+            ]
+          })
+        }
+      ];
+
+      const mockPool = {
+        query: async () => [mockRows]
+      };
+
+      const service = new ScenarioChecklistService();
+      const loaded = await service.loadEventsFromDb(mockPool, '2026-10-02');
+
+      expect(loaded).toHaveLength(1);
+      expect(loaded[0].id).toBe('payems_2026_10_02');
+      expect(service.config.activeScenario).toBe('db_scenario_2026_10');
+      
+      const event = service.getEventForDate('2026-10-02');
+      expect(event).toBeDefined();
+      expect(event.id).toBe('payems_2026_10_02');
+    });
   });
 });

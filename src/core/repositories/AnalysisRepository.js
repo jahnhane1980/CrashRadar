@@ -13,6 +13,7 @@ export const TABLES = Object.freeze({
   CHALLENGER: 'econ_challenger',
   AAII: 'market_data_aaii',
   DIX: 'market_data_dix',
+  CALENDAR_EVENTS: 'macro_calendar_events',
 });
 
 export const SYMBOLS = Object.freeze({
@@ -31,6 +32,9 @@ export const SYMBOLS = Object.freeze({
   MSTR: 'MSTR',
   COIN: 'COIN',
   PLTR: 'PLTR',
+  OIL: 'CL=F',
+  IYT: 'IYT',
+  XLE: 'XLE',
 });
 
 export const FRED_SERIES = Object.freeze({
@@ -43,6 +47,13 @@ export const FRED_SERIES = Object.freeze({
   BORROW: 'BORROW',
   T10Y2Y: 'T10Y2Y',
   T10Y3M: 'T10Y3M',
+  DGS10: 'DGS10',
+  DGS2: 'DGS2',
+  DEXJPUS: 'DEXJPUS',
+  IRLTLT01JPM156N: 'IRLTLT01JPM156N',
+  DEXCHUS: 'DEXCHUS',
+  MYAGM2CNM189N: 'MYAGM2CNM189N',
+  JPNASSETS: 'JPNASSETS',
   TDSP: 'TDSP',
   GFDEGDQ188S: 'GFDEGDQ188S',
   BUSLOANS: 'BUSLOANS',
@@ -152,14 +163,14 @@ export class AnalysisRepository {
     const [tiingo] = await this.pool.query(`
       SELECT symbol, record_date as date, close, volume 
       FROM ${TABLES.TIINGO} 
-      WHERE symbol IN (?, ?, ?, ?, ?, ?) AND record_date >= ?
-    `, [SYMBOLS.SPY, SYMBOLS.QQQ, SYMBOLS.TLT, SYMBOLS.MSTR, SYMBOLS.COIN, SYMBOLS.PLTR, startDate]);
+      WHERE symbol IN (?, ?, ?, ?, ?, ?, ?, ?) AND record_date >= ?
+    `, [SYMBOLS.SPY, SYMBOLS.QQQ, SYMBOLS.TLT, SYMBOLS.MSTR, SYMBOLS.COIN, SYMBOLS.PLTR, SYMBOLS.IYT, SYMBOLS.XLE, startDate]);
 
     const [yahoo] = await this.pool.query(`
       SELECT symbol, record_date as date, close, volume
       FROM ${TABLES.YAHOO} 
-      WHERE symbol IN (?, ?, ?, ?, ?, ?, ?, ?) AND record_date >= ?
-    `, [SYMBOLS.DXY, SYMBOLS.GOLD, SYMBOLS.COPPER, SYMBOLS.VIX, SYMBOLS.HYG, SYMBOLS.BIZD, SYMBOLS.BKLN, SYMBOLS.SKEW, startDate]);
+      WHERE symbol IN (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) AND record_date >= ?
+    `, [SYMBOLS.DXY, SYMBOLS.GOLD, SYMBOLS.COPPER, SYMBOLS.VIX, SYMBOLS.HYG, SYMBOLS.BIZD, SYMBOLS.BKLN, SYMBOLS.SKEW, SYMBOLS.OIL, SYMBOLS.IYT, startDate]);
 
     const [fred] = await this.pool.query(`
       SELECT series_id, observation_date as date, value 
@@ -306,6 +317,7 @@ export class AnalysisRepository {
       VIX: initialVix, HYG: initialHyg, BIZD: initialBizd, BKLN: initialBkln, SKEW: initialSkew, CBOE_SPY: initialCboeSpy, SPY_ShortVolumeRatio: initialSpyShortVol, TotalPCR: initialPcr,
       WALCL: await parseFred(FRED_SERIES.WALCL, true), TGA: initialTga, RRPONTSYD: await parseFred(FRED_SERIES.RRPONTSYD, false),
       DFII10: await parseFred(FRED_SERIES.DFII10, false), DFF: await parseFred(FRED_SERIES.DFF, false), NFCI: await parseFred(FRED_SERIES.NFCI, false), TOTRESNS: await parseFred(FRED_SERIES.TOTRESNS, false), WRESBAL: await parseFred(FRED_SERIES.WRESBAL, false), BORROW: await parseFred(FRED_SERIES.BORROW, false), T10Y2Y: await parseFred(FRED_SERIES.T10Y2Y, false),
+      DGS10: await parseFred(FRED_SERIES.DGS10, false), DGS2: await parseFred(FRED_SERIES.DGS2, false), DEXJPUS: await parseFred(FRED_SERIES.DEXJPUS, false), IRLTLT01JPM156N: await parseFred(FRED_SERIES.IRLTLT01JPM156N, false), DEXCHUS: await parseFred(FRED_SERIES.DEXCHUS, false), JPNASSETS: await parseFred(FRED_SERIES.JPNASSETS, false),
       ECBASSETSW: await parseFred(FRED_SERIES.ECBASSETSW, false), M2SL: await parseFred(FRED_SERIES.M2SL, false), PERMIT: await parseFred(FRED_SERIES.PERMIT, false), UMCSENT: await parseFred(FRED_SERIES.UMCSENT, false),
       CP: await parseFred(FRED_SERIES.CP, false), ICSA: await parseFred(FRED_SERIES.ICSA, false), SAHMREALTIME: await parseFred(FRED_SERIES.SAHMREALTIME, false), T10YIE: await parseFred(FRED_SERIES.T10YIE, false), INDPRO: await parseFred(FRED_SERIES.INDPRO, false),
       MaturityWall90d: initialMw,

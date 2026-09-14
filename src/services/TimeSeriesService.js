@@ -57,6 +57,8 @@ export class TimeSeriesService {
       if (r.symbol === SYMBOLS.BIZD) addToTimeline(r.date, 'BIZD', r.close);
       if (r.symbol === SYMBOLS.BKLN) addToTimeline(r.date, 'BKLN', r.close);
       if (r.symbol === SYMBOLS.SKEW) addToTimeline(r.date, 'SKEW', r.close);
+      if (r.symbol === SYMBOLS.OIL || r.symbol === 'CL=F') addToTimeline(r.date, 'Oil', r.close);
+      if (r.symbol === SYMBOLS.IYT || r.symbol === 'IYT') addToTimeline(r.date, 'IYT', r.close);
     });
     
     tga?.forEach(r => {

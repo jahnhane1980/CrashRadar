@@ -11,6 +11,7 @@ import { SqueezeMetricsAdapter } from './SqueezeMetricsAdapter.js';
 import { SecEdgar13FAdapter } from './SecEdgar13FAdapter.js';
 import { AaiiAdapter } from './AaiiAdapter.js';
 import { NaaimAdapter } from './NaaimAdapter.js';
+import { CalendarStorageAdapter } from './CalendarStorageAdapter.js';
 
 const adapters = {
   'Binance': new BinanceAdapter(),
@@ -26,6 +27,7 @@ const adapters = {
   'SecEdgar13F': new SecEdgar13FAdapter(),
   'AAII': new AaiiAdapter(),
   'NAAIM': new NaaimAdapter(),
+  'Calendar': new CalendarStorageAdapter(),
 };
 
 export class StorageAdapterFactory {

@@ -1,12 +1,100 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import mysql from 'mysql2/promise';
+import { Logger } from '../core/Logger.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const DEFAULT_FALLBACK_SCENARIO = Object.freeze({
+  activeScenario: 'goldilocks_september_2026',
+  scenarios: {
+    goldilocks_september_2026: {
+      id: 'goldilocks_september_2026',
+      title: 'SEPTEMBER 2026: GOLDILOCKS-SCORECARD',
+      subtitle: 'Rallye-Checkliste zur Überprüfung des Soft-Landing- & Melt-Up-Pfads',
+      timeframe: '01.09.2026 - 30.09.2026',
+      tgaTargetCollision: '26.10.2026 - 10.11.2026',
+      events: [
+        {
+          id: 'jolts_july',
+          title: 'US JOLTS Report (Berichtsmonat: Juli)',
+          date: '2026-09-01',
+          time: '16:00 MESZ',
+          metric: 'JTSJOL',
+          targetObservationDate: '2026-07-01',
+          rule: { type: 'RANGE', min: 6900, max: 7800, unit: 'k' },
+          passMessage: 'Offene Stellen kühlen sich moderat ab (6.9M - 7.8M / kein abrupter Einbruch)',
+          failMessage: 'Offene Stellen außerhalb des Zielkorridors (<6.9M oder >7.8M)!'
+        },
+        {
+          id: 'nfp_august',
+          title: 'US-Arbeitsmarktbericht / NFP (Berichtsmonat: August)',
+          date: '2026-09-04',
+          time: '14:30 MESZ',
+          targetObservationDate: '2026-08-01',
+          rules: [
+            { metric: 'PAYEMS_DIFF', type: 'MIN', min: 40, passMsg: 'Stellenaufbau stabil im Erwartungskorridor (>=40k / Konsens 55k)', failMsg: 'Stellenaufbau bricht ein (<40k / Rezessionsgefahr)' },
+            { metric: 'SAHMREALTIME', type: 'MAX', max: 0.5, passMsg: 'Sahm-Regel ruhig (<0.50)', failMsg: 'Sahm-Regel getriggert (>0.50 / Rezessions-Alarm)' }
+          ],
+          passMessage: 'Arbeitsmarkt stabil im neutralen Korridor',
+          failMessage: 'Arbeitsmarktdaten schlagen Alarm (Rezessionssorgen oder Sahm-Trigger)'
+        },
+        {
+          id: 'ppi_august',
+          title: 'US Erzeugerpreisindex / PPI (Berichtsmonat: August)',
+          date: '2026-09-10',
+          time: '14:30 MESZ',
+          metric: 'PPIACO_YOY',
+          targetObservationDate: '2026-08-01',
+          rule: { type: 'MAX', max: 9.0, unit: '%' },
+          passMessage: 'Rohstoff-Erzeugerpreise bestätigen Abkühlungspfad (<=9.0%)',
+          failMessage: 'Erzeugerpreise ziehen unerwartet stark an (>9.0%)'
+        },
+        {
+          id: 'cpi_core_august',
+          title: 'US Core CPI Inflation (Berichtsmonat: August)',
+          date: '2026-09-11',
+          time: '14:30 MESZ',
+          metric: 'CPILFESL_YOY',
+          targetObservationDate: '2026-08-01',
+          rule: { type: 'MAX', max: 2.7, unit: '%' },
+          passMessage: 'Kerninflation bestätigt Disinflationspfad (<=2.7% / Nowcast: 2.38%)',
+          failMessage: 'Kerninflation klebt zäh fest (>2.7%) – Zinsangst steigt!'
+        },
+        {
+          id: 'fomc_september',
+          title: 'FOMC Zinsentscheid & Notenbank-Signal (Live: September)',
+          date: '2026-09-16',
+          time: '20:00 MESZ',
+          metric: 'DFF_ACTION',
+          targetObservationDate: '2026-09-16',
+          rule: { type: 'ALLOWED_VALUES', allowed: ['PAUSE', 'CUT_25', 'CUT_50'] },
+          passMessage: 'Fed pausiert oder senkt moderat – Startschuss Erleichterungsrallye!',
+          failMessage: 'Zinsschock! Fed weicht vom Marktkonsens ab.'
+        },
+        {
+          id: 'pce_core_august',
+          title: 'Core PCE Preisindex (Berichtsmonat: August)',
+          date: '2026-09-30',
+          time: '14:30 MESZ',
+          metric: 'PCEPILFE_YOY',
+          targetObservationDate: '2026-08-01',
+          rule: { type: 'MAX', max: 3.5, unit: '%' },
+          passMessage: 'Offizielles Fed-Preismaß im Rahmen der Erwartungen (<=3.5% / Nowcast: 3.40%)',
+          failMessage: 'Core PCE über Erwartung (>3.5%)'
+        }
+      ]
+    }
+  }
+});
+
 export class ScenarioChecklistService {
-  constructor(config = null) {
+  constructor(config = null, options = {}) {
+    this.databaseUrl = options.databaseUrl || process.env.DATABASE_URL || null;
+    this.pool = options.pool || null;
+
     if (config) {
       this.config = config;
     } else {
@@ -14,7 +102,119 @@ export class ScenarioChecklistService {
       if (fs.existsSync(configPath)) {
         this.config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
       } else {
-        this.config = { activeScenario: null, scenarios: {} };
+        this.config = JSON.parse(JSON.stringify(DEFAULT_FALLBACK_SCENARIO));
+      }
+    }
+  }
+
+  _formatDbDate(val) {
+    if (!val) return null;
+    if (typeof val === 'string') return val.split('T')[0];
+    if (val instanceof Date) {
+      const y = val.getFullYear();
+      const m = String(val.getMonth() + 1).padStart(2, '0');
+      const d = String(val.getDate()).padStart(2, '0');
+      return `${y}-${m}-${d}`;
+    }
+    return String(val);
+  }
+
+  /**
+   * Lädt anstehende Makro-Events für den Monat/Zeitraum des Ziel-Datums direkt aus MySQL (macro_calendar_events).
+   * @param {Object} [pool] 
+   * @param {string} [targetDateStr] - 'YYYY-MM-DD'
+   * @returns {Promise<Array>}
+   */
+  async loadEventsFromDb(pool = null, targetDateStr = null) {
+    const activePool = pool || this.pool || (this.databaseUrl ? mysql.createPool(this.databaseUrl) : null);
+    if (!activePool) {
+      Logger.warn('[ScenarioChecklistService] Kein DB-Pool verfügbar. Nutze Standard-Szenario.');
+      return [];
+    }
+
+    const refDate = targetDateStr || new Date().toISOString().split('T')[0];
+    const [year, month] = refDate.split('-');
+    const startDate = `${year}-${month}-01`;
+    // Monatsende ermitteln
+    const lastDay = new Date(Date.UTC(Number(year), Number(month), 0)).getUTCDate();
+    const endDate = `${year}-${month}-${String(lastDay).padStart(2, '0')}`;
+
+    try {
+      const query = `
+        SELECT id, category, subcategory, title, event_date, event_time, status, criticality, metadata_json, actual_value, details_json, source
+        FROM macro_calendar_events
+        WHERE (category = 'MACRO_RELEASE' OR subcategory = 'FOMC')
+          AND event_date BETWEEN ? AND ?
+        ORDER BY event_date ASC
+      `;
+      const [rows] = await activePool.query(query, [startDate, endDate]);
+
+      if (Array.isArray(rows) && rows.length > 0) {
+        const events = [];
+        for (const r of rows) {
+          const dateStr = this._formatDbDate(r.event_date);
+          const meta = typeof r.metadata_json === 'string'
+            ? JSON.parse(r.metadata_json)
+            : (r.metadata_json || {});
+
+          const isFomc = r.subcategory === 'FOMC' || r.id.toLowerCase().includes('fomc');
+
+          const evObj = {
+            id: r.id,
+            title: r.title,
+            date: dateStr,
+            time: r.event_time || '14:30 MESZ',
+            targetObservationDate: meta.targetObservationDate || dateStr,
+            passMessage: meta.passMessage || (isFomc ? 'Fed pausiert oder senkt moderat – Startschuss Erleichterungsrallye!' : 'Kriterien erfüllt'),
+            failMessage: meta.failMessage || (isFomc ? 'Zinsschock! Fed weicht vom Marktkonsens ab.' : 'Kriterien nicht erfüllt')
+          };
+
+          if (isFomc) {
+            evObj.metric = 'DFF_ACTION';
+            evObj.rule = { type: 'ALLOWED_VALUES', allowed: ['PAUSE', 'CUT_25', 'CUT_50'] };
+          } else if (Array.isArray(meta.rules) && meta.rules.length > 0) {
+            evObj.rules = meta.rules;
+            if (meta.rules.length === 1) {
+              evObj.metric = meta.rules[0].metric;
+              evObj.rule = meta.rules[0];
+            }
+          } else if (meta.rule) {
+            evObj.metric = meta.metric;
+            evObj.rule = meta.rule;
+          }
+
+          events.push(evObj);
+        }
+
+        const monthNames = [
+          'JANUAR', 'FEBRUAR', 'MÄRZ', 'APRIL', 'MAI', 'JUNI',
+          'JULI', 'AUGUST', 'SEPTEMBER', 'OKTOBER', 'NOVEMBER', 'DEZEMBER'
+        ];
+        const monthIdx = parseInt(month, 10) - 1;
+        const monthName = (monthIdx >= 0 && monthIdx < 12) ? monthNames[monthIdx] : month;
+
+        const scenarioId = `db_scenario_${year}_${month}`;
+        this.config = this.config || {};
+        this.config.scenarios = this.config.scenarios || {};
+        this.config.scenarios[scenarioId] = {
+          id: scenarioId,
+          title: `${monthName} ${year}: GOLDILOCKS-SCORECARD`,
+          subtitle: 'Rallye-Checkliste zur Überprüfung des Soft-Landing- & Melt-Up-Pfads',
+          timeframe: `${startDate} - ${endDate}`,
+          events
+        };
+        this.config.activeScenario = scenarioId;
+
+        Logger.info(`[ScenarioChecklistService] ${events.length} Events für ${year}-${month} direkt aus macro_calendar_events geladen.`);
+        return events;
+      }
+      return [];
+    } catch (e) {
+      Logger.warn(`[ScenarioChecklistService] DB-Ladefehler für Makro-Events: ${e.message}`);
+      return [];
+    } finally {
+      if (!pool && !this.pool && activePool) {
+        await activePool.end();
       }
     }
   }
@@ -226,6 +426,7 @@ export class ScenarioChecklistService {
         date: event.date,
         time: event.time,
         passed: allPassed,
+        value: details[0]?.value ?? null,
         reason,
         details
       };

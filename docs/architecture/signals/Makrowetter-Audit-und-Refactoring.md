@@ -76,3 +76,14 @@ flowchart TD
   * [`src/analysis/IndicatorEngine.js`](file:///D:/GitHub/CrashRadar/src/analysis/IndicatorEngine.js)
   * [`src/analysis/MacroRegimeEngine.js`](file:///D:/GitHub/CrashRadar/src/analysis/MacroRegimeEngine.js)
   * [`src/strategies/PortfolioStrategyEngine.js`](file:///D:/GitHub/CrashRadar/src/strategies/PortfolioStrategyEngine.js)
+
+---
+
+## 4. Ausblick & Mittelfristige System-Evolution
+
+1. **Integration der Öl- & Liquiditäts-Analyse (Geopolitical Oil Stress):**
+   * Es besteht die konkrete Überlegung, die Erkenntnisse der empirischen Studie ([`Geopolitical-Oil-Liquidity-Stress-Study.md`](file:///D:/GitHub/CrashRadar/docs/research/macro-proofs/Geopolitical-Oil-Liquidity-Stress-Study.md)) und des [`MacroLiquiditySensorHub.js`](file:///D:/GitHub/CrashRadar/src/signals/hubs/MacroLiquiditySensorHub.js) (WTI-Spikes > 92–95 $, Stagflations-Ratio Kupfer/Öl, Frachtkosten-Margendruck `IYT` vs. `CL=F`) in die Makrowetter-Pipeline aufzunehmen.
+
+2. **Überarbeitung der MacroRegimeEngine auf SensorHub-Basis:**
+   * Langfristig wird die historische `MacroRegimeEngine` überarbeitet, um direkt auf der modernen Composite-Architektur der zustandslosen `SensorHubs` aufzusetzen und die parallelen Pipeline-Welten vollständig zu harmonisieren.
+   * **Prioritäts-Klassifikation:** Dies ist architektonisch vorgemerkt, besitzt jedoch aktuell **nicht die oberste Priorität** (der operative P0-Fokus liegt verbindlich auf der Finalisierung der Portfoliostrategien und des Signal-Broadcastings).

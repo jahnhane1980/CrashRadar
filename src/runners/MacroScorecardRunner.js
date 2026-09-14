@@ -26,8 +26,16 @@ export class MacroScorecardRunner {
   async run() {
     try {
       Logger.info('[MacroScorecard] Starte Smart-Makro-Scorecard Check...');
-      const scenarioService = this.dependencies.scenarioService || new ScenarioChecklistService();
+      const dbUrl = this.isTest ? (process.env.DATABASE_URL_TEST || process.env.DATABASE_URL) : process.env.DATABASE_URL;
+      const scenarioService = this.dependencies.scenarioService || new ScenarioChecklistService(null, { databaseUrl: dbUrl });
       const todayStr = this.options.dateOverride || new Date().toISOString().split('T')[0];
+
+      try {
+        await scenarioService.loadEventsFromDb(this.dependencies.pool, todayStr);
+      } catch (e) {
+        Logger.warn(`[MacroScorecard] DB-Laden für Events fehlgeschlagen: ${e.message}`);
+      }
+
       const todayEvent = scenarioService.getEventForDate(todayStr);
 
       if (!todayEvent) {
@@ -53,7 +61,6 @@ export class MacroScorecardRunner {
       const taskIds = scenarioService.getRequiredTaskIdsForEvent(todayEvent);
       Logger.info(`[MacroScorecard] Event '${todayEvent.title}' erkannt. Benötigte Tasks: [${taskIds.join(', ') || 'Keine'}]`);
 
-      const dbUrl = this.isTest ? (process.env.DATABASE_URL_TEST || process.env.DATABASE_URL) : process.env.DATABASE_URL;
       if (!dbUrl && !this.dependencies.expert) {
         throw new Error("Missing DATABASE_URL in environment.");
       }
@@ -107,6 +114,32 @@ export class MacroScorecardRunner {
         Logger.info(`[MacroScorecard] Daten für Event '${todayEvent.title}' (Ziel: ${todayEvent.targetObservationDate}) noch nicht bei FRED publiziert. Warte auf nächstes Zeitfenster.`);
       } else {
         Logger.info(`[MacroScorecard] Keine Benachrichtigung erforderlich für ${todayStr}.`);
+      }
+
+      // Persistiere Auswertungsergebnisse in macro_calendar_events
+      if (scenarioResult && scenarioResult.evaluation && Array.isArray(scenarioResult.evaluation.evaluatedEvents)) {
+        try {
+          const pool = this.dependencies.pool || this.expert?.repo?.pool;
+          if (pool) {
+            for (const ev of scenarioResult.evaluation.evaluatedEvents) {
+              const status = ev.isPending ? 'PENDING_DATA' : (ev.passed ? 'PASSED' : 'FAILED');
+              const actualVal = ev.value !== undefined && ev.value !== null
+                ? String(ev.value)
+                : (ev.details && ev.details.length > 0 && ev.details[0].value !== undefined && ev.details[0].value !== null ? String(ev.details[0].value) : null);
+              const detailsJson = ev.details ? JSON.stringify(ev.details) : JSON.stringify({ reason: ev.reason });
+
+              await pool.query(
+                `UPDATE macro_calendar_events 
+                 SET status = ?, actual_value = ?, details_json = ?, updated_at = CURRENT_TIMESTAMP 
+                 WHERE id = ? OR (event_date = ? AND category = 'MACRO_RELEASE')`,
+                [status, actualVal, detailsJson, ev.id, ev.date]
+              );
+            }
+            Logger.info(`[MacroScorecard] ${scenarioResult.evaluation.evaluatedEvents.length} Events in macro_calendar_events aktualisiert.`);
+          }
+        } catch (dbErr) {
+          Logger.warn(`[MacroScorecard] Fehler beim Aktualisieren von macro_calendar_events: ${dbErr.message}`);
+        }
       }
     } finally {
       await this.cleanup();

@@ -52,6 +52,8 @@
 * **Ziel:** Ablösung von Telegram & ntfy durch eine schlanke, serverlose Discord-Webhook-Architektur (Phase 1: Rich Embeds, 4-Fälle-Matrix) sowie optionalem WhatsApp-Gitter-Bridge-Blueprint für mobile Gruppen.
 * **Operative Umsetzungsschritte in `CrashRadar` [OFFEN]:**
   * **Schritt 1 (Architektur-Review der Indikatoren & Notifications):** Kritische Prüfung der Datenfluss-Pipeline auf Redundanzen, Mehrfachberechnungen und saubere Trennung (Separation of Concerns) zwischen Indikatoren-Auswertung und Alarm-Erzeugung.
+    * *Überlegung Öl- & Liquiditäts-Analyse:* Vormerkung zur späteren Aufnahme des [`MacroLiquiditySensorHub`](file:///D:/GitHub/CrashRadar/src/signals/hubs/MacroLiquiditySensorHub.js) (Öl-Spikes > 92–95 $, Frachtdruck `IYT` vs. `CL=F`, Stagflationsrisiko) in das Makrowetter ([`Geopolitical-Oil-Liquidity-Stress-Study.md`](file:///D:/GitHub/CrashRadar/docs/research/macro-proofs/Geopolitical-Oil-Liquidity-Stress-Study.md)).
+    * *MakroEngine Refactoring:* Geplante Überarbeitung der historischen `MacroRegimeEngine` auf die modulare SensorHub-Architektur (architektonisch eingeplant, aktuell mit nachgelagerter Priorität).
   * **Schritt 2 (Dynamisches Debouncing & Krisen-Aufwach-Logik):**
     * Normalzustand: 14 Tage Spam-Schutz für reguläre Warnungen in [`src/services/NotificationManager.js`](file:///D:/GitHub/CrashRadar/src/services/NotificationManager.js) und [`config/Notification-Config.json`](file:///D:/GitHub/CrashRadar/config/Notification-Config.json).
     * Spätzyklus / Kollisions-Fenster aktiv: Dynamische Verkürzung auf 1–2 Tage oder sofortige Alarmierung bei Zustands-/Statuswechsel.
@@ -67,19 +69,7 @@
   * D1-Tabellen `user_portfolios` (inkl. `strategy_id` & `strategy_version`), `market_regime_snapshot`, `strategy_changelogs` und `signal_logs`.
   * Geführtes Onboarding, Ad-hoc `/topup` mit Sofort-Feedback (< 50 ms), Inline-Buttons `[✅ Ausgeführt]` / `[⏳ Überspringen]`, die 3 Beweis-Szenarien und automatischer Transparenz-Push bei Strategie-Updates (z. B. "Strategie modifiziert: Makrosicherung V2.1").
 
-### 4. Dynamischer Makro-Wirtschaftskalender & Szenario-Framework (`Option A: Full DB`)
-* **Architektur-Konzept & Spezifikation:** Vollständig dokumentiert in [`docs/architecture/macro/Makro-Kalender-Szenarien-Konzept.md`](file:///D:/GitHub/CrashRadar/docs/architecture/macro/Makro-Kalender-Szenarien-Konzept.md).
-* **Gap-Analyse & Code-Befund (Neu vs. Anders):** Detailliert festgehalten in [`ScenarioChecklistService.md`](file:///D:/GitHub/CrashRadar/ScenarioChecklistService.md).
-* **Ziel:** Vollständige Ablösung der statischen MVP-Konfiguration (`Macro-Scenarios-Config.json`) und flüchtigen Alert-History durch eine automatisierte, datenbankgestützte Event-, Kalender- und Scorecard-Engine mit Notenbank-Hybrid (FOMC) und 2-Stufen-Konsensbewertung.
-* **Operative Umsetzungsschritte [OFFEN]:**
-  * **Schritt 1 (DDL & DB-Migration):** Anlegen der Tabelle `macro_calendar_events` via `src/db/migrations/create_macro_calendar_events.sql` sowie Erweiterung von [`AnalysisRepository.js`](file:///D:/GitHub/CrashRadar/src/core/repositories/AnalysisRepository.js) (`TABLES`, `FRED_SERIES`, Event-CRUD).
-  * **Schritt 2 (`MacroCalendarFetcher.js`):** Implementierung des Kalender- & Konsens-Ingestion-Dienstes (FRED Release API `/fred/release/dates`, ForexFactory Feed `ff_calendar_thisweek.json` mit Caching/Cloudflare-Resilienz und Cleveland Fed Nowcast Ingestion).
-  * **Schritt 3 (`ScenarioChecklistService.js`):** Erweiterung der Rule-Engine um den neuen Regeltyp `TWO_STAGE_CONSENSUS` (beidseitiger Goldilocks-Korridor, `macroGuards`-Vetos und Realzins-Check `SPREAD_TO_METRIC`).
-  * **Schritt 4 (FOMC Notenbank-Hybrid & FRED-Task):** Implementierung des Fed-Statement RSS-Parsers für Phase 1 (20:05 MESZ) und Anlage des neuen Tasks `fred_dfedtaru` in [`config/Database-Fetcher-Config.json`](file:///D:/GitHub/CrashRadar/config/Database-Fetcher-Config.json) für Phase 2 (T+1 Verifikation).
-  * **Schritt 5 (`MacroScorecardRunner.js` & CI/CD):** Umstellung des Runners auf SQL-Abfragen aus `macro_calendar_events`, 2-Phasen-FOMC-Steuerung, persistente Status-/Ist-Wert-Aktualisierung und Anpassung der GitHub-Action [`daily-fetch.yml`](file:///D:/GitHub/CrashRadar/.github/workflows/daily-fetch.yml).
-  * **Schritt 6 (Test-Suite & Verifikation):** Erweiterung von [`tests/services/ScenarioChecklistService.test.js`](file:///D:/GitHub/CrashRadar/tests/services/ScenarioChecklistService.test.js) für alle 2-Stufen- und Guard-Fälle, gefolgt von einem End-to-End Testlauf.
-
-### 5. M5-Candles Ingestion Pipeline (`PolygonFetchAdapter`) & Single-Asset Radar
+### 4. M5-Candles Ingestion Pipeline (`PolygonFetchAdapter`) & Single-Asset Radar
 * **Master-Architektur & Spezifikation:** Vollständig dokumentiert in [`docs/architecture/single-asset-radar/Single-Asset-Radar-Architecture.md`](file:///D:/GitHub/CrashRadar/docs/architecture/single-asset-radar/Single-Asset-Radar-Architecture.md) (mit Detail-Dokus [`docs/architecture/single-asset-radar/M5Candels.md`](file:///D:/GitHub/CrashRadar/docs/architecture/single-asset-radar/M5Candels.md) und [`docs/architecture/single-asset-radar/SingleAssetTrading.md`](file:///D:/GitHub/CrashRadar/docs/architecture/single-asset-radar/SingleAssetTrading.md)).
 * **Ziel:** Etablierung des nativen, autarken Bezugs von 5-Minuten-Intraday-Kerzen direkt über Polygon.io in die Tabelle `market_data_m5` zur tagesaktuellen Überwachung aktiver High-Beta- & ETF-Positionen.
 * **Operative Umsetzungsschritte [OFFEN]:**
@@ -89,7 +79,7 @@
   * **Schritt 4 (Profiling-Filter - BEREITS ERLEDIGT):** Integration des Profil-Filters (`--profile daily` vs `--profile intraday_m5`) in [`TimeSeriesFetcher.js`](file:///D:/GitHub/CrashRadar/src/services/TimeSeriesFetcher.js) und [`index.js`](file:///D:/GitHub/CrashRadar/index.js) (inkl. Unit-Tests).
   * **Schritt 5 (Workflows & Radar-Sync):** Anlegen von `intraday-m5-fetch.yml` (2x täglich: 17:15 & 22:15 Uhr) und Verifikation mit [`GrowthStockTradingEngine.js`](file:///D:/GitHub/CrashRadar/scratch/tools/GrowthStockTradingEngine.js) & [`BlueChipAndEtfTrader.js`](file:///D:/GitHub/CrashRadar/scratch/tools/BlueChipAndEtfTrader.js).
 
-### 6. Trading & Execution Engine (Architektur, Einzeltitel-ML & 21-Jahre-Backtest)
+### 5. Trading & Execution Engine (Architektur, Einzeltitel-ML & 21-Jahre-Backtest)
 * **Architektur & Konzept-Blaupause:** Vollständig dokumentiert in [`docs/architecture/trading-engine/TradingEngine.md`](file:///D:/GitHub/CrashRadar/docs/architecture/trading-engine/TradingEngine.md).
 * **Zukunftsprojekt / Finaler Ausbau:** Dieser Baustein wird als letztes großes Systemziel nach Fertigstellung aller Strategien, Signale und Ingestion-Pipelines umgesetzt.
 * **Umfang der Säule:**
@@ -97,3 +87,16 @@
   * **FINRA Short-Volume & Fundamentaler Wachhund:** Ticker-spezifische LSTMs (`MlRegimeRadarStockIndicator.js`) kombiniert mit Bilanz-Vetos (`Fundamental-Veto-Config.json`) und Szenario-Feedback (`MacroScenarioIndicator`).
   * **Dynamische Positionsgrößen-Skalierung:** Fractional-Kelly-Logik (`action.scaleDown`) basierend auf Makro-Crash-Risiko ($> 70\,\%$) und Vetos.
   * **A/B-Testzyklus (Makro-Heuristik vs. ML-Ensemble):** Empirischer Vergleich über 21 Jahre (10 Großkrisen).
+
+---
+
+## 🏆 Erreichte Meilensteine (Abgeschlossen)
+
+### ✅ Dynamischer Makro-Wirtschaftskalender & Szenario-Framework (`Option A: Full DB`)
+* **Status [ABGESCHLOSSEN & LIVE VERIFIZIERT]:**
+  * **Datenbank:** Tabelle `macro_calendar_events` mit DDL ([`docs/architecture/database/Macro-Calendar-Events.md`](file:///D:/GitHub/CrashRadar/docs/architecture/database/Macro-Calendar-Events.md)) angelegt.
+  * **Adapter:** [`CalendarFetchAdapter.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/fetch/CalendarFetchAdapter.js) (Treasury DTS Headroom, dynamische X-Date Projektion, QRA Schedule, FRED Release API `/fred/release/dates`, ForexFactory Consensus Enrichment) und [`CalendarStorageAdapter.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/storage/CalendarStorageAdapter.js) implementiert und registriert.
+  * **Services & Runner:** [`FiscalCalendarService.js`](file:///D:/GitHub/CrashRadar/src/services/FiscalCalendarService.js), [`ScenarioChecklistService.js`](file:///D:/GitHub/CrashRadar/src/services/ScenarioChecklistService.js) (DB-first mit Offline-Fallback) und [`MacroScorecardRunner.js`](file:///D:/GitHub/CrashRadar/src/runners/MacroScorecardRunner.js) (persistente Speicherung von `actual_value`, `details_json` und `status`) umgestellt.
+  * **Konzept & Befund:** Vollständig dokumentiert in [`docs/architecture/macro/Makro-Kalender-Szenarien-Konzept.md`](file:///D:/GitHub/CrashRadar/docs/architecture/macro/Makro-Kalender-Szenarien-Konzept.md) und [`ScenarioChecklistService-Gap-Analyse.md`](file:///D:/GitHub/CrashRadar/docs/architecture/macro/ScenarioChecklistService-Gap-Analyse.md).
+  * **Bereinigung:** `config/Fiscal-Calendar-Config.json` und `config/Macro-Scenarios-Config.json` restlos gelöscht.
+  * **Test-Suite & Verifikation:** 108/108 Vitest-Testsuiten (931 Tests) erfolgreich; Live-DB-Ingestion (40 Events) und Scorecard-Abgleich verifiziert.

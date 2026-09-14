@@ -1,7 +1,8 @@
 # Konzept: Dynamischer Makro-Wirtschaftskalender & Szenario-Framework
 
-> **Status:** Verbindliche Architektur & Konzept-Spezifikation (`Option A: Full DB`)  
-> **Ziel:** Vollständige Ablösung der statischen `Macro-Scenarios-Config.json` durch eine automatisierte, datenbankgestützte Event-, Kalender- und Scorecard-Engine.
+> **Status:** ✅ ERLEDIGT & VOLLSTÄNDIG UMGESETZT (Live in MySQL `macro_calendar_events`)  
+> **Ziel:** Vollständige Ablösung der statischen `Macro-Scenarios-Config.json` und `Fiscal-Calendar-Config.json` durch eine automatisierte, datenbankgestützte Event-, Kalender- und Scorecard-Engine.  
+> **Umsetzungs-Nachweis:** Siehe DDL & Architektur in [`docs/architecture/database/Macro-Calendar-Events.md`](file:///D:/GitHub/CrashRadar/docs/architecture/database/Macro-Calendar-Events.md) sowie die Adapter [`CalendarFetchAdapter.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/fetch/CalendarFetchAdapter.js) und [`CalendarStorageAdapter.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/storage/CalendarStorageAdapter.js).
 
 ---
 

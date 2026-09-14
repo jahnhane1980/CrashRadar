@@ -121,7 +121,10 @@ export class FinanceExpert {
           DIX: state.DIX,
           SKEW: state.SKEW,
           SPY_ShortVolumeRatio: state.SPY_ShortVolumeRatio,
-          TotalPCR: state.TotalPCR
+          TotalPCR: state.TotalPCR,
+          Oil: state.Oil,
+          IYT: state.IYT,
+          XLE: state.XLE
         },
         macroGroups: {
           NetLiquidity: {
@@ -142,7 +145,17 @@ export class FinanceExpert {
             EmergencyBorrowing: state.BORROW
           },
           YieldCurve: {
-            Spread10y2y: state.T10Y2Y
+            Spread10y2y: state.T10Y2Y,
+            Yield10y: state.DGS10,
+            Yield2y: state.DGS2,
+            Japan10y: state.IRLTLT01JPM156N
+          },
+          GlobalMacro: {
+            UsdJpy: state.DEXJPUS,
+            UsdCny: state.DEXCHUS,
+            ChinaM2: state.MYAGM2CNM189N,
+            EcbAssets: state.ECBASSETSW,
+            BojAssets: state.JPNASSETS
           },
           Leading: {
             SahmRule: state.SAHMREALTIME,

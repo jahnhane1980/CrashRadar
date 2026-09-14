@@ -143,6 +143,14 @@
         "dateExtractPath": "record_date",
         "dateFormat": "YYYY-MM-DD"
       }
+    },
+    "Calendar": {
+      "type": "package",
+      "pagination": {
+        "strategy": "custom",
+        "dateExtractPath": "event_date",
+        "dateFormat": "YYYY-MM-DD"
+      }
     }
   },
   "tasks": [
@@ -1105,6 +1113,65 @@
         "series_id": "USGSEC",
         "file_type": "json"
       }
+    },
+    {
+      "id": "fred_dgs10",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "DGS10",
+        "file_type": "json"
+      }
+    },
+    {
+      "id": "fred_dgs2",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "DGS2",
+        "file_type": "json"
+      }
+    },
+    {
+      "id": "fred_dexjpus",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "DEXJPUS",
+        "file_type": "json"
+      }
+    },
+    {
+      "id": "fred_irltlt01jpm156n",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "IRLTLT01JPM156N",
+        "file_type": "json"
+      }
+    },
+    {
+      "id": "fred_dexchus",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "DEXCHUS",
+        "file_type": "json"
+      }
+    },
+    {
+      "id": "fred_myagm2cnm189n",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "MYAGM2CNM189N",
+        "file_type": "json"
+      }
+    },
+    {
+      "id": "macro_calendar_events",
+      "provider": "Calendar",
+      "frequency": "daily"
     }
   ]
 }

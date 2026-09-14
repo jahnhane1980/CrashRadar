@@ -49,8 +49,12 @@ Hier finden Entwickler und System-Architekten alle operativen Spezifikationen, E
   *Fiskaldominanz vs. Fed-Bilanz, WRESBAL-Schwellenwerte und K-Faktor-Logik.*
 * 📄 **[`Makro-Kalender-Szenarien-Konzept.md`](file:///D:/GitHub/CrashRadar/docs/architecture/macro/Makro-Kalender-Szenarien-Konzept.md):**  
   *Vollständige DB-gestützte Architektur für Termine, Konsens-Schätzungen und 2-Stufen-Regeln (`Option A: Full DB`).*
+* 📄 **[`ScenarioChecklistService-Gap-Analyse.md`](file:///D:/GitHub/CrashRadar/docs/architecture/macro/ScenarioChecklistService-Gap-Analyse.md):**  
+  *Technischer Code-Abgleich und Gap-Analyse zur Migration von statischen JSON-Konfigurationen auf das datenbankgestützte 3-Schichten-Framework.*
+* 📄 **[`Macro-Calendar-Events.md`](file:///D:/GitHub/CrashRadar/docs/architecture/database/Macro-Calendar-Events.md):**  
+  *Zentrale, kontinuierliche Kalendertabelle `macro_calendar_events`: Automatischer Abgleich von Fiskalfristen, Continuing Resolutions (CR EXTENDED/CONFIRMED), deterministischer QRA-Zyklus und dynamische X-Date-Projektion via US Treasury DTS Table IIIC.*
 * 📄 **[`Checkliste-Goldilocks-Szenarios.md`](file:///D:/GitHub/CrashRadar/docs/architecture/macro/Checkliste-Goldilocks-Szenarios.md):**  
-  *Monatliche Event-Checkliste für anstehende Makro-Veröffentlichungen.*
+  *Monatliche Event-Checkliste für anstehende Makro-Veröffentlichungen mit tagesaktueller Live-Status-Erfassung.*
 
 ### C. ⚙️ Trading & Execution Engine (`docs/architecture/trading-engine/`)
 * 📄 **[`TradingEngine.md`](file:///D:/GitHub/CrashRadar/docs/architecture/trading-engine/TradingEngine.md):**  
@@ -128,6 +132,8 @@ Hier liegen alle empirischen Auswertungen, historischen Krisen-Härtetests und m
 ### A. 📊 Makro-Forschung & Krisen-Validierung (`docs/research/macro-proofs/`)
 * 📄 **[`Analyse.md`](file:///D:/GitHub/CrashRadar/docs/research/macro-proofs/Analyse.md):**  
   *Zentrale statistische Analyse: Net Liquidity Illusion, Yield Curve Steepening Trap, DXY Schwerkraft, 20 %-Margin-Call-Schwelle bei Gold & Volume Climax sowie CBOE/VIX/RSI Bottom-Finding.*
+* 📄 **[`Geopolitical-Oil-Liquidity-Stress-Study.md`](file:///D:/GitHub/CrashRadar/docs/research/macro-proofs/Geopolitical-Oil-Liquidity-Stress-Study.md):**  
+  *Empirischer 21-Episoden-Stresstest (2004–2026): Zusammenspiel von geopolitischem Öl-Schock (CL=F > 92 $), Transport-Margen (IYT), Yen-Carry-Trade (US-Japan 10Y Spread), China FX und US-Fiskal-Schutzschild (Continuing Resolution bis 18.12.) via Master-Composite `MacroLiquiditySensorHub`.*
 * 📄 **[`Indikatoren-Grand-Prix-21-Jahre-Analyse.md`](file:///D:/GitHub/CrashRadar/docs/research/macro-proofs/Indikatoren-Grand-Prix-21-Jahre-Analyse.md):**  
   *21-Jahre-Härtetest aller 18 Makro-Sensoren über 10 historische Großkrisen (2005–2026).*
 * 📄 **[`Crash-Arbeitsmarkt-Analyse.md`](file:///D:/GitHub/CrashRadar/docs/research/macro-proofs/Crash-Arbeitsmarkt-Analyse.md):**  
