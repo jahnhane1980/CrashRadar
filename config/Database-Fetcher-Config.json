@@ -151,6 +151,15 @@
         "dateExtractPath": "event_date",
         "dateFormat": "YYYY-MM-DD"
       }
+    },
+    "SecEdgar13F": {
+      "type": "package",
+      "overrideStartDate": "2025-07-01",
+      "pagination": {
+        "strategy": "custom",
+        "dateExtractPath": "report_date",
+        "dateFormat": "YYYY-MM-DD"
+      }
     }
   },
   "tasks": [
@@ -1171,6 +1180,11 @@
     {
       "id": "macro_calendar_events",
       "provider": "Calendar",
+      "frequency": "daily"
+    },
+    {
+      "id": "sec_13f_holdings",
+      "provider": "SecEdgar13F",
       "frequency": "daily"
     }
   ]

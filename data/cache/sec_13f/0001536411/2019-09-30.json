@@ -1,0 +1,432 @@
+[
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "002824100",
+    "put_call": "STOCK",
+    "issuer_name": "Abbott Labs",
+    "shares": 916300,
+    "value": 76667
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "00507V109",
+    "put_call": "STOCK",
+    "issuer_name": "Activision Blizzard Inc",
+    "shares": 1652355,
+    "value": 87443
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "Adobe Inc",
+    "shares": 30592,
+    "value": 8451
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "008474108",
+    "put_call": "STOCK",
+    "issuer_name": "Agnico Eagle Mines Ltd",
+    "shares": 586100,
+    "value": 31421
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "01609W102",
+    "put_call": "STOCK",
+    "issuer_name": "Alibaba Group Hldg Ltd",
+    "shares": 480937,
+    "value": 80427
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "02156B103",
+    "put_call": "STOCK",
+    "issuer_name": "Alteryx Inc",
+    "shares": 429626,
+    "value": 46155
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "Amazon Com Inc",
+    "shares": 151536,
+    "value": 263053
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "03272L108",
+    "put_call": "STOCK",
+    "issuer_name": "Anaplan Inc",
+    "shares": 1323345,
+    "value": 62197
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "G06242104",
+    "put_call": "STOCK",
+    "issuer_name": "Atlassian Corp Plc",
+    "shares": 25755,
+    "value": 3231
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "067901108",
+    "put_call": "STOCK",
+    "issuer_name": "Barrick Gold Corporation",
+    "shares": 3924300,
+    "value": 68008
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "22266L106",
+    "put_call": "STOCK",
+    "issuer_name": "Coupa Software Inc",
+    "shares": 568647,
+    "value": 73680
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "22788C105",
+    "put_call": "STOCK",
+    "issuer_name": "Crowdstrike Hldgs Inc",
+    "shares": 79940,
+    "value": 4661
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "26969P108",
+    "put_call": "STOCK",
+    "issuer_name": "Eagle Materials Inc",
+    "shares": 77487,
+    "value": 6975
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "285512109",
+    "put_call": "STOCK",
+    "issuer_name": "Electronic Arts Inc",
+    "shares": 161500,
+    "value": 15798
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "Facebook Inc",
+    "shares": 142068,
+    "value": 25299
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "31188V100",
+    "put_call": "STOCK",
+    "issuer_name": "Fastly Inc",
+    "shares": 113826,
+    "value": 2732
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "31620M106",
+    "put_call": "STOCK",
+    "issuer_name": "Fidelity Natl Information Sv",
+    "shares": 125305,
+    "value": 16635
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "369604103",
+    "put_call": "STOCK",
+    "issuer_name": "General Electric Co",
+    "shares": 14845368,
+    "value": 132718
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "369604103",
+    "put_call": "CALL",
+    "issuer_name": "General Electric Co",
+    "shares": 1724100,
+    "value": 15413
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "40415F101",
+    "put_call": "STOCK",
+    "issuer_name": "Hdfc Bank Ltd",
+    "shares": 849000,
+    "value": 48435
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "437076102",
+    "put_call": "STOCK",
+    "issuer_name": "Home Depot Inc",
+    "shares": 413800,
+    "value": 96010
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "46120E602",
+    "put_call": "STOCK",
+    "issuer_name": "Intuitive Surgical Inc",
+    "shares": 27800,
+    "value": 15010
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "46429B598",
+    "put_call": "STOCK",
+    "issuer_name": "Ishares Tr",
+    "shares": 1476500,
+    "value": 49566
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "57636Q104",
+    "put_call": "STOCK",
+    "issuer_name": "Mastercard Inc",
+    "shares": 11115,
+    "value": 3019
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "584688105",
+    "put_call": "STOCK",
+    "issuer_name": "Medicines Co",
+    "shares": 585500,
+    "value": 29275
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "58733R102",
+    "put_call": "STOCK",
+    "issuer_name": "Mercadolibre Inc",
+    "shares": 170888,
+    "value": 94199
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "Microsoft Corp",
+    "shares": 3994703,
+    "value": 555384
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "Netflix Inc",
+    "shares": 347172,
+    "value": 92910
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "64829B100",
+    "put_call": "STOCK",
+    "issuer_name": "New Relic Inc",
+    "shares": 47885,
+    "value": 2943
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "679295105",
+    "put_call": "STOCK",
+    "issuer_name": "Okta Inc",
+    "shares": 239300,
+    "value": 23561
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "75606N109",
+    "put_call": "STOCK",
+    "issuer_name": "Realpage Inc",
+    "shares": 82543,
+    "value": 5189
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "75615P103",
+    "put_call": "STOCK",
+    "issuer_name": "Reata Pharmaceuticals Inc",
+    "shares": 173285,
+    "value": 13913
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "78781P105",
+    "put_call": "STOCK",
+    "issuer_name": "Sailpoint Technlgies Hldgs I",
+    "shares": 15870,
+    "value": 297
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "81141R100",
+    "put_call": "STOCK",
+    "issuer_name": "Sea Ltd",
+    "shares": 2443285,
+    "value": 75620
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "81762P102",
+    "put_call": "STOCK",
+    "issuer_name": "Servicenow Inc",
+    "shares": 507618,
+    "value": 128859
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "82509L107",
+    "put_call": "STOCK",
+    "issuer_name": "Shopify Inc",
+    "shares": 212480,
+    "value": 66222
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "83200N103",
+    "put_call": "STOCK",
+    "issuer_name": "Smartsheet Inc",
+    "shares": 386510,
+    "value": 13926
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "90138F102",
+    "put_call": "STOCK",
+    "issuer_name": "Twilio Inc",
+    "shares": 113315,
+    "value": 12460
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "90353T100",
+    "put_call": "STOCK",
+    "issuer_name": "Uber Technologies Inc",
+    "shares": 166882,
+    "value": 5085
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "92826C839",
+    "put_call": "STOCK",
+    "issuer_name": "Visa Inc",
+    "shares": 546100,
+    "value": 93935
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "94419L101",
+    "put_call": "STOCK",
+    "issuer_name": "Wayfair Inc",
+    "shares": 26785,
+    "value": 3003
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "98138H101",
+    "put_call": "STOCK",
+    "issuer_name": "Workday Inc",
+    "shares": 680487,
+    "value": 115656
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "98980L101",
+    "put_call": "STOCK",
+    "issuer_name": "Zoom Video Communications In",
+    "shares": 61700,
+    "value": 4702
+  }
+]

@@ -1,0 +1,2602 @@
+[
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "ADOBE INC",
+    "shares": 1004,
+    "value": 351390
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "ADOBE INC",
+    "shares": 4117,
+    "value": 1440909
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "ADOBE INC",
+    "shares": 110213,
+    "value": 38573448
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "ADOBE INC",
+    "shares": 736006,
+    "value": 257594740
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "ADOBE INC",
+    "shares": 17733,
+    "value": 6206373
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "ADOBE INC",
+    "shares": 5077,
+    "value": 1776899
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "007903107",
+    "put_call": "STOCK",
+    "issuer_name": "ADVANCED MICRO DEVICES INC",
+    "shares": 1239043,
+    "value": 265353449
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 125575,
+    "value": 39304975
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "02079K107",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 39964,
+    "value": 12540703
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 104363,
+    "value": 32665619
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "02079K107",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 33220,
+    "value": 10424436
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 2186486,
+    "value": 684370118
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "02079K107",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 519045,
+    "value": 162876321
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 3271700,
+    "value": 1024042100
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "02079K107",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 1037985,
+    "value": 325719693
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 569712,
+    "value": 178319856
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "02079K107",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 183998,
+    "value": 57738572
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 281202,
+    "value": 88016226
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "02079K107",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 90473,
+    "value": 28390427
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 302398,
+    "value": 94650574
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "02079K107",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 95851,
+    "value": 30078044
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 86776,
+    "value": 20029636
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 71663,
+    "value": 16541254
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 1931179,
+    "value": 445754737
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 6602594,
+    "value": 1524010747
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 433318,
+    "value": 100018461
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 310739,
+    "value": 71724776
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 495996,
+    "value": 114485797
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "038222105",
+    "put_call": "STOCK",
+    "issuer_name": "APPLIED MATLS INC",
+    "shares": 70819,
+    "value": 18199775
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "038222105",
+    "put_call": "STOCK",
+    "issuer_name": "APPLIED MATLS INC",
+    "shares": 1909449,
+    "value": 490709299
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "038222105",
+    "put_call": "STOCK",
+    "issuer_name": "APPLIED MATLS INC",
+    "shares": 2295879,
+    "value": 590017944
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "038222105",
+    "put_call": "STOCK",
+    "issuer_name": "APPLIED MATLS INC",
+    "shares": 823612,
+    "value": 211660048
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "038222105",
+    "put_call": "STOCK",
+    "issuer_name": "APPLIED MATLS INC",
+    "shares": 307230,
+    "value": 78955038
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "038222105",
+    "put_call": "STOCK",
+    "issuer_name": "APPLIED MATLS INC",
+    "shares": 490151,
+    "value": 125963905
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "038222105",
+    "put_call": "STOCK",
+    "issuer_name": "APPLIED MATLS INC",
+    "shares": 87192,
+    "value": 22407472
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "03831W108",
+    "put_call": "STOCK",
+    "issuer_name": "APPLOVIN CORP",
+    "shares": 9413,
+    "value": 6342668
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "03831W108",
+    "put_call": "STOCK",
+    "issuer_name": "APPLOVIN CORP",
+    "shares": 7812,
+    "value": 5263882
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "03831W108",
+    "put_call": "STOCK",
+    "issuer_name": "APPLOVIN CORP",
+    "shares": 661390,
+    "value": 445657810
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "03831W108",
+    "put_call": "STOCK",
+    "issuer_name": "APPLOVIN CORP",
+    "shares": 1153420,
+    "value": 777197464
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "03831W108",
+    "put_call": "STOCK",
+    "issuer_name": "APPLOVIN CORP",
+    "shares": 189843,
+    "value": 127920010
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "03831W108",
+    "put_call": "STOCK",
+    "issuer_name": "APPLOVIN CORP",
+    "shares": 77783,
+    "value": 52411741
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "03831W108",
+    "put_call": "STOCK",
+    "issuer_name": "APPLOVIN CORP",
+    "shares": 86086,
+    "value": 58006469
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "042068205",
+    "put_call": "STOCK",
+    "issuer_name": "ARM HOLDINGS PLC",
+    "shares": 997571,
+    "value": 109044486
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "042068205",
+    "put_call": "STOCK",
+    "issuer_name": "ARM HOLDINGS PLC",
+    "shares": 405371,
+    "value": 44311104
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "042068205",
+    "put_call": "STOCK",
+    "issuer_name": "ARM HOLDINGS PLC",
+    "shares": 108633,
+    "value": 11874673
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "042068205",
+    "put_call": "STOCK",
+    "issuer_name": "ARM HOLDINGS PLC",
+    "shares": 166948,
+    "value": 18249086
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "042068205",
+    "put_call": "STOCK",
+    "issuer_name": "ARM HOLDINGS PLC",
+    "shares": 621477,
+    "value": 67933651
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "05464C101",
+    "put_call": "STOCK",
+    "issuer_name": "AXON ENTERPRISE INC",
+    "shares": 1830,
+    "value": 1039312
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "05464C101",
+    "put_call": "STOCK",
+    "issuer_name": "AXON ENTERPRISE INC",
+    "shares": 1491,
+    "value": 846784
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "05464C101",
+    "put_call": "STOCK",
+    "issuer_name": "AXON ENTERPRISE INC",
+    "shares": 40196,
+    "value": 22828514
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "05464C101",
+    "put_call": "STOCK",
+    "issuer_name": "AXON ENTERPRISE INC",
+    "shares": 45199,
+    "value": 25669868
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "05464C101",
+    "put_call": "STOCK",
+    "issuer_name": "AXON ENTERPRISE INC",
+    "shares": 49696,
+    "value": 28223849
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "05464C101",
+    "put_call": "STOCK",
+    "issuer_name": "AXON ENTERPRISE INC",
+    "shares": 6468,
+    "value": 3673371
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "05464C101",
+    "put_call": "STOCK",
+    "issuer_name": "AXON ENTERPRISE INC",
+    "shares": 10507,
+    "value": 5967241
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "11135F101",
+    "put_call": "STOCK",
+    "issuer_name": "BROADCOM INC",
+    "shares": 38632,
+    "value": 13370535
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "11135F101",
+    "put_call": "STOCK",
+    "issuer_name": "BROADCOM INC",
+    "shares": 129415,
+    "value": 44790532
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "11135F101",
+    "put_call": "STOCK",
+    "issuer_name": "BROADCOM INC",
+    "shares": 32065,
+    "value": 11097697
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "11135F101",
+    "put_call": "STOCK",
+    "issuer_name": "BROADCOM INC",
+    "shares": 1159674,
+    "value": 401363171
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "11135F101",
+    "put_call": "STOCK",
+    "issuer_name": "BROADCOM INC",
+    "shares": 2932392,
+    "value": 1014900871
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "11135F101",
+    "put_call": "STOCK",
+    "issuer_name": "BROADCOM INC",
+    "shares": 560470,
+    "value": 193978667
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "11135F101",
+    "put_call": "STOCK",
+    "issuer_name": "BROADCOM INC",
+    "shares": 402241,
+    "value": 139215610
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "11135F101",
+    "put_call": "STOCK",
+    "issuer_name": "BROADCOM INC",
+    "shares": 122311,
+    "value": 42331837
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "11135F101",
+    "put_call": "STOCK",
+    "issuer_name": "BROADCOM INC",
+    "shares": 133027,
+    "value": 46040645
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "12541W209",
+    "put_call": "STOCK",
+    "issuer_name": "C H ROBINSON WORLDWIDE IN",
+    "shares": 1262,
+    "value": 202879
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "12541W209",
+    "put_call": "STOCK",
+    "issuer_name": "C H ROBINSON WORLDWIDE IN",
+    "shares": 5173,
+    "value": 831611
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "12541W209",
+    "put_call": "STOCK",
+    "issuer_name": "C H ROBINSON WORLDWIDE IN",
+    "shares": 146134,
+    "value": 23492502
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "12541W209",
+    "put_call": "STOCK",
+    "issuer_name": "C H ROBINSON WORLDWIDE IN",
+    "shares": 157492,
+    "value": 25318414
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "12541W209",
+    "put_call": "STOCK",
+    "issuer_name": "C H ROBINSON WORLDWIDE IN",
+    "shares": 24592,
+    "value": 3953410
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "12541W209",
+    "put_call": "STOCK",
+    "issuer_name": "C H ROBINSON WORLDWIDE IN",
+    "shares": 6371,
+    "value": 1024202
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "142152107",
+    "put_call": "STOCK",
+    "issuer_name": "CARIS LIFE SCIENCES INC",
+    "shares": 5291006,
+    "value": 142751342
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "142152107",
+    "put_call": "STOCK",
+    "issuer_name": "CARIS LIFE SCIENCES INC",
+    "shares": 4528986,
+    "value": 122192042
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "146869102",
+    "put_call": "STOCK",
+    "issuer_name": "CARVANA CO",
+    "shares": 33791,
+    "value": 14260478
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "146869102",
+    "put_call": "STOCK",
+    "issuer_name": "CARVANA CO",
+    "shares": 28124,
+    "value": 11868890
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "146869102",
+    "put_call": "STOCK",
+    "issuer_name": "CARVANA CO",
+    "shares": 602735,
+    "value": 254366225
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "146869102",
+    "put_call": "STOCK",
+    "issuer_name": "CARVANA CO",
+    "shares": 852360,
+    "value": 359712967
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "146869102",
+    "put_call": "STOCK",
+    "issuer_name": "CARVANA CO",
+    "shares": 181181,
+    "value": 76462006
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "146869102",
+    "put_call": "STOCK",
+    "issuer_name": "CARVANA CO",
+    "shares": 99822,
+    "value": 42126880
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "146869102",
+    "put_call": "STOCK",
+    "issuer_name": "CARVANA CO",
+    "shares": 160216,
+    "value": 67614356
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "15743P104",
+    "put_call": "STOCK",
+    "issuer_name": "CHAGEE HLDGS LTD",
+    "shares": 3174115,
+    "value": 36914957
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "16935C109",
+    "put_call": "STOCK",
+    "issuer_name": "CHIME FINL INC",
+    "shares": 1854556,
+    "value": 46679175
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "16935C109",
+    "put_call": "STOCK",
+    "issuer_name": "CHIME FINL INC",
+    "shares": 3232518,
+    "value": 81362478
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "16935C109",
+    "put_call": "STOCK",
+    "issuer_name": "CHIME FINL INC",
+    "shares": 4984918,
+    "value": 125470386
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "21037T109",
+    "put_call": "STOCK",
+    "issuer_name": "CONSTELLATION ENERGY CORP",
+    "shares": 51752,
+    "value": 18282429
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "21037T109",
+    "put_call": "STOCK",
+    "issuer_name": "CONSTELLATION ENERGY CORP",
+    "shares": 182713,
+    "value": 64547022
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "21037T109",
+    "put_call": "STOCK",
+    "issuer_name": "CONSTELLATION ENERGY CORP",
+    "shares": 42759,
+    "value": 15105472
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "21037T109",
+    "put_call": "STOCK",
+    "issuer_name": "CONSTELLATION ENERGY CORP",
+    "shares": 1419452,
+    "value": 501449808
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "21037T109",
+    "put_call": "STOCK",
+    "issuer_name": "CONSTELLATION ENERGY CORP",
+    "shares": 2622943,
+    "value": 926607074
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "21037T109",
+    "put_call": "STOCK",
+    "issuer_name": "CONSTELLATION ENERGY CORP",
+    "shares": 556228,
+    "value": 196498666
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "21037T109",
+    "put_call": "STOCK",
+    "issuer_name": "CONSTELLATION ENERGY CORP",
+    "shares": 533303,
+    "value": 188399951
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "21037T109",
+    "put_call": "STOCK",
+    "issuer_name": "CONSTELLATION ENERGY CORP",
+    "shares": 193279,
+    "value": 68279672
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "21037T109",
+    "put_call": "STOCK",
+    "issuer_name": "CONSTELLATION ENERGY CORP",
+    "shares": 304745,
+    "value": 107657266
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "25809K105",
+    "put_call": "STOCK",
+    "issuer_name": "DOORDASH INC",
+    "shares": 75527,
+    "value": 17105355
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "25809K105",
+    "put_call": "STOCK",
+    "issuer_name": "DOORDASH INC",
+    "shares": 61482,
+    "value": 13924443
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "25809K105",
+    "put_call": "STOCK",
+    "issuer_name": "DOORDASH INC",
+    "shares": 1662595,
+    "value": 376544516
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "25809K105",
+    "put_call": "STOCK",
+    "issuer_name": "DOORDASH INC",
+    "shares": 1872286,
+    "value": 424035333
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "25809K105",
+    "put_call": "STOCK",
+    "issuer_name": "DOORDASH INC",
+    "shares": 268343,
+    "value": 60774323
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "25809K105",
+    "put_call": "STOCK",
+    "issuer_name": "DOORDASH INC",
+    "shares": 425132,
+    "value": 96283895
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "G29183103",
+    "put_call": "STOCK",
+    "issuer_name": "EATON CORP PLC",
+    "shares": 33707,
+    "value": 10736017
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "G29183103",
+    "put_call": "STOCK",
+    "issuer_name": "EATON CORP PLC",
+    "shares": 172915,
+    "value": 55075157
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "G29183103",
+    "put_call": "STOCK",
+    "issuer_name": "EATON CORP PLC",
+    "shares": 27400,
+    "value": 8727174
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "G29183103",
+    "put_call": "STOCK",
+    "issuer_name": "EATON CORP PLC",
+    "shares": 755504,
+    "value": 240635579
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "G29183103",
+    "put_call": "STOCK",
+    "issuer_name": "EATON CORP PLC",
+    "shares": 2406277,
+    "value": 766423287
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "G29183103",
+    "put_call": "STOCK",
+    "issuer_name": "EATON CORP PLC",
+    "shares": 479315,
+    "value": 152666621
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "G29183103",
+    "put_call": "STOCK",
+    "issuer_name": "EATON CORP PLC",
+    "shares": 530076,
+    "value": 168834507
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "G29183103",
+    "put_call": "STOCK",
+    "issuer_name": "EATON CORP PLC",
+    "shares": 121561,
+    "value": 38718394
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "G29183103",
+    "put_call": "STOCK",
+    "issuer_name": "EATON CORP PLC",
+    "shares": 194468,
+    "value": 61940003
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "302130109",
+    "put_call": "STOCK",
+    "issuer_name": "EXPEDITORS INTL WASH INC",
+    "shares": 6845,
+    "value": 1019973
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "302130109",
+    "put_call": "STOCK",
+    "issuer_name": "EXPEDITORS INTL WASH INC",
+    "shares": 1354,
+    "value": 201760
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "302130109",
+    "put_call": "STOCK",
+    "issuer_name": "EXPEDITORS INTL WASH INC",
+    "shares": 5556,
+    "value": 827900
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "302130109",
+    "put_call": "STOCK",
+    "issuer_name": "EXPEDITORS INTL WASH INC",
+    "shares": 156717,
+    "value": 23352400
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "302130109",
+    "put_call": "STOCK",
+    "issuer_name": "EXPEDITORS INTL WASH INC",
+    "shares": 169149,
+    "value": 25204892
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "302130109",
+    "put_call": "STOCK",
+    "issuer_name": "EXPEDITORS INTL WASH INC",
+    "shares": 26366,
+    "value": 3928798
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "31946M103",
+    "put_call": "STOCK",
+    "issuer_name": "FIRST CTZNS BANCSHARES INC D",
+    "shares": 139498,
+    "value": 299387818
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "36828A101",
+    "put_call": "STOCK",
+    "issuer_name": "GE VERNOVA INC",
+    "shares": 14713,
+    "value": 9615975
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "36828A101",
+    "put_call": "STOCK",
+    "issuer_name": "GE VERNOVA INC",
+    "shares": 146882,
+    "value": 95997669
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "36828A101",
+    "put_call": "STOCK",
+    "issuer_name": "GE VERNOVA INC",
+    "shares": 12157,
+    "value": 7945450
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "36828A101",
+    "put_call": "STOCK",
+    "issuer_name": "GE VERNOVA INC",
+    "shares": 694099,
+    "value": 453642283
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "36828A101",
+    "put_call": "STOCK",
+    "issuer_name": "GE VERNOVA INC",
+    "shares": 1684410,
+    "value": 1100879844
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "36828A101",
+    "put_call": "STOCK",
+    "issuer_name": "GE VERNOVA INC",
+    "shares": 216887,
+    "value": 141750837
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "36828A101",
+    "put_call": "STOCK",
+    "issuer_name": "GE VERNOVA INC",
+    "shares": 456295,
+    "value": 298220723
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "36828A101",
+    "put_call": "STOCK",
+    "issuer_name": "GE VERNOVA INC",
+    "shares": 60771,
+    "value": 39718102
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "36828A101",
+    "put_call": "STOCK",
+    "issuer_name": "GE VERNOVA INC",
+    "shares": 83960,
+    "value": 54873737
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "368736104",
+    "put_call": "STOCK",
+    "issuer_name": "GENERAC HLDGS INC",
+    "shares": 369210,
+    "value": 50349168
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "456788108",
+    "put_call": "STOCK",
+    "issuer_name": "INFOSYS LTD",
+    "shares": 4574706,
+    "value": 81521261
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "46120E602",
+    "put_call": "STOCK",
+    "issuer_name": "INTUITIVE SURGICAL INC",
+    "shares": 11605,
+    "value": 6572608
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "46120E602",
+    "put_call": "STOCK",
+    "issuer_name": "INTUITIVE SURGICAL INC",
+    "shares": 9657,
+    "value": 5469339
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "46120E602",
+    "put_call": "STOCK",
+    "issuer_name": "INTUITIVE SURGICAL INC",
+    "shares": 257966,
+    "value": 146101624
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "46120E602",
+    "put_call": "STOCK",
+    "issuer_name": "INTUITIVE SURGICAL INC",
+    "shares": 422112,
+    "value": 239067352
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "46120E602",
+    "put_call": "STOCK",
+    "issuer_name": "INTUITIVE SURGICAL INC",
+    "shares": 41507,
+    "value": 23507905
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "46120E602",
+    "put_call": "STOCK",
+    "issuer_name": "INTUITIVE SURGICAL INC",
+    "shares": 64387,
+    "value": 36466221
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "46438F101",
+    "put_call": "STOCK",
+    "issuer_name": "ISHARES BITCOIN TRUST ETF",
+    "shares": 67226,
+    "value": 3337771
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "512807306",
+    "put_call": "STOCK",
+    "issuer_name": "LAM RESEARCH CORP",
+    "shares": 105257,
+    "value": 18017893
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "512807306",
+    "put_call": "STOCK",
+    "issuer_name": "LAM RESEARCH CORP",
+    "shares": 85475,
+    "value": 14631611
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "512807306",
+    "put_call": "STOCK",
+    "issuer_name": "LAM RESEARCH CORP",
+    "shares": 2456447,
+    "value": 420494597
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "512807306",
+    "put_call": "STOCK",
+    "issuer_name": "LAM RESEARCH CORP",
+    "shares": 4800727,
+    "value": 821788448
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "512807306",
+    "put_call": "STOCK",
+    "issuer_name": "LAM RESEARCH CORP",
+    "shares": 1380494,
+    "value": 236312963
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "512807306",
+    "put_call": "STOCK",
+    "issuer_name": "LAM RESEARCH CORP",
+    "shares": 380255,
+    "value": 65092051
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "512807306",
+    "put_call": "STOCK",
+    "issuer_name": "LAM RESEARCH CORP",
+    "shares": 596910,
+    "value": 102179054
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "573874104",
+    "put_call": "STOCK",
+    "issuer_name": "MARVELL TECHNOLOGY INC",
+    "shares": 2079046,
+    "value": 176677329
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "576323109",
+    "put_call": "STOCK",
+    "issuer_name": "MASTEC INC",
+    "shares": 4341,
+    "value": 943603
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "576323109",
+    "put_call": "STOCK",
+    "issuer_name": "MASTEC INC",
+    "shares": 45780,
+    "value": 9951199
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "576323109",
+    "put_call": "STOCK",
+    "issuer_name": "MASTEC INC",
+    "shares": 3530,
+    "value": 767316
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "576323109",
+    "put_call": "STOCK",
+    "issuer_name": "MASTEC INC",
+    "shares": 104677,
+    "value": 22753639
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "576323109",
+    "put_call": "STOCK",
+    "issuer_name": "MASTEC INC",
+    "shares": 107545,
+    "value": 23377057
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "576323109",
+    "put_call": "STOCK",
+    "issuer_name": "MASTEC INC",
+    "shares": 225127,
+    "value": 48935856
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "576323109",
+    "put_call": "STOCK",
+    "issuer_name": "MASTEC INC",
+    "shares": 139557,
+    "value": 30335505
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "576323109",
+    "put_call": "STOCK",
+    "issuer_name": "MASTEC INC",
+    "shares": 16891,
+    "value": 3671597
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "576323109",
+    "put_call": "STOCK",
+    "issuer_name": "MASTEC INC",
+    "shares": 30461,
+    "value": 6621308
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "58463J304",
+    "put_call": "STOCK",
+    "issuer_name": "MEDICAL PROPERTIES TRUST INC",
+    "shares": 4525398,
+    "value": 22626990
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "META PLATFORMS INC",
+    "shares": 40193,
+    "value": 26530997
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "META PLATFORMS INC",
+    "shares": 719283,
+    "value": 474791515
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "META PLATFORMS INC",
+    "shares": 2571366,
+    "value": 1697332983
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "META PLATFORMS INC",
+    "shares": 209186,
+    "value": 138081587
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "META PLATFORMS INC",
+    "shares": 96581,
+    "value": 63752152
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "META PLATFORMS INC",
+    "shares": 97236,
+    "value": 64184511
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "META PLATFORMS INC",
+    "shares": 48104,
+    "value": 31752969
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 70196,
+    "value": 33948190
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 57618,
+    "value": 27865217
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 1543935,
+    "value": 746677845
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 2494635,
+    "value": 1206455379
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 359828,
+    "value": 174020017
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 248419,
+    "value": 120140397
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 397345,
+    "value": 192163989
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "60770K107",
+    "put_call": "STOCK",
+    "issuer_name": "MODERNA INC",
+    "shares": 200000,
+    "value": 5898000
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "615369105",
+    "put_call": "STOCK",
+    "issuer_name": "MOODYS CORP",
+    "shares": 272,
+    "value": 138951
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "615369105",
+    "put_call": "STOCK",
+    "issuer_name": "MOODYS CORP",
+    "shares": 1115,
+    "value": 569598
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "615369105",
+    "put_call": "STOCK",
+    "issuer_name": "MOODYS CORP",
+    "shares": 23668,
+    "value": 12090798
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "615369105",
+    "put_call": "STOCK",
+    "issuer_name": "MOODYS CORP",
+    "shares": 34025,
+    "value": 17381671
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "615369105",
+    "put_call": "STOCK",
+    "issuer_name": "MOODYS CORP",
+    "shares": 3808,
+    "value": 1945317
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "615369105",
+    "put_call": "STOCK",
+    "issuer_name": "MOODYS CORP",
+    "shares": 1372,
+    "value": 700886
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "632307104",
+    "put_call": "STOCK",
+    "issuer_name": "NATERA INC",
+    "shares": 37294,
+    "value": 8543682
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "632307104",
+    "put_call": "STOCK",
+    "issuer_name": "NATERA INC",
+    "shares": 30128,
+    "value": 6902024
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "632307104",
+    "put_call": "STOCK",
+    "issuer_name": "NATERA INC",
+    "shares": 811262,
+    "value": 185852012
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "632307104",
+    "put_call": "STOCK",
+    "issuer_name": "NATERA INC",
+    "shares": 918992,
+    "value": 210531877
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "632307104",
+    "put_call": "STOCK",
+    "issuer_name": "NATERA INC",
+    "shares": 496716,
+    "value": 113792668
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "632307104",
+    "put_call": "STOCK",
+    "issuer_name": "NATERA INC",
+    "shares": 130524,
+    "value": 29901743
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "632307104",
+    "put_call": "STOCK",
+    "issuer_name": "NATERA INC",
+    "shares": 208418,
+    "value": 47746480
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "639193101",
+    "put_call": "STOCK",
+    "issuer_name": "NAVAN INC",
+    "shares": 599280,
+    "value": 10235702
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "NETFLIX INC.",
+    "shares": 115934,
+    "value": 10869972
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "NETFLIX INC.",
+    "shares": 3113874,
+    "value": 291956826
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "NETFLIX INC.",
+    "shares": 6187350,
+    "value": 580125936
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "NETFLIX INC.",
+    "shares": 501022,
+    "value": 46975823
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "NETFLIX INC.",
+    "shares": 800390,
+    "value": 75044566
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "NETFLIX INC.",
+    "shares": 142785,
+    "value": 13387522
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "G6683N103",
+    "put_call": "STOCK",
+    "issuer_name": "NU HLDGS LTD",
+    "shares": 1150203,
+    "value": 19254398
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "G6683N103",
+    "put_call": "STOCK",
+    "issuer_name": "NU HLDGS LTD",
+    "shares": 44000363,
+    "value": 736566077
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "G6683N103",
+    "put_call": "STOCK",
+    "issuer_name": "NU HLDGS LTD",
+    "shares": 599797,
+    "value": 10040602
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORPORATION",
+    "shares": 1915943,
+    "value": 357323370
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORPORATION",
+    "shares": 6452926,
+    "value": 1203470699
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORPORATION",
+    "shares": 465685,
+    "value": 86850253
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORPORATION",
+    "shares": 278168,
+    "value": 51878332
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORPORATION",
+    "shares": 90616,
+    "value": 16899884
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "68389X105",
+    "put_call": "STOCK",
+    "issuer_name": "ORACLE CORP",
+    "shares": 48573,
+    "value": 9467363
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "68389X105",
+    "put_call": "STOCK",
+    "issuer_name": "ORACLE CORP",
+    "shares": 40421,
+    "value": 7878457
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "68389X105",
+    "put_call": "STOCK",
+    "issuer_name": "ORACLE CORP",
+    "shares": 1126903,
+    "value": 219644664
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "68389X105",
+    "put_call": "STOCK",
+    "issuer_name": "ORACLE CORP",
+    "shares": 2664205,
+    "value": 519280197
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "68389X105",
+    "put_call": "STOCK",
+    "issuer_name": "ORACLE CORP",
+    "shares": 291213,
+    "value": 56760326
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "68389X105",
+    "put_call": "STOCK",
+    "issuer_name": "ORACLE CORP",
+    "shares": 134655,
+    "value": 26245606
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "68389X105",
+    "put_call": "STOCK",
+    "issuer_name": "ORACLE CORP",
+    "shares": 134038,
+    "value": 26125347
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "70450Y103",
+    "put_call": "STOCK",
+    "issuer_name": "PAYPAL HLDGS INC",
+    "shares": 1697505,
+    "value": 99100342
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "74767V109",
+    "put_call": "STOCK",
+    "issuer_name": "QUANTUMSCAPE CORP",
+    "shares": 3694995,
+    "value": 38501848
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "75734B100",
+    "put_call": "STOCK",
+    "issuer_name": "REDDIT INC",
+    "shares": 39973,
+    "value": 9188594
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "75734B100",
+    "put_call": "STOCK",
+    "issuer_name": "REDDIT INC",
+    "shares": 33164,
+    "value": 7623409
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "75734B100",
+    "put_call": "STOCK",
+    "issuer_name": "REDDIT INC",
+    "shares": 1047965,
+    "value": 240895715
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "75734B100",
+    "put_call": "STOCK",
+    "issuer_name": "REDDIT INC",
+    "shares": 3591942,
+    "value": 825679708
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "75734B100",
+    "put_call": "STOCK",
+    "issuer_name": "REDDIT INC",
+    "shares": 404284,
+    "value": 92932763
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "75734B100",
+    "put_call": "STOCK",
+    "issuer_name": "REDDIT INC",
+    "shares": 169234,
+    "value": 38901820
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "75734B100",
+    "put_call": "STOCK",
+    "issuer_name": "REDDIT INC",
+    "shares": 263679,
+    "value": 60611892
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "77311W101",
+    "put_call": "STOCK",
+    "issuer_name": "ROCKET COS INC",
+    "shares": 98132,
+    "value": 1899836
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "77311W101",
+    "put_call": "STOCK",
+    "issuer_name": "ROCKET COS INC",
+    "shares": 81119,
+    "value": 1570464
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "77311W101",
+    "put_call": "STOCK",
+    "issuer_name": "ROCKET COS INC",
+    "shares": 2419684,
+    "value": 46845082
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "77311W101",
+    "put_call": "STOCK",
+    "issuer_name": "ROCKET COS INC",
+    "shares": 2459042,
+    "value": 47607053
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "77311W101",
+    "put_call": "STOCK",
+    "issuer_name": "ROCKET COS INC",
+    "shares": 720566,
+    "value": 13950158
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "77311W101",
+    "put_call": "STOCK",
+    "issuer_name": "ROCKET COS INC",
+    "shares": 424199,
+    "value": 8212493
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "77311W101",
+    "put_call": "STOCK",
+    "issuer_name": "ROCKET COS INC",
+    "shares": 544310,
+    "value": 10537842
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "78409V104",
+    "put_call": "STOCK",
+    "issuer_name": "S&amp;P GLOBAL INC",
+    "shares": 271,
+    "value": 141622
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "78409V104",
+    "put_call": "STOCK",
+    "issuer_name": "S&amp;P GLOBAL INC",
+    "shares": 1111,
+    "value": 580597
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "78409V104",
+    "put_call": "STOCK",
+    "issuer_name": "S&amp;P GLOBAL INC",
+    "shares": 23113,
+    "value": 12078623
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "78409V104",
+    "put_call": "STOCK",
+    "issuer_name": "S&amp;P GLOBAL INC",
+    "shares": 33875,
+    "value": 17702736
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "78409V104",
+    "put_call": "STOCK",
+    "issuer_name": "S&amp;P GLOBAL INC",
+    "shares": 3719,
+    "value": 1943512
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "78409V104",
+    "put_call": "STOCK",
+    "issuer_name": "S&amp;P GLOBAL INC",
+    "shares": 1362,
+    "value": 711768
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "833445109",
+    "put_call": "STOCK",
+    "issuer_name": "SNOWFLAKE INC",
+    "shares": 38516,
+    "value": 8448870
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "833445109",
+    "put_call": "STOCK",
+    "issuer_name": "SNOWFLAKE INC",
+    "shares": 31341,
+    "value": 6874962
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "833445109",
+    "put_call": "STOCK",
+    "issuer_name": "SNOWFLAKE INC",
+    "shares": 846403,
+    "value": 185666962
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "833445109",
+    "put_call": "STOCK",
+    "issuer_name": "SNOWFLAKE INC",
+    "shares": 954159,
+    "value": 209304318
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "833445109",
+    "put_call": "STOCK",
+    "issuer_name": "SNOWFLAKE INC",
+    "shares": 246508,
+    "value": 54073995
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "833445109",
+    "put_call": "STOCK",
+    "issuer_name": "SNOWFLAKE INC",
+    "shares": 140107,
+    "value": 30733872
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "833445109",
+    "put_call": "STOCK",
+    "issuer_name": "SNOWFLAKE INC",
+    "shares": 223929,
+    "value": 49121065
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "L8681T102",
+    "put_call": "STOCK",
+    "issuer_name": "SPOTIFY TECHNOLOGY S A",
+    "shares": 31064,
+    "value": 18039175
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "L8681T102",
+    "put_call": "STOCK",
+    "issuer_name": "SPOTIFY TECHNOLOGY S A",
+    "shares": 25239,
+    "value": 14656540
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "L8681T102",
+    "put_call": "STOCK",
+    "issuer_name": "SPOTIFY TECHNOLOGY S A",
+    "shares": 677026,
+    "value": 393155768
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "L8681T102",
+    "put_call": "STOCK",
+    "issuer_name": "SPOTIFY TECHNOLOGY S A",
+    "shares": 1431630,
+    "value": 831361857
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "L8681T102",
+    "put_call": "STOCK",
+    "issuer_name": "SPOTIFY TECHNOLOGY S A",
+    "shares": 110849,
+    "value": 64371123
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "L8681T102",
+    "put_call": "STOCK",
+    "issuer_name": "SPOTIFY TECHNOLOGY S A",
+    "shares": 175073,
+    "value": 101666642
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "85208M102",
+    "put_call": "STOCK",
+    "issuer_name": "SPROUTS FMRS MKT INC",
+    "shares": 601886,
+    "value": 47952258
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "871607107",
+    "put_call": "STOCK",
+    "issuer_name": "SYNOPSYS INC",
+    "shares": 17660,
+    "value": 8295255
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "871607107",
+    "put_call": "STOCK",
+    "issuer_name": "SYNOPSYS INC",
+    "shares": 477818,
+    "value": 224440671
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "871607107",
+    "put_call": "STOCK",
+    "issuer_name": "SYNOPSYS INC",
+    "shares": 788582,
+    "value": 370412737
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "871607107",
+    "put_call": "STOCK",
+    "issuer_name": "SYNOPSYS INC",
+    "shares": 151151,
+    "value": 70998648
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "871607107",
+    "put_call": "STOCK",
+    "issuer_name": "SYNOPSYS INC",
+    "shares": 76881,
+    "value": 36112543
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "871607107",
+    "put_call": "STOCK",
+    "issuer_name": "SYNOPSYS INC",
+    "shares": 122603,
+    "value": 57589081
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "871607107",
+    "put_call": "STOCK",
+    "issuer_name": "SYNOPSYS INC",
+    "shares": 21794,
+    "value": 10237078
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "874039100",
+    "put_call": "STOCK",
+    "issuer_name": "TAIWAN SEMICONDUCTOR MANUFAC",
+    "shares": 104711,
+    "value": 31820626
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "874039100",
+    "put_call": "STOCK",
+    "issuer_name": "TAIWAN SEMICONDUCTOR MANUFAC",
+    "shares": 151403,
+    "value": 46009858
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "874039100",
+    "put_call": "STOCK",
+    "issuer_name": "TAIWAN SEMICONDUCTOR MANUFAC",
+    "shares": 85119,
+    "value": 25866813
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "874039100",
+    "put_call": "STOCK",
+    "issuer_name": "TAIWAN SEMICONDUCTOR MANUFAC",
+    "shares": 2411367,
+    "value": 732790318
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "874039100",
+    "put_call": "STOCK",
+    "issuer_name": "TAIWAN SEMICONDUCTOR MANUFAC",
+    "shares": 3453059,
+    "value": 1049350100
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "874039100",
+    "put_call": "STOCK",
+    "issuer_name": "TAIWAN SEMICONDUCTOR MANUFAC",
+    "shares": 780758,
+    "value": 237264549
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "874039100",
+    "put_call": "STOCK",
+    "issuer_name": "TAIWAN SEMICONDUCTOR MANUFAC",
+    "shares": 461387,
+    "value": 140210895
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "874039100",
+    "put_call": "STOCK",
+    "issuer_name": "TAIWAN SEMICONDUCTOR MANUFAC",
+    "shares": 388769,
+    "value": 118143011
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "874039100",
+    "put_call": "STOCK",
+    "issuer_name": "TAIWAN SEMICONDUCTOR MANUFAC",
+    "shares": 792951,
+    "value": 240969879
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "88160R101",
+    "put_call": "STOCK",
+    "issuer_name": "TESLA INC",
+    "shares": 29573,
+    "value": 13299570
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "88160R101",
+    "put_call": "STOCK",
+    "issuer_name": "TESLA INC",
+    "shares": 10945,
+    "value": 4922185
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "88160R101",
+    "put_call": "STOCK",
+    "issuer_name": "TESLA INC",
+    "shares": 1446816,
+    "value": 650662092
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "88160R101",
+    "put_call": "STOCK",
+    "issuer_name": "TESLA INC",
+    "shares": 65237,
+    "value": 29338384
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "88160R101",
+    "put_call": "STOCK",
+    "issuer_name": "TESLA INC",
+    "shares": 88835,
+    "value": 39950876
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "92537N108",
+    "put_call": "STOCK",
+    "issuer_name": "VERTIV HOLDINGS CO",
+    "shares": 438430,
+    "value": 71030044
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "92537N108",
+    "put_call": "STOCK",
+    "issuer_name": "VERTIV HOLDINGS CO",
+    "shares": 294040,
+    "value": 47637420
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "92537N108",
+    "put_call": "STOCK",
+    "issuer_name": "VERTIV HOLDINGS CO",
+    "shares": 96477,
+    "value": 15630239
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2025-12-31",
+    "filing_date": "2026-05-15",
+    "cusip": "G9572D103",
+    "put_call": "STOCK",
+    "issuer_name": "WEBULL CORP",
+    "shares": 74334,
+    "value": 577575
+  }
+]

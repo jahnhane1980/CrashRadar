@@ -1,0 +1,612 @@
+[
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "002824100",
+    "put_call": "STOCK",
+    "issuer_name": "Abbott Labs",
+    "shares": 1440200,
+    "value": 115130
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "H00263105",
+    "put_call": "STOCK",
+    "issuer_name": "Ac Immune Sa",
+    "shares": 1324935,
+    "value": 6691
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "00507V109",
+    "put_call": "STOCK",
+    "issuer_name": "Activision Blizzard Inc",
+    "shares": 1091152,
+    "value": 49680
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "Adobe Inc",
+    "shares": 640211,
+    "value": 170610
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "00846U101",
+    "put_call": "STOCK",
+    "issuer_name": "Agilent Technologies Inc",
+    "shares": 478800,
+    "value": 38486
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "01609W102",
+    "put_call": "STOCK",
+    "issuer_name": "Alibaba Group Hldg Ltd",
+    "shares": 928785,
+    "value": 169457
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "Alphabet Inc",
+    "shares": 73069,
+    "value": 85994
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "Amazon Com Inc",
+    "shares": 113715,
+    "value": 202498
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "032654105",
+    "put_call": "STOCK",
+    "issuer_name": "Analog Devices Inc",
+    "shares": 222625,
+    "value": 23436
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "G06242104",
+    "put_call": "STOCK",
+    "issuer_name": "Atlassian Corp Plc",
+    "shares": 46770,
+    "value": 5253
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "052769106",
+    "put_call": "STOCK",
+    "issuer_name": "Autodesk Inc",
+    "shares": 31300,
+    "value": 4877
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "101388106",
+    "put_call": "STOCK",
+    "issuer_name": "Bottomline Tech Del Inc",
+    "shares": 10200,
+    "value": 511
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "127097103",
+    "put_call": "STOCK",
+    "issuer_name": "Cabot Oil &amp; Gas Corp",
+    "shares": 395500,
+    "value": 10323
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "135086106",
+    "put_call": "STOCK",
+    "issuer_name": "Canada Goose Holdings Inc",
+    "shares": 9550,
+    "value": 459
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "14081R103",
+    "put_call": "STOCK",
+    "issuer_name": "Carbon Black Inc",
+    "shares": 105525,
+    "value": 1472
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "16411R208",
+    "put_call": "STOCK",
+    "issuer_name": "Cheniere Energy Inc",
+    "shares": 611200,
+    "value": 41782
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "22266L106",
+    "put_call": "STOCK",
+    "issuer_name": "Coupa Software Inc",
+    "shares": 802690,
+    "value": 73029
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "256163106",
+    "put_call": "STOCK",
+    "issuer_name": "Docusign Inc",
+    "shares": 331410,
+    "value": 17180
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "26969P108",
+    "put_call": "STOCK",
+    "issuer_name": "Eagle Materials Inc",
+    "shares": 30700,
+    "value": 2588
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "Facebook Inc",
+    "shares": 61665,
+    "value": 10279
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "31620M106",
+    "put_call": "STOCK",
+    "issuer_name": "Fidelity Natl Information Sv",
+    "shares": 389845,
+    "value": 44091
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "339041105",
+    "put_call": "STOCK",
+    "issuer_name": "Fleetcor Technologies Inc",
+    "shares": 14605,
+    "value": 3601
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "369604103",
+    "put_call": "STOCK",
+    "issuer_name": "General Electric Co",
+    "shares": 6241000,
+    "value": 62348
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "436440101",
+    "put_call": "STOCK",
+    "issuer_name": "Hologic Inc",
+    "shares": 336700,
+    "value": 16296
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "437076102",
+    "put_call": "STOCK",
+    "issuer_name": "Home Depot Inc",
+    "shares": 387300,
+    "value": 74319
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "G47567105",
+    "put_call": "STOCK",
+    "issuer_name": "Ihs Markit Ltd",
+    "shares": 244500,
+    "value": 13296
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "452327109",
+    "put_call": "STOCK",
+    "issuer_name": "Illumina Inc",
+    "shares": 171800,
+    "value": 53377
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "45337C102",
+    "put_call": "STOCK",
+    "issuer_name": "Incyte Corp",
+    "shares": 202400,
+    "value": 17404
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "46120E602",
+    "put_call": "STOCK",
+    "issuer_name": "Intuitive Surgical Inc",
+    "shares": 131100,
+    "value": 74803
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "464287234",
+    "put_call": "STOCK",
+    "issuer_name": "Ishares Tr",
+    "shares": 7034700,
+    "value": 301929
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "464287556",
+    "put_call": "STOCK",
+    "issuer_name": "Ishares Tr",
+    "shares": 791200,
+    "value": 88456
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "56585A102",
+    "put_call": "STOCK",
+    "issuer_name": "Marathon Pete Corp",
+    "shares": 541000,
+    "value": 32379
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "57636Q104",
+    "put_call": "STOCK",
+    "issuer_name": "Mastercard Inc",
+    "shares": 238300,
+    "value": 56108
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "58733R102",
+    "put_call": "STOCK",
+    "issuer_name": "Mercadolibre Inc",
+    "shares": 183328,
+    "value": 93081
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "58933Y105",
+    "put_call": "STOCK",
+    "issuer_name": "Merck &amp; Co Inc",
+    "shares": 266300,
+    "value": 22148
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "595112103",
+    "put_call": "STOCK",
+    "issuer_name": "Micron Technology Inc",
+    "shares": 480300,
+    "value": 19851
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "Microsoft Corp",
+    "shares": 5171051,
+    "value": 609874
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "Netflix Inc",
+    "shares": 539875,
+    "value": 192498
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "644393100",
+    "put_call": "STOCK",
+    "issuer_name": "New Fortress Energy Llc Cl A Shs Rp",
+    "shares": 1200000,
+    "value": 14016
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "654902204",
+    "put_call": "STOCK",
+    "issuer_name": "Nokia Corp",
+    "shares": 731000,
+    "value": 4181
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "679295105",
+    "put_call": "STOCK",
+    "issuer_name": "Okta Inc",
+    "shares": 25807,
+    "value": 2135
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "70450Y103",
+    "put_call": "STOCK",
+    "issuer_name": "Paypal Hldgs Inc",
+    "shares": 807745,
+    "value": 83876
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "737446104",
+    "put_call": "STOCK",
+    "issuer_name": "Post Hldgs Inc",
+    "shares": 204000,
+    "value": 22318
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "747525103",
+    "put_call": "STOCK",
+    "issuer_name": "Qualcomm Inc",
+    "shares": 948100,
+    "value": 54070
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "75281A109",
+    "put_call": "STOCK",
+    "issuer_name": "Range Res Corp",
+    "shares": 844500,
+    "value": 9492
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "75606N109",
+    "put_call": "STOCK",
+    "issuer_name": "Realpage Inc",
+    "shares": 58690,
+    "value": 3562
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "78781P105",
+    "put_call": "STOCK",
+    "issuer_name": "Sailpoint Technlgies Hldgs I",
+    "shares": 33870,
+    "value": 973
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "81141R100",
+    "put_call": "STOCK",
+    "issuer_name": "Sea Ltd",
+    "shares": 21200,
+    "value": 499
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "81762P102",
+    "put_call": "STOCK",
+    "issuer_name": "Servicenow Inc",
+    "shares": 135515,
+    "value": 33403
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "83304A106",
+    "put_call": "STOCK",
+    "issuer_name": "Snap Inc",
+    "shares": 1240200,
+    "value": 13667
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "845467109",
+    "put_call": "STOCK",
+    "issuer_name": "Southwestern Energy Co",
+    "shares": 2257700,
+    "value": 10589
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "848637104",
+    "put_call": "STOCK",
+    "issuer_name": "Splunk Inc",
+    "shares": 115500,
+    "value": 14398
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "L8681T102",
+    "put_call": "STOCK",
+    "issuer_name": "Spotify Technology S A",
+    "shares": 159505,
+    "value": 22139
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "85207U105",
+    "put_call": "STOCK",
+    "issuer_name": "Sprint Corporation",
+    "shares": 1550000,
+    "value": 8758
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "872590104",
+    "put_call": "STOCK",
+    "issuer_name": "T Mobile Us Inc",
+    "shares": 1915725,
+    "value": 132377
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "87336U105",
+    "put_call": "STOCK",
+    "issuer_name": "Tableau Software Inc",
+    "shares": 183405,
+    "value": 23344
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "90138F102",
+    "put_call": "STOCK",
+    "issuer_name": "Twilio Inc",
+    "shares": 31480,
+    "value": 4067
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "92826C839",
+    "put_call": "STOCK",
+    "issuer_name": "Visa Inc",
+    "shares": 350900,
+    "value": 54807
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "98138H101",
+    "put_call": "STOCK",
+    "issuer_name": "Workday Inc",
+    "shares": 524600,
+    "value": 101169
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "981558109",
+    "put_call": "STOCK",
+    "issuer_name": "Worldpay Inc",
+    "shares": 10120,
+    "value": 1149
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "983919101",
+    "put_call": "STOCK",
+    "issuer_name": "Xilinx Inc",
+    "shares": 224000,
+    "value": 28401
+  }
+]

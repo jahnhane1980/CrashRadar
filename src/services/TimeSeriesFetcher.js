@@ -212,7 +212,7 @@ export class TimeSeriesFetcher {
       
       Logger.info(`[PackageFetcher] Fetching ${task.method || 'default'} for ${task.ticker || task.id}`);
       try {
-        const result = await adapter.fetch(task, provider, startValue, this.requestManager);
+        const result = await adapter.fetch(task, provider, startValue, this.requestManager, this.storage);
         const newData = this.extractData(result, provider);
         
         if (newData && newData.length > 0) {

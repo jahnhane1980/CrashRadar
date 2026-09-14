@@ -1,0 +1,222 @@
+[
+  {
+    "cik": "0001656456",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-14",
+    "cusip": "01609W102",
+    "put_call": "STOCK",
+    "issuer_name": "ALIBABA GROUP HLDG LTD",
+    "shares": 90000,
+    "value": 7199
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-14",
+    "cusip": "02079K107",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 1995000,
+    "value": 191819
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-14",
+    "cusip": "00162Q452",
+    "put_call": "STOCK",
+    "issuer_name": "ALPS ETF TR",
+    "shares": 405000,
+    "value": 14807
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-14",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 1450000,
+    "value": 163850
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-14",
+    "cusip": "03674X106",
+    "put_call": "STOCK",
+    "issuer_name": "ANTERO RESOURCES CORP",
+    "shares": 1250000,
+    "value": 38163
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-14",
+    "cusip": "165167172",
+    "put_call": "STOCK",
+    "issuer_name": "CHESAPEAKE ENERGY CORP",
+    "shares": 368000,
+    "value": 29072
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-14",
+    "cusip": "165167180",
+    "put_call": "STOCK",
+    "issuer_name": "CHESAPEAKE ENERGY CORP",
+    "shares": 240000,
+    "value": 17644
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-14",
+    "cusip": "165167735",
+    "put_call": "STOCK",
+    "issuer_name": "CHESAPEAKE ENERGY CORP",
+    "shares": 90000,
+    "value": 8479
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-14",
+    "cusip": "21037T109",
+    "put_call": "STOCK",
+    "issuer_name": "CONSTELLATION ENERGY CORP",
+    "shares": 2630000,
+    "value": 218790
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-14",
+    "cusip": "29273V100",
+    "put_call": "STOCK",
+    "issuer_name": "ENERGY TRANSFER L P",
+    "shares": 10203430,
+    "value": 112544
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-14",
+    "cusip": "293792107",
+    "put_call": "STOCK",
+    "issuer_name": "ENTERPRISE PRODS PARTNERS L",
+    "shares": 777980,
+    "value": 18500
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-14",
+    "cusip": "26884L109",
+    "put_call": "STOCK",
+    "issuer_name": "EQT CORP",
+    "shares": 2525000,
+    "value": 102894
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-14",
+    "cusip": "40412C101",
+    "put_call": "STOCK",
+    "issuer_name": "HCA HEALTHCARE INC",
+    "shares": 75000,
+    "value": 13784
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-14",
+    "cusip": "55616P104",
+    "put_call": "STOCK",
+    "issuer_name": "MACYS INC",
+    "shares": 6000000,
+    "value": 94020
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-14",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "META PLATFORMS INC",
+    "shares": 875000,
+    "value": 118720
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-14",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 235000,
+    "value": 54732
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-14",
+    "cusip": "61945C103",
+    "put_call": "STOCK",
+    "issuer_name": "MOSAIC CO NEW",
+    "shares": 125000,
+    "value": 6041
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-14",
+    "cusip": "55336V100",
+    "put_call": "STOCK",
+    "issuer_name": "MPLX LP",
+    "shares": 192325,
+    "value": 5772
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-14",
+    "cusip": "79466L302",
+    "put_call": "STOCK",
+    "issuer_name": "SALESFORCE INC",
+    "shares": 190000,
+    "value": 27330
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-14",
+    "cusip": "871829107",
+    "put_call": "STOCK",
+    "issuer_name": "SYSCO CORP",
+    "shares": 200000,
+    "value": 14142
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-14",
+    "cusip": "90353T100",
+    "put_call": "STOCK",
+    "issuer_name": "UBER TECHNOLOGIES INC",
+    "shares": 1000000,
+    "value": 26500
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-14",
+    "cusip": "91324P102",
+    "put_call": "STOCK",
+    "issuer_name": "UNITEDHEALTH GROUP INC",
+    "shares": 150000,
+    "value": 75756
+  }
+]

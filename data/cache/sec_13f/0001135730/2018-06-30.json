@@ -1,0 +1,2012 @@
+[
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "88554D205",
+    "put_call": "STOCK",
+    "issuer_name": "3-D SYSTEMS CORP (DELAWARE) COM STK",
+    "shares": 961067,
+    "value": 13272
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "00507V109",
+    "put_call": "STOCK",
+    "issuer_name": "ACTIVISION BLIZZARD INC COM STK",
+    "shares": 1229300,
+    "value": 93820
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "00507V109",
+    "put_call": "STOCK",
+    "issuer_name": "ACTIVISION BLIZZARD INC COM STK",
+    "shares": 10219139,
+    "value": 779925
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "ADOBE SYSTEMS INC",
+    "shares": 176312,
+    "value": 42987
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "ADOBE SYSTEMS INC",
+    "shares": 1477762,
+    "value": 360293
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "00751Y106",
+    "put_call": "STOCK",
+    "issuer_name": "ADVANCE AUTO PTS INC COM STK",
+    "shares": 700,
+    "value": 95
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "00751Y106",
+    "put_call": "STOCK",
+    "issuer_name": "ADVANCE AUTO PTS INC COM STK",
+    "shares": 1326,
+    "value": 180
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "01609W102",
+    "put_call": "STOCK",
+    "issuer_name": "ALIBABA GROUP HOLDING LTD",
+    "shares": 318173,
+    "value": 59031
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "01609W102",
+    "put_call": "STOCK",
+    "issuer_name": "ALIBABA GROUP HOLDING LTD",
+    "shares": 2660371,
+    "value": 493579
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 35224,
+    "value": 59874
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 307810,
+    "value": 523215
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "02553E106",
+    "put_call": "STOCK",
+    "issuer_name": "AMERICAN EAGLE OUTFITTERS INC COM STK",
+    "shares": 12490,
+    "value": 290
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "02553E106",
+    "put_call": "STOCK",
+    "issuer_name": "AMERICAN EAGLE OUTFITTERS INC COM STK",
+    "shares": 23669,
+    "value": 550
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "037833100",
+    "put_call": "STOCK",
+    "issuer_name": "APPLE INC COM STK",
+    "shares": 85163,
+    "value": 15765
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "053332102",
+    "put_call": "STOCK",
+    "issuer_name": "AUTOZONE INC COM STK",
+    "shares": 82,
+    "value": 55
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "053332102",
+    "put_call": "STOCK",
+    "issuer_name": "AUTOZONE INC COM STK",
+    "shares": 155,
+    "value": 104
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "05464C101",
+    "put_call": "STOCK",
+    "issuer_name": "AXON ENTERPRISE INC",
+    "shares": 1241636,
+    "value": 78447
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "075896100",
+    "put_call": "STOCK",
+    "issuer_name": "BED BATH BEYOND INC COM STK",
+    "shares": 6050,
+    "value": 121
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "075896100",
+    "put_call": "STOCK",
+    "issuer_name": "BED BATH BEYOND INC COM STK",
+    "shares": 11464,
+    "value": 228
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "086516101",
+    "put_call": "STOCK",
+    "issuer_name": "BEST BUY INC COM STK",
+    "shares": 1498,
+    "value": 112
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "086516101",
+    "put_call": "STOCK",
+    "issuer_name": "BEST BUY INC COM STK",
+    "shares": 2839,
+    "value": 212
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "08915P101",
+    "put_call": "STOCK",
+    "issuer_name": "BIG 5 SPORTING GOODS CORP COM STK",
+    "shares": 9036,
+    "value": 69
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "08915P101",
+    "put_call": "STOCK",
+    "issuer_name": "BIG 5 SPORTING GOODS CORP COM STK",
+    "shares": 17123,
+    "value": 130
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "089302103",
+    "put_call": "STOCK",
+    "issuer_name": "BIG LOTS INC COM STK",
+    "shares": 2212,
+    "value": 92
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "089302103",
+    "put_call": "STOCK",
+    "issuer_name": "BIG LOTS INC COM STK",
+    "shares": 4192,
+    "value": 175
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "05550J101",
+    "put_call": "STOCK",
+    "issuer_name": "BJ S WHOLESALE CLUB HOLDINGS",
+    "shares": 2010,
+    "value": 48
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "05550J101",
+    "put_call": "STOCK",
+    "issuer_name": "BJ S WHOLESALE CLUB HOLDINGS",
+    "shares": 17990,
+    "value": 425
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "09180C106",
+    "put_call": "STOCK",
+    "issuer_name": "BJ'S RESTAURANTS INC",
+    "shares": 1731,
+    "value": 104
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "09180C106",
+    "put_call": "STOCK",
+    "issuer_name": "BJ'S RESTAURANTS INC",
+    "shares": 3280,
+    "value": 197
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "10948C107",
+    "put_call": "STOCK",
+    "issuer_name": "BRIGHTVIEW HOLDINGS INC",
+    "shares": 503,
+    "value": 11
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "10948C107",
+    "put_call": "STOCK",
+    "issuer_name": "BRIGHTVIEW HOLDINGS INC",
+    "shares": 4497,
+    "value": 99
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "109641100",
+    "put_call": "STOCK",
+    "issuer_name": "BRINKER INTL INC COM STK",
+    "shares": 1690,
+    "value": 80
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "109641100",
+    "put_call": "STOCK",
+    "issuer_name": "BRINKER INTL INC COM STK",
+    "shares": 3203,
+    "value": 152
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "11135F101",
+    "put_call": "STOCK",
+    "issuer_name": "BROADCOM INC",
+    "shares": 226168,
+    "value": 54877
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "11135F101",
+    "put_call": "STOCK",
+    "issuer_name": "BROADCOM INC",
+    "shares": 1811082,
+    "value": 439441
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "118440106",
+    "put_call": "STOCK",
+    "issuer_name": "BUCKLE INC COM STK",
+    "shares": 9991,
+    "value": 269
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "118440106",
+    "put_call": "STOCK",
+    "issuer_name": "BUCKLE INC COM STK",
+    "shares": 18932,
+    "value": 509
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "141633107",
+    "put_call": "STOCK",
+    "issuer_name": "CARE COM INC",
+    "shares": 1285,
+    "value": 27
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "141633107",
+    "put_call": "STOCK",
+    "issuer_name": "CARE COM INC",
+    "shares": 2435,
+    "value": 51
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "146229109",
+    "put_call": "STOCK",
+    "issuer_name": "CARTER HOLDINGS INC COM",
+    "shares": 623,
+    "value": 68
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "146229109",
+    "put_call": "STOCK",
+    "issuer_name": "CARTER HOLDINGS INC COM",
+    "shares": 1181,
+    "value": 128
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "147528103",
+    "put_call": "STOCK",
+    "issuer_name": "CASEYS GEN STORES INC COM STK",
+    "shares": 2734,
+    "value": 287
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "147528103",
+    "put_call": "STOCK",
+    "issuer_name": "CASEYS GEN STORES INC COM STK",
+    "shares": 5182,
+    "value": 545
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "149205106",
+    "put_call": "STOCK",
+    "issuer_name": "CATO CORP NEW CL A",
+    "shares": 11068,
+    "value": 272
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "149205106",
+    "put_call": "STOCK",
+    "issuer_name": "CATO CORP NEW CL A",
+    "shares": 20975,
+    "value": 516
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "168905107",
+    "put_call": "STOCK",
+    "issuer_name": "CHILDREN'S PLACE INCCOM STK",
+    "shares": 1953,
+    "value": 236
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "168905107",
+    "put_call": "STOCK",
+    "issuer_name": "CHILDREN'S PLACE INCCOM STK",
+    "shares": 3700,
+    "value": 447
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "169656105",
+    "put_call": "STOCK",
+    "issuer_name": "CHIPOTLE MEXICAN GRILL INC COM",
+    "shares": 420,
+    "value": 181
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "169656105",
+    "put_call": "STOCK",
+    "issuer_name": "CHIPOTLE MEXICAN GRILL INC COM",
+    "shares": 796,
+    "value": 343
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "171604101",
+    "put_call": "STOCK",
+    "issuer_name": "CHUY S HOLDINGS INC",
+    "shares": 1903,
+    "value": 58
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "171604101",
+    "put_call": "STOCK",
+    "issuer_name": "CHUY S HOLDINGS INC",
+    "shares": 3607,
+    "value": 111
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "17243V102",
+    "put_call": "STOCK",
+    "issuer_name": "CINEMARK HOLDINGS INC",
+    "shares": 9440,
+    "value": 331
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "17243V102",
+    "put_call": "STOCK",
+    "issuer_name": "CINEMARK HOLDINGS INC",
+    "shares": 17890,
+    "value": 628
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "17306X102",
+    "put_call": "STOCK",
+    "issuer_name": "CITI TRENDS INC COM STK",
+    "shares": 1705,
+    "value": 47
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "17306X102",
+    "put_call": "STOCK",
+    "issuer_name": "CITI TRENDS INC COM STK",
+    "shares": 3231,
+    "value": 89
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "238337109",
+    "put_call": "STOCK",
+    "issuer_name": "DAVE &amp; BUSTER'S ENTERTAINMENT INC",
+    "shares": 1640,
+    "value": 78
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "238337109",
+    "put_call": "STOCK",
+    "issuer_name": "DAVE &amp; BUSTER'S ENTERTAINMENT INC",
+    "shares": 3107,
+    "value": 148
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "245077102",
+    "put_call": "STOCK",
+    "issuer_name": "DEL FRISCO S RESTARUANT GROUP",
+    "shares": 8952,
+    "value": 113
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "245077102",
+    "put_call": "STOCK",
+    "issuer_name": "DEL FRISCO S RESTARUANT GROUP",
+    "shares": 16964,
+    "value": 214
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "24869P104",
+    "put_call": "STOCK",
+    "issuer_name": "DENNYS CORP COM STK",
+    "shares": 804,
+    "value": 13
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "24869P104",
+    "put_call": "STOCK",
+    "issuer_name": "DENNYS CORP COM STK",
+    "shares": 1524,
+    "value": 24
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "254067101",
+    "put_call": "STOCK",
+    "issuer_name": "DILLARDS INC CL A COM STK",
+    "shares": 651,
+    "value": 62
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "254067101",
+    "put_call": "STOCK",
+    "issuer_name": "DILLARDS INC CL A COM STK",
+    "shares": 1235,
+    "value": 117
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "256677105",
+    "put_call": "STOCK",
+    "issuer_name": "DOLLAR GEN CORP NEW COM STK",
+    "shares": 2442,
+    "value": 241
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "256677105",
+    "put_call": "STOCK",
+    "issuer_name": "DOLLAR GEN CORP NEW COM STK",
+    "shares": 4628,
+    "value": 456
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "23334L102",
+    "put_call": "STOCK",
+    "issuer_name": "DSW INC CL A COM STK",
+    "shares": 12615,
+    "value": 326
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "23334L102",
+    "put_call": "STOCK",
+    "issuer_name": "DSW INC CL A COM STK",
+    "shares": 23906,
+    "value": 617
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "26443V101",
+    "put_call": "STOCK",
+    "issuer_name": "DULUTH HOLDINGS INC",
+    "shares": 2872,
+    "value": 68
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "26443V101",
+    "put_call": "STOCK",
+    "issuer_name": "DULUTH HOLDINGS INC",
+    "shares": 5443,
+    "value": 129
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "285512109",
+    "put_call": "STOCK",
+    "issuer_name": "ELECTRONIC ARTS INC COM STK",
+    "shares": 693454,
+    "value": 97791
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "285512109",
+    "put_call": "STOCK",
+    "issuer_name": "ELECTRONIC ARTS INC COM STK",
+    "shares": 5856422,
+    "value": 825873
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "30041R108",
+    "put_call": "STOCK",
+    "issuer_name": "EVERQUOTE INC - CLASS A",
+    "shares": 497,
+    "value": 9
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "30041R108",
+    "put_call": "STOCK",
+    "issuer_name": "EVERQUOTE INC - CLASS A",
+    "shares": 4503,
+    "value": 82
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "30219E103",
+    "put_call": "STOCK",
+    "issuer_name": "EXPRESS INC",
+    "shares": 24492,
+    "value": 224
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "30219E103",
+    "put_call": "STOCK",
+    "issuer_name": "EXPRESS INC",
+    "shares": 46412,
+    "value": 425
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "FACEBOOK INC",
+    "shares": 667254,
+    "value": 129661
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "FACEBOOK INC",
+    "shares": 5637541,
+    "value": 1095487
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "31660B101",
+    "put_call": "STOCK",
+    "issuer_name": "FIESTA RSTRN GRP",
+    "shares": 7713,
+    "value": 221
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "31660B101",
+    "put_call": "STOCK",
+    "issuer_name": "FIESTA RSTRN GRP",
+    "shares": 14616,
+    "value": 419
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "33812L102",
+    "put_call": "STOCK",
+    "issuer_name": "FITBIT INC SAN FRANCISCO CA COM STK",
+    "shares": 3178570,
+    "value": 20756
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "34983P104",
+    "put_call": "STOCK",
+    "issuer_name": "FORTY SEVEN INC",
+    "shares": 502,
+    "value": 8
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "34983P104",
+    "put_call": "STOCK",
+    "issuer_name": "FORTY SEVEN INC",
+    "shares": 4498,
+    "value": 72
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "351793104",
+    "put_call": "STOCK",
+    "issuer_name": "FRANCESCAS HOLDINGS CORP",
+    "shares": 7194,
+    "value": 54
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "351793104",
+    "put_call": "STOCK",
+    "issuer_name": "FRANCESCAS HOLDINGS CORP",
+    "shares": 13633,
+    "value": 103
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "35906A306",
+    "put_call": "STOCK",
+    "issuer_name": "FRONTIER COMMNS CORP",
+    "shares": 848516,
+    "value": 4548
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "36467W109",
+    "put_call": "STOCK",
+    "issuer_name": "GAMESTOP CORP NEW CL A COM STK",
+    "shares": 11043,
+    "value": 161
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "36467W109",
+    "put_call": "STOCK",
+    "issuer_name": "GAMESTOP CORP NEW CL A COM STK",
+    "shares": 20927,
+    "value": 305
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "364760108",
+    "put_call": "STOCK",
+    "issuer_name": "GAP INC",
+    "shares": 9835,
+    "value": 319
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "364760108",
+    "put_call": "STOCK",
+    "issuer_name": "GAP INC",
+    "shares": 18638,
+    "value": 604
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "36191G107",
+    "put_call": "STOCK",
+    "issuer_name": "GNC HOLDING INC",
+    "shares": 11891,
+    "value": 42
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "36191G107",
+    "put_call": "STOCK",
+    "issuer_name": "GNC HOLDING INC",
+    "shares": 22534,
+    "value": 79
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "38046C109",
+    "put_call": "STOCK",
+    "issuer_name": "GOGO INC",
+    "shares": 32107,
+    "value": 156
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "38046C109",
+    "put_call": "STOCK",
+    "issuer_name": "GOGO INC",
+    "shares": 60844,
+    "value": 296
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "40449J103",
+    "put_call": "STOCK",
+    "issuer_name": "HABIT RESTAURANTS INC/THE",
+    "shares": 7348,
+    "value": 73
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "40449J103",
+    "put_call": "STOCK",
+    "issuer_name": "HABIT RESTAURANTS INC/THE",
+    "shares": 13924,
+    "value": 139
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "G4412G101",
+    "put_call": "STOCK",
+    "issuer_name": "HERBALIFE NUTRITION LTD",
+    "shares": 6078,
+    "value": 327
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "G4412G101",
+    "put_call": "STOCK",
+    "issuer_name": "HERBALIFE NUTRITION LTD",
+    "shares": 11517,
+    "value": 619
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "42806J106",
+    "put_call": "STOCK",
+    "issuer_name": "HERTZ GLOBAL HOLDINGS INC",
+    "shares": 1974823,
+    "value": 30294
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "44852D108",
+    "put_call": "STOCK",
+    "issuer_name": "HUYA INC-ADR",
+    "shares": 81493,
+    "value": 2680
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "44852D108",
+    "put_call": "STOCK",
+    "issuer_name": "HUYA INC-ADR",
+    "shares": 768507,
+    "value": 25276
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "458140100",
+    "put_call": "STOCK",
+    "issuer_name": "INTEL CORP COM STK",
+    "shares": 613524,
+    "value": 30498
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "458140100",
+    "put_call": "STOCK",
+    "issuer_name": "INTEL CORP COM STK",
+    "shares": 5400532,
+    "value": 268460
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "47215P106",
+    "put_call": "STOCK",
+    "issuer_name": "JD.COM INC",
+    "shares": 996447,
+    "value": 38812
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "47215P106",
+    "put_call": "STOCK",
+    "issuer_name": "JD.COM INC",
+    "shares": 11644274,
+    "value": 453544
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "500255104",
+    "put_call": "STOCK",
+    "issuer_name": "KOHLS CORP COM STK",
+    "shares": 4449,
+    "value": 324
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "500255104",
+    "put_call": "STOCK",
+    "issuer_name": "KOHLS CORP COM STK",
+    "shares": 8431,
+    "value": 615
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "501044101",
+    "put_call": "STOCK",
+    "issuer_name": "KROGER CO COM STK",
+    "shares": 722,
+    "value": 21
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "501044101",
+    "put_call": "STOCK",
+    "issuer_name": "KROGER CO COM STK",
+    "shares": 1368,
+    "value": 39
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "530307305",
+    "put_call": "STOCK",
+    "issuer_name": "LIBERTY BROADBAND CORP ENGLEW COM STK",
+    "shares": 610079,
+    "value": 46195
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "530307305",
+    "put_call": "STOCK",
+    "issuer_name": "LIBERTY BROADBAND CORP ENGLEW COM STK",
+    "shares": 8044273,
+    "value": 609112
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "531229854",
+    "put_call": "STOCK",
+    "issuer_name": "LIBERTY MEDIA GROUP - C",
+    "shares": 450600,
+    "value": 16731
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "548661107",
+    "put_call": "STOCK",
+    "issuer_name": "LOWES COS INC COM STK",
+    "shares": 3381,
+    "value": 323
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "548661107",
+    "put_call": "STOCK",
+    "issuer_name": "LOWES COS INC COM STK",
+    "shares": 6408,
+    "value": 612
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "550021109",
+    "put_call": "STOCK",
+    "issuer_name": "LULULEMON ATHLETICA INC",
+    "shares": 1834,
+    "value": 229
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "550021109",
+    "put_call": "STOCK",
+    "issuer_name": "LULULEMON ATHLETICA INC",
+    "shares": 3476,
+    "value": 434
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "55003T107",
+    "put_call": "STOCK",
+    "issuer_name": "LUMBER LIQUIDATORS HLDGS COM STK",
+    "shares": 4226,
+    "value": 103
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "55003T107",
+    "put_call": "STOCK",
+    "issuer_name": "LUMBER LIQUIDATORS HLDGS COM STK",
+    "shares": 8008,
+    "value": 195
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "55616P104",
+    "put_call": "STOCK",
+    "issuer_name": "MACYS INC COM STK",
+    "shares": 5502,
+    "value": 206
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "55616P104",
+    "put_call": "STOCK",
+    "issuer_name": "MACYS INC COM STK",
+    "shares": 10426,
+    "value": 390
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "556269108",
+    "put_call": "STOCK",
+    "issuer_name": "MADDEN STEVEN LTD COM STK",
+    "shares": 5289,
+    "value": 281
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "556269108",
+    "put_call": "STOCK",
+    "issuer_name": "MADDEN STEVEN LTD COM STK",
+    "shares": 10023,
+    "value": 532
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "58470H101",
+    "put_call": "STOCK",
+    "issuer_name": "Medifast Inc (ex HealthRite In COM STK",
+    "shares": 2084,
+    "value": 334
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "58470H101",
+    "put_call": "STOCK",
+    "issuer_name": "Medifast Inc (ex HealthRite In COM STK",
+    "shares": 3950,
+    "value": 633
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "G60754101",
+    "put_call": "STOCK",
+    "issuer_name": "MICHAEL KORS HOLDINGS LIMITED COM STK",
+    "shares": 4392,
+    "value": 293
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "G60754101",
+    "put_call": "STOCK",
+    "issuer_name": "MICHAEL KORS HOLDINGS LIMITED COM STK",
+    "shares": 8323,
+    "value": 554
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "595112103",
+    "put_call": "STOCK",
+    "issuer_name": "MICRON TECHNOLOGY INC",
+    "shares": 564244,
+    "value": 29589
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "595112103",
+    "put_call": "STOCK",
+    "issuer_name": "MICRON TECHNOLOGY INC",
+    "shares": 4695706,
+    "value": 246243
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP COM STK",
+    "shares": 754744,
+    "value": 74425
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP COM STK",
+    "shares": 6393714,
+    "value": 630484
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "626755102",
+    "put_call": "STOCK",
+    "issuer_name": "MURPHY USA INC.",
+    "shares": 4230,
+    "value": 314
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "626755102",
+    "put_call": "STOCK",
+    "issuer_name": "MURPHY USA INC.",
+    "shares": 8015,
+    "value": 595
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "64050Y100",
+    "put_call": "STOCK",
+    "issuer_name": "NEON THERAPEUTICS",
+    "shares": 501,
+    "value": 6
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "64050Y100",
+    "put_call": "STOCK",
+    "issuer_name": "NEON THERAPEUTICS",
+    "shares": 4499,
+    "value": 57
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "NETFLIX INC COM STK",
+    "shares": 171453,
+    "value": 67112
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "NETFLIX INC COM STK",
+    "shares": 1540740,
+    "value": 603092
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "64131A105",
+    "put_call": "STOCK",
+    "issuer_name": "NEURONETICS INC",
+    "shares": 502,
+    "value": 13
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "64131A105",
+    "put_call": "STOCK",
+    "issuer_name": "NEURONETICS INC",
+    "shares": 4498,
+    "value": 120
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "65540B105",
+    "put_call": "STOCK",
+    "issuer_name": "NOODLES &amp; COMPANY COM STK",
+    "shares": 26537,
+    "value": 326
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "65540B105",
+    "put_call": "STOCK",
+    "issuer_name": "NOODLES &amp; COMPANY COM STK",
+    "shares": 50289,
+    "value": 619
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "655664100",
+    "put_call": "STOCK",
+    "issuer_name": "NORDSTROM INC COM",
+    "shares": 983,
+    "value": 51
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "655664100",
+    "put_call": "STOCK",
+    "issuer_name": "NORDSTROM INC COM",
+    "shares": 1863,
+    "value": 96
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORP",
+    "shares": 84242,
+    "value": 19957
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORP",
+    "shares": 1026088,
+    "value": 243080
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "70450Y103",
+    "put_call": "STOCK",
+    "issuer_name": "PAYPAL HOLDINGS INC SAN JOSE COM STK",
+    "shares": 695461,
+    "value": 57911
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "70450Y103",
+    "put_call": "STOCK",
+    "issuer_name": "PAYPAL HOLDINGS INC SAN JOSE COM STK",
+    "shares": 5709388,
+    "value": 475421
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "716382106",
+    "put_call": "STOCK",
+    "issuer_name": "PETMED EXPRESS INC COM STK",
+    "shares": 7015,
+    "value": 309
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "716382106",
+    "put_call": "STOCK",
+    "issuer_name": "PETMED EXPRESS INC COM STK",
+    "shares": 13294,
+    "value": 586
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "720279108",
+    "put_call": "STOCK",
+    "issuer_name": "PIER 1 IMPORTS INC COM STK",
+    "shares": 55663,
+    "value": 132
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "720279108",
+    "put_call": "STOCK",
+    "issuer_name": "PIER 1 IMPORTS INC COM STK",
+    "shares": 105482,
+    "value": 251
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "747798106",
+    "put_call": "STOCK",
+    "issuer_name": "QUDIAN INC ADR",
+    "shares": 1318512,
+    "value": 11682
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "G7945E105",
+    "put_call": "STOCK",
+    "issuer_name": "SEADRILL",
+    "shares": 1970630,
+    "value": 424
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "81762P102",
+    "put_call": "STOCK",
+    "issuer_name": "SERVICENOW",
+    "shares": 120982,
+    "value": 20866
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "81762P102",
+    "put_call": "STOCK",
+    "issuer_name": "SERVICENOW",
+    "shares": 1012900,
+    "value": 174695
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "819047101",
+    "put_call": "STOCK",
+    "issuer_name": "SHAKE SHACK IN-A",
+    "shares": 2893,
+    "value": 191
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "819047101",
+    "put_call": "STOCK",
+    "issuer_name": "SHAKE SHACK IN-A",
+    "shares": 5481,
+    "value": 363
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "824889109",
+    "put_call": "STOCK",
+    "issuer_name": "SHOE CARNIVAL INC COM STK",
+    "shares": 265,
+    "value": 9
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "824889109",
+    "put_call": "STOCK",
+    "issuer_name": "SHOE CARNIVAL INC COM STK",
+    "shares": 503,
+    "value": 16
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "82509L107",
+    "put_call": "STOCK",
+    "issuer_name": "SHOPIFY INC OTTAWA ON COM",
+    "shares": 623506,
+    "value": 90963
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "82509L107",
+    "put_call": "STOCK",
+    "issuer_name": "SHOPIFY INC OTTAWA ON COM",
+    "shares": 4409012,
+    "value": 643231
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "825690100",
+    "put_call": "STOCK",
+    "issuer_name": "SHUTTERSTOCK",
+    "shares": 642,
+    "value": 30
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "825690100",
+    "put_call": "STOCK",
+    "issuer_name": "SHUTTERSTOCK",
+    "shares": 1216,
+    "value": 58
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "G81276100",
+    "put_call": "STOCK",
+    "issuer_name": "SIGNET JEWELERS LTD COM STK",
+    "shares": 1975,
+    "value": 110
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "G81276100",
+    "put_call": "STOCK",
+    "issuer_name": "SIGNET JEWELERS LTD COM STK",
+    "shares": 3743,
+    "value": 209
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "835451105",
+    "put_call": "STOCK",
+    "issuer_name": "SONIC CORP COM STK",
+    "shares": 2320,
+    "value": 80
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "835451105",
+    "put_call": "STOCK",
+    "issuer_name": "SONIC CORP COM STK",
+    "shares": 4396,
+    "value": 151
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "L8681T102",
+    "put_call": "STOCK",
+    "issuer_name": "SPOTIFY TECHNOLOGY SA",
+    "shares": 2166977,
+    "value": 364572
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "855244109",
+    "put_call": "STOCK",
+    "issuer_name": "STARBUCKS CORP COM STK",
+    "shares": 1094,
+    "value": 53
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "855244109",
+    "put_call": "STOCK",
+    "issuer_name": "STARBUCKS CORP COM STK",
+    "shares": 2073,
+    "value": 101
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "858375108",
+    "put_call": "STOCK",
+    "issuer_name": "STEIN MART INC COM STK",
+    "shares": 49434,
+    "value": 121
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "858375108",
+    "put_call": "STOCK",
+    "issuer_name": "STEIN MART INC COM STK",
+    "shares": 93677,
+    "value": 230
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "M85548101",
+    "put_call": "STOCK",
+    "issuer_name": "STRATASYS INC COM STK",
+    "shares": 456847,
+    "value": 8744
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "874080104",
+    "put_call": "STOCK",
+    "issuer_name": "TAL EDUCATION GROUP",
+    "shares": 794886,
+    "value": 29252
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "874080104",
+    "put_call": "STOCK",
+    "issuer_name": "TAL EDUCATION GROUP",
+    "shares": 6570616,
+    "value": 241799
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "87612E106",
+    "put_call": "STOCK",
+    "issuer_name": "TARGET CORP COM STK",
+    "shares": 2195,
+    "value": 167
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "87612E106",
+    "put_call": "STOCK",
+    "issuer_name": "TARGET CORP COM STK",
+    "shares": 4159,
+    "value": 317
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "880770102",
+    "put_call": "STOCK",
+    "issuer_name": "TERADYNE INC COM STK",
+    "shares": 183253,
+    "value": 6976
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "882681109",
+    "put_call": "STOCK",
+    "issuer_name": "TEXAS ROADHOUSE INC",
+    "shares": 1816,
+    "value": 119
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "882681109",
+    "put_call": "STOCK",
+    "issuer_name": "TEXAS ROADHOUSE INC",
+    "shares": 3441,
+    "value": 225
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "210751103",
+    "put_call": "STOCK",
+    "issuer_name": "THE CONTAINER STORE GROUP INC COM STK",
+    "shares": 24282,
+    "value": 204
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "210751103",
+    "put_call": "STOCK",
+    "issuer_name": "THE CONTAINER STORE GROUP INC COM STK",
+    "shares": 46015,
+    "value": 387
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "886547108",
+    "put_call": "STOCK",
+    "issuer_name": "TIFFANY &amp; CO COM STK",
+    "shares": 1180,
+    "value": 155
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "886547108",
+    "put_call": "STOCK",
+    "issuer_name": "TIFFANY &amp; CO COM STK",
+    "shares": 2235,
+    "value": 294
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "872540109",
+    "put_call": "STOCK",
+    "issuer_name": "TJX COS INC NEW COM STK",
+    "shares": 1911,
+    "value": 182
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "872540109",
+    "put_call": "STOCK",
+    "issuer_name": "TJX COS INC NEW COM STK",
+    "shares": 3621,
+    "value": 345
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "89610F101",
+    "put_call": "STOCK",
+    "issuer_name": "TRICIDA INC",
+    "shares": 497,
+    "value": 15
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "89610F101",
+    "put_call": "STOCK",
+    "issuer_name": "TRICIDA INC",
+    "shares": 4503,
+    "value": 135
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "90184L102",
+    "put_call": "STOCK",
+    "issuer_name": "TWITTER INC",
+    "shares": 2511928,
+    "value": 109696
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "90184L102",
+    "put_call": "STOCK",
+    "issuer_name": "TWITTER INC",
+    "shares": 22837810,
+    "value": 997327
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "910047109",
+    "put_call": "STOCK",
+    "issuer_name": "UNITED CONTINENTAL HOLDINGS INC",
+    "shares": 2793,
+    "value": 195
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "910047109",
+    "put_call": "STOCK",
+    "issuer_name": "UNITED CONTINENTAL HOLDINGS INC",
+    "shares": 5293,
+    "value": 369
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "92849E101",
+    "put_call": "STOCK",
+    "issuer_name": "VITAMIN SHOPPE INC",
+    "shares": 39021,
+    "value": 271
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "92849E101",
+    "put_call": "STOCK",
+    "issuer_name": "VITAMIN SHOPPE INC",
+    "shares": 73946,
+    "value": 514
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "931142103",
+    "put_call": "STOCK",
+    "issuer_name": "WALMART INC",
+    "shares": 1487,
+    "value": 127
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "931142103",
+    "put_call": "STOCK",
+    "issuer_name": "WALMART INC",
+    "shares": 2818,
+    "value": 241
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "94419L101",
+    "put_call": "STOCK",
+    "issuer_name": "WAYFAIR INC",
+    "shares": 2593,
+    "value": 308
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "94419L101",
+    "put_call": "STOCK",
+    "issuer_name": "WAYFAIR INC",
+    "shares": 4914,
+    "value": 584
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "948626106",
+    "put_call": "STOCK",
+    "issuer_name": "WEIGHT WATCHERS INTL INC NEW COM STK",
+    "shares": 1473,
+    "value": 149
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "948626106",
+    "put_call": "STOCK",
+    "issuer_name": "WEIGHT WATCHERS INTL INC NEW COM STK",
+    "shares": 2791,
+    "value": 282
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "95058W100",
+    "put_call": "STOCK",
+    "issuer_name": "WENDYS CO CL A COM STK",
+    "shares": 6238,
+    "value": 107
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "95058W100",
+    "put_call": "STOCK",
+    "issuer_name": "WENDYS CO CL A COM STK",
+    "shares": 11822,
+    "value": 203
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "98954M200",
+    "put_call": "STOCK",
+    "issuer_name": "ZILLOW GROUP INC - C",
+    "shares": 104442,
+    "value": 6168
+  }
+]

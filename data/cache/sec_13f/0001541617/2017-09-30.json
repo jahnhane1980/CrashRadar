@@ -1,0 +1,222 @@
+[
+  {
+    "cik": "0001541617",
+    "report_date": "2017-09-30",
+    "filing_date": "2017-11-14",
+    "cusip": "011659109",
+    "put_call": "STOCK",
+    "issuer_name": "ALASKA AIR GROUP INC",
+    "shares": 50000,
+    "value": 3814
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2017-09-30",
+    "filing_date": "2017-11-14",
+    "cusip": "01609W102",
+    "put_call": "STOCK",
+    "issuer_name": "ALIBABA GROUP HOLDING LTD",
+    "shares": 31950,
+    "value": 5518
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2017-09-30",
+    "filing_date": "2017-11-14",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 7500,
+    "value": 7303
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2017-09-30",
+    "filing_date": "2017-11-14",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON.COM INC",
+    "shares": 50780,
+    "value": 48817
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2017-09-30",
+    "filing_date": "2017-11-14",
+    "cusip": "146869102",
+    "put_call": "STOCK",
+    "issuer_name": "CARVANA CO",
+    "shares": 99680,
+    "value": 1463
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2017-09-30",
+    "filing_date": "2017-11-14",
+    "cusip": "30212P303",
+    "put_call": "STOCK",
+    "issuer_name": "EXPEDIA INC",
+    "shares": 4498111,
+    "value": 647458
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2017-09-30",
+    "filing_date": "2017-11-14",
+    "cusip": "625207105",
+    "put_call": "STOCK",
+    "issuer_name": "MULESOFT INC",
+    "shares": 252132,
+    "value": 5078
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2017-09-30",
+    "filing_date": "2017-11-14",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "NETFLIX INC",
+    "shares": 195600,
+    "value": 35472
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2017-09-30",
+    "filing_date": "2017-11-14",
+    "cusip": "679295105",
+    "put_call": "STOCK",
+    "issuer_name": "OKTA INC",
+    "shares": 75000,
+    "value": 2116
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2017-09-30",
+    "filing_date": "2017-11-14",
+    "cusip": "70450Y103",
+    "put_call": "STOCK",
+    "issuer_name": "PAYPAL HOLDINGS INC",
+    "shares": 200000,
+    "value": 12806
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2017-09-30",
+    "filing_date": "2017-11-14",
+    "cusip": "74624M102",
+    "put_call": "STOCK",
+    "issuer_name": "PURE STORAGE INC",
+    "shares": 4700000,
+    "value": 75153
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2017-09-30",
+    "filing_date": "2017-11-14",
+    "cusip": "79466L302",
+    "put_call": "STOCK",
+    "issuer_name": "SALESFORCE.COM INC",
+    "shares": 130000,
+    "value": 12145
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2017-09-30",
+    "filing_date": "2017-11-14",
+    "cusip": "852234103",
+    "put_call": "STOCK",
+    "issuer_name": "SQUARE INC",
+    "shares": 1306345,
+    "value": 37636
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2017-09-30",
+    "filing_date": "2017-11-14",
+    "cusip": "87336U105",
+    "put_call": "STOCK",
+    "issuer_name": "TABLEAU SOFTWARE INC",
+    "shares": 3584663,
+    "value": 268455
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2017-09-30",
+    "filing_date": "2017-11-14",
+    "cusip": "741503403",
+    "put_call": "STOCK",
+    "issuer_name": "THE PRICELINE GROUP INC",
+    "shares": 123000,
+    "value": 225191
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2017-09-30",
+    "filing_date": "2017-11-14",
+    "cusip": "89686D105",
+    "put_call": "STOCK",
+    "issuer_name": "TRIVAGO NV",
+    "shares": 410362,
+    "value": 4452
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2017-09-30",
+    "filing_date": "2017-11-14",
+    "cusip": "90138F102",
+    "put_call": "STOCK",
+    "issuer_name": "TWILIO INC",
+    "shares": 727800,
+    "value": 21725
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2017-09-30",
+    "filing_date": "2017-11-14",
+    "cusip": "910047109",
+    "put_call": "STOCK",
+    "issuer_name": "UNITED CONTINENTAL HOLDINGS",
+    "shares": 10347765,
+    "value": 629972
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2017-09-30",
+    "filing_date": "2017-11-14",
+    "cusip": "910047109",
+    "put_call": "CALL",
+    "issuer_name": "UNITED CONTINENTAL HOLDINGS",
+    "shares": 45750,
+    "value": 7130
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2017-09-30",
+    "filing_date": "2017-11-14",
+    "cusip": "985817105",
+    "put_call": "STOCK",
+    "issuer_name": "YELP INC",
+    "shares": 1029485,
+    "value": 44577
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2017-09-30",
+    "filing_date": "2017-11-14",
+    "cusip": "985817105",
+    "put_call": "CALL",
+    "issuer_name": "YELP INC",
+    "shares": 2000,
+    "value": 2755
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2017-09-30",
+    "filing_date": "2017-11-14",
+    "cusip": "98954M101",
+    "put_call": "STOCK",
+    "issuer_name": "ZILLOW GROUP INC",
+    "shares": 368142,
+    "value": 14781
+  }
+]

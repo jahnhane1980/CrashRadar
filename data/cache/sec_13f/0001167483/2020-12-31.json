@@ -1,0 +1,972 @@
+[
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "81807M106",
+    "put_call": "STOCK",
+    "issuer_name": "17 ED &amp; TECHNOLOGY GROUP INC",
+    "shares": 480000,
+    "value": 6149
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "68269G107",
+    "put_call": "STOCK",
+    "issuer_name": "1LIFE HEALTHCARE INC",
+    "shares": 3930000,
+    "value": 171545
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "282914100",
+    "put_call": "STOCK",
+    "issuer_name": "8X8 INC NEW",
+    "shares": 9000000,
+    "value": 310230
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "00402L107",
+    "put_call": "STOCK",
+    "issuer_name": "ACADEMY SPORTS &amp; OUTDOORS IN",
+    "shares": 1750000,
+    "value": 36278
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "ADOBE SYSTEMS INCORPORATED",
+    "shares": 167500,
+    "value": 83770
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "00851L103",
+    "put_call": "STOCK",
+    "issuer_name": "AGORA INC",
+    "shares": 1726123,
+    "value": 68285
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "009066101",
+    "put_call": "STOCK",
+    "issuer_name": "AIRBNB INC",
+    "shares": 650000,
+    "value": 95420
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "G0190X118",
+    "put_call": "STOCK",
+    "issuer_name": "AJAX I",
+    "shares": 2000000,
+    "value": 24820
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "01609W102",
+    "put_call": "STOCK",
+    "issuer_name": "ALIBABA GROUP HLDG LTD",
+    "shares": 4478062,
+    "value": 1042179
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "G0370L124",
+    "put_call": "STOCK",
+    "issuer_name": "ALTIMETER GROWTH CORP",
+    "shares": 1800000,
+    "value": 23400
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 613095,
+    "value": 1996808
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "03044L105",
+    "put_call": "STOCK",
+    "issuer_name": "AMERICAN WELL CORP",
+    "shares": 400000,
+    "value": 10132
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "03272L108",
+    "put_call": "STOCK",
+    "issuer_name": "ANAPLAN INC",
+    "shares": 1280867,
+    "value": 92030
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "03768E105",
+    "put_call": "STOCK",
+    "issuer_name": "APOLLO GLOBAL MGMT INC",
+    "shares": 33913500,
+    "value": 1661083
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "04342Y104",
+    "put_call": "STOCK",
+    "issuer_name": "ASANA INC",
+    "shares": 2419454,
+    "value": 71495
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "G06242104",
+    "put_call": "STOCK",
+    "issuer_name": "ATLASSIAN CORP PLC",
+    "shares": 2465400,
+    "value": 576583
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "05338G106",
+    "put_call": "STOCK",
+    "issuer_name": "AVALARA INC",
+    "shares": 100000,
+    "value": 16489
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "08975P108",
+    "put_call": "STOCK",
+    "issuer_name": "BIGCOMMERCE HLDGS INC",
+    "shares": 1350000,
+    "value": 86603
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "12468P104",
+    "put_call": "STOCK",
+    "issuer_name": "C3 AI INC",
+    "shares": 1000000,
+    "value": 138750
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "146869102",
+    "put_call": "STOCK",
+    "issuer_name": "CARVANA CO",
+    "shares": 6012907,
+    "value": 1440332
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "16955F107",
+    "put_call": "STOCK",
+    "issuer_name": "CHINDATA GROUP HLDGS LTD",
+    "shares": 1850000,
+    "value": 44326
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "18915M107",
+    "put_call": "STOCK",
+    "issuer_name": "CLOUDFLARE INC",
+    "shares": 175000,
+    "value": 13298
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "22266L106",
+    "put_call": "STOCK",
+    "issuer_name": "COUPA SOFTWARE INC",
+    "shares": 665000,
+    "value": 225375
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "22788C105",
+    "put_call": "STOCK",
+    "issuer_name": "CROWDSTRIKE HLDGS INC",
+    "shares": 7537000,
+    "value": 1596487
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "23344D108",
+    "put_call": "STOCK",
+    "issuer_name": "DADA NEXUS LTD",
+    "shares": 50000,
+    "value": 1825
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "23804L103",
+    "put_call": "STOCK",
+    "issuer_name": "DATADOG INC",
+    "shares": 4757000,
+    "value": 468279
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "23821D100",
+    "put_call": "STOCK",
+    "issuer_name": "DATTO HLDG CORP",
+    "shares": 1500000,
+    "value": 40500
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "G27358103",
+    "put_call": "STOCK",
+    "issuer_name": "DESPEGAR COM CORP",
+    "shares": 9256550,
+    "value": 118576
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "256163106",
+    "put_call": "STOCK",
+    "issuer_name": "DOCUSIGN INC",
+    "shares": 1773000,
+    "value": 394138
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "25809K105",
+    "put_call": "STOCK",
+    "issuer_name": "DOORDASH INC",
+    "shares": 1596000,
+    "value": 227829
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "25985W105",
+    "put_call": "STOCK",
+    "issuer_name": "DOUYU INTL HLDGS LTD",
+    "shares": 400000,
+    "value": 4424
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "26210C104",
+    "put_call": "STOCK",
+    "issuer_name": "DROPBOX INC",
+    "shares": 200000,
+    "value": 4438
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "264120106",
+    "put_call": "STOCK",
+    "issuer_name": "DUCK CREEK TECHNOLOGIES INC",
+    "shares": 350000,
+    "value": 15155
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "268150109",
+    "put_call": "STOCK",
+    "issuer_name": "DYNATRACE INC",
+    "shares": 500000,
+    "value": 21635
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "N14506104",
+    "put_call": "STOCK",
+    "issuer_name": "ELASTIC N V",
+    "shares": 4019843,
+    "value": 587420
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "FACEBOOK INC",
+    "shares": 6326800,
+    "value": 1728229
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "31154R109",
+    "put_call": "STOCK",
+    "issuer_name": "FARMLAND PARTNERS INC",
+    "shares": 44502,
+    "value": 387
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "339041105",
+    "put_call": "STOCK",
+    "issuer_name": "FLEETCOR TECHNOLOGIES INC",
+    "shares": 647662,
+    "value": 176702
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "36165L108",
+    "put_call": "STOCK",
+    "issuer_name": "GDS HLDGS LTD",
+    "shares": 4360516,
+    "value": 408319
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "38246G108",
+    "put_call": "STOCK",
+    "issuer_name": "GOODRX HLDGS INC",
+    "shares": 2145000,
+    "value": 86529
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "36257Y109",
+    "put_call": "STOCK",
+    "issuer_name": "GSX TECHEDU INC",
+    "shares": 3020769,
+    "value": 156204
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "42225T107",
+    "put_call": "STOCK",
+    "issuer_name": "HEALTH CATALYST INC",
+    "shares": 50000,
+    "value": 2177
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "44852D108",
+    "put_call": "STOCK",
+    "issuer_name": "HUYA INC",
+    "shares": 362000,
+    "value": 7215
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "461202103",
+    "put_call": "STOCK",
+    "issuer_name": "INTUIT",
+    "shares": 221287,
+    "value": 84056
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "47074L105",
+    "put_call": "STOCK",
+    "issuer_name": "JAMF HLDG CORP",
+    "shares": 2778778,
+    "value": 83141
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "47215P106",
+    "put_call": "STOCK",
+    "issuer_name": "JD.COM INC",
+    "shares": 51650366,
+    "value": 4540067
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "M6191J100",
+    "put_call": "STOCK",
+    "issuer_name": "JFROG LTD",
+    "shares": 1000000,
+    "value": 62830
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "482497104",
+    "put_call": "STOCK",
+    "issuer_name": "KE HLDGS INC",
+    "shares": 2500000,
+    "value": 153850
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "49639K101",
+    "put_call": "STOCK",
+    "issuer_name": "KINGSOFT CLOUD HLDGS LTD",
+    "shares": 10000,
+    "value": 436
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "50202M102",
+    "put_call": "STOCK",
+    "issuer_name": "LI AUTO INC",
+    "shares": 350000,
+    "value": 10091
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "53619W101",
+    "put_call": "STOCK",
+    "issuer_name": "LINX SA",
+    "shares": 3350000,
+    "value": 23785
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "57636Q104",
+    "put_call": "STOCK",
+    "issuer_name": "MASTERCARD INCORPORATED",
+    "shares": 724000,
+    "value": 258425
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "584021109",
+    "put_call": "STOCK",
+    "issuer_name": "MEDALLIA INC",
+    "shares": 50000,
+    "value": 1661
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 11891734,
+    "value": 2644959
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "60937P106",
+    "put_call": "STOCK",
+    "issuer_name": "MONGODB INC",
+    "shares": 82000,
+    "value": 29441
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "63947U107",
+    "put_call": "STOCK",
+    "issuer_name": "NCINO INC",
+    "shares": 275000,
+    "value": 19913
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "NETFLIX INC",
+    "shares": 1056290,
+    "value": 571168
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "647581107",
+    "put_call": "STOCK",
+    "issuer_name": "NEW ORIENTAL ED &amp; TECHNOLOGY",
+    "shares": 1843500,
+    "value": 342541
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "67181A107",
+    "put_call": "STOCK",
+    "issuer_name": "OAK STR HEALTH INC",
+    "shares": 25000,
+    "value": 1529
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "68276W103",
+    "put_call": "STOCK",
+    "issuer_name": "ONESMART INTL ED GROUP LTD",
+    "shares": 320000,
+    "value": 1216
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "690145107",
+    "put_call": "STOCK",
+    "issuer_name": "OUTSET MED INC",
+    "shares": 55000,
+    "value": 3126
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "69269L104",
+    "put_call": "STOCK",
+    "issuer_name": "OZON HLDGS PLC",
+    "shares": 750000,
+    "value": 31058
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "69553P100",
+    "put_call": "STOCK",
+    "issuer_name": "PAGERDUTY INC",
+    "shares": 150000,
+    "value": 6255
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "70450Y103",
+    "put_call": "STOCK",
+    "issuer_name": "PAYPAL HLDGS INC",
+    "shares": 896001,
+    "value": 209843
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "70614W100",
+    "put_call": "STOCK",
+    "issuer_name": "PELOTON INTERACTIVE INC",
+    "shares": 7857758,
+    "value": 1192179
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "719156101",
+    "put_call": "STOCK",
+    "issuer_name": "PHOENIX TREE HLDGS LTD",
+    "shares": 36436075,
+    "value": 106029
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "722304102",
+    "put_call": "STOCK",
+    "issuer_name": "PINDUODUO INC",
+    "shares": 14053066,
+    "value": 2496808
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "75737F108",
+    "put_call": "STOCK",
+    "issuer_name": "REDFIN CORP",
+    "shares": 40087,
+    "value": 2751
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "G7483N111",
+    "put_call": "STOCK",
+    "issuer_name": "REINVENT TECHNOLOGY PARTNERS",
+    "shares": 2000000,
+    "value": 24500
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "76680R206",
+    "put_call": "STOCK",
+    "issuer_name": "RINGCENTRAL INC",
+    "shares": 3326370,
+    "value": 1260594
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "79466L302",
+    "put_call": "STOCK",
+    "issuer_name": "SALESFORCE COM INC",
+    "shares": 2288700,
+    "value": 509304
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "81141R100",
+    "put_call": "STOCK",
+    "issuer_name": "SEA LTD",
+    "shares": 9226500,
+    "value": 1836535
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "81762P102",
+    "put_call": "STOCK",
+    "issuer_name": "SERVICENOW INC",
+    "shares": 1643000,
+    "value": 904356
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "82509L107",
+    "put_call": "STOCK",
+    "issuer_name": "SHOPIFY INC",
+    "shares": 193816,
+    "value": 219390
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "83200N103",
+    "put_call": "STOCK",
+    "issuer_name": "SMARTSHEET INC",
+    "shares": 360000,
+    "value": 24944
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "833445109",
+    "put_call": "STOCK",
+    "issuer_name": "SNOWFLAKE INC",
+    "shares": 1753597,
+    "value": 493462
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "83417Q105",
+    "put_call": "STOCK",
+    "issuer_name": "SOLARWINDS CORP",
+    "shares": 200000,
+    "value": 2990
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "L8681T102",
+    "put_call": "STOCK",
+    "issuer_name": "SPOTIFY TECHNOLOGY S A",
+    "shares": 3184013,
+    "value": 1001882
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "852234103",
+    "put_call": "STOCK",
+    "issuer_name": "SQUARE INC",
+    "shares": 408500,
+    "value": 88906
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "G85158106",
+    "put_call": "STOCK",
+    "issuer_name": "STONECO LTD",
+    "shares": 765783,
+    "value": 64265
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "86646P103",
+    "put_call": "STOCK",
+    "issuer_name": "SUMO LOGIC INC",
+    "shares": 5391187,
+    "value": 154080
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "86771W105",
+    "put_call": "STOCK",
+    "issuer_name": "SUNRUN INC",
+    "shares": 8073257,
+    "value": 560123
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "78489X103",
+    "put_call": "STOCK",
+    "issuer_name": "SVMK INC",
+    "shares": 698871,
+    "value": 17856
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "874080104",
+    "put_call": "STOCK",
+    "issuer_name": "TAL EDUCATION GROUP",
+    "shares": 5762873,
+    "value": 412103
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "893641100",
+    "put_call": "STOCK",
+    "issuer_name": "TRANSDIGM GROUP INC",
+    "shares": 1757245,
+    "value": 1087471
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "90138F102",
+    "put_call": "STOCK",
+    "issuer_name": "TWILIO INC",
+    "shares": 74701,
+    "value": 25286
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "90353T100",
+    "put_call": "STOCK",
+    "issuer_name": "UBER TECHNOLOGIES INC",
+    "shares": 27681399,
+    "value": 1411751
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "92538J106",
+    "put_call": "STOCK",
+    "issuer_name": "VERTEX INC",
+    "shares": 325000,
+    "value": 11326
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "92826C839",
+    "put_call": "STOCK",
+    "issuer_name": "VISA INC",
+    "shares": 163000,
+    "value": 35653
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "98138H101",
+    "put_call": "STOCK",
+    "issuer_name": "WORKDAY INC",
+    "shares": 4127450,
+    "value": 988978
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "G98239109",
+    "put_call": "STOCK",
+    "issuer_name": "XP INC",
+    "shares": 200000,
+    "value": 7934
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "98422D105",
+    "put_call": "STOCK",
+    "issuer_name": "XPENG INC",
+    "shares": 650000,
+    "value": 27840
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "98459U103",
+    "put_call": "STOCK",
+    "issuer_name": "YALLA GROUP LTD",
+    "shares": 350000,
+    "value": 5016
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "985194109",
+    "put_call": "STOCK",
+    "issuer_name": "YATSEN HLDG LTD",
+    "shares": 5714000,
+    "value": 97138
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "98936J101",
+    "put_call": "STOCK",
+    "issuer_name": "ZENDESK INC",
+    "shares": 714000,
+    "value": 102188
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "98980L101",
+    "put_call": "STOCK",
+    "issuer_name": "ZOOM VIDEO COMMUNICATIONS IN",
+    "shares": 1444973,
+    "value": 487418
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2020-12-31",
+    "filing_date": "2021-02-16",
+    "cusip": "98980F104",
+    "put_call": "STOCK",
+    "issuer_name": "ZOOMINFO TECHNOLOGIES INC",
+    "shares": 150000,
+    "value": 7235
+  }
+]

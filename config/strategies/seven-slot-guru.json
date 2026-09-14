@@ -1,9 +1,9 @@
 {
   "id": "SEVEN_SLOT_GURU",
   "name": "7-Slot Guru-Konsens Portfolio",
-  "version": "2.0.0",
+  "version": "3.1.0",
   "base_currency": "USD",
-  "last_updated": "2026-09-13",
+  "last_updated": "2026-09-14",
 
   "notifications": {
     "enabled": true,
@@ -25,18 +25,36 @@
 
   "committee": {
     "core_managers": [
-      { "name": "Stanley Druckenmiller", "entity": "Duquesne Family Office", "focus": "Makro-Liquidität und asymmetrische Technologietrends" },
-      { "name": "Philippe Laffont", "entity": "Coatue Management", "focus": "Dediziertes Technologie-, Cloud- und Halbleiter-Research" },
-      { "name": "Chase Coleman", "entity": "Tiger Global Management", "focus": "Marktführende Software- und Plattform-Monopole" },
-      { "name": "David Tepper", "entity": "Appaloosa Management", "focus": "Opportunistischer Tech- und Value-Fokus" },
-      { "name": "Brad Gerstner", "entity": "Altimeter Capital", "focus": "B2B-Software, Cloud und KI-Infrastruktur" },
-      { "name": "Zach Schreiber", "entity": "PointState Capital", "focus": "Halbleiter- und makroökonomische Spezialthemen" }
+      { "name": "Stanley Druckenmiller", "entity": "Duquesne Family Office", "chamber": "GUARDIAN", "focus": "Makro-Liquidität und asymmetrische Technologietrends" },
+      { "name": "Philippe Laffont", "entity": "Coatue Management", "chamber": "SCOUT", "focus": "Dediziertes Technologie-, Cloud- und Halbleiter-Research" },
+      { "name": "Chase Coleman", "entity": "Tiger Global Management", "chamber": "SCOUT", "focus": "Marktführende Software- und Plattform-Monopole" },
+      { "name": "David Tepper", "entity": "Appaloosa Management", "chamber": "GUARDIAN", "focus": "Opportunistischer Tech- und Value-Fokus" },
+      { "name": "Brad Gerstner", "entity": "Altimeter Capital", "chamber": "SCOUT", "focus": "B2B-Software, Cloud und KI-Infrastruktur" },
+      { "name": "Zach Schreiber", "entity": "PointState Capital", "chamber": "GUARDIAN", "focus": "Halbleiter- und makroökonomische Spezialthemen" }
     ],
-    "succession_list": [
-      { "order": 1, "name": "Gavin Baker", "entity": "Atreides Management", "focus": "Halbleiter-Supply-Chains & Enterprise-Software" },
-      { "order": 2, "name": "Alex Sacerdote", "entity": "Whale Rock Capital Management", "focus": "TMT-Wellen, Cloud & KI-Infrastruktur" },
-      { "order": 3, "name": "Christopher Hohn", "entity": "TCI Fund Management", "focus": "Konzentrierte globale Tech-Monopole" }
-    ],
+    "chambers": {
+      "chamber_a_scouts": {
+        "role": "Alpha-Motor & Trend-Sourcing",
+        "managers": ["Philippe Laffont", "Chase Coleman", "Brad Gerstner"],
+        "description": "Erkennen disruptive Megatrends (Shopify, Tesla, Nvidia) und stellen 85% bis 98% des Kapitals in den Tech-Leader-Slots."
+      },
+      "chamber_b_guardians": {
+        "role": "Makro-Governance & Veto-Gatekeeper",
+        "managers": ["Stanley Druckenmiller", "Zach Schreiber", "David Tepper"],
+        "description": "Steigen antizyklisch an Wendepunkten ein, setzen Sektor- und Einzelaktien-Puts und riegeln überhitzte Zyklen ab."
+      }
+    },
+    "succession_monitoring": {
+      "enabled": true,
+      "method": "SEC_13F_SIGNATURE_BLOCK_PARSING",
+      "fields_monitored": ["name", "title", "signatureDate"],
+      "departure_status": "UNDER_REVIEW",
+      "succession_list": [
+        { "order": 1, "name": "Gavin Baker", "entity": "Atreides Management", "focus": "Halbleiter-Supply-Chains & Enterprise-Software" },
+        { "order": 2, "name": "Alex Sacerdote", "entity": "Whale Rock Capital Management", "focus": "TMT-Wellen, Cloud & KI-Infrastruktur" },
+        { "order": 3, "name": "Christopher Hohn", "entity": "TCI Fund Management", "focus": "Konzentrierte globale Tech-Monopole" }
+      ]
+    },
     "filing_schedule": {
       "q4": "02-16",
       "q1": "05-16",
@@ -48,14 +66,285 @@
 
   "portfolio_structure": {
     "max_slots": 7,
-    "sector_focus": "TECHNOLOGY",
+    "sector_focus": "TECHNOLOGY_AND_AI_INFRASTRUCTURE",
+    "allowed_infrastructure_themes": [
+      "KI-Datencenter Stromversorgung & Energie-Backbone (z.B. GEV, CEG, ETN)"
+    ],
     "slot_weight_pct": 14.2857,
     "min_active_buyers_for_entry": 2,
     "min_holders_for_retention": 2,
+    "conviction_filter": {
+      "min_portfolio_pct": 1.0,
+      "description": "Guru zählt nur bei Position >= 1,0 % des gemeldeten 13F-Portfolios als berechtigter Halter/Käufer."
+    },
+    "slot_succession_priority": [
+      "total_holders_desc",
+      "active_buyers_desc",
+      "market_value_usd_desc"
+    ],
     "base_protection": {
       "seasoning_period_months": 6,
       "override_buyer_threshold": 3,
-      "sma200_trend_filter": true
+      "sma200_trend_filter": true,
+      "guardian_confirmed_rebalancing": {
+        "enabled": true,
+        "guardian_trim_required": true,
+        "technical_triggers": {
+          "sma50_break": true,
+          "sma200_overextension_pct": 30.0
+        },
+        "description": "Bestandstitel verliert Base-Schutz, wenn mindestens 1 Wächter trimmt/verkauft UND (Kurs < SMA50 ODER Kurs > SMA200 + 30%)."
+      }
+    },
+    "whitelist": {
+      "jurisdictions_allowed": ["US", "EU", "UK", "CH", "NO", "CA", "AU", "TW", "JP", "KR"],
+      "jurisdictions_blocked": ["CN", "HK_VIE", "RU"],
+      "comment": "Rechtsräume mit gesicherten Eigentums- und einklagbaren Aktionärsrechten. Taiwan (TSM) explizit zugelassen; China VIE-Konstrukte strikt geblockt."
+    },
+    "sector_caps": {
+      "max_slots_per_subsector": 2,
+      "max_weight_pct_per_subsector": 28.57,
+      "active_caps": [
+        {
+          "subsector": "SEMICONDUCTORS",
+          "trigger_manager": "Zach Schreiber (PointState Capital)",
+          "trigger_instrument": "SMH Put Option",
+          "trigger_value_usd": 601100000,
+          "trigger_threshold_usd": 250000000,
+          "status": "ACTIVE",
+          "slots_allocated": ["TSM", "NVDA"],
+          "on_deck_reserve": "LRCX"
+        }
+      ]
+    },
+    "current_slots": [
+      {
+        "slot": 1,
+        "ticker": "AMZN",
+        "name": "Amazon.com Inc.",
+        "subsector": "Cloud / Plattform",
+        "holders_count": 6,
+        "guardians": ["Stanley Druckenmiller", "Zach Schreiber", "David Tepper"],
+        "scouts": ["Brad Gerstner", "Philippe Laffont", "Chase Coleman"],
+        "rebuy_flag": "HIGH_CONVICTION",
+        "rebuy_rationale": "Alle 3 Wächter investiert + aktiv zugekauft. Am Marktboden höchste Rebuy-Priorität.",
+        "rebalance_risk": "LOW"
+      },
+      {
+        "slot": 2,
+        "ticker": "TSM",
+        "name": "Taiwan Semiconductor",
+        "subsector": "Halbleiter (Slot 1/2)",
+        "holders_count": 5,
+        "guardians": ["Stanley Druckenmiller", "David Tepper"],
+        "scouts": ["Brad Gerstner", "Philippe Laffont", "Chase Coleman"],
+        "rebuy_flag": "HIGH_CONVICTION",
+        "rebuy_rationale": "2 primäre Wächter halten > 1,1 Mrd. $. Monopol-Foundry unter US-Sicherheitsgarantie.",
+        "rebalance_risk": "LOW"
+      },
+      {
+        "slot": 3,
+        "ticker": "META",
+        "name": "Meta Platforms Inc.",
+        "subsector": "KI / Social Media",
+        "holders_count": 5,
+        "guardians": ["Zach Schreiber", "David Tepper"],
+        "scouts": ["Brad Gerstner", "Philippe Laffont", "Chase Coleman"],
+        "rebuy_flag": "HIGH_CONVICTION",
+        "rebuy_rationale": "Schreiber & Tepper halten und haben aufgestockt.",
+        "rebalance_risk": "LOW"
+      },
+      {
+        "slot": 4,
+        "ticker": "GOOGL",
+        "name": "Alphabet Inc.",
+        "subsector": "KI / Cloud",
+        "holders_count": 4,
+        "guardians": ["Stanley Druckenmiller", "David Tepper"],
+        "scouts": ["Philippe Laffont", "Chase Coleman"],
+        "rebuy_flag": "HIGH_CONVICTION",
+        "rebuy_rationale": "Druckenmiller & Tepper aktiv investiert.",
+        "rebalance_risk": "LOW"
+      },
+      {
+        "slot": 5,
+        "ticker": "NVDA",
+        "name": "Nvidia Corp.",
+        "subsector": "Halbleiter (Slot 2/2)",
+        "holders_count": 4,
+        "guardians": ["David Tepper"],
+        "scouts": ["Brad Gerstner", "Philippe Laffont", "Chase Coleman"],
+        "rebuy_flag": "CONDITIONAL",
+        "rebuy_rationale": "Druckenmiller bei 0 $, Schreiber hält SMH-Put. Nur Tepper hält noch. Rebuy nur erlaubt, falls Tepper nicht vor Crash verkauft.",
+        "rebalance_risk": "ELEVATED"
+      },
+      {
+        "slot": 6,
+        "ticker": "MSFT",
+        "name": "Microsoft Corp.",
+        "subsector": "Cloud / Software",
+        "holders_count": 4,
+        "guardians": ["Zach Schreiber"],
+        "scouts": ["Brad Gerstner", "Philippe Laffont", "Chase Coleman"],
+        "rebuy_flag": "CONDITIONAL",
+        "rebuy_rationale": "Druckenmiller & Tepper bei 0 $. Schreiber hält Restbestand. Rebuy am Boden nur, wenn Wächter-Halter >= 1 bleibt.",
+        "rebalance_risk": "LOW"
+      },
+      {
+        "slot": 7,
+        "ticker": "GEV",
+        "name": "GE Vernova Inc.",
+        "subsector": "KI-Infrastruktur / Power",
+        "holders_count": 2,
+        "guardians": [],
+        "scouts": ["Philippe Laffont", "Chase Coleman"],
+        "rebuy_flag": "FORBIDDEN",
+        "rebuy_rationale": "Aktuell 0 Wächter (reiner 2,4 Mrd. $ Scout-Trade). Im Bullenmarkt aktiver Compounder, am Bärenmarkt-Boden KEIN REBUY (Scout-Zombie-Gefahr!).",
+        "rebalance_risk": "ELEVATED"
+      }
+    ]
+  },
+
+  "future_pool": {
+    "on_deck_reserve": [
+      {
+        "ticker": "LRCX",
+        "name": "Lam Research Corp.",
+        "subsector": "Halbleiter",
+        "holders_count": 5,
+        "block_reason": "SECTOR_CAP_SEMIS",
+        "trigger": "Schreiber SMH-Put > $250M. Rückt sofort nach, wenn TSM oder NVDA ausscheidet oder Cap entfällt."
+      },
+      {
+        "ticker": "MU",
+        "name": "Micron Technology",
+        "subsector": "Halbleiter",
+        "holders_count": 3,
+        "guardians": ["David Tepper"],
+        "block_reason": "SECTOR_CAP_SEMIS",
+        "trigger": "Wächter-Zukauf durch Tepper. Nachrücker Rang 2."
+      },
+      {
+        "ticker": "AVGO",
+        "name": "Broadcom Inc.",
+        "subsector": "Halbleiter",
+        "holders_count": 2,
+        "guardians": [],
+        "block_reason": "SECTOR_CAP_SEMIS"
+      },
+      {
+        "ticker": "AMAT",
+        "name": "Applied Materials",
+        "subsector": "Halbleiter",
+        "holders_count": 3,
+        "guardians": [],
+        "block_reason": "SECTOR_CAP_SEMIS"
+      }
+    ],
+    "watch_pool": [
+      {
+        "ticker": "UBER",
+        "name": "Uber Technologies Inc.",
+        "subsector": "Plattform / Mobility",
+        "holders_count": 2,
+        "guardians": ["David Tepper"],
+        "scouts": ["Brad Gerstner"],
+        "rebuy_flag": "CONDITIONAL",
+        "status": "NEXT_IN_LINE_NON_SEMI",
+        "note": "Erster Nachrücker bei Schwäche von GEV oder MSFT (0% Halbleiter-Exposure)."
+      },
+      {
+        "ticker": "SQ",
+        "name": "Block Inc.",
+        "subsector": "FinTech / Bitcoin-Infrastruktur",
+        "holders_count": 2,
+        "guardians": ["Zach Schreiber"],
+        "scouts": ["Chase Coleman"],
+        "rebuy_flag": "CONDITIONAL"
+      },
+      {
+        "ticker": "SE",
+        "name": "Sea Limited",
+        "subsector": "Plattform / E-Commerce",
+        "holders_count": 2,
+        "guardians": ["Stanley Druckenmiller"],
+        "scouts": ["Chase Coleman"],
+        "rebuy_flag": "CONDITIONAL"
+      },
+      {
+        "ticker": "SPOT",
+        "name": "Spotify Technology",
+        "subsector": "Streaming / Plattform",
+        "holders_count": 2,
+        "guardians": [],
+        "scouts": ["Philippe Laffont", "Chase Coleman"],
+        "rebuy_flag": "FORBIDDEN"
+      }
+    ],
+    "veto_blocked": [
+      {
+        "ticker": "AAPL",
+        "name": "Apple Inc.",
+        "veto_type": "SINGLE_STOCK_PUT",
+        "manager": "David Tepper (Appaloosa)",
+        "nominal_value_usd": 241600000,
+        "status": "STRICTLY_FORBIDDEN"
+      },
+      {
+        "ticker": "BABA",
+        "name": "Alibaba Group",
+        "veto_type": "GEOPOLITICAL_BLACKLIST",
+        "jurisdiction": "CN_VIE",
+        "status": "STRICTLY_FORBIDDEN"
+      },
+      {
+        "ticker": "JD",
+        "name": "JD.com Inc.",
+        "veto_type": "GEOPOLITICAL_BLACKLIST",
+        "jurisdiction": "CN_VIE",
+        "status": "STRICTLY_FORBIDDEN"
+      },
+      {
+        "ticker": "PDD",
+        "name": "PDD Holdings",
+        "veto_type": "GEOPOLITICAL_BLACKLIST",
+        "jurisdiction": "CN_VIE",
+        "status": "STRICTLY_FORBIDDEN"
+      }
+    ]
+  },
+
+  "bottom_rebuy_doctrine": {
+    "enabled": true,
+    "priority_tiers": {
+      "tier_1_high_conviction": {
+        "rule": "Mindestens 2 Makro-Wächter am Boden investiert.",
+        "eligible_now": ["AMZN", "TSM", "META", "GOOGL"],
+        "allocation_action": "SOFORTIGER_KAUF_GLEICHGEWICHTET"
+      },
+      "tier_2_conditional": {
+        "rule": "Genau 1 Makro-Wächter investiert.",
+        "eligible_now": ["NVDA", "MSFT", "UBER"],
+        "allocation_action": "KAUF_NUR_WENN_WÄCHTER_BEI_CRASH_NICHT_VERKAUFT_HAT"
+      },
+      "tier_3_forbidden": {
+        "rule": "0 Makro-Wächter investiert ODER aktiver Wächter-Put.",
+        "blocked_now": ["GEV", "AAPL", "LRCX", "BABA", "JD", "PDD"],
+        "allocation_action": "STRIKTES_KAUFVERBOT"
+      }
+    }
+  },
+
+  "veto_rules": {
+    "single_stock_put_veto_usd": 50000000,
+    "active_single_stock_vetoes": [
+      { "ticker": "AAPL", "manager": "David Tepper", "put_nominal_usd": 241600000, "status": "BLOCKED" }
+    ],
+    "sector_put_veto_usd": 250000000,
+    "macro_exodus": {
+      "rule": "BOTH_PRIMARY_GUARDIANS_ZERO_AND_SCOUTS_DROP_GT_40PCT",
+      "primary_guardians": ["Stanley Druckenmiller", "Zach Schreiber"],
+      "action": "EVICT_POSITION"
     }
   },
 
@@ -74,20 +363,43 @@
     "trigger_net_liq_delta_8w": -0.05,
     "trigger_credit_spread_hy_pct": 4.0,
     "emergency_allocation": {
-      "gold_pct": 25.0,
-      "cash_usd_pct": 75.0
+      "gold_pct": 50.0,
+      "cash_usd_pct": 50.0
     },
     "savings_rate_allocation": {
-      "gold_pct": 25.0,
-      "cash_usd_pct": 75.0
+      "gold_pct": 50.0,
+      "cash_usd_pct": 50.0
     },
     "re_entry": {
       "nasdaq_dip_threshold_pct": -10.0,
-      "reinvest_target": "TECH_SLOTS_EQUAL_WEIGHT"
+      "panic_capitulation_indicator": true,
+      "reinvest_target": "TECH_SLOTS_EQUAL_WEIGHT",
+      "apply_vetoed_no_rebuy": true
     }
   },
 
   "changelog": [
+    {
+      "version": "3.1.0",
+      "date": "2026-09-14",
+      "title": "Wächter-bestätigtes Rebalancing, Sektor-Öffnung KI-Infrastruktur & Vollständige Governance-Matrix",
+      "summary": "Erweiterung des Sektor-Fokus auf Tech & KI-Infrastruktur (GEV). Base-Schutz-Ausnahme bei Wächter-Trimmen UND (Kurs < SMA50 ODER Kurs > SMA200 + 30%). Einführung von Re-Buy-Flags (HIGH_CONVICTION, CONDITIONAL, FORBIDDEN) für jedes Slot-Item und strukturierte Verwaltung des Zukunftspools (on_deck_reserve, watch_pool, veto_blocked) sowie bottom_rebuy_doctrine.",
+      "broadcast": true
+    },
+    {
+      "version": "3.0.0",
+      "date": "2026-09-14",
+      "title": "Dual-Engine Governance, Geopolitische Whitelist & Sektor-Cap (v3.0)",
+      "summary": "Trennung in Scouts (Alpha-Motor) & Wächter (Veto/Governance). Einführung der Geopolitischen Whitelist (China/VIE-Ausschluss), Sektor-Cap (Schreiber SMH-Put -> UBER in Slot 7, LRCX auf Deck), Vetoed-No-Rebuy am Marktboden (+33 %P Alpha), 13F-Signature Nachfolge-Tracking und 50/50 Gold/Cash Notfall-Allokation.",
+      "broadcast": true
+    },
+    {
+      "version": "2.1.0",
+      "date": "2026-09-14",
+      "title": "Slot-Nachrücker-Priorität & Aufnahme von Lam Research (LRCX)",
+      "summary": "ServiceNow (NOW) scheidet wegen Unterschreitung der 2-Halter-Schwelle aus. Lam Research (LRCX) rückt gemäß 3-Stufen-Priorität (5 Halter, 3 aktive Käufer, 1,94 Mrd. $ Kapital) in Slot 7 nach.",
+      "broadcast": true
+    },
     {
       "version": "2.0.0",
       "date": "2026-09-13",

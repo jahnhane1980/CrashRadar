@@ -1,0 +1,332 @@
+[
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "H00263105",
+    "put_call": "STOCK",
+    "issuer_name": "AC IMMUNE SA",
+    "shares": 2388700,
+    "value": 22263
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "00507V109",
+    "put_call": "STOCK",
+    "issuer_name": "ACTIVISION BLIZZARD INC",
+    "shares": 337200,
+    "value": 25735
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "ADOBE SYS INC",
+    "shares": 122500,
+    "value": 29867
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "01609W102",
+    "put_call": "STOCK",
+    "issuer_name": "ALIBABA GROUP HLDG LTD",
+    "shares": 804300,
+    "value": 149222
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 170400,
+    "value": 192414
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 155253,
+    "value": 263899
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "052769106",
+    "put_call": "STOCK",
+    "issuer_name": "AUTODESK INC",
+    "shares": 254300,
+    "value": 33336
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "15135U109",
+    "put_call": "STOCK",
+    "issuer_name": "CENOVUS ENERGY INC",
+    "shares": 986300,
+    "value": 10238
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "189464100",
+    "put_call": "STOCK",
+    "issuer_name": "CLOVIS ONCOLOGY INC",
+    "shares": 482000,
+    "value": 21917
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "22266L106",
+    "put_call": "STOCK",
+    "issuer_name": "COUPA SOFTWARE INC",
+    "shares": 164900,
+    "value": 10263
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "22943F100",
+    "put_call": "STOCK",
+    "issuer_name": "CTRIP COM INTL LTD",
+    "shares": 421100,
+    "value": 20057
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "25179M103",
+    "put_call": "STOCK",
+    "issuer_name": "DEVON ENERGY CORP NEW",
+    "shares": 740700,
+    "value": 32561
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "285512109",
+    "put_call": "STOCK",
+    "issuer_name": "ELECTRONIC ARTS INC",
+    "shares": 107600,
+    "value": 15174
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "FACEBOOK INC",
+    "shares": 918000,
+    "value": 178386
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "35671D857",
+    "put_call": "STOCK",
+    "issuer_name": "FREEPORT-MCMORAN INC",
+    "shares": 858000,
+    "value": 14809
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "375558103",
+    "put_call": "STOCK",
+    "issuer_name": "GILEAD SCIENCES INC",
+    "shares": 1205300,
+    "value": 85383
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "437076102",
+    "put_call": "STOCK",
+    "issuer_name": "HOME DEPOT INC",
+    "shares": 126500,
+    "value": 24680
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "46116X101",
+    "put_call": "STOCK",
+    "issuer_name": "INTRA CELLULAR THERAPIES INC",
+    "shares": 296986,
+    "value": 5248
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "464287556",
+    "put_call": "STOCK",
+    "issuer_name": "ISHARES TR",
+    "shares": 183900,
+    "value": 20339
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "56585A102",
+    "put_call": "STOCK",
+    "issuer_name": "MARATHON PETE CORP",
+    "shares": 496400,
+    "value": 34827
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "58733R102",
+    "put_call": "STOCK",
+    "issuer_name": "MERCADOLIBRE INC",
+    "shares": 16900,
+    "value": 5052
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 2986800,
+    "value": 294528
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "G6359F103",
+    "put_call": "STOCK",
+    "issuer_name": "NABORS INDUSTRIES LTD",
+    "shares": 1176000,
+    "value": 7538
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "NETFLIX INC",
+    "shares": 189700,
+    "value": 74254
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "G68707101",
+    "put_call": "STOCK",
+    "issuer_name": "PAGSEGURO DIGITAL LTD COM",
+    "shares": 215000,
+    "value": 5966
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "79466L302",
+    "put_call": "STOCK",
+    "issuer_name": "SALESFORCE COM INC",
+    "shares": 1705300,
+    "value": 232603
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "81369Y506",
+    "put_call": "STOCK",
+    "issuer_name": "SELECT SECTOR SPDR TR",
+    "shares": 325600,
+    "value": 24726
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "848637104",
+    "put_call": "STOCK",
+    "issuer_name": "SPLUNK INC",
+    "shares": 342600,
+    "value": 33955
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "852234103",
+    "put_call": "STOCK",
+    "issuer_name": "SQUARE INC",
+    "shares": 247000,
+    "value": 15225
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "852857200",
+    "put_call": "STOCK",
+    "issuer_name": "STAMPS COM INC",
+    "shares": 154600,
+    "value": 39122
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "874080104",
+    "put_call": "STOCK",
+    "issuer_name": "TAL ED GROUP",
+    "shares": 682000,
+    "value": 25098
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "92189F718",
+    "put_call": "STOCK",
+    "issuer_name": "VANECK VECTORS ETF TR",
+    "shares": 1680200,
+    "value": 44139
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-06-30",
+    "filing_date": "2018-08-14",
+    "cusip": "98138H101",
+    "put_call": "STOCK",
+    "issuer_name": "WORKDAY INC",
+    "shares": 650500,
+    "value": 78789
+  }
+]

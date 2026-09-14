@@ -1,0 +1,412 @@
+[
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 10308800,
+    "value": 1555907184
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "02156V109",
+    "put_call": "STOCK",
+    "issuer_name": "ALTC ACQUISITION CORP",
+    "shares": 3056992,
+    "value": 34910849
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 6321080,
+    "value": 1140196410
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "03769M106",
+    "put_call": "STOCK",
+    "issuer_name": "APOLLO GLOBAL MGMT INC",
+    "shares": 12285193,
+    "value": 1381469953
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "042068205",
+    "put_call": "STOCK",
+    "issuer_name": "ARM HOLDINGS PLC",
+    "shares": 300000,
+    "value": 37497000
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "04626A103",
+    "put_call": "STOCK",
+    "issuer_name": "ASTERA LABS INC",
+    "shares": 70000,
+    "value": 5193300
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "049468101",
+    "put_call": "STOCK",
+    "issuer_name": "ATLASSIAN CORPORATION",
+    "shares": 400545,
+    "value": 78150335
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "00138L108",
+    "put_call": "STOCK",
+    "issuer_name": "ATRENEW INC",
+    "shares": 11481218,
+    "value": 20206944
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "11135F101",
+    "put_call": "STOCK",
+    "issuer_name": "BROADCOM INC",
+    "shares": 182300,
+    "value": 241622243
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "219948106",
+    "put_call": "STOCK",
+    "issuer_name": "CORPAY INC",
+    "shares": 1333691,
+    "value": 411497021
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "22788C105",
+    "put_call": "STOCK",
+    "issuer_name": "CROWDSTRIKE HLDGS INC",
+    "shares": 900000,
+    "value": 288531000
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "23804L103",
+    "put_call": "STOCK",
+    "issuer_name": "DATADOG INC",
+    "shares": 979400,
+    "value": 121053840
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "252131107",
+    "put_call": "STOCK",
+    "issuer_name": "DEXCOM INC",
+    "shares": 1152806,
+    "value": 159894192
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "25445D101",
+    "put_call": "STOCK",
+    "issuer_name": "DINGDONG CAYMAN LTD",
+    "shares": 118539,
+    "value": 144618
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "25809K105",
+    "put_call": "STOCK",
+    "issuer_name": "DOORDASH INC",
+    "shares": 2196013,
+    "value": 302434910
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "N14506104",
+    "put_call": "STOCK",
+    "issuer_name": "ELASTIC N V",
+    "shares": 1690700,
+    "value": 169475768
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "532457108",
+    "put_call": "STOCK",
+    "issuer_name": "ELI LILLY &amp; CO",
+    "shares": 890000,
+    "value": 692384400
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "358054104",
+    "put_call": "STOCK",
+    "issuer_name": "FRESHWORKS INC",
+    "shares": 196683,
+    "value": 3581597
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "G4124C109",
+    "put_call": "STOCK",
+    "issuer_name": "GRAB HOLDINGS LIMITED",
+    "shares": 66801788,
+    "value": 209757614
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "47215P106",
+    "put_call": "STOCK",
+    "issuer_name": "JD.COM INC",
+    "shares": 3138819,
+    "value": 85972263
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "49845K101",
+    "put_call": "STOCK",
+    "issuer_name": "KLAVIYO INC",
+    "shares": 35000,
+    "value": 891800
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "512807108",
+    "put_call": "STOCK",
+    "issuer_name": "LAM RESEARCH CORP",
+    "shares": 353183,
+    "value": 343142007
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "531229755",
+    "put_call": "STOCK",
+    "issuer_name": "LIBERTY MEDIA CORP DEL",
+    "shares": 2364000,
+    "value": 155078400
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "565394103",
+    "put_call": "STOCK",
+    "issuer_name": "MAPLEBEAR INC",
+    "shares": 1759311,
+    "value": 65604707
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "META PLATFORMS INC",
+    "shares": 7465139,
+    "value": 3624922196
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 5344165,
+    "value": 2248397099
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "670100205",
+    "put_call": "STOCK",
+    "issuer_name": "NOVO-NORDISK A S",
+    "shares": 1269000,
+    "value": 162939600
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "G6683N103",
+    "put_call": "STOCK",
+    "issuer_name": "NU HLDGS LTD",
+    "shares": 18433113,
+    "value": 219907038
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORPORATION",
+    "shares": 968355,
+    "value": 874966844
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "74275K108",
+    "put_call": "STOCK",
+    "issuer_name": "PROCORE TECHNOLOGIES INC",
+    "shares": 2339500,
+    "value": 192236715
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "75734B100",
+    "put_call": "STOCK",
+    "issuer_name": "REDDIT INC",
+    "shares": 500000,
+    "value": 24660000
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "81141R100",
+    "put_call": "STOCK",
+    "issuer_name": "SEA LTD",
+    "shares": 14996068,
+    "value": 805438812
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "81762P102",
+    "put_call": "STOCK",
+    "issuer_name": "SERVICENOW INC",
+    "shares": 579655,
+    "value": 441928972
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "L8681T102",
+    "put_call": "STOCK",
+    "issuer_name": "SPOTIFY TECHNOLOGY S A",
+    "shares": 2561,
+    "value": 675848
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "G85158106",
+    "put_call": "STOCK",
+    "issuer_name": "STONECO LTD",
+    "shares": 682000,
+    "value": 11328020
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "874039100",
+    "put_call": "STOCK",
+    "issuer_name": "TAIWAN SEMICONDUCTOR MFG LTD",
+    "shares": 3044990,
+    "value": 414270890
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "874054109",
+    "put_call": "STOCK",
+    "issuer_name": "TAKE-TWO INTERACTIVE SOFTWAR",
+    "shares": 5643542,
+    "value": 838009552
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "888787108",
+    "put_call": "STOCK",
+    "issuer_name": "TOAST INC",
+    "shares": 78521,
+    "value": 1956743
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "90353T100",
+    "put_call": "STOCK",
+    "issuer_name": "UBER TECHNOLOGIES INC",
+    "shares": 3006696,
+    "value": 231485525
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "98138H101",
+    "put_call": "STOCK",
+    "issuer_name": "WORKDAY INC",
+    "shares": 1880237,
+    "value": 512834642
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2024-03-31",
+    "filing_date": "2024-05-15",
+    "cusip": "98980F104",
+    "put_call": "STOCK",
+    "issuer_name": "ZOOMINFO TECHNOLOGIES INC",
+    "shares": 11585727,
+    "value": 185719204
+  }
+]

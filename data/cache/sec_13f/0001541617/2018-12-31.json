@@ -1,0 +1,262 @@
+[
+  {
+    "cik": "0001541617",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-15",
+    "cusip": "01609W102",
+    "put_call": "STOCK",
+    "issuer_name": "ALIBABA GROUP HLDG LTD",
+    "shares": 124350,
+    "value": 17045
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-15",
+    "cusip": "01748X102",
+    "put_call": "STOCK",
+    "issuer_name": "ALLEGIANT TRAVEL CO",
+    "shares": 20000,
+    "value": 2004
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-15",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 5500,
+    "value": 5747
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-15",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 33000,
+    "value": 49565
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-15",
+    "cusip": "09857L108",
+    "put_call": "STOCK",
+    "issuer_name": "BOOKING HLDGS INC",
+    "shares": 153402,
+    "value": 264223
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-15",
+    "cusip": "26210C104",
+    "put_call": "STOCK",
+    "issuer_name": "DROPBOX INC",
+    "shares": 650000,
+    "value": 13280
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-15",
+    "cusip": "N14506104",
+    "put_call": "STOCK",
+    "issuer_name": "ELASTIC NV",
+    "shares": 75000,
+    "value": 5361
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-15",
+    "cusip": "30212P303",
+    "put_call": "STOCK",
+    "issuer_name": "EXPEDIA GROUP INC",
+    "shares": 2395025,
+    "value": 269800
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-15",
+    "cusip": "30212P303",
+    "put_call": "CALL",
+    "issuer_name": "EXPEDIA GROUP INC",
+    "shares": 11360,
+    "value": 3556
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-15",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "FACEBOOK INC",
+    "shares": 3368000,
+    "value": 441511
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-15",
+    "cusip": "590479135",
+    "put_call": "STOCK",
+    "issuer_name": "MESA AIR GROUP INC",
+    "shares": 186198,
+    "value": 1436
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-15",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 360000,
+    "value": 36565
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-15",
+    "cusip": "60937P106",
+    "put_call": "STOCK",
+    "issuer_name": "MONGODB INC",
+    "shares": 249484,
+    "value": 20892
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-15",
+    "cusip": "0G6672104",
+    "put_call": "STOCK",
+    "issuer_name": "NORWEGIAN CRUISE LINE HLDG L",
+    "shares": 70000,
+    "value": 2967
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-15",
+    "cusip": "67059N108",
+    "put_call": "STOCK",
+    "issuer_name": "NUTANIX INC",
+    "shares": 300000,
+    "value": 12477
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-15",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORP",
+    "shares": 160000,
+    "value": 21360
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-15",
+    "cusip": "679295105",
+    "put_call": "STOCK",
+    "issuer_name": "OKTA INC",
+    "shares": 200000,
+    "value": 12760
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-15",
+    "cusip": "722304102",
+    "put_call": "STOCK",
+    "issuer_name": "PINDUODUO INC",
+    "shares": 2486288,
+    "value": 55792
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-15",
+    "cusip": "79466L302",
+    "put_call": "STOCK",
+    "issuer_name": "SALESFORCE COM INC",
+    "shares": 265000,
+    "value": 36297
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-15",
+    "cusip": "830879102",
+    "put_call": "STOCK",
+    "issuer_name": "SKYWEST INC",
+    "shares": 23000,
+    "value": 1023
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-15",
+    "cusip": "848574109",
+    "put_call": "STOCK",
+    "issuer_name": "SPIRIT AIRLINES INC",
+    "shares": 225000,
+    "value": 13032
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-15",
+    "cusip": "87336U105",
+    "put_call": "STOCK",
+    "issuer_name": "TABLEAU SOFTWARE INC",
+    "shares": 3484663,
+    "value": 418160
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-15",
+    "cusip": "88160RAC5",
+    "put_call": "STOCK",
+    "issuer_name": "TESLA INC",
+    "shares": 6000000,
+    "value": 6707
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-15",
+    "cusip": "89686D105",
+    "put_call": "STOCK",
+    "issuer_name": "TRIVAGO NV",
+    "shares": 4157556,
+    "value": 23407
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-15",
+    "cusip": "910047109",
+    "put_call": "STOCK",
+    "issuer_name": "UNITED CONTL HLDGS INC",
+    "shares": 11629283,
+    "value": 973720
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-15",
+    "cusip": "985817105",
+    "put_call": "STOCK",
+    "issuer_name": "YELP INC",
+    "shares": 984300,
+    "value": 34441
+  }
+]

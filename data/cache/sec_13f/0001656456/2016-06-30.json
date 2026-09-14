@@ -1,0 +1,372 @@
+[
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "G0177J108",
+    "put_call": "STOCK",
+    "issuer_name": "ALLERGAN PLC",
+    "shares": 1260809,
+    "value": 291360
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "020002101",
+    "put_call": "STOCK",
+    "issuer_name": "ALLSTATE CORP",
+    "shares": 3336569,
+    "value": 233393
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "02079K107",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 630000,
+    "value": 436023
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "00162Q866",
+    "put_call": "STOCK",
+    "issuer_name": "ALPS ETF TR",
+    "shares": 4764435,
+    "value": 60604
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "G0751N103",
+    "put_call": "STOCK",
+    "issuer_name": "ATLANTICA YIELD PLC",
+    "shares": 6295065,
+    "value": 116962
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "203668108",
+    "put_call": "STOCK",
+    "issuer_name": "COMMUNITY HEALTH SYS INC NEW",
+    "shares": 6270130,
+    "value": 75555
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "29273R109",
+    "put_call": "STOCK",
+    "issuer_name": "ENERGY TRANSFER PRTNRS L P",
+    "shares": 11414857,
+    "value": 434564
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "37045V118",
+    "put_call": "STOCK",
+    "issuer_name": "GENERAL MTRS CO",
+    "shares": 190011,
+    "value": 3500
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "37045V126",
+    "put_call": "STOCK",
+    "issuer_name": "GENERAL MTRS CO",
+    "shares": 190011,
+    "value": 1984
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "37045V100",
+    "put_call": "STOCK",
+    "issuer_name": "GENERAL MTRS CO",
+    "shares": 1391036,
+    "value": 39366
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "382550101",
+    "put_call": "STOCK",
+    "issuer_name": "GOODYEAR TIRE &amp; RUBR CO",
+    "shares": 709076,
+    "value": 18195
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "405217100",
+    "put_call": "STOCK",
+    "issuer_name": "HAIN CELESTIAL GROUP INC",
+    "shares": 1281528,
+    "value": 63756
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "40412C101",
+    "put_call": "STOCK",
+    "issuer_name": "HCA HOLDINGS INC",
+    "shares": 1216940,
+    "value": 93717
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "40416M105",
+    "put_call": "STOCK",
+    "issuer_name": "HD SUPPLY HLDGS INC",
+    "shares": 2756896,
+    "value": 95995
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "447011107",
+    "put_call": "STOCK",
+    "issuer_name": "HUNTSMAN CORP",
+    "shares": 6727231,
+    "value": 90481
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "G47791101",
+    "put_call": "STOCK",
+    "issuer_name": "INGERSOLL-RAND PLC",
+    "shares": 474102,
+    "value": 30191
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "486606106",
+    "put_call": "STOCK",
+    "issuer_name": "KAYNE ANDERSON MLP INVT CO",
+    "shares": 781173,
+    "value": 15897
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "49456B119",
+    "put_call": "STOCK",
+    "issuer_name": "KINDER MORGAN INC DEL",
+    "shares": 793836,
+    "value": 13
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "49456B101",
+    "put_call": "STOCK",
+    "issuer_name": "KINDER MORGAN INC DEL",
+    "shares": 1500000,
+    "value": 28080
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "608190104",
+    "put_call": "STOCK",
+    "issuer_name": "MOHAWK INDS INC",
+    "shares": 760568,
+    "value": 144325
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "N6596X109",
+    "put_call": "STOCK",
+    "issuer_name": "NXP SEMICONDUCTORS N V",
+    "shares": 1400000,
+    "value": 109676
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "690742101",
+    "put_call": "STOCK",
+    "issuer_name": "OWENS CORNING NEW",
+    "shares": 3335787,
+    "value": 171860
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "693506107",
+    "put_call": "STOCK",
+    "issuer_name": "PPG INDS INC",
+    "shares": 217419,
+    "value": 22644
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "74909E106",
+    "put_call": "STOCK",
+    "issuer_name": "QUORUM HEALTH CORP",
+    "shares": 771436,
+    "value": 8262
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "844741108",
+    "put_call": "STOCK",
+    "issuer_name": "SOUTHWEST AIRLS CO",
+    "shares": 3478953,
+    "value": 136410
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "78462F103",
+    "put_call": "STOCK",
+    "issuer_name": "SPDR S&amp;P 500 ETF TR",
+    "shares": 22854,
+    "value": 4789
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "87165B103",
+    "put_call": "STOCK",
+    "issuer_name": "SYNCHRONY FINL",
+    "shares": 6068117,
+    "value": 153402
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "88104M101",
+    "put_call": "STOCK",
+    "issuer_name": "TERRAFORM GLOBAL INC",
+    "shares": 3701067,
+    "value": 12065
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "88104R100",
+    "put_call": "STOCK",
+    "issuer_name": "TERRAFORM PWR INC",
+    "shares": 8708708,
+    "value": 94925
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "896818101",
+    "put_call": "STOCK",
+    "issuer_name": "TRIUMPH GROUP INC NEW",
+    "shares": 1004155,
+    "value": 35648
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "90130A101",
+    "put_call": "STOCK",
+    "issuer_name": "TWENTY FIRST CENTY FOX INC",
+    "shares": 3275900,
+    "value": 88613
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "90130A200",
+    "put_call": "STOCK",
+    "issuer_name": "TWENTY FIRST CENTY FOX INC",
+    "shares": 1084414,
+    "value": 29550
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "912008109",
+    "put_call": "STOCK",
+    "issuer_name": "US FOODS HLDG CORP",
+    "shares": 739675,
+    "value": 17930
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "958102105",
+    "put_call": "STOCK",
+    "issuer_name": "WESTERN DIGITAL CORP",
+    "shares": 1450000,
+    "value": 68527
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "963320106",
+    "put_call": "STOCK",
+    "issuer_name": "WHIRLPOOL CORP",
+    "shares": 1305387,
+    "value": 217530
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "96949L105",
+    "put_call": "STOCK",
+    "issuer_name": "WILLIAMS PARTNERS L P NEW",
+    "shares": 9266864,
+    "value": 321004
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-12",
+    "cusip": "92936P100",
+    "put_call": "STOCK",
+    "issuer_name": "WMIH CORP",
+    "shares": 16388287,
+    "value": 36382
+  }
+]

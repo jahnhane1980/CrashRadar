@@ -1,0 +1,2010 @@
+{
+  "quarters": [
+    "2025-09-29",
+    "2025-12-30",
+    "2026-03-30",
+    "2026-06-29"
+  ],
+  "list": [
+    {
+      "cusip": "023135106",
+      "issuer_name": "AMAZON COM INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 6
+    },
+    {
+      "cusip": "30303M102",
+      "issuer_name": "META PLATFORMS INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 5
+    },
+    {
+      "cusip": "874039100",
+      "issuer_name": "TAIWAN SEMICONDUCTOR MFG LTD",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 5
+    },
+    {
+      "cusip": "512807306",
+      "issuer_name": "LAM RESEARCH CORP",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 5
+    },
+    {
+      "cusip": "594918104",
+      "issuer_name": "MICROSOFT CORP",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 5
+    },
+    {
+      "cusip": "67066G104",
+      "issuer_name": "NVIDIA CORPORATION",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 4
+    },
+    {
+      "cusip": "02079K305",
+      "issuer_name": "ALPHABET INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 4
+    },
+    {
+      "cusip": "007903107",
+      "issuer_name": "ADVANCED MICRO DEVICES INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 4
+    },
+    {
+      "cusip": "84615Q103",
+      "issuer_name": "SPACE EXPLORATION TECHN CORP",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 4
+    },
+    {
+      "cusip": "11135F101",
+      "issuer_name": "BROADCOM INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 4
+    },
+    {
+      "cusip": "22266T109",
+      "issuer_name": "COUPANG INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 4
+    },
+    {
+      "cusip": "25809K105",
+      "issuer_name": "DOORDASH INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 4
+    },
+    {
+      "cusip": "038222105",
+      "issuer_name": "APPLIED MATLS INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 3
+    },
+    {
+      "cusip": "595112103",
+      "issuer_name": "MICRON TECHNOLOGY INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 3
+    },
+    {
+      "cusip": "90353T100",
+      "issuer_name": "UBER TECHNOLOGIES INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 3
+    },
+    {
+      "cusip": "75734B100",
+      "issuer_name": "REDDIT INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 3
+    },
+    {
+      "cusip": "747525103",
+      "issuer_name": "QUALCOMM INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 3
+    },
+    {
+      "cusip": "142152107",
+      "issuer_name": "CARIS LIFE SCIENCES INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 3
+    },
+    {
+      "cusip": "632307104",
+      "issuer_name": "NATERA INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 3
+    },
+    {
+      "cusip": "81141R100",
+      "issuer_name": "SEA LTD",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 3
+    },
+    {
+      "cusip": "36828A101",
+      "issuer_name": "GE VERNOVA INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 3
+    },
+    {
+      "cusip": "042068205",
+      "issuer_name": "Arm Holdings Plc",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 3
+    },
+    {
+      "cusip": "G6683N103",
+      "issuer_name": "NU HLDGS LTD",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 3
+    },
+    {
+      "cusip": "44812J104",
+      "issuer_name": "HUT 8 CORP",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "30303M102",
+      "issuer_name": "META PLATFORMS INC",
+      "put_call": "CALL",
+      "byQuarter": {
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "21873S108",
+      "issuer_name": "COREWEAVE INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "15675D103",
+      "issuer_name": "CEREBRAS SYSTEMS INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "02079K107",
+      "issuer_name": "ALPHABET INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "458140100",
+      "issuer_name": "INTEL CORP",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "852234103",
+      "issuer_name": "BLOCK INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "L8681T102",
+      "issuer_name": "SPOTIFY TECHNOLOGY S A",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "74743L100",
+      "issuer_name": "QNITY ELECTRONICS INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "G7997R103",
+      "issuer_name": "Seagate Technology Hldngs Pl",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "929740108",
+      "issuer_name": "WABTEC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "056752108",
+      "issuer_name": "BAIDU INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "871607107",
+      "issuer_name": "SYNOPSYS INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "910047109",
+      "issuer_name": "UNITED AIRLS HLDGS INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "N07059210",
+      "issuer_name": "ASML HOLDING N V",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "750917106",
+      "issuer_name": "RAMBUS INC DEL",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "235851102",
+      "issuer_name": "Danaher Corp Del",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "464286400",
+      "issuer_name": "Ishares Inc",
+      "put_call": "CALL",
+      "byQuarter": {
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "399909100",
+      "issuer_name": "GRUPO FINANCIERO GALICIA S.A",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "185899101",
+      "issuer_name": "Cleveland-Cliffs Inc New",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "29444U700",
+      "issuer_name": "EQUINIX INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "146869102",
+      "issuer_name": "CARVANA CO",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "92840M102",
+      "issuer_name": "VISTRA CORP",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 4
+    },
+    {
+      "cusip": "03831W108",
+      "issuer_name": "APPLOVIN CORP",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 3
+    },
+    {
+      "cusip": "01609W102",
+      "issuer_name": "ALIBABA GROUP HLDG LTD",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 3
+    },
+    {
+      "cusip": "16935C109",
+      "issuer_name": "CHIME FINL INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 3
+    },
+    {
+      "cusip": "G3643J108",
+      "issuer_name": "Flutter Entmt Plc",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 3
+    },
+    {
+      "cusip": "98954M200",
+      "issuer_name": "ZILLOW GROUP INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 3
+    },
+    {
+      "cusip": "833445109",
+      "issuer_name": "SNOWFLAKE INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "464286772",
+      "issuer_name": "ISHARES INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "69331C108",
+      "issuer_name": "Pg&amp;E Corp",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "64110L106",
+      "issuer_name": "NETFLIX INC.",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "G4124C109",
+      "issuer_name": "GRAB HOLDINGS LIMITED",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "58733R102",
+      "issuer_name": "Mercadolibre  Inc",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "629377508",
+      "issuer_name": "NRG ENERGY INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "531229755",
+      "issuer_name": "LIBERTY MEDIA CORP DEL",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "14040H105",
+      "issuer_name": "Capital One Finl Corp",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "02376R102",
+      "issuer_name": "AMERICAN AIRLINES GROUP INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "91324P102",
+      "issuer_name": "UNITEDHEALTH GROUP INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "21037T109",
+      "issuer_name": "CONSTELLATION ENERGY CORP",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "G9572D103",
+      "issuer_name": "WEBULL CORP",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "72352L106",
+      "issuer_name": "PINTEREST INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "98954M101",
+      "issuer_name": "ZILLOW GROUP INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "47215P106",
+      "issuer_name": "JD.COM INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "36866J105",
+      "issuer_name": "GEMINI SPACE STA INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "464286400",
+      "issuer_name": "Ishares Inc",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "80004C200",
+      "issuer_name": "Sandisk Corp",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "G25508105",
+      "issuer_name": "Crh Plc",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "247361702",
+      "issuer_name": "DELTA AIR LINES INC DEL",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "86384P109",
+      "issuer_name": "Stubhub Hldgs Inc",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "881624209",
+      "issuer_name": "Teva Pharmaceutical Inds Ltd",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "77311W101",
+      "issuer_name": "ROCKET COS INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "83443Q103",
+      "issuer_name": "Solstice Advanced Matls Inc",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "093712107",
+      "issuer_name": "BLOOM ENERGY CORP",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "144285103",
+      "issuer_name": "CARPENTER TECHNOLOGY CORP",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "219350105",
+      "issuer_name": "CORNING INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "26884L109",
+      "issuer_name": "Eqt Corp",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "278768106",
+      "issuer_name": "Echostar Corp",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "316841105",
+      "issuer_name": "FIGMA INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "349381103",
+      "issuer_name": "Figure Technology Solutio",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "433313103",
+      "issuer_name": "HINGE HEALTH INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "55024U109",
+      "issuer_name": "LUMENTUM HLDGS INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "60937P106",
+      "issuer_name": "MONGODB INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-06-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "64119N608",
+      "issuer_name": "NETSKOPE INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "722304102",
+      "issuer_name": "PDD HOLDINGS INC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "G5279N105",
+      "issuer_name": "KLARNA GROUP PLC",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-09-29": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "518415104",
+      "issuer_name": "Lattice Semiconductor Corp",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2025-12-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        },
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    },
+    {
+      "cusip": "N53745100",
+      "issuer_name": "Lyondellbasell Industries Nv",
+      "put_call": "STOCK",
+      "byQuarter": {
+        "2026-03-30": {
+          "coreHolders": {},
+          "succHolders": {}
+        }
+      },
+      "maxCore": 2
+    }
+  ]
+}

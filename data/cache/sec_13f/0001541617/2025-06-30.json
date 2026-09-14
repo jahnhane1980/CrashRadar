@@ -1,0 +1,182 @@
+[
+  {
+    "cik": "0001541617",
+    "report_date": "2025-06-30",
+    "filing_date": "2025-08-14",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 1464863,
+    "value": 321376293
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2025-06-30",
+    "filing_date": "2025-08-14",
+    "cusip": "042068205",
+    "put_call": "STOCK",
+    "issuer_name": "ARM HOLDINGS PLC",
+    "shares": 933208,
+    "value": 150937062
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2025-06-30",
+    "filing_date": "2025-08-14",
+    "cusip": "565394103",
+    "put_call": "STOCK",
+    "issuer_name": "MAPLEBEAR INC",
+    "shares": 4216768,
+    "value": 190766584
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2025-06-30",
+    "filing_date": "2025-08-14",
+    "cusip": "20717M103",
+    "put_call": "STOCK",
+    "issuer_name": "CONFLUENT INC",
+    "shares": 15552976,
+    "value": 387735692
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2025-06-30",
+    "filing_date": "2025-08-14",
+    "cusip": "21873S108",
+    "put_call": "STOCK",
+    "issuer_name": "COREWEAVE INC",
+    "shares": 649536,
+    "value": 105913340
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2025-06-30",
+    "filing_date": "2025-08-14",
+    "cusip": "22266T109",
+    "put_call": "STOCK",
+    "issuer_name": "COUPANG INC",
+    "shares": 11432698,
+    "value": 342523632
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2025-06-30",
+    "filing_date": "2025-08-14",
+    "cusip": "23804L103",
+    "put_call": "STOCK",
+    "issuer_name": "DATADOG INC",
+    "shares": 881730,
+    "value": 118442790
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2025-06-30",
+    "filing_date": "2025-08-14",
+    "cusip": "G0370L116",
+    "put_call": "STOCK",
+    "issuer_name": "GRAB HOLDINGS LIMITED",
+    "shares": 3502000,
+    "value": 1369282
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2025-06-30",
+    "filing_date": "2025-08-14",
+    "cusip": "770700102",
+    "put_call": "STOCK",
+    "issuer_name": "ROBINHOOD MKTS INC",
+    "shares": 3245457,
+    "value": 303872139
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2025-06-30",
+    "filing_date": "2025-08-14",
+    "cusip": "79589L106",
+    "put_call": "STOCK",
+    "issuer_name": "SAMSARA INC",
+    "shares": 2990578,
+    "value": 118965194
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2025-06-30",
+    "filing_date": "2025-08-14",
+    "cusip": "58733R102",
+    "put_call": "STOCK",
+    "issuer_name": "MERCADOLIBRE INC",
+    "shares": 46539,
+    "value": 121635727
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2025-06-30",
+    "filing_date": "2025-08-14",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "META PLATFORMS INC",
+    "shares": 1877301,
+    "value": 1385617094
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2025-06-30",
+    "filing_date": "2025-08-14",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 1058121,
+    "value": 526319967
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2025-06-30",
+    "filing_date": "2025-08-14",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORPORATION",
+    "shares": 8252160,
+    "value": 1303758759
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2025-06-30",
+    "filing_date": "2025-08-14",
+    "cusip": "833445109",
+    "put_call": "STOCK",
+    "issuer_name": "SNOWFLAKE INC",
+    "shares": 2825630,
+    "value": 632291226
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2025-06-30",
+    "filing_date": "2025-08-14",
+    "cusip": "874039100",
+    "put_call": "STOCK",
+    "issuer_name": "TAIWAN SEMICONDUCTOR MFG LTD",
+    "shares": 867209,
+    "value": 196414167
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2025-06-30",
+    "filing_date": "2025-08-14",
+    "cusip": "90353T100",
+    "put_call": "STOCK",
+    "issuer_name": "UBER TECHNOLOGIES INC",
+    "shares": 5953104,
+    "value": 555424604
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2025-06-30",
+    "filing_date": "2025-08-14",
+    "cusip": "98954M200",
+    "put_call": "STOCK",
+    "issuer_name": "ZILLOW GROUP INC",
+    "shares": 2387772,
+    "value": 167263428
+  }
+]

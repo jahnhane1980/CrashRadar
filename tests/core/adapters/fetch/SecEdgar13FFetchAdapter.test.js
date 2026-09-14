@@ -313,4 +313,93 @@ describe('SecEdgar13FFetchAdapter', () => {
         
         expect(hasBerkshireCall).toBe(false);
     });
+
+    it('sollte nur Fonds verarbeiten, die der angegebenen Strategie zugeordnet sind (task.params.strategy)', async () => {
+        vi.spyOn(fs, 'readFileSync').mockImplementation((filePath, options) => {
+            if (filePath.includes('Smart-Money-Config.json')) {
+                return JSON.stringify({
+                    "0001536411": { "name": "Duquesne", "strategies": ["SEVEN_SLOT_GURU"], "active": true },
+                    "0001697748": { "name": "ARK", "strategies": ["MUZZLED_CATHIE_WOOD"], "active": true },
+                    "0001067983": { "name": "Berkshire", "strategies": ["SMART_MONEY"], "active": true }
+                });
+            }
+            return originalReadFileSync(filePath, options);
+        });
+
+        mockRequestManager.fetch.mockImplementation(async (url) => {
+            if (url.includes('submissions')) return JSON.stringify({ filings: { recent: { form: ['13F-HR'], accessionNumber: ['123'], filingDate: ['2026-08-14'], reportDate: ['2026-06-30'] } } });
+            if (url.includes('index.json')) return JSON.stringify({ directory: { item: [{ name: 'holdings.xml' }] } });
+            if (url.includes('holdings.xml')) return `<infoTable><nameOfIssuer>DUQ ASSET</nameOfIssuer><cusip>000000000</cusip><value>100</value><shrsOrPrnAmt><sshPrnamt>10</sshPrnamt></shrsOrPrnAmt></infoTable>`;
+        });
+
+        const stratTask = {
+            id: 'sec_13f_seven_slot_guru',
+            provider: 'SecEdgar13F',
+            params: { strategy: 'SEVEN_SLOT_GURU' }
+        };
+
+        const result = await adapter.fetch(stratTask, 'SecEdgar13F', null, mockRequestManager);
+
+        expect(result.length).toBe(1);
+        expect(result[0].cik).toBe('0001536411');
+
+        const calledUrls = mockRequestManager.fetch.mock.calls.map(call => call[0]);
+        // Darf weder ARK (1697748) noch Berkshire (1067983) aufrufen
+        expect(calledUrls.some(u => u.includes('1697748'))).toBe(false);
+        expect(calledUrls.some(u => u.includes('1067983'))).toBe(false);
+    });
+
+    it('sollte den Download überspringen, wenn das Filing laut DB bereits vorhanden ist (Fail-Safe DB-Guard)', async () => {
+        vi.spyOn(fs, 'readFileSync').mockImplementation((filePath, options) => {
+            if (filePath.includes('Smart-Money-Config.json')) {
+                return JSON.stringify({
+                    "0001423053": { "name": "Citadel Advisors", "active": true }
+                });
+            }
+            return originalReadFileSync(filePath, options);
+        });
+
+        mockRequestManager.fetch.mockImplementation(async (url) => {
+            if (url.includes('submissions')) return JSON.stringify({
+                filings: {
+                    recent: {
+                        form: ['13F-HR'],
+                        accessionNumber: ['ACC-123'],
+                        filingDate: ['2026-08-14'],
+                        reportDate: ['2026-06-30']
+                    }
+                }
+            });
+            // Falls er index.json oder XML aufruft, werfen wir einen Fehler (sollte übersprungen werden!)
+            if (url.includes('index.json') || url.includes('.xml')) {
+                throw new Error('Sollte nicht aufgerufen werden, da bereits in DB!');
+            }
+        });
+
+        // Mock Storage mit Pool
+        const mockStorage = {
+            pool: {
+                query: vi.fn().mockResolvedValue([
+                    [{ report_date: '2026-06-30', filing_date: '2026-08-14' }]
+                ])
+            }
+        };
+
+        const task = {
+            id: 'sec_13f_test',
+            provider: 'SecEdgar13F'
+        };
+
+        const result = await adapter.fetch(task, 'SecEdgar13F', null, mockRequestManager, mockStorage);
+
+        // Keine neuen Datensätze heruntergeladen
+        expect(result.length).toBe(0);
+        // Submissions wurde abgefragt
+        expect(mockRequestManager.fetch).toHaveBeenCalledTimes(1);
+        // DB wurde abgefragt
+        expect(mockStorage.pool.query).toHaveBeenCalledWith(
+            expect.stringContaining('SELECT DISTINCT report_date, filing_date'),
+            ['0001423053']
+        );
+    });
 });

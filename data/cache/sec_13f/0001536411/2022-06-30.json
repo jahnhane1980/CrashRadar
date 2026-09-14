@@ -1,0 +1,432 @@
+[
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "00288U106",
+    "put_call": "STOCK",
+    "issuer_name": "Abcellera Biologics Inc",
+    "shares": 659750,
+    "value": 7026
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "004225108",
+    "put_call": "STOCK",
+    "issuer_name": "Acadia Pharmaceuticals Inc",
+    "shares": 74400,
+    "value": 1048
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "03674X106",
+    "put_call": "STOCK",
+    "issuer_name": "Antero Resources Corp",
+    "shares": 1018535,
+    "value": 31218
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "09857L108",
+    "put_call": "STOCK",
+    "issuer_name": "Booking Holdings Inc",
+    "shares": 7748,
+    "value": 13551
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "142038108",
+    "put_call": "STOCK",
+    "issuer_name": "Caribou Biosciences Inc",
+    "shares": 271430,
+    "value": 1474
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "G2007L105",
+    "put_call": "STOCK",
+    "issuer_name": "Cazoo Group Ltd",
+    "shares": 140100,
+    "value": 101
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "12510Q100",
+    "put_call": "STOCK",
+    "issuer_name": "Ccc Intelligent Solutions Hl",
+    "shares": 281879,
+    "value": 2593
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "15135U109",
+    "put_call": "STOCK",
+    "issuer_name": "Cenovus Energy Inc",
+    "shares": 1069345,
+    "value": 20328
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "166764100",
+    "put_call": "STOCK",
+    "issuer_name": "Chevron Corp New",
+    "shares": 830435,
+    "value": 120230
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "20464U100",
+    "put_call": "STOCK",
+    "issuer_name": "Compass Inc",
+    "shares": 399100,
+    "value": 1441
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "127097103",
+    "put_call": "STOCK",
+    "issuer_name": "Coterra Energy Inc",
+    "shares": 1387416,
+    "value": 35781
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "22266T109",
+    "put_call": "STOCK",
+    "issuer_name": "Coupang Inc",
+    "shares": 19434307,
+    "value": 247787
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "22788C105",
+    "put_call": "STOCK",
+    "issuer_name": "Crowdstrike Hldgs Inc",
+    "shares": 229600,
+    "value": 38701
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "23804L103",
+    "put_call": "STOCK",
+    "issuer_name": "Datadog Inc",
+    "shares": 298040,
+    "value": 28385
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "25470M109",
+    "put_call": "STOCK",
+    "issuer_name": "Dish Network Corporation",
+    "shares": 112400,
+    "value": 2015
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "281020107",
+    "put_call": "STOCK",
+    "issuer_name": "Edison Intl",
+    "shares": 287600,
+    "value": 18188
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "26884L109",
+    "put_call": "STOCK",
+    "issuer_name": "Eqt Corp",
+    "shares": 259055,
+    "value": 8911
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "35671D857",
+    "put_call": "STOCK",
+    "issuer_name": "Freeport-Mcmoran Inc",
+    "shares": 3231827,
+    "value": 94563
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "M5216V106",
+    "put_call": "STOCK",
+    "issuer_name": "Global E Online Ltd",
+    "shares": 20180,
+    "value": 407
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "G4701H109",
+    "put_call": "STOCK",
+    "issuer_name": "Ihs Holding Limited",
+    "shares": 771096,
+    "value": 6440
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "48242W106",
+    "put_call": "STOCK",
+    "issuer_name": "Kbr Inc",
+    "shares": 1304003,
+    "value": 63101
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "517834107",
+    "put_call": "CALL",
+    "issuer_name": "Las Vegas Sands Corp",
+    "shares": 230000,
+    "value": 7726
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "532457108",
+    "put_call": "STOCK",
+    "issuer_name": "Lilly Eli &amp; Co",
+    "shares": 297150,
+    "value": 96345
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "Microsoft Corp",
+    "shares": 740785,
+    "value": 190256
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "60770K107",
+    "put_call": "STOCK",
+    "issuer_name": "Moderna Inc",
+    "shares": 207680,
+    "value": 29667
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "683712103",
+    "put_call": "STOCK",
+    "issuer_name": "Opendoor Technologies Inc",
+    "shares": 233000,
+    "value": 1097
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "687793109",
+    "put_call": "STOCK",
+    "issuer_name": "Oscar Health Inc",
+    "shares": 994289,
+    "value": 4226
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "69608A108",
+    "put_call": "STOCK",
+    "issuer_name": "Palantir Technologies Inc",
+    "shares": 4255412,
+    "value": 38597
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "697435105",
+    "put_call": "STOCK",
+    "issuer_name": "Palo Alto Networks Inc",
+    "shares": 51400,
+    "value": 25389
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "718546104",
+    "put_call": "STOCK",
+    "issuer_name": "Phillips 66",
+    "shares": 119380,
+    "value": 9788
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "723787107",
+    "put_call": "STOCK",
+    "issuer_name": "Pioneer Nat Res Co",
+    "shares": 48455,
+    "value": 10809
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "74276L105",
+    "put_call": "STOCK",
+    "issuer_name": "Procept Biorobotics Corp",
+    "shares": 39266,
+    "value": 1284
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "75615P103",
+    "put_call": "STOCK",
+    "issuer_name": "Reata Pharmaceuticals Inc",
+    "shares": 58997,
+    "value": 1793
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "75629V104",
+    "put_call": "STOCK",
+    "issuer_name": "Recursion Pharmaceuticals In",
+    "shares": 273650,
+    "value": 2228
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "79589L106",
+    "put_call": "STOCK",
+    "issuer_name": "Samsara Inc",
+    "shares": 400900,
+    "value": 4478
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "81728A108",
+    "put_call": "STOCK",
+    "issuer_name": "Sensei Biotherapeutics Inc",
+    "shares": 100000,
+    "value": 227
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "83200N103",
+    "put_call": "STOCK",
+    "issuer_name": "Smartsheet Inc",
+    "shares": 149800,
+    "value": 4708
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "83417M104",
+    "put_call": "STOCK",
+    "issuer_name": "Solaredge Technologies Inc",
+    "shares": 13400,
+    "value": 3667
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "878742204",
+    "put_call": "STOCK",
+    "issuer_name": "Teck Resources Ltd",
+    "shares": 1061170,
+    "value": 32440
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "872590104",
+    "put_call": "STOCK",
+    "issuer_name": "T-Mobile Us Inc",
+    "shares": 676867,
+    "value": 91066
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "960413102",
+    "put_call": "STOCK",
+    "issuer_name": "Westlake Corporation",
+    "shares": 145520,
+    "value": 14264
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "971378104",
+    "put_call": "STOCK",
+    "issuer_name": "Willscot Mobil Mini Hldng Co",
+    "shares": 1767631,
+    "value": 57307
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2022-06-30",
+    "filing_date": "2022-08-15",
+    "cusip": "98138H101",
+    "put_call": "STOCK",
+    "issuer_name": "Workday Inc",
+    "shares": 82500,
+    "value": 11515
+  }
+]

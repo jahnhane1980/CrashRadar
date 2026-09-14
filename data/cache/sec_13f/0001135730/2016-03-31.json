@@ -1,0 +1,1312 @@
+[
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "88554D205",
+    "put_call": "STOCK",
+    "issuer_name": "3-D SYS CORP DEL",
+    "shares": 1118911,
+    "value": 17310
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "00507V109",
+    "put_call": "STOCK",
+    "issuer_name": "ACTIVISION BLIZZARD INC",
+    "shares": 11897020,
+    "value": 402595
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "00507V109",
+    "put_call": "STOCK",
+    "issuer_name": "ACTIVISION BLIZZARD INC",
+    "shares": 1582522,
+    "value": 53553
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "00507V109",
+    "put_call": "STOCK",
+    "issuer_name": "ACTIVISION BLIZZARD INC",
+    "shares": 1000279,
+    "value": 33849
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "ADOBE SYS INC",
+    "shares": 3099054,
+    "value": 290691
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "ADOBE SYS INC",
+    "shares": 409420,
+    "value": 38404
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "ADOBE SYS INC",
+    "shares": 290275,
+    "value": 27228
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "00971T101",
+    "put_call": "STOCK",
+    "issuer_name": "AKAMAI TECHNOLOGIES INC",
+    "shares": 2408324,
+    "value": 133831
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "00971T101",
+    "put_call": "STOCK",
+    "issuer_name": "AKAMAI TECHNOLOGIES INC",
+    "shares": 316790,
+    "value": 17604
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "00971T101",
+    "put_call": "STOCK",
+    "issuer_name": "AKAMAI TECHNOLOGIES INC",
+    "shares": 227025,
+    "value": 12616
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 126066,
+    "value": 96176
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 15711,
+    "value": 11986
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 21690,
+    "value": 16547
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "02079K107",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 603563,
+    "value": 449624
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "02079K107",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 80962,
+    "value": 60313
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "02079K107",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 46975,
+    "value": 34994
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 461993,
+    "value": 274258
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 60831,
+    "value": 36112
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 43961,
+    "value": 26097
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "G037AX101",
+    "put_call": "STOCK",
+    "issuer_name": "AMBARELLA INC",
+    "shares": 806537,
+    "value": 36052
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "G037AX101",
+    "put_call": "STOCK",
+    "issuer_name": "AMBARELLA INC",
+    "shares": 504819,
+    "value": 22565
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "03027X100",
+    "put_call": "STOCK",
+    "issuer_name": "AMERICAN TOWER CORP NEW",
+    "shares": 1963882,
+    "value": 201043
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "03027X100",
+    "put_call": "STOCK",
+    "issuer_name": "AMERICAN TOWER CORP NEW",
+    "shares": 255200,
+    "value": 26125
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "03027X100",
+    "put_call": "STOCK",
+    "issuer_name": "AMERICAN TOWER CORP NEW",
+    "shares": 161685,
+    "value": 16552
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "053774105",
+    "put_call": "STOCK",
+    "issuer_name": "AVIS BUDGET GROUP",
+    "shares": 1589055,
+    "value": 43477
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "053774105",
+    "put_call": "STOCK",
+    "issuer_name": "AVIS BUDGET GROUP",
+    "shares": 233839,
+    "value": 6398
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "10316T104",
+    "put_call": "STOCK",
+    "issuer_name": "BOX INC",
+    "shares": 3018102,
+    "value": 37002
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "10316T104",
+    "put_call": "STOCK",
+    "issuer_name": "BOX INC",
+    "shares": 317749,
+    "value": 3896
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "10316T104",
+    "put_call": "STOCK",
+    "issuer_name": "BOX INC",
+    "shares": 475533,
+    "value": 5830
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "10552T107",
+    "put_call": "STOCK",
+    "issuer_name": "BRF SA",
+    "shares": 799773,
+    "value": 11373
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "10552T107",
+    "put_call": "STOCK",
+    "issuer_name": "BRF SA",
+    "shares": 116545,
+    "value": 1657
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "Y09827109",
+    "put_call": "STOCK",
+    "issuer_name": "BROADCOM LTD",
+    "shares": 1811406,
+    "value": 279862
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "Y09827109",
+    "put_call": "STOCK",
+    "issuer_name": "BROADCOM LTD",
+    "shares": 246304,
+    "value": 38054
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "Y09827109",
+    "put_call": "STOCK",
+    "issuer_name": "BROADCOM LTD",
+    "shares": 156305,
+    "value": 24149
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "128030202",
+    "put_call": "STOCK",
+    "issuer_name": "CAL MAINE FOODS INC",
+    "shares": 330330,
+    "value": 17147
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "128030202",
+    "put_call": "STOCK",
+    "issuer_name": "CAL MAINE FOODS INC",
+    "shares": 46938,
+    "value": 2437
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "16117M305",
+    "put_call": "STOCK",
+    "issuer_name": "CHARTER COMMUNICATIONS INC D",
+    "shares": 1519743,
+    "value": 307642
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "16117M305",
+    "put_call": "STOCK",
+    "issuer_name": "CHARTER COMMUNICATIONS INC D",
+    "shares": 200141,
+    "value": 40515
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "16117M305",
+    "put_call": "STOCK",
+    "issuer_name": "CHARTER COMMUNICATIONS INC D",
+    "shares": 149491,
+    "value": 30261
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "163075104",
+    "put_call": "STOCK",
+    "issuer_name": "CHEETAH MOBILE INC",
+    "shares": 427702,
+    "value": 6984
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "163075104",
+    "put_call": "STOCK",
+    "issuer_name": "CHEETAH MOBILE INC",
+    "shares": 56899,
+    "value": 929
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "169656105",
+    "put_call": "STOCK",
+    "issuer_name": "CHIPOTLE MEXICAN GRILL INC",
+    "shares": 143217,
+    "value": 67451
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "169656105",
+    "put_call": "STOCK",
+    "issuer_name": "CHIPOTLE MEXICAN GRILL INC",
+    "shares": 18840,
+    "value": 8873
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "169656105",
+    "put_call": "STOCK",
+    "issuer_name": "CHIPOTLE MEXICAN GRILL INC",
+    "shares": 13540,
+    "value": 6377
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "18683K101",
+    "put_call": "STOCK",
+    "issuer_name": "CLIFFS NAT RES INC",
+    "shares": 2055265,
+    "value": 6166
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "18683K101",
+    "put_call": "STOCK",
+    "issuer_name": "CLIFFS NAT RES INC",
+    "shares": 318326,
+    "value": 955
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "225310101",
+    "put_call": "STOCK",
+    "issuer_name": "CREDIT ACCEP CORP MICH",
+    "shares": 143930,
+    "value": 26130
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "225310101",
+    "put_call": "STOCK",
+    "issuer_name": "CREDIT ACCEP CORP MICH",
+    "shares": 17207,
+    "value": 3124
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "22943F100",
+    "put_call": "STOCK",
+    "issuer_name": "CTRIP COM INTL LTD",
+    "shares": 112744,
+    "value": 4990
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "22943F100",
+    "put_call": "STOCK",
+    "issuer_name": "CTRIP COM INTL LTD",
+    "shares": 14887,
+    "value": 659
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "22943F100",
+    "put_call": "STOCK",
+    "issuer_name": "CTRIP COM INTL LTD",
+    "shares": 8952,
+    "value": 396
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "285512109",
+    "put_call": "STOCK",
+    "issuer_name": "ELECTRONIC ARTS INC",
+    "shares": 4834847,
+    "value": 319632
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "285512109",
+    "put_call": "STOCK",
+    "issuer_name": "ELECTRONIC ARTS INC",
+    "shares": 658576,
+    "value": 43538
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "285512109",
+    "put_call": "STOCK",
+    "issuer_name": "ELECTRONIC ARTS INC",
+    "shares": 402663,
+    "value": 26620
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "29444U700",
+    "put_call": "STOCK",
+    "issuer_name": "EQUINIX INC",
+    "shares": 1052106,
+    "value": 347942
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "29444U700",
+    "put_call": "STOCK",
+    "issuer_name": "EQUINIX INC",
+    "shares": 139187,
+    "value": 46031
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "29444U700",
+    "put_call": "STOCK",
+    "issuer_name": "EQUINIX INC",
+    "shares": 100394,
+    "value": 33201
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "30212P303",
+    "put_call": "STOCK",
+    "issuer_name": "EXPEDIA INC DEL",
+    "shares": 1251115,
+    "value": 134895
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "30212P303",
+    "put_call": "STOCK",
+    "issuer_name": "EXPEDIA INC DEL",
+    "shares": 164667,
+    "value": 17754
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "30212P303",
+    "put_call": "STOCK",
+    "issuer_name": "EXPEDIA INC DEL",
+    "shares": 118487,
+    "value": 12775
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "315616102",
+    "put_call": "STOCK",
+    "issuer_name": "F5 NETWORKS INC",
+    "shares": 820915,
+    "value": 86894
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "315616102",
+    "put_call": "STOCK",
+    "issuer_name": "F5 NETWORKS INC",
+    "shares": 122933,
+    "value": 13012
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "FACEBOOK INC",
+    "shares": 4693151,
+    "value": 535489
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "FACEBOOK INC",
+    "shares": 657015,
+    "value": 74965
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "FACEBOOK INC",
+    "shares": 319476,
+    "value": 36452
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "31816Q101",
+    "put_call": "STOCK",
+    "issuer_name": "FIREEYE INC",
+    "shares": 850037,
+    "value": 15292
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "31816Q101",
+    "put_call": "STOCK",
+    "issuer_name": "FIREEYE INC",
+    "shares": 124062,
+    "value": 2232
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "33812L102",
+    "put_call": "STOCK",
+    "issuer_name": "FITBIT INC",
+    "shares": 1149142,
+    "value": 17410
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "33812L102",
+    "put_call": "STOCK",
+    "issuer_name": "FITBIT INC",
+    "shares": 201425,
+    "value": 3052
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "38268T103",
+    "put_call": "STOCK",
+    "issuer_name": "GOPRO INC",
+    "shares": 15145,
+    "value": 181
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "405217100",
+    "put_call": "STOCK",
+    "issuer_name": "HAIN CELESTIAL GROUP INC",
+    "shares": 842597,
+    "value": 34471
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "405217100",
+    "put_call": "STOCK",
+    "issuer_name": "HAIN CELESTIAL GROUP INC",
+    "shares": 110626,
+    "value": 4526
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "405217100",
+    "put_call": "STOCK",
+    "issuer_name": "HAIN CELESTIAL GROUP INC",
+    "shares": 79290,
+    "value": 3244
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "42805T105",
+    "put_call": "STOCK",
+    "issuer_name": "HERTZ GLOBAL HOLDINGS INC",
+    "shares": 4509328,
+    "value": 47483
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "42805T105",
+    "put_call": "STOCK",
+    "issuer_name": "HERTZ GLOBAL HOLDINGS INC",
+    "shares": 669829,
+    "value": 7053
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "452327109",
+    "put_call": "STOCK",
+    "issuer_name": "ILLUMINA INC",
+    "shares": 395883,
+    "value": 64177
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "452327109",
+    "put_call": "STOCK",
+    "issuer_name": "ILLUMINA INC",
+    "shares": 51737,
+    "value": 8387
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "452327109",
+    "put_call": "STOCK",
+    "issuer_name": "ILLUMINA INC",
+    "shares": 36812,
+    "value": 5968
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "45321L100",
+    "put_call": "STOCK",
+    "issuer_name": "IMPERVA INC",
+    "shares": 478601,
+    "value": 24169
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "45321L100",
+    "put_call": "STOCK",
+    "issuer_name": "IMPERVA INC",
+    "shares": 68752,
+    "value": 3472
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "47215P106",
+    "put_call": "STOCK",
+    "issuer_name": "JD COM INC",
+    "shares": 17544557,
+    "value": 464931
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "47215P106",
+    "put_call": "STOCK",
+    "issuer_name": "JD COM INC",
+    "shares": 2334085,
+    "value": 61853
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "47215P106",
+    "put_call": "STOCK",
+    "issuer_name": "JD COM INC",
+    "shares": 1484326,
+    "value": 39335
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "481165108",
+    "put_call": "STOCK",
+    "issuer_name": "JOY GLOBAL INC",
+    "shares": 685301,
+    "value": 11013
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "481165108",
+    "put_call": "STOCK",
+    "issuer_name": "JOY GLOBAL INC",
+    "shares": 100072,
+    "value": 1608
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "516012101",
+    "put_call": "STOCK",
+    "issuer_name": "LANNET INC",
+    "shares": 1580790,
+    "value": 28344
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "516012101",
+    "put_call": "STOCK",
+    "issuer_name": "LANNET INC",
+    "shares": 224641,
+    "value": 4028
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "G5480U104",
+    "put_call": "STOCK",
+    "issuer_name": "LIBERTY GLOBAL PLC",
+    "shares": 4184891,
+    "value": 161118
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "G5480U104",
+    "put_call": "STOCK",
+    "issuer_name": "LIBERTY GLOBAL PLC",
+    "shares": 551861,
+    "value": 21247
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "G5480U104",
+    "put_call": "STOCK",
+    "issuer_name": "LIBERTY GLOBAL PLC",
+    "shares": 347025,
+    "value": 13360
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "G5480U120",
+    "put_call": "STOCK",
+    "issuer_name": "LIBERTY GLOBAL PLC",
+    "shares": 4053132,
+    "value": 152236
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "G5480U120",
+    "put_call": "STOCK",
+    "issuer_name": "LIBERTY GLOBAL PLC",
+    "shares": 534307,
+    "value": 20069
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "G5480U120",
+    "put_call": "STOCK",
+    "issuer_name": "LIBERTY GLOBAL PLC",
+    "shares": 343689,
+    "value": 12909
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "57722W106",
+    "put_call": "STOCK",
+    "issuer_name": "MATTRESS FIRM HLDG CORP",
+    "shares": 363818,
+    "value": 15422
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "57722W106",
+    "put_call": "STOCK",
+    "issuer_name": "MATTRESS FIRM HLDG CORP",
+    "shares": 51536,
+    "value": 2185
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 8786042,
+    "value": 485253
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 1156236,
+    "value": 63859
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 829716,
+    "value": 45825
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "N51488117",
+    "put_call": "STOCK",
+    "issuer_name": "MOBILEYE N V AMSTELVEEN",
+    "shares": 995735,
+    "value": 37131
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "N51488117",
+    "put_call": "STOCK",
+    "issuer_name": "MOBILEYE N V AMSTELVEEN",
+    "shares": 149784,
+    "value": 5585
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "NETFLIX INC",
+    "shares": 4588539,
+    "value": 469086
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "NETFLIX INC",
+    "shares": 638412,
+    "value": 65265
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "NETFLIX INC",
+    "shares": 394796,
+    "value": 40360
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "67069D108",
+    "put_call": "STOCK",
+    "issuer_name": "NUTRI SYS INC NEW",
+    "shares": 661808,
+    "value": 13812
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "690070107",
+    "put_call": "STOCK",
+    "issuer_name": "OUTERWALL INC",
+    "shares": 408172,
+    "value": 15098
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "690070107",
+    "put_call": "STOCK",
+    "issuer_name": "OUTERWALL INC",
+    "shares": 58130,
+    "value": 2150
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "70450Y103",
+    "put_call": "STOCK",
+    "issuer_name": "PAYPAL HLDGS INC",
+    "shares": 3553454,
+    "value": 137163
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "70450Y103",
+    "put_call": "STOCK",
+    "issuer_name": "PAYPAL HLDGS INC",
+    "shares": 448922,
+    "value": 17328
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "70450Y103",
+    "put_call": "STOCK",
+    "issuer_name": "PAYPAL HLDGS INC",
+    "shares": 335709,
+    "value": 12958
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "74624M102",
+    "put_call": "STOCK",
+    "issuer_name": "PURE STORAGE INC",
+    "shares": 148157,
+    "value": 2028
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "74734M109",
+    "put_call": "STOCK",
+    "issuer_name": "QIHOO 360 TECHNOLOGY CO LTD",
+    "shares": 256532,
+    "value": 19381
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "74734M109",
+    "put_call": "STOCK",
+    "issuer_name": "QIHOO 360 TECHNOLOGY CO LTD",
+    "shares": 36168,
+    "value": 2732
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "G7945E105",
+    "put_call": "STOCK",
+    "issuer_name": "SEADRILL LIMITED",
+    "shares": 1970630,
+    "value": 6503
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "G7945E105",
+    "put_call": "STOCK",
+    "issuer_name": "SEADRILL LIMITED",
+    "shares": 271904,
+    "value": 897
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "819047101",
+    "put_call": "STOCK",
+    "issuer_name": "SHAKE SHACK INC",
+    "shares": 215917,
+    "value": 8058
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "819047101",
+    "put_call": "STOCK",
+    "issuer_name": "SHAKE SHACK INC",
+    "shares": 17314,
+    "value": 646
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "83416T100",
+    "put_call": "STOCK",
+    "issuer_name": "SOLARCITY CORP",
+    "shares": 397743,
+    "value": 9777
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "83416T100",
+    "put_call": "STOCK",
+    "issuer_name": "SOLARCITY CORP",
+    "shares": 57634,
+    "value": 1417
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "848637104",
+    "put_call": "STOCK",
+    "issuer_name": "SPLUNK INC",
+    "shares": 1926962,
+    "value": 94286
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "848637104",
+    "put_call": "STOCK",
+    "issuer_name": "SPLUNK INC",
+    "shares": 284713,
+    "value": 13931
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "852234103",
+    "put_call": "STOCK",
+    "issuer_name": "SQUARE INC",
+    "shares": 1079859,
+    "value": 16500
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "852234103",
+    "put_call": "STOCK",
+    "issuer_name": "SQUARE INC",
+    "shares": 118612,
+    "value": 1812
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "M85548101",
+    "put_call": "STOCK",
+    "issuer_name": "STRATASYS LTD",
+    "shares": 425563,
+    "value": 11031
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "87336U105",
+    "put_call": "STOCK",
+    "issuer_name": "TABLEAU SOFTWARE INC",
+    "shares": 887757,
+    "value": 40721
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "87336U105",
+    "put_call": "STOCK",
+    "issuer_name": "TABLEAU SOFTWARE INC",
+    "shares": 123244,
+    "value": 5653
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "87336U105",
+    "put_call": "STOCK",
+    "issuer_name": "TABLEAU SOFTWARE INC",
+    "shares": 34574,
+    "value": 1586
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "912909108",
+    "put_call": "STOCK",
+    "issuer_name": "UNITED STATES STL CORP NEW",
+    "shares": 519732,
+    "value": 8342
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "94419L101",
+    "put_call": "STOCK",
+    "issuer_name": "WAYFAIR INC",
+    "shares": 957126,
+    "value": 41367
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "94419L101",
+    "put_call": "STOCK",
+    "issuer_name": "WAYFAIR INC",
+    "shares": 130296,
+    "value": 5631
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "948626106",
+    "put_call": "STOCK",
+    "issuer_name": "WEIGHT WATCHERS INTL INC NEW",
+    "shares": 684215,
+    "value": 9942
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "948626106",
+    "put_call": "STOCK",
+    "issuer_name": "WEIGHT WATCHERS INTL INC NEW",
+    "shares": 92438,
+    "value": 1343
+  }
+]

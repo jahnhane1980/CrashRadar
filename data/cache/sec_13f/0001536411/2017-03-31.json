@@ -1,0 +1,472 @@
+[
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "H00263105",
+    "put_call": "STOCK",
+    "issuer_name": "Ac Immune Sa",
+    "shares": 2388700,
+    "value": 24747
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "00507V109",
+    "put_call": "STOCK",
+    "issuer_name": "Activision Blizzard Inc",
+    "shares": 537300,
+    "value": 26790
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "008474108",
+    "put_call": "STOCK",
+    "issuer_name": "Agnico Eagle Mines Ltd",
+    "shares": 882900,
+    "value": 37470
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "013872106",
+    "put_call": "STOCK",
+    "issuer_name": "Alcoa Corp",
+    "shares": 1370511,
+    "value": 47146
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "Alphabet Inc",
+    "shares": 100400,
+    "value": 85119
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "Amazon Com Inc",
+    "shares": 71100,
+    "value": 63033
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "02376R102",
+    "put_call": "STOCK",
+    "issuer_name": "American Airls Group Inc",
+    "shares": 203100,
+    "value": 8591
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "045327103",
+    "put_call": "STOCK",
+    "issuer_name": "Aspen Technology Inc",
+    "shares": 209900,
+    "value": 12367
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "052769106",
+    "put_call": "STOCK",
+    "issuer_name": "Autodesk Inc",
+    "shares": 158349,
+    "value": 13692
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "060505104",
+    "put_call": "STOCK",
+    "issuer_name": "Bank Amer Corp",
+    "shares": 2110300,
+    "value": 49782
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "067901108",
+    "put_call": "STOCK",
+    "issuer_name": "Barrick Gold Corp",
+    "shares": 2850000,
+    "value": 54122
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "127097103",
+    "put_call": "STOCK",
+    "issuer_name": "Cabot Oil &amp; Gas Corp",
+    "shares": 955588,
+    "value": 22848
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "151020104",
+    "put_call": "STOCK",
+    "issuer_name": "Celgene Corp",
+    "shares": 82400,
+    "value": 10253
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "16411R208",
+    "put_call": "STOCK",
+    "issuer_name": "Cheniere Energy Inc",
+    "shares": 446145,
+    "value": 21089
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "20030N101",
+    "put_call": "STOCK",
+    "issuer_name": "Comcast Corp New",
+    "shares": 686400,
+    "value": 25802
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "22943F100",
+    "put_call": "STOCK",
+    "issuer_name": "Ctrip Com Intl Ltd",
+    "shares": 912200,
+    "value": 44835
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "285512109",
+    "put_call": "STOCK",
+    "issuer_name": "Electronic Arts Inc",
+    "shares": 573700,
+    "value": 51358
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "26884L109",
+    "put_call": "STOCK",
+    "issuer_name": "Eqt Corp",
+    "shares": 142200,
+    "value": 8688
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "30212P303",
+    "put_call": "STOCK",
+    "issuer_name": "Expedia Inc Del",
+    "shares": 203800,
+    "value": 25713
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "Facebook Inc",
+    "shares": 405900,
+    "value": 57658
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "406216101",
+    "put_call": "STOCK",
+    "issuer_name": "Halliburton Co",
+    "shares": 301600,
+    "value": 14842
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "464287234",
+    "put_call": "STOCK",
+    "issuer_name": "Ishares Tr",
+    "shares": 2499000,
+    "value": 98436
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "47215P106",
+    "put_call": "STOCK",
+    "issuer_name": "Jd Com Inc",
+    "shares": 638000,
+    "value": 19848
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "517834107",
+    "put_call": "STOCK",
+    "issuer_name": "Las Vegas Sands Corp",
+    "shares": 276700,
+    "value": 15791
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "N53745100",
+    "put_call": "STOCK",
+    "issuer_name": "Lyondellbasell Industries N",
+    "shares": 1158300,
+    "value": 105625
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "Microsoft Corp",
+    "shares": 1624200,
+    "value": 106970
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "640268108",
+    "put_call": "STOCK",
+    "issuer_name": "Nektar Therapeutics",
+    "shares": 665600,
+    "value": 15622
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "64110W102",
+    "put_call": "STOCK",
+    "issuer_name": "Netease Inc",
+    "shares": 52100,
+    "value": 14796
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "Netflix Inc",
+    "shares": 70600,
+    "value": 10435
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "670346105",
+    "put_call": "STOCK",
+    "issuer_name": "Nucor Corp",
+    "shares": 157000,
+    "value": 9376
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "70450Y103",
+    "put_call": "STOCK",
+    "issuer_name": "Paypal Hldgs Inc",
+    "shares": 573900,
+    "value": 24689
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "723787107",
+    "put_call": "STOCK",
+    "issuer_name": "Pioneer Nat Res Co",
+    "shares": 128600,
+    "value": 23949
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "73755L107",
+    "put_call": "STOCK",
+    "issuer_name": "Potash Corp Sask Inc",
+    "shares": 2093500,
+    "value": 35757
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "741503403",
+    "put_call": "STOCK",
+    "issuer_name": "Priceline Grp Inc",
+    "shares": 40700,
+    "value": 72445
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "69370C100",
+    "put_call": "STOCK",
+    "issuer_name": "Ptc Inc",
+    "shares": 829700,
+    "value": 43601
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "74624M102",
+    "put_call": "STOCK",
+    "issuer_name": "Pure Storage Inc",
+    "shares": 926133,
+    "value": 9104
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "762760106",
+    "put_call": "STOCK",
+    "issuer_name": "Rice Energy Inc",
+    "shares": 326455,
+    "value": 7737
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "773903109",
+    "put_call": "STOCK",
+    "issuer_name": "Rockwell Automation Inc",
+    "shares": 99000,
+    "value": 15415
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "79466L302",
+    "put_call": "STOCK",
+    "issuer_name": "Salesforce Com Inc",
+    "shares": 964900,
+    "value": 79595
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "85207U105",
+    "put_call": "STOCK",
+    "issuer_name": "Sprint Corp",
+    "shares": 1663500,
+    "value": 14439
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "871503108",
+    "put_call": "STOCK",
+    "issuer_name": "Symantec Corp",
+    "shares": 551500,
+    "value": 16920
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "872590104",
+    "put_call": "STOCK",
+    "issuer_name": "T Mobile Us Inc",
+    "shares": 242700,
+    "value": 15676
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "90184L102",
+    "put_call": "STOCK",
+    "issuer_name": "Twitter Inc",
+    "shares": 605000,
+    "value": 9045
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "910047109",
+    "put_call": "STOCK",
+    "issuer_name": "United Contl Hldgs Inc",
+    "shares": 131600,
+    "value": 9296
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "929160109",
+    "put_call": "STOCK",
+    "issuer_name": "Vulcan Matls Co",
+    "shares": 122000,
+    "value": 14699
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "969457100",
+    "put_call": "STOCK",
+    "issuer_name": "Williams Cos Inc Del",
+    "shares": 327300,
+    "value": 9685
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2017-03-31",
+    "filing_date": "2017-05-15",
+    "cusip": "98138H101",
+    "put_call": "STOCK",
+    "issuer_name": "Workday Inc",
+    "shares": 233300,
+    "value": 19429
+  }
+]

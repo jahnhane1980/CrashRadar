@@ -1,0 +1,402 @@
+[
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "002824100",
+    "put_call": "STOCK",
+    "issuer_name": "ABBOTT LABS",
+    "shares": 732100,
+    "value": 53707
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "H00263105",
+    "put_call": "STOCK",
+    "issuer_name": "AC IMMUNE SA",
+    "shares": 2491517,
+    "value": 19932
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "ADOBE SYS INC",
+    "shares": 267330,
+    "value": 72166
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "015351109",
+    "put_call": "STOCK",
+    "issuer_name": "ALEXION PHARMACEUTICALS INC",
+    "shares": 148000,
+    "value": 20573
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "01609W102",
+    "put_call": "STOCK",
+    "issuer_name": "ALIBABA GROUP HLDG LTD",
+    "shares": 78380,
+    "value": 12914
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 189500,
+    "value": 228742
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 118295,
+    "value": 236945
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "052769106",
+    "put_call": "STOCK",
+    "issuer_name": "AUTODESK INC",
+    "shares": 34500,
+    "value": 5386
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "060505104",
+    "put_call": "STOCK",
+    "issuer_name": "BANK AMER CORP",
+    "shares": 900,
+    "value": 27
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "122017106",
+    "put_call": "STOCK",
+    "issuer_name": "BURLINGTON STORES INC",
+    "shares": 87600,
+    "value": 14272
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "15135U109",
+    "put_call": "STOCK",
+    "issuer_name": "CENOVUS ENERGY INC",
+    "shares": 986300,
+    "value": 9893
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "172967424",
+    "put_call": "STOCK",
+    "issuer_name": "CITIGROUP INC",
+    "shares": 667100,
+    "value": 47858
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "22266L106",
+    "put_call": "STOCK",
+    "issuer_name": "COUPA SOFTWARE INC",
+    "shares": 140100,
+    "value": 11082
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "285512109",
+    "put_call": "STOCK",
+    "issuer_name": "ELECTRONIC ARTS INC",
+    "shares": 130970,
+    "value": 15781
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "FACEBOOK INC",
+    "shares": 21600,
+    "value": 3552
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "339041105",
+    "put_call": "STOCK",
+    "issuer_name": "FLEETCOR TECHNOLOGIES INC",
+    "shares": 4500,
+    "value": 1025
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "375558103",
+    "put_call": "STOCK",
+    "issuer_name": "GILEAD SCIENCES INC",
+    "shares": 1464900,
+    "value": 113105
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "36197T103",
+    "put_call": "STOCK",
+    "issuer_name": "GW PHARMACEUTICALS PLC",
+    "shares": 62100,
+    "value": 10727
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "43300A203",
+    "put_call": "STOCK",
+    "issuer_name": "HILTON WORLDWIDE HLDGS INC",
+    "shares": 24600,
+    "value": 1987
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "437076102",
+    "put_call": "STOCK",
+    "issuer_name": "HOME DEPOT INC",
+    "shares": 123400,
+    "value": 25562
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "46116X101",
+    "put_call": "STOCK",
+    "issuer_name": "INTRA CELLULAR THERAPIES INC",
+    "shares": 296986,
+    "value": 6445
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "464287556",
+    "put_call": "STOCK",
+    "issuer_name": "ISHARES TR",
+    "shares": 1032900,
+    "value": 125952
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "485170302",
+    "put_call": "STOCK",
+    "issuer_name": "KANSAS CITY SOUTHERN",
+    "shares": 39380,
+    "value": 4461
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "57636Q104",
+    "put_call": "STOCK",
+    "issuer_name": "MASTERCARD INCORPORATED",
+    "shares": 13980,
+    "value": 3112
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "G5960L103",
+    "put_call": "STOCK",
+    "issuer_name": "MEDTRONIC PLC",
+    "shares": 372500,
+    "value": 36643
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 3525300,
+    "value": 403189
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "NETFLIX INC",
+    "shares": 5200,
+    "value": 1945
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "70450Y103",
+    "put_call": "STOCK",
+    "issuer_name": "PAYPAL HLDGS INC",
+    "shares": 727500,
+    "value": 63904
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "737010108",
+    "put_call": "STOCK",
+    "issuer_name": "PORTOLA PHARMACEUTICALS INC",
+    "shares": 347700,
+    "value": 9259
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "747525103",
+    "put_call": "STOCK",
+    "issuer_name": "QUALCOMM INC",
+    "shares": 347300,
+    "value": 25016
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "79466L302",
+    "put_call": "STOCK",
+    "issuer_name": "SALESFORCE COM INC",
+    "shares": 1552700,
+    "value": 246926
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "81369Y506",
+    "put_call": "STOCK",
+    "issuer_name": "SELECT SECTOR SPDR TR",
+    "shares": 522900,
+    "value": 39604
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "81762P102",
+    "put_call": "STOCK",
+    "issuer_name": "SERVICENOW INC",
+    "shares": 194300,
+    "value": 38011
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "848637104",
+    "put_call": "STOCK",
+    "issuer_name": "SPLUNK INC",
+    "shares": 48100,
+    "value": 5816
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "852857200",
+    "put_call": "STOCK",
+    "issuer_name": "STAMPS COM INC",
+    "shares": 12930,
+    "value": 2925
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "872590104",
+    "put_call": "STOCK",
+    "issuer_name": "T MOBILE US INC",
+    "shares": 359800,
+    "value": 25251
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "90130A101",
+    "put_call": "STOCK",
+    "issuer_name": "TWENTY FIRST CENTY FOX INC",
+    "shares": 557800,
+    "value": 25843
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "92189F718",
+    "put_call": "STOCK",
+    "issuer_name": "VANECK VECTORS ETF TR",
+    "shares": 1565100,
+    "value": 39425
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "98138H101",
+    "put_call": "STOCK",
+    "issuer_name": "WORKDAY INC",
+    "shares": 448500,
+    "value": 65472
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "98936J101",
+    "put_call": "STOCK",
+    "issuer_name": "ZENDESK INC",
+    "shares": 414984,
+    "value": 29464
+  }
+]

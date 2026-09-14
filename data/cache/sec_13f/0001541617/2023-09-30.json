@@ -1,0 +1,112 @@
+[
+  {
+    "cik": "0001541617",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 1254720,
+    "value": 159500006
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "20717M103",
+    "put_call": "STOCK",
+    "issuer_name": "CONFLUENT INC",
+    "shares": 16611943,
+    "value": 491879632
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "G0370L116",
+    "put_call": "STOCK",
+    "issuer_name": "GRAB HOLDINGS LIMITED",
+    "shares": 3502000,
+    "value": 1208190
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "58733R102",
+    "put_call": "STOCK",
+    "issuer_name": "MERCADOLIBRE INC",
+    "shares": 2980,
+    "value": 3778282
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "META PLATFORMS INC",
+    "shares": 2404781,
+    "value": 721939304
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 1652960,
+    "value": 521922120
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORPORATION",
+    "shares": 772210,
+    "value": 335903628
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "722304102",
+    "put_call": "STOCK",
+    "issuer_name": "PDD HOLDINGS INC",
+    "shares": 646280,
+    "value": 63380679
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "833445109",
+    "put_call": "STOCK",
+    "issuer_name": "SNOWFLAKE INC",
+    "shares": 15400134,
+    "value": 2352678472
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "90353T100",
+    "put_call": "STOCK",
+    "issuer_name": "UBER TECHNOLOGIES INC",
+    "shares": 13336600,
+    "value": 613350234
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "21240E105",
+    "put_call": "STOCK",
+    "issuer_name": "CONTROLADORA VUELA COMP DE A",
+    "shares": 379270,
+    "value": 2575243
+  }
+]

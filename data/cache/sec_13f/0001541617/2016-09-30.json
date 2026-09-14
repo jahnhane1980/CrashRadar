@@ -1,0 +1,152 @@
+[
+  {
+    "cik": "0001541617",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "011659109",
+    "put_call": "STOCK",
+    "issuer_name": "ALASKA AIR GROUP INC",
+    "shares": 902489,
+    "value": 59438
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "01748X102",
+    "put_call": "STOCK",
+    "issuer_name": "ALLEGIANT TRAVEL CO",
+    "shares": 5150,
+    "value": 680
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "02376R102",
+    "put_call": "STOCK",
+    "issuer_name": "AMERICAN AIRLS GROUP INC",
+    "shares": 850000,
+    "value": 31119
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "22943F100",
+    "put_call": "STOCK",
+    "issuer_name": "CTRIP COM INTL LTD",
+    "shares": 1287009,
+    "value": 59936
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "247361702",
+    "put_call": "STOCK",
+    "issuer_name": "DELTA AIR LINES INC DEL",
+    "shares": 863455,
+    "value": 33986
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "30212P303",
+    "put_call": "STOCK",
+    "issuer_name": "EXPEDIA INC DEL",
+    "shares": 4498111,
+    "value": 525020
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "30212P303",
+    "put_call": "CALL",
+    "issuer_name": "EXPEDIA INC DEL",
+    "shares": 500,
+    "value": 590
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "NETFLIX INC",
+    "shares": 125000,
+    "value": 12319
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "67059N108",
+    "put_call": "STOCK",
+    "issuer_name": "NUTANIX INC",
+    "shares": 70000,
+    "value": 2590
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "74624M102",
+    "put_call": "STOCK",
+    "issuer_name": "PURE STORAGE INC",
+    "shares": 4067691,
+    "value": 55117
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "87336U105",
+    "put_call": "STOCK",
+    "issuer_name": "TABLEAU SOFTWARE INC",
+    "shares": 1121451,
+    "value": 61983
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "741503403",
+    "put_call": "STOCK",
+    "issuer_name": "PRICELINE GRP INC",
+    "shares": 41050,
+    "value": 60405
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "910047109",
+    "put_call": "STOCK",
+    "issuer_name": "UNITED CONTL HLDGS INC",
+    "shares": 11509268,
+    "value": 603891
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "910047109",
+    "put_call": "CALL",
+    "issuer_name": "UNITED CONTL HLDGS INC",
+    "shares": 4377,
+    "value": 420
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "98954M101",
+    "put_call": "STOCK",
+    "issuer_name": "ZILLOW GROUP INC",
+    "shares": 368142,
+    "value": 12682
+  }
+]

@@ -1,0 +1,582 @@
+[
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "013872106",
+    "put_call": "STOCK",
+    "issuer_name": "ALCOA CORP",
+    "shares": 2124345,
+    "value": 61733466
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 218947,
+    "value": 28651404
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 869579,
+    "value": 110540882
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "03769M106",
+    "put_call": "STOCK",
+    "issuer_name": "APOLLO GLOBAL MGMT INC",
+    "shares": 1096060,
+    "value": 98382346
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "03852U106",
+    "put_call": "CALL",
+    "issuer_name": "ARAMARK",
+    "shares": 3900000,
+    "value": 135330000
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "03852U106",
+    "put_call": "STOCK",
+    "issuer_name": "ARAMARK",
+    "shares": 5407665,
+    "value": 187645976
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "03940R107",
+    "put_call": "STOCK",
+    "issuer_name": "ARCH RESOURCES INC",
+    "shares": 67673,
+    "value": 11549074
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "071813109",
+    "put_call": "CALL",
+    "issuer_name": "BAXTER INTL INC",
+    "shares": 2000000,
+    "value": 75480000
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "071813109",
+    "put_call": "STOCK",
+    "issuer_name": "BAXTER INTL INC",
+    "shares": 3515709,
+    "value": 132682858
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "13321L108",
+    "put_call": "STOCK",
+    "issuer_name": "CAMECO CORP",
+    "shares": 462371,
+    "value": 18328386
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "136385101",
+    "put_call": "STOCK",
+    "issuer_name": "CANADIAN NAT RES LTD",
+    "shares": 731280,
+    "value": 47291878
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "20825C104",
+    "put_call": "STOCK",
+    "issuer_name": "CONOCOPHILLIPS",
+    "shares": 296195,
+    "value": 35484161
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "22266T109",
+    "put_call": "STOCK",
+    "issuer_name": "COUPANG INC",
+    "shares": 8196734,
+    "value": 139344478
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "25278X109",
+    "put_call": "STOCK",
+    "issuer_name": "DIAMONDBACK ENERGY INC",
+    "shares": 60081,
+    "value": 9305345
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "30034W106",
+    "put_call": "STOCK",
+    "issuer_name": "EVERGY INC",
+    "shares": 186429,
+    "value": 9451950
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "30231G102",
+    "put_call": "STOCK",
+    "issuer_name": "EXXON MOBIL CORP",
+    "shares": 218769,
+    "value": 25722859
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "337738108",
+    "put_call": "STOCK",
+    "issuer_name": "FISERV INC",
+    "shares": 788959,
+    "value": 89120809
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "35909D109",
+    "put_call": "STOCK",
+    "issuer_name": "FRONTIER COMMUNICATIONS PARE",
+    "shares": 1865526,
+    "value": 29195482
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "359694106",
+    "put_call": "STOCK",
+    "issuer_name": "FULLER H B CO",
+    "shares": 439266,
+    "value": 30138040
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "403949100",
+    "put_call": "STOCK",
+    "issuer_name": "HF SINCLAIR CORP",
+    "shares": 135422,
+    "value": 7709574
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "464286400",
+    "put_call": "CALL",
+    "issuer_name": "ISHARES INC",
+    "shares": 1600000,
+    "value": 49072000
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "464286400",
+    "put_call": "STOCK",
+    "issuer_name": "ISHARES INC",
+    "shares": 3057246,
+    "value": 93765735
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "46428Q109",
+    "put_call": "CALL",
+    "issuer_name": "ISHARES SILVER TR",
+    "shares": 4000000,
+    "value": 81360000
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "464287184",
+    "put_call": "CALL",
+    "issuer_name": "ISHARES TR",
+    "shares": 1000000,
+    "value": 26530000
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "48242W106",
+    "put_call": "STOCK",
+    "issuer_name": "KBR INC",
+    "shares": 708487,
+    "value": 41758224
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "500688106",
+    "put_call": "STOCK",
+    "issuer_name": "KOSMOS ENERGY LTD",
+    "shares": 1970998,
+    "value": 16122764
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "500767306",
+    "put_call": "STOCK",
+    "issuer_name": "KRANESHARES TR",
+    "shares": 1234064,
+    "value": 33776332
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "513272104",
+    "put_call": "STOCK",
+    "issuer_name": "LAMB WESTON HLDGS INC",
+    "shares": 1290130,
+    "value": 119285420
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "517834107",
+    "put_call": "STOCK",
+    "issuer_name": "LAS VEGAS SANDS CORP",
+    "shares": 1927404,
+    "value": 88352199
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "576323109",
+    "put_call": "STOCK",
+    "issuer_name": "MASTEC INC",
+    "shares": 106472,
+    "value": 7662790
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "594918104",
+    "put_call": "CALL",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 400000,
+    "value": 126300000
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 964332,
+    "value": 304487829
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "644393100",
+    "put_call": "STOCK",
+    "issuer_name": "NEW FORTRESS ENERGY INC",
+    "shares": 679126,
+    "value": 22261750
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "65342K105",
+    "put_call": "STOCK",
+    "issuer_name": "NEXTDECADE CORP",
+    "shares": 384434,
+    "value": 1968302
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "G6700G107",
+    "put_call": "STOCK",
+    "issuer_name": "NVENT ELECTRIC PLC",
+    "shares": 504629,
+    "value": 26740291
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORPORATION",
+    "shares": 82543,
+    "value": 35905380
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "697660207",
+    "put_call": "STOCK",
+    "issuer_name": "PAMPA ENERGIA S A",
+    "shares": 672570,
+    "value": 25127215
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "703481101",
+    "put_call": "STOCK",
+    "issuer_name": "PATTERSON-UTI ENERGY INC",
+    "shares": 475140,
+    "value": 6575938
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "69331C108",
+    "put_call": "STOCK",
+    "issuer_name": "PG&amp;E CORP",
+    "shares": 1748915,
+    "value": 28209999
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "718546104",
+    "put_call": "STOCK",
+    "issuer_name": "PHILLIPS 66",
+    "shares": 118059,
+    "value": 14184789
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "723787107",
+    "put_call": "STOCK",
+    "issuer_name": "PIONEER NAT RES CO",
+    "shares": 358570,
+    "value": 82309744
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "79589L106",
+    "put_call": "STOCK",
+    "issuer_name": "SAMSARA INC",
+    "shares": 102474,
+    "value": 2583370
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "78462F103",
+    "put_call": "STOCK",
+    "issuer_name": "SPDR S&amp;P 500 ETF TR",
+    "shares": 300632,
+    "value": 128514167
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "78462F103",
+    "put_call": "PUT",
+    "issuer_name": "SPDR S&amp;P 500 ETF TR",
+    "shares": 5530200,
+    "value": 2364049896
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "872590104",
+    "put_call": "STOCK",
+    "issuer_name": "T-MOBILE US INC",
+    "shares": 1558771,
+    "value": 218305879
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "874039100",
+    "put_call": "STOCK",
+    "issuer_name": "TAIWAN SEMICONDUCTOR MFG LTD",
+    "shares": 646221,
+    "value": 56156605
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "G87110105",
+    "put_call": "STOCK",
+    "issuer_name": "TECHNIPFMC PLC",
+    "shares": 2010327,
+    "value": 40890051
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "878742204",
+    "put_call": "STOCK",
+    "issuer_name": "TECK RESOURCES LTD",
+    "shares": 1755731,
+    "value": 75654449
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "880890108",
+    "put_call": "STOCK",
+    "issuer_name": "TERNIUM SA",
+    "shares": 124105,
+    "value": 4951790
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "88642R109",
+    "put_call": "STOCK",
+    "issuer_name": "TIDEWATER INC NEW",
+    "shares": 75410,
+    "value": 5359389
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "H8817H100",
+    "put_call": "STOCK",
+    "issuer_name": "TRANSOCEAN LTD",
+    "shares": 1186283,
+    "value": 9739383
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "H42097107",
+    "put_call": "STOCK",
+    "issuer_name": "UBS GROUP AG",
+    "shares": 1221061,
+    "value": 30099154
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "G9460G101",
+    "put_call": "STOCK",
+    "issuer_name": "VALARIS LTD",
+    "shares": 65334,
+    "value": 4898743
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "92537N108",
+    "put_call": "STOCK",
+    "issuer_name": "VERTIV HOLDINGS CO",
+    "shares": 5149903,
+    "value": 191576392
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "92837L109",
+    "put_call": "STOCK",
+    "issuer_name": "VISTA ENERGY S.A.B. DE C.V.",
+    "shares": 2146577,
+    "value": 65234475
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "92840M102",
+    "put_call": "STOCK",
+    "issuer_name": "VISTRA CORP",
+    "shares": 1220887,
+    "value": 40509031
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "942622200",
+    "put_call": "PUT",
+    "issuer_name": "WATSCO INC",
+    "shares": 225000,
+    "value": 84987000
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2023-09-30",
+    "filing_date": "2023-11-14",
+    "cusip": "98311A105",
+    "put_call": "STOCK",
+    "issuer_name": "WYNDHAM HOTELS &amp; RESORTS INC",
+    "shares": 268133,
+    "value": 18645969
+  }
+]

@@ -1,0 +1,222 @@
+[
+  {
+    "cik": "0001536411",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "H00263105",
+    "put_call": "STOCK",
+    "issuer_name": "Ac Immune Sa",
+    "shares": 2388700,
+    "value": 24699
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "Adobe Sys Inc",
+    "shares": 122500,
+    "value": 26470
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "01609W102",
+    "put_call": "STOCK",
+    "issuer_name": "Alibaba Group Hldg Ltd",
+    "shares": 657400,
+    "value": 120659
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "Alphabet Inc",
+    "shares": 259150,
+    "value": 268775
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "Amazon Com Inc",
+    "shares": 170853,
+    "value": 247282
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "22943F100",
+    "put_call": "STOCK",
+    "issuer_name": "Ctrip Com Intl Ltd",
+    "shares": 305700,
+    "value": 14252
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "458140100",
+    "put_call": "STOCK",
+    "issuer_name": "Intel Corp",
+    "shares": 2462600,
+    "value": 128252
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "46116X101",
+    "put_call": "STOCK",
+    "issuer_name": "Intra Cellular Therapies Inc",
+    "shares": 296986,
+    "value": 6252
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "47215P106",
+    "put_call": "STOCK",
+    "issuer_name": "Jd Com Inc",
+    "shares": 1783000,
+    "value": 72194
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "595112103",
+    "put_call": "STOCK",
+    "issuer_name": "Micron Technology Inc",
+    "shares": 2187500,
+    "value": 114056
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "Microsoft Corp",
+    "shares": 2430200,
+    "value": 221804
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "640268108",
+    "put_call": "STOCK",
+    "issuer_name": "Nektar Therapeutics",
+    "shares": 1192300,
+    "value": 126694
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "Netflix Inc",
+    "shares": 189700,
+    "value": 56028
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "G68707101",
+    "put_call": "STOCK",
+    "issuer_name": "Pagseguro Digital Ltd Com",
+    "shares": 35000,
+    "value": 1341
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "747525103",
+    "put_call": "STOCK",
+    "issuer_name": "Qualcomm Inc",
+    "shares": 411000,
+    "value": 22774
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "79466L302",
+    "put_call": "STOCK",
+    "issuer_name": "Salesforce Com Inc",
+    "shares": 1705300,
+    "value": 198326
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "852857200",
+    "put_call": "STOCK",
+    "issuer_name": "Stamps Com Inc",
+    "shares": 158000,
+    "value": 31766
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "85917A100",
+    "put_call": "STOCK",
+    "issuer_name": "Sterling Bancorp Del",
+    "shares": 401600,
+    "value": 9056
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "874080104",
+    "put_call": "STOCK",
+    "issuer_name": "Tal Ed Group",
+    "shares": 682000,
+    "value": 25295
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "92763W103",
+    "put_call": "STOCK",
+    "issuer_name": "Vipshop Hldgs Ltd",
+    "shares": 572800,
+    "value": 9520
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "98138H101",
+    "put_call": "STOCK",
+    "issuer_name": "Workday Inc",
+    "shares": 569200,
+    "value": 72351
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "N97284108",
+    "put_call": "STOCK",
+    "issuer_name": "Yandex N V",
+    "shares": 304000,
+    "value": 11993
+  }
+]

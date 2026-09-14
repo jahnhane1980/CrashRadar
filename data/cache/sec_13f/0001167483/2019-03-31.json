@@ -1,0 +1,692 @@
+[
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "282914100",
+    "put_call": "STOCK",
+    "issuer_name": "8X8 INC NEW",
+    "shares": 4730000,
+    "value": 95546
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "ADOBE INC",
+    "shares": 714000,
+    "value": 190274
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "01609W102",
+    "put_call": "STOCK",
+    "issuer_name": "ALIBABA GROUP HLDG LTD",
+    "shares": 4329245,
+    "value": 789871
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 704112,
+    "value": 1253847
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "037612306",
+    "put_call": "STOCK",
+    "issuer_name": "APOLLO GLOBAL MGMT LLC",
+    "shares": 37663500,
+    "value": 1063994
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "G06242104",
+    "put_call": "STOCK",
+    "issuer_name": "ATLASSIAN CORP PLC",
+    "shares": 500000,
+    "value": 56195
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "05338G106",
+    "put_call": "STOCK",
+    "issuer_name": "AVALARA INC",
+    "shares": 100000,
+    "value": 5579
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "06746P621",
+    "put_call": "STOCK",
+    "issuer_name": "BARCLAYS BK PLC",
+    "shares": 881575,
+    "value": 25795
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "090040106",
+    "put_call": "STOCK",
+    "issuer_name": "BILIBILI INC",
+    "shares": 100000,
+    "value": 1895
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "09857L108",
+    "put_call": "STOCK",
+    "issuer_name": "BOOKING HLDGS INC",
+    "shares": 283507,
+    "value": 494694
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "146869102",
+    "put_call": "STOCK",
+    "issuer_name": "CARVANA CO",
+    "shares": 2050000,
+    "value": 119023
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "15677J108",
+    "put_call": "STOCK",
+    "issuer_name": "CERIDIAN HCM HLDG INC",
+    "shares": 170000,
+    "value": 8721
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "18914U100",
+    "put_call": "STOCK",
+    "issuer_name": "CLOUDERA INC",
+    "shares": 50000,
+    "value": 547
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "G27358103",
+    "put_call": "STOCK",
+    "issuer_name": "DESPEGAR COM CORP",
+    "shares": 12169985,
+    "value": 181333
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "256163106",
+    "put_call": "STOCK",
+    "issuer_name": "DOCUSIGN INC",
+    "shares": 300000,
+    "value": 15552
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "25754A201",
+    "put_call": "STOCK",
+    "issuer_name": "DOMINOS PIZZA INC",
+    "shares": 1224850,
+    "value": 316134
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "26210C104",
+    "put_call": "STOCK",
+    "issuer_name": "DROPBOX INC",
+    "shares": 200000,
+    "value": 4360
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "N14506104",
+    "put_call": "STOCK",
+    "issuer_name": "ELASTIC N V",
+    "shares": 738000,
+    "value": 58944
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "29975E109",
+    "put_call": "STOCK",
+    "issuer_name": "EVENTBRITE INC",
+    "shares": 14064271,
+    "value": 269612
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "FACEBOOK INC",
+    "shares": 8838117,
+    "value": 1473226
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "30744W107",
+    "put_call": "STOCK",
+    "issuer_name": "FARFETCH LTD",
+    "shares": 500000,
+    "value": 13455
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "31154R109",
+    "put_call": "STOCK",
+    "issuer_name": "FARMLAND PARTNERS INC",
+    "shares": 44502,
+    "value": 285
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "N31738102",
+    "put_call": "STOCK",
+    "issuer_name": "FIAT CHRYSLER AUTOMOBILES N",
+    "shares": 88296757,
+    "value": 1311207
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "31816Q101",
+    "put_call": "STOCK",
+    "issuer_name": "FIREEYE INC",
+    "shares": 200000,
+    "value": 3358
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "33812L102",
+    "put_call": "STOCK",
+    "issuer_name": "FITBIT INC",
+    "shares": 500000,
+    "value": 2960
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "339041105",
+    "put_call": "STOCK",
+    "issuer_name": "FLEETCOR TECHNOLOGIES INC",
+    "shares": 1727100,
+    "value": 425886
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "44852D108",
+    "put_call": "STOCK",
+    "issuer_name": "HUYA INC",
+    "shares": 362000,
+    "value": 10183
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "46267X108",
+    "put_call": "STOCK",
+    "issuer_name": "IQIYI INC",
+    "shares": 1000000,
+    "value": 23920
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "47215P106",
+    "put_call": "STOCK",
+    "issuer_name": "JD COM INC",
+    "shares": 57850366,
+    "value": 1744189
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "52603A109",
+    "put_call": "STOCK",
+    "issuer_name": "LENDINGCLUB CORP",
+    "shares": 275000,
+    "value": 850
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "57636Q104",
+    "put_call": "STOCK",
+    "issuer_name": "MASTERCARD INC",
+    "shares": 549932,
+    "value": 129481
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "58733R102",
+    "put_call": "STOCK",
+    "issuer_name": "MERCADOLIBRE INC",
+    "shares": 389500,
+    "value": 197761
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 13292400,
+    "value": 1567706
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "60937P106",
+    "put_call": "STOCK",
+    "issuer_name": "MONGODB INC",
+    "shares": 232300,
+    "value": 34153
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "NETFLIX INC",
+    "shares": 2109813,
+    "value": 752275
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "G6455X107",
+    "put_call": "STOCK",
+    "issuer_name": "NETSHOES CAYMAN LTD",
+    "shares": 8865903,
+    "value": 14806
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "647581107",
+    "put_call": "STOCK",
+    "issuer_name": "NEW ORIENTAL ED &amp; TECH GRP I",
+    "shares": 2353600,
+    "value": 212036
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "679295105",
+    "put_call": "STOCK",
+    "issuer_name": "OKTA INC",
+    "shares": 60000,
+    "value": 4964
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "68276W103",
+    "put_call": "STOCK",
+    "issuer_name": "ONESMART INTL ED GROUP LTD",
+    "shares": 320000,
+    "value": 2525
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "708160106",
+    "put_call": "STOCK",
+    "issuer_name": "PENNEY J C CORP INC",
+    "shares": 850000,
+    "value": 1267
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "722304102",
+    "put_call": "STOCK",
+    "issuer_name": "PINDUODUO INC",
+    "shares": 1088000,
+    "value": 26982
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "72582H107",
+    "put_call": "STOCK",
+    "issuer_name": "PIVOTAL SOFTWARE INC",
+    "shares": 1300000,
+    "value": 27105
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "74624M102",
+    "put_call": "STOCK",
+    "issuer_name": "PURE STORAGE INC",
+    "shares": 1000000,
+    "value": 21790
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "75737F108",
+    "put_call": "STOCK",
+    "issuer_name": "REDFIN CORP",
+    "shares": 1851098,
+    "value": 37522
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "76131D103",
+    "put_call": "STOCK",
+    "issuer_name": "RESTAURANT BRANDS INTL INC",
+    "shares": 793124,
+    "value": 51640
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "76680R206",
+    "put_call": "STOCK",
+    "issuer_name": "RINGCENTRAL INC",
+    "shares": 1355266,
+    "value": 146098
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "76761L102",
+    "put_call": "STOCK",
+    "issuer_name": "RISE ED CAYMAN LTD",
+    "shares": 500000,
+    "value": 4865
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "79466L302",
+    "put_call": "STOCK",
+    "issuer_name": "SALESFORCE COM INC",
+    "shares": 2286739,
+    "value": 362151
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "81141R100",
+    "put_call": "STOCK",
+    "issuer_name": "SEA LTD",
+    "shares": 13598500,
+    "value": 319837
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "81762P102",
+    "put_call": "STOCK",
+    "issuer_name": "SERVICENOW INC",
+    "shares": 799600,
+    "value": 197093
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "82509L107",
+    "put_call": "STOCK",
+    "issuer_name": "SHOPIFY INC",
+    "shares": 70000,
+    "value": 14463
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "83200N103",
+    "put_call": "STOCK",
+    "issuer_name": "SMARTSHEET INC",
+    "shares": 230000,
+    "value": 9382
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "83409V104",
+    "put_call": "STOCK",
+    "issuer_name": "SOGOU INC",
+    "shares": 150000,
+    "value": 891
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "83417Q105",
+    "put_call": "STOCK",
+    "issuer_name": "SOLARWINDS CORP",
+    "shares": 200000,
+    "value": 3904
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "L8681T102",
+    "put_call": "STOCK",
+    "issuer_name": "SPOTIFY TECHNOLOGY S A",
+    "shares": 8203235,
+    "value": 1138609
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "G85158106",
+    "put_call": "STOCK",
+    "issuer_name": "STONECO LTD",
+    "shares": 10597754,
+    "value": 435674
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "86740P108",
+    "put_call": "STOCK",
+    "issuer_name": "SUNLANDS ONLINE ED GROUP",
+    "shares": 300000,
+    "value": 1080
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "86771W105",
+    "put_call": "STOCK",
+    "issuer_name": "SUNRUN INC",
+    "shares": 18583400,
+    "value": 261283
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "78489X103",
+    "put_call": "STOCK",
+    "issuer_name": "SVMK INC",
+    "shares": 18446551,
+    "value": 335912
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "87105L104",
+    "put_call": "STOCK",
+    "issuer_name": "SWITCH INC",
+    "shares": 2470000,
+    "value": 25466
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "874080104",
+    "put_call": "STOCK",
+    "issuer_name": "TAL EDUCATION GROUP",
+    "shares": 9424023,
+    "value": 340019
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "88025T102",
+    "put_call": "STOCK",
+    "issuer_name": "TENABLE HLDGS INC",
+    "shares": 150000,
+    "value": 4749
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "88034P109",
+    "put_call": "STOCK",
+    "issuer_name": "TENCENT MUSIC ENTMT GROUP",
+    "shares": 5177517,
+    "value": 93713
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "893641100",
+    "put_call": "STOCK",
+    "issuer_name": "TRANSDIGM GROUP INC",
+    "shares": 2066000,
+    "value": 937943
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "90138F102",
+    "put_call": "STOCK",
+    "issuer_name": "TWILIO INC",
+    "shares": 1050000,
+    "value": 135639
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "91818X108",
+    "put_call": "STOCK",
+    "issuer_name": "UXIN LTD",
+    "shares": 7430207,
+    "value": 28160
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "92826C839",
+    "put_call": "STOCK",
+    "issuer_name": "VISA INC",
+    "shares": 163000,
+    "value": 25459
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "98936J101",
+    "put_call": "STOCK",
+    "issuer_name": "ZENDESK INC",
+    "shares": 2702000,
+    "value": 229670
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "98980A105",
+    "put_call": "STOCK",
+    "issuer_name": "ZTO EXPRESS CAYMAN INC",
+    "shares": 994400,
+    "value": 18178
+  }
+]

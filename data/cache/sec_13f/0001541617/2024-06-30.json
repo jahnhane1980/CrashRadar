@@ -1,0 +1,202 @@
+[
+  {
+    "cik": "0001541617",
+    "report_date": "2024-06-30",
+    "filing_date": "2024-08-14",
+    "cusip": "037833100",
+    "put_call": "STOCK",
+    "issuer_name": "APPLE INC",
+    "shares": 271370,
+    "value": 57155950
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2024-06-30",
+    "filing_date": "2024-08-14",
+    "cusip": "04626A103",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 400000,
+    "value": 24204000
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2024-06-30",
+    "filing_date": "2024-08-14",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "ASTERA LABS INC",
+    "shares": 1434330,
+    "value": 277184273
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2024-06-30",
+    "filing_date": "2024-08-14",
+    "cusip": "032095101",
+    "put_call": "STOCK",
+    "issuer_name": "AMPHENOL CORP NEW",
+    "shares": 2025300,
+    "value": 136444461
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2024-06-30",
+    "filing_date": "2024-08-14",
+    "cusip": "20717M103",
+    "put_call": "STOCK",
+    "issuer_name": "CONFLUENT INC",
+    "shares": 12889058,
+    "value": 380613883
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2024-06-30",
+    "filing_date": "2024-08-14",
+    "cusip": "22266T109",
+    "put_call": "STOCK",
+    "issuer_name": "COUPANG INC",
+    "shares": 5295745,
+    "value": 110945858
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2024-06-30",
+    "filing_date": "2024-08-14",
+    "cusip": "79466L302",
+    "put_call": "STOCK",
+    "issuer_name": "SALESFORCE INC",
+    "shares": 363590,
+    "value": 93478989
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2024-06-30",
+    "filing_date": "2024-08-14",
+    "cusip": "24703L202",
+    "put_call": "STOCK",
+    "issuer_name": "DELL TECHNOLOGIES INC",
+    "shares": 493940,
+    "value": 68119266
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2024-06-30",
+    "filing_date": "2024-08-14",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 674530,
+    "value": 122865640
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2024-06-30",
+    "filing_date": "2024-08-14",
+    "cusip": "G0370L116",
+    "put_call": "STOCK",
+    "issuer_name": "GRAB HOLDINGS LIMITED",
+    "shares": 3502000,
+    "value": 561896
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2024-06-30",
+    "filing_date": "2024-08-14",
+    "cusip": "79589L106",
+    "put_call": "STOCK",
+    "issuer_name": "SAMSARA INC",
+    "shares": 815660,
+    "value": 27487743
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2024-06-30",
+    "filing_date": "2024-08-14",
+    "cusip": "58733R102",
+    "put_call": "STOCK",
+    "issuer_name": "MERCADOLIBRE INC",
+    "shares": 51820,
+    "value": 85160988
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2024-06-30",
+    "filing_date": "2024-08-14",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "META PLATFORMS INC",
+    "shares": 2292661,
+    "value": 1156005530
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2024-06-30",
+    "filing_date": "2024-08-14",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 1625640,
+    "value": 726579798
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2024-06-30",
+    "filing_date": "2024-08-14",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORPORATION",
+    "shares": 7740810,
+    "value": 956299667
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2024-06-30",
+    "filing_date": "2024-08-14",
+    "cusip": "722304102",
+    "put_call": "STOCK",
+    "issuer_name": "PDD HOLDINGS INC",
+    "shares": 1714185,
+    "value": 227900896
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2024-06-30",
+    "filing_date": "2024-08-14",
+    "cusip": "781154109",
+    "put_call": "STOCK",
+    "issuer_name": "RUBRIK INC.",
+    "shares": 175000,
+    "value": 5365500
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2024-06-30",
+    "filing_date": "2024-08-14",
+    "cusip": "833445109",
+    "put_call": "STOCK",
+    "issuer_name": "SNOWFLAKE INC",
+    "shares": 9550746,
+    "value": 1290210277
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2024-06-30",
+    "filing_date": "2024-08-14",
+    "cusip": "90353T100",
+    "put_call": "STOCK",
+    "issuer_name": "UBER TECHNOLOGIES INC",
+    "shares": 13515060,
+    "value": 982274561
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2024-06-30",
+    "filing_date": "2024-08-14",
+    "cusip": "94845U105",
+    "put_call": "STOCK",
+    "issuer_name": "WEBTOON ENTMT INC",
+    "shares": 120000,
+    "value": 2739600
+  }
+]

@@ -1,0 +1,462 @@
+[
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "03852U106",
+    "put_call": "STOCK",
+    "issuer_name": "ARAMARK",
+    "shares": 4532293,
+    "value": 183739158
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "03938L203",
+    "put_call": "STOCK",
+    "issuer_name": "ARCELORMITTAL SA LUXEMBOURG",
+    "shares": 125127,
+    "value": 6504101
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "058934100",
+    "put_call": "STOCK",
+    "issuer_name": "BANCO BBVA ARGENTINA S A",
+    "shares": 2228453,
+    "value": 35788955
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "05961W105",
+    "put_call": "STOCK",
+    "issuer_name": "BANCO MACRO S A",
+    "shares": 710493,
+    "value": 54970843
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "852234103",
+    "put_call": "STOCK",
+    "issuer_name": "BLOCK INC",
+    "shares": 3977687,
+    "value": 239377204
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "14040H105",
+    "put_call": "STOCK",
+    "issuer_name": "CAPITAL ONE FINL CORP",
+    "shares": 682080,
+    "value": 124431854
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "142152107",
+    "put_call": "STOCK",
+    "issuer_name": "CARIS LIFE SCIENCES INC",
+    "shares": 7360446,
+    "value": 131604774
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "144285103",
+    "put_call": "STOCK",
+    "issuer_name": "CARPENTER TECHNOLOGY CORP",
+    "shares": 12947,
+    "value": 5103060
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "151290889",
+    "put_call": "STOCK",
+    "issuer_name": "CEMEX SA EURO MTN BE 144A",
+    "shares": 25243519,
+    "value": 288785857
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "22266T109",
+    "put_call": "STOCK",
+    "issuer_name": "COUPANG INC",
+    "shares": 737690,
+    "value": 13927587
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "25809K105",
+    "put_call": "STOCK",
+    "issuer_name": "DOORDASH INC",
+    "shares": 1829987,
+    "value": 274772548
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "260557103",
+    "put_call": "STOCK",
+    "issuer_name": "DOW HLDGS INC",
+    "shares": 902960,
+    "value": 37608284
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "29362U104",
+    "put_call": "STOCK",
+    "issuer_name": "ENTEGRIS INC",
+    "shares": 1112040,
+    "value": 130375570
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "G3643J108",
+    "put_call": "STOCK",
+    "issuer_name": "FLUTTER ENTMT PLC",
+    "shares": 1416572,
+    "value": 144419515
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "35671D857",
+    "put_call": "STOCK",
+    "issuer_name": "FREEPORT MCMORAN INC",
+    "shares": 9307,
+    "value": 547065
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "37954Y830",
+    "put_call": "STOCK",
+    "issuer_name": "GLOBAL X FDS",
+    "shares": 72978,
+    "value": 5571870
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "G9456A100",
+    "put_call": "STOCK",
+    "issuer_name": "GOLAR LNG LTD",
+    "shares": 2346795,
+    "value": 126985077
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "G4124C109",
+    "put_call": "STOCK",
+    "issuer_name": "GRAB HOLDINGS LIMITED",
+    "shares": 42272380,
+    "value": 154716911
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "399909100",
+    "put_call": "STOCK",
+    "issuer_name": "GRUPO FINANCIERO GALICIA S.A",
+    "shares": 1296753,
+    "value": 60571333
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "40054A108",
+    "put_call": "STOCK",
+    "issuer_name": "GRUPO SUPERVIELLE S.A.",
+    "shares": 1257064,
+    "value": 11854114
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "452327109",
+    "put_call": "STOCK",
+    "issuer_name": "ILLUMINA INC",
+    "shares": 148545,
+    "value": 18309657
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "464286400",
+    "put_call": "STOCK",
+    "issuer_name": "ISHARES INC",
+    "shares": 2422975,
+    "value": 93018010
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "464286772",
+    "put_call": "STOCK",
+    "issuer_name": "ISHARES INC",
+    "shares": 1720621,
+    "value": 211653589
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "464287655",
+    "put_call": "PUT",
+    "issuer_name": "ISHARES TR",
+    "shares": 1100000,
+    "value": 272800000
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "53190C102",
+    "put_call": "STOCK",
+    "issuer_name": "LIFE TIME GROUP HOLDINGS INC",
+    "shares": 907880,
+    "value": 24458287
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "54150E104",
+    "put_call": "STOCK",
+    "issuer_name": "LOMA NEGRA C I A S A MTN  14",
+    "shares": 1130732,
+    "value": 12539818
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "N53745100",
+    "put_call": "STOCK",
+    "issuer_name": "LYONDELLBASELL INDUSTRIES NV",
+    "shares": 616792,
+    "value": 49688764
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "META PLATFORMS INC",
+    "shares": 72670,
+    "value": 41576687
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "632307104",
+    "put_call": "STOCK",
+    "issuer_name": "NATERA INC",
+    "shares": 739879,
+    "value": 147968401
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "G6700G107",
+    "put_call": "STOCK",
+    "issuer_name": "NVENT ELEC PLC",
+    "shares": 2196528,
+    "value": 259805332
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "697660207",
+    "put_call": "STOCK",
+    "issuer_name": "PAMPA ENERGIA SA",
+    "shares": 271221,
+    "value": 24003059
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "69331C108",
+    "put_call": "STOCK",
+    "issuer_name": "PG&amp;E CORP",
+    "shares": 21467215,
+    "value": 377178968
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "74743L100",
+    "put_call": "STOCK",
+    "issuer_name": "QNITY ELECTRONICS INC",
+    "shares": 1737944,
+    "value": 200523979
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "75134PAB1",
+    "put_call": "STOCK",
+    "issuer_name": "RAMACO RES INC",
+    "shares": 220000,
+    "value": 167464
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "750917106",
+    "put_call": "STOCK",
+    "issuer_name": "RAMBUS INC DEL",
+    "shares": 701307,
+    "value": 60333441
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "77311W101",
+    "put_call": "STOCK",
+    "issuer_name": "ROCKET COS INC",
+    "shares": 2820714,
+    "value": 40195175
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "781154109",
+    "put_call": "STOCK",
+    "issuer_name": "RUBRIK INC.",
+    "shares": 3646244,
+    "value": 178556569
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "78462F103",
+    "put_call": "PUT",
+    "issuer_name": "STATE STR SPDR S&amp;P 500 ETF T",
+    "shares": 5100000,
+    "value": 3316734000
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "86384P109",
+    "put_call": "STOCK",
+    "issuer_name": "STUBHUB HLDGS INC",
+    "shares": 14464206,
+    "value": 90256645
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "86384P109",
+    "put_call": "STOCK",
+    "issuer_name": "STUBHUB HLDGS INC",
+    "shares": 5662495,
+    "value": 35333969
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "881624209",
+    "put_call": "STOCK",
+    "issuer_name": "TEVA PHARMACEUTICAL INDS LTD",
+    "shares": 1973782,
+    "value": 59450314
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "92333F101",
+    "put_call": "STOCK",
+    "issuer_name": "VENTURE GLOBAL INC",
+    "shares": 1464704,
+    "value": 23083735
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "20337X109",
+    "put_call": "STOCK",
+    "issuer_name": "VISTANCE NETWORKS INC",
+    "shares": 293428,
+    "value": 5340390
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "929740108",
+    "put_call": "STOCK",
+    "issuer_name": "WABTEC",
+    "shares": 600656,
+    "value": 150109941
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "946784105",
+    "put_call": "STOCK",
+    "issuer_name": "WAYSTAR HLDG CORP",
+    "shares": 3767798,
+    "value": 90841610
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "95082P105",
+    "put_call": "STOCK",
+    "issuer_name": "WESCO INTL INC",
+    "shares": 295107,
+    "value": 80747177
+  }
+]

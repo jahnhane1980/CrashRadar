@@ -1,0 +1,202 @@
+[
+  {
+    "cik": "0001167483",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-15",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 1464127,
+    "value": 1047759
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-15",
+    "cusip": "02589Y100",
+    "put_call": "STOCK",
+    "issuer_name": "AMERICAN FARMLAND CO",
+    "shares": 60000,
+    "value": 362
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-15",
+    "cusip": "037833100",
+    "put_call": "STOCK",
+    "issuer_name": "APPLE INC",
+    "shares": 1379797,
+    "value": 131909
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-15",
+    "cusip": "G06242104",
+    "put_call": "STOCK",
+    "issuer_name": "ATLASSIAN CORP PLC",
+    "shares": 500000,
+    "value": 12950
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-15",
+    "cusip": "16119P108",
+    "put_call": "STOCK",
+    "issuer_name": "CHARTER COMMUNICATIONS INC N",
+    "shares": 4253394,
+    "value": 972496
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-15",
+    "cusip": "26853A100",
+    "put_call": "STOCK",
+    "issuer_name": "EHI CAR SVCS LTD",
+    "shares": 8334863,
+    "value": 84265
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-15",
+    "cusip": "29786A106",
+    "put_call": "STOCK",
+    "issuer_name": "ETSY INC",
+    "shares": 11091426,
+    "value": 106367
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-15",
+    "cusip": "31816Q101",
+    "put_call": "STOCK",
+    "issuer_name": "FIREEYE INC",
+    "shares": 200000,
+    "value": 3294
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-15",
+    "cusip": "33812L102",
+    "put_call": "STOCK",
+    "issuer_name": "FITBIT INC",
+    "shares": 500000,
+    "value": 6110
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-15",
+    "cusip": "339041105",
+    "put_call": "STOCK",
+    "issuer_name": "FLEETCOR TECHNOLOGIES INC",
+    "shares": 3259626,
+    "value": 466550
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-15",
+    "cusip": "47215P106",
+    "put_call": "STOCK",
+    "issuer_name": "JD COM INC",
+    "shares": 44005044,
+    "value": 934227
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-15",
+    "cusip": "52603A109",
+    "put_call": "STOCK",
+    "issuer_name": "LENDINGCLUB CORP",
+    "shares": 275000,
+    "value": 1183
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-15",
+    "cusip": "57636Q104",
+    "put_call": "STOCK",
+    "issuer_name": "MASTERCARD INC",
+    "shares": 1874271,
+    "value": 165048
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-15",
+    "cusip": "682163100",
+    "put_call": "STOCK",
+    "issuer_name": "ON DECK CAP INC",
+    "shares": 5473759,
+    "value": 28190
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-15",
+    "cusip": "741503403",
+    "put_call": "STOCK",
+    "issuer_name": "PRICELINE GRP INC",
+    "shares": 750000,
+    "value": 936308
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-15",
+    "cusip": "74624M102",
+    "put_call": "STOCK",
+    "issuer_name": "PURE STORAGE INC",
+    "shares": 1000000,
+    "value": 10900
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-15",
+    "cusip": "76131D103",
+    "put_call": "STOCK",
+    "issuer_name": "RESTAURANT BRANDS INTL INC",
+    "shares": 2496213,
+    "value": 103842
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-15",
+    "cusip": "82509L107",
+    "put_call": "STOCK",
+    "issuer_name": "SHOPIFY INC",
+    "shares": 70000,
+    "value": 2153
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-15",
+    "cusip": "852234103",
+    "put_call": "STOCK",
+    "issuer_name": "SQUARE INC",
+    "shares": 1182237,
+    "value": 10699
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2016-06-30",
+    "filing_date": "2016-08-15",
+    "cusip": "874080104",
+    "put_call": "STOCK",
+    "issuer_name": "TAL ED GROUP",
+    "shares": 602500,
+    "value": 37391
+  }
+]

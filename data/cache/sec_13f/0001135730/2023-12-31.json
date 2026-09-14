@@ -1,0 +1,2452 @@
+[
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "ADOBE INC",
+    "shares": 235847,
+    "value": 140706320
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "ADOBE INC",
+    "shares": 1179664,
+    "value": 703787542
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "ADOBE INC",
+    "shares": 44609,
+    "value": 26613729
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "ADOBE INC",
+    "shares": 15261,
+    "value": 9104713
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "007903107",
+    "put_call": "STOCK",
+    "issuer_name": "ADVANCED MICRO DEVICES INC",
+    "shares": 447993,
+    "value": 66038648
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "007903107",
+    "put_call": "STOCK",
+    "issuer_name": "ADVANCED MICRO DEVICES INC",
+    "shares": 40795,
+    "value": 6013591
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "007903107",
+    "put_call": "STOCK",
+    "issuer_name": "ADVANCED MICRO DEVICES INC",
+    "shares": 1476592,
+    "value": 217664427
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "007903107",
+    "put_call": "STOCK",
+    "issuer_name": "ADVANCED MICRO DEVICES INC",
+    "shares": 9067195,
+    "value": 1336595215
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "007903107",
+    "put_call": "STOCK",
+    "issuer_name": "ADVANCED MICRO DEVICES INC",
+    "shares": 1262547,
+    "value": 186112053
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "007903107",
+    "put_call": "STOCK",
+    "issuer_name": "ADVANCED MICRO DEVICES INC",
+    "shares": 190776,
+    "value": 28122290
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "00827B106",
+    "put_call": "STOCK",
+    "issuer_name": "AFFIRM HLDGS INC",
+    "shares": 305104,
+    "value": 14992811
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "00851L103",
+    "put_call": "STOCK",
+    "issuer_name": "AGORA INC",
+    "shares": 275427,
+    "value": 724373
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "012653101",
+    "put_call": "STOCK",
+    "issuer_name": "ALBEMARLE CORP",
+    "shares": 591603,
+    "value": 85474801
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "01609W102",
+    "put_call": "STOCK",
+    "issuer_name": "ALIBABA GROUP HLDG LTD",
+    "shares": 157774,
+    "value": 12229063
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "02005N100",
+    "put_call": "STOCK",
+    "issuer_name": "ALLY FINL INC",
+    "shares": 70822,
+    "value": 2473104
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "02005N100",
+    "put_call": "STOCK",
+    "issuer_name": "ALLY FINL INC",
+    "shares": 380958,
+    "value": 13303053
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "02005N100",
+    "put_call": "STOCK",
+    "issuer_name": "ALLY FINL INC",
+    "shares": 5762,
+    "value": 201209
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "02005N100",
+    "put_call": "STOCK",
+    "issuer_name": "ALLY FINL INC",
+    "shares": 15619,
+    "value": 545415
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "02079K107",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 257078,
+    "value": 36230003
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "02079K107",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 13832,
+    "value": 1949344
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 1355173,
+    "value": 189304116
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 91415,
+    "value": 12769761
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 414041,
+    "value": 57837387
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 20502,
+    "value": 2863924
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "02079K107",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 62621,
+    "value": 8825178
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "02079K107",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 3891,
+    "value": 548359
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 252551,
+    "value": 38372599
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 7908408,
+    "value": 1201603512
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 1576533,
+    "value": 239538424
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 91570,
+    "value": 13913146
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "037833100",
+    "put_call": "STOCK",
+    "issuer_name": "APPLE INC",
+    "shares": 29867,
+    "value": 5750294
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "037833100",
+    "put_call": "STOCK",
+    "issuer_name": "APPLE INC",
+    "shares": 361291,
+    "value": 69559356
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "037833100",
+    "put_call": "STOCK",
+    "issuer_name": "APPLE INC",
+    "shares": 1973454,
+    "value": 379949099
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "037833100",
+    "put_call": "STOCK",
+    "issuer_name": "APPLE INC",
+    "shares": 79756,
+    "value": 15355423
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "038222105",
+    "put_call": "STOCK",
+    "issuer_name": "APPLIED MATLS INC",
+    "shares": 915467,
+    "value": 148369737
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "038222105",
+    "put_call": "STOCK",
+    "issuer_name": "APPLIED MATLS INC",
+    "shares": 531335,
+    "value": 86113463
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "03831W108",
+    "put_call": "STOCK",
+    "issuer_name": "APPLOVIN CORP",
+    "shares": 1153420,
+    "value": 45963787
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "056752108",
+    "put_call": "STOCK",
+    "issuer_name": "BAIDU INC",
+    "shares": 5545,
+    "value": 660354
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "08862E109",
+    "put_call": "STOCK",
+    "issuer_name": "BEYOND MEAT INC",
+    "shares": 147247,
+    "value": 1310498
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "090043100",
+    "put_call": "STOCK",
+    "issuer_name": "BILL HOLDINGS INC",
+    "shares": 21898,
+    "value": 1786658
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "090043100",
+    "put_call": "STOCK",
+    "issuer_name": "BILL HOLDINGS INC",
+    "shares": 1447371,
+    "value": 118091000
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "090043100",
+    "put_call": "STOCK",
+    "issuer_name": "BILL HOLDINGS INC",
+    "shares": 96031,
+    "value": 7835169
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "090043100",
+    "put_call": "STOCK",
+    "issuer_name": "BILL HOLDINGS INC",
+    "shares": 435166,
+    "value": 35505194
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "852234103",
+    "put_call": "STOCK",
+    "issuer_name": "BLOCK INC",
+    "shares": 79426,
+    "value": 6143601
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "852234103",
+    "put_call": "STOCK",
+    "issuer_name": "BLOCK INC",
+    "shares": 6552,
+    "value": 506797
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "852234103",
+    "put_call": "STOCK",
+    "issuer_name": "BLOCK INC",
+    "shares": 17532,
+    "value": 1356100
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "852234103",
+    "put_call": "STOCK",
+    "issuer_name": "BLOCK INC",
+    "shares": 432845,
+    "value": 33480561
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "093712107",
+    "put_call": "STOCK",
+    "issuer_name": "BLOOM ENERGY CORP",
+    "shares": 765857,
+    "value": 11334684
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "093712107",
+    "put_call": "STOCK",
+    "issuer_name": "BLOOM ENERGY CORP",
+    "shares": 3391472,
+    "value": 50193786
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "093712107",
+    "put_call": "STOCK",
+    "issuer_name": "BLOOM ENERGY CORP",
+    "shares": 279572,
+    "value": 4137666
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "122017106",
+    "put_call": "STOCK",
+    "issuer_name": "BURLINGTON STORES INC",
+    "shares": 13152,
+    "value": 2557801
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "122017106",
+    "put_call": "STOCK",
+    "issuer_name": "BURLINGTON STORES INC",
+    "shares": 59629,
+    "value": 11596648
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "122017106",
+    "put_call": "STOCK",
+    "issuer_name": "BURLINGTON STORES INC",
+    "shares": 4868,
+    "value": 946729
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "122017106",
+    "put_call": "STOCK",
+    "issuer_name": "BURLINGTON STORES INC",
+    "shares": 322060,
+    "value": 62634229
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "12468P104",
+    "put_call": "STOCK",
+    "issuer_name": "C3 AI INC",
+    "shares": 2832229,
+    "value": 81313295
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "127387108",
+    "put_call": "STOCK",
+    "issuer_name": "CADENCE DESIGN SYSTEM INC",
+    "shares": 130843,
+    "value": 35637708
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "127387108",
+    "put_call": "STOCK",
+    "issuer_name": "CADENCE DESIGN SYSTEM INC",
+    "shares": 1976,
+    "value": 538203
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "127387108",
+    "put_call": "STOCK",
+    "issuer_name": "CADENCE DESIGN SYSTEM INC",
+    "shares": 9631,
+    "value": 2623195
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "127387108",
+    "put_call": "STOCK",
+    "issuer_name": "CADENCE DESIGN SYSTEM INC",
+    "shares": 43598,
+    "value": 11874787
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "16119P108",
+    "put_call": "STOCK",
+    "issuer_name": "CHARTER COMMUNICATIONS INC N",
+    "shares": 330233,
+    "value": 128354962
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "20717M103",
+    "put_call": "STOCK",
+    "issuer_name": "CONFLUENT INC",
+    "shares": 3913133,
+    "value": 91567312
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "20717M103",
+    "put_call": "STOCK",
+    "issuer_name": "CONFLUENT INC",
+    "shares": 318233,
+    "value": 7446652
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "20717M103",
+    "put_call": "STOCK",
+    "issuer_name": "CONFLUENT INC",
+    "shares": 1441687,
+    "value": 33735476
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "20717M103",
+    "put_call": "STOCK",
+    "issuer_name": "CONFLUENT INC",
+    "shares": 59080,
+    "value": 1382472
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "227046109",
+    "put_call": "STOCK",
+    "issuer_name": "CROCS INC",
+    "shares": 1029765,
+    "value": 96190349
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "22788C105",
+    "put_call": "STOCK",
+    "issuer_name": "CROWDSTRIKE HLDGS INC",
+    "shares": 477265,
+    "value": 121855300
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "235851102",
+    "put_call": "STOCK",
+    "issuer_name": "DANAHER CORPORATION",
+    "shares": 96659,
+    "value": 22361093
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "235851102",
+    "put_call": "STOCK",
+    "issuer_name": "DANAHER CORPORATION",
+    "shares": 21421,
+    "value": 4955534
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "235851102",
+    "put_call": "STOCK",
+    "issuer_name": "DANAHER CORPORATION",
+    "shares": 471900,
+    "value": 109169346
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "235851102",
+    "put_call": "STOCK",
+    "issuer_name": "DANAHER CORPORATION",
+    "shares": 7130,
+    "value": 1649454
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "254687106",
+    "put_call": "STOCK",
+    "issuer_name": "DISNEY WALT CO",
+    "shares": 2950000,
+    "value": 266355500
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "256163106",
+    "put_call": "STOCK",
+    "issuer_name": "DOCUSIGN INC",
+    "shares": 1387549,
+    "value": 82489788
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "256163106",
+    "put_call": "STOCK",
+    "issuer_name": "DOCUSIGN INC",
+    "shares": 3108683,
+    "value": 184811204
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "256163106",
+    "put_call": "STOCK",
+    "issuer_name": "DOCUSIGN INC",
+    "shares": 306445,
+    "value": 18218155
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "256163106",
+    "put_call": "STOCK",
+    "issuer_name": "DOCUSIGN INC",
+    "shares": 46337,
+    "value": 2754735
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "25754A201",
+    "put_call": "STOCK",
+    "issuer_name": "DOMINOS PIZZA INC",
+    "shares": 25480,
+    "value": 10503620
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "25754A201",
+    "put_call": "STOCK",
+    "issuer_name": "DOMINOS PIZZA INC",
+    "shares": 115467,
+    "value": 47598961
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "25754A201",
+    "put_call": "STOCK",
+    "issuer_name": "DOMINOS PIZZA INC",
+    "shares": 9563,
+    "value": 3942155
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "25754A201",
+    "put_call": "STOCK",
+    "issuer_name": "DOMINOS PIZZA INC",
+    "shares": 632692,
+    "value": 260814623
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "G29183103",
+    "put_call": "STOCK",
+    "issuer_name": "EATON CORP PLC",
+    "shares": 248976,
+    "value": 59958400
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "G29183103",
+    "put_call": "STOCK",
+    "issuer_name": "EATON CORP PLC",
+    "shares": 681492,
+    "value": 164116903
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "G29183103",
+    "put_call": "STOCK",
+    "issuer_name": "EATON CORP PLC",
+    "shares": 112328,
+    "value": 27050829
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "G29183103",
+    "put_call": "STOCK",
+    "issuer_name": "EATON CORP PLC",
+    "shares": 588314,
+    "value": 141677777
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "G29183103",
+    "put_call": "STOCK",
+    "issuer_name": "EATON CORP PLC",
+    "shares": 33228,
+    "value": 8001967
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "G29183103",
+    "put_call": "STOCK",
+    "issuer_name": "EATON CORP PLC",
+    "shares": 2322107,
+    "value": 559209808
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "532457108",
+    "put_call": "STOCK",
+    "issuer_name": "ELI LILLY &amp; CO",
+    "shares": 1053,
+    "value": 613815
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "532457108",
+    "put_call": "STOCK",
+    "issuer_name": "ELI LILLY &amp; CO",
+    "shares": 147469,
+    "value": 85962629
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "532457108",
+    "put_call": "STOCK",
+    "issuer_name": "ELI LILLY &amp; CO",
+    "shares": 11712,
+    "value": 6827159
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "532457108",
+    "put_call": "STOCK",
+    "issuer_name": "ELI LILLY &amp; CO",
+    "shares": 53106,
+    "value": 30956550
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "29444U700",
+    "put_call": "STOCK",
+    "issuer_name": "EQUINIX INC",
+    "shares": 4942,
+    "value": 3980237
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "29444U700",
+    "put_call": "STOCK",
+    "issuer_name": "EQUINIX INC",
+    "shares": 482069,
+    "value": 388253552
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "29444U700",
+    "put_call": "STOCK",
+    "issuer_name": "EQUINIX INC",
+    "shares": 61082,
+    "value": 49194832
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "29444U700",
+    "put_call": "STOCK",
+    "issuer_name": "EQUINIX INC",
+    "shares": 13469,
+    "value": 10847798
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "31946M103",
+    "put_call": "STOCK",
+    "issuer_name": "FIRST CTZNS BANCSHARES INC N",
+    "shares": 52488,
+    "value": 74478897
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "31946M103",
+    "put_call": "STOCK",
+    "issuer_name": "FIRST CTZNS BANCSHARES INC N",
+    "shares": 3469,
+    "value": 4922407
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "31946M103",
+    "put_call": "STOCK",
+    "issuer_name": "FIRST CTZNS BANCSHARES INC N",
+    "shares": 273525,
+    "value": 388123769
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "31946M103",
+    "put_call": "STOCK",
+    "issuer_name": "FIRST CTZNS BANCSHARES INC N",
+    "shares": 11632,
+    "value": 16505459
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "345370860",
+    "put_call": "STOCK",
+    "issuer_name": "FORD MTR CO DEL",
+    "shares": 12235585,
+    "value": 149151781
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "36118L106",
+    "put_call": "STOCK",
+    "issuer_name": "FUTU HLDGS LTD",
+    "shares": 30161,
+    "value": 1647695
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "36467W109",
+    "put_call": "STOCK",
+    "issuer_name": "GAMESTOP CORP NEW",
+    "shares": 75000,
+    "value": 1314750
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "368736104",
+    "put_call": "STOCK",
+    "issuer_name": "GENERAC HLDGS INC",
+    "shares": 235911,
+    "value": 30489138
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "37045V100",
+    "put_call": "STOCK",
+    "issuer_name": "GENERAL MTRS CO",
+    "shares": 1596001,
+    "value": 57328356
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "44332N106",
+    "put_call": "STOCK",
+    "issuer_name": "H WORLD GROUP LTD",
+    "shares": 161567,
+    "value": 5402800
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "418100103",
+    "put_call": "STOCK",
+    "issuer_name": "HASHICORP INC",
+    "shares": 205737,
+    "value": 4863623
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "42806J148",
+    "put_call": "STOCK",
+    "issuer_name": "HERTZ GLOBAL HLDGS INC",
+    "shares": 117801,
+    "value": 645549
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "452327109",
+    "put_call": "STOCK",
+    "issuer_name": "ILLUMINA INC",
+    "shares": 28027,
+    "value": 3902479
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "452327109",
+    "put_call": "STOCK",
+    "issuer_name": "ILLUMINA INC",
+    "shares": 127093,
+    "value": 17696429
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "452327109",
+    "put_call": "STOCK",
+    "issuer_name": "ILLUMINA INC",
+    "shares": 10450,
+    "value": 1455058
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "452327109",
+    "put_call": "STOCK",
+    "issuer_name": "ILLUMINA INC",
+    "shares": 691119,
+    "value": 96231410
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "458140100",
+    "put_call": "STOCK",
+    "issuer_name": "INTEL CORP",
+    "shares": 26859,
+    "value": 1349665
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "458140100",
+    "put_call": "STOCK",
+    "issuer_name": "INTEL CORP",
+    "shares": 9967,
+    "value": 500842
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "458140100",
+    "put_call": "STOCK",
+    "issuer_name": "INTEL CORP",
+    "shares": 121798,
+    "value": 6120350
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "458140100",
+    "put_call": "STOCK",
+    "issuer_name": "INTEL CORP",
+    "shares": 659331,
+    "value": 33131383
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "461202103",
+    "put_call": "STOCK",
+    "issuer_name": "INTUIT",
+    "shares": 6381,
+    "value": 3988316
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "461202103",
+    "put_call": "STOCK",
+    "issuer_name": "INTUIT",
+    "shares": 660359,
+    "value": 412744186
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "461202103",
+    "put_call": "STOCK",
+    "issuer_name": "INTUIT",
+    "shares": 87300,
+    "value": 54565119
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "461202103",
+    "put_call": "STOCK",
+    "issuer_name": "INTUIT",
+    "shares": 17299,
+    "value": 10812394
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "46120E602",
+    "put_call": "STOCK",
+    "issuer_name": "INTUITIVE SURGICAL INC",
+    "shares": 14950,
+    "value": 5043532
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "46120E602",
+    "put_call": "STOCK",
+    "issuer_name": "INTUITIVE SURGICAL INC",
+    "shares": 990203,
+    "value": 334054884
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "46120E602",
+    "put_call": "STOCK",
+    "issuer_name": "INTUITIVE SURGICAL INC",
+    "shares": 53694,
+    "value": 18114208
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "46120E602",
+    "put_call": "STOCK",
+    "issuer_name": "INTUITIVE SURGICAL INC",
+    "shares": 242748,
+    "value": 81893465
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "46138G706",
+    "put_call": "STOCK",
+    "issuer_name": "INVESCO EXCH TRADED FD TR II",
+    "shares": 704,
+    "value": 37558
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "46138G706",
+    "put_call": "STOCK",
+    "issuer_name": "INVESCO EXCH TRADED FD TR II",
+    "shares": 46587,
+    "value": 2485416
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "464287515",
+    "put_call": "STOCK",
+    "issuer_name": "ISHARES TR",
+    "shares": 39497,
+    "value": 16021563
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "47215P106",
+    "put_call": "STOCK",
+    "issuer_name": "JD.COM INC",
+    "shares": 16431,
+    "value": 474692
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "48553T106",
+    "put_call": "STOCK",
+    "issuer_name": "KANZHUN LIMITED",
+    "shares": 404846,
+    "value": 6724492
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "482497104",
+    "put_call": "STOCK",
+    "issuer_name": "KE HLDGS INC",
+    "shares": 3969053,
+    "value": 64338349
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "482497104",
+    "put_call": "STOCK",
+    "issuer_name": "KE HLDGS INC",
+    "shares": 156515,
+    "value": 2537108
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "482497104",
+    "put_call": "STOCK",
+    "issuer_name": "KE HLDGS INC",
+    "shares": 843096,
+    "value": 13666586
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "482497104",
+    "put_call": "STOCK",
+    "issuer_name": "KE HLDGS INC",
+    "shares": 34518,
+    "value": 559537
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "482497104",
+    "put_call": "STOCK",
+    "issuer_name": "KE HLDGS INC",
+    "shares": 12736,
+    "value": 206451
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "500767306",
+    "put_call": "STOCK",
+    "issuer_name": "KRANESHARES TR",
+    "shares": 1664814,
+    "value": 44949978
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "512807108",
+    "put_call": "STOCK",
+    "issuer_name": "LAM RESEARCH CORP",
+    "shares": 265674,
+    "value": 208091817
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "512807108",
+    "put_call": "STOCK",
+    "issuer_name": "LAM RESEARCH CORP",
+    "shares": 238765,
+    "value": 187015074
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "512807108",
+    "put_call": "STOCK",
+    "issuer_name": "LAM RESEARCH CORP",
+    "shares": 176675,
+    "value": 138382461
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "565394103",
+    "put_call": "STOCK",
+    "issuer_name": "MAPLEBEAR INC",
+    "shares": 3223498,
+    "value": 75655498
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "565394103",
+    "put_call": "STOCK",
+    "issuer_name": "MAPLEBEAR INC",
+    "shares": 7053945,
+    "value": 165556089
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "58463J304",
+    "put_call": "STOCK",
+    "issuer_name": "MEDICAL PPTYS TRUST INC",
+    "shares": 6806501,
+    "value": 33419920
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "META PLATFORMS INC",
+    "shares": 690201,
+    "value": 244303546
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "META PLATFORMS INC",
+    "shares": 4807460,
+    "value": 1701648542
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "META PLATFORMS INC",
+    "shares": 91811,
+    "value": 32497422
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "META PLATFORMS INC",
+    "shares": 40200,
+    "value": 14229192
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 38903,
+    "value": 14629084
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 3040632,
+    "value": 1143399257
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 115813,
+    "value": 43550321
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 616587,
+    "value": 231861375
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "60770K107",
+    "put_call": "STOCK",
+    "issuer_name": "MODERNA INC",
+    "shares": 90751,
+    "value": 9025187
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "60770K107",
+    "put_call": "STOCK",
+    "issuer_name": "MODERNA INC",
+    "shares": 3182301,
+    "value": 316479834
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "64110W102",
+    "put_call": "STOCK",
+    "issuer_name": "NETEASE INC",
+    "shares": 28570,
+    "value": 2661581
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "64110W102",
+    "put_call": "STOCK",
+    "issuer_name": "NETEASE INC",
+    "shares": 154578,
+    "value": 14400486
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "64110W102",
+    "put_call": "STOCK",
+    "issuer_name": "NETEASE INC",
+    "shares": 6300,
+    "value": 586908
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "64110W102",
+    "put_call": "STOCK",
+    "issuer_name": "NETEASE INC",
+    "shares": 2337,
+    "value": 217715
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "64110W102",
+    "put_call": "STOCK",
+    "issuer_name": "NETEASE INC",
+    "shares": 372105,
+    "value": 34665302
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "NETFLIX INC",
+    "shares": 358139,
+    "value": 174370716
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "NETFLIX INC",
+    "shares": 342194,
+    "value": 166607415
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "NETFLIX INC",
+    "shares": 1580452,
+    "value": 769490470
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "647581206",
+    "put_call": "STOCK",
+    "issuer_name": "NEW ORIENTAL ED &amp; TECHNOLOGY",
+    "shares": 46352,
+    "value": 3396675
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "65339F101",
+    "put_call": "STOCK",
+    "issuer_name": "NEXTERA ENERGY INC",
+    "shares": 144456,
+    "value": 8774257
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "65339F101",
+    "put_call": "STOCK",
+    "issuer_name": "NEXTERA ENERGY INC",
+    "shares": 396394,
+    "value": 24076972
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "654110105",
+    "put_call": "STOCK",
+    "issuer_name": "NIKOLA CORP",
+    "shares": 1214945,
+    "value": 1062834
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "670002401",
+    "put_call": "STOCK",
+    "issuer_name": "NOVAVAX INC",
+    "shares": 1519594,
+    "value": 7294051
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "670100205",
+    "put_call": "STOCK",
+    "issuer_name": "NOVO-NORDISK A S",
+    "shares": 213063,
+    "value": 22041367
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "670100205",
+    "put_call": "STOCK",
+    "issuer_name": "NOVO-NORDISK A S",
+    "shares": 17199,
+    "value": 1779237
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "670100205",
+    "put_call": "STOCK",
+    "issuer_name": "NOVO-NORDISK A S",
+    "shares": 3214,
+    "value": 332488
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "670100205",
+    "put_call": "STOCK",
+    "issuer_name": "NOVO-NORDISK A S",
+    "shares": 77535,
+    "value": 8020996
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "G6674U108",
+    "put_call": "STOCK",
+    "issuer_name": "NOVOCURE LTD",
+    "shares": 348119,
+    "value": 5197417
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "G6683N103",
+    "put_call": "STOCK",
+    "issuer_name": "NU HLDGS LTD",
+    "shares": 707037,
+    "value": 5889618
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "G6683N103",
+    "put_call": "STOCK",
+    "issuer_name": "NU HLDGS LTD",
+    "shares": 2638197,
+    "value": 21976181
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "G6683N103",
+    "put_call": "STOCK",
+    "issuer_name": "NU HLDGS LTD",
+    "shares": 11960719,
+    "value": 99632789
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "G6683N103",
+    "put_call": "STOCK",
+    "issuer_name": "NU HLDGS LTD",
+    "shares": 47715994,
+    "value": 397474230
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORPORATION",
+    "shares": 431247,
+    "value": 213562139
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORPORATION",
+    "shares": 130354,
+    "value": 64553908
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORPORATION",
+    "shares": 9733,
+    "value": 4819976
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORPORATION",
+    "shares": 651831,
+    "value": 322799748
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORPORATION",
+    "shares": 3055383,
+    "value": 1513086769
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORPORATION",
+    "shares": 43653,
+    "value": 21617839
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "N6596X109",
+    "put_call": "STOCK",
+    "issuer_name": "NXP SEMICONDUCTORS N V",
+    "shares": 125894,
+    "value": 28915334
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "N6596X109",
+    "put_call": "STOCK",
+    "issuer_name": "NXP SEMICONDUCTORS N V",
+    "shares": 45956,
+    "value": 10555174
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "679369108",
+    "put_call": "STOCK",
+    "issuer_name": "OLAPLEX HLDGS INC",
+    "shares": 151842,
+    "value": 385679
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "682189105",
+    "put_call": "STOCK",
+    "issuer_name": "ON SEMICONDUCTOR CORP",
+    "shares": 58839,
+    "value": 4914822
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "682189105",
+    "put_call": "STOCK",
+    "issuer_name": "ON SEMICONDUCTOR CORP",
+    "shares": 161457,
+    "value": 13486503
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "68389X105",
+    "put_call": "STOCK",
+    "issuer_name": "ORACLE CORP",
+    "shares": 2176533,
+    "value": 229471874
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "69608A108",
+    "put_call": "STOCK",
+    "issuer_name": "PALANTIR TECHNOLOGIES INC",
+    "shares": 50632,
+    "value": 869351
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "69608A108",
+    "put_call": "STOCK",
+    "issuer_name": "PALANTIR TECHNOLOGIES INC",
+    "shares": 3396731,
+    "value": 58321871
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "70450Y103",
+    "put_call": "STOCK",
+    "issuer_name": "PAYPAL HLDGS INC",
+    "shares": 27168,
+    "value": 1668387
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "722304102",
+    "put_call": "STOCK",
+    "issuer_name": "PDD HOLDINGS INC",
+    "shares": 517763,
+    "value": 75753905
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "722304102",
+    "put_call": "STOCK",
+    "issuer_name": "PDD HOLDINGS INC",
+    "shares": 220657,
+    "value": 32284326
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "72352L106",
+    "put_call": "STOCK",
+    "issuer_name": "PINTEREST INC",
+    "shares": 1441588,
+    "value": 53396420
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "74767V109",
+    "put_call": "STOCK",
+    "issuer_name": "QUANTUMSCAPE CORP",
+    "shares": 3344927,
+    "value": 23247243
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "76954A103",
+    "put_call": "STOCK",
+    "issuer_name": "RIVIAN AUTOMOTIVE INC",
+    "shares": 2454152,
+    "value": 57574406
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "76954A103",
+    "put_call": "STOCK",
+    "issuer_name": "RIVIAN AUTOMOTIVE INC",
+    "shares": 131170,
+    "value": 3077248
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "79466L302",
+    "put_call": "STOCK",
+    "issuer_name": "SALESFORCE INC",
+    "shares": 468316,
+    "value": 123232672
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "79466L302",
+    "put_call": "STOCK",
+    "issuer_name": "SALESFORCE INC",
+    "shares": 1549437,
+    "value": 407718852
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "79466L302",
+    "put_call": "STOCK",
+    "issuer_name": "SALESFORCE INC",
+    "shares": 103396,
+    "value": 27207623
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "79466L302",
+    "put_call": "STOCK",
+    "issuer_name": "SALESFORCE INC",
+    "shares": 22913,
+    "value": 6029327
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "81762P102",
+    "put_call": "STOCK",
+    "issuer_name": "SERVICENOW INC",
+    "shares": 2402,
+    "value": 1696989
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "81762P102",
+    "put_call": "STOCK",
+    "issuer_name": "SERVICENOW INC",
+    "shares": 7992,
+    "value": 5646268
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "81762P102",
+    "put_call": "STOCK",
+    "issuer_name": "SERVICENOW INC",
+    "shares": 191645,
+    "value": 135395276
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "81762P102",
+    "put_call": "STOCK",
+    "issuer_name": "SERVICENOW INC",
+    "shares": 36063,
+    "value": 25478149
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "82509L107",
+    "put_call": "STOCK",
+    "issuer_name": "SHOPIFY INC",
+    "shares": 210235,
+    "value": 16377307
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "82509L107",
+    "put_call": "STOCK",
+    "issuer_name": "SHOPIFY INC",
+    "shares": 1324743,
+    "value": 103197480
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "82509L107",
+    "put_call": "STOCK",
+    "issuer_name": "SHOPIFY INC",
+    "shares": 39024,
+    "value": 3039970
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "82509L107",
+    "put_call": "STOCK",
+    "issuer_name": "SHOPIFY INC",
+    "shares": 4243199,
+    "value": 330545202
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "83417M104",
+    "put_call": "STOCK",
+    "issuer_name": "SOLAREDGE TECHNOLOGIES INC",
+    "shares": 676475,
+    "value": 63318060
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "860897107",
+    "put_call": "STOCK",
+    "issuer_name": "STITCH FIX INC",
+    "shares": 131606,
+    "value": 469833
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "87151X101",
+    "put_call": "STOCK",
+    "issuer_name": "SYMBOTIC INC",
+    "shares": 216010,
+    "value": 11087793
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "871607107",
+    "put_call": "STOCK",
+    "issuer_name": "SYNOPSYS INC",
+    "shares": 4921,
+    "value": 2533872
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "871607107",
+    "put_call": "STOCK",
+    "issuer_name": "SYNOPSYS INC",
+    "shares": 66851,
+    "value": 34422248
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "871607107",
+    "put_call": "STOCK",
+    "issuer_name": "SYNOPSYS INC",
+    "shares": 22276,
+    "value": 11470135
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "871607107",
+    "put_call": "STOCK",
+    "issuer_name": "SYNOPSYS INC",
+    "shares": 1010,
+    "value": 520059
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "874039100",
+    "put_call": "STOCK",
+    "issuer_name": "TAIWAN SEMICONDUCTOR MFG LTD",
+    "shares": 312466,
+    "value": 32496464
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "874080104",
+    "put_call": "STOCK",
+    "issuer_name": "TAL EDUCATION GROUP",
+    "shares": 1061714,
+    "value": 13409448
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "88034P109",
+    "put_call": "STOCK",
+    "issuer_name": "TENCENT MUSIC ENTMT GROUP",
+    "shares": 178670,
+    "value": 1609817
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "88160R101",
+    "put_call": "STOCK",
+    "issuer_name": "TESLA INC",
+    "shares": 463645,
+    "value": 115206510
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "88160R101",
+    "put_call": "STOCK",
+    "issuer_name": "TESLA INC",
+    "shares": 39400,
+    "value": 9790112
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "88160R101",
+    "put_call": "STOCK",
+    "issuer_name": "TESLA INC",
+    "shares": 125221,
+    "value": 31114914
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "88160R101",
+    "put_call": "STOCK",
+    "issuer_name": "TESLA INC",
+    "shares": 717834,
+    "value": 178367392
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "88160R101",
+    "put_call": "STOCK",
+    "issuer_name": "TESLA INC",
+    "shares": 2604226,
+    "value": 647098076
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "88160R101",
+    "put_call": "STOCK",
+    "issuer_name": "TESLA INC",
+    "shares": 106515,
+    "value": 26466847
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "89677Q107",
+    "put_call": "STOCK",
+    "issuer_name": "TRIP COM GROUP LTD",
+    "shares": 514396,
+    "value": 18523400
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "90353T100",
+    "put_call": "STOCK",
+    "issuer_name": "UBER TECHNOLOGIES INC",
+    "shares": 4041892,
+    "value": 248859290
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "H42097107",
+    "put_call": "STOCK",
+    "issuer_name": "UBS GROUP AG",
+    "shares": 446631,
+    "value": 13800898
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "H42097107",
+    "put_call": "STOCK",
+    "issuer_name": "UBS GROUP AG",
+    "shares": 1214370,
+    "value": 37524033
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "H42097107",
+    "put_call": "STOCK",
+    "issuer_name": "UBS GROUP AG",
+    "shares": 98981,
+    "value": 3058513
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "H42097107",
+    "put_call": "STOCK",
+    "issuer_name": "UBS GROUP AG",
+    "shares": 18341,
+    "value": 566737
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "90364P105",
+    "put_call": "STOCK",
+    "issuer_name": "UIPATH INC",
+    "shares": 2255011,
+    "value": 56014473
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "91324P102",
+    "put_call": "STOCK",
+    "issuer_name": "UNITEDHEALTH GROUP INC",
+    "shares": 45306,
+    "value": 23852250
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "91324P102",
+    "put_call": "STOCK",
+    "issuer_name": "UNITEDHEALTH GROUP INC",
+    "shares": 10002,
+    "value": 5265753
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "91324P102",
+    "put_call": "STOCK",
+    "issuer_name": "UNITEDHEALTH GROUP INC",
+    "shares": 3737,
+    "value": 1967418
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "91324P102",
+    "put_call": "STOCK",
+    "issuer_name": "UNITEDHEALTH GROUP INC",
+    "shares": 471339,
+    "value": 248145843
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "91680M107",
+    "put_call": "STOCK",
+    "issuer_name": "UPSTART HLDGS INC",
+    "shares": 684792,
+    "value": 27980601
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "92537N108",
+    "put_call": "STOCK",
+    "issuer_name": "VERTIV HOLDINGS CO",
+    "shares": 372040,
+    "value": 17869081
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "92537N108",
+    "put_call": "STOCK",
+    "issuer_name": "VERTIV HOLDINGS CO",
+    "shares": 82749,
+    "value": 3974434
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "92537N108",
+    "put_call": "STOCK",
+    "issuer_name": "VERTIV HOLDINGS CO",
+    "shares": 336236,
+    "value": 16149415
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "92537N108",
+    "put_call": "STOCK",
+    "issuer_name": "VERTIV HOLDINGS CO",
+    "shares": 3110613,
+    "value": 149402742
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "92537N108",
+    "put_call": "STOCK",
+    "issuer_name": "VERTIV HOLDINGS CO",
+    "shares": 1018953,
+    "value": 48940313
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "92537N108",
+    "put_call": "STOCK",
+    "issuer_name": "VERTIV HOLDINGS CO",
+    "shares": 8891257,
+    "value": 427047074
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "926400102",
+    "put_call": "STOCK",
+    "issuer_name": "VICTORIAS SECRET AND CO",
+    "shares": 446493,
+    "value": 11849924
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "98954M200",
+    "put_call": "STOCK",
+    "issuer_name": "ZILLOW GROUP INC",
+    "shares": 589700,
+    "value": 34120042
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "98954M101",
+    "put_call": "STOCK",
+    "issuer_name": "ZILLOW GROUP INC",
+    "shares": 185681,
+    "value": 10531826
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "98980F104",
+    "put_call": "STOCK",
+    "issuer_name": "ZOOMINFO TECHNOLOGIES INC",
+    "shares": 4969253,
+    "value": 91881488
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "98980F104",
+    "put_call": "STOCK",
+    "issuer_name": "ZOOMINFO TECHNOLOGIES INC",
+    "shares": 75199,
+    "value": 1390430
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "98980F104",
+    "put_call": "STOCK",
+    "issuer_name": "ZOOMINFO TECHNOLOGIES INC",
+    "shares": 1211624,
+    "value": 22402928
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "98980F104",
+    "put_call": "STOCK",
+    "issuer_name": "ZOOMINFO TECHNOLOGIES INC",
+    "shares": 267413,
+    "value": 4944466
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "98980A105",
+    "put_call": "STOCK",
+    "issuer_name": "ZTO EXPRESS CAYMAN INC",
+    "shares": 34741,
+    "value": 739288
+  }
+]

@@ -1,0 +1,232 @@
+[
+  {
+    "cik": "0001656456",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-14",
+    "cusip": "G0177J108",
+    "put_call": "STOCK",
+    "issuer_name": "ALLERGAN PLC",
+    "shares": 1150000,
+    "value": 153709
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-14",
+    "cusip": "020002101",
+    "put_call": "STOCK",
+    "issuer_name": "ALLSTATE CORP",
+    "shares": 607912,
+    "value": 50232
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-14",
+    "cusip": "02079K107",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 145600,
+    "value": 150785
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-14",
+    "cusip": "00162Q866",
+    "put_call": "STOCK",
+    "issuer_name": "ALPS ETF TR",
+    "shares": 7066871,
+    "value": 61694
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-14",
+    "cusip": "021346101",
+    "put_call": "STOCK",
+    "issuer_name": "ALTABA INC",
+    "shares": 2345000,
+    "value": 135869
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-14",
+    "cusip": "G0751N103",
+    "put_call": "STOCK",
+    "issuer_name": "ATLANTICA YIELD PLC",
+    "shares": 2997642,
+    "value": 58754
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-14",
+    "cusip": "060505104",
+    "put_call": "STOCK",
+    "issuer_name": "BANK AMER CORP",
+    "shares": 25000,
+    "value": 616
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-14",
+    "cusip": "127686103",
+    "put_call": "STOCK",
+    "issuer_name": "CAESARS ENTMT CORP",
+    "shares": 13272240,
+    "value": 90119
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-14",
+    "cusip": "127686AA1",
+    "put_call": "STOCK",
+    "issuer_name": "CAESARS ENTMT CORP",
+    "shares": 24408230,
+    "value": 30663
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-14",
+    "cusip": "16411R208",
+    "put_call": "STOCK",
+    "issuer_name": "CHENIERE ENERGY INC",
+    "shares": 586655,
+    "value": 34724
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-14",
+    "cusip": "29273V100",
+    "put_call": "STOCK",
+    "issuer_name": "ENERGY TRANSFER LP",
+    "shares": 7720664,
+    "value": 101990
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-14",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "FACEBOOK INC",
+    "shares": 1425000,
+    "value": 186803
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-14",
+    "cusip": "489170100",
+    "put_call": "STOCK",
+    "issuer_name": "KENNAMETAL INC",
+    "shares": 195709,
+    "value": 6513
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-14",
+    "cusip": "595112103",
+    "put_call": "STOCK",
+    "issuer_name": "MICRON TECHNOLOGY INC",
+    "shares": 16000000,
+    "value": 507680
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-14",
+    "cusip": "62482R107",
+    "put_call": "STOCK",
+    "issuer_name": "MR COOPER GROUP INC",
+    "shares": 4105997,
+    "value": 47917
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-14",
+    "cusip": "629377508",
+    "put_call": "STOCK",
+    "issuer_name": "NRG ENERGY INC",
+    "shares": 460969,
+    "value": 18254
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-14",
+    "cusip": "69331C108",
+    "put_call": "STOCK",
+    "issuer_name": "PG&amp;E CORP",
+    "shares": 6466049,
+    "value": 153569
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-14",
+    "cusip": "72766Q105",
+    "put_call": "STOCK",
+    "issuer_name": "PLATFORM SPECIALTY PRODS COR",
+    "shares": 264723,
+    "value": 2735
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-14",
+    "cusip": "872590104",
+    "put_call": "STOCK",
+    "issuer_name": "T MOBILE US INC",
+    "shares": 1038710,
+    "value": 66072
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-14",
+    "cusip": "88104R209",
+    "put_call": "STOCK",
+    "issuer_name": "TERRAFORM PWR INC",
+    "shares": 2681843,
+    "value": 30090
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-14",
+    "cusip": "91324P102",
+    "put_call": "STOCK",
+    "issuer_name": "UNITEDHEALTH GROUP INC",
+    "shares": 250000,
+    "value": 62280
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-14",
+    "cusip": "92840M102",
+    "put_call": "STOCK",
+    "issuer_name": "VISTRA ENERGY CORP",
+    "shares": 2532743,
+    "value": 57974
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-12-31",
+    "filing_date": "2019-02-14",
+    "cusip": "949746101",
+    "put_call": "STOCK",
+    "issuer_name": "WELLS FARGO CO NEW",
+    "shares": 300000,
+    "value": 13824
+  }
+]

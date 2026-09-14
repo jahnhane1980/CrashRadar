@@ -1,0 +1,1422 @@
+[
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "H00263105",
+    "put_call": "STOCK",
+    "issuer_name": "Ac Immune Sa",
+    "shares": 1000000,
+    "value": 8800
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "00461U105",
+    "put_call": "STOCK",
+    "issuer_name": "Aclaris Therapeutics Inc",
+    "shares": 838800,
+    "value": 22748
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "L00849106",
+    "put_call": "STOCK",
+    "issuer_name": "Adecoagro S A",
+    "shares": 80000,
+    "value": 799
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "L00849106",
+    "put_call": "STOCK",
+    "issuer_name": "Adecoagro S A",
+    "shares": 4905000,
+    "value": 49001
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "Adobe Sys Inc",
+    "shares": 721100,
+    "value": 101992
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "00751Y106",
+    "put_call": "STOCK",
+    "issuer_name": "Advance Auto Parts Inc",
+    "shares": 140300,
+    "value": 16358
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "00790T100",
+    "put_call": "STOCK",
+    "issuer_name": "Advanced Accelerator Applications Sa",
+    "shares": 134400,
+    "value": 5247
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "00817Y108",
+    "put_call": "STOCK",
+    "issuer_name": "Aetna Inc New",
+    "shares": 15000,
+    "value": 2277
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "01609W102",
+    "put_call": "STOCK",
+    "issuer_name": "Alibaba Group Hldg Ltd",
+    "shares": 1369897,
+    "value": 193018
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "G0177J108",
+    "put_call": "PUT",
+    "issuer_name": "Allergan Plc",
+    "shares": 50000,
+    "value": 12155
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "Alphabet Inc",
+    "shares": 280177,
+    "value": 260475
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "02079K305",
+    "put_call": "CALL",
+    "issuer_name": "Alphabet Inc",
+    "shares": 10000,
+    "value": 9297
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "021346101",
+    "put_call": "STOCK",
+    "issuer_name": "Altaba Inc",
+    "shares": 60000,
+    "value": 3269
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "Amazon Com Inc",
+    "shares": 455421,
+    "value": 440848
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "044186104",
+    "put_call": "STOCK",
+    "issuer_name": "Ashland Global Hldgs Inc",
+    "shares": 30000,
+    "value": 1977
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "052769106",
+    "put_call": "STOCK",
+    "issuer_name": "Autodesk Inc",
+    "shares": 3492900,
+    "value": 352154
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "05366U100",
+    "put_call": "STOCK",
+    "issuer_name": "Avexis Inc",
+    "shares": 544667,
+    "value": 44750
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "G0750W104",
+    "put_call": "STOCK",
+    "issuer_name": "Axovant Sciences Ltd",
+    "shares": 350200,
+    "value": 8121
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "05961W105",
+    "put_call": "STOCK",
+    "issuer_name": "Banco Macro Sa",
+    "shares": 827900,
+    "value": 76324
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "05961W105",
+    "put_call": "STOCK",
+    "issuer_name": "Banco Macro Sa",
+    "shares": 889900,
+    "value": 82040
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "060505104",
+    "put_call": "STOCK",
+    "issuer_name": "Bank Amer Corp",
+    "shares": 19575617,
+    "value": 474904
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "060505104",
+    "put_call": "CALL",
+    "issuer_name": "Bank Amer Corp",
+    "shares": 70000,
+    "value": 1698
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "09062X103",
+    "put_call": "STOCK",
+    "issuer_name": "Biogen Inc",
+    "shares": 155930,
+    "value": 42313
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "097023105",
+    "put_call": "STOCK",
+    "issuer_name": "Boeing Co",
+    "shares": 449500,
+    "value": 88889
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "110122108",
+    "put_call": "STOCK",
+    "issuer_name": "Bristol Myers Squibb Co",
+    "shares": 2159250,
+    "value": 120313
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "110122108",
+    "put_call": "CALL",
+    "issuer_name": "Bristol Myers Squibb Co",
+    "shares": 830000,
+    "value": 46248
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "Y09827109",
+    "put_call": "STOCK",
+    "issuer_name": "Broadcom Ltd",
+    "shares": 655545,
+    "value": 152775
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "05605H100",
+    "put_call": "STOCK",
+    "issuer_name": "Bwx Technologies Inc",
+    "shares": 170500,
+    "value": 8312
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "127097103",
+    "put_call": "STOCK",
+    "issuer_name": "Cabot Oil &amp; Gas Corp",
+    "shares": 18011889,
+    "value": 451738
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "12508E101",
+    "put_call": "STOCK",
+    "issuer_name": "Cdk Global Inc",
+    "shares": 206400,
+    "value": 12809
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "172967424",
+    "put_call": "STOCK",
+    "issuer_name": "Citigroup Inc",
+    "shares": 4804460,
+    "value": 321322
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "174610105",
+    "put_call": "STOCK",
+    "issuer_name": "Citizens Finl Group Inc",
+    "shares": 869154,
+    "value": 31011
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "189464100",
+    "put_call": "STOCK",
+    "issuer_name": "Clovis Oncology Inc",
+    "shares": 1995139,
+    "value": 186805
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "20030N101",
+    "put_call": "STOCK",
+    "issuer_name": "Comcast Corp New",
+    "shares": 9190138,
+    "value": 357680
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "20030N101",
+    "put_call": "CALL",
+    "issuer_name": "Comcast Corp New",
+    "shares": 200000,
+    "value": 7784
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "203668108",
+    "put_call": "STOCK",
+    "issuer_name": "Community Health Sys Inc New",
+    "shares": 1262600,
+    "value": 12575
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "205768302",
+    "put_call": "STOCK",
+    "issuer_name": "Comstock Res Inc",
+    "shares": 1215802,
+    "value": 8596
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "205768AN4",
+    "put_call": "STOCK",
+    "issuer_name": "Comstock Res Inc",
+    "shares": 20517179,
+    "value": 15948
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "205768AM6",
+    "put_call": "STOCK",
+    "issuer_name": "Comstock Res Inc",
+    "shares": 30325663,
+    "value": 23956
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "205768AN4",
+    "put_call": "STOCK",
+    "issuer_name": "Comstock Res Inc",
+    "shares": 4096937,
+    "value": 3185
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "205768AM6",
+    "put_call": "STOCK",
+    "issuer_name": "Comstock Res Inc",
+    "shares": 6079869,
+    "value": 4803
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "21036P108",
+    "put_call": "STOCK",
+    "issuer_name": "Constellation Brands Inc",
+    "shares": 11400,
+    "value": 2209
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "22822V101",
+    "put_call": "STOCK",
+    "issuer_name": "Crown Castle Intl Corp New",
+    "shares": 1879270,
+    "value": 188265
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "126408103",
+    "put_call": "STOCK",
+    "issuer_name": "Csx Corp",
+    "shares": 923395,
+    "value": 50380
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "23918K108",
+    "put_call": "STOCK",
+    "issuer_name": "Davita Inc",
+    "shares": 820855,
+    "value": 53159
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "244199105",
+    "put_call": "STOCK",
+    "issuer_name": "Deere &amp; Co",
+    "shares": 34500,
+    "value": 4264
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "247361702",
+    "put_call": "STOCK",
+    "issuer_name": "Delta Air Lines Inc Del",
+    "shares": 1988575,
+    "value": 106866
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "253393102",
+    "put_call": "STOCK",
+    "issuer_name": "Dicks Sporting Goods Inc",
+    "shares": 707200,
+    "value": 28168
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "260543103",
+    "put_call": "STOCK",
+    "issuer_name": "Dow Chem Co",
+    "shares": 3267597,
+    "value": 206087
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "260543103",
+    "put_call": "CALL",
+    "issuer_name": "Dow Chem Co",
+    "shares": 100000,
+    "value": 6307
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "263534109",
+    "put_call": "STOCK",
+    "issuer_name": "Du Pont E I De Nemours &amp; Co",
+    "shares": 40000,
+    "value": 3228
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "23355L106",
+    "put_call": "PUT",
+    "issuer_name": "Dxc Technology Co",
+    "shares": 25000,
+    "value": 1918
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "268158201",
+    "put_call": "STOCK",
+    "issuer_name": "Dynavax Technologies Corp",
+    "shares": 1400000,
+    "value": 13510
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "G29183103",
+    "put_call": "STOCK",
+    "issuer_name": "Eaton Corp Plc",
+    "shares": 1125100,
+    "value": 87567
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "285512109",
+    "put_call": "STOCK",
+    "issuer_name": "Electronic Arts Inc",
+    "shares": 1027960,
+    "value": 108676
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "29244A102",
+    "put_call": "STOCK",
+    "issuer_name": "Empresa Dist Y Comercial Nor",
+    "shares": 14874,
+    "value": 474
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "G30401106",
+    "put_call": "STOCK",
+    "issuer_name": "Endo Intl Plc",
+    "shares": 65000,
+    "value": 726
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "302491303",
+    "put_call": "STOCK",
+    "issuer_name": "F M C Corp",
+    "shares": 343800,
+    "value": 25115
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "Facebook Inc",
+    "shares": 2675179,
+    "value": 403899
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "31620R303",
+    "put_call": "STOCK",
+    "issuer_name": "Fidelity National Financial",
+    "shares": 758000,
+    "value": 33981
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "37890U108",
+    "put_call": "STOCK",
+    "issuer_name": "Global Blood Therapeutics In",
+    "shares": 280479,
+    "value": 7671
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "399909100",
+    "put_call": "STOCK",
+    "issuer_name": "Grupo Financiero Galicia S A",
+    "shares": 1092321,
+    "value": 46577
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "399909100",
+    "put_call": "STOCK",
+    "issuer_name": "Grupo Financiero Galicia S A",
+    "shares": 1336070,
+    "value": 56970
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "40054A108",
+    "put_call": "STOCK",
+    "issuer_name": "Grupo Supervielle S A",
+    "shares": 2334457,
+    "value": 42207
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "447011107",
+    "put_call": "STOCK",
+    "issuer_name": "Huntsman Corp",
+    "shares": 100000,
+    "value": 2584
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "451731103",
+    "put_call": "STOCK",
+    "issuer_name": "Ignyta Inc",
+    "shares": 580100,
+    "value": 6004
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "L5140P101",
+    "put_call": "STOCK",
+    "issuer_name": "Intelsat S A",
+    "shares": 3782000,
+    "value": 11573
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "450056106",
+    "put_call": "STOCK",
+    "issuer_name": "Irhythm Technologies Inc",
+    "shares": 522900,
+    "value": 22218
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "464287556",
+    "put_call": "STOCK",
+    "issuer_name": "Ishares Tr",
+    "shares": 3200,
+    "value": 992
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "464288513",
+    "put_call": "PUT",
+    "issuer_name": "Ishares Tr",
+    "shares": 212500,
+    "value": 18783
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "525327102",
+    "put_call": "STOCK",
+    "issuer_name": "Leidos Hldgs Inc",
+    "shares": 165100,
+    "value": 8534
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "548862101",
+    "put_call": "STOCK",
+    "issuer_name": "Loxo Oncology Inc",
+    "shares": 49800,
+    "value": 3993
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "N53745100",
+    "put_call": "STOCK",
+    "issuer_name": "Lyondellbasell Industries N",
+    "shares": 574700,
+    "value": 48499
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "584688105",
+    "put_call": "STOCK",
+    "issuer_name": "Medicines Co",
+    "shares": 1103966,
+    "value": 41962
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "58733R102",
+    "put_call": "STOCK",
+    "issuer_name": "Mercadolibre Inc",
+    "shares": 29500,
+    "value": 7401
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "552953101",
+    "put_call": "STOCK",
+    "issuer_name": "Mgm Resorts International",
+    "shares": 7649300,
+    "value": 239347
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "Microsoft Corp",
+    "shares": 2958000,
+    "value": 203895
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "61166W101",
+    "put_call": "STOCK",
+    "issuer_name": "Monsanto Co New",
+    "shares": 392500,
+    "value": 46456
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "61166W101",
+    "put_call": "CALL",
+    "issuer_name": "Monsanto Co New",
+    "shares": 11900,
+    "value": 1408
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "640268108",
+    "put_call": "STOCK",
+    "issuer_name": "Nektar Therapeutics",
+    "shares": 1731000,
+    "value": 33841
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "62913F508",
+    "put_call": "STOCK",
+    "issuer_name": "Nii Hldgs Inc",
+    "shares": 4653000,
+    "value": 3741
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "G6674U108",
+    "put_call": "STOCK",
+    "issuer_name": "Novocure Ltd",
+    "shares": 332000,
+    "value": 5744
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "N6596X109",
+    "put_call": "STOCK",
+    "issuer_name": "Nxp Semiconductors N V",
+    "shares": 45000,
+    "value": 4925
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "670851500",
+    "put_call": "STOCK",
+    "issuer_name": "Oi S A",
+    "shares": 3516580,
+    "value": 21240
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "68235M113",
+    "put_call": "STOCK",
+    "issuer_name": "Oncobiologics Inc",
+    "shares": 100000,
+    "value": 17
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "68235M121",
+    "put_call": "STOCK",
+    "issuer_name": "Oncobiologics Inc",
+    "shares": 100000,
+    "value": 9
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "695127100",
+    "put_call": "STOCK",
+    "issuer_name": "Pacira Pharmaceuticals Inc",
+    "shares": 571500,
+    "value": 27261
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "697660207",
+    "put_call": "STOCK",
+    "issuer_name": "Pampa Energia S A",
+    "shares": 2865306,
+    "value": 168623
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "697660207",
+    "put_call": "STOCK",
+    "issuer_name": "Pampa Energia S A",
+    "shares": 2199706,
+    "value": 129453
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "699462107",
+    "put_call": "STOCK",
+    "issuer_name": "Parexel Intl Corp",
+    "shares": 12500,
+    "value": 1086
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "704551100",
+    "put_call": "STOCK",
+    "issuer_name": "Peabody Energy Corp New",
+    "shares": 5076211,
+    "value": 124113
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "704551100",
+    "put_call": "STOCK",
+    "issuer_name": "Peabody Energy Corp New",
+    "shares": 981248,
+    "value": 23992
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "72348P104",
+    "put_call": "STOCK",
+    "issuer_name": "Pinnacle Foods Inc Del",
+    "shares": 40000,
+    "value": 2376
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "73935A104",
+    "put_call": "PUT",
+    "issuer_name": "Powershares Qqq Trust",
+    "shares": 881700,
+    "value": 121357
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "74005P104",
+    "put_call": "STOCK",
+    "issuer_name": "Praxair Inc",
+    "shares": 577000,
+    "value": 76481
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "741503403",
+    "put_call": "STOCK",
+    "issuer_name": "Priceline Grp Inc",
+    "shares": 5200,
+    "value": 9727
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "G72800108",
+    "put_call": "STOCK",
+    "issuer_name": "Prothena Corp Plc",
+    "shares": 272500,
+    "value": 14748
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "69370C100",
+    "put_call": "STOCK",
+    "issuer_name": "Ptc Inc",
+    "shares": 1428724,
+    "value": 78751
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "74587V107",
+    "put_call": "STOCK",
+    "issuer_name": "Puma Biotechnology Inc",
+    "shares": 605360,
+    "value": 52908
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "75886F107",
+    "put_call": "STOCK",
+    "issuer_name": "Regeneron Pharmaceuticals",
+    "shares": 159220,
+    "value": 78199
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "759916109",
+    "put_call": "STOCK",
+    "issuer_name": "Repligen Corp",
+    "shares": 289200,
+    "value": 11984
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "761330109",
+    "put_call": "STOCK",
+    "issuer_name": "Revance Therapeutics Inc",
+    "shares": 438200,
+    "value": 11568
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "761713106",
+    "put_call": "STOCK",
+    "issuer_name": "Reynolds American Inc",
+    "shares": 40000,
+    "value": 2602
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "762760106",
+    "put_call": "STOCK",
+    "issuer_name": "Rice Energy Inc",
+    "shares": 8521214,
+    "value": 226920
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "767754104",
+    "put_call": "STOCK",
+    "issuer_name": "Rite Aid Corp",
+    "shares": 75000,
+    "value": 221
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "774341101",
+    "put_call": "STOCK",
+    "issuer_name": "Rockwell Collins Inc",
+    "shares": 433900,
+    "value": 45594
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "780099CK1",
+    "put_call": "STOCK",
+    "issuer_name": "Royal Bk Of Scotland Plc",
+    "shares": 24100000,
+    "value": 26155
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "780097BB6",
+    "put_call": "STOCK",
+    "issuer_name": "Royal Bk Scotland Group Plc",
+    "shares": 11850000,
+    "value": 12912
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "79466L302",
+    "put_call": "CALL",
+    "issuer_name": "Salesforce Com Inc",
+    "shares": 19000,
+    "value": 1645
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "803607100",
+    "put_call": "STOCK",
+    "issuer_name": "Sarepta Therapeutics Inc",
+    "shares": 631922,
+    "value": 21302
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "78410G104",
+    "put_call": "STOCK",
+    "issuer_name": "Sba Communications Corp New",
+    "shares": 1105200,
+    "value": 149091
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "808513105",
+    "put_call": "STOCK",
+    "issuer_name": "Schwab Charles Corp New",
+    "shares": 419500,
+    "value": 18022
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "81369Y209",
+    "put_call": "CALL",
+    "issuer_name": "Select Sector Spdr Tr",
+    "shares": 100000,
+    "value": 7924
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "82481R106",
+    "put_call": "STOCK",
+    "issuer_name": "Shire Plc",
+    "shares": 6000,
+    "value": 992
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "844741108",
+    "put_call": "STOCK",
+    "issuer_name": "Southwest Airls Co",
+    "shares": 1465314,
+    "value": 91055
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "84652J103",
+    "put_call": "STOCK",
+    "issuer_name": "Spark Therapeutics Inc",
+    "shares": 43000,
+    "value": 2569
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "78462F103",
+    "put_call": "PUT",
+    "issuer_name": "Spdr S&amp;P 500 Etf Tr",
+    "shares": 308600,
+    "value": 74619
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "78462F103",
+    "put_call": "CALL",
+    "issuer_name": "Spdr S&amp;P 500 Etf Tr",
+    "shares": 878200,
+    "value": 212349
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "85207U105",
+    "put_call": "STOCK",
+    "issuer_name": "Sprint Corp",
+    "shares": 125000,
+    "value": 1026
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "85208M102",
+    "put_call": "STOCK",
+    "issuer_name": "Sprouts Fmrs Mkt Inc",
+    "shares": 1453659,
+    "value": 32954
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "862578101",
+    "put_call": "STOCK",
+    "issuer_name": "Straight Path Communicatns I",
+    "shares": 5000,
+    "value": 898
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "872590104",
+    "put_call": "STOCK",
+    "issuer_name": "T Mobile Us Inc",
+    "shares": 3012216,
+    "value": 182601
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "872590104",
+    "put_call": "CALL",
+    "issuer_name": "T Mobile Us Inc",
+    "shares": 100000,
+    "value": 6062
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "876664103",
+    "put_call": "STOCK",
+    "issuer_name": "Taubman Ctrs Inc",
+    "shares": 110700,
+    "value": 6592
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "881569107",
+    "put_call": "STOCK",
+    "issuer_name": "Tesaro Inc",
+    "shares": 614695,
+    "value": 85971
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "887317303",
+    "put_call": "STOCK",
+    "issuer_name": "Time Warner Inc",
+    "shares": 1140200,
+    "value": 114487
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "893870204",
+    "put_call": "STOCK",
+    "issuer_name": "Transportadora De Gas Sur",
+    "shares": 3731715,
+    "value": 61984
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "896047503",
+    "put_call": "STOCK",
+    "issuer_name": "Tribune Media Co",
+    "shares": 60000,
+    "value": 2446
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "903914208",
+    "put_call": "STOCK",
+    "issuer_name": "Ultra Petroleum Corp",
+    "shares": 4621938,
+    "value": 50148
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "903914208",
+    "put_call": "STOCK",
+    "issuer_name": "Ultra Petroleum Corp",
+    "shares": 628287,
+    "value": 6817
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "92047W101",
+    "put_call": "STOCK",
+    "issuer_name": "Valvoline Inc",
+    "shares": 45001,
+    "value": 1067
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "92220P105",
+    "put_call": "STOCK",
+    "issuer_name": "Varian Med Sys Inc",
+    "shares": 121200,
+    "value": 12507
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "92343V104",
+    "put_call": "CALL",
+    "issuer_name": "Verizon Communications Inc",
+    "shares": 200000,
+    "value": 8932
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "92532F100",
+    "put_call": "STOCK",
+    "issuer_name": "Vertex Pharmaceuticals Inc",
+    "shares": 81300,
+    "value": 10477
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "92532F100",
+    "put_call": "CALL",
+    "issuer_name": "Vertex Pharmaceuticals Inc",
+    "shares": 1000000,
+    "value": 128870
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "92826C839",
+    "put_call": "STOCK",
+    "issuer_name": "Visa Inc",
+    "shares": 39400,
+    "value": 3695
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "949746101",
+    "put_call": "STOCK",
+    "issuer_name": "Wells Fargo Co New",
+    "shares": 3915172,
+    "value": 216940
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "966837106",
+    "put_call": "STOCK",
+    "issuer_name": "Whole Foods Mkt Inc",
+    "shares": 50000,
+    "value": 2106
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "969457100",
+    "put_call": "STOCK",
+    "issuer_name": "Williams Cos Inc Del",
+    "shares": 3867500,
+    "value": 117108
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "98419M100",
+    "put_call": "STOCK",
+    "issuer_name": "Xylem Inc",
+    "shares": 615700,
+    "value": 34128
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "984245100",
+    "put_call": "STOCK",
+    "issuer_name": "Ypf Sociedad Anonima",
+    "shares": 757013,
+    "value": 16579
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-14",
+    "cusip": "98919V105",
+    "put_call": "STOCK",
+    "issuer_name": "Zayo Group Hldgs Inc",
+    "shares": 185900,
+    "value": 5744
+  }
+]

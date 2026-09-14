@@ -1,0 +1,112 @@
+[
+  {
+    "cik": "0001541617",
+    "report_date": "2023-03-31",
+    "filing_date": "2023-05-16",
+    "cusip": "20717M103",
+    "put_call": "STOCK",
+    "issuer_name": "CONFLUENT INC",
+    "shares": 14491817,
+    "value": 348818035
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2023-03-31",
+    "filing_date": "2023-05-16",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 1134900,
+    "value": 117723177
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2023-03-31",
+    "filing_date": "2023-05-16",
+    "cusip": "G0370L116",
+    "put_call": "STOCK",
+    "issuer_name": "GRAB HOLDINGS LIMITED",
+    "shares": 3502000,
+    "value": 1961120
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2023-03-31",
+    "filing_date": "2023-05-16",
+    "cusip": "37637K108",
+    "put_call": "STOCK",
+    "issuer_name": "GITLAB INC",
+    "shares": 611206,
+    "value": 20958254
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2023-03-31",
+    "filing_date": "2023-05-16",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "META PLATFORMS INC",
+    "shares": 2227876,
+    "value": 472176039
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2023-03-31",
+    "filing_date": "2023-05-16",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 1533135,
+    "value": 442002821
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2023-03-31",
+    "filing_date": "2023-05-16",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORPORATION",
+    "shares": 740570,
+    "value": 205708129
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2023-03-31",
+    "filing_date": "2023-05-16",
+    "cusip": "679295105",
+    "put_call": "STOCK",
+    "issuer_name": "OKTA INC",
+    "shares": 250000,
+    "value": 21560000
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2023-03-31",
+    "filing_date": "2023-05-16",
+    "cusip": "771049103",
+    "put_call": "STOCK",
+    "issuer_name": "ROBLOX CORP",
+    "shares": 2850000,
+    "value": 128193000
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2023-03-31",
+    "filing_date": "2023-05-16",
+    "cusip": "833445109",
+    "put_call": "STOCK",
+    "issuer_name": "SNOWFLAKE INC",
+    "shares": 15369459,
+    "value": 2371353829
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2023-03-31",
+    "filing_date": "2023-05-16",
+    "cusip": "90353T100",
+    "put_call": "STOCK",
+    "issuer_name": "UBER TECHNOLOGIES INC",
+    "shares": 13336600,
+    "value": 422770220
+  }
+]

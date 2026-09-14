@@ -1,0 +1,532 @@
+[
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "01609W102",
+    "put_call": "STOCK",
+    "issuer_name": "ALIBABA GROUP HLDG LTD",
+    "shares": 4052616,
+    "value": 743817
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "G0177J108",
+    "put_call": "STOCK",
+    "issuer_name": "ALLERGAN PLC",
+    "shares": 3700000,
+    "value": 622673
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "020002101",
+    "put_call": "STOCK",
+    "issuer_name": "ALLSTATE CORP",
+    "shares": 527833,
+    "value": 50039
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "02005N100",
+    "put_call": "STOCK",
+    "issuer_name": "ALLY FINL INC",
+    "shares": 7948145,
+    "value": 215792
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "02079K107",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 405847,
+    "value": 418749
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "00162Q866",
+    "put_call": "STOCK",
+    "issuer_name": "ALPS ETF TR",
+    "shares": 5068188,
+    "value": 47489
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "021346101",
+    "put_call": "STOCK",
+    "issuer_name": "ALTABA INC",
+    "shares": 8021000,
+    "value": 593875
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "038222105",
+    "put_call": "STOCK",
+    "issuer_name": "APPLIED MATLS INC",
+    "shares": 1570000,
+    "value": 87308
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "G0751N103",
+    "put_call": "STOCK",
+    "issuer_name": "ATLANTICA YIELD PLC",
+    "shares": 3832000,
+    "value": 75031
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "060505104",
+    "put_call": "STOCK",
+    "issuer_name": "BANK AMER CORP",
+    "shares": 10965513,
+    "value": 328856
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "101137107",
+    "put_call": "STOCK",
+    "issuer_name": "BOSTON SCIENTIFIC CORP",
+    "shares": 3910738,
+    "value": 106841
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "103304101",
+    "put_call": "STOCK",
+    "issuer_name": "BOYD GAMING CORP",
+    "shares": 1354896,
+    "value": 43167
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "127686103",
+    "put_call": "STOCK",
+    "issuer_name": "CAESARS ENTMT CORP",
+    "shares": 12655674,
+    "value": 142376
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "127686AA1",
+    "put_call": "STOCK",
+    "issuer_name": "CAESARS ENTMT CORP",
+    "shares": 48992834,
+    "value": 86836
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "15135B101",
+    "put_call": "STOCK",
+    "issuer_name": "CENTENE CORP DEL",
+    "shares": 1223717,
+    "value": 130779
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "16411R208",
+    "put_call": "STOCK",
+    "issuer_name": "CHENIERE ENERGY INC",
+    "shares": 919741,
+    "value": 49160
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "256677105",
+    "put_call": "STOCK",
+    "issuer_name": "DOLLAR GEN CORP NEW",
+    "shares": 1214776,
+    "value": 113642
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "29273V100",
+    "put_call": "STOCK",
+    "issuer_name": "ENERGY TRANSFER EQUITY L P",
+    "shares": 6291534,
+    "value": 89403
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "29278N103",
+    "put_call": "STOCK",
+    "issuer_name": "ENERGY TRANSFER PARTNERS LP",
+    "shares": 6687818,
+    "value": 108476
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "FACEBOOK INC",
+    "shares": 6210000,
+    "value": 992296
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "40412C101",
+    "put_call": "STOCK",
+    "issuer_name": "HCA HEALTHCARE INC",
+    "shares": 282884,
+    "value": 27440
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "447011107",
+    "put_call": "STOCK",
+    "issuer_name": "HUNTSMAN CORP",
+    "shares": 3736630,
+    "value": 109296
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "489170100",
+    "put_call": "STOCK",
+    "issuer_name": "KENNAMETAL INC",
+    "shares": 1887507,
+    "value": 75802
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "499049104",
+    "put_call": "STOCK",
+    "issuer_name": "KNIGHT SWIFT TRANSN HLDGS IN",
+    "shares": 950000,
+    "value": 43710
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "512807108",
+    "put_call": "STOCK",
+    "issuer_name": "LAM RESEARCH CORP",
+    "shares": 1295586,
+    "value": 263211
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "552953101",
+    "put_call": "STOCK",
+    "issuer_name": "MGM RESORTS INTERNATIONAL",
+    "shares": 4069504,
+    "value": 142514
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "595112103",
+    "put_call": "STOCK",
+    "issuer_name": "MICRON TECHNOLOGY INC",
+    "shares": 35405000,
+    "value": 1846017
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "629377508",
+    "put_call": "STOCK",
+    "issuer_name": "NRG ENERGY INC",
+    "shares": 6734603,
+    "value": 205607
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORP",
+    "shares": 150000,
+    "value": 34739
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "690742101",
+    "put_call": "STOCK",
+    "issuer_name": "OWENS CORNING NEW",
+    "shares": 1416704,
+    "value": 113903
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "704551100",
+    "put_call": "STOCK",
+    "issuer_name": "PEABODY ENERGY CORP NEW",
+    "shares": 591424,
+    "value": 21587
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "69331C108",
+    "put_call": "STOCK",
+    "issuer_name": "PG&amp;E CORP",
+    "shares": 1650000,
+    "value": 72485
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "72766Q105",
+    "put_call": "STOCK",
+    "issuer_name": "PLATFORM SPECIALTY PRODS COR",
+    "shares": 3798055,
+    "value": 36575
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "73935A104",
+    "put_call": "STOCK",
+    "issuer_name": "POWERSHARES QQQ TRUST",
+    "shares": 772225,
+    "value": 123656
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "81369Y506",
+    "put_call": "STOCK",
+    "issuer_name": "SELECT SECTOR SPDR TR",
+    "shares": 500000,
+    "value": 33705
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "81369Y605",
+    "put_call": "STOCK",
+    "issuer_name": "SELECT SECTOR SPDR TR",
+    "shares": 300000,
+    "value": 8271
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "78464A730",
+    "put_call": "STOCK",
+    "issuer_name": "SPDR SERIES TRUST",
+    "shares": 500000,
+    "value": 17610
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "863667101",
+    "put_call": "STOCK",
+    "issuer_name": "STRYKER CORP",
+    "shares": 371000,
+    "value": 59701
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "86614U100",
+    "put_call": "STOCK",
+    "issuer_name": "SUMMIT MATLS INC",
+    "shares": 2458806,
+    "value": 74453
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "872590104",
+    "put_call": "STOCK",
+    "issuer_name": "T MOBILE US INC",
+    "shares": 4150000,
+    "value": 253316
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "88104R209",
+    "put_call": "STOCK",
+    "issuer_name": "TERRAFORM PWR INC",
+    "shares": 4127600,
+    "value": 44289
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "883556102",
+    "put_call": "STOCK",
+    "issuer_name": "THERMO FISHER SCIENTIFIC INC",
+    "shares": 597000,
+    "value": 123257
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "H42097107",
+    "put_call": "STOCK",
+    "issuer_name": "UBS GROUP AG",
+    "shares": 6955399,
+    "value": 122461
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "910047109",
+    "put_call": "STOCK",
+    "issuer_name": "UNITED CONTL HLDGS INC",
+    "shares": 525289,
+    "value": 36492
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "911363109",
+    "put_call": "STOCK",
+    "issuer_name": "UNITED RENTALS INC",
+    "shares": 12913,
+    "value": 2230
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "91324P102",
+    "put_call": "STOCK",
+    "issuer_name": "UNITEDHEALTH GROUP INC",
+    "shares": 706589,
+    "value": 151210
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "92189F676",
+    "put_call": "STOCK",
+    "issuer_name": "VANECK VECTORS ETF TR",
+    "shares": 737000,
+    "value": 76854
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "G9329Z100",
+    "put_call": "STOCK",
+    "issuer_name": "VENATOR MATLS PLC",
+    "shares": 1787328,
+    "value": 32333
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "949746101",
+    "put_call": "STOCK",
+    "issuer_name": "WELLS FARGO CO NEW",
+    "shares": 2937615,
+    "value": 153960
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "958102105",
+    "put_call": "STOCK",
+    "issuer_name": "WESTERN DIGITAL CORP",
+    "shares": 500000,
+    "value": 46135
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "96949L105",
+    "put_call": "STOCK",
+    "issuer_name": "WILLIAMS PARTNERS L P NEW",
+    "shares": 2723404,
+    "value": 93767
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "92936P100",
+    "put_call": "STOCK",
+    "issuer_name": "WMIH CORP",
+    "shares": 3274234,
+    "value": 4649
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "983793100",
+    "put_call": "STOCK",
+    "issuer_name": "XPO LOGISTICS INC",
+    "shares": 2133070,
+    "value": 217168
+  }
+]

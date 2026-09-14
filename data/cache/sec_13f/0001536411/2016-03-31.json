@@ -1,0 +1,332 @@
+[
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "008474108",
+    "put_call": "STOCK",
+    "issuer_name": "Agnico Eagle Mines Ltd",
+    "shares": 434900,
+    "value": 15726
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "Alphabet Inc.",
+    "shares": 55700,
+    "value": 42494
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "Amazon.com Inc.",
+    "shares": 77200,
+    "value": 45829
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "025537101",
+    "put_call": "STOCK",
+    "issuer_name": "Am Elect Pwr Co Inc.",
+    "shares": 160200,
+    "value": 10637
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "067901108",
+    "put_call": "STOCK",
+    "issuer_name": "Barrick Gold Corp",
+    "shares": 1832600,
+    "value": 24887
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "149123101",
+    "put_call": "STOCK",
+    "issuer_name": "Caterpillar Inc.",
+    "shares": 330000,
+    "value": 25258
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "191216100",
+    "put_call": "STOCK",
+    "issuer_name": "Coca-Cola Co",
+    "shares": 1388900,
+    "value": 64431
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "209115104",
+    "put_call": "STOCK",
+    "issuer_name": "Consolidated Edison Inc.",
+    "shares": 141900,
+    "value": 10872
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "26441C204",
+    "put_call": "STOCK",
+    "issuer_name": "Duke Energy Corp",
+    "shares": 649100,
+    "value": 52369
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "291011104",
+    "put_call": "STOCK",
+    "issuer_name": "Emerson Electric Inc.",
+    "shares": 551000,
+    "value": 29963
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "Facebook Inc.",
+    "shares": 2023694,
+    "value": 230903
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "40415F101",
+    "put_call": "STOCK",
+    "issuer_name": "HDFC Bank Ltd.",
+    "shares": 125800,
+    "value": 7753
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "437076102",
+    "put_call": "STOCK",
+    "issuer_name": "Home Depot Inc.",
+    "shares": 150700,
+    "value": 20108
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "464287234",
+    "put_call": "STOCK",
+    "issuer_name": "IShrs MSCI Emg&apos;g Mkt Idx",
+    "shares": 2971000,
+    "value": 101757
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "47215P106",
+    "put_call": "STOCK",
+    "issuer_name": "JD.Com Inc.",
+    "shares": 356400,
+    "value": 9445
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "518439104",
+    "put_call": "STOCK",
+    "issuer_name": "The Estee Lauder Co Inc.",
+    "shares": 111900,
+    "value": 10553
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "580135101",
+    "put_call": "STOCK",
+    "issuer_name": "McDonald&apos;s Corp",
+    "shares": 158200,
+    "value": 19883
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "Microsoft Corp",
+    "shares": 517100,
+    "value": 28559
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "69351T106",
+    "put_call": "STOCK",
+    "issuer_name": "PPL Corp",
+    "shares": 974700,
+    "value": 37107
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "713448108",
+    "put_call": "STOCK",
+    "issuer_name": "Pepsico Inc.",
+    "shares": 353300,
+    "value": 36206
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "718172109",
+    "put_call": "STOCK",
+    "issuer_name": "Philip Morris Int&apos;l Inc.",
+    "shares": 554800,
+    "value": 54431
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "737446104",
+    "put_call": "STOCK",
+    "issuer_name": "Post Holdings Inc.",
+    "shares": 291200,
+    "value": 20026
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "74624M102",
+    "put_call": "STOCK",
+    "issuer_name": "Pure Storage Inc.",
+    "shares": 1984600,
+    "value": 27169
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "78463V907",
+    "put_call": "CALL",
+    "issuer_name": "SPDR Gold Trust",
+    "shares": 2016000,
+    "value": 237162
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "842587107",
+    "put_call": "STOCK",
+    "issuer_name": "Southern Co",
+    "shares": 1017400,
+    "value": 52630
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "844741108",
+    "put_call": "STOCK",
+    "issuer_name": "Southwest Airlines Co.",
+    "shares": 493000,
+    "value": 22086
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "88023U101",
+    "put_call": "STOCK",
+    "issuer_name": "Tempur Sealy Int&apos;l Inc.",
+    "shares": 125500,
+    "value": 7629
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "92343V104",
+    "put_call": "STOCK",
+    "issuer_name": "Verizon Comms Inc.",
+    "shares": 400000,
+    "value": 21632
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "92939U106",
+    "put_call": "STOCK",
+    "issuer_name": "WEC Energy Grp Inc.",
+    "shares": 178000,
+    "value": 10692
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "966244105",
+    "put_call": "STOCK",
+    "issuer_name": "WhiteWave Foods Co",
+    "shares": 364000,
+    "value": 14793
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "969457100",
+    "put_call": "STOCK",
+    "issuer_name": "Williams Co&apos;s Inc.",
+    "shares": 278400,
+    "value": 4474
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "98138H101",
+    "put_call": "STOCK",
+    "issuer_name": "Workday Inc.",
+    "shares": 259700,
+    "value": 19955
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-03-31",
+    "filing_date": "2016-05-16",
+    "cusip": "98978V103",
+    "put_call": "STOCK",
+    "issuer_name": "Zoetis Inc.",
+    "shares": 477900,
+    "value": 21185
+  }
+]

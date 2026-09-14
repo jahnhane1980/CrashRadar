@@ -1,0 +1,412 @@
+[
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "002824100",
+    "put_call": "STOCK",
+    "issuer_name": "Abbott Labs",
+    "shares": 1068000,
+    "value": 45166
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "00287Y109",
+    "put_call": "STOCK",
+    "issuer_name": "Abbvie Inc",
+    "shares": 1324920,
+    "value": 83563
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "H00263105",
+    "put_call": "STOCK",
+    "issuer_name": "Ac Immune Sa",
+    "shares": 1500000,
+    "value": 24705
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "00507V109",
+    "put_call": "STOCK",
+    "issuer_name": "Activision Blizzard Inc",
+    "shares": 748700,
+    "value": 33167
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "00846U101",
+    "put_call": "STOCK",
+    "issuer_name": "Agilent Technologies Inc",
+    "shares": 220300,
+    "value": 10374
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "008474108",
+    "put_call": "STOCK",
+    "issuer_name": "Agnico Eagle Mines Ltd",
+    "shares": 530800,
+    "value": 28759
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "008916108",
+    "put_call": "STOCK",
+    "issuer_name": "Agrium Inc",
+    "shares": 38974,
+    "value": 3535
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "01609W102",
+    "put_call": "STOCK",
+    "issuer_name": "Alibaba Group Hldg Ltd",
+    "shares": 470600,
+    "value": 49785
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "Alphabet Inc",
+    "shares": 25000,
+    "value": 20102
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "Amazon Com Inc",
+    "shares": 35800,
+    "value": 29976
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "038222105",
+    "put_call": "STOCK",
+    "issuer_name": "Applied Matls Inc",
+    "shares": 777500,
+    "value": 23442
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "060505104",
+    "put_call": "STOCK",
+    "issuer_name": "Bank Amer Corp",
+    "shares": 1579700,
+    "value": 24722
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "067901108",
+    "put_call": "STOCK",
+    "issuer_name": "Barrick Gold Corp",
+    "shares": 1832600,
+    "value": 32474
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "088606108",
+    "put_call": "STOCK",
+    "issuer_name": "Bhp Billiton Ltd",
+    "shares": 325000,
+    "value": 11261
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "Y09827109",
+    "put_call": "STOCK",
+    "issuer_name": "Broadcom Ltd",
+    "shares": 201900,
+    "value": 34832
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "26875P101",
+    "put_call": "STOCK",
+    "issuer_name": "Eog Res Inc",
+    "shares": 270300,
+    "value": 26141
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "Facebook Inc",
+    "shares": 187894,
+    "value": 24101
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "35671D857",
+    "put_call": "STOCK",
+    "issuer_name": "Freeport-Mcmoran Inc",
+    "shares": 4877000,
+    "value": 52964
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "369550108",
+    "put_call": "STOCK",
+    "issuer_name": "General Dynamics Corp",
+    "shares": 104900,
+    "value": 16276
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "40415F101",
+    "put_call": "STOCK",
+    "issuer_name": "Hdfc Bank Ltd",
+    "shares": 378600,
+    "value": 27218
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "458140100",
+    "put_call": "STOCK",
+    "issuer_name": "Intel Corp",
+    "shares": 547200,
+    "value": 20657
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "464287234",
+    "put_call": "STOCK",
+    "issuer_name": "Ishares Tr",
+    "shares": 4534600,
+    "value": 169821
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "464287556",
+    "put_call": "STOCK",
+    "issuer_name": "Ishares Tr",
+    "shares": 67800,
+    "value": 19580
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "48205A109",
+    "put_call": "STOCK",
+    "issuer_name": "Juno Therapeutics Inc",
+    "shares": 493000,
+    "value": 14795
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "512807108",
+    "put_call": "STOCK",
+    "issuer_name": "Lam Research Corp",
+    "shares": 169000,
+    "value": 16006
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "58933Y105",
+    "put_call": "STOCK",
+    "issuer_name": "Merck &amp; Co Inc",
+    "shares": 683800,
+    "value": 42676
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "595112103",
+    "put_call": "STOCK",
+    "issuer_name": "Micron Technology Inc",
+    "shares": 927200,
+    "value": 16486
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "Microsoft Corp",
+    "shares": 264700,
+    "value": 15247
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "640268108",
+    "put_call": "STOCK",
+    "issuer_name": "Nektar Therapeutics",
+    "shares": 572100,
+    "value": 9829
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "670346105",
+    "put_call": "STOCK",
+    "issuer_name": "Nucor Corp",
+    "shares": 201000,
+    "value": 9939
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "Nvidia Corp",
+    "shares": 223800,
+    "value": 15335
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "723787107",
+    "put_call": "STOCK",
+    "issuer_name": "Pioneer Nat Res Co",
+    "shares": 54400,
+    "value": 10099
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "693475105",
+    "put_call": "STOCK",
+    "issuer_name": "Pnc Finl Svcs Group Inc",
+    "shares": 69500,
+    "value": 6261
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "737446104",
+    "put_call": "STOCK",
+    "issuer_name": "Post Hldgs Inc",
+    "shares": 291200,
+    "value": 22472
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "741503403",
+    "put_call": "STOCK",
+    "issuer_name": "Priceline Grp Inc",
+    "shares": 13780,
+    "value": 20277
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "74624M102",
+    "put_call": "STOCK",
+    "issuer_name": "Pure Storage Inc",
+    "shares": 1984600,
+    "value": 26891
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "773903109",
+    "put_call": "STOCK",
+    "issuer_name": "Rockwell Automation Inc",
+    "shares": 130100,
+    "value": 15916
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "969457100",
+    "put_call": "STOCK",
+    "issuer_name": "Williams Cos Inc Del",
+    "shares": 278400,
+    "value": 8555
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "97717W422",
+    "put_call": "STOCK",
+    "issuer_name": "Wisdomtree Tr",
+    "shares": 952800,
+    "value": 20600
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "98138H101",
+    "put_call": "STOCK",
+    "issuer_name": "Workday Inc",
+    "shares": 239700,
+    "value": 21978
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2016-09-30",
+    "filing_date": "2016-11-14",
+    "cusip": "98978V103",
+    "put_call": "STOCK",
+    "issuer_name": "Zoetis Inc",
+    "shares": 477900,
+    "value": 24856
+  }
+]

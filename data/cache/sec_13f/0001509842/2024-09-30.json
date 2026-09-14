@@ -1,0 +1,532 @@
+[
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "L01800108",
+    "put_call": "STOCK",
+    "issuer_name": "ALVOTECH",
+    "shares": 756553,
+    "value": 9002981
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 281938,
+    "value": 52533508
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "03769M106",
+    "put_call": "CALL",
+    "issuer_name": "APOLLO GLOBAL MGMT INC",
+    "shares": 500000,
+    "value": 62455000
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "03769M106",
+    "put_call": "STOCK",
+    "issuer_name": "APOLLO GLOBAL MGMT INC",
+    "shares": 1180399,
+    "value": 147443639
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "03852U106",
+    "put_call": "STOCK",
+    "issuer_name": "ARAMARK",
+    "shares": 1142825,
+    "value": 44261612
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "049468101",
+    "put_call": "STOCK",
+    "issuer_name": "ATLASSIAN CORPORATION",
+    "shares": 192472,
+    "value": 30566478
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "052800109",
+    "put_call": "STOCK",
+    "issuer_name": "AUTOLIV INC",
+    "shares": 852287,
+    "value": 79578037
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "G0750C108",
+    "put_call": "STOCK",
+    "issuer_name": "AXALTA COATING SYS LTD",
+    "shares": 836064,
+    "value": 30257156
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "058934100",
+    "put_call": "STOCK",
+    "issuer_name": "BANCO BBVA ARGENTINA S A",
+    "shares": 1664893,
+    "value": 17264940
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "05961W105",
+    "put_call": "STOCK",
+    "issuer_name": "BANCO MACRO SA",
+    "shares": 270924,
+    "value": 17203674
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "060505104",
+    "put_call": "STOCK",
+    "issuer_name": "BANK AMERICA CORP",
+    "shares": 2454233,
+    "value": 97383965
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "071734107",
+    "put_call": "STOCK",
+    "issuer_name": "BAUSCH HEALTH COS INC",
+    "shares": 1560000,
+    "value": 12729600
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "071813109",
+    "put_call": "STOCK",
+    "issuer_name": "BAXTER INTL INC",
+    "shares": 762745,
+    "value": 28961428
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "07831C103",
+    "put_call": "STOCK",
+    "issuer_name": "BELLRING BRANDS INC",
+    "shares": 334347,
+    "value": 20301550
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "11135F101",
+    "put_call": "STOCK",
+    "issuer_name": "BROADCOM INC",
+    "shares": 652757,
+    "value": 112600583
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "13321L108",
+    "put_call": "STOCK",
+    "issuer_name": "CAMECO CORP",
+    "shares": 174360,
+    "value": 8327434
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "19247G107",
+    "put_call": "STOCK",
+    "issuer_name": "COHERENT CORP",
+    "shares": 2949175,
+    "value": 262211149
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "21874C102",
+    "put_call": "STOCK",
+    "issuer_name": "CORE &amp; MAIN INC",
+    "shares": 2252551,
+    "value": 100013264
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "22266T109",
+    "put_call": "CALL",
+    "issuer_name": "COUPANG INC",
+    "shares": 1500000,
+    "value": 36825000
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "22266T109",
+    "put_call": "STOCK",
+    "issuer_name": "COUPANG INC",
+    "shares": 12741339,
+    "value": 312799872
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "G25508105",
+    "put_call": "CALL",
+    "issuer_name": "CRH PLC",
+    "shares": 2000000,
+    "value": 185480000
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "G25508105",
+    "put_call": "STOCK",
+    "issuer_name": "CRH PLC",
+    "shares": 2579200,
+    "value": 239195008
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "25809K105",
+    "put_call": "STOCK",
+    "issuer_name": "DOORDASH INC",
+    "shares": 871263,
+    "value": 124355368
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "30212P303",
+    "put_call": "STOCK",
+    "issuer_name": "EXPEDIA GROUP INC",
+    "shares": 1033960,
+    "value": 153046759
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "G3643J108",
+    "put_call": "STOCK",
+    "issuer_name": "FLUTTER ENTMT PLC",
+    "shares": 717596,
+    "value": 170271179
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "G4124C109",
+    "put_call": "STOCK",
+    "issuer_name": "GRAB HOLDINGS LIMITED",
+    "shares": 6971499,
+    "value": 26491696
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "399909100",
+    "put_call": "STOCK",
+    "issuer_name": "GRUPO FINANCIERO GALICIA S.A",
+    "shares": 504169,
+    "value": 21220473
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "40054A108",
+    "put_call": "STOCK",
+    "issuer_name": "GRUPO SUPERVIELLE S.A.",
+    "shares": 473337,
+    "value": 3365426
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "452327109",
+    "put_call": "STOCK",
+    "issuer_name": "ILLUMINA INC",
+    "shares": 302281,
+    "value": 39420465
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "46428Q109",
+    "put_call": "CALL",
+    "issuer_name": "ISHARES SILVER TR",
+    "shares": 1000000,
+    "value": 28410000
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "48251W104",
+    "put_call": "STOCK",
+    "issuer_name": "KKR &amp; CO INC",
+    "shares": 907398,
+    "value": 118488031
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "531229748",
+    "put_call": "STOCK",
+    "issuer_name": "LIBERTY MEDIA CORP DEL",
+    "shares": 37820,
+    "value": 1872468
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "531229722",
+    "put_call": "STOCK",
+    "issuer_name": "LIBERTY MEDIA CORP DEL",
+    "shares": 81114,
+    "value": 4163582
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "538034109",
+    "put_call": "STOCK",
+    "issuer_name": "LIVE NATION ENTERTAINMENT IN",
+    "shares": 938554,
+    "value": 102762277
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "571903202",
+    "put_call": "STOCK",
+    "issuer_name": "MARRIOTT INTL INC NEW",
+    "shares": 395208,
+    "value": 98248709
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "573874104",
+    "put_call": "STOCK",
+    "issuer_name": "MARVELL TECHNOLOGY INC",
+    "shares": 2858082,
+    "value": 206124874
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 346688,
+    "value": 149179846
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "632307104",
+    "put_call": "STOCK",
+    "issuer_name": "NATERA INC",
+    "shares": 782538,
+    "value": 99343199
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "74275K108",
+    "put_call": "STOCK",
+    "issuer_name": "PROCORE TECHNOLOGIES INC",
+    "shares": 1317334,
+    "value": 81305854
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "G76279101",
+    "put_call": "STOCK",
+    "issuer_name": "ROIVANT SCIENCES LTD",
+    "shares": 4107852,
+    "value": 47404612
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "781154109",
+    "put_call": "STOCK",
+    "issuer_name": "RUBRIK INC.",
+    "shares": 1258656,
+    "value": 40465790
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "81369Y506",
+    "put_call": "PUT",
+    "issuer_name": "SELECT SECTOR SPDR TR",
+    "shares": 1700000,
+    "value": 149260000
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "78462F103",
+    "put_call": "PUT",
+    "issuer_name": "SPDR S&amp;P 500 ETF TR",
+    "shares": 2066600,
+    "value": 1185732416
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "78464A755",
+    "put_call": "STOCK",
+    "issuer_name": "SPDR SER TR",
+    "shares": 620252,
+    "value": 39522457
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "878742204",
+    "put_call": "STOCK",
+    "issuer_name": "TECK RESOURCES LTD",
+    "shares": 401347,
+    "value": 20966367
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "881624209",
+    "put_call": "CALL",
+    "issuer_name": "TEVA PHARMACEUTICAL INDS LTD",
+    "shares": 2500000,
+    "value": 45050000
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "881624209",
+    "put_call": "STOCK",
+    "issuer_name": "TEVA PHARMACEUTICAL INDS LTD",
+    "shares": 9758344,
+    "value": 175845359
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "92837L109",
+    "put_call": "STOCK",
+    "issuer_name": "VISTA ENERGY S.A.B. DE C.V.",
+    "shares": 256918,
+    "value": 11350637
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "92840M102",
+    "put_call": "STOCK",
+    "issuer_name": "VISTRA CORP",
+    "shares": 335948,
+    "value": 39823276
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "93627C101",
+    "put_call": "STOCK",
+    "issuer_name": "WARRIOR MET COAL INC",
+    "shares": 211707,
+    "value": 13528077
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "95082P105",
+    "put_call": "CALL",
+    "issuer_name": "WESCO INTL INC",
+    "shares": 995000,
+    "value": 167140100
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "95082P105",
+    "put_call": "STOCK",
+    "issuer_name": "WESCO INTL INC",
+    "shares": 1342986,
+    "value": 225594788
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2024-09-30",
+    "filing_date": "2024-11-14",
+    "cusip": "225447AD3",
+    "put_call": "STOCK",
+    "issuer_name": "WOLFSPEED INC",
+    "shares": 20000000,
+    "value": 14265000
+  }
+]

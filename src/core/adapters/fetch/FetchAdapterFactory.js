@@ -6,6 +6,7 @@ import { SqueezeMetricsFetchAdapter } from './SqueezeMetricsFetchAdapter.js';
 import { AaiiFetchAdapter } from './AaiiFetchAdapter.js';
 import { NaaimFetchAdapter } from './NaaimFetchAdapter.js';
 import { CalendarFetchAdapter } from './CalendarFetchAdapter.js';
+import { SecEdgar13FFetchAdapter } from './SecEdgar13FFetchAdapter.js';
 
 const adapters = {
   'YahooFinance': new YahooFinanceFetchAdapter(),
@@ -16,6 +17,7 @@ const adapters = {
   'AAII': new AaiiFetchAdapter(),
   'NAAIM': new NaaimFetchAdapter(),
   'Calendar': new CalendarFetchAdapter(),
+  'SecEdgar13F': new SecEdgar13FFetchAdapter(),
 };
 
 export class FetchAdapterFactory {

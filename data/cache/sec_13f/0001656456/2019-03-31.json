@@ -1,0 +1,242 @@
+[
+  {
+    "cik": "0001656456",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "ADOBE INC",
+    "shares": 100000,
+    "value": 26649
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "01609W102",
+    "put_call": "CALL",
+    "issuer_name": "ALIBABA GROUP HLDG LTD",
+    "shares": 300000,
+    "value": 54735
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "01609W102",
+    "put_call": "STOCK",
+    "issuer_name": "ALIBABA GROUP HLDG LTD",
+    "shares": 700000,
+    "value": 127715
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "G0177J108",
+    "put_call": "STOCK",
+    "issuer_name": "ALLERGAN PLC",
+    "shares": 3133864,
+    "value": 458829
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "02079K107",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 145000,
+    "value": 170130
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "00162Q866",
+    "put_call": "STOCK",
+    "issuer_name": "ALPS ETF TR",
+    "shares": 7500000,
+    "value": 75225
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "021346101",
+    "put_call": "STOCK",
+    "issuer_name": "ALTABA INC",
+    "shares": 2350000,
+    "value": 174182
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 165000,
+    "value": 293824
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "127686103",
+    "put_call": "STOCK",
+    "issuer_name": "CAESARS ENTMT CORP",
+    "shares": 13747240,
+    "value": 119464
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "127686AA1",
+    "put_call": "STOCK",
+    "issuer_name": "CAESARS ENTMT CORP",
+    "shares": 24408230,
+    "value": 35364
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "16411R208",
+    "put_call": "STOCK",
+    "issuer_name": "CHENIERE ENERGY INC",
+    "shares": 586655,
+    "value": 40104
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "18539C105",
+    "put_call": "STOCK",
+    "issuer_name": "CLEARWAY ENERGY INC",
+    "shares": 250000,
+    "value": 3635
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "18539C204",
+    "put_call": "STOCK",
+    "issuer_name": "CLEARWAY ENERGY INC",
+    "shares": 850000,
+    "value": 12844
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "29273V100",
+    "put_call": "STOCK",
+    "issuer_name": "ENERGY TRANSFER LP",
+    "shares": 6697763,
+    "value": 102945
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "FACEBOOK INC",
+    "shares": 2000000,
+    "value": 333380
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "595112103",
+    "put_call": "STOCK",
+    "issuer_name": "MICRON TECHNOLOGY INC",
+    "shares": 19250000,
+    "value": 795603
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "62482R107",
+    "put_call": "STOCK",
+    "issuer_name": "MR COOPER GROUP INC",
+    "shares": 2610000,
+    "value": 25030
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "69331C108",
+    "put_call": "STOCK",
+    "issuer_name": "PG&amp;E CORP",
+    "shares": 23099000,
+    "value": 411162
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "79466L302",
+    "put_call": "STOCK",
+    "issuer_name": "SALESFORCE COM INC",
+    "shares": 200000,
+    "value": 31674
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "81369Y506",
+    "put_call": "STOCK",
+    "issuer_name": "SELECT SECTOR SPDR TR",
+    "shares": 100000,
+    "value": 6612
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "78464A730",
+    "put_call": "STOCK",
+    "issuer_name": "SPDR SERIES TRUST",
+    "shares": 200000,
+    "value": 6148
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "872590104",
+    "put_call": "STOCK",
+    "issuer_name": "T MOBILE US INC",
+    "shares": 899548,
+    "value": 62159
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "91324P102",
+    "put_call": "STOCK",
+    "issuer_name": "UNITEDHEALTH GROUP INC",
+    "shares": 250000,
+    "value": 61815
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2019-03-31",
+    "filing_date": "2019-05-15",
+    "cusip": "92840M102",
+    "put_call": "STOCK",
+    "issuer_name": "VISTRA ENERGY CORP",
+    "shares": 2260970,
+    "value": 58853
+  }
+]

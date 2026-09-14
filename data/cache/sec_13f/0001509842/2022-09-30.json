@@ -1,0 +1,472 @@
+[
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "013872106",
+    "put_call": "STOCK",
+    "issuer_name": "ALCOA CORP",
+    "shares": 583963,
+    "value": 19656
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 2133019,
+    "value": 241031
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "03674X106",
+    "put_call": "STOCK",
+    "issuer_name": "ANTERO RESOURCES CORP",
+    "shares": 215472,
+    "value": 6578
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "038222105",
+    "put_call": "STOCK",
+    "issuer_name": "APPLIED MATLS INC",
+    "shares": 10517,
+    "value": 862
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "03852U106",
+    "put_call": "STOCK",
+    "issuer_name": "ARAMARK",
+    "shares": 1980991,
+    "value": 61807
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "165167735",
+    "put_call": "STOCK",
+    "issuer_name": "CHESAPEAKE ENERGY CORP",
+    "shares": 334851,
+    "value": 31546
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "185899101",
+    "put_call": "STOCK",
+    "issuer_name": "CLEVELAND-CLIFFS INC NEW",
+    "shares": 796425,
+    "value": 10728
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "20825C104",
+    "put_call": "STOCK",
+    "issuer_name": "CONOCOPHILLIPS",
+    "shares": 550671,
+    "value": 56356
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "21037T109",
+    "put_call": "STOCK",
+    "issuer_name": "CONSTELLATION ENERGY CORP",
+    "shares": 315690,
+    "value": 26262
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "24790A101",
+    "put_call": "STOCK",
+    "issuer_name": "DENBURY INC",
+    "shares": 117551,
+    "value": 10140
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "29355A107",
+    "put_call": "STOCK",
+    "issuer_name": "ENPHASE ENERGY INC",
+    "shares": 38620,
+    "value": 10716
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "26884L109",
+    "put_call": "STOCK",
+    "issuer_name": "EQT CORP",
+    "shares": 1041061,
+    "value": 42423
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "336433107",
+    "put_call": "STOCK",
+    "issuer_name": "FIRST SOLAR INC",
+    "shares": 128506,
+    "value": 16997
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "336433107",
+    "put_call": "CALL",
+    "issuer_name": "FIRST SOLAR INC",
+    "shares": 800000,
+    "value": 105816
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "42809H107",
+    "put_call": "STOCK",
+    "issuer_name": "HESS CORP",
+    "shares": 67360,
+    "value": 7342
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "45687V106",
+    "put_call": "STOCK",
+    "issuer_name": "INGERSOLL RAND INC",
+    "shares": 965108,
+    "value": 41751
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "502431109",
+    "put_call": "STOCK",
+    "issuer_name": "L3HARRIS TECHNOLOGIES INC",
+    "shares": 40425,
+    "value": 8402
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "539830109",
+    "put_call": "STOCK",
+    "issuer_name": "LOCKHEED MARTIN CORP",
+    "shares": 19126,
+    "value": 7388
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "565849106",
+    "put_call": "STOCK",
+    "issuer_name": "MARATHON OIL CORP",
+    "shares": 2861320,
+    "value": 64609
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 1285213,
+    "value": 299326
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "61945C103",
+    "put_call": "STOCK",
+    "issuer_name": "MOSAIC CO NEW",
+    "shares": 212777,
+    "value": 10284
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "644393100",
+    "put_call": "STOCK",
+    "issuer_name": "NEW FORTRESS ENERGY INC",
+    "shares": 172396,
+    "value": 7535
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "65339F101",
+    "put_call": "STOCK",
+    "issuer_name": "NEXTERA ENERGY INC",
+    "shares": 875772,
+    "value": 68669
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "666807102",
+    "put_call": "STOCK",
+    "issuer_name": "NORTHROP GRUMMAN CORP",
+    "shares": 173952,
+    "value": 81813
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "67077M108",
+    "put_call": "STOCK",
+    "issuer_name": "NUTRIEN LTD",
+    "shares": 321356,
+    "value": 26795
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "67077M108",
+    "put_call": "CALL",
+    "issuer_name": "NUTRIEN LTD",
+    "shares": 1000000,
+    "value": 83380
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "68389X105",
+    "put_call": "STOCK",
+    "issuer_name": "ORACLE CORP",
+    "shares": 1071970,
+    "value": 65465
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "697660207",
+    "put_call": "STOCK",
+    "issuer_name": "PAMPA ENERGIA S A",
+    "shares": 488920,
+    "value": 11133
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "73278L105",
+    "put_call": "PUT",
+    "issuer_name": "POOL CORP",
+    "shares": 200000,
+    "value": 63642
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "75513E101",
+    "put_call": "STOCK",
+    "issuer_name": "RAYTHEON TECHNOLOGIES CORP",
+    "shares": 219632,
+    "value": 17979
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "79466L302",
+    "put_call": "STOCK",
+    "issuer_name": "SALESFORCE INC",
+    "shares": 1263206,
+    "value": 181700
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "79589L106",
+    "put_call": "STOCK",
+    "issuer_name": "SAMSARA INC",
+    "shares": 5279098,
+    "value": 63719
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "806857108",
+    "put_call": "STOCK",
+    "issuer_name": "SCHLUMBERGER LTD",
+    "shares": 730697,
+    "value": 26232
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "81369Y506",
+    "put_call": "CALL",
+    "issuer_name": "SELECT SECTOR SPDR TR",
+    "shares": 4600000,
+    "value": 331292
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "81369Y209",
+    "put_call": "STOCK",
+    "issuer_name": "SELECT SECTOR SPDR TR",
+    "shares": 67708,
+    "value": 8200
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "78462F103",
+    "put_call": "PUT",
+    "issuer_name": "SPDR S&amp;P 500 ETF TR",
+    "shares": 1600000,
+    "value": 571488
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "78462F103",
+    "put_call": "CALL",
+    "issuer_name": "SPDR S&amp;P 500 ETF TR",
+    "shares": 2290000,
+    "value": 817942
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "78464A755",
+    "put_call": "CALL",
+    "issuer_name": "SPDR SER TR",
+    "shares": 1900000,
+    "value": 80731
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "78468R556",
+    "put_call": "CALL",
+    "issuer_name": "SPDR SER TR",
+    "shares": 1000000,
+    "value": 124720
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "86771W105",
+    "put_call": "STOCK",
+    "issuer_name": "SUNRUN INC",
+    "shares": 83778,
+    "value": 2311
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "872590104",
+    "put_call": "STOCK",
+    "issuer_name": "T-MOBILE US INC",
+    "shares": 2004027,
+    "value": 268880
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "G8994E103",
+    "put_call": "STOCK",
+    "issuer_name": "TRANE TECHNOLOGIES PLC",
+    "shares": 156855,
+    "value": 22714
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "912909108",
+    "put_call": "STOCK",
+    "issuer_name": "UNITED STATES STL CORP NEW",
+    "shares": 290793,
+    "value": 5269
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "92537N108",
+    "put_call": "STOCK",
+    "issuer_name": "VERTIV HOLDINGS CO",
+    "shares": 2460086,
+    "value": 23912
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "92840M102",
+    "put_call": "STOCK",
+    "issuer_name": "VISTRA CORP",
+    "shares": 1043766,
+    "value": 21919
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "969457100",
+    "put_call": "STOCK",
+    "issuer_name": "WILLIAMS COS INC",
+    "shares": 626764,
+    "value": 17944
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2022-09-30",
+    "filing_date": "2022-11-10",
+    "cusip": "971378104",
+    "put_call": "STOCK",
+    "issuer_name": "WILLSCOT MOBIL MINI HLDNG CO",
+    "shares": 1592978,
+    "value": 64245
+  }
+]

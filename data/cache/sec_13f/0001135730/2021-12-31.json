@@ -1,0 +1,1492 @@
+[
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "00091E109",
+    "put_call": "STOCK",
+    "issuer_name": "ABSCI CORPORATION",
+    "shares": 1483667,
+    "value": 12166
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "00507V109",
+    "put_call": "STOCK",
+    "issuer_name": "ACTIVISION BLIZZARD INC",
+    "shares": 665283,
+    "value": 44261
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "00507V109",
+    "put_call": "STOCK",
+    "issuer_name": "ACTIVISION BLIZZARD INC",
+    "shares": 234717,
+    "value": 15616
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "00827B106",
+    "put_call": "STOCK",
+    "issuer_name": "AFFIRM HLDGS INC",
+    "shares": 33040,
+    "value": 3323
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "00827B106",
+    "put_call": "STOCK",
+    "issuer_name": "AFFIRM HLDGS INC",
+    "shares": 706942,
+    "value": 71090
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "00827B106",
+    "put_call": "STOCK",
+    "issuer_name": "AFFIRM HLDGS INC",
+    "shares": 126838,
+    "value": 12755
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "00851L103",
+    "put_call": "STOCK",
+    "issuer_name": "AGORA INC",
+    "shares": 1095612,
+    "value": 17760
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "01609W102",
+    "put_call": "STOCK",
+    "issuer_name": "ALIBABA GROUP HLDG LTD",
+    "shares": 179657,
+    "value": 21341
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 49704,
+    "value": 165730
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 217644,
+    "value": 725699
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "03272L108",
+    "put_call": "STOCK",
+    "issuer_name": "ANAPLAN INC",
+    "shares": 2382943,
+    "value": 109258
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "03782L101",
+    "put_call": "STOCK",
+    "issuer_name": "APPIAN CORP",
+    "shares": 299180,
+    "value": 19510
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "038222105",
+    "put_call": "STOCK",
+    "issuer_name": "APPLIED MATLS INC",
+    "shares": 1216456,
+    "value": 191422
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "038222105",
+    "put_call": "STOCK",
+    "issuer_name": "APPLIED MATLS INC",
+    "shares": 672739,
+    "value": 105862
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "070830104",
+    "put_call": "STOCK",
+    "issuer_name": "BATH &amp; BODY WORKS INC",
+    "shares": 3214424,
+    "value": 224335
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "090043100",
+    "put_call": "STOCK",
+    "issuer_name": "BILL COM HLDGS INC",
+    "shares": 289074,
+    "value": 72023
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "09075V102",
+    "put_call": "STOCK",
+    "issuer_name": "BIONTECH SE",
+    "shares": 659041,
+    "value": 169901
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "09075V102",
+    "put_call": "STOCK",
+    "issuer_name": "BIONTECH SE",
+    "shares": 398620,
+    "value": 102764
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "09352U108",
+    "put_call": "STOCK",
+    "issuer_name": "BLEND LABS INC",
+    "shares": 2247219,
+    "value": 16495
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "09352U108",
+    "put_call": "STOCK",
+    "issuer_name": "BLEND LABS INC",
+    "shares": 8988881,
+    "value": 65978
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "852234103",
+    "put_call": "STOCK",
+    "issuer_name": "BLOCK INC",
+    "shares": 457555,
+    "value": 73900
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "852234103",
+    "put_call": "STOCK",
+    "issuer_name": "BLOCK INC",
+    "shares": 1939311,
+    "value": 313218
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "852234103",
+    "put_call": "STOCK",
+    "issuer_name": "BLOCK INC",
+    "shares": 323058,
+    "value": 52177
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "11135F101",
+    "put_call": "STOCK",
+    "issuer_name": "BROADCOM INC",
+    "shares": 317584,
+    "value": 211324
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "142038108",
+    "put_call": "STOCK",
+    "issuer_name": "CARIBOU BIOSCIENCES INC",
+    "shares": 557669,
+    "value": 8415
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "20717M103",
+    "put_call": "STOCK",
+    "issuer_name": "CONFLUENT INC",
+    "shares": 59131,
+    "value": 4508
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "20717M103",
+    "put_call": "STOCK",
+    "issuer_name": "CONFLUENT INC",
+    "shares": 244096,
+    "value": 18610
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "20717M103",
+    "put_call": "STOCK",
+    "issuer_name": "CONFLUENT INC",
+    "shares": 6168845,
+    "value": 470313
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "22788C105",
+    "put_call": "STOCK",
+    "issuer_name": "CROWDSTRIKE HLDGS INC",
+    "shares": 1096807,
+    "value": 224571
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "23804L103",
+    "put_call": "STOCK",
+    "issuer_name": "DATADOG INC",
+    "shares": 8776,
+    "value": 1563
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "23804L103",
+    "put_call": "STOCK",
+    "issuer_name": "DATADOG INC",
+    "shares": 53417,
+    "value": 9514
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "252131107",
+    "put_call": "STOCK",
+    "issuer_name": "DEXCOM INC",
+    "shares": 29586,
+    "value": 15886
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "23292E108",
+    "put_call": "STOCK",
+    "issuer_name": "DIDI GLOBAL INC",
+    "shares": 12016000,
+    "value": 59840
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "23292E108",
+    "put_call": "STOCK",
+    "issuer_name": "DIDI GLOBAL INC",
+    "shares": 9906676,
+    "value": 49335
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "23292E108",
+    "put_call": "STOCK",
+    "issuer_name": "DIDI GLOBAL INC",
+    "shares": 8625676,
+    "value": 42956
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "23292E108",
+    "put_call": "STOCK",
+    "issuer_name": "DIDI GLOBAL INC",
+    "shares": 9937344,
+    "value": 49488
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "25445D101",
+    "put_call": "STOCK",
+    "issuer_name": "DINGDONG CAYMAN LTD",
+    "shares": 7029666,
+    "value": 113670
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "254687106",
+    "put_call": "STOCK",
+    "issuer_name": "DISNEY WALT CO",
+    "shares": 4424272,
+    "value": 685275
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "254687106",
+    "put_call": "STOCK",
+    "issuer_name": "DISNEY WALT CO",
+    "shares": 1372467,
+    "value": 212581
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "25809K105",
+    "put_call": "STOCK",
+    "issuer_name": "DOORDASH INC",
+    "shares": 2167373,
+    "value": 322722
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "25809K105",
+    "put_call": "STOCK",
+    "issuer_name": "DOORDASH INC",
+    "shares": 765497,
+    "value": 113983
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "29260Y109",
+    "put_call": "STOCK",
+    "issuer_name": "ENDEAVOR GROUP HLDGS INC",
+    "shares": 14192450,
+    "value": 495175
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "29260Y109",
+    "put_call": "STOCK",
+    "issuer_name": "ENDEAVOR GROUP HLDGS INC",
+    "shares": 3669734,
+    "value": 128037
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "31188V100",
+    "put_call": "STOCK",
+    "issuer_name": "FASTLY INC",
+    "shares": 2633645,
+    "value": 93363
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "36118L106",
+    "put_call": "STOCK",
+    "issuer_name": "FUTU HLDGS LTD",
+    "shares": 196222,
+    "value": 8496
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "36118L106",
+    "put_call": "STOCK",
+    "issuer_name": "FUTU HLDGS LTD",
+    "shares": 315579,
+    "value": 13665
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "37637K108",
+    "put_call": "STOCK",
+    "issuer_name": "GITLAB INC",
+    "shares": 1885990,
+    "value": 164081
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "37637K108",
+    "put_call": "STOCK",
+    "issuer_name": "GITLAB INC",
+    "shares": 65933,
+    "value": 5736
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "37940X102",
+    "put_call": "STOCK",
+    "issuer_name": "GLOBAL PMTS INC",
+    "shares": 1293332,
+    "value": 174833
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "40131M109",
+    "put_call": "STOCK",
+    "issuer_name": "GUARDANT HEALTH INC",
+    "shares": 165691,
+    "value": 16572
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "40131M109",
+    "put_call": "STOCK",
+    "issuer_name": "GUARDANT HEALTH INC",
+    "shares": 95912,
+    "value": 9593
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "42806J148",
+    "put_call": "STOCK",
+    "issuer_name": "HERTZ GLOBAL HLDGS INC",
+    "shares": 508063,
+    "value": 8104
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "443573100",
+    "put_call": "STOCK",
+    "issuer_name": "HUBSPOT INC",
+    "shares": 43016,
+    "value": 28354
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "443573100",
+    "put_call": "STOCK",
+    "issuer_name": "HUBSPOT INC",
+    "shares": 24507,
+    "value": 16154
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "45784P101",
+    "put_call": "STOCK",
+    "issuer_name": "INSULET CORP",
+    "shares": 157644,
+    "value": 41944
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "45784P101",
+    "put_call": "STOCK",
+    "issuer_name": "INSULET CORP",
+    "shares": 348053,
+    "value": 92606
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "45826J105",
+    "put_call": "STOCK",
+    "issuer_name": "INTELLIA THERAPEUTICS INC",
+    "shares": 101762,
+    "value": 12032
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "47215P106",
+    "put_call": "STOCK",
+    "issuer_name": "JD.COM INC",
+    "shares": 935587,
+    "value": 65557
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "47215P106",
+    "put_call": "STOCK",
+    "issuer_name": "JD.COM INC",
+    "shares": 5811420,
+    "value": 407206
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "47215P106",
+    "put_call": "STOCK",
+    "issuer_name": "JD.COM INC",
+    "shares": 398577,
+    "value": 27928
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "48553T106",
+    "put_call": "STOCK",
+    "issuer_name": "KANZHUN LIMITED",
+    "shares": 110661,
+    "value": 3860
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "48553T106",
+    "put_call": "STOCK",
+    "issuer_name": "KANZHUN LIMITED",
+    "shares": 2061426,
+    "value": 71903
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "48553T106",
+    "put_call": "STOCK",
+    "issuer_name": "KANZHUN LIMITED",
+    "shares": 19982926,
+    "value": 697004
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "48553T106",
+    "put_call": "STOCK",
+    "issuer_name": "KANZHUN LIMITED",
+    "shares": 169693,
+    "value": 5919
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "48553T106",
+    "put_call": "STOCK",
+    "issuer_name": "KANZHUN LIMITED",
+    "shares": 749926,
+    "value": 26157
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "482497104",
+    "put_call": "STOCK",
+    "issuer_name": "KE HLDGS INC",
+    "shares": 1844630,
+    "value": 37114
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "482497104",
+    "put_call": "STOCK",
+    "issuer_name": "KE HLDGS INC",
+    "shares": 9070410,
+    "value": 182497
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "482497104",
+    "put_call": "STOCK",
+    "issuer_name": "KE HLDGS INC",
+    "shares": 1156822,
+    "value": 23275
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "512807108",
+    "put_call": "STOCK",
+    "issuer_name": "LAM RESEARCH CORP",
+    "shares": 662364,
+    "value": 476339
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "512807108",
+    "put_call": "STOCK",
+    "issuer_name": "LAM RESEARCH CORP",
+    "shares": 197661,
+    "value": 142148
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "50202M102",
+    "put_call": "STOCK",
+    "issuer_name": "LI AUTO INC",
+    "shares": 2418246,
+    "value": 77626
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "53229C107",
+    "put_call": "STOCK",
+    "issuer_name": "LIGHTSPEED COMMERCE INC",
+    "shares": 248572,
+    "value": 10050
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "57142B104",
+    "put_call": "STOCK",
+    "issuer_name": "MARQETA INC",
+    "shares": 315121,
+    "value": 5411
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "57636Q104",
+    "put_call": "STOCK",
+    "issuer_name": "MASTERCARD INCORPORATED",
+    "shares": 172339,
+    "value": 61925
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "57636Q104",
+    "put_call": "STOCK",
+    "issuer_name": "MASTERCARD INCORPORATED",
+    "shares": 605169,
+    "value": 217449
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "META PLATFORMS INC",
+    "shares": 1888584,
+    "value": 635225
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "META PLATFORMS INC",
+    "shares": 477831,
+    "value": 160718
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 1454392,
+    "value": 489141
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 514832,
+    "value": 173148
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "60770K107",
+    "put_call": "STOCK",
+    "issuer_name": "MODERNA INC",
+    "shares": 3615072,
+    "value": 918156
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "60770K107",
+    "put_call": "STOCK",
+    "issuer_name": "MODERNA INC",
+    "shares": 671931,
+    "value": 170657
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "G5709C117",
+    "put_call": "STOCK",
+    "issuer_name": "MSD ACQUISITION CORP",
+    "shares": 210802,
+    "value": 2142
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "G5709C117",
+    "put_call": "STOCK",
+    "issuer_name": "MSD ACQUISITION CORP",
+    "shares": 53047,
+    "value": 539
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "NETFLIX INC",
+    "shares": 18568,
+    "value": 11186
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "NETFLIX INC",
+    "shares": 912684,
+    "value": 549837
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "654110105",
+    "put_call": "STOCK",
+    "issuer_name": "NIKOLA CORP",
+    "shares": 7389005,
+    "value": 72929
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORPORATION",
+    "shares": 797924,
+    "value": 234677
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORPORATION",
+    "shares": 384336,
+    "value": 113037
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "687793109",
+    "put_call": "STOCK",
+    "issuer_name": "OSCAR HEALTH INC",
+    "shares": 964585,
+    "value": 7572
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "70450Y103",
+    "put_call": "STOCK",
+    "issuer_name": "PAYPAL HLDGS INC",
+    "shares": 2441787,
+    "value": 460472
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "70450Y103",
+    "put_call": "STOCK",
+    "issuer_name": "PAYPAL HLDGS INC",
+    "shares": 156799,
+    "value": 29569
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "70614W100",
+    "put_call": "STOCK",
+    "issuer_name": "PELOTON INTERACTIVE INC",
+    "shares": 436656,
+    "value": 15615
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "717081103",
+    "put_call": "STOCK",
+    "issuer_name": "PFIZER INC",
+    "shares": 2868902,
+    "value": 169409
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "717081103",
+    "put_call": "STOCK",
+    "issuer_name": "PFIZER INC",
+    "shares": 7443015,
+    "value": 439510
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "722304102",
+    "put_call": "STOCK",
+    "issuer_name": "PINDUODUO INC",
+    "shares": 132971,
+    "value": 7752
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "72352L106",
+    "put_call": "STOCK",
+    "issuer_name": "PINTEREST INC",
+    "shares": 294409,
+    "value": 10702
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "72352L106",
+    "put_call": "STOCK",
+    "issuer_name": "PINTEREST INC",
+    "shares": 897680,
+    "value": 32631
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "74767V109",
+    "put_call": "STOCK",
+    "issuer_name": "QUANTUMSCAPE CORP",
+    "shares": 672447,
+    "value": 14922
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "G7552B121",
+    "put_call": "STOCK",
+    "issuer_name": "RIBBIT LEAP LTD",
+    "shares": 1830000,
+    "value": 18190
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "76954A103",
+    "put_call": "STOCK",
+    "issuer_name": "RIVIAN AUTOMOTIVE INC",
+    "shares": 9497966,
+    "value": 984844
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "76954A103",
+    "put_call": "STOCK",
+    "issuer_name": "RIVIAN AUTOMOTIVE INC",
+    "shares": 9169483,
+    "value": 950784
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "76954A103",
+    "put_call": "STOCK",
+    "issuer_name": "RIVIAN AUTOMOTIVE INC",
+    "shares": 4584741,
+    "value": 475392
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "76954A103",
+    "put_call": "STOCK",
+    "issuer_name": "RIVIAN AUTOMOTIVE INC",
+    "shares": 1179968,
+    "value": 122351
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "76954A103",
+    "put_call": "STOCK",
+    "issuer_name": "RIVIAN AUTOMOTIVE INC",
+    "shares": 10794143,
+    "value": 1119245
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "771049103",
+    "put_call": "STOCK",
+    "issuer_name": "ROBLOX CORP",
+    "shares": 1417014,
+    "value": 146179
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "771049103",
+    "put_call": "STOCK",
+    "issuer_name": "ROBLOX CORP",
+    "shares": 1546207,
+    "value": 159507
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "81141R100",
+    "put_call": "STOCK",
+    "issuer_name": "SEA LTD",
+    "shares": 412004,
+    "value": 92169
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "81141R100",
+    "put_call": "STOCK",
+    "issuer_name": "SEA LTD",
+    "shares": 1631650,
+    "value": 365016
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "81141R100",
+    "put_call": "STOCK",
+    "issuer_name": "SEA LTD",
+    "shares": 142650,
+    "value": 31912
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "82509L107",
+    "put_call": "STOCK",
+    "issuer_name": "SHOPIFY INC",
+    "shares": 50265,
+    "value": 69235
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "82509L107",
+    "put_call": "STOCK",
+    "issuer_name": "SHOPIFY INC",
+    "shares": 163281,
+    "value": 224902
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "82509L107",
+    "put_call": "STOCK",
+    "issuer_name": "SHOPIFY INC",
+    "shares": 19944,
+    "value": 27471
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "82933R100",
+    "put_call": "STOCK",
+    "issuer_name": "SINGULAR GENOMICS SYSTEMS IN",
+    "shares": 2119614,
+    "value": 24503
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "83304A106",
+    "put_call": "STOCK",
+    "issuer_name": "SNAP INC",
+    "shares": 1265369,
+    "value": 59510
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "83304A106",
+    "put_call": "STOCK",
+    "issuer_name": "SNAP INC",
+    "shares": 1153973,
+    "value": 54271
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "833445109",
+    "put_call": "STOCK",
+    "issuer_name": "SNOWFLAKE INC",
+    "shares": 95625,
+    "value": 32393
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "833445109",
+    "put_call": "STOCK",
+    "issuer_name": "SNOWFLAKE INC",
+    "shares": 332401,
+    "value": 112601
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "833445109",
+    "put_call": "STOCK",
+    "issuer_name": "SNOWFLAKE INC",
+    "shares": 1668347,
+    "value": 565153
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "860897107",
+    "put_call": "STOCK",
+    "issuer_name": "STITCH FIX INC",
+    "shares": 119860,
+    "value": 2268
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "860897107",
+    "put_call": "STOCK",
+    "issuer_name": "STITCH FIX INC",
+    "shares": 280890,
+    "value": 5314
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "86738J106",
+    "put_call": "STOCK",
+    "issuer_name": "SUNLIGHT FINANCIAL HOLDINGS",
+    "shares": 2795237,
+    "value": 13361
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "86771W105",
+    "put_call": "STOCK",
+    "issuer_name": "SUNRUN INC",
+    "shares": 477239,
+    "value": 16369
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "86771W105",
+    "put_call": "STOCK",
+    "issuer_name": "SUNRUN INC",
+    "shares": 3195607,
+    "value": 109609
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "86771W105",
+    "put_call": "STOCK",
+    "issuer_name": "SUNRUN INC",
+    "shares": 288136,
+    "value": 9883
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "874039100",
+    "put_call": "STOCK",
+    "issuer_name": "TAIWAN SEMICONDUCTOR MFG LTD",
+    "shares": 317552,
+    "value": 38205
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "874039100",
+    "put_call": "STOCK",
+    "issuer_name": "TAIWAN SEMICONDUCTOR MFG LTD",
+    "shares": 508061,
+    "value": 61125
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "874039100",
+    "put_call": "STOCK",
+    "issuer_name": "TAIWAN SEMICONDUCTOR MFG LTD",
+    "shares": 32664,
+    "value": 3930
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "88160R101",
+    "put_call": "STOCK",
+    "issuer_name": "TESLA INC",
+    "shares": 962091,
+    "value": 1016719
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "88160R101",
+    "put_call": "STOCK",
+    "issuer_name": "TESLA INC",
+    "shares": 253391,
+    "value": 267779
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "88160R101",
+    "put_call": "STOCK",
+    "issuer_name": "TESLA INC",
+    "shares": 263586,
+    "value": 278552
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "888787108",
+    "put_call": "STOCK",
+    "issuer_name": "TOAST INC",
+    "shares": 103694,
+    "value": 3599
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "888787108",
+    "put_call": "STOCK",
+    "issuer_name": "TOAST INC",
+    "shares": 238255,
+    "value": 8270
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "89677Q107",
+    "put_call": "STOCK",
+    "issuer_name": "TRIP COM GROUP LTD",
+    "shares": 160231,
+    "value": 3945
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "90138F102",
+    "put_call": "STOCK",
+    "issuer_name": "TWILIO INC",
+    "shares": 3985,
+    "value": 1049
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "90138F102",
+    "put_call": "STOCK",
+    "issuer_name": "TWILIO INC",
+    "shares": 13624,
+    "value": 3588
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "90184L102",
+    "put_call": "STOCK",
+    "issuer_name": "TWITTER INC",
+    "shares": 34753,
+    "value": 1502
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "90353T100",
+    "put_call": "STOCK",
+    "issuer_name": "UBER TECHNOLOGIES INC",
+    "shares": 3086170,
+    "value": 129403
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "90353T100",
+    "put_call": "STOCK",
+    "issuer_name": "UBER TECHNOLOGIES INC",
+    "shares": 2828627,
+    "value": 118604
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "92556H206",
+    "put_call": "STOCK",
+    "issuer_name": "VIACOMCBS INC",
+    "shares": 855209,
+    "value": 25810
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "926400102",
+    "put_call": "STOCK",
+    "issuer_name": "VICTORIAS SECRET AND CO",
+    "shares": 1071472,
+    "value": 59510
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "92826C839",
+    "put_call": "STOCK",
+    "issuer_name": "VISA INC",
+    "shares": 486252,
+    "value": 105376
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "92826C839",
+    "put_call": "STOCK",
+    "issuer_name": "VISA INC",
+    "shares": 1760433,
+    "value": 381503
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "98422D105",
+    "put_call": "STOCK",
+    "issuer_name": "XPENG INC",
+    "shares": 3459808,
+    "value": 174132
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "98954M101",
+    "put_call": "STOCK",
+    "issuer_name": "ZILLOW GROUP INC",
+    "shares": 118167,
+    "value": 7352
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "98954M200",
+    "put_call": "STOCK",
+    "issuer_name": "ZILLOW GROUP INC",
+    "shares": 1239409,
+    "value": 79136
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "98954M200",
+    "put_call": "STOCK",
+    "issuer_name": "ZILLOW GROUP INC",
+    "shares": 64920,
+    "value": 4145
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "98954M101",
+    "put_call": "STOCK",
+    "issuer_name": "ZILLOW GROUP INC",
+    "shares": 354712,
+    "value": 22070
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "98980L101",
+    "put_call": "STOCK",
+    "issuer_name": "ZOOM VIDEO COMMUNICATIONS IN",
+    "shares": 812066,
+    "value": 149347
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2021-12-31",
+    "filing_date": "2022-02-14",
+    "cusip": "98980L101",
+    "put_call": "STOCK",
+    "issuer_name": "ZOOM VIDEO COMMUNICATIONS IN",
+    "shares": 138586,
+    "value": 25487
+  }
+]

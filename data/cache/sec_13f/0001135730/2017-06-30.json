@@ -1,0 +1,772 @@
+[
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "88554D205",
+    "put_call": "STOCK",
+    "issuer_name": "3-D SYS CORP DEL",
+    "shares": 961067,
+    "value": 17972
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "00401C108",
+    "put_call": "STOCK",
+    "issuer_name": "ACACIA COMMUNICATIONS INC",
+    "shares": 61864,
+    "value": 2566
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "00507V109",
+    "put_call": "STOCK",
+    "issuer_name": "ACTIVISION BLIZZARD INC",
+    "shares": 962122,
+    "value": 55389
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "00507V109",
+    "put_call": "STOCK",
+    "issuer_name": "ACTIVISION BLIZZARD INC",
+    "shares": 10948648,
+    "value": 630314
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "01609W102",
+    "put_call": "STOCK",
+    "issuer_name": "ALIBABA GROUP HLDG LTD",
+    "shares": 389436,
+    "value": 54872
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "01609W102",
+    "put_call": "STOCK",
+    "issuer_name": "ALIBABA GROUP HLDG LTD",
+    "shares": 4846183,
+    "value": 682827
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "01748X102",
+    "put_call": "STOCK",
+    "issuer_name": "ALLEGIANT TRAVEL CO",
+    "shares": 66530,
+    "value": 9021
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 19220,
+    "value": 17868
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 121757,
+    "value": 113195
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "02079K107",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 50558,
+    "value": 45944
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "02079K107",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 357290,
+    "value": 324680
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 27466,
+    "value": 26587
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 369389,
+    "value": 357569
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "03027X100",
+    "put_call": "STOCK",
+    "issuer_name": "AMERICAN TOWER CORP NEW",
+    "shares": 93305,
+    "value": 12346
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "03027X100",
+    "put_call": "STOCK",
+    "issuer_name": "AMERICAN TOWER CORP NEW",
+    "shares": 964056,
+    "value": 127564
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "037833100",
+    "put_call": "STOCK",
+    "issuer_name": "APPLE INC",
+    "shares": 194547,
+    "value": 28019
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "037833100",
+    "put_call": "STOCK",
+    "issuer_name": "APPLE INC",
+    "shares": 2700142,
+    "value": 388874
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "060505104",
+    "put_call": "STOCK",
+    "issuer_name": "BANK AMER CORP",
+    "shares": 13852992,
+    "value": 336074
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "Y09827109",
+    "put_call": "STOCK",
+    "issuer_name": "BROADCOM LTD",
+    "shares": 211124,
+    "value": 49202
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "Y09827109",
+    "put_call": "STOCK",
+    "issuer_name": "BROADCOM LTD",
+    "shares": 2703094,
+    "value": 629956
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "163075104",
+    "put_call": "STOCK",
+    "issuer_name": "CHEETAH MOBILE INC",
+    "shares": 510803,
+    "value": 5506
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "192422103",
+    "put_call": "STOCK",
+    "issuer_name": "COGNEX CORP",
+    "shares": 78664,
+    "value": 6679
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "192422103",
+    "put_call": "STOCK",
+    "issuer_name": "COGNEX CORP",
+    "shares": 946821,
+    "value": 80385
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "254687106",
+    "put_call": "STOCK",
+    "issuer_name": "DISNEY WALT CO",
+    "shares": 138278,
+    "value": 14692
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "254687106",
+    "put_call": "STOCK",
+    "issuer_name": "DISNEY WALT CO",
+    "shares": 2080100,
+    "value": 221011
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "278642103",
+    "put_call": "STOCK",
+    "issuer_name": "EBAY INC",
+    "shares": 401470,
+    "value": 14019
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "278642103",
+    "put_call": "STOCK",
+    "issuer_name": "EBAY INC",
+    "shares": 4987285,
+    "value": 174156
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "285512109",
+    "put_call": "STOCK",
+    "issuer_name": "ELECTRONIC ARTS INC",
+    "shares": 334616,
+    "value": 35376
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "285512109",
+    "put_call": "STOCK",
+    "issuer_name": "ELECTRONIC ARTS INC",
+    "shares": 3979517,
+    "value": 420715
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "29444U700",
+    "put_call": "STOCK",
+    "issuer_name": "EQUINIX INC",
+    "shares": 44771,
+    "value": 19214
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "29444U700",
+    "put_call": "STOCK",
+    "issuer_name": "EQUINIX INC",
+    "shares": 485787,
+    "value": 208480
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "FACEBOOK INC",
+    "shares": 507470,
+    "value": 76618
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "FACEBOOK INC",
+    "shares": 6095329,
+    "value": 920273
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "31816Q101",
+    "put_call": "STOCK",
+    "issuer_name": "FIREEYE INC",
+    "shares": 882755,
+    "value": 13427
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "33812L102",
+    "put_call": "STOCK",
+    "issuer_name": "FITBIT INC",
+    "shares": 5252953,
+    "value": 27893
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "35906A108",
+    "put_call": "STOCK",
+    "issuer_name": "FRONTIER COMMUNICATIONS CORP",
+    "shares": 7088937,
+    "value": 8223
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "405217100",
+    "put_call": "STOCK",
+    "issuer_name": "HAIN CELESTIAL GROUP INC",
+    "shares": 150521,
+    "value": 5843
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "405217100",
+    "put_call": "STOCK",
+    "issuer_name": "HAIN CELESTIAL GROUP INC",
+    "shares": 926042,
+    "value": 35949
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "47215P106",
+    "put_call": "STOCK",
+    "issuer_name": "JD COM INC",
+    "shares": 913108,
+    "value": 35812
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "47215P106",
+    "put_call": "STOCK",
+    "issuer_name": "JD COM INC",
+    "shares": 11656563,
+    "value": 457170
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "530307305",
+    "put_call": "STOCK",
+    "issuer_name": "LIBERTY BROADBAND CORP",
+    "shares": 610079,
+    "value": 52924
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "530307305",
+    "put_call": "STOCK",
+    "issuer_name": "LIBERTY BROADBAND CORP",
+    "shares": 8044273,
+    "value": 697841
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "G5480U120",
+    "put_call": "STOCK",
+    "issuer_name": "LIBERTY GLOBAL PLC",
+    "shares": 282298,
+    "value": 8802
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "G5480U120",
+    "put_call": "STOCK",
+    "issuer_name": "LIBERTY GLOBAL PLC",
+    "shares": 3233374,
+    "value": 100817
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "G5480U104",
+    "put_call": "STOCK",
+    "issuer_name": "LIBERTY GLOBAL PLC",
+    "shares": 266212,
+    "value": 8551
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "G5480U104",
+    "put_call": "STOCK",
+    "issuer_name": "LIBERTY GLOBAL PLC",
+    "shares": 3023099,
+    "value": 97102
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "531229854",
+    "put_call": "STOCK",
+    "issuer_name": "LIBERTY MEDIA CORP DELAWARE",
+    "shares": 450600,
+    "value": 16501
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "531229854",
+    "put_call": "STOCK",
+    "issuer_name": "LIBERTY MEDIA CORP DELAWARE",
+    "shares": 5549400,
+    "value": 203219
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "M51363113",
+    "put_call": "STOCK",
+    "issuer_name": "MELLANOX TECHNOLOGIES LTD",
+    "shares": 757981,
+    "value": 32821
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "NETFLIX INC",
+    "shares": 452153,
+    "value": 67556
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "NETFLIX INC",
+    "shares": 2539701,
+    "value": 379457
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "67059N108",
+    "put_call": "STOCK",
+    "issuer_name": "NUTANIX INC",
+    "shares": 294550,
+    "value": 5935
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "67069D108",
+    "put_call": "STOCK",
+    "issuer_name": "NUTRI SYS INC NEW",
+    "shares": 66300,
+    "value": 3451
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORP",
+    "shares": 311840,
+    "value": 45080
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORP",
+    "shares": 3798273,
+    "value": 549078
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "682189105",
+    "put_call": "STOCK",
+    "issuer_name": "ON SEMICONDUCTOR CORP",
+    "shares": 368355,
+    "value": 5172
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "682189105",
+    "put_call": "STOCK",
+    "issuer_name": "ON SEMICONDUCTOR CORP",
+    "shares": 4527651,
+    "value": 63568
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "70450Y103",
+    "put_call": "STOCK",
+    "issuer_name": "PAYPAL HLDGS INC",
+    "shares": 365292,
+    "value": 19605
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "70450Y103",
+    "put_call": "STOCK",
+    "issuer_name": "PAYPAL HLDGS INC",
+    "shares": 4786781,
+    "value": 256907
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "79466L302",
+    "put_call": "STOCK",
+    "issuer_name": "SALESFORCE COM INC",
+    "shares": 81209,
+    "value": 7033
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "79466L302",
+    "put_call": "STOCK",
+    "issuer_name": "SALESFORCE COM INC",
+    "shares": 1007663,
+    "value": 87264
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "G7945E105",
+    "put_call": "STOCK",
+    "issuer_name": "SEADRILL LIMITED",
+    "shares": 1970630,
+    "value": 711
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "81762P102",
+    "put_call": "STOCK",
+    "issuer_name": "SERVICENOW INC",
+    "shares": 131130,
+    "value": 13900
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "81762P102",
+    "put_call": "STOCK",
+    "issuer_name": "SERVICENOW INC",
+    "shares": 1607708,
+    "value": 170417
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "82509L107",
+    "put_call": "STOCK",
+    "issuer_name": "SHOPIFY INC",
+    "shares": 195408,
+    "value": 16981
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "82509L107",
+    "put_call": "STOCK",
+    "issuer_name": "SHOPIFY INC",
+    "shares": 2430302,
+    "value": 211193
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "83304A106",
+    "put_call": "STOCK",
+    "issuer_name": "SNAP INC",
+    "shares": 439144,
+    "value": 7804
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "83304A106",
+    "put_call": "STOCK",
+    "issuer_name": "SNAP INC",
+    "shares": 5001756,
+    "value": 88881
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "83304A106",
+    "put_call": "STOCK",
+    "issuer_name": "SNAP INC",
+    "shares": 16457724,
+    "value": 292454
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "M85548101",
+    "put_call": "STOCK",
+    "issuer_name": "STRATASYS LTD",
+    "shares": 456847,
+    "value": 10649
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "871503108",
+    "put_call": "STOCK",
+    "issuer_name": "SYMANTEC CORP",
+    "shares": 1251012,
+    "value": 35341
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "871503108",
+    "put_call": "STOCK",
+    "issuer_name": "SYMANTEC CORP",
+    "shares": 16651396,
+    "value": 470402
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "880770102",
+    "put_call": "STOCK",
+    "issuer_name": "TERADYNE INC",
+    "shares": 92213,
+    "value": 2769
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "880770102",
+    "put_call": "STOCK",
+    "issuer_name": "TERADYNE INC",
+    "shares": 1224643,
+    "value": 36776
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "887317303",
+    "put_call": "STOCK",
+    "issuer_name": "TIME WARNER INC",
+    "shares": 148299,
+    "value": 14891
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "887317303",
+    "put_call": "STOCK",
+    "issuer_name": "TIME WARNER INC",
+    "shares": 2649415,
+    "value": 266028
+  },
+  {
+    "cik": "0001135730",
+    "report_date": "2017-06-30",
+    "filing_date": "2017-08-11",
+    "cusip": "90138F102",
+    "put_call": "STOCK",
+    "issuer_name": "TWILIO INC",
+    "shares": 1857746,
+    "value": 54079
+  }
+]

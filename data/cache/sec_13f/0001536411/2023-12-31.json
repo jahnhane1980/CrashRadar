@@ -1,0 +1,512 @@
+[
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "00288U106",
+    "put_call": "STOCK",
+    "issuer_name": "Abcellera Biologics Inc",
+    "shares": 659750,
+    "value": 3767
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "Adobe Inc",
+    "shares": 17130,
+    "value": 10220
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "040413106",
+    "put_call": "STOCK",
+    "issuer_name": "Arista Networks Inc",
+    "shares": 234185,
+    "value": 55153
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "067901108",
+    "put_call": "STOCK",
+    "issuer_name": "Barrick Gold Corp",
+    "shares": 1758300,
+    "value": 31808
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "099502106",
+    "put_call": "STOCK",
+    "issuer_name": "Booz Allen Hamilton Hldg Cor",
+    "shares": 235800,
+    "value": 30161
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "13321L108",
+    "put_call": "STOCK",
+    "issuer_name": "Cameco Corp",
+    "shares": 1332625,
+    "value": 57436
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "13646K108",
+    "put_call": "STOCK",
+    "issuer_name": "Canadian Pacific Kansas City",
+    "shares": 47505,
+    "value": 3756
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "166764100",
+    "put_call": "STOCK",
+    "issuer_name": "Chevron Corp New",
+    "shares": 384595,
+    "value": 57366
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "21037T109",
+    "put_call": "STOCK",
+    "issuer_name": "Constellation Energy Corp",
+    "shares": 38656,
+    "value": 4518
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "22266T109",
+    "put_call": "STOCK",
+    "issuer_name": "Coupang Inc",
+    "shares": 22914940,
+    "value": 370993
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "26142V105",
+    "put_call": "STOCK",
+    "issuer_name": "Draftkings Inc New",
+    "shares": 423850,
+    "value": 14941
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "532457108",
+    "put_call": "STOCK",
+    "issuer_name": "Eli Lilly &amp; Co",
+    "shares": 402550,
+    "value": 234654
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "Y2573F102",
+    "put_call": "STOCK",
+    "issuer_name": "Flex Ltd",
+    "shares": 1134400,
+    "value": 34554
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "35671D857",
+    "put_call": "STOCK",
+    "issuer_name": "Freeport-Mcmoran Inc",
+    "shares": 471535,
+    "value": 20073
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "369604301",
+    "put_call": "STOCK",
+    "issuer_name": "General Electric Co",
+    "shares": 736095,
+    "value": 93948
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "G4701H109",
+    "put_call": "STOCK",
+    "issuer_name": "Ihs Holding Limited",
+    "shares": 770310,
+    "value": 3543
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "G65163100",
+    "put_call": "STOCK",
+    "issuer_name": "Joby Aviation Inc",
+    "shares": 22492,
+    "value": 150
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "48242W106",
+    "put_call": "STOCK",
+    "issuer_name": "Kbr Inc",
+    "shares": 1158535,
+    "value": 64194
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "513272104",
+    "put_call": "STOCK",
+    "issuer_name": "Lamb Weston Hldgs Inc",
+    "shares": 539209,
+    "value": 58283
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "546347105",
+    "put_call": "STOCK",
+    "issuer_name": "Louisiana Pac Corp",
+    "shares": 135132,
+    "value": 9571
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "573874104",
+    "put_call": "STOCK",
+    "issuer_name": "Marvell Technology Inc",
+    "shares": 363585,
+    "value": 21928
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "Microsoft Corp",
+    "shares": 1086120,
+    "value": 408425
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "632307104",
+    "put_call": "STOCK",
+    "issuer_name": "Natera Inc",
+    "shares": 893030,
+    "value": 55939
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "651639106",
+    "put_call": "STOCK",
+    "issuer_name": "Newmont Corp",
+    "shares": 474250,
+    "value": 19629
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "65249B109",
+    "put_call": "STOCK",
+    "issuer_name": "News Corp New",
+    "shares": 4045120,
+    "value": 99308
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "65249B208",
+    "put_call": "STOCK",
+    "issuer_name": "News Corp New",
+    "shares": 975600,
+    "value": 25092
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "67059N108",
+    "put_call": "STOCK",
+    "issuer_name": "Nutanix Inc",
+    "shares": 216600,
+    "value": 10330
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "Nvidia Corporation",
+    "shares": 617494,
+    "value": 305795
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "67066G104",
+    "put_call": "CALL",
+    "issuer_name": "Nvidia Corporation",
+    "shares": 489500,
+    "value": 242410
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "68404L201",
+    "put_call": "STOCK",
+    "issuer_name": "Option Care Health Inc",
+    "shares": 1456215,
+    "value": 49060
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "697435105",
+    "put_call": "STOCK",
+    "issuer_name": "Palo Alto Networks Inc",
+    "shares": 64715,
+    "value": 19083
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "74624M102",
+    "put_call": "STOCK",
+    "issuer_name": "Pure Storage Inc",
+    "shares": 531247,
+    "value": 18944
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "75629V104",
+    "put_call": "STOCK",
+    "issuer_name": "Recursion Pharmaceuticals In",
+    "shares": 906767,
+    "value": 8941
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "808513105",
+    "put_call": "STOCK",
+    "issuer_name": "Schwab Charles Corp",
+    "shares": 71700,
+    "value": 4933
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "G7997R103",
+    "put_call": "STOCK",
+    "issuer_name": "Seagate Technology Hldngs Pl",
+    "shares": 2116108,
+    "value": 180652
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "81728A108",
+    "put_call": "STOCK",
+    "issuer_name": "Sensei Biotherapeutics Inc",
+    "shares": 100000,
+    "value": 69
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "78464A698",
+    "put_call": "STOCK",
+    "issuer_name": "Spdr Ser Tr",
+    "shares": 153965,
+    "value": 8072
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "55826T102",
+    "put_call": "STOCK",
+    "issuer_name": "Sphere Entertainment Co",
+    "shares": 294751,
+    "value": 10010
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "874054109",
+    "put_call": "STOCK",
+    "issuer_name": "Take-Two Interactive Softwar",
+    "shares": 63850,
+    "value": 10277
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "878742204",
+    "put_call": "STOCK",
+    "issuer_name": "Teck Resources Ltd",
+    "shares": 5524602,
+    "value": 233548
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "88023U101",
+    "put_call": "STOCK",
+    "issuer_name": "Tempur Sealy Intl Inc",
+    "shares": 749100,
+    "value": 38182
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "87256C101",
+    "put_call": "STOCK",
+    "issuer_name": "Tko Group Holdings Inc",
+    "shares": 326735,
+    "value": 26655
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "H42097107",
+    "put_call": "STOCK",
+    "issuer_name": "Ubs Group Ag",
+    "shares": 2414735,
+    "value": 74887
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "91347P105",
+    "put_call": "STOCK",
+    "issuer_name": "Universal Display Corp",
+    "shares": 28400,
+    "value": 5432
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "922475108",
+    "put_call": "STOCK",
+    "issuer_name": "Veeva Sys Inc",
+    "shares": 95700,
+    "value": 18424
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "92537N108",
+    "put_call": "STOCK",
+    "issuer_name": "Vertiv Holdings Co",
+    "shares": 2313500,
+    "value": 111117
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "92840M102",
+    "put_call": "STOCK",
+    "issuer_name": "Vistra Corp",
+    "shares": 2385061,
+    "value": 91873
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "93403J106",
+    "put_call": "STOCK",
+    "issuer_name": "Warby Parker Inc",
+    "shares": 674039,
+    "value": 9504
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "958102105",
+    "put_call": "STOCK",
+    "issuer_name": "Western Digital Corp.",
+    "shares": 230000,
+    "value": 12045
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "980745103",
+    "put_call": "STOCK",
+    "issuer_name": "Woodward Inc",
+    "shares": 404635,
+    "value": 55083
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2023-12-31",
+    "filing_date": "2024-02-14",
+    "cusip": "98980F104",
+    "put_call": "STOCK",
+    "issuer_name": "Zoominfo Technologies Inc",
+    "shares": 924100,
+    "value": 17087
+  }
+]

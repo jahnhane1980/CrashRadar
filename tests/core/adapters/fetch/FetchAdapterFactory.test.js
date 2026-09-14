@@ -3,12 +3,14 @@ import { FetchAdapterFactory } from '../../../../src/core/adapters/fetch/FetchAd
 import { YahooFinanceFetchAdapter } from '../../../../src/core/adapters/fetch/YahooFinanceFetchAdapter.js';
 import { CboeFetchAdapter } from '../../../../src/core/adapters/fetch/CboeFetchAdapter.js';
 import { FinraFetchAdapter } from '../../../../src/core/adapters/fetch/FinraFetchAdapter.js';
+import { SecEdgar13FFetchAdapter } from '../../../../src/core/adapters/fetch/SecEdgar13FFetchAdapter.js';
 
 describe('FetchAdapterFactory', () => {
   it('sollte den passenden Adapter für bekannte Provider zurückgeben', () => {
     expect(FetchAdapterFactory.get('YahooFinance')).toBeInstanceOf(YahooFinanceFetchAdapter);
     expect(FetchAdapterFactory.get('Cboe')).toBeInstanceOf(CboeFetchAdapter);
     expect(FetchAdapterFactory.get('Finra')).toBeInstanceOf(FinraFetchAdapter);
+    expect(FetchAdapterFactory.get('SecEdgar13F')).toBeInstanceOf(SecEdgar13FFetchAdapter);
   });
 
   it('sollte einen Fehler werfen bei unbekanntem Provider', () => {

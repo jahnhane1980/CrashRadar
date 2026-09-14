@@ -1,0 +1,1062 @@
+[
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "00507V109",
+    "put_call": "STOCK",
+    "issuer_name": "ACTIVISION BLIZZARD INC",
+    "shares": 14500,
+    "value": 767
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "ADOBE INC",
+    "shares": 595903,
+    "value": 164618
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "01609W102",
+    "put_call": "STOCK",
+    "issuer_name": "ALIBABA GROUP HLDG LTD",
+    "shares": 696668,
+    "value": 116504
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "01609W102",
+    "put_call": "CALL",
+    "issuer_name": "ALIBABA GROUP HLDG LTD",
+    "shares": 71200,
+    "value": 11907
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 2108,
+    "value": 2574
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 1437,
+    "value": 2495
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "03272L108",
+    "put_call": "STOCK",
+    "issuer_name": "ANAPLAN INC",
+    "shares": 289319,
+    "value": 13598
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "G06242104",
+    "put_call": "STOCK",
+    "issuer_name": "ATLASSIAN CORP PLC",
+    "shares": 143644,
+    "value": 18019
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "G0750C108",
+    "put_call": "STOCK",
+    "issuer_name": "AXALTA COATING SYS LTD",
+    "shares": 1266759,
+    "value": 38193
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "067901108",
+    "put_call": "STOCK",
+    "issuer_name": "BARRICK GOLD CORPORATION",
+    "shares": 57097,
+    "value": 989
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "097023105",
+    "put_call": "STOCK",
+    "issuer_name": "BOEING CO",
+    "shares": 58599,
+    "value": 22295
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "097023105",
+    "put_call": "CALL",
+    "issuer_name": "BOEING CO",
+    "shares": 110400,
+    "value": 42004
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "13321L108",
+    "put_call": "STOCK",
+    "issuer_name": "CAMECO CORP",
+    "shares": 447476,
+    "value": 4251
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "G1890L107",
+    "put_call": "STOCK",
+    "issuer_name": "CAPRI HOLDINGS LIMITED",
+    "shares": 131200,
+    "value": 4351
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "15135B101",
+    "put_call": "CALL",
+    "issuer_name": "CENTENE CORP DEL",
+    "shares": 100000,
+    "value": 4326
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "15135B101",
+    "put_call": "STOCK",
+    "issuer_name": "CENTENE CORP DEL",
+    "shares": 216500,
+    "value": 9366
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "125523100",
+    "put_call": "STOCK",
+    "issuer_name": "CIGNA CORP NEW",
+    "shares": 297850,
+    "value": 45211
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "191216100",
+    "put_call": "STOCK",
+    "issuer_name": "COCA COLA CO",
+    "shares": 201707,
+    "value": 10981
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "22160N109",
+    "put_call": "STOCK",
+    "issuer_name": "COSTAR GROUP INC",
+    "shares": 48010,
+    "value": 28480
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "22266L106",
+    "put_call": "STOCK",
+    "issuer_name": "COUPA SOFTWARE INC",
+    "shares": 190150,
+    "value": 24638
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "23331A109",
+    "put_call": "STOCK",
+    "issuer_name": "D R HORTON INC",
+    "shares": 49200,
+    "value": 2593
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "233051879",
+    "put_call": "CALL",
+    "issuer_name": "DBX ETF TR",
+    "shares": 125000,
+    "value": 3386
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "24703L202",
+    "put_call": "STOCK",
+    "issuer_name": "DELL TECHNOLOGIES INC",
+    "shares": 22322,
+    "value": 1158
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "254687106",
+    "put_call": "STOCK",
+    "issuer_name": "DISNEY WALT CO",
+    "shares": 5800,
+    "value": 756
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "254687106",
+    "put_call": "CALL",
+    "issuer_name": "DISNEY WALT CO",
+    "shares": 45000,
+    "value": 5864
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "256746108",
+    "put_call": "STOCK",
+    "issuer_name": "DOLLAR TREE INC",
+    "shares": 163017,
+    "value": 18610
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "28414H103",
+    "put_call": "STOCK",
+    "issuer_name": "ELANCO ANIMAL HEALTH INC",
+    "shares": 44400,
+    "value": 1181
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "285512109",
+    "put_call": "STOCK",
+    "issuer_name": "ELECTRONIC ARTS INC",
+    "shares": 6700,
+    "value": 655
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "FACEBOOK INC",
+    "shares": 13800,
+    "value": 2458
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "303250104",
+    "put_call": "STOCK",
+    "issuer_name": "FAIR ISAAC CORP",
+    "shares": 126595,
+    "value": 38424
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "31620M106",
+    "put_call": "STOCK",
+    "issuer_name": "FIDELITY NATL INFORMATION SV",
+    "shares": 19138,
+    "value": 2541
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "337738108",
+    "put_call": "STOCK",
+    "issuer_name": "FISERV INC",
+    "shares": 1716114,
+    "value": 177772
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "35137L105",
+    "put_call": "STOCK",
+    "issuer_name": "FOX CORP",
+    "shares": 36906,
+    "value": 1164
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "37045V100",
+    "put_call": "STOCK",
+    "issuer_name": "GENERAL MTRS CO",
+    "shares": 268000,
+    "value": 10045
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "444859102",
+    "put_call": "STOCK",
+    "issuer_name": "HUMANA INC",
+    "shares": 317880,
+    "value": 81272
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "458140100",
+    "put_call": "STOCK",
+    "issuer_name": "INTEL CORP",
+    "shares": 38300,
+    "value": 1974
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "L5140P101",
+    "put_call": "STOCK",
+    "issuer_name": "INTELSAT S A",
+    "shares": 2520857,
+    "value": 57476
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "45790VAB6",
+    "put_call": "STOCK",
+    "issuer_name": "INTELSAT S A",
+    "shares": 132500000,
+    "value": 194853
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "46090E103",
+    "put_call": "PUT",
+    "issuer_name": "INVESCO QQQ TR",
+    "shares": 1852800,
+    "value": 349827
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "464286400",
+    "put_call": "STOCK",
+    "issuer_name": "ISHARES INC",
+    "shares": 11900,
+    "value": 501
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "464286871",
+    "put_call": "PUT",
+    "issuer_name": "ISHARES INC",
+    "shares": 100000,
+    "value": 2270
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "464287184",
+    "put_call": "CALL",
+    "issuer_name": "ISHARES TR",
+    "shares": 2706700,
+    "value": 107727
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "464288513",
+    "put_call": "PUT",
+    "issuer_name": "ISHARES TR",
+    "shares": 50000,
+    "value": 4359
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "464287234",
+    "put_call": "STOCK",
+    "issuer_name": "ISHARES TR",
+    "shares": 35500,
+    "value": 1451
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "47215P106",
+    "put_call": "STOCK",
+    "issuer_name": "JD COM INC",
+    "shares": 66600,
+    "value": 1879
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "47215P106",
+    "put_call": "CALL",
+    "issuer_name": "JD COM INC",
+    "shares": 198100,
+    "value": 5588
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "478160104",
+    "put_call": "STOCK",
+    "issuer_name": "JOHNSON &amp; JOHNSON",
+    "shares": 11700,
+    "value": 1514
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "502431109",
+    "put_call": "STOCK",
+    "issuer_name": "L3HARRIS TECHNOLOGIES INC",
+    "shares": 191192,
+    "value": 39890
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "526057104",
+    "put_call": "STOCK",
+    "issuer_name": "LENNAR CORP",
+    "shares": 223200,
+    "value": 12466
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "G5494J103",
+    "put_call": "STOCK",
+    "issuer_name": "LINDE PLC",
+    "shares": 182836,
+    "value": 35419
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "539830109",
+    "put_call": "STOCK",
+    "issuer_name": "LOCKHEED MARTIN CORP",
+    "shares": 25500,
+    "value": 9947
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "56585A102",
+    "put_call": "STOCK",
+    "issuer_name": "MARATHON PETE CORP",
+    "shares": 766400,
+    "value": 46559
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "574599106",
+    "put_call": "STOCK",
+    "issuer_name": "MASCO CORP",
+    "shares": 599040,
+    "value": 24968
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "57636Q104",
+    "put_call": "STOCK",
+    "issuer_name": "MASTERCARD INC",
+    "shares": 519255,
+    "value": 141014
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "57778K105",
+    "put_call": "STOCK",
+    "issuer_name": "MAXAR TECHNOLOGIES INC",
+    "shares": 761600,
+    "value": 5788
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "58733R102",
+    "put_call": "STOCK",
+    "issuer_name": "MERCADOLIBRE INC",
+    "shares": 111621,
+    "value": 61529
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "620076307",
+    "put_call": "STOCK",
+    "issuer_name": "MOTOROLA SOLUTIONS INC",
+    "shares": 8700,
+    "value": 1483
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "NETFLIX INC",
+    "shares": 238748,
+    "value": 63894
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "64110L106",
+    "put_call": "CALL",
+    "issuer_name": "NETFLIX INC",
+    "shares": 47500,
+    "value": 12712
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "651639106",
+    "put_call": "STOCK",
+    "issuer_name": "NEWMONT GOLDCORP CORPORATION",
+    "shares": 23100,
+    "value": 876
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "62913F508",
+    "put_call": "STOCK",
+    "issuer_name": "NII HLDGS INC",
+    "shares": 3305445,
+    "value": 6479
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "655844108",
+    "put_call": "STOCK",
+    "issuer_name": "NORFOLK SOUTHERN CORP",
+    "shares": 172764,
+    "value": 31039
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "666807102",
+    "put_call": "STOCK",
+    "issuer_name": "NORTHROP GRUMMAN CORP",
+    "shares": 65814,
+    "value": 24666
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORP",
+    "shares": 6600,
+    "value": 1149
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "62944T105",
+    "put_call": "STOCK",
+    "issuer_name": "NVR INC",
+    "shares": 700,
+    "value": 2602
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "N6596X109",
+    "put_call": "STOCK",
+    "issuer_name": "NXP SEMICONDUCTORS N V",
+    "shares": 1001317,
+    "value": 109264
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "674599105",
+    "put_call": "STOCK",
+    "issuer_name": "OCCIDENTAL PETE CORP",
+    "shares": 111839,
+    "value": 4973
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "69012T115",
+    "put_call": "STOCK",
+    "issuer_name": "OUTLOOK THERAPEUTICS INC",
+    "shares": 100000,
+    "value": 12
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "697660207",
+    "put_call": "STOCK",
+    "issuer_name": "PAMPA ENERGIA S A",
+    "shares": 559450,
+    "value": 9712
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "69331C108",
+    "put_call": "STOCK",
+    "issuer_name": "PG&amp;E CORP",
+    "shares": 3472232,
+    "value": 34722
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "72147K108",
+    "put_call": "STOCK",
+    "issuer_name": "PILGRIMS PRIDE CORP NEW",
+    "shares": 167300,
+    "value": 5361
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "693656100",
+    "put_call": "STOCK",
+    "issuer_name": "PVH CORP",
+    "shares": 97200,
+    "value": 8576
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "747525103",
+    "put_call": "STOCK",
+    "issuer_name": "QUALCOMM INC",
+    "shares": 12800,
+    "value": 976
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "755111507",
+    "put_call": "STOCK",
+    "issuer_name": "RAYTHEON CO",
+    "shares": 437949,
+    "value": 85921
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "75886F107",
+    "put_call": "STOCK",
+    "issuer_name": "REGENERON PHARMACEUTICALS",
+    "shares": 14200,
+    "value": 3939
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "79466L302",
+    "put_call": "STOCK",
+    "issuer_name": "SALESFORCE COM INC",
+    "shares": 872330,
+    "value": 129489
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "79466L302",
+    "put_call": "CALL",
+    "issuer_name": "SALESFORCE COM INC",
+    "shares": 24700,
+    "value": 3666
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "81369Y209",
+    "put_call": "PUT",
+    "issuer_name": "SELECT SECTOR SPDR TR",
+    "shares": 448700,
+    "value": 40441
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "81369Y605",
+    "put_call": "PUT",
+    "issuer_name": "SELECT SECTOR SPDR TR",
+    "shares": 50000,
+    "value": 1400
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "81762P102",
+    "put_call": "STOCK",
+    "issuer_name": "SERVICENOW INC",
+    "shares": 331647,
+    "value": 84189
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "824348106",
+    "put_call": "STOCK",
+    "issuer_name": "SHERWIN WILLIAMS CO",
+    "shares": 78557,
+    "value": 43196
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "82968B103",
+    "put_call": "STOCK",
+    "issuer_name": "SIRIUS XM HLDGS INC",
+    "shares": 93400,
+    "value": 584
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "83200N103",
+    "put_call": "STOCK",
+    "issuer_name": "SMARTSHEET INC",
+    "shares": 341205,
+    "value": 12294
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "835699307",
+    "put_call": "STOCK",
+    "issuer_name": "SONY CORP",
+    "shares": 150899,
+    "value": 8923
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "78463V107",
+    "put_call": "CALL",
+    "issuer_name": "SPDR GOLD TRUST",
+    "shares": 168000,
+    "value": 23330
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "78462F103",
+    "put_call": "CALL",
+    "issuer_name": "SPDR S&amp;P 500 ETF TR",
+    "shares": 287900,
+    "value": 85440
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "78462F103",
+    "put_call": "PUT",
+    "issuer_name": "SPDR S&amp;P 500 ETF TR",
+    "shares": 806500,
+    "value": 239345
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "78464A730",
+    "put_call": "CALL",
+    "issuer_name": "SPDR SERIES TRUST",
+    "shares": 109400,
+    "value": 2446
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "L8681T102",
+    "put_call": "CALL",
+    "issuer_name": "SPOTIFY TECHNOLOGY S A",
+    "shares": 68000,
+    "value": 7752
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "G85158106",
+    "put_call": "STOCK",
+    "issuer_name": "STONECO LTD",
+    "shares": 171264,
+    "value": 5957
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "871607107",
+    "put_call": "STOCK",
+    "issuer_name": "SYNOPSYS INC",
+    "shares": 146617,
+    "value": 20123
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "872590104",
+    "put_call": "STOCK",
+    "issuer_name": "T MOBILE US INC",
+    "shares": 36953,
+    "value": 2911
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "874039100",
+    "put_call": "STOCK",
+    "issuer_name": "TAIWAN SEMICONDUCTOR MFG LTD",
+    "shares": 122700,
+    "value": 5703
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "874054109",
+    "put_call": "STOCK",
+    "issuer_name": "TAKE-TWO INTERACTIVE SOFTWAR",
+    "shares": 5800,
+    "value": 727
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "893641100",
+    "put_call": "STOCK",
+    "issuer_name": "TRANSDIGM GROUP INC",
+    "shares": 35121,
+    "value": 18286
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "89621C105",
+    "put_call": "STOCK",
+    "issuer_name": "TRILOGY METALS INC NEW",
+    "shares": 5001579,
+    "value": 8303
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "90138F102",
+    "put_call": "STOCK",
+    "issuer_name": "TWILIO INC",
+    "shares": 206052,
+    "value": 22657
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "902494103",
+    "put_call": "STOCK",
+    "issuer_name": "TYSON FOODS INC",
+    "shares": 208900,
+    "value": 17995
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "907818108",
+    "put_call": "STOCK",
+    "issuer_name": "UNION PACIFIC CORP",
+    "shares": 800474,
+    "value": 129661
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "910047109",
+    "put_call": "STOCK",
+    "issuer_name": "UNITED AIRLINES HLDGS INC",
+    "shares": 652270,
+    "value": 57667
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "913017109",
+    "put_call": "STOCK",
+    "issuer_name": "UNITED TECHNOLOGIES CORP",
+    "shares": 348415,
+    "value": 47566
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "91324P102",
+    "put_call": "STOCK",
+    "issuer_name": "UNITEDHEALTH GROUP INC",
+    "shares": 61900,
+    "value": 13452
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "91336L107",
+    "put_call": "STOCK",
+    "issuer_name": "UNIVAR SOLUTIONS INC",
+    "shares": 501335,
+    "value": 10408
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "92189F676",
+    "put_call": "PUT",
+    "issuer_name": "VANECK VECTORS ETF TR",
+    "shares": 25000,
+    "value": 2978
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "92826C839",
+    "put_call": "STOCK",
+    "issuer_name": "VISA INC",
+    "shares": 6025,
+    "value": 1036
+  },
+  {
+    "cik": "0001509842",
+    "report_date": "2019-09-30",
+    "filing_date": "2019-11-14",
+    "cusip": "928563402",
+    "put_call": "STOCK",
+    "issuer_name": "VMWARE INC",
+    "shares": 11900,
+    "value": 1786
+  }
+]

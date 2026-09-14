@@ -1,0 +1,542 @@
+[
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "01609W102",
+    "put_call": "STOCK",
+    "issuer_name": "ALIBABA GROUP HLDG LTD",
+    "shares": 3825345,
+    "value": 702104
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 1197150,
+    "value": 1732683
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "037612306",
+    "put_call": "STOCK",
+    "issuer_name": "APOLLO GLOBAL MGMT LLC",
+    "shares": 34322807,
+    "value": 1016642
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "04010L103",
+    "put_call": "STOCK",
+    "issuer_name": "ARES CAP CORP",
+    "shares": 719620,
+    "value": 11420
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "G06242104",
+    "put_call": "STOCK",
+    "issuer_name": "ATLASSIAN CORP PLC",
+    "shares": 500000,
+    "value": 26960
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "052769106",
+    "put_call": "STOCK",
+    "issuer_name": "AUTODESK INC",
+    "shares": 2255523,
+    "value": 283249
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "06746L422",
+    "put_call": "STOCK",
+    "issuer_name": "BARCLAYS BK PLC",
+    "shares": 520969,
+    "value": 24647
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "090040106",
+    "put_call": "STOCK",
+    "issuer_name": "BILIBILI INC",
+    "shares": 5810227,
+    "value": 63912
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "09857L108",
+    "put_call": "STOCK",
+    "issuer_name": "BOOKING HLDGS INC",
+    "shares": 657122,
+    "value": 1367070
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "109199109",
+    "put_call": "STOCK",
+    "issuer_name": "BRIGHT SCHOLAR ED HLDGS LTD",
+    "shares": 1578947,
+    "value": 24379
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "18914U100",
+    "put_call": "STOCK",
+    "issuer_name": "CLOUDERA INC",
+    "shares": 50000,
+    "value": 1079
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "G27358103",
+    "put_call": "STOCK",
+    "issuer_name": "DESPEGAR COM CORP",
+    "shares": 30204172,
+    "value": 943880
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "25754A201",
+    "put_call": "STOCK",
+    "issuer_name": "DOMINOS PIZZA INC",
+    "shares": 2105700,
+    "value": 491807
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "26210C104",
+    "put_call": "STOCK",
+    "issuer_name": "DROPBOX INC",
+    "shares": 200000,
+    "value": 6250
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "26853A100",
+    "put_call": "STOCK",
+    "issuer_name": "EHI CAR SVCS LTD",
+    "shares": 5264080,
+    "value": 61906
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "FACEBOOK INC",
+    "shares": 4968415,
+    "value": 793903
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "30303M102",
+    "put_call": "CALL",
+    "issuer_name": "FACEBOOK INC",
+    "shares": 765000,
+    "value": 122239
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "31154R109",
+    "put_call": "STOCK",
+    "issuer_name": "FARMLAND PARTNERS INC",
+    "shares": 44502,
+    "value": 372
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "N31738102",
+    "put_call": "STOCK",
+    "issuer_name": "FIAT CHRYSLER AUTOMOBILES N",
+    "shares": 26049289,
+    "value": 534531
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "31816Q101",
+    "put_call": "STOCK",
+    "issuer_name": "FIREEYE INC",
+    "shares": 200000,
+    "value": 3386
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "33812L102",
+    "put_call": "STOCK",
+    "issuer_name": "FITBIT INC",
+    "shares": 500000,
+    "value": 2550
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "339041105",
+    "put_call": "STOCK",
+    "issuer_name": "FLEETCOR TECHNOLOGIES INC",
+    "shares": 1121000,
+    "value": 227003
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "46267X108",
+    "put_call": "STOCK",
+    "issuer_name": "IQIYI INC",
+    "shares": 1000000,
+    "value": 15550
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "47215P106",
+    "put_call": "STOCK",
+    "issuer_name": "JD COM INC",
+    "shares": 41435844,
+    "value": 1677737
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "52603A109",
+    "put_call": "STOCK",
+    "issuer_name": "LENDINGCLUB CORP",
+    "shares": 275000,
+    "value": 963
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "57636Q104",
+    "put_call": "STOCK",
+    "issuer_name": "MASTERCARD INCORPORATED",
+    "shares": 602833,
+    "value": 105592
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "58733R102",
+    "put_call": "STOCK",
+    "issuer_name": "MERCADOLIBRE INC",
+    "shares": 795665,
+    "value": 283567
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 13207300,
+    "value": 1205430
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "60937P106",
+    "put_call": "STOCK",
+    "issuer_name": "MONGODB INC",
+    "shares": 50000,
+    "value": 2170
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "NETFLIX INC",
+    "shares": 2157450,
+    "value": 637203
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "G6455X107",
+    "put_call": "STOCK",
+    "issuer_name": "NETSHOES CAYMAN LTD",
+    "shares": 8865903,
+    "value": 52486
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "647581107",
+    "put_call": "STOCK",
+    "issuer_name": "NEW ORIENTAL ED &amp; TECH GRP I",
+    "shares": 2870008,
+    "value": 251556
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "679295105",
+    "put_call": "STOCK",
+    "issuer_name": "OKTA INC",
+    "shares": 60000,
+    "value": 2391
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "68276W103",
+    "put_call": "STOCK",
+    "issuer_name": "ONESMART INTL ED GROUP LTD",
+    "shares": 320000,
+    "value": 3440
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "708160106",
+    "put_call": "STOCK",
+    "issuer_name": "PENNEY J C INC",
+    "shares": 850000,
+    "value": 2567
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "74624M102",
+    "put_call": "STOCK",
+    "issuer_name": "PURE STORAGE INC",
+    "shares": 1000000,
+    "value": 19950
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "75737F108",
+    "put_call": "STOCK",
+    "issuer_name": "REDFIN CORP",
+    "shares": 7690091,
+    "value": 175565
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "76131D103",
+    "put_call": "STOCK",
+    "issuer_name": "RESTAURANT BRANDS INTL INC",
+    "shares": 1900000,
+    "value": 108148
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "76761L102",
+    "put_call": "STOCK",
+    "issuer_name": "RISE ED CAYMAN LTD",
+    "shares": 500000,
+    "value": 7655
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "79466L302",
+    "put_call": "STOCK",
+    "issuer_name": "SALESFORCE COM INC",
+    "shares": 2258000,
+    "value": 262605
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "81141R100",
+    "put_call": "STOCK",
+    "issuer_name": "SEA LTD",
+    "shares": 2328136,
+    "value": 26238
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "81762P102",
+    "put_call": "STOCK",
+    "issuer_name": "SERVICENOW INC",
+    "shares": 357800,
+    "value": 59198
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "82509L107",
+    "put_call": "STOCK",
+    "issuer_name": "SHOPIFY INC",
+    "shares": 70000,
+    "value": 8721
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "G81477104",
+    "put_call": "STOCK",
+    "issuer_name": "SINA CORP",
+    "shares": 135000,
+    "value": 14076
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "83409V104",
+    "put_call": "STOCK",
+    "issuer_name": "SOGOU INC",
+    "shares": 150000,
+    "value": 1238
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "86740P108",
+    "put_call": "STOCK",
+    "issuer_name": "SUNLANDS ONLINE ED GROUP",
+    "shares": 300000,
+    "value": 2490
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "86771W105",
+    "put_call": "STOCK",
+    "issuer_name": "SUNRUN INC",
+    "shares": 5743000,
+    "value": 51285
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "87105L104",
+    "put_call": "STOCK",
+    "issuer_name": "SWITCH INC",
+    "shares": 900000,
+    "value": 14319
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "874080104",
+    "put_call": "STOCK",
+    "issuer_name": "TAL ED GROUP",
+    "shares": 10067238,
+    "value": 373394
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "893641100",
+    "put_call": "STOCK",
+    "issuer_name": "TRANSDIGM GROUP INC",
+    "shares": 2765500,
+    "value": 848843
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "90184L102",
+    "put_call": "STOCK",
+    "issuer_name": "TWITTER INC",
+    "shares": 9458469,
+    "value": 274390
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "910047109",
+    "put_call": "STOCK",
+    "issuer_name": "UNITED CONTL HLDGS INC",
+    "shares": 22488,
+    "value": 1562
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "92826C839",
+    "put_call": "STOCK",
+    "issuer_name": "VISA INC",
+    "shares": 793000,
+    "value": 94859
+  },
+  {
+    "cik": "0001167483",
+    "report_date": "2018-03-31",
+    "filing_date": "2018-05-15",
+    "cusip": "98980A105",
+    "put_call": "STOCK",
+    "issuer_name": "ZTO EXPRESS CAYMAN INC",
+    "shares": 994400,
+    "value": 14906
+  }
+]

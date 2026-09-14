@@ -1,0 +1,272 @@
+[
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "01609W102",
+    "put_call": "STOCK",
+    "issuer_name": "ALIBABA GROUP HLDG LTD",
+    "shares": 294350,
+    "value": 62432
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "01748X102",
+    "put_call": "STOCK",
+    "issuer_name": "ALLEGIANT TRAVEL CO",
+    "shares": 20000,
+    "value": 3481
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "00183L102",
+    "put_call": "STOCK",
+    "issuer_name": "ANGI HOMESERVICES INC",
+    "shares": 890000,
+    "value": 7538
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "09857L108",
+    "put_call": "STOCK",
+    "issuer_name": "BOOKING HLDGS INC",
+    "shares": 136402,
+    "value": 280133
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "22788C105",
+    "put_call": "STOCK",
+    "issuer_name": "CROWDSTRIKE HLDGS INC",
+    "shares": 150000,
+    "value": 7481
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "23804L103",
+    "put_call": "STOCK",
+    "issuer_name": "DATADOG INC",
+    "shares": 150000,
+    "value": 5667
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "268150109",
+    "put_call": "STOCK",
+    "issuer_name": "DYNATRACE INC",
+    "shares": 1000000,
+    "value": 25300
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "N14506104",
+    "put_call": "STOCK",
+    "issuer_name": "ELASTIC NV",
+    "shares": 140000,
+    "value": 9002
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "30212P303",
+    "put_call": "CALL",
+    "issuer_name": "EXPEDIA GROUP INC",
+    "shares": 5000,
+    "value": 4350
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "30212P303",
+    "put_call": "STOCK",
+    "issuer_name": "EXPEDIA GROUP INC",
+    "shares": 3647373,
+    "value": 394427
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "FACEBOOK INC",
+    "shares": 3753400,
+    "value": 770385
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "30744W107",
+    "put_call": "STOCK",
+    "issuer_name": "FARFETCH LTD",
+    "shares": 3779409,
+    "value": 39117
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "590479135",
+    "put_call": "STOCK",
+    "issuer_name": "MESA AIR GROUP INC",
+    "shares": 329686,
+    "value": 2947
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 525000,
+    "value": 82793
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "60937P106",
+    "put_call": "STOCK",
+    "issuer_name": "MONGODB INC",
+    "shares": 300000,
+    "value": 39483
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "G66721104",
+    "put_call": "STOCK",
+    "issuer_name": "NORWEGIAN CRUISE LINE HLDG L",
+    "shares": 110000,
+    "value": 6425
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "679295105",
+    "put_call": "STOCK",
+    "issuer_name": "OKTA INC",
+    "shares": 250000,
+    "value": 28843
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "722304102",
+    "put_call": "STOCK",
+    "issuer_name": "PINDUODUO INC",
+    "shares": 8690000,
+    "value": 328656
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "75321W103",
+    "put_call": "STOCK",
+    "issuer_name": "RANPAK HOLDINGS CORP",
+    "shares": 1000000,
+    "value": 8150
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "79466L302",
+    "put_call": "STOCK",
+    "issuer_name": "SALESFORCE.COM INC",
+    "shares": 4133903,
+    "value": 672338
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "830879102",
+    "put_call": "STOCK",
+    "issuer_name": "SKYWEST INC",
+    "shares": 35000,
+    "value": 2262
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "848577102",
+    "put_call": "STOCK",
+    "issuer_name": "SPIRIT AIRLS INC",
+    "shares": 225000,
+    "value": 9070
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "89686D105",
+    "put_call": "STOCK",
+    "issuer_name": "TRIVAGO NV",
+    "shares": 5221028,
+    "value": 13679
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "90353T100",
+    "put_call": "CALL",
+    "issuer_name": "UBER TECHNOLOGIES INC",
+    "shares": 60000,
+    "value": 1798
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "90353T100",
+    "put_call": "STOCK",
+    "issuer_name": "UBER TECHNOLOGIES INC",
+    "shares": 21093284,
+    "value": 627314
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "910047109",
+    "put_call": "CALL",
+    "issuer_name": "UNITED AIRLINES HLDGS INC",
+    "shares": 13150,
+    "value": 1407
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2019-12-31",
+    "filing_date": "2020-02-14",
+    "cusip": "910047109",
+    "put_call": "STOCK",
+    "issuer_name": "UNITED AIRLINES HLDGS INC",
+    "shares": 11812083,
+    "value": 1040526
+  }
+]

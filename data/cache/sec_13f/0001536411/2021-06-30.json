@@ -1,0 +1,32 @@
+[
+  {
+    "cik": "0001536411",
+    "report_date": "2021-06-30",
+    "filing_date": "2021-11-17",
+    "cusip": "00827B106",
+    "put_call": "STOCK",
+    "issuer_name": "Affirm Hldgs Inc",
+    "shares": 1378692,
+    "value": 92855
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2021-06-30",
+    "filing_date": "2021-11-17",
+    "cusip": "22266T109",
+    "put_call": "STOCK",
+    "issuer_name": "Coupang Inc",
+    "shares": 10515368,
+    "value": 439753
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2021-06-30",
+    "filing_date": "2021-11-17",
+    "cusip": "687793109",
+    "put_call": "STOCK",
+    "issuer_name": "Oscar Health Inc",
+    "shares": 994289,
+    "value": 21377
+  }
+]

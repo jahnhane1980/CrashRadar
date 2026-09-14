@@ -1,0 +1,312 @@
+[
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "007903107",
+    "put_call": "STOCK",
+    "issuer_name": "ADVANCED MICRO DEVICES INC",
+    "shares": 221400,
+    "value": 45039402
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "01609W102",
+    "put_call": "STOCK",
+    "issuer_name": "ALIBABA GROUP HLDG LTD",
+    "shares": 3465000,
+    "value": 434718900
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "02079K107",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 1732700,
+    "value": 497042322
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 4320000,
+    "value": 899726400
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "N07059210",
+    "put_call": "STOCK",
+    "issuer_name": "ASML HLDG NV",
+    "shares": 49500,
+    "value": 65381085
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "056752108",
+    "put_call": "STOCK",
+    "issuer_name": "BAIDU INC",
+    "shares": 692100,
+    "value": 77113782
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "058498106",
+    "put_call": "STOCK",
+    "issuer_name": "BALL CORP",
+    "shares": 837000,
+    "value": 49475070
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "219350105",
+    "put_call": "STOCK",
+    "issuer_name": "CORNING INC",
+    "shares": 1129500,
+    "value": 153578115
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "D18190898",
+    "put_call": "STOCK",
+    "issuer_name": "DEUTSCHE BK AG",
+    "shares": 257616,
+    "value": 7671804
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "29273V100",
+    "put_call": "STOCK",
+    "issuer_name": "ENERGY TRANSFER L P",
+    "shares": 1576125,
+    "value": 30419213
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "464286772",
+    "put_call": "STOCK",
+    "issuer_name": "ISHARES INC",
+    "shares": 2400000,
+    "value": 295224000
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "47215P106",
+    "put_call": "STOCK",
+    "issuer_name": "JD.COM INC",
+    "shares": 1305000,
+    "value": 38588850
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "500767306",
+    "put_call": "STOCK",
+    "issuer_name": "KRANESHARES TRUST",
+    "shares": 1080000,
+    "value": 30704400
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "502431109",
+    "put_call": "STOCK",
+    "issuer_name": "L3HARRIS TECHNOLOGIES INC",
+    "shares": 198000,
+    "value": 68339700
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "512807306",
+    "put_call": "STOCK",
+    "issuer_name": "LAM RESEARCH CORP",
+    "shares": 382500,
+    "value": 81724950
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "55087P104",
+    "put_call": "STOCK",
+    "issuer_name": "LYFT INC",
+    "shares": 2700000,
+    "value": 35910000
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "META PLATFORMS INC",
+    "shares": 436500,
+    "value": 249734745
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "595112103",
+    "put_call": "STOCK",
+    "issuer_name": "MICRON TECHNOLOGY INC",
+    "shares": 1665000,
+    "value": 562503600
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 90000,
+    "value": 33315300
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "55336V100",
+    "put_call": "STOCK",
+    "issuer_name": "MPLX LP",
+    "shares": 502460,
+    "value": 28675392
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "629377508",
+    "put_call": "STOCK",
+    "issuer_name": "NRG ENERGY INC",
+    "shares": 1734442,
+    "value": 253471354
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORPORATION",
+    "shares": 1471500,
+    "value": 256629600
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "722304102",
+    "put_call": "STOCK",
+    "issuer_name": "PDD HOLDINGS INC",
+    "shares": 900000,
+    "value": 91962000
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "747525103",
+    "put_call": "STOCK",
+    "issuer_name": "QUALCOMM INC",
+    "shares": 498613,
+    "value": 64211382
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "75513E101",
+    "put_call": "STOCK",
+    "issuer_name": "RTX CORPORATION",
+    "shares": 342000,
+    "value": 65971800
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "80004C200",
+    "put_call": "STOCK",
+    "issuer_name": "SANDISK CORP",
+    "shares": 281250,
+    "value": 178689375
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "874039100",
+    "put_call": "STOCK",
+    "issuer_name": "TAIWAN SEMICONDUCTOR MANUFAC",
+    "shares": 1327500,
+    "value": 448628625
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "90353T100",
+    "put_call": "STOCK",
+    "issuer_name": "UBER TECHNOLOGIES INC",
+    "shares": 6332720,
+    "value": 455512550
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "91324P102",
+    "put_call": "STOCK",
+    "issuer_name": "UNITEDHEALTH GROUP INC",
+    "shares": 90000,
+    "value": 24353100
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "92840M102",
+    "put_call": "STOCK",
+    "issuer_name": "VISTRA CORP",
+    "shares": 2022332,
+    "value": 304017170
+  },
+  {
+    "cik": "0001656456",
+    "report_date": "2026-03-31",
+    "filing_date": "2026-05-15",
+    "cusip": "963320106",
+    "put_call": "STOCK",
+    "issuer_name": "WHIRLPOOL CORP",
+    "shares": 1950000,
+    "value": 105144000
+  }
+]

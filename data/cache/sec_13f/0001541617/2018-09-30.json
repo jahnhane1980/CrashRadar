@@ -1,0 +1,282 @@
+[
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "01609W102",
+    "put_call": "STOCK",
+    "issuer_name": "ALIBABA GROUP HOLDING LTD",
+    "shares": 72350,
+    "value": 11920
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "01609W102",
+    "put_call": "CALL",
+    "issuer_name": "ALIBABA GROUP HOLDING LTD",
+    "shares": 325,
+    "value": 7
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 5500,
+    "value": 6639
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 32000,
+    "value": 64096
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "09857L108",
+    "put_call": "STOCK",
+    "issuer_name": "BOOKING HLDGS INC",
+    "shares": 173402,
+    "value": 344030
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "P31076105",
+    "put_call": "STOCK",
+    "issuer_name": "COPA HOLDINGS SA",
+    "shares": 10000,
+    "value": 798
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "26210C104",
+    "put_call": "STOCK",
+    "issuer_name": "DROPBOX INC",
+    "shares": 386751,
+    "value": 10377
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "30212P303",
+    "put_call": "STOCK",
+    "issuer_name": "EXPEDIA GROUP INC",
+    "shares": 1964042,
+    "value": 256268
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "30212P303",
+    "put_call": "CALL",
+    "issuer_name": "EXPEDIA GROUP INC",
+    "shares": 2010,
+    "value": 2251
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "FACEBOOK INC",
+    "shares": 640100,
+    "value": 105271
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "590479135",
+    "put_call": "STOCK",
+    "issuer_name": "MESA AIR GROUP INC",
+    "shares": 120000,
+    "value": 1663
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 300200,
+    "value": 34334
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "60937P106",
+    "put_call": "STOCK",
+    "issuer_name": "MONGODB INC",
+    "shares": 249484,
+    "value": 20345
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "0G6672104",
+    "put_call": "STOCK",
+    "issuer_name": "NORWEGIAN CRUISE LINE HLDG L",
+    "shares": 50000,
+    "value": 2872
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "67059N108",
+    "put_call": "STOCK",
+    "issuer_name": "NUTANIX INC",
+    "shares": 120000,
+    "value": 5126
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "679295105",
+    "put_call": "STOCK",
+    "issuer_name": "OKTA INC",
+    "shares": 200000,
+    "value": 14072
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "G68707101",
+    "put_call": "STOCK",
+    "issuer_name": "PAGSEGURO DIGITAL LTD",
+    "shares": 128146,
+    "value": 3546
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "G68707101",
+    "put_call": "CALL",
+    "issuer_name": "PAGSEGURO DIGITAL LTD",
+    "shares": 1000,
+    "value": 180
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "722304102",
+    "put_call": "STOCK",
+    "issuer_name": "PINDUODUO INC",
+    "shares": 2415359,
+    "value": 63500
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "74624M102",
+    "put_call": "STOCK",
+    "issuer_name": "PURE STORAGE INC",
+    "shares": 2500000,
+    "value": 64875
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "79466L302",
+    "put_call": "STOCK",
+    "issuer_name": "SALESFORCE COM INC",
+    "shares": 195000,
+    "value": 31011
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "848577102",
+    "put_call": "STOCK",
+    "issuer_name": "SPIRIT AIRLS INC",
+    "shares": 225000,
+    "value": 10568
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "87336U105",
+    "put_call": "STOCK",
+    "issuer_name": "TABLEAU SOFTWARE INC",
+    "shares": 3484663,
+    "value": 389376
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "88160R101",
+    "put_call": "PUT",
+    "issuer_name": "TESLA INC",
+    "shares": 800,
+    "value": 6836
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "88106RAC5",
+    "put_call": "STOCK",
+    "issuer_name": "TESLA INC",
+    "shares": 6000000,
+    "value": 5740
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "89686D105",
+    "put_call": "STOCK",
+    "issuer_name": "TRIVAGO NV",
+    "shares": 4157556,
+    "value": 25611
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "910047109",
+    "put_call": "STOCK",
+    "issuer_name": "UNITED CONTL HLDGS INC",
+    "shares": 11629283,
+    "value": 1035704
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2018-09-30",
+    "filing_date": "2018-11-14",
+    "cusip": "985817105",
+    "put_call": "STOCK",
+    "issuer_name": "YELP INC",
+    "shares": 984300,
+    "value": 48428
+  }
+]

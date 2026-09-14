@@ -1,0 +1,202 @@
+[
+  {
+    "cik": "0001541617",
+    "report_date": "2026-06-30",
+    "filing_date": "2026-08-14",
+    "cusip": "038222105",
+    "put_call": "STOCK",
+    "issuer_name": "APPLIED MATLS INC",
+    "shares": 261950,
+    "value": 189389850
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2026-06-30",
+    "filing_date": "2026-08-14",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "AMAZON COM INC",
+    "shares": 2425351,
+    "value": 578058158
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2026-06-30",
+    "filing_date": "2026-08-14",
+    "cusip": "042068205",
+    "put_call": "STOCK",
+    "issuer_name": "ARM HOLDINGS PLC",
+    "shares": 1641972,
+    "value": 582194012
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2026-06-30",
+    "filing_date": "2026-08-14",
+    "cusip": "15675d103",
+    "put_call": "STOCK",
+    "issuer_name": "CEREBRAS SYSTEMS INC",
+    "shares": 7225037,
+    "value": 1596733177
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2026-06-30",
+    "filing_date": "2026-08-14",
+    "cusip": "21873S108",
+    "put_call": "STOCK",
+    "issuer_name": "COREWEAVE INC",
+    "shares": 6073695,
+    "value": 604575601
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2026-06-30",
+    "filing_date": "2026-08-14",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "ALPHABET INC",
+    "shares": 175180,
+    "value": 62604076
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2026-06-30",
+    "filing_date": "2026-08-14",
+    "cusip": "G4124C117",
+    "put_call": "STOCK",
+    "issuer_name": "GRAB HOLDINGS LIMITED",
+    "shares": 3502000,
+    "value": 150586
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2026-06-30",
+    "filing_date": "2026-08-14",
+    "cusip": "770700102",
+    "put_call": "STOCK",
+    "issuer_name": "ROBINHOOD MKTS INC",
+    "shares": 899691,
+    "value": 90221013
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2026-06-30",
+    "filing_date": "2026-08-14",
+    "cusip": "482480100",
+    "put_call": "STOCK",
+    "issuer_name": "KLA CORP",
+    "shares": 578230,
+    "value": 174457773
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2026-06-30",
+    "filing_date": "2026-08-14",
+    "cusip": "512807306",
+    "put_call": "STOCK",
+    "issuer_name": "LAM RESEARCH CORP",
+    "shares": 394080,
+    "value": 170766686
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2026-06-30",
+    "filing_date": "2026-08-14",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "META PLATFORMS INC",
+    "shares": 1354990,
+    "value": 763252318
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2026-06-30",
+    "filing_date": "2026-08-14",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "MICROSOFT CORP",
+    "shares": 1268082,
+    "value": 473019948
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2026-06-30",
+    "filing_date": "2026-08-14",
+    "cusip": "595112103",
+    "put_call": "STOCK",
+    "issuer_name": "MICRON TECHNOLOGY INC",
+    "shares": 209520,
+    "value": 241846841
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2026-06-30",
+    "filing_date": "2026-08-14",
+    "cusip": "747525103",
+    "put_call": "STOCK",
+    "issuer_name": "QUALCOMM INC",
+    "shares": 1882490,
+    "value": 347865327
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2026-06-30",
+    "filing_date": "2026-08-14",
+    "cusip": "67066G104",
+    "put_call": "STOCK",
+    "issuer_name": "NVIDIA CORPORATION",
+    "shares": 9413589,
+    "value": 1883565023
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2026-06-30",
+    "filing_date": "2026-08-14",
+    "cusip": "833445109",
+    "put_call": "STOCK",
+    "issuer_name": "SNOWFLAKE INC",
+    "shares": 1926250,
+    "value": 490230625
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2026-06-30",
+    "filing_date": "2026-08-14",
+    "cusip": "871607107",
+    "put_call": "STOCK",
+    "issuer_name": "SYNOPSYS INC",
+    "shares": 140343,
+    "value": 62602803
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2026-06-30",
+    "filing_date": "2026-08-14",
+    "cusip": "84615Q103",
+    "put_call": "STOCK",
+    "issuer_name": "SPACE EXPLORATION TECHN CORP",
+    "shares": 1776485,
+    "value": 303530227
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2026-06-30",
+    "filing_date": "2026-08-14",
+    "cusip": "874039100",
+    "put_call": "STOCK",
+    "issuer_name": "TAIWAN SEMICONDUCTOR MFG LTD",
+    "shares": 1429355,
+    "value": 682617068
+  },
+  {
+    "cik": "0001541617",
+    "report_date": "2026-06-30",
+    "filing_date": "2026-08-14",
+    "cusip": "90353T100",
+    "put_call": "STOCK",
+    "issuer_name": "UBER TECHNOLOGIES INC",
+    "shares": 7372440,
+    "value": 531995271
+  }
+]

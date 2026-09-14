@@ -1,0 +1,462 @@
+[
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "90214J101",
+    "put_call": "STOCK",
+    "issuer_name": "2U Inc",
+    "shares": 444748,
+    "value": 9438
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "002824100",
+    "put_call": "STOCK",
+    "issuer_name": "Abbott Labs",
+    "shares": 791300,
+    "value": 62441
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "00507V109",
+    "put_call": "STOCK",
+    "issuer_name": "Activision Blizzard Inc",
+    "shares": 1560400,
+    "value": 92813
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "00724F101",
+    "put_call": "STOCK",
+    "issuer_name": "Adobe Inc",
+    "shares": 59930,
+    "value": 19072
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "01609W102",
+    "put_call": "STOCK",
+    "issuer_name": "Alibaba Group Hldg Ltd",
+    "shares": 412105,
+    "value": 80146
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "02043Q107",
+    "put_call": "STOCK",
+    "issuer_name": "Alnylam Pharmaceuticals Inc",
+    "shares": 368419,
+    "value": 40102
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "02079K305",
+    "put_call": "STOCK",
+    "issuer_name": "Alphabet Inc",
+    "shares": 139712,
+    "value": 162338
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "023135106",
+    "put_call": "STOCK",
+    "issuer_name": "Amazon Com Inc",
+    "shares": 180699,
+    "value": 352312
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "03272L108",
+    "put_call": "STOCK",
+    "issuer_name": "Anaplan Inc",
+    "shares": 170763,
+    "value": 5167
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "067901108",
+    "put_call": "STOCK",
+    "issuer_name": "Barrick Gold Corporation",
+    "shares": 4271600,
+    "value": 78256
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "22266L106",
+    "put_call": "STOCK",
+    "issuer_name": "Coupa Software Inc",
+    "shares": 94000,
+    "value": 13135
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "22788C105",
+    "put_call": "STOCK",
+    "issuer_name": "Crowdstrike Hldgs Inc",
+    "shares": 159040,
+    "value": 8855
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "23804L103",
+    "put_call": "STOCK",
+    "issuer_name": "Datadog Inc",
+    "shares": 25810,
+    "value": 929
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "25470M109",
+    "put_call": "STOCK",
+    "issuer_name": "Dish Network Corporation",
+    "shares": 966100,
+    "value": 19312
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "254687106",
+    "put_call": "CALL",
+    "issuer_name": "Disney Walt Co",
+    "shares": 29900,
+    "value": 2888
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "30303M102",
+    "put_call": "STOCK",
+    "issuer_name": "Facebook Inc",
+    "shares": 1243752,
+    "value": 207458
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "31188V100",
+    "put_call": "STOCK",
+    "issuer_name": "Fastly Inc",
+    "shares": 116036,
+    "value": 2202
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "31620M106",
+    "put_call": "STOCK",
+    "issuer_name": "Fidelity Natl Information Sv",
+    "shares": 345288,
+    "value": 42001
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "Y2573F102",
+    "put_call": "STOCK",
+    "issuer_name": "Flex Ltd",
+    "shares": 458790,
+    "value": 3842
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "35671D857",
+    "put_call": "STOCK",
+    "issuer_name": "Freeport-Mcmoran Inc",
+    "shares": 1391700,
+    "value": 9394
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "369604103",
+    "put_call": "STOCK",
+    "issuer_name": "General Electric Co",
+    "shares": 7965928,
+    "value": 63249
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "369604103",
+    "put_call": "CALL",
+    "issuer_name": "General Electric Co",
+    "shares": 420700,
+    "value": 3340
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "437076102",
+    "put_call": "STOCK",
+    "issuer_name": "Home Depot Inc",
+    "shares": 309100,
+    "value": 57712
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "L5140P101",
+    "put_call": "STOCK",
+    "issuer_name": "Intelsat S A",
+    "shares": 25000,
+    "value": 38
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "46266C105",
+    "put_call": "STOCK",
+    "issuer_name": "Iqvia Hldgs Inc",
+    "shares": 302855,
+    "value": 32666
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "46429B598",
+    "put_call": "STOCK",
+    "issuer_name": "Ishares Tr",
+    "shares": 750450,
+    "value": 18093
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "47215P106",
+    "put_call": "STOCK",
+    "issuer_name": "Jd Com Inc",
+    "shares": 579894,
+    "value": 23486
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "517834107",
+    "put_call": "STOCK",
+    "issuer_name": "Las Vegas Sands Corp",
+    "shares": 176168,
+    "value": 7482
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "54951L109",
+    "put_call": "STOCK",
+    "issuer_name": "Luckin Coffee Inc",
+    "shares": 21276,
+    "value": 578
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "594918104",
+    "put_call": "STOCK",
+    "issuer_name": "Microsoft Corp",
+    "shares": 1104832,
+    "value": 174243
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "64110L106",
+    "put_call": "STOCK",
+    "issuer_name": "Netflix Inc",
+    "shares": 846651,
+    "value": 317917
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "647581107",
+    "put_call": "STOCK",
+    "issuer_name": "New Oriental Ed &amp; Tech Grp I",
+    "shares": 80230,
+    "value": 8684
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "65343E108",
+    "put_call": "STOCK",
+    "issuer_name": "Nextcure Inc",
+    "shares": 141459,
+    "value": 5244
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "70450Y103",
+    "put_call": "STOCK",
+    "issuer_name": "Paypal Hldgs Inc",
+    "shares": 931198,
+    "value": 89153
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "747525103",
+    "put_call": "STOCK",
+    "issuer_name": "Qualcomm Inc",
+    "shares": 472150,
+    "value": 31941
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "75615P103",
+    "put_call": "STOCK",
+    "issuer_name": "Reata Pharmaceuticals Inc",
+    "shares": 531878,
+    "value": 76771
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "81141R100",
+    "put_call": "STOCK",
+    "issuer_name": "Sea Ltd",
+    "shares": 1173938,
+    "value": 52017
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "81762P102",
+    "put_call": "STOCK",
+    "issuer_name": "Servicenow Inc",
+    "shares": 110030,
+    "value": 31532
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "835699307",
+    "put_call": "STOCK",
+    "issuer_name": "Sony Corp",
+    "shares": 146400,
+    "value": 8664
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "874080104",
+    "put_call": "STOCK",
+    "issuer_name": "Tal Education Group",
+    "shares": 312300,
+    "value": 16633
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "88034P109",
+    "put_call": "STOCK",
+    "issuer_name": "Tencent Music Entmt Group",
+    "shares": 213775,
+    "value": 2151
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "89610F101",
+    "put_call": "STOCK",
+    "issuer_name": "Tricida Inc",
+    "shares": 688344,
+    "value": 15144
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "90138F102",
+    "put_call": "STOCK",
+    "issuer_name": "Twilio Inc",
+    "shares": 26558,
+    "value": 2377
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "90353T100",
+    "put_call": "CALL",
+    "issuer_name": "Uber Technologies Inc",
+    "shares": 400,
+    "value": 11
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "98138H101",
+    "put_call": "STOCK",
+    "issuer_name": "Workday Inc",
+    "shares": 1649211,
+    "value": 214760
+  },
+  {
+    "cik": "0001536411",
+    "report_date": "2020-03-31",
+    "filing_date": "2020-05-15",
+    "cusip": "G98239109",
+    "put_call": "STOCK",
+    "issuer_name": "Xp Inc",
+    "shares": 50000,
+    "value": 965
+  }
+]
