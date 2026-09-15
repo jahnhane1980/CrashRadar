@@ -1,0 +1,431 @@
+{
+  "totalElectionsAnalyzed": 12,
+  "pastMidtermsCount": 5,
+  "events": [
+    {
+      "date": "2004-11-02",
+      "type": "PRESIDENTIAL",
+      "label": "US-Präsidentschaftswahl 2004 (Bush)",
+      "isCurrent": false,
+      "hasElectionPassed": true,
+      "refDate": "2004-11-02",
+      "spyElection": 113.550003,
+      "preWindow": {
+        "startDate": "2004-09-03",
+        "preRet": 1.28,
+        "preMaxDD": -2.02,
+        "preMaxRunup": 2.28,
+        "avgOil": 49.7,
+        "peakOil": 55.2,
+        "avgRy": 1.76,
+        "peakRy": 1.9,
+        "hasMacroStress": false
+      },
+      "fiscal": {
+        "tgaBillion": 500,
+        "rrpBillion": 2.3,
+        "billRatio": 73,
+        "buybackBillion": 0,
+        "hasRrpBuffer": false,
+        "isShieldActive": true
+      },
+      "postWindow": {
+        "postRet45": 5.19,
+        "postMaxDD45": 1.26,
+        "postMaxRunup45": 6.46,
+        "startRyElection": 1.61,
+        "endRyPost45": 1.64,
+        "deltaRy": 0.03
+      }
+    },
+    {
+      "date": "2006-11-07",
+      "type": "MIDTERM",
+      "label": "US-Midterms 2006 (Bush)",
+      "isCurrent": false,
+      "hasElectionPassed": true,
+      "refDate": "2006-11-07",
+      "spyElection": 138.610001,
+      "preWindow": {
+        "startDate": "2006-09-08",
+        "preRet": 6.39,
+        "preMaxDD": 0,
+        "preMaxRunup": 6.52,
+        "avgOil": 60.6,
+        "peakOil": 66.3,
+        "avgRy": 2.37,
+        "peakRy": 2.53,
+        "hasMacroStress": true
+      },
+      "fiscal": {
+        "tgaBillion": 5.3,
+        "rrpBillion": 2.3,
+        "billRatio": 73.2,
+        "buybackBillion": 0,
+        "hasRrpBuffer": false,
+        "isShieldActive": false
+      },
+      "postWindow": {
+        "postRet45": 1.54,
+        "postMaxDD45": -0.31,
+        "postMaxRunup45": 3.25,
+        "startRyElection": 2.32,
+        "endRyPost45": 2.35,
+        "deltaRy": 0.03
+      }
+    },
+    {
+      "date": "2008-11-04",
+      "type": "PRESIDENTIAL",
+      "label": "US-Präsidentschaftswahl 2008 (Obama / Lehman)",
+      "isCurrent": false,
+      "hasElectionPassed": true,
+      "refDate": "2008-11-04",
+      "spyElection": 100.410004,
+      "preWindow": {
+        "startDate": "2008-09-05",
+        "preRet": -19.3,
+        "preMaxDD": -32.53,
+        "preMaxRunup": 2.07,
+        "avgOil": 87.5,
+        "peakOil": 120.9,
+        "avgRy": 2.4,
+        "peakRy": 3.14,
+        "hasMacroStress": true
+      },
+      "fiscal": {
+        "tgaBillion": 19,
+        "rrpBillion": 25,
+        "billRatio": 69.3,
+        "buybackBillion": 0,
+        "hasRrpBuffer": false,
+        "isShieldActive": false
+      },
+      "postWindow": {
+        "postRet45": -12.17,
+        "postMaxDD45": -24.86,
+        "postMaxRunup45": -4.2,
+        "startRyElection": 2.88,
+        "endRyPost45": 1.98,
+        "deltaRy": -0.9
+      }
+    },
+    {
+      "date": "2010-11-02",
+      "type": "MIDTERM",
+      "label": "US-Midterms 2010 (Obama / Tea Party)",
+      "isCurrent": false,
+      "hasElectionPassed": true,
+      "refDate": "2010-11-02",
+      "spyElection": 119.47,
+      "preWindow": {
+        "startDate": "2010-09-03",
+        "preRet": 7.74,
+        "preMaxDD": -1.13,
+        "preMaxRunup": 7.74,
+        "avgOil": 79,
+        "peakOil": 83.9,
+        "avgRy": 0.71,
+        "peakRy": 1.1,
+        "hasMacroStress": false
+      },
+      "fiscal": {
+        "tgaBillion": 54.5,
+        "rrpBillion": 0.2,
+        "billRatio": 63.7,
+        "buybackBillion": 0,
+        "hasRrpBuffer": false,
+        "isShieldActive": false
+      },
+      "postWindow": {
+        "postRet45": 4.04,
+        "postMaxDD45": -1.1,
+        "postMaxRunup45": 4.48,
+        "startRyElection": 0.49,
+        "endRyPost45": 1.05,
+        "deltaRy": 0.56
+      }
+    },
+    {
+      "date": "2012-11-06",
+      "type": "PRESIDENTIAL",
+      "label": "US-Präsidentschaftswahl 2012 (Obama)",
+      "isCurrent": false,
+      "hasElectionPassed": true,
+      "refDate": "2012-11-06",
+      "spyElection": 142.96,
+      "preWindow": {
+        "startDate": "2012-09-07",
+        "preRet": -0.95,
+        "preMaxDD": -2.29,
+        "preMaxRunup": 2.02,
+        "avgOil": 91.2,
+        "peakOil": 99,
+        "avgRy": -0.74,
+        "peakRy": -0.61,
+        "hasMacroStress": true
+      },
+      "fiscal": {
+        "tgaBillion": 21.6,
+        "rrpBillion": 0.1,
+        "billRatio": 56.9,
+        "buybackBillion": 0,
+        "hasRrpBuffer": false,
+        "isShieldActive": false
+      },
+      "postWindow": {
+        "postRet45": -0.12,
+        "postMaxDD45": -5.08,
+        "postMaxRunup45": 1.69,
+        "startRyElection": -0.72,
+        "endRyPost45": -0.71,
+        "deltaRy": 0.01
+      }
+    },
+    {
+      "date": "2014-11-04",
+      "type": "MIDTERM",
+      "label": "US-Midterms 2014 (Obama / Fed Tapering)",
+      "isCurrent": false,
+      "hasElectionPassed": true,
+      "refDate": "2014-11-04",
+      "spyElection": 201.07,
+      "preWindow": {
+        "startDate": "2014-09-05",
+        "preRet": -0.02,
+        "preMaxDD": -7.38,
+        "preMaxRunup": 0.35,
+        "avgOil": 87.7,
+        "peakOil": 94.9,
+        "avgRy": 0.43,
+        "peakRy": 0.61,
+        "hasMacroStress": true
+      },
+      "fiscal": {
+        "tgaBillion": 98.5,
+        "rrpBillion": 124.9,
+        "billRatio": 55.5,
+        "buybackBillion": 0.48,
+        "hasRrpBuffer": true,
+        "isShieldActive": false
+      },
+      "postWindow": {
+        "postRet45": 2.71,
+        "postMaxDD45": -1.57,
+        "postMaxRunup45": 3.45,
+        "startRyElection": 0.43,
+        "endRyPost45": 0.49,
+        "deltaRy": 0.06
+      }
+    },
+    {
+      "date": "2016-11-08",
+      "type": "PRESIDENTIAL",
+      "label": "US-Präsidentschaftswahl 2016 (Trump)",
+      "isCurrent": false,
+      "hasElectionPassed": true,
+      "refDate": "2016-11-08",
+      "spyElection": 214.110001,
+      "preWindow": {
+        "startDate": "2016-09-09",
+        "preRet": 0.39,
+        "preMaxDD": -2.22,
+        "preMaxRunup": 1.83,
+        "avgOil": 47.4,
+        "peakOil": 51.6,
+        "avgRy": 0.11,
+        "peakRy": 0.24,
+        "hasMacroStress": false
+      },
+      "fiscal": {
+        "tgaBillion": 377.5,
+        "rrpBillion": 127.3,
+        "billRatio": 61.7,
+        "buybackBillion": 0.55,
+        "hasRrpBuffer": true,
+        "isShieldActive": false
+      },
+      "postWindow": {
+        "postRet45": 5.42,
+        "postMaxDD45": 1.06,
+        "postMaxRunup45": 6.38,
+        "startRyElection": 0.15,
+        "endRyPost45": 0.58,
+        "deltaRy": 0.43
+      }
+    },
+    {
+      "date": "2018-11-06",
+      "type": "MIDTERM",
+      "label": "US-Midterms 2018 (Trump / Powell QT)",
+      "isCurrent": false,
+      "hasElectionPassed": true,
+      "refDate": "2018-11-06",
+      "spyElection": 275.12,
+      "preWindow": {
+        "startDate": "2018-09-07",
+        "preRet": -4.34,
+        "preMaxDD": -8.25,
+        "preMaxRunup": 2.08,
+        "avgOil": 69.8,
+        "peakOil": 76.4,
+        "avgRy": 1,
+        "peakRy": 1.16,
+        "hasMacroStress": false
+      },
+      "fiscal": {
+        "tgaBillion": 313.3,
+        "rrpBillion": 2.5,
+        "billRatio": 62,
+        "buybackBillion": 0.55,
+        "hasRrpBuffer": false,
+        "isShieldActive": false
+      },
+      "postWindow": {
+        "postRet45": -12.51,
+        "postMaxDD45": -12.51,
+        "postMaxRunup45": 2.14,
+        "startRyElection": 1.15,
+        "endRyPost45": 1.02,
+        "deltaRy": -0.13
+      }
+    },
+    {
+      "date": "2020-11-03",
+      "type": "PRESIDENTIAL",
+      "label": "US-Präsidentschaftswahl 2020 (Biden / Corona)",
+      "isCurrent": false,
+      "hasElectionPassed": true,
+      "refDate": "2020-11-03",
+      "spyElection": 336.03,
+      "preWindow": {
+        "startDate": "2020-09-04",
+        "preRet": -1.91,
+        "preMaxDD": -5.82,
+        "preMaxRunup": 2.88,
+        "avgOil": 39.3,
+        "peakOil": 41.5,
+        "avgRy": -0.93,
+        "peakRy": -0.82,
+        "hasMacroStress": false
+      },
+      "fiscal": {
+        "tgaBillion": 1618.5,
+        "rrpBillion": 0,
+        "billRatio": 57.2,
+        "buybackBillion": 0.55,
+        "hasRrpBuffer": false,
+        "isShieldActive": true
+      },
+      "postWindow": {
+        "postRet45": 9.87,
+        "postMaxDD45": 2.23,
+        "postMaxRunup45": 10.78,
+        "startRyElection": -0.82,
+        "endRyPost45": -1,
+        "deltaRy": -0.18
+      }
+    },
+    {
+      "date": "2022-11-08",
+      "type": "MIDTERM",
+      "label": "US-Midterms 2022 (Biden / Zinsbärenmarkt)",
+      "isCurrent": false,
+      "hasElectionPassed": true,
+      "refDate": "2022-11-08",
+      "spyElection": 382,
+      "preWindow": {
+        "startDate": "2022-09-09",
+        "preRet": -6.05,
+        "preMaxDD": -12.31,
+        "preMaxRunup": 1.07,
+        "avgOil": 86.1,
+        "peakOil": 92.6,
+        "avgRy": 1.46,
+        "peakRy": 1.74,
+        "hasMacroStress": true
+      },
+      "fiscal": {
+        "tgaBillion": 545.3,
+        "rrpBillion": 2232.6,
+        "billRatio": 52.1,
+        "buybackBillion": 0.55,
+        "hasRrpBuffer": true,
+        "isShieldActive": false
+      },
+      "postWindow": {
+        "postRet45": 0.24,
+        "postMaxDD45": -2.06,
+        "postMaxRunup45": 6.72,
+        "startRyElection": 1.64,
+        "endRyPost45": 1.55,
+        "deltaRy": -0.09
+      }
+    },
+    {
+      "date": "2024-11-05",
+      "type": "PRESIDENTIAL",
+      "label": "US-Präsidentschaftswahl 2024 (Trump II)",
+      "isCurrent": false,
+      "hasElectionPassed": true,
+      "refDate": "2024-11-05",
+      "spyElection": 576.7,
+      "preWindow": {
+        "startDate": "2024-09-06",
+        "preRet": 6.73,
+        "preMaxDD": 0,
+        "preMaxRunup": 8.19,
+        "avgOil": 70.7,
+        "peakOil": 77.1,
+        "avgRy": 1.74,
+        "peakRy": 2.04,
+        "hasMacroStress": false
+      },
+      "fiscal": {
+        "tgaBillion": 838.8,
+        "rrpBillion": 144.2,
+        "billRatio": 62.2,
+        "buybackBillion": 45.05,
+        "hasRrpBuffer": true,
+        "isShieldActive": true
+      },
+      "postWindow": {
+        "postRet45": 2.51,
+        "postMaxDD45": 1.57,
+        "postMaxRunup45": 5.39,
+        "startRyElection": 1.99,
+        "endRyPost45": 2.23,
+        "deltaRy": 0.24
+      }
+    },
+    {
+      "date": "2026-11-03",
+      "type": "MIDTERM",
+      "label": "US-Midterms 2026 (Aktuelle Lage / Status Quo)",
+      "isCurrent": true,
+      "hasElectionPassed": false,
+      "refDate": "2026-09-30",
+      "spyElection": 764.29,
+      "preWindow": {
+        "startDate": "2026-07-20",
+        "preRet": 2.99,
+        "preMaxDD": -1.7,
+        "preMaxRunup": 4.82,
+        "avgOil": 87,
+        "peakOil": 100.1,
+        "avgRy": 2.43,
+        "peakRy": 2.55,
+        "hasMacroStress": true
+      },
+      "fiscal": {
+        "tgaBillion": 818.1,
+        "rrpBillion": 5.3,
+        "billRatio": 61.5,
+        "buybackBillion": 7.15,
+        "hasRrpBuffer": false,
+        "isShieldActive": true
+      },
+      "postWindow": null
+    }
+  ]
+}

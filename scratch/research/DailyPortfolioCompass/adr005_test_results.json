@@ -1,0 +1,7785 @@
+{
+  "totalEvents": 81,
+  "squeezeEventsCount": 22,
+  "cohorts": {
+    "baselinePreOpex": {
+      "n": 22,
+      "win5": 40.9,
+      "win10": 54.5,
+      "win20": 50,
+      "avgRet5": -0.25,
+      "avgRet10": 0.02,
+      "avgRet20": -0.39,
+      "avgDD20": -2.31,
+      "avgRunup20": 1.7,
+      "asymmetry": 0.73
+    },
+    "postOpexBlindD1": {
+      "n": 22,
+      "win5": 50,
+      "win10": 45.5,
+      "win20": 45.5,
+      "avgRet5": -0.02,
+      "avgRet10": -0.05,
+      "avgRet20": 0.03,
+      "avgDD20": -2.4,
+      "avgRunup20": 1.82,
+      "asymmetry": 0.76
+    },
+    "postOpexConfirmedRelief": {
+      "n": 21,
+      "win5": 52.4,
+      "win10": 47.6,
+      "win20": 47.6,
+      "avgRet5": -0.02,
+      "avgRet10": -0.05,
+      "avgRet20": 0.03,
+      "avgDD20": -2.52,
+      "avgRunup20": 1.9,
+      "asymmetry": 0.76
+    },
+    "dualGatePostOpexRelief": {
+      "n": 20,
+      "win5": 55,
+      "win10": 50,
+      "win20": 45,
+      "avgRet5": 0.08,
+      "avgRet10": -0.02,
+      "avgRet20": -0.2,
+      "avgDD20": -2.52,
+      "avgRunup20": 1.77,
+      "asymmetry": 0.7
+    },
+    "normalOpex": {
+      "n": 47,
+      "win5": 72.3,
+      "win10": 72.3,
+      "win20": 76.6,
+      "avgRet5": 0.7,
+      "avgRet10": 1.05,
+      "avgRet20": 1.89,
+      "avgDD20": -1.56,
+      "avgRunup20": 3.19,
+      "asymmetry": 2.05
+    }
+  },
+  "bullTrapsAnalysis": {
+    "totalBullTraps": 10,
+    "blockedByMacro": 0,
+    "resolvedIntoProfits": 0,
+    "remainingTraps": 10
+  },
+  "events": [
+    {
+      "date": "2020-01-17",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.86,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": true,
+      "spyOpex": 331.95,
+      "baselinePerf": {
+        "d5": {
+          "ret": -0.18,
+          "maxDD": -0.2,
+          "maxRunup": 0
+        },
+        "d10": {
+          "ret": -2.55,
+          "maxDD": -2.55,
+          "maxRunup": 0
+        },
+        "d20": {
+          "ret": 0.61,
+          "maxDD": -3.08,
+          "maxRunup": 0.61
+        }
+      },
+      "strat1": {
+        "entryDate": "2020-01-18",
+        "entryPrice": 331.95,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.07,
+            "maxDD": -0.2,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": -1.52,
+            "maxDD": -2.55,
+            "maxRunup": 0
+          },
+          "d20": {
+            "ret": 0.08,
+            "maxDD": -3.08,
+            "maxRunup": 0.61
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2020-01-18",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 331.95,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.07,
+            "maxDD": -0.2,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": -1.52,
+            "maxDD": -2.55,
+            "maxRunup": 0
+          },
+          "d20": {
+            "ret": 0.08,
+            "maxDD": -3.08,
+            "maxRunup": 0.61
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2020-01-18",
+        "tradeBlocked": true,
+        "blockReason": "LIQUIDITY_CRITICAL",
+        "avoidedDD20": -3.08,
+        "avoidedRet20": 0.08
+      }
+    },
+    {
+      "date": "2020-02-21",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1.15,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": true,
+      "spyOpex": 333.48,
+      "baselinePerf": {
+        "d5": {
+          "ret": -6.59,
+          "maxDD": -6.59,
+          "maxRunup": 0
+        },
+        "d10": {
+          "ret": -7.31,
+          "maxDD": -11.16,
+          "maxRunup": 0
+        },
+        "d20": {
+          "ret": -25.6,
+          "maxDD": -25.6,
+          "maxRunup": 0
+        }
+      },
+      "strat1": {
+        "entryDate": "2020-02-22",
+        "entryPrice": 333.48,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -10.79,
+            "maxDD": -10.79,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": -9.97,
+            "maxDD": -11.16,
+            "maxRunup": 0
+          },
+          "d20": {
+            "ret": -19.24,
+            "maxDD": -25.6,
+            "maxRunup": 0
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2020-02-22",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 333.48,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -10.79,
+            "maxDD": -10.79,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": -9.97,
+            "maxDD": -11.16,
+            "maxRunup": 0
+          },
+          "d20": {
+            "ret": -19.24,
+            "maxDD": -25.6,
+            "maxRunup": 0
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2020-02-22",
+        "tradeBlocked": true,
+        "blockReason": "LIQUIDITY_CRITICAL",
+        "avoidedDD20": -25.6,
+        "avoidedRet20": -19.24
+      }
+    },
+    {
+      "date": "2020-03-20",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1.33,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": true,
+      "spyOpex": 228.8,
+      "baselinePerf": {
+        "d5": {
+          "ret": 7.86,
+          "maxDD": -2.56,
+          "maxRunup": 7.86
+        },
+        "d10": {
+          "ret": 14.36,
+          "maxDD": -2.56,
+          "maxRunup": 14.36
+        },
+        "d20": {
+          "ret": 21.59,
+          "maxDD": -2.56,
+          "maxRunup": 21.59
+        }
+      },
+      "strat1": {
+        "entryDate": "2020-03-21",
+        "entryPrice": 228.8,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 14.16,
+            "maxDD": -2.56,
+            "maxRunup": 14.16
+          },
+          "d10": {
+            "ret": 12.65,
+            "maxDD": -2.56,
+            "maxRunup": 14.36
+          },
+          "d20": {
+            "ret": 21.59,
+            "maxDD": -2.56,
+            "maxRunup": 21.59
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2020-03-21",
+        "dayOffset": 1,
+        "trigger": "VOL_CRUSH",
+        "entryPrice": 228.8,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 14.16,
+            "maxDD": -2.56,
+            "maxRunup": 14.16
+          },
+          "d10": {
+            "ret": 12.65,
+            "maxDD": -2.56,
+            "maxRunup": 14.36
+          },
+          "d20": {
+            "ret": 21.59,
+            "maxDD": -2.56,
+            "maxRunup": 21.59
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2020-03-21",
+        "tradeBlocked": true,
+        "blockReason": "LIQUIDITY_CRITICAL",
+        "avoidedDD20": -2.56,
+        "avoidedRet20": 21.59
+      }
+    },
+    {
+      "date": "2020-04-17",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.99,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": true,
+      "spyOpex": 286.64,
+      "baselinePerf": {
+        "d5": {
+          "ret": -2.63,
+          "maxDD": -4.74,
+          "maxRunup": 0
+        },
+        "d10": {
+          "ret": 0.14,
+          "maxDD": -4.74,
+          "maxRunup": 0.14
+        },
+        "d20": {
+          "ret": 0.36,
+          "maxDD": -4.74,
+          "maxRunup": 2.29
+        }
+      },
+      "strat1": {
+        "entryDate": "2020-04-18",
+        "entryPrice": 286.64,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -2.64,
+            "maxDD": -4.74,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": -0.32,
+            "maxDD": -4.74,
+            "maxRunup": 0.14
+          },
+          "d20": {
+            "ret": 2.02,
+            "maxDD": -4.74,
+            "maxRunup": 2.29
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2020-04-18",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 286.64,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -2.64,
+            "maxDD": -4.74,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": -0.32,
+            "maxDD": -4.74,
+            "maxRunup": 0.14
+          },
+          "d20": {
+            "ret": 2.02,
+            "maxDD": -4.74,
+            "maxRunup": 2.29
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2020-04-18",
+        "tradeBlocked": true,
+        "blockReason": "GOLDI_VETO (RECESSION_CONTRACTION)",
+        "avoidedDD20": -4.74,
+        "avoidedRet20": 2.02
+      }
+    },
+    {
+      "date": "2020-05-15",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1.17,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 286.28,
+      "baselinePerf": {
+        "d5": {
+          "ret": 3.72,
+          "maxDD": 0,
+          "maxRunup": 3.72
+        },
+        "d10": {
+          "ret": 3.2,
+          "maxDD": 0,
+          "maxRunup": 3.72
+        },
+        "d20": {
+          "ret": 8.76,
+          "maxDD": 0,
+          "maxRunup": 9.05
+        }
+      },
+      "strat1": {
+        "entryDate": "2020-05-16",
+        "entryPrice": 286.28,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 3,
+            "maxDD": 0,
+            "maxRunup": 3.72
+          },
+          "d10": {
+            "ret": 4.47,
+            "maxDD": 0,
+            "maxRunup": 4.47
+          },
+          "d20": {
+            "ret": 11.55,
+            "maxDD": 0,
+            "maxRunup": 11.55
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2020-05-16",
+        "dayOffset": 1,
+        "trigger": "VOL_CRUSH",
+        "entryPrice": 286.28,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 3,
+            "maxDD": 0,
+            "maxRunup": 3.72
+          },
+          "d10": {
+            "ret": 4.47,
+            "maxDD": 0,
+            "maxRunup": 4.47
+          },
+          "d20": {
+            "ret": 11.55,
+            "maxDD": 0,
+            "maxRunup": 11.55
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2020-05-16",
+        "tradeBlocked": true,
+        "blockReason": "GOLDI_VETO (RECESSION_CONTRACTION)",
+        "avoidedDD20": 0,
+        "avoidedRet20": 11.55
+      }
+    },
+    {
+      "date": "2020-06-19",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.98,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 308.64,
+      "baselinePerf": {
+        "d5": {
+          "ret": -1.47,
+          "maxDD": -1.47,
+          "maxRunup": 1.1
+        },
+        "d10": {
+          "ret": -1.35,
+          "maxDD": -2.78,
+          "maxRunup": 1.1
+        },
+        "d20": {
+          "ret": 1.86,
+          "maxDD": -2.78,
+          "maxRunup": 2.72
+        }
+      },
+      "strat1": {
+        "entryDate": "2020-06-20",
+        "entryPrice": 308.64,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.42,
+            "maxDD": -1.47,
+            "maxRunup": 1.1
+          },
+          "d10": {
+            "ret": -0.09,
+            "maxDD": -2.78,
+            "maxRunup": 1.1
+          },
+          "d20": {
+            "ret": 2.9,
+            "maxDD": -2.78,
+            "maxRunup": 2.9
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2020-06-20",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 308.64,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.42,
+            "maxDD": -1.47,
+            "maxRunup": 1.1
+          },
+          "d10": {
+            "ret": -0.09,
+            "maxDD": -2.78,
+            "maxRunup": 1.1
+          },
+          "d20": {
+            "ret": 2.9,
+            "maxDD": -2.78,
+            "maxRunup": 2.9
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2020-06-20",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 308.64,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.42,
+            "maxDD": -1.47,
+            "maxRunup": 1.1
+          },
+          "d10": {
+            "ret": -0.09,
+            "maxDD": -2.78,
+            "maxRunup": 1.1
+          },
+          "d20": {
+            "ret": 2.9,
+            "maxDD": -2.78,
+            "maxRunup": 2.9
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "RECESSION_CONTRACTION"
+      }
+    },
+    {
+      "date": "2020-07-17",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.85,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 321.72,
+      "baselinePerf": {
+        "d5": {
+          "ret": 1.6,
+          "maxDD": 0,
+          "maxRunup": 1.6
+        },
+        "d10": {
+          "ret": 0.47,
+          "maxDD": -0.26,
+          "maxRunup": 1.6
+        },
+        "d20": {
+          "ret": 3.92,
+          "maxDD": -0.26,
+          "maxRunup": 3.92
+        }
+      },
+      "strat1": {
+        "entryDate": "2020-07-18",
+        "entryPrice": 321.72,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.39,
+            "maxDD": 0,
+            "maxRunup": 1.6
+          },
+          "d10": {
+            "ret": -0.17,
+            "maxDD": -0.26,
+            "maxRunup": 1.6
+          },
+          "d20": {
+            "ret": 3.99,
+            "maxDD": -0.26,
+            "maxRunup": 3.99
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2020-07-18",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 321.72,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.39,
+            "maxDD": 0,
+            "maxRunup": 1.6
+          },
+          "d10": {
+            "ret": -0.17,
+            "maxDD": -0.26,
+            "maxRunup": 1.6
+          },
+          "d20": {
+            "ret": 3.99,
+            "maxDD": -0.26,
+            "maxRunup": 3.99
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2020-07-18",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 321.72,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.39,
+            "maxDD": 0,
+            "maxRunup": 1.6
+          },
+          "d10": {
+            "ret": -0.17,
+            "maxDD": -0.26,
+            "maxRunup": 1.6
+          },
+          "d20": {
+            "ret": 3.99,
+            "maxDD": -0.26,
+            "maxRunup": 3.99
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "DRAIN_WARNING",
+        "goldiRegime": "RECESSION_CONTRACTION"
+      }
+    },
+    {
+      "date": "2020-08-21",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.78,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 339.48,
+      "baselinePerf": {
+        "d5": {
+          "ret": 2.38,
+          "maxDD": 0,
+          "maxRunup": 2.38
+        },
+        "d10": {
+          "ret": 2.9,
+          "maxDD": 0,
+          "maxRunup": 3.27
+        },
+        "d20": {
+          "ret": -1.65,
+          "maxDD": -1.85,
+          "maxRunup": 5.37
+        }
+      },
+      "strat1": {
+        "entryDate": "2020-08-22",
+        "entryPrice": 339.48,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.61,
+            "maxDD": 0,
+            "maxRunup": 2.61
+          },
+          "d10": {
+            "ret": 3.86,
+            "maxDD": 0,
+            "maxRunup": 3.86
+          },
+          "d20": {
+            "ret": -1.6,
+            "maxDD": -1.85,
+            "maxRunup": 5.37
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2020-08-22",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 339.48,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.61,
+            "maxDD": 0,
+            "maxRunup": 2.61
+          },
+          "d10": {
+            "ret": 3.86,
+            "maxDD": 0,
+            "maxRunup": 3.86
+          },
+          "d20": {
+            "ret": -1.6,
+            "maxDD": -1.85,
+            "maxRunup": 5.37
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2020-08-22",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 339.48,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.61,
+            "maxDD": 0,
+            "maxRunup": 2.61
+          },
+          "d10": {
+            "ret": 3.86,
+            "maxDD": 0,
+            "maxRunup": 3.86
+          },
+          "d20": {
+            "ret": -1.6,
+            "maxDD": -1.85,
+            "maxRunup": 5.37
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "RECESSION_CONTRACTION"
+      }
+    },
+    {
+      "date": "2020-09-18",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 330.65,
+      "baselinePerf": {
+        "d5": {
+          "ret": -2.42,
+          "maxDD": -2.42,
+          "maxRunup": 0
+        },
+        "d10": {
+          "ret": 1.07,
+          "maxDD": -2.42,
+          "maxRunup": 1.07
+        },
+        "d20": {
+          "ret": 3.97,
+          "maxDD": -2.42,
+          "maxRunup": 3.97
+        }
+      },
+      "strat1": {
+        "entryDate": "2020-09-19",
+        "entryPrice": 330.65,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -2.16,
+            "maxDD": -2.42,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": 0.52,
+            "maxDD": -2.42,
+            "maxRunup": 1.07
+          },
+          "d20": {
+            "ret": 4.9,
+            "maxDD": -2.42,
+            "maxRunup": 4.9
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2020-09-19",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 330.65,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -2.16,
+            "maxDD": -2.42,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": 0.52,
+            "maxDD": -2.42,
+            "maxRunup": 1.07
+          },
+          "d20": {
+            "ret": 4.9,
+            "maxDD": -2.42,
+            "maxRunup": 4.9
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2020-09-19",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 330.65,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -2.16,
+            "maxDD": -2.42,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": 0.52,
+            "maxDD": -2.42,
+            "maxRunup": 1.07
+          },
+          "d20": {
+            "ret": 4.9,
+            "maxDD": -2.42,
+            "maxRunup": 4.9
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "RECESSION_CONTRACTION"
+      }
+    },
+    {
+      "date": "2020-10-16",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.85,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 347.29,
+      "baselinePerf": {
+        "d5": {
+          "ret": -1.31,
+          "maxDD": -1.52,
+          "maxRunup": 0
+        },
+        "d10": {
+          "ret": -2.27,
+          "maxDD": -2.27,
+          "maxRunup": 0
+        },
+        "d20": {
+          "ret": 0.85,
+          "maxDD": -5.97,
+          "maxRunup": 0.85
+        }
+      },
+      "strat1": {
+        "entryDate": "2020-10-17",
+        "entryPrice": 347.29,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.77,
+            "maxDD": -1.52,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": -2.61,
+            "maxDD": -2.61,
+            "maxRunup": 0
+          },
+          "d20": {
+            "ret": 0.83,
+            "maxDD": -5.97,
+            "maxRunup": 0.85
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2020-10-17",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 347.29,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.77,
+            "maxDD": -1.52,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": -2.61,
+            "maxDD": -2.61,
+            "maxRunup": 0
+          },
+          "d20": {
+            "ret": 0.83,
+            "maxDD": -5.97,
+            "maxRunup": 0.85
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2020-10-17",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 347.29,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.77,
+            "maxDD": -1.52,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": -2.61,
+            "maxDD": -2.61,
+            "maxRunup": 0
+          },
+          "d20": {
+            "ret": 0.83,
+            "maxDD": -5.97,
+            "maxRunup": 0.85
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "RECESSION_CONTRACTION"
+      }
+    },
+    {
+      "date": "2020-11-20",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.87,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 355.33,
+      "baselinePerf": {
+        "d5": {
+          "ret": 2.06,
+          "maxDD": 0,
+          "maxRunup": 2.22
+        },
+        "d10": {
+          "ret": 1.89,
+          "maxDD": 0,
+          "maxRunup": 2.35
+        },
+        "d20": {
+          "ret": 3.21,
+          "maxDD": 0,
+          "maxRunup": 4.18
+        }
+      },
+      "strat1": {
+        "entryDate": "2020-11-21",
+        "entryPrice": 355.33,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.06,
+            "maxDD": 0,
+            "maxRunup": 2.22
+          },
+          "d10": {
+            "ret": 3.01,
+            "maxDD": 0,
+            "maxRunup": 3.01
+          },
+          "d20": {
+            "ret": 3.09,
+            "maxDD": 0,
+            "maxRunup": 4.18
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2020-11-21",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 355.33,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.06,
+            "maxDD": 0,
+            "maxRunup": 2.22
+          },
+          "d10": {
+            "ret": 3.01,
+            "maxDD": 0,
+            "maxRunup": 3.01
+          },
+          "d20": {
+            "ret": 3.09,
+            "maxDD": 0,
+            "maxRunup": 4.18
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2020-11-21",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 355.33,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.06,
+            "maxDD": 0,
+            "maxRunup": 2.22
+          },
+          "d10": {
+            "ret": 3.01,
+            "maxDD": 0,
+            "maxRunup": 3.01
+          },
+          "d20": {
+            "ret": 3.09,
+            "maxDD": 0,
+            "maxRunup": 4.18
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "RECESSION_CONTRACTION"
+      }
+    },
+    {
+      "date": "2020-12-18",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.97,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 369.18,
+      "baselinePerf": {
+        "d5": {
+          "ret": -0.44,
+          "maxDD": -0.53,
+          "maxRunup": 0
+        },
+        "d10": {
+          "ret": 0.81,
+          "maxDD": -0.53,
+          "maxRunup": 0.81
+        },
+        "d20": {
+          "ret": 2.69,
+          "maxDD": -0.53,
+          "maxRunup": 2.69
+        }
+      },
+      "strat1": {
+        "entryDate": "2020-12-19",
+        "entryPrice": 369.18,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.05,
+            "maxDD": -0.53,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": 0.62,
+            "maxDD": -0.53,
+            "maxRunup": 0.81
+          },
+          "d20": {
+            "ret": 3.27,
+            "maxDD": -0.53,
+            "maxRunup": 3.27
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2020-12-19",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 369.18,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.05,
+            "maxDD": -0.53,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": 0.62,
+            "maxDD": -0.53,
+            "maxRunup": 0.81
+          },
+          "d20": {
+            "ret": 3.27,
+            "maxDD": -0.53,
+            "maxRunup": 3.27
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2020-12-19",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 369.18,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.05,
+            "maxDD": -0.53,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": 0.62,
+            "maxDD": -0.53,
+            "maxRunup": 0.81
+          },
+          "d20": {
+            "ret": 3.27,
+            "maxDD": -0.53,
+            "maxRunup": 3.27
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "RECESSION_CONTRACTION"
+      }
+    },
+    {
+      "date": "2021-01-15",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.85,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 375.7,
+      "baselinePerf": {
+        "d5": {
+          "ret": 2.18,
+          "maxDD": 0,
+          "maxRunup": 2.18
+        },
+        "d10": {
+          "ret": 2.31,
+          "maxDD": 0,
+          "maxRunup": 2.31
+        },
+        "d20": {
+          "ret": 2.79,
+          "maxDD": -1.5,
+          "maxRunup": 2.79
+        }
+      },
+      "strat1": {
+        "entryDate": "2021-01-16",
+        "entryPrice": 375.7,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.27,
+            "maxDD": 0,
+            "maxRunup": 2.27
+          },
+          "d10": {
+            "ret": 2.15,
+            "maxDD": 0,
+            "maxRunup": 2.31
+          },
+          "d20": {
+            "ret": 3.2,
+            "maxDD": -1.5,
+            "maxRunup": 3.2
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2021-01-16",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 375.7,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.27,
+            "maxDD": 0,
+            "maxRunup": 2.27
+          },
+          "d10": {
+            "ret": 2.15,
+            "maxDD": 0,
+            "maxRunup": 2.31
+          },
+          "d20": {
+            "ret": 3.2,
+            "maxDD": -1.5,
+            "maxRunup": 3.2
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2021-01-16",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 375.7,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.27,
+            "maxDD": 0,
+            "maxRunup": 2.27
+          },
+          "d10": {
+            "ret": 2.15,
+            "maxDD": 0,
+            "maxRunup": 2.31
+          },
+          "d20": {
+            "ret": 3.2,
+            "maxDD": -1.5,
+            "maxRunup": 3.2
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "RECESSION_CONTRACTION"
+      }
+    },
+    {
+      "date": "2021-02-19",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.82,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 390.03,
+      "baselinePerf": {
+        "d5": {
+          "ret": 0.45,
+          "maxDD": -0.77,
+          "maxRunup": 0.45
+        },
+        "d10": {
+          "ret": -0.12,
+          "maxDD": -2.48,
+          "maxRunup": 0.45
+        },
+        "d20": {
+          "ret": 0.9,
+          "maxDD": -3.42,
+          "maxRunup": 0.9
+        }
+      },
+      "strat1": {
+        "entryDate": "2021-02-20",
+        "entryPrice": 390.03,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -1.97,
+            "maxDD": -1.97,
+            "maxRunup": 0.45
+          },
+          "d10": {
+            "ret": -0.89,
+            "maxDD": -2.48,
+            "maxRunup": 0.45
+          },
+          "d20": {
+            "ret": 1.03,
+            "maxDD": -3.42,
+            "maxRunup": 1.03
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2021-02-20",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 390.03,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -1.97,
+            "maxDD": -1.97,
+            "maxRunup": 0.45
+          },
+          "d10": {
+            "ret": -0.89,
+            "maxDD": -2.48,
+            "maxRunup": 0.45
+          },
+          "d20": {
+            "ret": 1.03,
+            "maxDD": -3.42,
+            "maxRunup": 1.03
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2021-02-20",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 390.03,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -1.97,
+            "maxDD": -1.97,
+            "maxRunup": 0.45
+          },
+          "d10": {
+            "ret": -0.89,
+            "maxDD": -2.48,
+            "maxRunup": 0.45
+          },
+          "d20": {
+            "ret": 1.03,
+            "maxDD": -3.42,
+            "maxRunup": 1.03
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "RECESSION_CONTRACTION"
+      }
+    },
+    {
+      "date": "2021-03-19",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.89,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 389.48,
+      "baselinePerf": {
+        "d5": {
+          "ret": -0.5,
+          "maxDD": -0.5,
+          "maxRunup": 0.8
+        },
+        "d10": {
+          "ret": 1.62,
+          "maxDD": -0.5,
+          "maxRunup": 1.67
+        },
+        "d20": {
+          "ret": 4.89,
+          "maxDD": -0.5,
+          "maxRunup": 4.89
+        }
+      },
+      "strat1": {
+        "entryDate": "2021-03-20",
+        "entryPrice": 389.48,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.06,
+            "maxDD": -0.5,
+            "maxRunup": 0.8
+          },
+          "d10": {
+            "ret": 1.35,
+            "maxDD": -0.5,
+            "maxRunup": 1.67
+          },
+          "d20": {
+            "ret": 5.65,
+            "maxDD": -0.5,
+            "maxRunup": 5.65
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2021-03-20",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 389.48,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.06,
+            "maxDD": -0.5,
+            "maxRunup": 0.8
+          },
+          "d10": {
+            "ret": 1.35,
+            "maxDD": -0.5,
+            "maxRunup": 1.67
+          },
+          "d20": {
+            "ret": 5.65,
+            "maxDD": -0.5,
+            "maxRunup": 5.65
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2021-03-20",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 389.48,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.06,
+            "maxDD": -0.5,
+            "maxRunup": 0.8
+          },
+          "d10": {
+            "ret": 1.35,
+            "maxDD": -0.5,
+            "maxRunup": 1.67
+          },
+          "d20": {
+            "ret": 5.65,
+            "maxDD": -0.5,
+            "maxRunup": 5.65
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "RECESSION_CONTRACTION"
+      }
+    },
+    {
+      "date": "2021-04-16",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.78,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 417.26,
+      "baselinePerf": {
+        "d5": {
+          "ret": -0.29,
+          "maxDD": -1.22,
+          "maxRunup": 0
+        },
+        "d10": {
+          "ret": 0.08,
+          "maxDD": -1.22,
+          "maxRunup": 0.08
+        },
+        "d20": {
+          "ret": 0.43,
+          "maxDD": -1.22,
+          "maxRunup": 0.67
+        }
+      },
+      "strat1": {
+        "entryDate": "2021-04-17",
+        "entryPrice": 417.26,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -1.2,
+            "maxDD": -1.22,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": 0.06,
+            "maxDD": -1.22,
+            "maxRunup": 0.08
+          },
+          "d20": {
+            "ret": 1.16,
+            "maxDD": -1.22,
+            "maxRunup": 1.16
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2021-04-17",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 417.26,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -1.2,
+            "maxDD": -1.22,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": 0.06,
+            "maxDD": -1.22,
+            "maxRunup": 0.08
+          },
+          "d20": {
+            "ret": 1.16,
+            "maxDD": -1.22,
+            "maxRunup": 1.16
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2021-04-17",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 417.26,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -1.2,
+            "maxDD": -1.22,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": 0.06,
+            "maxDD": -1.22,
+            "maxRunup": 0.08
+          },
+          "d20": {
+            "ret": 1.16,
+            "maxDD": -1.22,
+            "maxRunup": 1.16
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2021-05-21",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1.07,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 414.94,
+      "baselinePerf": {
+        "d5": {
+          "ret": 1,
+          "maxDD": 0,
+          "maxRunup": 1.02
+        },
+        "d10": {
+          "ret": 1.23,
+          "maxDD": 0,
+          "maxRunup": 1.23
+        },
+        "d20": {
+          "ret": 2.09,
+          "maxDD": 0,
+          "maxRunup": 2.09
+        }
+      },
+      "strat1": {
+        "entryDate": "2021-05-22",
+        "entryPrice": 414.94,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.05,
+            "maxDD": 0,
+            "maxRunup": 1.05
+          },
+          "d10": {
+            "ret": 1.14,
+            "maxDD": 0,
+            "maxRunup": 1.23
+          },
+          "d20": {
+            "ret": 2.26,
+            "maxDD": 0,
+            "maxRunup": 2.26
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2021-05-22",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 414.94,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.05,
+            "maxDD": 0,
+            "maxRunup": 1.05
+          },
+          "d10": {
+            "ret": 1.14,
+            "maxDD": 0,
+            "maxRunup": 1.23
+          },
+          "d20": {
+            "ret": 2.26,
+            "maxDD": 0,
+            "maxRunup": 2.26
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2021-05-22",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 414.94,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.05,
+            "maxDD": 0,
+            "maxRunup": 1.05
+          },
+          "d10": {
+            "ret": 1.14,
+            "maxDD": 0,
+            "maxRunup": 1.23
+          },
+          "d20": {
+            "ret": 2.26,
+            "maxDD": 0,
+            "maxRunup": 2.26
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2021-06-18",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.97,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 414.92,
+      "baselinePerf": {
+        "d5": {
+          "ret": 1.85,
+          "maxDD": 0,
+          "maxRunup": 1.97
+        },
+        "d10": {
+          "ret": 3.02,
+          "maxDD": 0,
+          "maxRunup": 3.02
+        },
+        "d20": {
+          "ret": 3.86,
+          "maxDD": 0,
+          "maxRunup": 4.71
+        }
+      },
+      "strat1": {
+        "entryDate": "2021-06-19",
+        "entryPrice": 414.92,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.45,
+            "maxDD": 0,
+            "maxRunup": 2.45
+          },
+          "d10": {
+            "ret": 3.08,
+            "maxDD": 0,
+            "maxRunup": 3.08
+          },
+          "d20": {
+            "ret": 4.96,
+            "maxDD": 0,
+            "maxRunup": 4.96
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2021-06-19",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 414.92,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.45,
+            "maxDD": 0,
+            "maxRunup": 2.45
+          },
+          "d10": {
+            "ret": 3.08,
+            "maxDD": 0,
+            "maxRunup": 3.08
+          },
+          "d20": {
+            "ret": 4.96,
+            "maxDD": 0,
+            "maxRunup": 4.96
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2021-06-19",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 414.92,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.45,
+            "maxDD": 0,
+            "maxRunup": 2.45
+          },
+          "d10": {
+            "ret": 3.08,
+            "maxDD": 0,
+            "maxRunup": 3.08
+          },
+          "d20": {
+            "ret": 4.96,
+            "maxDD": 0,
+            "maxRunup": 4.96
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "OVERHEATING_BOOM"
+      }
+    },
+    {
+      "date": "2021-07-16",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.98,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 431.34,
+      "baselinePerf": {
+        "d5": {
+          "ret": 0.74,
+          "maxDD": -1.48,
+          "maxRunup": 0.74
+        },
+        "d10": {
+          "ret": 2.24,
+          "maxDD": -1.48,
+          "maxRunup": 2.24
+        },
+        "d20": {
+          "ret": 2.42,
+          "maxDD": -1.48,
+          "maxRunup": 2.42
+        }
+      },
+      "strat1": {
+        "entryDate": "2021-07-17",
+        "entryPrice": 431.34,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.96,
+            "maxDD": -1.48,
+            "maxRunup": 0.96
+          },
+          "d10": {
+            "ret": 1.78,
+            "maxDD": -1.48,
+            "maxRunup": 2.24
+          },
+          "d20": {
+            "ret": 2.58,
+            "maxDD": -1.48,
+            "maxRunup": 2.58
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2021-07-17",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 431.34,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.96,
+            "maxDD": -1.48,
+            "maxRunup": 0.96
+          },
+          "d10": {
+            "ret": 1.78,
+            "maxDD": -1.48,
+            "maxRunup": 2.24
+          },
+          "d20": {
+            "ret": 2.58,
+            "maxDD": -1.48,
+            "maxRunup": 2.58
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2021-07-17",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 431.34,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.96,
+            "maxDD": -1.48,
+            "maxRunup": 0.96
+          },
+          "d10": {
+            "ret": 1.78,
+            "maxDD": -1.48,
+            "maxRunup": 2.24
+          },
+          "d20": {
+            "ret": 2.58,
+            "maxDD": -1.48,
+            "maxRunup": 2.58
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "OVERHEATING_BOOM"
+      }
+    },
+    {
+      "date": "2021-08-20",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1.04,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 443.36,
+      "baselinePerf": {
+        "d5": {
+          "ret": 1.25,
+          "maxDD": 0,
+          "maxRunup": 1.25
+        },
+        "d10": {
+          "ret": 2,
+          "maxDD": 0,
+          "maxRunup": 2
+        },
+        "d20": {
+          "ret": 1.27,
+          "maxDD": 0,
+          "maxRunup": 2.22
+        }
+      },
+      "strat1": {
+        "entryDate": "2021-08-21",
+        "entryPrice": 443.36,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.65,
+            "maxDD": 0,
+            "maxRunup": 1.25
+          },
+          "d10": {
+            "ret": 1.85,
+            "maxDD": 0,
+            "maxRunup": 2
+          },
+          "d20": {
+            "ret": 0.47,
+            "maxDD": 0,
+            "maxRunup": 2.22
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2021-08-21",
+        "dayOffset": 1,
+        "trigger": "VOL_CRUSH",
+        "entryPrice": 443.36,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.65,
+            "maxDD": 0,
+            "maxRunup": 1.25
+          },
+          "d10": {
+            "ret": 1.85,
+            "maxDD": 0,
+            "maxRunup": 2
+          },
+          "d20": {
+            "ret": 0.47,
+            "maxDD": 0,
+            "maxRunup": 2.22
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2021-08-21",
+        "dayOffset": 1,
+        "trigger": "VOL_CRUSH",
+        "entryPrice": 443.36,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.65,
+            "maxDD": 0,
+            "maxRunup": 1.25
+          },
+          "d10": {
+            "ret": 1.85,
+            "maxDD": 0,
+            "maxRunup": 2
+          },
+          "d20": {
+            "ret": 0.47,
+            "maxDD": 0,
+            "maxRunup": 2.22
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2021-09-17",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.99,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 441.4,
+      "baselinePerf": {
+        "d5": {
+          "ret": -0.8,
+          "maxDD": -1.76,
+          "maxRunup": 0
+        },
+        "d10": {
+          "ret": 0.28,
+          "maxDD": -1.76,
+          "maxRunup": 0.57
+        },
+        "d20": {
+          "ret": -0.62,
+          "maxDD": -2.89,
+          "maxRunup": 0.57
+        }
+      },
+      "strat1": {
+        "entryDate": "2021-09-18",
+        "entryPrice": 441.4,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.4,
+            "maxDD": -1.76,
+            "maxRunup": 0.4
+          },
+          "d10": {
+            "ret": -1.74,
+            "maxDD": -1.76,
+            "maxRunup": 0.57
+          },
+          "d20": {
+            "ret": -0.8,
+            "maxDD": -2.89,
+            "maxRunup": 0.57
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2021-09-18",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 441.4,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.4,
+            "maxDD": -1.76,
+            "maxRunup": 0.4
+          },
+          "d10": {
+            "ret": -1.74,
+            "maxDD": -1.76,
+            "maxRunup": 0.57
+          },
+          "d20": {
+            "ret": -0.8,
+            "maxDD": -2.89,
+            "maxRunup": 0.57
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2021-09-18",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 441.4,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.4,
+            "maxDD": -1.76,
+            "maxRunup": 0.4
+          },
+          "d10": {
+            "ret": -1.74,
+            "maxDD": -1.76,
+            "maxRunup": 0.57
+          },
+          "d20": {
+            "ret": -0.8,
+            "maxDD": -2.89,
+            "maxRunup": 0.57
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2021-10-15",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1.04,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 445.87,
+      "baselinePerf": {
+        "d5": {
+          "ret": 1.47,
+          "maxDD": 0,
+          "maxRunup": 1.47
+        },
+        "d10": {
+          "ret": 2.17,
+          "maxDD": 0,
+          "maxRunup": 2.17
+        },
+        "d20": {
+          "ret": 4.72,
+          "maxDD": 0,
+          "maxRunup": 4.72
+        }
+      },
+      "strat1": {
+        "entryDate": "2021-10-16",
+        "entryPrice": 445.87,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.73,
+            "maxDD": 0,
+            "maxRunup": 1.73
+          },
+          "d10": {
+            "ret": 2.26,
+            "maxDD": 0,
+            "maxRunup": 2.26
+          },
+          "d20": {
+            "ret": 5.08,
+            "maxDD": 0,
+            "maxRunup": 5.08
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2021-10-16",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 445.87,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.73,
+            "maxDD": 0,
+            "maxRunup": 1.73
+          },
+          "d10": {
+            "ret": 2.26,
+            "maxDD": 0,
+            "maxRunup": 2.26
+          },
+          "d20": {
+            "ret": 5.08,
+            "maxDD": 0,
+            "maxRunup": 5.08
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2021-10-16",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 445.87,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.73,
+            "maxDD": 0,
+            "maxRunup": 1.73
+          },
+          "d10": {
+            "ret": 2.26,
+            "maxDD": 0,
+            "maxRunup": 2.26
+          },
+          "d20": {
+            "ret": 5.08,
+            "maxDD": 0,
+            "maxRunup": 5.08
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "OVERHEATING_BOOM"
+      }
+    },
+    {
+      "date": "2021-11-19",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.8,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 468.89,
+      "baselinePerf": {
+        "d5": {
+          "ret": 0.12,
+          "maxDD": -0.28,
+          "maxRunup": 0.12
+        },
+        "d10": {
+          "ret": -0.91,
+          "maxDD": -2.12,
+          "maxRunup": 0.12
+        },
+        "d20": {
+          "ret": -0.54,
+          "maxDD": -3.92,
+          "maxRunup": 0.13
+        }
+      },
+      "strat1": {
+        "entryDate": "2021-11-20",
+        "entryPrice": 468.89,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.12,
+            "maxDD": -0.28,
+            "maxRunup": 0.12
+          },
+          "d10": {
+            "ret": -2.84,
+            "maxDD": -2.84,
+            "maxRunup": 0.12
+          },
+          "d20": {
+            "ret": 0.39,
+            "maxDD": -3.92,
+            "maxRunup": 0.39
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2021-11-20",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 468.89,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.12,
+            "maxDD": -0.28,
+            "maxRunup": 0.12
+          },
+          "d10": {
+            "ret": -2.84,
+            "maxDD": -2.84,
+            "maxRunup": 0.12
+          },
+          "d20": {
+            "ret": 0.39,
+            "maxDD": -3.92,
+            "maxRunup": 0.39
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2021-11-20",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 468.89,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.12,
+            "maxDD": -0.28,
+            "maxRunup": 0.12
+          },
+          "d10": {
+            "ret": -2.84,
+            "maxDD": -2.84,
+            "maxRunup": 0.12
+          },
+          "d20": {
+            "ret": 0.39,
+            "maxDD": -3.92,
+            "maxRunup": 0.39
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "OVERHEATING_BOOM"
+      }
+    },
+    {
+      "date": "2021-12-17",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1.08,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 459.87,
+      "baselinePerf": {
+        "d5": {
+          "ret": 1.7,
+          "maxDD": -1.06,
+          "maxRunup": 1.7
+        },
+        "d10": {
+          "ret": 3.78,
+          "maxDD": -1.06,
+          "maxRunup": 3.78
+        },
+        "d20": {
+          "ret": 1.75,
+          "maxDD": -1.06,
+          "maxRunup": 3.88
+        }
+      },
+      "strat1": {
+        "entryDate": "2021-12-18",
+        "entryPrice": 459.87,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.33,
+            "maxDD": -1.06,
+            "maxRunup": 2.33
+          },
+          "d10": {
+            "ret": 3.7,
+            "maxDD": -1.06,
+            "maxRunup": 3.78
+          },
+          "d20": {
+            "ret": 1.35,
+            "maxDD": -1.06,
+            "maxRunup": 3.88
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2021-12-18",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 459.87,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.33,
+            "maxDD": -1.06,
+            "maxRunup": 2.33
+          },
+          "d10": {
+            "ret": 3.7,
+            "maxDD": -1.06,
+            "maxRunup": 3.78
+          },
+          "d20": {
+            "ret": 1.35,
+            "maxDD": -1.06,
+            "maxRunup": 3.88
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2021-12-18",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 459.87,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.33,
+            "maxDD": -1.06,
+            "maxRunup": 2.33
+          },
+          "d10": {
+            "ret": 3.7,
+            "maxDD": -1.06,
+            "maxRunup": 3.78
+          },
+          "d20": {
+            "ret": 1.35,
+            "maxDD": -1.06,
+            "maxRunup": 3.88
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "OVERHEATING_BOOM"
+      }
+    },
+    {
+      "date": "2022-01-21",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1.26,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 437.98,
+      "baselinePerf": {
+        "d5": {
+          "ret": -1.05,
+          "maxDD": -1.05,
+          "maxRunup": 0.42
+        },
+        "d10": {
+          "ret": 2.72,
+          "maxDD": -1.54,
+          "maxRunup": 2.72
+        },
+        "d20": {
+          "ret": 2.59,
+          "maxDD": -1.54,
+          "maxRunup": 4.47
+        }
+      },
+      "strat1": {
+        "entryDate": "2022-01-22",
+        "entryPrice": 437.98,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -1.54,
+            "maxDD": -1.54,
+            "maxRunup": 0.42
+          },
+          "d10": {
+            "ret": 3.42,
+            "maxDD": -1.54,
+            "maxRunup": 3.42
+          },
+          "d20": {
+            "ret": 0.57,
+            "maxDD": -1.54,
+            "maxRunup": 4.47
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2022-01-22",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 437.98,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -1.54,
+            "maxDD": -1.54,
+            "maxRunup": 0.42
+          },
+          "d10": {
+            "ret": 3.42,
+            "maxDD": -1.54,
+            "maxRunup": 3.42
+          },
+          "d20": {
+            "ret": 0.57,
+            "maxDD": -1.54,
+            "maxRunup": 4.47
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2022-01-22",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 437.98,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -1.54,
+            "maxDD": -1.54,
+            "maxRunup": 0.42
+          },
+          "d10": {
+            "ret": 3.42,
+            "maxDD": -1.54,
+            "maxRunup": 3.42
+          },
+          "d20": {
+            "ret": 0.57,
+            "maxDD": -1.54,
+            "maxRunup": 4.47
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "TRANSITIONAL"
+      }
+    },
+    {
+      "date": "2022-02-18",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1.12,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 434.23,
+      "baselinePerf": {
+        "d5": {
+          "ret": -2.83,
+          "maxDD": -2.83,
+          "maxRunup": 0
+        },
+        "d10": {
+          "ret": 0.55,
+          "maxDD": -2.83,
+          "maxRunup": 0.81
+        },
+        "d20": {
+          "ret": -2.02,
+          "maxDD": -4.14,
+          "maxRunup": 0.84
+        }
+      },
+      "strat1": {
+        "entryDate": "2022-02-19",
+        "entryPrice": 434.23,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -1.37,
+            "maxDD": -2.83,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": -0.98,
+            "maxDD": -2.83,
+            "maxRunup": 0.81
+          },
+          "d20": {
+            "ret": -3.26,
+            "maxDD": -4.14,
+            "maxRunup": 0.84
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2022-02-19",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 434.23,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -1.37,
+            "maxDD": -2.83,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": -0.98,
+            "maxDD": -2.83,
+            "maxRunup": 0.81
+          },
+          "d20": {
+            "ret": -3.26,
+            "maxDD": -4.14,
+            "maxRunup": 0.84
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2022-02-19",
+        "tradeBlocked": true,
+        "blockReason": "GOLDI_VETO (OVERHEATING_BOOM)",
+        "avoidedDD20": -4.14,
+        "avoidedRet20": -3.26
+      }
+    },
+    {
+      "date": "2022-03-18",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1.06,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 444.52,
+      "baselinePerf": {
+        "d5": {
+          "ret": -0.16,
+          "maxDD": -0.16,
+          "maxRunup": 1.14
+        },
+        "d10": {
+          "ret": 2.56,
+          "maxDD": -0.16,
+          "maxRunup": 2.56
+        },
+        "d20": {
+          "ret": 0.96,
+          "maxDD": -0.16,
+          "maxRunup": 3.83
+        }
+      },
+      "strat1": {
+        "entryDate": "2022-03-19",
+        "entryPrice": 444.52,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.34,
+            "maxDD": -0.16,
+            "maxRunup": 1.34
+          },
+          "d10": {
+            "ret": 3.83,
+            "maxDD": -0.16,
+            "maxRunup": 3.83
+          },
+          "d20": {
+            "ret": 0.69,
+            "maxDD": -0.16,
+            "maxRunup": 3.83
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2022-03-19",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 444.52,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.34,
+            "maxDD": -0.16,
+            "maxRunup": 1.34
+          },
+          "d10": {
+            "ret": 3.83,
+            "maxDD": -0.16,
+            "maxRunup": 3.83
+          },
+          "d20": {
+            "ret": 0.69,
+            "maxDD": -0.16,
+            "maxRunup": 3.83
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2022-03-19",
+        "tradeBlocked": true,
+        "blockReason": "GOLDI_VETO (OVERHEATING_BOOM)",
+        "avoidedDD20": -0.16,
+        "avoidedRet20": 0.69
+      }
+    },
+    {
+      "date": "2022-04-15",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1.01,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 437.79,
+      "baselinePerf": {
+        "d5": {
+          "ret": 1.58,
+          "maxDD": 0,
+          "maxRunup": 1.66
+        },
+        "d10": {
+          "ret": -2.12,
+          "maxDD": -2.68,
+          "maxRunup": 1.66
+        },
+        "d20": {
+          "ret": -5.48,
+          "maxDD": -5.89,
+          "maxRunup": 1.66
+        }
+      },
+      "strat1": {
+        "entryDate": "2022-04-16",
+        "entryPrice": 437.79,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.06,
+            "maxDD": 0,
+            "maxRunup": 1.66
+          },
+          "d10": {
+            "ret": -4.95,
+            "maxDD": -4.95,
+            "maxRunup": 1.66
+          },
+          "d20": {
+            "ret": -6.04,
+            "maxDD": -6.04,
+            "maxRunup": 1.66
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2022-04-16",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 437.79,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.06,
+            "maxDD": 0,
+            "maxRunup": 1.66
+          },
+          "d10": {
+            "ret": -4.95,
+            "maxDD": -4.95,
+            "maxRunup": 1.66
+          },
+          "d20": {
+            "ret": -6.04,
+            "maxDD": -6.04,
+            "maxRunup": 1.66
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2022-04-16",
+        "tradeBlocked": true,
+        "blockReason": "GOLDI_VETO (OVERHEATING_BOOM)",
+        "avoidedDD20": -6.04,
+        "avoidedRet20": -6.04
+      }
+    },
+    {
+      "date": "2022-05-20",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1.21,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 389.63,
+      "baselinePerf": {
+        "d5": {
+          "ret": 1.99,
+          "maxDD": 0,
+          "maxRunup": 1.99
+        },
+        "d10": {
+          "ret": 6.58,
+          "maxDD": 0,
+          "maxRunup": 6.58
+        },
+        "d20": {
+          "ret": 3.03,
+          "maxDD": 0,
+          "maxRunup": 7.12
+        }
+      },
+      "strat1": {
+        "entryDate": "2022-05-21",
+        "entryPrice": 389.63,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 4.02,
+            "maxDD": 0,
+            "maxRunup": 4.02
+          },
+          "d10": {
+            "ret": 5.98,
+            "maxDD": 0,
+            "maxRunup": 6.58
+          },
+          "d20": {
+            "ret": 0.04,
+            "maxDD": 0,
+            "maxRunup": 7.12
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2022-05-21",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 389.63,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 4.02,
+            "maxDD": 0,
+            "maxRunup": 4.02
+          },
+          "d10": {
+            "ret": 5.98,
+            "maxDD": 0,
+            "maxRunup": 6.58
+          },
+          "d20": {
+            "ret": 0.04,
+            "maxDD": 0,
+            "maxRunup": 7.12
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2022-05-21",
+        "tradeBlocked": true,
+        "blockReason": "GOLDI_VETO (OVERHEATING_BOOM)",
+        "avoidedDD20": 0,
+        "avoidedRet20": 0.04
+      }
+    },
+    {
+      "date": "2022-06-17",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1.3,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 365.86,
+      "baselinePerf": {
+        "d5": {
+          "ret": 2.33,
+          "maxDD": 0,
+          "maxRunup": 2.52
+        },
+        "d10": {
+          "ret": 6.21,
+          "maxDD": 0,
+          "maxRunup": 6.62
+        },
+        "d20": {
+          "ret": 6.32,
+          "maxDD": 0,
+          "maxRunup": 6.62
+        }
+      },
+      "strat1": {
+        "entryDate": "2022-06-18",
+        "entryPrice": 365.86,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 3.33,
+            "maxDD": 0,
+            "maxRunup": 3.33
+          },
+          "d10": {
+            "ret": 4.04,
+            "maxDD": 0,
+            "maxRunup": 6.62
+          },
+          "d20": {
+            "ret": 6.23,
+            "maxDD": 0,
+            "maxRunup": 6.62
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2022-06-18",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 365.86,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 3.33,
+            "maxDD": 0,
+            "maxRunup": 3.33
+          },
+          "d10": {
+            "ret": 4.04,
+            "maxDD": 0,
+            "maxRunup": 6.62
+          },
+          "d20": {
+            "ret": 6.23,
+            "maxDD": 0,
+            "maxRunup": 6.62
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2022-06-18",
+        "tradeBlocked": true,
+        "blockReason": "GOLDI_VETO (OVERHEATING_BOOM)",
+        "avoidedDD20": 0,
+        "avoidedRet20": 6.23
+      }
+    },
+    {
+      "date": "2022-07-15",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1.04,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 385.13,
+      "baselinePerf": {
+        "d5": {
+          "ret": 2.5,
+          "maxDD": -0.83,
+          "maxRunup": 2.5
+        },
+        "d10": {
+          "ret": 2.71,
+          "maxDD": -0.83,
+          "maxRunup": 3.55
+        },
+        "d20": {
+          "ret": 7.54,
+          "maxDD": -0.83,
+          "maxRunup": 7.61
+        }
+      },
+      "strat1": {
+        "entryDate": "2022-07-16",
+        "entryPrice": 385.13,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 3.55,
+            "maxDD": -0.83,
+            "maxRunup": 3.55
+          },
+          "d10": {
+            "ret": 1.5,
+            "maxDD": -0.83,
+            "maxRunup": 3.55
+          },
+          "d20": {
+            "ret": 7.36,
+            "maxDD": -0.83,
+            "maxRunup": 7.61
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2022-07-16",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 385.13,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 3.55,
+            "maxDD": -0.83,
+            "maxRunup": 3.55
+          },
+          "d10": {
+            "ret": 1.5,
+            "maxDD": -0.83,
+            "maxRunup": 3.55
+          },
+          "d20": {
+            "ret": 7.36,
+            "maxDD": -0.83,
+            "maxRunup": 7.61
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2022-07-16",
+        "tradeBlocked": true,
+        "blockReason": "GOLDI_VETO (OVERHEATING_BOOM)",
+        "avoidedDD20": -0.83,
+        "avoidedRet20": 7.36
+      }
+    },
+    {
+      "date": "2022-08-19",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1.01,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 422.14,
+      "baselinePerf": {
+        "d5": {
+          "ret": -2.01,
+          "maxDD": -2.32,
+          "maxRunup": 0
+        },
+        "d10": {
+          "ret": -4.62,
+          "maxDD": -4.62,
+          "maxRunup": 0
+        },
+        "d20": {
+          "ret": -5.15,
+          "maxDD": -7.43,
+          "maxRunup": 0
+        }
+      },
+      "strat1": {
+        "entryDate": "2022-08-20",
+        "entryPrice": 422.14,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.62,
+            "maxDD": -2.32,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": -5.67,
+            "maxDD": -5.67,
+            "maxRunup": 0
+          },
+          "d20": {
+            "ret": -3.68,
+            "maxDD": -7.43,
+            "maxRunup": 0
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2022-08-20",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 422.14,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.62,
+            "maxDD": -2.32,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": -5.67,
+            "maxDD": -5.67,
+            "maxRunup": 0
+          },
+          "d20": {
+            "ret": -3.68,
+            "maxDD": -7.43,
+            "maxRunup": 0
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2022-08-20",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 422.14,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.62,
+            "maxDD": -2.32,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": -5.67,
+            "maxDD": -5.67,
+            "maxRunup": 0
+          },
+          "d20": {
+            "ret": -3.68,
+            "maxDD": -7.43,
+            "maxRunup": 0
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "OVERHEATING_BOOM"
+      }
+    },
+    {
+      "date": "2022-09-16",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1.17,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 385.56,
+      "baselinePerf": {
+        "d5": {
+          "ret": -2.12,
+          "maxDD": -2.12,
+          "maxRunup": 0.78
+        },
+        "d10": {
+          "ret": -5.51,
+          "maxDD": -5.51,
+          "maxRunup": 0.78
+        },
+        "d20": {
+          "ret": -3.21,
+          "maxDD": -7.36,
+          "maxRunup": 0.78
+        }
+      },
+      "strat1": {
+        "entryDate": "2022-09-17",
+        "entryPrice": 385.56,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -2.94,
+            "maxDD": -2.94,
+            "maxRunup": 0.78
+          },
+          "d10": {
+            "ret": -5.75,
+            "maxDD": -5.75,
+            "maxRunup": 0.78
+          },
+          "d20": {
+            "ret": -5.91,
+            "maxDD": -7.36,
+            "maxRunup": 0.78
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2022-09-17",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 385.56,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -2.94,
+            "maxDD": -2.94,
+            "maxRunup": 0.78
+          },
+          "d10": {
+            "ret": -5.75,
+            "maxDD": -5.75,
+            "maxRunup": 0.78
+          },
+          "d20": {
+            "ret": -5.91,
+            "maxDD": -7.36,
+            "maxRunup": 0.78
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2022-09-17",
+        "tradeBlocked": true,
+        "blockReason": "GOLDI_VETO (TRANSITIONAL)",
+        "avoidedDD20": -7.36,
+        "avoidedRet20": -5.91
+      }
+    },
+    {
+      "date": "2022-10-21",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1.05,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 374.29,
+      "baselinePerf": {
+        "d5": {
+          "ret": 2.07,
+          "maxDD": 0,
+          "maxRunup": 2.84
+        },
+        "d10": {
+          "ret": 3.18,
+          "maxDD": 0,
+          "maxRunup": 3.94
+        },
+        "d20": {
+          "ret": 5.45,
+          "maxDD": -0.88,
+          "maxRunup": 5.45
+        }
+      },
+      "strat1": {
+        "entryDate": "2022-10-22",
+        "entryPrice": 374.29,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.52,
+            "maxDD": 0,
+            "maxRunup": 2.84
+          },
+          "d10": {
+            "ret": 2.73,
+            "maxDD": 0,
+            "maxRunup": 3.94
+          },
+          "d20": {
+            "ret": 6.47,
+            "maxDD": -0.88,
+            "maxRunup": 6.47
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2022-10-22",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 374.29,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.52,
+            "maxDD": 0,
+            "maxRunup": 2.84
+          },
+          "d10": {
+            "ret": 2.73,
+            "maxDD": 0,
+            "maxRunup": 3.94
+          },
+          "d20": {
+            "ret": 6.47,
+            "maxDD": -0.88,
+            "maxRunup": 6.47
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2022-10-22",
+        "tradeBlocked": true,
+        "blockReason": "GOLDI_VETO (OVERHEATING_BOOM)",
+        "avoidedDD20": -0.88,
+        "avoidedRet20": 6.47
+      }
+    },
+    {
+      "date": "2022-11-18",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1.22,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 396.03,
+      "baselinePerf": {
+        "d5": {
+          "ret": 1.61,
+          "maxDD": -0.36,
+          "maxRunup": 1.61
+        },
+        "d10": {
+          "ret": -0.03,
+          "maxDD": -0.36,
+          "maxRunup": 1.61
+        },
+        "d20": {
+          "ret": 0.05,
+          "maxDD": -0.72,
+          "maxRunup": 2.94
+        }
+      },
+      "strat1": {
+        "entryDate": "2022-11-19",
+        "entryPrice": 396.03,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.61,
+            "maxDD": -0.36,
+            "maxRunup": 1.61
+          },
+          "d10": {
+            "ret": -0.2,
+            "maxDD": -0.36,
+            "maxRunup": 1.61
+          },
+          "d20": {
+            "ret": -0.69,
+            "maxDD": -0.72,
+            "maxRunup": 2.94
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2022-11-19",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 396.03,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.61,
+            "maxDD": -0.36,
+            "maxRunup": 1.61
+          },
+          "d10": {
+            "ret": -0.2,
+            "maxDD": -0.36,
+            "maxRunup": 1.61
+          },
+          "d20": {
+            "ret": -0.69,
+            "maxDD": -0.72,
+            "maxRunup": 2.94
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2022-11-19",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 396.03,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.61,
+            "maxDD": -0.36,
+            "maxRunup": 1.61
+          },
+          "d10": {
+            "ret": -0.2,
+            "maxDD": -0.36,
+            "maxRunup": 1.61
+          },
+          "d20": {
+            "ret": -0.69,
+            "maxDD": -0.72,
+            "maxRunup": 2.94
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "OVERHEATING_BOOM"
+      }
+    },
+    {
+      "date": "2022-12-16",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1.28,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 383.27,
+      "baselinePerf": {
+        "d5": {
+          "ret": 0.77,
+          "maxDD": -0.85,
+          "maxRunup": 0.77
+        },
+        "d10": {
+          "ret": -0.09,
+          "maxDD": -0.85,
+          "maxRunup": 0.77
+        },
+        "d20": {
+          "ret": -1.01,
+          "maxDD": -1.72,
+          "maxRunup": 0.77
+        }
+      },
+      "strat1": {
+        "entryDate": "2022-12-17",
+        "entryPrice": 383.27,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.67,
+            "maxDD": -0.85,
+            "maxRunup": 0.77
+          },
+          "d10": {
+            "ret": -0.49,
+            "maxDD": -0.85,
+            "maxRunup": 0.77
+          },
+          "d20": {
+            "ret": 1.25,
+            "maxDD": -1.72,
+            "maxRunup": 1.25
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2022-12-17",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 383.27,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.67,
+            "maxDD": -0.85,
+            "maxRunup": 0.77
+          },
+          "d10": {
+            "ret": -0.49,
+            "maxDD": -0.85,
+            "maxRunup": 0.77
+          },
+          "d20": {
+            "ret": 1.25,
+            "maxDD": -1.72,
+            "maxRunup": 1.25
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2022-12-17",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 383.27,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.67,
+            "maxDD": -0.85,
+            "maxRunup": 0.77
+          },
+          "d10": {
+            "ret": -0.49,
+            "maxDD": -0.85,
+            "maxRunup": 0.77
+          },
+          "d20": {
+            "ret": 1.25,
+            "maxDD": -1.72,
+            "maxRunup": 1.25
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "TRANSITIONAL"
+      }
+    },
+    {
+      "date": "2023-01-20",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": true,
+      "maxPcr": 1.22,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 395.88,
+      "baselinePerf": {
+        "d5": {
+          "ret": 1.13,
+          "maxDD": 0,
+          "maxRunup": 1.2
+        },
+        "d10": {
+          "ret": 1.19,
+          "maxDD": 0,
+          "maxRunup": 2.48
+        },
+        "d20": {
+          "ret": 2.83,
+          "maxDD": 0,
+          "maxRunup": 5.28
+        }
+      },
+      "strat1": {
+        "entryDate": "2023-01-21",
+        "entryPrice": 395.88,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.24,
+            "maxDD": 0,
+            "maxRunup": 2.24
+          },
+          "d10": {
+            "ret": 2.68,
+            "maxDD": 0,
+            "maxRunup": 2.68
+          },
+          "d20": {
+            "ret": 3.07,
+            "maxDD": 0,
+            "maxRunup": 5.28
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2023-01-21",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 395.88,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.24,
+            "maxDD": 0,
+            "maxRunup": 2.24
+          },
+          "d10": {
+            "ret": 2.68,
+            "maxDD": 0,
+            "maxRunup": 2.68
+          },
+          "d20": {
+            "ret": 3.07,
+            "maxDD": 0,
+            "maxRunup": 5.28
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2023-01-21",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 395.88,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.24,
+            "maxDD": 0,
+            "maxRunup": 2.24
+          },
+          "d10": {
+            "ret": 2.68,
+            "maxDD": 0,
+            "maxRunup": 2.68
+          },
+          "d20": {
+            "ret": 3.07,
+            "maxDD": 0,
+            "maxRunup": 5.28
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "OVERHEATING_BOOM"
+      }
+    },
+    {
+      "date": "2023-02-17",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": true,
+      "maxPcr": 1.03,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 407.26,
+      "baselinePerf": {
+        "d5": {
+          "ret": -2.14,
+          "maxDD": -2.14,
+          "maxRunup": 0
+        },
+        "d10": {
+          "ret": -2.34,
+          "maxDD": -2.67,
+          "maxRunup": 0
+        },
+        "d20": {
+          "ret": -3.86,
+          "maxDD": -3.86,
+          "maxRunup": 0
+        }
+      },
+      "strat1": {
+        "entryDate": "2023-02-18",
+        "entryPrice": 407.26,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -1.62,
+            "maxDD": -2.14,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": -2.7,
+            "maxDD": -2.7,
+            "maxRunup": 0
+          },
+          "d20": {
+            "ret": -5.24,
+            "maxDD": -5.24,
+            "maxRunup": 0
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2023-02-18",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 407.26,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -1.62,
+            "maxDD": -2.14,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": -2.7,
+            "maxDD": -2.7,
+            "maxRunup": 0
+          },
+          "d20": {
+            "ret": -5.24,
+            "maxDD": -5.24,
+            "maxRunup": 0
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2023-02-18",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 407.26,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -1.62,
+            "maxDD": -2.14,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": -2.7,
+            "maxDD": -2.7,
+            "maxRunup": 0
+          },
+          "d20": {
+            "ret": -5.24,
+            "maxDD": -5.24,
+            "maxRunup": 0
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "OVERHEATING_BOOM"
+      }
+    },
+    {
+      "date": "2023-03-17",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1.23,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 389.99,
+      "baselinePerf": {
+        "d5": {
+          "ret": 0.54,
+          "maxDD": 0,
+          "maxRunup": 2.29
+        },
+        "d10": {
+          "ret": 1.67,
+          "maxDD": 0,
+          "maxRunup": 2.29
+        },
+        "d20": {
+          "ret": 4.92,
+          "maxDD": 0,
+          "maxRunup": 5.37
+        }
+      },
+      "strat1": {
+        "entryDate": "2023-03-18",
+        "entryPrice": 389.99,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.82,
+            "maxDD": 0,
+            "maxRunup": 2.29
+          },
+          "d10": {
+            "ret": 1.44,
+            "maxDD": 0,
+            "maxRunup": 2.29
+          },
+          "d20": {
+            "ret": 4.92,
+            "maxDD": 0,
+            "maxRunup": 5.37
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2023-03-18",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 389.99,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.82,
+            "maxDD": 0,
+            "maxRunup": 2.29
+          },
+          "d10": {
+            "ret": 1.44,
+            "maxDD": 0,
+            "maxRunup": 2.29
+          },
+          "d20": {
+            "ret": 4.92,
+            "maxDD": 0,
+            "maxRunup": 5.37
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2023-03-18",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 389.99,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.82,
+            "maxDD": 0,
+            "maxRunup": 2.29
+          },
+          "d10": {
+            "ret": 1.44,
+            "maxDD": 0,
+            "maxRunup": 2.29
+          },
+          "d20": {
+            "ret": 4.92,
+            "maxDD": 0,
+            "maxRunup": 5.37
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "TRANSITIONAL"
+      }
+    },
+    {
+      "date": "2023-04-21",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": true,
+      "maxPcr": 1.02,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 412.2,
+      "baselinePerf": {
+        "d5": {
+          "ret": -1.9,
+          "maxDD": -1.9,
+          "maxRunup": 0.1
+        },
+        "d10": {
+          "ret": 0.8,
+          "maxDD": -1.9,
+          "maxRunup": 0.9
+        },
+        "d20": {
+          "ret": -0.02,
+          "maxDD": -1.9,
+          "maxRunup": 0.9
+        }
+      },
+      "strat1": {
+        "entryDate": "2023-04-22",
+        "entryPrice": 412.2,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.05,
+            "maxDD": -1.9,
+            "maxRunup": 0.1
+          },
+          "d10": {
+            "ret": -0.33,
+            "maxDD": -1.9,
+            "maxRunup": 0.9
+          },
+          "d20": {
+            "ret": -0.15,
+            "maxDD": -1.9,
+            "maxRunup": 0.9
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2023-04-22",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 412.2,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.05,
+            "maxDD": -1.9,
+            "maxRunup": 0.1
+          },
+          "d10": {
+            "ret": -0.33,
+            "maxDD": -1.9,
+            "maxRunup": 0.9
+          },
+          "d20": {
+            "ret": -0.15,
+            "maxDD": -1.9,
+            "maxRunup": 0.9
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2023-04-22",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 412.2,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.05,
+            "maxDD": -1.9,
+            "maxRunup": 0.1
+          },
+          "d10": {
+            "ret": -0.33,
+            "maxDD": -1.9,
+            "maxRunup": 0.9
+          },
+          "d20": {
+            "ret": -0.15,
+            "maxDD": -1.9,
+            "maxRunup": 0.9
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2023-05-19",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": true,
+      "maxPcr": 0.99,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 418.62,
+      "baselinePerf": {
+        "d5": {
+          "ret": -1.8,
+          "maxDD": -1.8,
+          "maxRunup": 0.04
+        },
+        "d10": {
+          "ret": 0.33,
+          "maxDD": -1.8,
+          "maxRunup": 0.33
+        },
+        "d20": {
+          "ret": 2.51,
+          "maxDD": -1.8,
+          "maxRunup": 2.51
+        }
+      },
+      "strat1": {
+        "entryDate": "2023-05-20",
+        "entryPrice": 418.62,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.95,
+            "maxDD": -1.8,
+            "maxRunup": 0.04
+          },
+          "d10": {
+            "ret": 0.37,
+            "maxDD": -1.8,
+            "maxRunup": 0.37
+          },
+          "d20": {
+            "ret": 2.69,
+            "maxDD": -1.8,
+            "maxRunup": 2.69
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2023-05-20",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 418.62,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.95,
+            "maxDD": -1.8,
+            "maxRunup": 0.04
+          },
+          "d10": {
+            "ret": 0.37,
+            "maxDD": -1.8,
+            "maxRunup": 0.37
+          },
+          "d20": {
+            "ret": 2.69,
+            "maxDD": -1.8,
+            "maxRunup": 2.69
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2023-05-20",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 418.62,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.95,
+            "maxDD": -1.8,
+            "maxRunup": 0.04
+          },
+          "d10": {
+            "ret": 0.37,
+            "maxDD": -1.8,
+            "maxRunup": 0.37
+          },
+          "d20": {
+            "ret": 2.69,
+            "maxDD": -1.8,
+            "maxRunup": 2.69
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "OVERHEATING_BOOM"
+      }
+    },
+    {
+      "date": "2023-06-16",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": true,
+      "maxPcr": 1.01,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 439.46,
+      "baselinePerf": {
+        "d5": {
+          "ret": -1.03,
+          "maxDD": -1.03,
+          "maxRunup": 0
+        },
+        "d10": {
+          "ret": -1.82,
+          "maxDD": -1.82,
+          "maxRunup": 0
+        },
+        "d20": {
+          "ret": 0.05,
+          "maxDD": -1.82,
+          "maxRunup": 0.99
+        }
+      },
+      "strat1": {
+        "entryDate": "2023-06-17",
+        "entryPrice": 439.46,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.67,
+            "maxDD": -1.03,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": -0.75,
+            "maxDD": -1.82,
+            "maxRunup": 0
+          },
+          "d20": {
+            "ret": -0.21,
+            "maxDD": -1.82,
+            "maxRunup": 0.99
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2023-06-17",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 439.46,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.67,
+            "maxDD": -1.03,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": -0.75,
+            "maxDD": -1.82,
+            "maxRunup": 0
+          },
+          "d20": {
+            "ret": -0.21,
+            "maxDD": -1.82,
+            "maxRunup": 0.99
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2023-06-17",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 439.46,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.67,
+            "maxDD": -1.03,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": -0.75,
+            "maxDD": -1.82,
+            "maxRunup": 0
+          },
+          "d20": {
+            "ret": -0.21,
+            "maxDD": -1.82,
+            "maxRunup": 0.99
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2023-07-21",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": true,
+      "maxPcr": 0.87,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 452.18,
+      "baselinePerf": {
+        "d5": {
+          "ret": 0.74,
+          "maxDD": 0,
+          "maxRunup": 0.74
+        },
+        "d10": {
+          "ret": 1.24,
+          "maxDD": 0,
+          "maxRunup": 1.24
+        },
+        "d20": {
+          "ret": -1.39,
+          "maxDD": -1.42,
+          "maxRunup": 1.24
+        }
+      },
+      "strat1": {
+        "entryDate": "2023-07-22",
+        "entryPrice": 452.18,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.07,
+            "maxDD": 0,
+            "maxRunup": 0.74
+          },
+          "d10": {
+            "ret": 0.95,
+            "maxDD": 0,
+            "maxRunup": 1.24
+          },
+          "d20": {
+            "ret": -1.44,
+            "maxDD": -1.44,
+            "maxRunup": 1.24
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2023-07-22",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 452.18,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.07,
+            "maxDD": 0,
+            "maxRunup": 0.74
+          },
+          "d10": {
+            "ret": 0.95,
+            "maxDD": 0,
+            "maxRunup": 1.24
+          },
+          "d20": {
+            "ret": -1.44,
+            "maxDD": -1.44,
+            "maxRunup": 1.24
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2023-07-22",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 452.18,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.07,
+            "maxDD": 0,
+            "maxRunup": 0.74
+          },
+          "d10": {
+            "ret": 0.95,
+            "maxDD": 0,
+            "maxRunup": 1.24
+          },
+          "d20": {
+            "ret": -1.44,
+            "maxDD": -1.44,
+            "maxRunup": 1.24
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2023-08-18",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1.26,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 436.5,
+      "baselinePerf": {
+        "d5": {
+          "ret": 1.5,
+          "maxDD": 0,
+          "maxRunup": 1.5
+        },
+        "d10": {
+          "ret": 1.43,
+          "maxDD": 0,
+          "maxRunup": 1.5
+        },
+        "d20": {
+          "ret": 1.91,
+          "maxDD": 0,
+          "maxRunup": 3.37
+        }
+      },
+      "strat1": {
+        "entryDate": "2023-08-19",
+        "entryPrice": 436.5,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.09,
+            "maxDD": 0,
+            "maxRunup": 1.5
+          },
+          "d10": {
+            "ret": 2.9,
+            "maxDD": 0,
+            "maxRunup": 2.9
+          },
+          "d20": {
+            "ret": 2.07,
+            "maxDD": 0,
+            "maxRunup": 3.37
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2023-08-19",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 436.5,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.09,
+            "maxDD": 0,
+            "maxRunup": 1.5
+          },
+          "d10": {
+            "ret": 2.9,
+            "maxDD": 0,
+            "maxRunup": 2.9
+          },
+          "d20": {
+            "ret": 2.07,
+            "maxDD": 0,
+            "maxRunup": 3.37
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2023-08-19",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 436.5,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.09,
+            "maxDD": 0,
+            "maxRunup": 1.5
+          },
+          "d10": {
+            "ret": 2.9,
+            "maxDD": 0,
+            "maxRunup": 2.9
+          },
+          "d20": {
+            "ret": 2.07,
+            "maxDD": 0,
+            "maxRunup": 3.37
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "TRANSITIONAL"
+      }
+    },
+    {
+      "date": "2023-09-15",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": true,
+      "maxPcr": 1.27,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 443.37,
+      "baselinePerf": {
+        "d5": {
+          "ret": -1.07,
+          "maxDD": -1.07,
+          "maxRunup": 0.06
+        },
+        "d10": {
+          "ret": -2.51,
+          "maxDD": -2.92,
+          "maxRunup": 0.06
+        },
+        "d20": {
+          "ret": -4.26,
+          "maxDD": -4.91,
+          "maxRunup": 0.06
+        }
+      },
+      "strat1": {
+        "entryDate": "2023-09-16",
+        "entryPrice": 443.37,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -2.7,
+            "maxDD": -2.7,
+            "maxRunup": 0.06
+          },
+          "d10": {
+            "ret": -3.94,
+            "maxDD": -3.94,
+            "maxRunup": 0.06
+          },
+          "d20": {
+            "ret": -3.12,
+            "maxDD": -4.91,
+            "maxRunup": 0.06
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2023-09-16",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 443.37,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -2.7,
+            "maxDD": -2.7,
+            "maxRunup": 0.06
+          },
+          "d10": {
+            "ret": -3.94,
+            "maxDD": -3.94,
+            "maxRunup": 0.06
+          },
+          "d20": {
+            "ret": -3.12,
+            "maxDD": -4.91,
+            "maxRunup": 0.06
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2023-09-16",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 443.37,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -2.7,
+            "maxDD": -2.7,
+            "maxRunup": 0.06
+          },
+          "d10": {
+            "ret": -3.94,
+            "maxDD": -3.94,
+            "maxRunup": 0.06
+          },
+          "d20": {
+            "ret": -3.12,
+            "maxDD": -4.91,
+            "maxRunup": 0.06
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "TRANSITIONAL"
+      }
+    },
+    {
+      "date": "2023-10-20",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": true,
+      "maxPcr": 1.06,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 421.19,
+      "baselinePerf": {
+        "d5": {
+          "ret": -0.86,
+          "maxDD": -0.86,
+          "maxRunup": 0.58
+        },
+        "d10": {
+          "ret": -1.33,
+          "maxDD": -2.5,
+          "maxRunup": 0.58
+        },
+        "d20": {
+          "ret": 3,
+          "maxDD": -2.5,
+          "maxRunup": 3.81
+        }
+      },
+      "strat1": {
+        "entryDate": "2023-10-21",
+        "entryPrice": 421.19,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -2.05,
+            "maxDD": -2.05,
+            "maxRunup": 0.58
+          },
+          "d10": {
+            "ret": -0.71,
+            "maxDD": -2.5,
+            "maxRunup": 0.58
+          },
+          "d20": {
+            "ret": 4.61,
+            "maxDD": -2.5,
+            "maxRunup": 4.61
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2023-10-21",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 421.19,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -2.05,
+            "maxDD": -2.05,
+            "maxRunup": 0.58
+          },
+          "d10": {
+            "ret": -0.71,
+            "maxDD": -2.5,
+            "maxRunup": 0.58
+          },
+          "d20": {
+            "ret": 4.61,
+            "maxDD": -2.5,
+            "maxRunup": 4.61
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2023-10-21",
+        "tradeBlocked": true,
+        "blockReason": "GOLDI_VETO (TRANSITIONAL)",
+        "avoidedDD20": -2.5,
+        "avoidedRet20": 4.61
+      }
+    },
+    {
+      "date": "2023-11-17",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": true,
+      "maxPcr": 1.13,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 450.79,
+      "baselinePerf": {
+        "d5": {
+          "ret": 0.94,
+          "maxDD": 0,
+          "maxRunup": 0.94
+        },
+        "d10": {
+          "ret": 0.82,
+          "maxDD": 0,
+          "maxRunup": 1
+        },
+        "d20": {
+          "ret": 1.65,
+          "maxDD": 0,
+          "maxRunup": 1.84
+        }
+      },
+      "strat1": {
+        "entryDate": "2023-11-18",
+        "entryPrice": 450.79,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.94,
+            "maxDD": 0,
+            "maxRunup": 0.94
+          },
+          "d10": {
+            "ret": 0.92,
+            "maxDD": 0,
+            "maxRunup": 1
+          },
+          "d20": {
+            "ret": 2.09,
+            "maxDD": 0,
+            "maxRunup": 2.09
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2023-11-18",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 450.79,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.94,
+            "maxDD": 0,
+            "maxRunup": 0.94
+          },
+          "d10": {
+            "ret": 0.92,
+            "maxDD": 0,
+            "maxRunup": 1
+          },
+          "d20": {
+            "ret": 2.09,
+            "maxDD": 0,
+            "maxRunup": 2.09
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2023-11-18",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 450.79,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.94,
+            "maxDD": 0,
+            "maxRunup": 0.94
+          },
+          "d10": {
+            "ret": 0.92,
+            "maxDD": 0,
+            "maxRunup": 1
+          },
+          "d20": {
+            "ret": 2.09,
+            "maxDD": 0,
+            "maxRunup": 2.09
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2023-12-15",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": true,
+      "maxPcr": 1.01,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 469.33,
+      "baselinePerf": {
+        "d5": {
+          "ret": -0.23,
+          "maxDD": -0.23,
+          "maxRunup": 1.17
+        },
+        "d10": {
+          "ret": 0.92,
+          "maxDD": -0.23,
+          "maxRunup": 1.17
+        },
+        "d20": {
+          "ret": -0.44,
+          "maxDD": -0.44,
+          "maxRunup": 1.57
+        }
+      },
+      "strat1": {
+        "entryDate": "2023-12-16",
+        "entryPrice": 469.33,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.72,
+            "maxDD": -0.23,
+            "maxRunup": 1.17
+          },
+          "d10": {
+            "ret": 1.35,
+            "maxDD": -0.23,
+            "maxRunup": 1.35
+          },
+          "d20": {
+            "ret": -0.3,
+            "maxDD": -0.44,
+            "maxRunup": 1.57
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2023-12-16",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 469.33,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.72,
+            "maxDD": -0.23,
+            "maxRunup": 1.17
+          },
+          "d10": {
+            "ret": 1.35,
+            "maxDD": -0.23,
+            "maxRunup": 1.35
+          },
+          "d20": {
+            "ret": -0.3,
+            "maxDD": -0.44,
+            "maxRunup": 1.57
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2023-12-16",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 469.33,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.72,
+            "maxDD": -0.23,
+            "maxRunup": 1.17
+          },
+          "d10": {
+            "ret": 1.35,
+            "maxDD": -0.23,
+            "maxRunup": 1.35
+          },
+          "d20": {
+            "ret": -0.3,
+            "maxDD": -0.44,
+            "maxRunup": 1.57
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2024-01-19",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1.01,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 482.43,
+      "baselinePerf": {
+        "d5": {
+          "ret": 0.61,
+          "maxDD": 0,
+          "maxRunup": 0.61
+        },
+        "d10": {
+          "ret": 1.83,
+          "maxDD": 0,
+          "maxRunup": 1.83
+        },
+        "d20": {
+          "ret": 3.29,
+          "maxDD": 0,
+          "maxRunup": 3.29
+        }
+      },
+      "strat1": {
+        "entryDate": "2024-01-20",
+        "entryPrice": 482.43,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.16,
+            "maxDD": 0,
+            "maxRunup": 1.16
+          },
+          "d10": {
+            "ret": 1.75,
+            "maxDD": 0,
+            "maxRunup": 1.83
+          },
+          "d20": {
+            "ret": 3.89,
+            "maxDD": 0,
+            "maxRunup": 3.89
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2024-01-20",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 482.43,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.16,
+            "maxDD": 0,
+            "maxRunup": 1.16
+          },
+          "d10": {
+            "ret": 1.75,
+            "maxDD": 0,
+            "maxRunup": 1.83
+          },
+          "d20": {
+            "ret": 3.89,
+            "maxDD": 0,
+            "maxRunup": 3.89
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2024-01-20",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 482.43,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.16,
+            "maxDD": 0,
+            "maxRunup": 1.16
+          },
+          "d10": {
+            "ret": 1.75,
+            "maxDD": 0,
+            "maxRunup": 1.83
+          },
+          "d20": {
+            "ret": 3.89,
+            "maxDD": 0,
+            "maxRunup": 3.89
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2024-02-16",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": true,
+      "maxPcr": 1,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 499.51,
+      "baselinePerf": {
+        "d5": {
+          "ret": -0.46,
+          "maxDD": -0.55,
+          "maxRunup": 0
+        },
+        "d10": {
+          "ret": 1.3,
+          "maxDD": -0.55,
+          "maxRunup": 1.67
+        },
+        "d20": {
+          "ret": 3.06,
+          "maxDD": -0.55,
+          "maxRunup": 3.06
+        }
+      },
+      "strat1": {
+        "entryDate": "2024-02-17",
+        "entryPrice": 499.51,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.6,
+            "maxDD": -0.55,
+            "maxRunup": 1.6
+          },
+          "d10": {
+            "ret": 1.49,
+            "maxDD": -0.55,
+            "maxRunup": 1.67
+          },
+          "d20": {
+            "ret": 2.44,
+            "maxDD": -0.55,
+            "maxRunup": 3.06
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2024-02-17",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 499.51,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.6,
+            "maxDD": -0.55,
+            "maxRunup": 1.6
+          },
+          "d10": {
+            "ret": 1.49,
+            "maxDD": -0.55,
+            "maxRunup": 1.67
+          },
+          "d20": {
+            "ret": 2.44,
+            "maxDD": -0.55,
+            "maxRunup": 3.06
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2024-02-17",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 499.51,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.6,
+            "maxDD": -0.55,
+            "maxRunup": 1.6
+          },
+          "d10": {
+            "ret": 1.49,
+            "maxDD": -0.55,
+            "maxRunup": 1.67
+          },
+          "d20": {
+            "ret": 2.44,
+            "maxDD": -0.55,
+            "maxRunup": 3.06
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2024-03-15",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": true,
+      "maxPcr": 1.07,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 509.83,
+      "baselinePerf": {
+        "d5": {
+          "ret": 2.09,
+          "maxDD": 0,
+          "maxRunup": 2.09
+        },
+        "d10": {
+          "ret": 1.95,
+          "maxDD": 0,
+          "maxRunup": 2.43
+        },
+        "d20": {
+          "ret": 0.64,
+          "maxDD": 0,
+          "maxRunup": 2.62
+        }
+      },
+      "strat1": {
+        "entryDate": "2024-03-16",
+        "entryPrice": 509.83,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.43,
+            "maxDD": 0,
+            "maxRunup": 2.43
+          },
+          "d10": {
+            "ret": 1.76,
+            "maxDD": 0,
+            "maxRunup": 2.43
+          },
+          "d20": {
+            "ret": 1.69,
+            "maxDD": 0,
+            "maxRunup": 2.62
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2024-03-16",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 509.83,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.43,
+            "maxDD": 0,
+            "maxRunup": 2.43
+          },
+          "d10": {
+            "ret": 1.76,
+            "maxDD": 0,
+            "maxRunup": 2.43
+          },
+          "d20": {
+            "ret": 1.69,
+            "maxDD": 0,
+            "maxRunup": 2.62
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2024-03-16",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 509.83,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.43,
+            "maxDD": 0,
+            "maxRunup": 2.43
+          },
+          "d10": {
+            "ret": 1.76,
+            "maxDD": 0,
+            "maxRunup": 2.43
+          },
+          "d20": {
+            "ret": 1.69,
+            "maxDD": 0,
+            "maxRunup": 2.62
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "TRANSITIONAL"
+      }
+    },
+    {
+      "date": "2024-04-19",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1.27,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 495.16,
+      "baselinePerf": {
+        "d5": {
+          "ret": 2.07,
+          "maxDD": 0,
+          "maxRunup": 2.12
+        },
+        "d10": {
+          "ret": 3.01,
+          "maxDD": 0,
+          "maxRunup": 3.01
+        },
+        "d20": {
+          "ret": 5.05,
+          "maxDD": 0,
+          "maxRunup": 5.05
+        }
+      },
+      "strat1": {
+        "entryDate": "2024-04-20",
+        "entryPrice": 495.16,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.68,
+            "maxDD": 0,
+            "maxRunup": 2.12
+          },
+          "d10": {
+            "ret": 1.38,
+            "maxDD": 0,
+            "maxRunup": 3.01
+          },
+          "d20": {
+            "ret": 5.19,
+            "maxDD": 0,
+            "maxRunup": 5.19
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2024-04-20",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 495.16,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.68,
+            "maxDD": 0,
+            "maxRunup": 2.12
+          },
+          "d10": {
+            "ret": 1.38,
+            "maxDD": 0,
+            "maxRunup": 3.01
+          },
+          "d20": {
+            "ret": 5.19,
+            "maxDD": 0,
+            "maxRunup": 5.19
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2024-04-20",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 495.16,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.68,
+            "maxDD": 0,
+            "maxRunup": 2.12
+          },
+          "d10": {
+            "ret": 1.38,
+            "maxDD": 0,
+            "maxRunup": 3.01
+          },
+          "d20": {
+            "ret": 5.19,
+            "maxDD": 0,
+            "maxRunup": 5.19
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "DRAIN_WARNING",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2024-05-17",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.9,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 529.45,
+      "baselinePerf": {
+        "d5": {
+          "ret": 0.07,
+          "maxDD": 0,
+          "maxRunup": 0.36
+        },
+        "d10": {
+          "ret": 0,
+          "maxDD": -0.66,
+          "maxRunup": 0.36
+        },
+        "d20": {
+          "ret": 0.98,
+          "maxDD": -1.29,
+          "maxRunup": 0.99
+        }
+      },
+      "strat1": {
+        "entryDate": "2024-05-18",
+        "entryPrice": 529.45,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.66,
+            "maxDD": -0.66,
+            "maxRunup": 0.36
+          },
+          "d10": {
+            "ret": 0.07,
+            "maxDD": -0.66,
+            "maxRunup": 0.36
+          },
+          "d20": {
+            "ret": 0.86,
+            "maxDD": -1.29,
+            "maxRunup": 0.99
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2024-05-18",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 529.45,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.66,
+            "maxDD": -0.66,
+            "maxRunup": 0.36
+          },
+          "d10": {
+            "ret": 0.07,
+            "maxDD": -0.66,
+            "maxRunup": 0.36
+          },
+          "d20": {
+            "ret": 0.86,
+            "maxDD": -1.29,
+            "maxRunup": 0.99
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2024-05-18",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 529.45,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.66,
+            "maxDD": -0.66,
+            "maxRunup": 0.36
+          },
+          "d10": {
+            "ret": 0.07,
+            "maxDD": -0.66,
+            "maxRunup": 0.36
+          },
+          "d20": {
+            "ret": 0.86,
+            "maxDD": -1.29,
+            "maxRunup": 0.99
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2024-06-21",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.93,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 544.51,
+      "baselinePerf": {
+        "d5": {
+          "ret": 0.18,
+          "maxDD": -0.33,
+          "maxRunup": 0.18
+        },
+        "d10": {
+          "ret": 0.15,
+          "maxDD": -0.33,
+          "maxRunup": 0.34
+        },
+        "d20": {
+          "ret": 2.2,
+          "maxDD": -0.33,
+          "maxRunup": 3.09
+        }
+      },
+      "strat1": {
+        "entryDate": "2024-06-22",
+        "entryPrice": 544.51,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.34,
+            "maxDD": -0.33,
+            "maxRunup": 0.34
+          },
+          "d10": {
+            "ret": 0.83,
+            "maxDD": -0.33,
+            "maxRunup": 0.83
+          },
+          "d20": {
+            "ret": 2.84,
+            "maxDD": -0.33,
+            "maxRunup": 3.09
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2024-06-22",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 544.51,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.34,
+            "maxDD": -0.33,
+            "maxRunup": 0.34
+          },
+          "d10": {
+            "ret": 0.83,
+            "maxDD": -0.33,
+            "maxRunup": 0.83
+          },
+          "d20": {
+            "ret": 2.84,
+            "maxDD": -0.33,
+            "maxRunup": 3.09
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2024-06-22",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 544.51,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.34,
+            "maxDD": -0.33,
+            "maxRunup": 0.34
+          },
+          "d10": {
+            "ret": 0.83,
+            "maxDD": -0.33,
+            "maxRunup": 0.83
+          },
+          "d20": {
+            "ret": 2.84,
+            "maxDD": -0.33,
+            "maxRunup": 3.09
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2024-07-19",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.87,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 548.99,
+      "baselinePerf": {
+        "d5": {
+          "ret": -1.41,
+          "maxDD": -1.41,
+          "maxRunup": 1.03
+        },
+        "d10": {
+          "ret": -0.77,
+          "maxDD": -1.93,
+          "maxRunup": 1.03
+        },
+        "d20": {
+          "ret": -3.34,
+          "maxDD": -5.76,
+          "maxRunup": 1.03
+        }
+      },
+      "strat1": {
+        "entryDate": "2024-07-20",
+        "entryPrice": 548.99,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -1.93,
+            "maxDD": -1.93,
+            "maxRunup": 1.03
+          },
+          "d10": {
+            "ret": -1.27,
+            "maxDD": -1.93,
+            "maxRunup": 1.03
+          },
+          "d20": {
+            "ret": -2.91,
+            "maxDD": -5.76,
+            "maxRunup": 1.03
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2024-07-20",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 548.99,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -1.93,
+            "maxDD": -1.93,
+            "maxRunup": 1.03
+          },
+          "d10": {
+            "ret": -1.27,
+            "maxDD": -1.93,
+            "maxRunup": 1.03
+          },
+          "d20": {
+            "ret": -2.91,
+            "maxDD": -5.76,
+            "maxRunup": 1.03
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2024-07-20",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 548.99,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -1.93,
+            "maxDD": -1.93,
+            "maxRunup": 1.03
+          },
+          "d10": {
+            "ret": -1.27,
+            "maxDD": -1.93,
+            "maxRunup": 1.03
+          },
+          "d20": {
+            "ret": -2.91,
+            "maxDD": -5.76,
+            "maxRunup": 1.03
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "RECESSION_CONTRACTION"
+      }
+    },
+    {
+      "date": "2024-08-16",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1.02,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 554.31,
+      "baselinePerf": {
+        "d5": {
+          "ret": 1.14,
+          "maxDD": 0,
+          "maxRunup": 1.14
+        },
+        "d10": {
+          "ret": 1.17,
+          "maxDD": 0,
+          "maxRunup": 1.41
+        },
+        "d20": {
+          "ret": -0.85,
+          "maxDD": -0.85,
+          "maxRunup": 1.69
+        }
+      },
+      "strat1": {
+        "entryDate": "2024-08-17",
+        "entryPrice": 554.31,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.34,
+            "maxDD": 0,
+            "maxRunup": 1.14
+          },
+          "d10": {
+            "ret": 1.31,
+            "maxDD": 0,
+            "maxRunup": 1.41
+          },
+          "d20": {
+            "ret": -2.52,
+            "maxDD": -2.52,
+            "maxRunup": 1.69
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2024-08-17",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 554.31,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.34,
+            "maxDD": 0,
+            "maxRunup": 1.14
+          },
+          "d10": {
+            "ret": 1.31,
+            "maxDD": 0,
+            "maxRunup": 1.41
+          },
+          "d20": {
+            "ret": -2.52,
+            "maxDD": -2.52,
+            "maxRunup": 1.69
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2024-08-17",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 554.31,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.34,
+            "maxDD": 0,
+            "maxRunup": 1.14
+          },
+          "d10": {
+            "ret": 1.31,
+            "maxDD": 0,
+            "maxRunup": 1.41
+          },
+          "d20": {
+            "ret": -2.52,
+            "maxDD": -2.52,
+            "maxRunup": 1.69
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "RECESSION_CONTRACTION"
+      }
+    },
+    {
+      "date": "2024-09-20",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": true,
+      "maxPcr": 0.96,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 568.25,
+      "baselinePerf": {
+        "d5": {
+          "ret": 0.32,
+          "maxDD": 0,
+          "maxRunup": 0.54
+        },
+        "d10": {
+          "ret": 0.97,
+          "maxDD": 0,
+          "maxRunup": 0.97
+        },
+        "d20": {
+          "ret": 1.39,
+          "maxDD": -0.08,
+          "maxRunup": 1.56
+        }
+      },
+      "strat1": {
+        "entryDate": "2024-09-21",
+        "entryPrice": 568.25,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.71,
+            "maxDD": 0,
+            "maxRunup": 0.71
+          },
+          "d10": {
+            "ret": 0.07,
+            "maxDD": 0,
+            "maxRunup": 0.97
+          },
+          "d20": {
+            "ret": 1.99,
+            "maxDD": -0.08,
+            "maxRunup": 1.99
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2024-09-21",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 568.25,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.71,
+            "maxDD": 0,
+            "maxRunup": 0.71
+          },
+          "d10": {
+            "ret": 0.07,
+            "maxDD": 0,
+            "maxRunup": 0.97
+          },
+          "d20": {
+            "ret": 1.99,
+            "maxDD": -0.08,
+            "maxRunup": 1.99
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2024-09-21",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 568.25,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.71,
+            "maxDD": 0,
+            "maxRunup": 0.71
+          },
+          "d10": {
+            "ret": 0.07,
+            "maxDD": 0,
+            "maxRunup": 0.97
+          },
+          "d20": {
+            "ret": 1.99,
+            "maxDD": -0.08,
+            "maxRunup": 1.99
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "RECESSION_CONTRACTION"
+      }
+    },
+    {
+      "date": "2024-10-18",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": true,
+      "maxPcr": 0.92,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 584.59,
+      "baselinePerf": {
+        "d5": {
+          "ret": -1.13,
+          "maxDD": -1.13,
+          "maxRunup": 0
+        },
+        "d10": {
+          "ret": -0.64,
+          "maxDD": -1.13,
+          "maxRunup": 0
+        },
+        "d20": {
+          "ret": 1.89,
+          "maxDD": -2.73,
+          "maxRunup": 1.89
+        }
+      },
+      "strat1": {
+        "entryDate": "2024-10-19",
+        "entryPrice": 584.59,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.92,
+            "maxDD": -1.13,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": -0.48,
+            "maxDD": -1.13,
+            "maxRunup": 0
+          },
+          "d20": {
+            "ret": 2.33,
+            "maxDD": -2.73,
+            "maxRunup": 2.33
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2024-10-19",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 584.59,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.92,
+            "maxDD": -1.13,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": -0.48,
+            "maxDD": -1.13,
+            "maxRunup": 0
+          },
+          "d20": {
+            "ret": 2.33,
+            "maxDD": -2.73,
+            "maxRunup": 2.33
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2024-10-19",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 584.59,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.92,
+            "maxDD": -1.13,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": -0.48,
+            "maxDD": -1.13,
+            "maxRunup": 0
+          },
+          "d20": {
+            "ret": 2.33,
+            "maxDD": -2.73,
+            "maxRunup": 2.33
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2024-11-15",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.9,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 585.75,
+      "baselinePerf": {
+        "d5": {
+          "ret": 0.81,
+          "maxDD": 0,
+          "maxRunup": 0.81
+        },
+        "d10": {
+          "ret": 2.01,
+          "maxDD": 0,
+          "maxRunup": 2.01
+        },
+        "d20": {
+          "ret": 3.57,
+          "maxDD": 0,
+          "maxRunup": 3.74
+        }
+      },
+      "strat1": {
+        "entryDate": "2024-11-16",
+        "entryPrice": 585.75,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.35,
+            "maxDD": 0,
+            "maxRunup": 1.35
+          },
+          "d10": {
+            "ret": 2.54,
+            "maxDD": 0,
+            "maxRunup": 2.54
+          },
+          "d20": {
+            "ret": 3.77,
+            "maxDD": 0,
+            "maxRunup": 3.77
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2024-11-16",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 585.75,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.35,
+            "maxDD": 0,
+            "maxRunup": 1.35
+          },
+          "d10": {
+            "ret": 2.54,
+            "maxDD": 0,
+            "maxRunup": 2.54
+          },
+          "d20": {
+            "ret": 3.77,
+            "maxDD": 0,
+            "maxRunup": 3.77
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2024-11-16",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 585.75,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.35,
+            "maxDD": 0,
+            "maxRunup": 1.35
+          },
+          "d10": {
+            "ret": 2.54,
+            "maxDD": 0,
+            "maxRunup": 2.54
+          },
+          "d20": {
+            "ret": 3.77,
+            "maxDD": 0,
+            "maxRunup": 3.77
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2024-12-20",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.98,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 591.15,
+      "baselinePerf": {
+        "d5": {
+          "ret": 1.72,
+          "maxDD": 0,
+          "maxRunup": 1.72
+        },
+        "d10": {
+          "ret": -0.5,
+          "maxDD": -0.5,
+          "maxRunup": 1.72
+        },
+        "d20": {
+          "ret": -0.28,
+          "maxDD": -1.1,
+          "maxRunup": 1.72
+        }
+      },
+      "strat1": {
+        "entryDate": "2024-12-21",
+        "entryPrice": 591.15,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.72,
+            "maxDD": 0,
+            "maxRunup": 1.72
+          },
+          "d10": {
+            "ret": -0.86,
+            "maxDD": -0.86,
+            "maxRunup": 1.72
+          },
+          "d20": {
+            "ret": -1.8,
+            "maxDD": -1.8,
+            "maxRunup": 1.72
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2024-12-21",
+        "dayOffset": 1,
+        "trigger": "VOL_CRUSH",
+        "entryPrice": 591.15,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.72,
+            "maxDD": 0,
+            "maxRunup": 1.72
+          },
+          "d10": {
+            "ret": -0.86,
+            "maxDD": -0.86,
+            "maxRunup": 1.72
+          },
+          "d20": {
+            "ret": -1.8,
+            "maxDD": -1.8,
+            "maxRunup": 1.72
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2024-12-21",
+        "dayOffset": 1,
+        "trigger": "VOL_CRUSH",
+        "entryPrice": 591.15,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.72,
+            "maxDD": 0,
+            "maxRunup": 1.72
+          },
+          "d10": {
+            "ret": -0.86,
+            "maxDD": -0.86,
+            "maxRunup": 1.72
+          },
+          "d20": {
+            "ret": -1.8,
+            "maxDD": -1.8,
+            "maxRunup": 1.72
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2025-01-17",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.97,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 597.58,
+      "baselinePerf": {
+        "d5": {
+          "ret": 1.48,
+          "maxDD": 0,
+          "maxRunup": 1.48
+        },
+        "d10": {
+          "ret": 0.3,
+          "maxDD": 0,
+          "maxRunup": 2.04
+        },
+        "d20": {
+          "ret": 1.46,
+          "maxDD": 0,
+          "maxRunup": 2.04
+        }
+      },
+      "strat1": {
+        "entryDate": "2025-01-18",
+        "entryPrice": 597.58,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.04,
+            "maxDD": 0,
+            "maxRunup": 2.04
+          },
+          "d10": {
+            "ret": 1.16,
+            "maxDD": 0,
+            "maxRunup": 2.04
+          },
+          "d20": {
+            "ret": 0.53,
+            "maxDD": 0,
+            "maxRunup": 2.04
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2025-01-18",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 597.58,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.04,
+            "maxDD": 0,
+            "maxRunup": 2.04
+          },
+          "d10": {
+            "ret": 1.16,
+            "maxDD": 0,
+            "maxRunup": 2.04
+          },
+          "d20": {
+            "ret": 0.53,
+            "maxDD": 0,
+            "maxRunup": 2.04
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2025-01-18",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 597.58,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.04,
+            "maxDD": 0,
+            "maxRunup": 2.04
+          },
+          "d10": {
+            "ret": 1.16,
+            "maxDD": 0,
+            "maxRunup": 2.04
+          },
+          "d20": {
+            "ret": 0.53,
+            "maxDD": 0,
+            "maxRunup": 2.04
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "RECESSION_CONTRACTION"
+      }
+    },
+    {
+      "date": "2025-02-21",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": true,
+      "maxPcr": 0.89,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 599.94,
+      "baselinePerf": {
+        "d5": {
+          "ret": -0.9,
+          "maxDD": -0.95,
+          "maxRunup": 0
+        },
+        "d10": {
+          "ret": -2.7,
+          "maxDD": -2.7,
+          "maxRunup": 0
+        },
+        "d20": {
+          "ret": -8.09,
+          "maxDD": -8.09,
+          "maxRunup": 0
+        }
+      },
+      "strat1": {
+        "entryDate": "2025-02-22",
+        "entryPrice": 599.94,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -2.48,
+            "maxDD": -2.48,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": -3.85,
+            "maxDD": -3.85,
+            "maxRunup": 0
+          },
+          "d20": {
+            "ret": -6.19,
+            "maxDD": -8.09,
+            "maxRunup": 0
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2025-02-22",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 599.94,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -2.48,
+            "maxDD": -2.48,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": -3.85,
+            "maxDD": -3.85,
+            "maxRunup": 0
+          },
+          "d20": {
+            "ret": -6.19,
+            "maxDD": -8.09,
+            "maxRunup": 0
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2025-02-22",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 599.94,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -2.48,
+            "maxDD": -2.48,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": -3.85,
+            "maxDD": -3.85,
+            "maxRunup": 0
+          },
+          "d20": {
+            "ret": -6.19,
+            "maxDD": -8.09,
+            "maxRunup": 0
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2025-03-21",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": true,
+      "maxPcr": 0.96,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 563.98,
+      "baselinePerf": {
+        "d5": {
+          "ret": 0.82,
+          "maxDD": 0,
+          "maxRunup": 2.04
+        },
+        "d10": {
+          "ret": -0.81,
+          "maxDD": -1.48,
+          "maxRunup": 2.04
+        },
+        "d20": {
+          "ret": -6.99,
+          "maxDD": -11.97,
+          "maxRunup": 2.04
+        }
+      },
+      "strat1": {
+        "entryDate": "2025-03-22",
+        "entryPrice": 563.98,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.55,
+            "maxDD": 0,
+            "maxRunup": 2.04
+          },
+          "d10": {
+            "ret": -0.53,
+            "maxDD": -1.48,
+            "maxRunup": 2.04
+          },
+          "d20": {
+            "ret": -5.33,
+            "maxDD": -11.97,
+            "maxRunup": 2.04
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2025-03-22",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 563.98,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.55,
+            "maxDD": 0,
+            "maxRunup": 2.04
+          },
+          "d10": {
+            "ret": -0.53,
+            "maxDD": -1.48,
+            "maxRunup": 2.04
+          },
+          "d20": {
+            "ret": -5.33,
+            "maxDD": -11.97,
+            "maxRunup": 2.04
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2025-03-22",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 563.98,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.55,
+            "maxDD": 0,
+            "maxRunup": 2.04
+          },
+          "d10": {
+            "ret": -0.53,
+            "maxDD": -1.48,
+            "maxRunup": 2.04
+          },
+          "d20": {
+            "ret": -5.33,
+            "maxDD": -11.97,
+            "maxRunup": 2.04
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "DRAIN_WARNING",
+        "goldiRegime": "TRANSITIONAL"
+      }
+    },
+    {
+      "date": "2025-04-18",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": true,
+      "maxPcr": 1.02,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": true,
+      "spyOpex": 526.41,
+      "baselinePerf": {
+        "d5": {
+          "ret": 1.71,
+          "maxDD": -2.38,
+          "maxRunup": 1.71
+        },
+        "d10": {
+          "ret": 4.64,
+          "maxDD": -2.38,
+          "maxRunup": 4.64
+        },
+        "d20": {
+          "ret": 7.34,
+          "maxDD": -2.38,
+          "maxRunup": 7.67
+        }
+      },
+      "strat1": {
+        "entryDate": "2025-04-19",
+        "entryPrice": 526.41,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 3.85,
+            "maxDD": -2.38,
+            "maxRunup": 3.85
+          },
+          "d10": {
+            "ret": 5.3,
+            "maxDD": -2.38,
+            "maxRunup": 5.3
+          },
+          "d20": {
+            "ret": 7.21,
+            "maxDD": -2.38,
+            "maxRunup": 7.67
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2025-04-19",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 526.41,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 3.85,
+            "maxDD": -2.38,
+            "maxRunup": 3.85
+          },
+          "d10": {
+            "ret": 5.3,
+            "maxDD": -2.38,
+            "maxRunup": 5.3
+          },
+          "d20": {
+            "ret": 7.21,
+            "maxDD": -2.38,
+            "maxRunup": 7.67
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2025-04-19",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 526.41,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 3.85,
+            "maxDD": -2.38,
+            "maxRunup": 3.85
+          },
+          "d10": {
+            "ret": 5.3,
+            "maxDD": -2.38,
+            "maxRunup": 5.3
+          },
+          "d20": {
+            "ret": 7.21,
+            "maxDD": -2.38,
+            "maxRunup": 7.67
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "DRAIN_WARNING",
+        "goldiRegime": "TRANSITIONAL"
+      }
+    },
+    {
+      "date": "2025-05-16",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.85,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": true,
+      "spyOpex": 594.2,
+      "baselinePerf": {
+        "d5": {
+          "ret": -1.91,
+          "maxDD": -1.91,
+          "maxRunup": 0.11
+        },
+        "d10": {
+          "ret": -2.54,
+          "maxDD": -2.54,
+          "maxRunup": 0.11
+        },
+        "d20": {
+          "ret": -0.19,
+          "maxDD": -2.54,
+          "maxRunup": 0.32
+        }
+      },
+      "strat1": {
+        "entryDate": "2025-05-17",
+        "entryPrice": 594.2,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -1.87,
+            "maxDD": -1.91,
+            "maxRunup": 0.11
+          },
+          "d10": {
+            "ret": -0.51,
+            "maxDD": -2.54,
+            "maxRunup": 0.11
+          },
+          "d20": {
+            "ret": 0.83,
+            "maxDD": -2.54,
+            "maxRunup": 0.83
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2025-05-17",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 594.2,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -1.87,
+            "maxDD": -1.91,
+            "maxRunup": 0.11
+          },
+          "d10": {
+            "ret": -0.51,
+            "maxDD": -2.54,
+            "maxRunup": 0.11
+          },
+          "d20": {
+            "ret": 0.83,
+            "maxDD": -2.54,
+            "maxRunup": 0.83
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2025-05-17",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 594.2,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -1.87,
+            "maxDD": -1.91,
+            "maxRunup": 0.11
+          },
+          "d10": {
+            "ret": -0.51,
+            "maxDD": -2.54,
+            "maxRunup": 0.11
+          },
+          "d20": {
+            "ret": 0.83,
+            "maxDD": -2.54,
+            "maxRunup": 0.83
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "DRAIN_WARNING",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2025-06-20",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": true,
+      "maxPcr": 0.97,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 594.28,
+      "baselinePerf": {
+        "d5": {
+          "ret": 2.16,
+          "maxDD": 0,
+          "maxRunup": 2.16
+        },
+        "d10": {
+          "ret": 3.97,
+          "maxDD": 0,
+          "maxRunup": 3.97
+        },
+        "d20": {
+          "ret": 5.31,
+          "maxDD": 0,
+          "maxRunup": 5.31
+        }
+      },
+      "strat1": {
+        "entryDate": "2025-06-21",
+        "entryPrice": 594.28,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.96,
+            "maxDD": 0,
+            "maxRunup": 2.96
+          },
+          "d10": {
+            "ret": 3.93,
+            "maxDD": 0,
+            "maxRunup": 3.97
+          },
+          "d20": {
+            "ret": 4.94,
+            "maxDD": 0,
+            "maxRunup": 5.31
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2025-06-21",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 594.28,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.96,
+            "maxDD": 0,
+            "maxRunup": 2.96
+          },
+          "d10": {
+            "ret": 3.93,
+            "maxDD": 0,
+            "maxRunup": 3.97
+          },
+          "d20": {
+            "ret": 4.94,
+            "maxDD": 0,
+            "maxRunup": 5.31
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2025-06-21",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 594.28,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 2.96,
+            "maxDD": 0,
+            "maxRunup": 2.96
+          },
+          "d10": {
+            "ret": 3.93,
+            "maxDD": 0,
+            "maxRunup": 3.97
+          },
+          "d20": {
+            "ret": 4.94,
+            "maxDD": 0,
+            "maxRunup": 5.31
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "DRAIN_WARNING",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2025-07-18",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": true,
+      "maxPcr": 0.86,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": true,
+      "spyOpex": 627.58,
+      "baselinePerf": {
+        "d5": {
+          "ret": 1.06,
+          "maxDD": 0,
+          "maxRunup": 1.06
+        },
+        "d10": {
+          "ret": 1.49,
+          "maxDD": 0,
+          "maxRunup": 1.52
+        },
+        "d20": {
+          "ret": 0.74,
+          "maxDD": -0.93,
+          "maxRunup": 1.52
+        }
+      },
+      "strat1": {
+        "entryDate": "2025-07-19",
+        "entryPrice": 627.58,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.09,
+            "maxDD": 0,
+            "maxRunup": 1.09
+          },
+          "d10": {
+            "ret": 1.22,
+            "maxDD": 0,
+            "maxRunup": 1.52
+          },
+          "d20": {
+            "ret": 1.53,
+            "maxDD": -0.93,
+            "maxRunup": 1.53
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2025-07-19",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 627.58,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.09,
+            "maxDD": 0,
+            "maxRunup": 1.09
+          },
+          "d10": {
+            "ret": 1.22,
+            "maxDD": 0,
+            "maxRunup": 1.52
+          },
+          "d20": {
+            "ret": 1.53,
+            "maxDD": -0.93,
+            "maxRunup": 1.53
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2025-07-19",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 627.58,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.09,
+            "maxDD": 0,
+            "maxRunup": 1.09
+          },
+          "d10": {
+            "ret": 1.22,
+            "maxDD": 0,
+            "maxRunup": 1.52
+          },
+          "d20": {
+            "ret": 1.53,
+            "maxDD": -0.93,
+            "maxRunup": 1.53
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "DRAIN_WARNING",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2025-08-15",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.95,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": true,
+      "spyOpex": 643.44,
+      "baselinePerf": {
+        "d5": {
+          "ret": -0.83,
+          "maxDD": -0.83,
+          "maxRunup": 0
+        },
+        "d10": {
+          "ret": -0.15,
+          "maxDD": -1.23,
+          "maxRunup": 0.29
+        },
+        "d20": {
+          "ret": 0.88,
+          "maxDD": -1.23,
+          "maxRunup": 0.88
+        }
+      },
+      "strat1": {
+        "entryDate": "2025-08-16",
+        "entryPrice": 643.44,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -1.23,
+            "maxDD": -1.23,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": 0.27,
+            "maxDD": -1.23,
+            "maxRunup": 0.29
+          },
+          "d20": {
+            "ret": 0.59,
+            "maxDD": -1.23,
+            "maxRunup": 0.88
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2025-08-16",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 643.44,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -1.23,
+            "maxDD": -1.23,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": 0.27,
+            "maxDD": -1.23,
+            "maxRunup": 0.29
+          },
+          "d20": {
+            "ret": 0.59,
+            "maxDD": -1.23,
+            "maxRunup": 0.88
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2025-08-16",
+        "tradeBlocked": true,
+        "blockReason": "LIQUIDITY_CRITICAL",
+        "avoidedDD20": -1.23,
+        "avoidedRet20": 0.59
+      }
+    },
+    {
+      "date": "2025-09-19",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": true,
+      "maxPcr": 1.06,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": true,
+      "spyOpex": 663.7,
+      "baselinePerf": {
+        "d5": {
+          "ret": -0.39,
+          "maxDD": -0.39,
+          "maxRunup": 0.47
+        },
+        "d10": {
+          "ret": 0,
+          "maxDD": -0.85,
+          "maxRunup": 0.47
+        },
+        "d20": {
+          "ret": 1.12,
+          "maxDD": -0.85,
+          "maxRunup": 1.42
+        }
+      },
+      "strat1": {
+        "entryDate": "2025-09-20",
+        "entryPrice": 663.7,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.85,
+            "maxDD": -0.85,
+            "maxRunup": 0.47
+          },
+          "d10": {
+            "ret": 0.37,
+            "maxDD": -0.85,
+            "maxRunup": 0.47
+          },
+          "d20": {
+            "ret": -1.61,
+            "maxDD": -1.61,
+            "maxRunup": 1.42
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2025-09-20",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 663.7,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.85,
+            "maxDD": -0.85,
+            "maxRunup": 0.47
+          },
+          "d10": {
+            "ret": 0.37,
+            "maxDD": -0.85,
+            "maxRunup": 0.47
+          },
+          "d20": {
+            "ret": -1.61,
+            "maxDD": -1.61,
+            "maxRunup": 1.42
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2025-09-20",
+        "tradeBlocked": true,
+        "blockReason": "LIQUIDITY_CRITICAL",
+        "avoidedDD20": -1.61,
+        "avoidedRet20": -1.61
+      }
+    },
+    {
+      "date": "2025-10-17",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.98,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": true,
+      "spyOpex": 664.39,
+      "baselinePerf": {
+        "d5": {
+          "ret": 0.51,
+          "maxDD": 0,
+          "maxRunup": 1.04
+        },
+        "d10": {
+          "ret": 3.14,
+          "maxDD": 0,
+          "maxRunup": 3.14
+        },
+        "d20": {
+          "ret": 0.89,
+          "maxDD": 0,
+          "maxRunup": 3.46
+        }
+      },
+      "strat1": {
+        "entryDate": "2025-10-18",
+        "entryPrice": 664.39,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.11,
+            "maxDD": 0,
+            "maxRunup": 1.11
+          },
+          "d10": {
+            "ret": 3.41,
+            "maxDD": 0,
+            "maxRunup": 3.41
+          },
+          "d20": {
+            "ret": 0.99,
+            "maxDD": 0,
+            "maxRunup": 3.46
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2025-10-18",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 664.39,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.11,
+            "maxDD": 0,
+            "maxRunup": 1.11
+          },
+          "d10": {
+            "ret": 3.41,
+            "maxDD": 0,
+            "maxRunup": 3.41
+          },
+          "d20": {
+            "ret": 0.99,
+            "maxDD": 0,
+            "maxRunup": 3.46
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2025-10-18",
+        "tradeBlocked": true,
+        "blockReason": "LIQUIDITY_CRITICAL",
+        "avoidedDD20": 0,
+        "avoidedRet20": 0.99
+      }
+    },
+    {
+      "date": "2025-11-21",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1.04,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 659.03,
+      "baselinePerf": {
+        "d5": {
+          "ret": 3.13,
+          "maxDD": 0,
+          "maxRunup": 3.13
+        },
+        "d10": {
+          "ret": 3.22,
+          "maxDD": 0,
+          "maxRunup": 3.7
+        },
+        "d20": {
+          "ret": 4.57,
+          "maxDD": 0,
+          "maxRunup": 4.57
+        }
+      },
+      "strat1": {
+        "entryDate": "2025-11-22",
+        "entryPrice": 659.03,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 3.13,
+            "maxDD": 0,
+            "maxRunup": 3.13
+          },
+          "d10": {
+            "ret": 3.41,
+            "maxDD": 0,
+            "maxRunup": 3.7
+          },
+          "d20": {
+            "ret": 3.45,
+            "maxDD": 0,
+            "maxRunup": 4.57
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2025-11-22",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 659.03,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 3.13,
+            "maxDD": 0,
+            "maxRunup": 3.13
+          },
+          "d10": {
+            "ret": 3.41,
+            "maxDD": 0,
+            "maxRunup": 3.7
+          },
+          "d20": {
+            "ret": 3.45,
+            "maxDD": 0,
+            "maxRunup": 4.57
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2025-11-22",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 659.03,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 3.13,
+            "maxDD": 0,
+            "maxRunup": 3.13
+          },
+          "d10": {
+            "ret": 3.41,
+            "maxDD": 0,
+            "maxRunup": 3.7
+          },
+          "d20": {
+            "ret": 3.45,
+            "maxDD": 0,
+            "maxRunup": 4.57
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "BUFFERED_CUSHION",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2025-12-19",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.99,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 680.59,
+      "baselinePerf": {
+        "d5": {
+          "ret": 1.44,
+          "maxDD": 0,
+          "maxRunup": 1.44
+        },
+        "d10": {
+          "ret": 1.07,
+          "maxDD": 0,
+          "maxRunup": 1.44
+        },
+        "d20": {
+          "ret": 1.31,
+          "maxDD": 0,
+          "maxRunup": 1.65
+        }
+      },
+      "strat1": {
+        "entryDate": "2025-12-20",
+        "entryPrice": 680.59,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.44,
+            "maxDD": 0,
+            "maxRunup": 1.44
+          },
+          "d10": {
+            "ret": 0.94,
+            "maxDD": 0,
+            "maxRunup": 1.44
+          },
+          "d20": {
+            "ret": 1.98,
+            "maxDD": 0,
+            "maxRunup": 1.98
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2025-12-20",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 680.59,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.44,
+            "maxDD": 0,
+            "maxRunup": 1.44
+          },
+          "d10": {
+            "ret": 0.94,
+            "maxDD": 0,
+            "maxRunup": 1.44
+          },
+          "d20": {
+            "ret": 1.98,
+            "maxDD": 0,
+            "maxRunup": 1.98
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2025-12-20",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 680.59,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 1.44,
+            "maxDD": 0,
+            "maxRunup": 1.44
+          },
+          "d10": {
+            "ret": 0.94,
+            "maxDD": 0,
+            "maxRunup": 1.44
+          },
+          "d20": {
+            "ret": 1.98,
+            "maxDD": 0,
+            "maxRunup": 1.98
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "BUFFERED_CUSHION",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2026-01-16",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": true,
+      "maxPcr": 0.97,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 691.66,
+      "baselinePerf": {
+        "d5": {
+          "ret": -0.91,
+          "maxDD": -2.04,
+          "maxRunup": 0
+        },
+        "d10": {
+          "ret": 0.15,
+          "maxDD": -2.04,
+          "maxRunup": 0.15
+        },
+        "d20": {
+          "ret": -2.03,
+          "maxDD": -2.04,
+          "maxRunup": 0.55
+        }
+      },
+      "strat1": {
+        "entryDate": "2026-01-17",
+        "entryPrice": 691.66,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.39,
+            "maxDD": -2.04,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": 0.55,
+            "maxDD": -2.04,
+            "maxRunup": 0.55
+          },
+          "d20": {
+            "ret": -0.15,
+            "maxDD": -2.04,
+            "maxRunup": 0.55
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2026-01-17",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 691.66,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.39,
+            "maxDD": -2.04,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": 0.55,
+            "maxDD": -2.04,
+            "maxRunup": 0.55
+          },
+          "d20": {
+            "ret": -0.15,
+            "maxDD": -2.04,
+            "maxRunup": 0.55
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2026-01-17",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 691.66,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.39,
+            "maxDD": -2.04,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": 0.55,
+            "maxDD": -2.04,
+            "maxRunup": 0.55
+          },
+          "d20": {
+            "ret": -0.15,
+            "maxDD": -2.04,
+            "maxRunup": 0.55
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "DRAIN_WARNING",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2026-02-20",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": true,
+      "maxPcr": 1.01,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 689.43,
+      "baselinePerf": {
+        "d5": {
+          "ret": 0.54,
+          "maxDD": -1.02,
+          "maxRunup": 0.54
+        },
+        "d10": {
+          "ret": -0.44,
+          "maxDD": -1.02,
+          "maxRunup": 0.54
+        },
+        "d20": {
+          "ret": -3.39,
+          "maxDD": -3.39,
+          "maxRunup": 0.54
+        }
+      },
+      "strat1": {
+        "entryDate": "2026-02-21",
+        "entryPrice": 689.43,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.02,
+            "maxDD": -1.02,
+            "maxRunup": 0.54
+          },
+          "d10": {
+            "ret": -1.32,
+            "maxDD": -1.32,
+            "maxRunup": 0.54
+          },
+          "d20": {
+            "ret": -3.94,
+            "maxDD": -3.94,
+            "maxRunup": 0.54
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2026-02-21",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 689.43,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.02,
+            "maxDD": -1.02,
+            "maxRunup": 0.54
+          },
+          "d10": {
+            "ret": -1.32,
+            "maxDD": -1.32,
+            "maxRunup": 0.54
+          },
+          "d20": {
+            "ret": -3.94,
+            "maxDD": -3.94,
+            "maxRunup": 0.54
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2026-02-21",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 689.43,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.02,
+            "maxDD": -1.02,
+            "maxRunup": 0.54
+          },
+          "d10": {
+            "ret": -1.32,
+            "maxDD": -1.32,
+            "maxRunup": 0.54
+          },
+          "d20": {
+            "ret": -3.94,
+            "maxDD": -3.94,
+            "maxRunup": 0.54
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "BUFFERED_CUSHION",
+        "goldiRegime": "RECESSION_CONTRACTION"
+      }
+    },
+    {
+      "date": "2026-03-20",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 1.12,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 648.57,
+      "baselinePerf": {
+        "d5": {
+          "ret": 1.27,
+          "maxDD": 0,
+          "maxRunup": 1.27
+        },
+        "d10": {
+          "ret": -2.56,
+          "maxDD": -2.56,
+          "maxRunup": 1.27
+        },
+        "d20": {
+          "ret": 4.83,
+          "maxDD": -2.56,
+          "maxRunup": 4.83
+        }
+      },
+      "strat1": {
+        "entryDate": "2026-03-21",
+        "entryPrice": 648.57,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.54,
+            "maxDD": -0.54,
+            "maxRunup": 1.27
+          },
+          "d10": {
+            "ret": 0.27,
+            "maxDD": -2.56,
+            "maxRunup": 1.27
+          },
+          "d20": {
+            "ret": 4.76,
+            "maxDD": -2.56,
+            "maxRunup": 4.83
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2026-03-21",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 648.57,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.54,
+            "maxDD": -0.54,
+            "maxRunup": 1.27
+          },
+          "d10": {
+            "ret": 0.27,
+            "maxDD": -2.56,
+            "maxRunup": 1.27
+          },
+          "d20": {
+            "ret": 4.76,
+            "maxDD": -2.56,
+            "maxRunup": 4.83
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2026-03-21",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 648.57,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.54,
+            "maxDD": -0.54,
+            "maxRunup": 1.27
+          },
+          "d10": {
+            "ret": 0.27,
+            "maxDD": -2.56,
+            "maxRunup": 1.27
+          },
+          "d20": {
+            "ret": 4.76,
+            "maxDD": -2.56,
+            "maxRunup": 4.83
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "BUFFERED_CUSHION",
+        "goldiRegime": "TRANSITIONAL"
+      }
+    },
+    {
+      "date": "2026-04-17",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.87,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": true,
+      "spyOpex": 710.14,
+      "baselinePerf": {
+        "d5": {
+          "ret": 0.15,
+          "maxDD": -0.85,
+          "maxRunup": 0.15
+        },
+        "d10": {
+          "ret": 0.71,
+          "maxDD": -0.85,
+          "maxRunup": 0.71
+        },
+        "d20": {
+          "ret": 3.02,
+          "maxDD": -0.85,
+          "maxRunup": 3.34
+        }
+      },
+      "strat1": {
+        "entryDate": "2026-04-18",
+        "entryPrice": 710.14,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.24,
+            "maxDD": -0.85,
+            "maxRunup": 0.15
+          },
+          "d10": {
+            "ret": 0.22,
+            "maxDD": -0.85,
+            "maxRunup": 0.71
+          },
+          "d20": {
+            "ret": 3.87,
+            "maxDD": -0.85,
+            "maxRunup": 3.87
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2026-04-18",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 710.14,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.24,
+            "maxDD": -0.85,
+            "maxRunup": 0.15
+          },
+          "d10": {
+            "ret": 0.22,
+            "maxDD": -0.85,
+            "maxRunup": 0.71
+          },
+          "d20": {
+            "ret": 3.87,
+            "maxDD": -0.85,
+            "maxRunup": 3.87
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2026-04-18",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 710.14,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.24,
+            "maxDD": -0.85,
+            "maxRunup": 0.15
+          },
+          "d10": {
+            "ret": 0.22,
+            "maxDD": -0.85,
+            "maxRunup": 0.71
+          },
+          "d20": {
+            "ret": 3.87,
+            "maxDD": -0.85,
+            "maxRunup": 3.87
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "BUFFERED_CUSHION",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2026-05-15",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": false,
+      "maxPcr": 0.93,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 739.17,
+      "baselinePerf": {
+        "d5": {
+          "ret": 0.28,
+          "maxDD": -0.74,
+          "maxRunup": 0.28
+        },
+        "d10": {
+          "ret": 0.88,
+          "maxDD": -0.74,
+          "maxRunup": 0.88
+        },
+        "d20": {
+          "ret": 2.42,
+          "maxDD": -0.74,
+          "maxRunup": 2.76
+        }
+      },
+      "strat1": {
+        "entryDate": "2026-05-16",
+        "entryPrice": 739.17,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.48,
+            "maxDD": -0.74,
+            "maxRunup": 0.48
+          },
+          "d10": {
+            "ret": 1.54,
+            "maxDD": -0.74,
+            "maxRunup": 1.54
+          },
+          "d20": {
+            "ret": -0.22,
+            "maxDD": -0.74,
+            "maxRunup": 2.76
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2026-05-16",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 739.17,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.48,
+            "maxDD": -0.74,
+            "maxRunup": 0.48
+          },
+          "d10": {
+            "ret": 1.54,
+            "maxDD": -0.74,
+            "maxRunup": 1.54
+          },
+          "d20": {
+            "ret": -0.22,
+            "maxDD": -0.74,
+            "maxRunup": 2.76
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2026-05-16",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 739.17,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.48,
+            "maxDD": -0.74,
+            "maxRunup": 0.48
+          },
+          "d10": {
+            "ret": 1.54,
+            "maxDD": -0.74,
+            "maxRunup": 1.54
+          },
+          "d20": {
+            "ret": -0.22,
+            "maxDD": -0.74,
+            "maxRunup": 2.76
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "EXPANSION",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2026-06-19",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": true,
+      "maxPcr": 0.91,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 746.74,
+      "baselinePerf": {
+        "d5": {
+          "ret": -1.81,
+          "maxDD": -1.81,
+          "maxRunup": 0
+        },
+        "d10": {
+          "ret": -0.77,
+          "maxDD": -2.38,
+          "maxRunup": 0
+        },
+        "d20": {
+          "ret": 0.67,
+          "maxDD": -2.38,
+          "maxRunup": 0.67
+        }
+      },
+      "strat1": {
+        "entryDate": "2026-06-20",
+        "entryPrice": 746.74,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -1.67,
+            "maxDD": -1.81,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": 0,
+            "maxDD": -2.38,
+            "maxRunup": 0
+          },
+          "d20": {
+            "ret": 1.1,
+            "maxDD": -2.38,
+            "maxRunup": 1.1
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2026-06-20",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 746.74,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -1.67,
+            "maxDD": -1.81,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": 0,
+            "maxDD": -2.38,
+            "maxRunup": 0
+          },
+          "d20": {
+            "ret": 1.1,
+            "maxDD": -2.38,
+            "maxRunup": 1.1
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2026-06-20",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 746.74,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -1.67,
+            "maxDD": -1.81,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": 0,
+            "maxDD": -2.38,
+            "maxRunup": 0
+          },
+          "d20": {
+            "ret": 1.1,
+            "maxDD": -2.38,
+            "maxRunup": 1.1
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "BUFFERED_CUSHION",
+        "goldiRegime": "RECESSION_CONTRACTION"
+      }
+    },
+    {
+      "date": "2026-07-17",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": true,
+      "maxPcr": 1.18,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": true,
+      "spyOpex": 743.29,
+      "baselinePerf": {
+        "d5": {
+          "ret": 0.55,
+          "maxDD": -0.16,
+          "maxRunup": 0.67
+        },
+        "d10": {
+          "ret": -0.57,
+          "maxDD": -0.69,
+          "maxRunup": 0.67
+        },
+        "d20": {
+          "ret": 3.4,
+          "maxDD": -1.86,
+          "maxRunup": 3.77
+        }
+      },
+      "strat1": {
+        "entryDate": "2026-07-18",
+        "entryPrice": 743.29,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.69,
+            "maxDD": -0.69,
+            "maxRunup": 0.67
+          },
+          "d10": {
+            "ret": -0.33,
+            "maxDD": -0.69,
+            "maxRunup": 0.67
+          },
+          "d20": {
+            "ret": 4.03,
+            "maxDD": -1.86,
+            "maxRunup": 4.03
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2026-07-18",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 743.29,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.69,
+            "maxDD": -0.69,
+            "maxRunup": 0.67
+          },
+          "d10": {
+            "ret": -0.33,
+            "maxDD": -0.69,
+            "maxRunup": 0.67
+          },
+          "d20": {
+            "ret": 4.03,
+            "maxDD": -1.86,
+            "maxRunup": 4.03
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2026-07-18",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 743.29,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": -0.69,
+            "maxDD": -0.69,
+            "maxRunup": 0.67
+          },
+          "d10": {
+            "ret": -0.33,
+            "maxDD": -0.69,
+            "maxRunup": 0.67
+          },
+          "d20": {
+            "ret": 4.03,
+            "maxDD": -1.86,
+            "maxRunup": 4.03
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "BUFFERED_CUSHION",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2026-08-21",
+      "type": "MONATS-OPEX",
+      "isQuad": false,
+      "hasExtremeSqueezeCoil": true,
+      "maxPcr": 1.55,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 765.72,
+      "baselinePerf": {
+        "d5": {
+          "ret": 0.05,
+          "maxDD": -0.29,
+          "maxRunup": 0.05
+        },
+        "d10": {
+          "ret": 0.17,
+          "maxDD": -0.29,
+          "maxRunup": 0.7
+        },
+        "d20": {
+          "ret": -1.03,
+          "maxDD": -1.03,
+          "maxRunup": 0.97
+        }
+      },
+      "strat1": {
+        "entryDate": "2026-08-22",
+        "entryPrice": 765.72,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.7,
+            "maxDD": -0.29,
+            "maxRunup": 0.7
+          },
+          "d10": {
+            "ret": -0.51,
+            "maxDD": -0.51,
+            "maxRunup": 0.7
+          },
+          "d20": {
+            "ret": -0.19,
+            "maxDD": -1.03,
+            "maxRunup": 0.97
+          }
+        }
+      },
+      "strat2": {
+        "entryDate": "2026-08-22",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 765.72,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.7,
+            "maxDD": -0.29,
+            "maxRunup": 0.7
+          },
+          "d10": {
+            "ret": -0.51,
+            "maxDD": -0.51,
+            "maxRunup": 0.7
+          },
+          "d20": {
+            "ret": -0.19,
+            "maxDD": -1.03,
+            "maxRunup": 0.97
+          }
+        }
+      },
+      "strat3": {
+        "entryDate": "2026-08-22",
+        "dayOffset": 1,
+        "trigger": "UNPINNING_UP",
+        "entryPrice": 765.72,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0.7,
+            "maxDD": -0.29,
+            "maxRunup": 0.7
+          },
+          "d10": {
+            "ret": -0.51,
+            "maxDD": -0.51,
+            "maxRunup": 0.7
+          },
+          "d20": {
+            "ret": -0.19,
+            "maxDD": -1.03,
+            "maxRunup": 0.97
+          }
+        },
+        "macroApproved": true,
+        "liqRegime": "BUFFERED_CUSHION",
+        "goldiRegime": "GOLDILOCKS_EXPANSION"
+      }
+    },
+    {
+      "date": "2026-09-18",
+      "type": "HEXENSABBAT",
+      "isQuad": true,
+      "hasExtremeSqueezeCoil": true,
+      "maxPcr": 1.61,
+      "maxShortVol": 0,
+      "isLiqCriticalPre": false,
+      "spyOpex": 764.29,
+      "baselinePerf": {
+        "d5": {
+          "ret": 0,
+          "maxDD": 0,
+          "maxRunup": 0
+        },
+        "d10": {
+          "ret": 0,
+          "maxDD": 0,
+          "maxRunup": 0
+        },
+        "d20": {
+          "ret": 0,
+          "maxDD": 0,
+          "maxRunup": 0
+        }
+      },
+      "strat1": {
+        "entryDate": "2026-09-30",
+        "entryPrice": 764.29,
+        "priceDeltaVsOpexPct": 0,
+        "perf": {
+          "d5": {
+            "ret": 0,
+            "maxDD": 0,
+            "maxRunup": 0
+          },
+          "d10": {
+            "ret": 0,
+            "maxDD": 0,
+            "maxRunup": 0
+          },
+          "d20": {
+            "ret": 0,
+            "maxDD": 0,
+            "maxRunup": 0
+          }
+        }
+      },
+      "strat2": null,
+      "strat3": null
+    }
+  ]
+}

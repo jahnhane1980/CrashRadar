@@ -26,6 +26,7 @@ flowchart TD
     Res --> R2["📜 dalio-cycles/<br>(Schuldenkrisen & 3-von-4-Regel)"]
     Res --> R3["🧪 ml-lab/<br>(Trainings-Logs & Fat Tails)"]
     Res --> R4["🔬 methodology-audits/<br>(Noise-Tests & Slippage)"]
+    Res --> R5["🧭 DailyPortfolioCompass/<br>(ADR-Thesen & Backtests)"]
 ```
 
 ---
@@ -55,6 +56,9 @@ Hier finden Entwickler und System-Architekten alle operativen Spezifikationen, E
   *Zentrale, kontinuierliche Kalendertabelle `macro_calendar_events`: Automatischer Abgleich von Fiskalfristen, Continuing Resolutions (CR EXTENDED/CONFIRMED), deterministischer QRA-Zyklus und dynamische X-Date-Projektion via US Treasury DTS Table IIIC.*
 * 📄 **[`Checkliste-Goldilocks-Szenarios.md`](file:///D:/GitHub/CrashRadar/docs/architecture/macro/Checkliste-Goldilocks-Szenarios.md):**  
   *Monatliche Event-Checkliste für anstehende Makro-Veröffentlichungen mit tagesaktueller Live-Status-Erfassung.*
+* 📄 **[`Derivate-OpEx-Kalender-Konzept.md`](file:///D:/GitHub/CrashRadar/docs/architecture/macro/Derivate-OpEx-Kalender-Konzept.md):**  
+  *Deterministische Erfassung von monatlichem OpEx, Quadruple Witching (Hexensabbat), VIX-Settlement und 5-Phasen-Derivate-State-Machine für vorausschauende Markt-Entlastung.*
+
 
 ### C. ⚙️ Trading & Execution Engine (`docs/architecture/trading-engine/`)
 * 📄 **[`TradingEngine.md`](file:///D:/GitHub/CrashRadar/docs/architecture/trading-engine/TradingEngine.md):**  
@@ -69,6 +73,10 @@ Hier finden Entwickler und System-Architekten alle operativen Spezifikationen, E
 ### E. 📡 Signal- & SensorHub-Architektur (`docs/architecture/signals/`)
 * 📄 **[`Composite-SensorHub-Architektur.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signals/Composite-SensorHub-Architektur.md):**  
   *Composite-Pattern für die SignalEngine: Trennung von atomaren Messfühlern (`MstrLeadSensor`, `BtcTrendSensor`, `DarkPoolSensor`, `VixShockSensor`, `SpyTrendSensor`, `CreditStressSensor`) und aggregierenden Sensor-Hubs (`CryptoSensorHub`, `MacroStressSensorHub`, `LiquiditySensorHub`, `MarketBottomSensorHub`) mit rein deskriptiven Markt-Regimes ohne Strategie-Bevormundung.*
+* 📄 **[`LiquiditySensorHub.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signals/LiquiditySensorHub.md):**  
+  *Spezifikation der 4-Regime-Geldmarkt-Architektur (`EXPANSION`, `BUFFERED_CUSHION`, `DRAIN_WARNING`, `CRITICAL_DRAIN`), Time-to-Collision (TTC), atomarer Leaf-Sensor `LiquidityCollisionSensor` und empirische Detektion der toxischen 93%-Crash-Falle (`dualMacroStress >= 55 && VIX > 25`).*
+* 📄 **[`DailyPortfolioCompass.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signals/DailyPortfolioCompass.md):**  
+  *Taktischer Portfolio- & Timing-Lotse: Synthese aus Geldmarkt-, Derivate- und Goldilocks-Hubs mit Trading212-Depotverknüpfung (`TEILGEWINNE PRÜFEN`, `FÜSSE STILLHALTEN`, `NOT-EXIT / ABSICHERN`), Erkennung von Verfallswochen-Ausschütteln vor Hexensabbat (`SHAKEOUT`) und Ntfy-Push-Alarmierung (`NTFY_PORTFOLIO_COMPASS_TOPIC`).*
 * 📄 **[`Makrowetter-Audit-und-Refactoring.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signals/Makrowetter-Audit-und-Refactoring.md):**  
   *Code-Audit & Bereinigung des Makrowetter-Berichts: Stilllegung veralteter Monolithen (`SmartDumbMoneyBottom`), Entschärfung von Margin-Debt Fehleskalationen (-5% Warning / -10% Critical), 180-Tage Un-Inversions-Gedächtnis für die Renditekurve und Einhängen der Katastrophen-Matrix in die Pipeline.*
 
@@ -94,7 +102,7 @@ flowchart LR
 ```
 
 * 📄 **[`7-Slot-Guru-Konsens-System.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/7-Slot-Guru-Konsens-System.md):**  
-  *Masterplan Version 3.1.0 (Dual-Engine Governance & KI-Infrastruktur): Arbeitsteilung zwischen Tech-Momentum-Scouts (Altimeter, Coatue, Tiger Global als Alpha-Motor) und Makro-Risiko-Wächtern (Duquesne, PointState, Appaloosa als Governance & Veto-Gatekeeper). Thematische Öffnung auf Tech & KI-Infrastruktur/Power (Einzug von GE Vernova GEV in Slot 7, UBER im Watch-Pool Rang 1), doppelt gesichertes Rebalancing (Verdrängung bei Wächter-Trimmen UND SMA-50-Knick oder SMA-200-Überdehnung > 30 % mit +24,5 % Alpha-Beweis), dauerhafter Halbleiter-Deckel auf max. 2 Slots (TSM, NVDA; LRCX auf Deck mit Skip-Rule), Unterbelegungs-Doktrin ($100\% / N$ bei weniger als 7 Titeln am Boden, QQQ-Fallback bei $N=0$), Geopolitische Whitelist (China VIE-Ausschluss), Vetoed-No-Rebuy am Marktboden (+33,05 %P Alpha) und automatisches 13F-Signature Nachfolge-Tracking.*  
+  *Masterplan Version 3.1.0 (Dual-Engine Governance & KI-Infrastruktur): Arbeitsteilung zwischen Tech-Momentum-Scouts (Altimeter, Coatue, Tiger Global als Alpha-Motor) und Makro-Risiko-Wächtern (Duquesne, PointState, Appaloosa als Governance & Veto-Gatekeeper). Thematische Öffnung auf Tech & KI-Infrastruktur/Power (Einzug von GE Vernova GEV in Slot 7, UBER im Watch-Pool Rang 1), doppelt gesichertes Rebalancing (Verdrängung bei Wächter-Trimmen UND SMA-50-Knick oder SMA-200-Überdehnung > 30 % mit +24,5 % Alpha-Beweis), dauerhafter Halbleiter-Deckel auf max. 2 Slots (TSM, NVDA; LRCX auf Deck mit Skip-Rule), Unterbelegungs-Doktrin ($100\% / N$ bei weniger als 7 Titeln am Boden, QQQ-Fallback bei $N=0$), Geopolitische Whitelist (China VIE-Ausschluss), Vetoed-No-Rebuy am Marktboden (+33,05 %P Alpha), automatisches 13F-Signature Nachfolge-Tracking sowie **Roadmap V3.2: Forschungs-Hypothese zur Drosselung überdehnter Spätzyklus-Positionen und Vorziehen frischer Watch-Pool-Kandidaten (UBER)**.*  
   * 🗄️ **[`guru-archive/7-Slot-Guru-Konsens-System-v2.1-Archive.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/guru-archive/7-Slot-Guru-Konsens-System-v2.1-Archive.md):** *Historisches Archiv der Vorgänger-Version 2.1 (archiviert am 14.09.2026).*
 * 📄 **[`Gold-GDX.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Gold-GDX.md):**  
   *Quantitative Tranchen-Exit- und Regime-Strategie für Gold & GDX (Selling Climax, Divergenzen, ROC-Erschöpfung und Catastrophe Stop).*
@@ -145,6 +153,9 @@ Hier liegen alle empirischen Auswertungen, historischen Krisen-Härtetests und m
   *Historischer 11,5-Jahre-Härtetest (2015–2026) aus 50 SEC-EDGAR-Filings: Rekonstruktion aller ARK-Bestände seit Fondsgründung, OBSERVE-Filterung, SEC-XBRL-Parser-Upgrade (3-Monats-Isolation) und 'Kein Kauf ohne Fundamentaldaten'-Gate (+5.698,28 % / 1.797.466,07 € vs. ARKK +373,68 % und QQQ +660,31 %).*
 * 📄 **[`MSTR-Krypto-Taktgeber-Analyse.md`](file:///D:/GitHub/CrashRadar/docs/research/macro-proofs/MSTR-Krypto-Taktgeber-Analyse.md):**  
   *Empirischer Beweis für MicroStrategy (MSTR) als Krypto-Taktgeber: Warum MSTR SMA-200 mit +150,3 % Rendite und nur 9 Umschichtungen in 5 Jahren (+130,2 %P Alpha vs. BTC Buy & Hold) der optimale Taktgeber für stressfreies Krypto-Timing ist.*
+* 📄 **[`Derivate-OpEx-Bull-Trap-Analyse-21-Jahre.md`](file:///D:/GitHub/CrashRadar/docs/research/macro-proofs/Derivate-OpEx-Bull-Trap-Analyse-21-Jahre.md):**  
+  *22-Jahre-Härtetest (2004–2026 / 271 Events) über OpEx- & Hexensabbat-Zyklen: Wann war der Rebound eine tödliche Bull Trap (6,6 % Gesamtrisiko, 4,4 % beim Hexensabbat) und wie filtern SMA 200 (> 95,5 % Verlässlichkeit im Bullenmarkt) und das VIX-Regime fatale Crash-Fallen zuverlässig heraus.*
+
 
 ### B. 📜 Ray Dalio Schuldenkrisen-Zyklen (`docs/research/dalio-cycles/`)
 * 📄 **[`These.md`](file:///D:/GitHub/CrashRadar/docs/research/dalio-cycles/These.md)** | **[`Daten_zur_These.md`](file:///D:/GitHub/CrashRadar/docs/research/dalio-cycles/Daten_zur_These.md)**
@@ -191,6 +202,35 @@ Hier liegen alle empirischen Auswertungen, historischen Krisen-Härtetests und m
   *🎯 **Wiedereinstiegspunkt für die nächste Session:** Empirische Root-Cause-Analyse der Drawdown-Anomalie (-40,67 % im Corona-Crash 2020). Detaillierter Tagesdaten-Beweis: Warum der Ausstieg am 27.02. (-12 % DD) strukturell korrekt war, aber der Re-Entry am 06.03.2020 nach nur 8 Tagen via `PanicCapitulationIndicator` viel zu früh erfolgte und das Depot voll in den nachfolgenden -25 %-Absturz riss. Inklusive 4-Punkte-Fahrplan zur Drawdown-Reduktion auf unter -20 %.*
 * 📄 **[`GoldSpyDailyStressTest.md`](file:///D:/GitHub/CrashRadar/docs/research/strategies/GoldSpyDailyStressTest.md):**  
   *Empirischer 21,8-Jahre Daily-Stresstest der CrashRadar SignalEngine (2004–2026, 7.760 Handelstage): Lückenloser Tages-Härtetest der echten Engine-Klassen (`PortfolioStrategyEngine` & `GoldSpyDcaStrategy`) mit 10.000 € Start + 150 €/Monat Sparplan. Beweis des Zinseszins-Schutzes (+41.425,84 € Mehrertrag / +85,59 % Alpha vs. stures SPY DCA) durch Notfall-Evakuierung in Gold/Cash (nur 19 Manöver in 21,8 Jahren, +72 % Alpha in 2008 Lehman, +11,5 % Alpha im Bärenmarkt 2022 und Dämpfung des Max Drawdown von -47,90 % auf -40,67 %) inkl. Skript in [`GoldSpyDailyStressTest.js`](file:///D:/GitHub/CrashRadar/scratch/research/strategies/GoldSpyDailyStressTest.js).*
+
+### G. 🧭 DailyPortfolioCompass Research & ADR-Thesen (`docs/research/DailyPortfolioCompass/`)
+* 📄 **[`README.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/README.md):**  
+  *Übersicht und Master-Index aller ADRs (Analysis & Research Decision Records) für den DailyPortfolioCompass.*
+* 📄 **[`ADR-001-Geldmarkt-Airbag-These.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-001-Geldmarkt-Airbag-These.md):**  
+  *ADR-001: Geldmarkt-Airbag-These (VIX-Panik vs. Echter Liquiditäts-Crash): Empirisch verifizierter Härtetest (2020–2026, 478 Paniktage, 44 Episoden). Beweis, dass VIX-Peaks bei intakter Liquidität (`OK`) zu 100 % vor einem säkularen Crash (> -15 % Drawdown: exakt 0,0 % Quote) schützen und Dip-Buying begünstigen, während Fehlschläge 2022 den Goldilocks-Sensor als unverzichtbaren Zinswächter beweisen.*
+* 📄 **[`ADR-002-Stagflations-Deckel-These.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-002-Stagflations-Deckel-These.md):**  
+  *ADR-002: Stagflations-Deckel-These (Warum Allzeithoch-Ausbrüche scheitern): Empirisch verifizierter Härtetest (2020–2026, 1.130 Allzeithoch-Tage). Beweis, dass Stagflations- & Realzinsdruck Fehlausbrüche von 36,9 % auf fast 60 % verdoppelt und das diskrete Regime `STAGFLATION_PRESSURE` (Öl > $95 & Realzins > 2,4 %) als chirurgischer Not-Deckel an Hochpunkten fungiert.*
+* 📄 **[`ADR-003-Squeeze-Coil-Katapult-These.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-003-Squeeze-Coil-Katapult-These.md):**  
+  *ADR-003: Squeeze-Coil-Katapult-These (Derivate-Kontra-Rebound vor OpEx): Empirischer Härtetest (2020–2026, 81 OpEx-Events). Falsifikation des naiven Squeeze-Kaufs (nur 50,0 % Win-Rate, -0,39 % D+20 vs. 76,6 % Win-Rate bei normalem OpEx) und unbestechlicher mathematischer Beweis der `SHAKEOUT`-Stillhalte-Doktrin („Füße stillhalten vor Verfallstag, kein Dip-Buying in fallende Kurse“).*
+* 📄 **[`ADR-004-Dual-Gatekeeper-These.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-004-Dual-Gatekeeper-These.md):**  
+  *ADR-004: Dual-Gatekeeper-These (Geldmarkt-Airbag + Goldilocks-Veto): Empirischer Härtetest (2020–2026, 478 Paniktage, 44 Episoden). Mathematischer Beweis der 2-Säulen-Konfluenz: Vollständige Beseitigung aller 4 Fehlschläge aus dem Zinsbärenmarkt 2022 (0,0 % Fehlschlag-Quote), Steigerung der 60-Tage-Win-Rate auf bis zu 97,6 % (+8,86 % Alpha) und Etablierung des Goldilocks-Vetos gegen Multiple-Compression-Fallen.*
+* 📄 **[`ADR-005-Post-OpEx-Relief-These.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-005-Post-OpEx-Relief-These.md):**  
+  *ADR-005: Post-OpEx-Relief-These (Bestätigtes Entlastungs-Katapult nach Verfall): Empirischer Härtetest (2020–2026, 81 OpEx-Events). Falsifikation der naiven Post-OpEx Erholungs-These: Auch nach Verfallstagen verharrt die Win-Rate bei nur 45,5–47,6 % (0 von 10 Bull Traps gelöst), womit extremes Pre-OpEx Shorting als echtes institutionelles Verkaufssignal und persistentes 5-Tage-Kaufverbot (Post-OpEx-Schonfrist) bewiesen ist.*
+* 📄 **[`ADR-006-Oel-Zins-Zangen-These.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-006-Oel-Zins-Zangen-These.md):**  
+  *ADR-006: Öl-Zins-Zangen-These (Angebots-Spike vs. Reale Bewertungs-Kompression): Empirischer Härtetest (2020–2026, 469 Hoch-Öl-Tage, 19 Episoden). Mathematischer Beweis der Realzins-Kopplung: Hohes Öl ist nur bei Realzinsen > 2,20 % schädlich (Zähe Stagnation am Allzeithoch mit nur 40,7 % Win-Rate), fungiert jedoch nach vorangegangenen Marktkorrekturen als makroökonomischer Kapitulations-Climax (100,0 % 60-Tage-Win-Rate mit +9,72 % Alpha).*
+* 📄 **[`ADR-007-Fiskal-Schutzschild-These.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-007-Fiskal-Schutzschild-These.md):**  
+  *ADR-007: Fiskal-Schutzschild-These (Vorwahl-Kompensation vs. Post-Election-Vakuum): Empirischer 22-Jahre-Härtetest (2004–2026 über 11 US-Wahlzyklen). Mathematischer Beweis, dass ein aktives fiskalisches Schutzschild (TGA >= $750 Mrd., T-Bills >= 55 %, Buybacks) vor Midterm-Crashes schützt (Drawdown <= -1,7 % im Vorfeld), bei geleertem RRP-Puffer (< $50 Mrd., aktuell $5,3 Mrd.) jedoch wie im Dezember 2018 ein brutales Post-Election-Vakuum (-12,5 % bis -15 % Korrektur) entfesselt.*
+* 📄 **[`ADR-008-LCLOR-Bankreserven-These.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-008-LCLOR-Bankreserven-These.md):**  
+  *ADR-008: LCLOR-Bankreserven-These (Notenbank-Liquiditäts-Kipppunkt bei entleertem RRP-Puffer): Formalisierter Testaufbau zur Quantifizierung des mechanischen Kipppunkts im Interbankenmarkt, wenn Bankreserven (`WRESBAL`) unter die LCLOR-Schwelle (< $3.000 Mrd. bzw. < 10,5 % BIP) fallen und RRP < $50 Mrd. beträgt (Schock-Wahrscheinlichkeit >= 75 %).*
+* 📄 **[`ADR-009-Bull-Steepener-Falle-These.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-009-Bull-Steepener-Falle-These.md):**  
+  *ADR-009: Bull-Steepener-Falle-These (Zinskurven-Entinversion 10Y-2Y vs. Rezessions-Lag): Formalisierter Testaufbau zur Entlarvung der Erleichterungs-Rallye nach Nulldurchbruch der Zinskurve (+0,33 % aktuell) als klassische Bull Trap mit 60- bis 250-Tage Bärenmarkt-Lag (-15 % bis -30 % Drawdown).*
+* 📄 **[`ADR-010-Credit-Spread-Divergenz-These.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-010-Credit-Spread-Divergenz-These.md):**  
+  *ADR-010: Credit-Spread-Divergenz-These (High-Yield HYG vs. SPY-Allzeithoch): Formalisierter Testaufbau über 19 Jahre HYG-Historie zur Erkennung institutioneller Risikoaversion (Kredit-Divergenz an Aktien-Tops mit >= 70 % Trefferquote für Korrekturen >= -6 %).*
+* 📄 **[`ADR-011-Dual-Gatekeeper-Reentry-These.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-011-Dual-Gatekeeper-Reentry-These.md):**  
+  *ADR-011: Dual-Gatekeeper-Reentry-These (Systematischer Wiedereinstieg nach Liquiditäts-Crashes): Formalisierter Testaufbau zur Lösung der Corona-2020-Anomalie. Nachweis, dass ein Re-Entry-Veto bei Liquidität `CRITICAL` verfrühte Einstiege in fallende Messer verhindert und den Allzeit-Drawdown der Strategie von -40,67 % auf unter -22 % senkt.*
+
+
+
 
 
 
