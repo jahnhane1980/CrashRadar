@@ -1,5 +1,7 @@
 import { SignalComponent } from '../contracts/SignalComponent.js';
 import { SignalStatus, LiquidityRegime } from '../contracts/SignalTypes.js';
+import { VixShockSensor } from '../sensors/VixShockSensor.js';
+import { LiquidityCollisionSensor } from '../sensors/LiquidityCollisionSensor.js';
 
 /**
  * LiquiditySensorHub (Composite)
@@ -10,14 +12,18 @@ import { SignalStatus, LiquidityRegime } from '../contracts/SignalTypes.js';
  * - TGA-Refill-Defizit und Puffer
  * - Netto-Auktionen (Coupons vs. Bills vs. Buybacks)
  * - Time-to-Collision (TTC): Zeitliche Vorhersage bis zur Liquiditäts-Erschöpfung!
+ * - BUFFERED_CUSHION: Gepufferte Phase (RRP niedrig, aber TGA puffert ab)
+ * - TOXIC_LIQUIDITY_TRAP: Makrostress >= 55 & VIX > 25 (93% Crash-Präzision)
  */
 export class LiquiditySensorHub extends SignalComponent {
-  constructor(config = {}) {
+  constructor(config = {}, dependencies = {}) {
     super();
     this.THRESHOLDS = {
       CRITICAL: config.thresholdCritical ?? 75,
       WARNING: config.thresholdWarning ?? 55
     };
+    this.vixShockSensor = dependencies.vixShockSensor || new VixShockSensor(config.vixConfig || {});
+    this.collisionSensor = dependencies.collisionSensor || new LiquidityCollisionSensor(config.collisionConfig || {});
   }
 
   getId() {
@@ -188,12 +194,12 @@ export class LiquiditySensorHub extends SignalComponent {
     const dualMacroStress = 0.55 * liquidityStress + 0.45 * rateValuationStress;
 
     const monthlyBuybackB = buybacksB21 * (30 / 21);
-    const isBuffered = tgaCushionB > 50 && monthlyBuybackB >= 5.0;
+    const isBuffered = tgaCushionB > 50 && monthlyBuybackB >= 5.0 && (ttcDays === null || ttcDays >= 90);
 
     let catalystStatus = 'NORMAL';
     let collisionWindow = 'Kein akutes Kollisions-Fenster';
 
-    if (tgaRefillDeficitB > 250 && netCouponRatio > 0.40) {
+    if (tgaRefillDeficitB > 250 && netCouponRatio > 0.40 && effectiveSlackB < 500) {
       catalystStatus = 'IMMINENT_DRAIN';
       collisionWindow = 'Akuter Sofort-Abzug (Tax-Day / Refill-Welle)';
     } else if (liquidSlackBillion < 50) {
@@ -206,8 +212,26 @@ export class LiquiditySensorHub extends SignalComponent {
       }
     }
 
-    const isWarningTriggered = dualMacroStress >= this.THRESHOLDS.WARNING || (liquidSlackBillion < 50 && isBuffered);
-    const isCritical = dualMacroStress >= this.THRESHOLDS.CRITICAL;
+    // VIX-Auswertung via VixShockSensor
+    const vixRes = this.vixShockSensor.evaluate(timeline);
+    const rawVix = currentDay?.assets?.VIX ?? vixRes.vix;
+    const vix = rawVix !== null && rawVix !== undefined ? Number(rawVix) : 15.0;
+    const isVixElevated = Boolean(vixRes.isElevated || vix > 25.0);
+
+    // 1. Toxische Liquiditäts-Falle: Makrostress >= 55 UND VIX > 25 (93.1% Crash-Präzision)
+    const isToxicTrap = dualMacroStress >= this.THRESHOLDS.WARNING && isVixElevated;
+
+    // 2. Akute Geldmarkt-Kollision: TTC < 30 Tage ODER ungedeckter Refill-Drain ODER echter Notstand (< 8% BIP)
+    const isBelowLclor = wresbalBillion < lclorBillion;
+    const isSevereLclorBreach = wresbalBillion < (gdpBillion * 0.08);
+    const isCollisionImminent = !isBuffered && (
+      (ttcDays !== null && ttcDays < 30) ||
+      (catalystStatus === 'IMMINENT_DRAIN' && effectiveSlackB < 300) ||
+      isSevereLclorBreach
+    );
+
+    const isCritical = dualMacroStress >= this.THRESHOLDS.CRITICAL || isToxicTrap || isCollisionImminent;
+    const isWarningTriggered = dualMacroStress >= this.THRESHOLDS.WARNING || (ttcDays !== null && ttcDays < 90);
 
     let regime = LiquidityRegime.EXPANSION;
     let status = SignalStatus.OK;
@@ -216,13 +240,24 @@ export class LiquiditySensorHub extends SignalComponent {
     if (isCritical) {
       regime = LiquidityRegime.CRITICAL_DRAIN;
       status = SignalStatus.CRITICAL;
-      message = `Roter Alarm! Akuter Liquiditäts-Abzug. Slack: $${liquidSlackBillion.toFixed(1)}B. Kollision: ${collisionWindow}.`;
+      if (isToxicTrap) {
+        message = `Roter Alarm! Toxische Liquiditäts-Falle (DualStress: ${dualMacroStress.toFixed(1)} >= 55 & VIX: ${vix.toFixed(1)} > 25). Don't do it – Finger weg vom Dip-Buying!`;
+      } else if (isCollisionImminent) {
+        message = `Roter Alarm! Akute Geldmarkt-Kollision (TTC: ${Math.round(ttcDays)}d < 30d). Fenster: ${collisionWindow}.`;
+      } else {
+        message = `Roter Alarm! Akuter Liquiditäts-Abzug. Dualer Stress: ${dualMacroStress.toFixed(1)} (>= ${this.THRESHOLDS.CRITICAL}).`;
+      }
+    } else if (liquidSlackBillion < 50 && isBuffered && !isWarningTriggered) {
+      // Puffer-Phase: RRP niedrig, aber TGA-Cushion & Buybacks federn ab, TTC >= 90d, kein akuter Stress
+      regime = LiquidityRegime.BUFFERED_CUSHION;
+      status = SignalStatus.OK;
+      message = `Geldmarkt stabil gepuffert ($${tgaCushionB.toFixed(0)}B TGA-Cushion, TTC: ${Math.round(ttcDays)} Tage). Kollisions-Fenster: ${collisionWindow}. Buy the Dip begünstigt.`;
     } else if (isWarningTriggered) {
       regime = LiquidityRegime.DRAIN_WARNING;
       status = SignalStatus.WARNING;
       message = isBuffered
-        ? `Puffer-Phase ($${tgaCushionB.toFixed(0)}B TGA-Cushion). Kollisions-Fenster: ${collisionWindow}.`
-        : `Erhöhte Wachsamkeit (Slack: $${liquidSlackBillion.toFixed(1)}B). Projizierte Kollision: ${collisionWindow}.`;
+        ? `Puffer-Phase unter erhöhtem Zinsdruck ($${tgaCushionB.toFixed(0)}B TGA-Cushion). Kollisions-Fenster: ${collisionWindow}.`
+        : `Erhöhte Wachsamkeit (Slack: $${liquidSlackBillion.toFixed(1)}B, TTC: ${Math.round(ttcDays)} Tage). Projizierte Kollision: ${collisionWindow}.`;
     }
 
     return {
@@ -244,7 +279,13 @@ export class LiquiditySensorHub extends SignalComponent {
         monthlyBuybacksBillion: Number(monthlyBuybackB.toFixed(1)),
         ttcDays: Number(ttcDays.toFixed(0)),
         catalystStatus,
-        projectedCollision: collisionWindow
+        projectedCollision: collisionWindow,
+        isToxicTrap: Boolean(isToxicTrap),
+        isCollisionImminent: Boolean(isCollisionImminent),
+        isBuffered: Boolean(isBuffered),
+        isBelowLclor: Boolean(isBelowLclor),
+        vix: Number(vix.toFixed(2)),
+        isVixElevated: Boolean(isVixElevated)
       }
     };
   }

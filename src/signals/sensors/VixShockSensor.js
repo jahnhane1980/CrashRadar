@@ -12,6 +12,7 @@ import { SignalStatus } from '../contracts/SignalTypes.js';
 export class VixShockSensor extends SignalComponent {
   constructor(config = {}) {
     super();
+    this.elevatedThreshold = config.elevatedThreshold ?? 25.0;
     this.shockThreshold = config.shockThreshold ?? 28.0;
     this.panicThreshold = config.panicThreshold ?? 35.0;
   }
@@ -60,6 +61,7 @@ export class VixShockSensor extends SignalComponent {
 
     const isExtremePanic = vix >= this.panicThreshold;
     const isShock = vix >= this.shockThreshold;
+    const isElevated = vix >= this.elevatedThreshold;
 
     let status = SignalStatus.OK;
     let message = `VIX bei ${vix.toFixed(1)} (Ruhiger Markt)`;
@@ -75,6 +77,7 @@ export class VixShockSensor extends SignalComponent {
     return {
       status,
       vix: Number(vix.toFixed(2)),
+      isElevated,
       isShock,
       isExtremePanic,
       message

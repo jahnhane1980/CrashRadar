@@ -43,9 +43,10 @@ export const MacroStressRegime = Object.freeze({
  * Geldmarkt- & Treasury-Liquiditäts-Regime (LiquiditySensorHub)
  */
 export const LiquidityRegime = Object.freeze({
-  EXPANSION: 'EXPANSION',             // Puffer ausreichend, Slack gesund
-  DRAIN_WARNING: 'DRAIN_WARNING',     // TGA Refill / Schrumpfende Reserven
-  CRITICAL_DRAIN: 'CRITICAL_DRAIN',   // Akute Liquiditätsverknappung
+  EXPANSION: 'EXPANSION',               // Puffer ausreichend, Slack gesund
+  BUFFERED_CUSHION: 'BUFFERED_CUSHION', // RRP niedrig, aber TGA-Cushion & Buybacks puffern (TTC > 90d)
+  DRAIN_WARNING: 'DRAIN_WARNING',       // TGA Refill / Schrumpfende Reserven / Moderater Entzug
+  CRITICAL_DRAIN: 'CRITICAL_DRAIN',     // Akute Liquiditätsverknappung / TTC < 30d / Toxische Falle
   UNKNOWN: 'UNKNOWN'
 });
 
@@ -58,3 +59,29 @@ export const BottomRegime = Object.freeze({
   CAPITULATION_CONFIRMED: 'CAPITULATION_CONFIRMED',
   UNKNOWN: 'UNKNOWN'
 });
+
+/**
+ * Derivate- & OpEx-Regime (DerivativesSensorHub)
+ */
+export const DerivativesRegime = Object.freeze({
+  EXTREME_SQUEEZE_COIL: 'EXTREME_SQUEEZE_COIL', // Hexensabbat/OpEx + extremer Put/Short-Überhang
+  MILD_OPEX_PINNING: 'MILD_OPEX_PINNING',       // Reguläre Verfallswoche mit normalem Sentiment
+  VOL_CRUSH_REBOUND: 'VOL_CRUSH_REBOUND',       // VIX-Settlement erreicht + VIX-Abfall
+  POST_OPEX_EXPANSION: 'POST_OPEX_EXPANSION',   // Folgewoche nach Verfall: Gamma-Klammer gelöst
+  NEUTRAL_FLOW: 'NEUTRAL_FLOW',                 // Außerhalb relevanter Verfallsfenster
+  UNKNOWN: 'UNKNOWN'
+});
+
+/**
+ * Goldilocks- & Makro-Regime (GoldilocksSensorHub)
+ */
+export const GoldilocksRegime = Object.freeze({
+  GOLDILOCKS_EXPANSION: 'GOLDILOCKS_EXPANSION',   // Disinflation + stabiler Jobmarkt + Zinspause/Cuts (Max Bullish)
+  STAGFLATION_PRESSURE: 'STAGFLATION_PRESSURE',   // Re-Inflation / Rohstoff-Spike bei schwächelndem Wachstum
+  RECESSION_CONTRACTION: 'RECESSION_CONTRACTION', // Sahm-Regel getriggert oder rapider Job-Abbau
+  OVERHEATING_BOOM: 'OVERHEATING_BOOM',           // Wirtschaft überhitzt, Lohn-Preis-Spirale droht
+  TRANSITIONAL: 'TRANSITIONAL',                   // Uneinheitliche Daten / Übergangsphase
+  UNKNOWN: 'UNKNOWN'
+});
+
+

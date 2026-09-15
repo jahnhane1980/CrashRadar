@@ -4,6 +4,8 @@ import { fileURLToPath } from 'url';
 import YahooFinance from 'yahoo-finance2';
 import dotenv from 'dotenv';
 import { Storage } from '../../src/core/Storage.js';
+import { DerivativesCycleService } from '../../src/services/DerivativesCycleService.js';
+
 
 dotenv.config();
 
@@ -110,6 +112,14 @@ async function run() {
   console.log('  * Dark Pool Index (DIX):   ' + dixVal + ' -> Smart Money akkumuliert verdeckt im Dip!');
   console.log('  * AAII Bull-Bear-Spread:   ' + aaiiSpread + ' -> Baeren ueberwiegen bei Privatanlegern');
   console.log('  * Live-VIX:                ' + liveVix.toFixed(2) + ' -> Noch entspannt, Raum fuer Shakeout-Spike');
+
+  // DERIVATE- & VERFALLSZYKLUS (HEXENSABBAT & OPEX RADAR)
+  const derivCycle = DerivativesCycleService.evaluateDate(new Date());
+  console.log('  * Derivate-Phase:          [' + derivCycle.phase + '] ' + derivCycle.phaseLabel);
+  console.log('  * VIX-Settlement Termin:   ' + derivCycle.currentVixSettlementDate + ' (in ' + derivCycle.daysToVixSettlement + ' Tagen)');
+  console.log('  * OpEx / Hexensabbat:      ' + derivCycle.currentOpExDate + ' (in ' + derivCycle.daysToOpEx + ' Tagen) ' + (derivCycle.isQuadrupleWitching ? '🔥 [QUADRUPLE WITCHING]' : ''));
+  console.log('  * Mentale Leitplanke:      "' + derivCycle.guidance + '"');
+
 
   // SECTION 3: DEPOT-STATUS & 12%-SPERR-FILTER
   console.log('\n--------------------------------------------------------------------------------');
