@@ -366,7 +366,7 @@ Der Bot führt den Nutzer nach dem ersten Startbefehl (`/start`) durch eine Stat
 
 > [!IMPORTANT]
 > **Priorisierung & Entwicklungs-Reihenfolge:**  
-> Sämtliche Strategien müssen zuerst in `CrashRadar` einzeln und vollständig im Code ausformuliert, mathematisch harmonisiert und via Backtest verifiziert werden (siehe Meilenstein 5 in [`TODO.md`](file:///D:/GitHub/CrashRadar/TODO.md)), bevor die eigentliche Umsetzung des Signal-Services (Cloudflare Worker & Telegram Gateway) beginnt. Das Fundament der Signal-Qualität liegt ausnahmslos in der Core-Engine.
+> Sämtliche Strategien müssen zuerst in `CrashRadar` einzeln und vollständig im Code ausformuliert, mathematisch harmonisiert und via Backtest verifiziert werden (siehe Meilenstein 5 in [`ROADMAP.md`](file:///D:/GitHub/CrashRadar/ROADMAP.md)), bevor die eigentliche Umsetzung des Signal-Services (Cloudflare Worker & Telegram Gateway) beginnt. Das Fundament der Signal-Qualität liegt ausnahmslos in der Core-Engine.
 
 Die im Signaldienst wählbaren Strategien im Überblick:
 

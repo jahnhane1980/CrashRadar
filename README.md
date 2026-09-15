@@ -1,45 +1,90 @@
-# CrashRadar - Indicator Engine Architektur
+# ⚡ CrashRadar
 
-Die `IndicatorEngine` verarbeitet und evaluiert alle gesammelten Finanz- und Makrodaten. Hierbei wird konzeptionell zwischen zwei Ebenen der Datenkombination und Ausgabe unterschieden:
-
-### 1. Engine-Ebene (Reporting & Benachrichtigung): Individuelle Darstellung
-Die Engine selbst berechnet aktuell keinen globalen Aggregat-Score ("Super-Score" über alle Metriken). 
-* Wenn Reports oder Alerts generiert werden (`generateReport`, `getAlerts`), durchläuft die Engine die Indikatorenliste sequenziell.
-* Jeder Indikator wird einzeln evaluiert und triggert für sich sein eigenes Signal (CRITICAL, WARNING, OK).
-* In Zusammenfassungen wie dem `DailyStatusReport` werden die ausgelösten Fehler und Warnungen lediglich pro Kategorie gezählt, um einen groben Tagesstatus zu definieren, ohne sie komplex zu verschmelzen.
-* **Grund:** Maximale Transparenz im Reporting. Der Nutzer sieht sofort, welches spezifische Setup gefeuert hat.
-
-### 2. Indikator-Ebene (Logik): Komplexe Verknüpfungen (Meta-Indikatoren)
-Innerhalb der einzelnen Indikator-Regeln findet bereits eine tiefe Kombination verschiedener Metriken und Assets statt. Viele Indikatoren sind "Meta-Indikatoren", die nur triggern, wenn mehrere spezifische Bedingungen zusammenkommen:
-
-* **Red Alert (Bullenmarkt-Stirbt-Signal):** Kombiniert `SKEW` (Panik der Profis), `ShortVolumeRatio` (Retail Capitulation) und `Put/Call Ratio` (Melt-Up Phase).
-* **Panik-Kapitulation:** Sucht gleichzeitig nach `VIX` Spikes, `CBOE` Optionsvolumen-Spikes und bestätigt diese über eine bullische Divergenz im `RSI` gegenüber dem reinen Preis (`SPY`).
-* **Central Bank Policy Error:** Vergleicht die Leitzinsentwicklung (`DFF`) mit den Inflationserwartungen (`T10YIE`) und integriert den US-Dollar (`DXY`) als Störfaktor-Filter.
-* **Divergenzen (Bitcoin/Makro & Gold/GDX):** Analysieren die relative Performance zweier sich normalerweise synchron bewegender Datensätze, um Warnungen bei Abweichungen (Liquiditätsentzug) zu generieren.
-
-**Fazit:** 
-Komplexe, multikausale Kombinationen finden in CrashRadar direkt **in der Logik der spezifischen Indikatoren** statt. Im Output und Monitoring werden diese jedoch bewusst als **diskrete Einzel-Signale** behandelt, um das Rauschen zu minimieren und die Ursache eines Alarms sofort identifizierbar zu machen.
+> **Quantitatives Frühwarnsystem & Automatisierte Portfolio-Steuerung**  
+> Kontinuierliche Überwachung globaler Liquidität, makroökonomischer Regime, technologischer Zyklen und deterministischer Absicherungsstrategien zur Vermeidung säkularer Drawdowns.
 
 ---
 
-# ML-Modell & Labeling: Update-Strategie
+## 🏛️ System-Architektur im Überblick
 
-Dieses Dokument beschreibt, wie das Machine Learning Modell (LSTM für Regime Classification) des CrashRadar weiter lernt und aktualisiert wird.
+CrashRadar verarbeitet Daten über eine 4-stufige, modulare Pipeline:
 
-## Kein "blindes" Auto-Learning
-Das Modell trainiert sich **nicht** vollautomatisch im täglichen Live-Betrieb (Cronjob) selbst. Finanzmärkte sind extrem verrauscht; ein Auto-Learning würde schnell zu einem Overfitting auf kurzfristiges Rauschen führen (Data-Leakage / Bias). Wir nutzen stattdessen den **"Hardcoded Ground Truth"**-Ansatz.
+```mermaid
+flowchart LR
+    Ingest["1. Ingestion<br>(FRED, Yahoo, 13F, Polygon)"] --> Hubs["2. Sensor-Hubs<br>(Liquidität, Stress, Bottom, Zyklen)"]
+    Hubs --> Engine["3. Portfolio Engines<br>(Strategy Engine & Compass)"]
+    Engine --> Broadcast["4. Broadcast<br>(Discord Webhooks & Reporting)"]
+```
 
-## Hardcoded Ground Truth (Lexikon)
-Die Labels (`MACRO_TOP`, `MACRO_BOTTOM`, `UPTREND`, `DOWNTREND`) definieren wir fest über historische Zeiträume (Datum A bis Datum B).
-*   Diese Zyklen werden in einer dedizierten Konfigurationsdatei (z. B. `config/ML-Cycles-Config.json`) gepflegt.
+1. **Daten-Ingestion ([`src/core/`](file:///D:/GitHub/CrashRadar/src/core/)):** Tägliche und Intraday-Zeitreihen (US-Treasury DTS, Fed WRESBAL, Zinskurven, Spreads, SEC-13F Filings, Asset-Preise).
+2. **Composite Sensor-Hubs ([`src/signals/hubs/`](file:///D:/GitHub/CrashRadar/src/signals/hubs/)):** Autarke Sensoren für Geldmarkt-Liquidität ([`LiquiditySensorHub`](file:///D:/GitHub/CrashRadar/src/signals/hubs/LiquiditySensorHub.js)), systemischen Stress ([`MacroStressSensorHub`](file:///D:/GitHub/CrashRadar/src/signals/hubs/MacroStressSensorHub.js)), Makro-Klima ([`GoldilocksSensorHub`](file:///D:/GitHub/CrashRadar/src/signals/hubs/GoldilocksSensorHub.js)) und Marktböden ([`MarketBottomSensorHub`](file:///D:/GitHub/CrashRadar/src/signals/hubs/MarketBottomSensorHub.js)).
+3. **Portfolio Strategy Engine ([`src/strategies/`](file:///D:/GitHub/CrashRadar/src/strategies/)):** Modulares Plugin-System zur simultanen Auswertung von Anlagestrategien ([`SatelliteStrategy`](file:///D:/GitHub/CrashRadar/src/strategies/SatelliteStrategy.js), [`GoldSpyDcaStrategy`](file:///D:/GitHub/CrashRadar/src/strategies/GoldSpyDcaStrategy.js), [`KamikazeGrowthStrategy`](file:///D:/GitHub/CrashRadar/src/strategies/KamikazeGrowthStrategy.js), [`MuzzledCathieWoodStrategy`](file:///D:/GitHub/CrashRadar/src/strategies/MuzzledCathieWoodStrategy.js)).
+4. **Broadcast & Reporting ([`src/services/`](file:///D:/GitHub/CrashRadar/src/services/)):** Serverlose Signal-Übertragung via Discord-Webhooks mit 4-Fälle-Handlungsmatrix (Investiert, Nicht investiert, Sparplan, Cash).
 
-## Der Trigger (Human in the Loop)
-Wenn der Markt in Zukunft einen neuen Makro-Wendepunkt eindeutig bestätigt (z.B. ein signifikantes neues "Tal der Tränen" nach einem Bärenmarkt), pflegen wir diese Datums-Range manuell in die Konfiguration ein. Das Modell lernt also erst dann, wenn *wir* den Ground Truth um eine neue Phase erweitern.
+---
 
-## Der Retrain-Prozess (GitHub Action & `npm run ml:retrain`)
-Nach einem Update der Konfiguration wird der Retrain-Prozess entweder manuell als Workflow in den GitHub Actions (`workflow_dispatch`) angestoßen, oder er läuft ohnehin völlig automatisch durch den hinterlegten Cronjob (`yearly-retrain.yml`) einmal im Jahr ab. Die GitHub Action führt dabei den Befehl `npm run ml:retrain` aus, welcher folgende Schritte autonom erledigt:
-1. Es zieht sich die komplette Historie der Bitcoin-Kurse aus der TiDB.
-2. Es berechnet die stationären Features (RSI, MACD, Renditen).
-3. Es mappt die Zyklen aus der Konfiguration auf die Daten (Labeling).
-4. Es trainiert das neuronale Netz (`@tensorflow/tfjs`) komplett neu über alle Epochen.
-5. Es überschreibt nativ die gespeicherten Netz-Gewichte (`weights.json` und `model.json`) im Dateisystem (unter `data/ml/models/`).
+## 🚀 Quickstart & Bedienung
+
+### 1. Installation & Umgebung
+```bash
+# Abhängigkeiten installieren
+npm install
+
+# Umgebungsvariablen konfigurieren
+cp .env.example .env
+```
+
+### 2. Test-Suite ausführen
+CrashRadar setzt auf strikte TDD-Praktiken mit deterministischem Chaos- und Resilienz-Testing:
+```bash
+# Alle Tests einmalig ausführen
+npm test
+
+# Test-Runner im Watch-Modus
+npm run test:watch
+
+# Test-Coverage analysieren
+npm run coverage
+```
+
+### 3. Operative Runner starten
+Die wichtigsten Einstiegspunkte des Systems via [`index.js`](file:///D:/GitHub/CrashRadar/index.js) oder `npm`-Skripte:
+
+| Befehl | Runner | Beschreibung |
+| :--- | :--- | :--- |
+| `node index.js --signals` | [`PortfolioStrategyRunner`](file:///D:/GitHub/CrashRadar/src/runners/PortfolioStrategyRunner.js) | Führt alle registrierten Portfoliostrategien aus und generiert Handlungsanweisungen. |
+| `npm run compass` | [`DailyPortfolioCompassRunner`](file:///D:/GitHub/CrashRadar/src/runners/DailyPortfolioCompassRunner.js) | Tägliche Makro- & Geldmarkt-Kompassanalyse inkl. empirischer Thesen-Prüfung. |
+| `node index.js -c` | [`IndicatorAnalysisRunner`](file:///D:/GitHub/CrashRadar/src/runners/IndicatorAnalysisRunner.js) | Sequenzielle Auswertung aller Einzelindikatoren und Alert-Erzeugung. |
+| `node index.js -s` | [`MacroScorecardRunner`](file:///D:/GitHub/CrashRadar/src/runners/MacroScorecardRunner.js) | DB-gestützte Auswertung des Makro-Wirtschaftskalenders und Fiskalszenarien. |
+| `node index.js` | [`TimeSeriesFetchRunner`](file:///D:/GitHub/CrashRadar/src/runners/TimeSeriesFetchRunner.js) | Täglicher Ingestion-Lauf für alle konfigurierten Daten-Tasks (`daily`). |
+| `node index.js -p intraday_m5` | [`TimeSeriesFetchRunner`](file:///D:/GitHub/CrashRadar/src/runners/TimeSeriesFetchRunner.js) | Gezielter Abruf von M5-Intraday-Kerzen für aktive Positionen. |
+
+---
+
+## 📂 Codebase-Struktur
+
+```text
+CrashRadar/
+├── config/              # JSON-Konfigurationen für Indikatoren, Fetcher, Kalender und Strategien
+├── docs/                # 📚 Vollständige Wissens- und Spezifikations-Architektur (2-Säulen-Prinzip)
+│   ├── architecture/    # Technische Spezifikationen, Verträge, APIs und State Machines
+│   └── research/        # Empirische 21-Jahre-Backtests, Hypothesen und Studien (ADRs)
+├── scratch/             # Spiegelordner für Experimente, Prototypen und Tool-Skripte
+├── src/
+│   ├── analysis/        # Makro-Regime-Engines, Indikatoren und Labeler
+│   ├── core/            # Datenbank- & Fetch-Adapter (MySQL, TiDB, FRED, Yahoo, Polygon)
+│   ├── radars/          # Autarke Signal-Scanner auf Asset-Ebene (Stage-2, 13F, Krypto-Regime)
+│   ├── runners/         # Operative CLI-Runner für Cronjobs und manuelle Auswertungen
+│   ├── services/        # Externe Dienste (Discord-Webhooks, Notifier, ML-Inferenz)
+│   ├── signals/         # Composite Sensor-Hubs, Leaf-Sensoren und Verträge
+│   └── strategies/      # Modulare Portfoliostrategien & PortfolioStrategyEngine
+└── tests/               # Unit- und Integrationstests (Vitest) mit deterministischem Chaos
+```
+
+---
+
+## 📚 Dokumentation & Entwicklungs-Fokus
+
+* **Vollständige Wissens-Architektur:** Alle Spezifikationen, APIs, Datenmodelle und empirischen Beweise sind zentral in [`docs/README.md`](file:///D:/GitHub/CrashRadar/docs/README.md) strukturiert und indexiert.
+* **Entwicklungsplan & Sprints:** Der verbindliche Status, offene Meilensteine und der aktuelle Sprintplan befinden sich in [`ROADMAP.md`](file:///D:/GitHub/CrashRadar/ROADMAP.md).
+* **System- & Qualitätsregeln:** Entwicklungsrichtlinien, Code-Buddy-Modus und Chaos-Engineering-Standards sind in [`AGENTS.md`](file:///D:/GitHub/CrashRadar/AGENTS.md) hinterlegt.

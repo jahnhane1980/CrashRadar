@@ -25,3 +25,10 @@
 ## 4. Formatierung & Integrität
 * **Kommentar-Treue:** Bestehende Kommentare bleiben unverändert an ihrer exakten Position (außer sie sind fachlich nachweisbar veraltet).
 * **Prettify:** Code-Ausgaben müssen sauber formatiert und exakt eingerückt ausgegeben werden. Fokus liegt auf maximaler Lesbarkeit.
+
+## 5. Testing-Philosophie & Chaos-Engineering (Indikatoren & Engines)
+* **Keine reinen Schönwetter-Tests:** Indikatoren, Signal-Hubs und Strategien dürfen niemals nur auf glatten Standard-Daten getestet werden.
+* **Deterministisches Chaos:** Tests müssen Zyklen, synthetisches Rauschen und extreme Kurssprünge (Gaps) abdecken. Wichtig: Verwende feste Fixtures oder deterministische Seeds – niemals ungesteuertes `Math.random()`, um Flaky Tests in der CI zu verhindern.
+* **Struktur-Chaos & API-Ausfälle:** Teste aktiv das Fehlen von Schlüssel-Properties (z. B. unvollständige `macroGroups`, leere `assets`-Objekte, `null`-Werte), um Fallbacks (`UNKNOWN`, Default-Zustände) abzusichern.
+* **Mathematische Singularitäten:** Erzwinge gezielt Division-by-Zero (z. B. Volumen = 0, Delta = 0, Zeitspanne = 0) und `NaN`-Eingaben, um unkontrollierte Abstürze abzufangen.
+* **Anti-Overfitting-Prüfung:** Bei Backtest- und Logik-Validierungen im `scratch/`-Bereich immer synthetisches Rauschen beimischen, um Scheinkorrelationen von echten Makro-Kausalitäten zu trennen.
