@@ -124,58 +124,58 @@ gantt
 #### Operative Checkliste nach Sprints & Arbeitsschritten:
 
 ##### Sprint 1 (11.09. – 30.09.2026): Schutz & M5-Fundament
-* [ ] **Polygon-Adapter:** [`PolygonFetchAdapter.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/fetch/PolygonFetchAdapter.js) in [`FetchAdapterFactory.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/fetch/FetchAdapterFactory.js) registrieren (Market-Status-Check `/v1/marketstatus/now`, Paginierung via `next_url`, UTC-Mapping).
-* [ ] **M5-Tasks anlegen:** 10 Fokus-Tasks (`PLTR, NVTS, IBRX, IGV, CIBR, SPY, QQQ, SOUN, SOFI, S`) in [`config/Database-Fetcher-Config.json`](file:///D:/GitHub/CrashRadar/config/Database-Fetcher-Config.json) mit `"frequency": "intraday_m5"` einrichten.
-* [ ] **Intraday-Workflow:** GitHub Action `intraday-m5-fetch.yml` (17:15 & 22:15 Uhr) für automatische Synchronisation anlegen.
-* [ ] **Climax-Überwachung:** `TOP_CLIMAX_ALERT`-Überwachung für High-Beta-Positionen (`NVTS`, `S`, `AIRO`, `IBRX`) bei $\text{Distanz zum EMA 20} \ge 35\text{–}45\,\%$ scharfstellen.
-* [ ] **Blow-Off Top:** Begleitung des vermuteten Tops bis Ende September.
+* [ ] **[Adapter]** **Polygon-Adapter:** [`PolygonFetchAdapter.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/fetch/PolygonFetchAdapter.js) in [`FetchAdapterFactory.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/fetch/FetchAdapterFactory.js) registrieren (Market-Status-Check `/v1/marketstatus/now`, Paginierung via `next_url`, UTC-Mapping).
+* [ ] **[DB]** **M5-Tasks anlegen:** 10 Fokus-Tasks (`PLTR, NVTS, IBRX, IGV, CIBR, SPY, QQQ, SOUN, SOFI, S`) in [`config/Database-Fetcher-Config.json`](file:///D:/GitHub/CrashRadar/config/Database-Fetcher-Config.json) mit `"frequency": "intraday_m5"` einrichten.
+* [ ] **[Quality]** **Intraday-Workflow:** GitHub Action `intraday-m5-fetch.yml` (17:15 & 22:15 Uhr) für automatische Synchronisation anlegen.
+* [ ] **[Radar]** **Climax-Überwachung:** `TOP_CLIMAX_ALERT`-Überwachung für High-Beta-Positionen (`NVTS`, `S`, `AIRO`, `IBRX`) bei $\text{Distanz zum EMA 20} \ge 35\text{–}45\,\%$ scharfstellen.
+* [ ] **[Strategie]** **Blow-Off Top:** Begleitung des vermuteten Tops bis Ende September.
 
 ##### Sprint 2 (01.10. – 25.10.2026): Liquidierung & Strategie-Klassen (Teil 1)
-* [ ] **Liquidierung:** Geordnete Portfolio-Liquidierung zur Cash-Sicherung begleiten (Mitte/Ende Oktober).
-* [x] **Verträge & Composite-Pattern:** [`PortfolioStrategyInterface.js`](file:///D:/GitHub/CrashRadar/src/strategies/PortfolioStrategyInterface.js) und [`SignalComponent.js`](file:///D:/GitHub/CrashRadar/src/signals/contracts/SignalComponent.js) implementiert und abgesichert.
-* [x] **SatelliteStrategy:** [`SatelliteStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/SatelliteStrategy.js) (Core-Satellite 80/15/5 inkl. 50/50 Notfall-Stecker, Krypto-Airbag & 10-Tage Anti-Whipsaw).
+* [ ] **[Strategie]** **Liquidierung:** Geordnete Portfolio-Liquidierung zur Cash-Sicherung begleiten (Mitte/Ende Oktober).
+* [x] **[Strategie]** **Verträge & Composite-Pattern:** [`PortfolioStrategyInterface.js`](file:///D:/GitHub/CrashRadar/src/strategies/PortfolioStrategyInterface.js) und [`SignalComponent.js`](file:///D:/GitHub/CrashRadar/src/signals/contracts/SignalComponent.js) implementiert und abgesichert.
+* [x] **[Strategie]** **SatelliteStrategy:** [`SatelliteStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/SatelliteStrategy.js) (Core-Satellite 80/15/5 inkl. 50/50 Notfall-Stecker, Krypto-Airbag & 10-Tage Anti-Whipsaw).
   > 🔍 **ZU PRÜFEN / CODE-BEFUND (Hysterese-Parameter):**  
   > Im Code ([`SatelliteStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/SatelliteStrategy.js#L46-L48)) sind drei Hysterese-Werte hinterlegt: `minHoldingPeriodDays: 15` (15 Handelstage Mindesthaltedauer im Schutzhafen), `reTriggerCooldownDays: 20` (20 Handelstage Cooldown nach Re-Entry) und `minBtcHedgeDays: 10` (10 Tage Mindesthaltedauer für BTC-Airbag). Prüfen, ob die Bezeichnung „10-Tage Anti-Whipsaw“ im Text auf 15 Tage (Gesamt-Hedge) präzisiert werden soll.
-* [x] **GoldSpyDcaStrategy:** [`GoldSpyDcaStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/GoldSpyDcaStrategy.js) (Dynamisches DCA mit 75/25 Gold/Cash Notfall-Schirm & Pre-Margin Cash-Lock).
+* [x] **[Strategie]** **GoldSpyDcaStrategy:** [`GoldSpyDcaStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/GoldSpyDcaStrategy.js) (Dynamisches DCA mit 75/25 Gold/Cash Notfall-Schirm & Pre-Margin Cash-Lock).
 
 ##### Sprint 3 (26.10. – 20.11.2026): Radare & Strategie-Klassen (Teil 2)
-* [x] **PortfolioStrategyEngine:** [`PortfolioStrategyEngine.js`](file:///D:/GitHub/CrashRadar/src/strategies/PortfolioStrategyEngine.js) als Orchestrator mit modularer Plugin-Registry implementiert (vorgezogen!).
-* [x] **Sensor-Hubs aufgebaut:** [`MacroStressSensorHub`](file:///D:/GitHub/CrashRadar/src/signals/hubs/MacroStressSensorHub.js), [`CryptoSensorHub`](file:///D:/GitHub/CrashRadar/src/signals/hubs/CryptoSensorHub.js), [`LiquiditySensorHub`](file:///D:/GitHub/CrashRadar/src/signals/hubs/LiquiditySensorHub.js), [`MarketBottomSensorHub`](file:///D:/GitHub/CrashRadar/src/signals/hubs/MarketBottomSensorHub.js).
-* [x] **Makrowetter- & Notification-Härtung:** Bereinigung [`config/Indicator-Pipeline-Config.json`](file:///D:/GitHub/CrashRadar/config/Indicator-Pipeline-Config.json) und Stille Rückkehr im [`StrategyNotificationService.js`](file:///D:/GitHub/CrashRadar/src/services/StrategyNotificationService.js).
-* [ ] **BaseStockRadar:** Einheitliche Schnittstelle in `src/radars/BaseStockRadar.js` anlegen (`initialize`, `evaluateSymbol`, `scanUniverse`, normiertes `RadarSignalResult`).
-* [ ] **Stock-Radare implementieren:**
+* [x] **[Engine]** **PortfolioStrategyEngine:** [`PortfolioStrategyEngine.js`](file:///D:/GitHub/CrashRadar/src/strategies/PortfolioStrategyEngine.js) als Orchestrator mit modularer Plugin-Registry implementiert (vorgezogen!).
+* [x] **[SensorHub]** **Sensor-Hubs aufgebaut:** [`MacroStressSensorHub`](file:///D:/GitHub/CrashRadar/src/signals/hubs/MacroStressSensorHub.js), [`CryptoSensorHub`](file:///D:/GitHub/CrashRadar/src/signals/hubs/CryptoSensorHub.js), [`LiquiditySensorHub`](file:///D:/GitHub/CrashRadar/src/signals/hubs/LiquiditySensorHub.js), [`MarketBottomSensorHub`](file:///D:/GitHub/CrashRadar/src/signals/hubs/MarketBottomSensorHub.js).
+* [x] **[SensorHub]** **Makrowetter- & Notification-Härtung:** Bereinigung [`config/Indicator-Pipeline-Config.json`](file:///D:/GitHub/CrashRadar/config/Indicator-Pipeline-Config.json) und Stille Rückkehr im [`StrategyNotificationService.js`](file:///D:/GitHub/CrashRadar/src/services/StrategyNotificationService.js).
+* [ ] **[Radar]** **BaseStockRadar:** Einheitliche Schnittstelle in `src/radars/BaseStockRadar.js` anlegen (`initialize`, `evaluateSymbol`, `scanUniverse`, normiertes `RadarSignalResult`).
+* [ ] **[Radar]** **Stock-Radare implementieren:**
   * [`src/radars/GrowthStockRadar.js`](file:///D:/GitHub/CrashRadar/src/radars/GrowthStockRadar.js) (Weinstein Stage-2, 10-Q Fundamental-Gate, Intraday M5 Bollinger Squeeze).
   * [`src/radars/CryptoRegimeRadar.js`](file:///D:/GitHub/CrashRadar/src/radars/CryptoRegimeRadar.js) (BTC 21W-EMA Schalter, Halving-Uhr).
   * `src/radars/Institutional13FRadar.js` (13F Smart-Money-Konsens $\ge 2$ Manager).
-* [ ] **Wachstums-Strategien finalisieren:**
+* [ ] **[Strategie]** **Wachstums-Strategien finalisieren:**
   * [`KamikazeGrowthStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/KamikazeGrowthStrategy.js) (Curated Watchlist, `LASTING_HOLD`, `CYCLICAL`, `BINARY`).
     > 🔍 **ZU PRÜFEN / CODE-BEFUND (Kamikaze-Status):**  
     > Die Basisklasse existiert bereits vollständig ([`src/strategies/KamikazeGrowthStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/KamikazeGrowthStrategy.js), 167 Zeilen, Vitest grün), parst `free_usd` / `pending_orders_usd` aus dem Broker-State und trennt `LASTING_HOLD` (`PLTR`, `AIRO`) von `CYCLICAL` (`NVTS`).  
     > **Offen zur Fertigstellung:** Es fehlt im Code noch die explizite Handhabung des dritten Typs `BINARY` (`IBRX` mit asymmetrischer Deckelung bis Jan 2027) sowie die realen Broker-Adapter.
   * [`MuzzledCathieWoodStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/MuzzledCathieWoodStrategy.js) (Cathie-Kauf $\to$ `OBSERVE`, Kauf erst bei Stage-2 Bestätigung über $\text{SMA 50/200}$ mit relativem Volumen $\ge 1{,}5\times$).
   * `SevenSlotGuruStrategy.js` (P1 - 6 Guru-Gremium mit 50/50 Notfall-Schutzschild).
-* [ ] **Broker-Live-Ingestion & Discretionary Override (Kamikaze):**
+* [ ] **[Adapter]** **Broker-Live-Ingestion & Discretionary Override (Kamikaze):**
   * Broker-Adapter in `src/core/adapters/broker/` (`BrokerAdapterInterface.js`, `InteractiveBrokersAdapter.js`, `MockBrokerAdapter.js`).
   * Reconciliation-Service in `src/services/BrokerReconciliationService.js` (*„Broker-Realität überschreibt Modell-Zustand“*).
 
 ##### Sprint 4 (21.11. – 05.12.2026): Discord V1 Broadcast & 4-Fälle-Matrix
-* [ ] **Dynamisches Debouncing & Krisen-Aufwach-Logik:**
+* [ ] **[Broadcast]** **Dynamisches Debouncing & Krisen-Aufwach-Logik:**
   * Normalzustand: 14 Tage Spam-Schutz für reguläre Warnungen in [`NotificationManager.js`](file:///D:/GitHub/CrashRadar/src/services/NotificationManager.js) und [`config/Notification-Config.json`](file:///D:/GitHub/CrashRadar/config/Notification-Config.json).
   * Spätzyklus / Kollisions-Fenster aktiv: Dynamische Verkürzung auf 1–2 Tage oder sofortige Alarmierung bei Zustands-/Statuswechsel.
   * Akute Panik / Flash Crash: 0 Tage / Sofort-Push für Re-Entry- und Exit-Signale.
-* [ ] **Discord Webhook Service:** `src/services/DiscordService.js` mit Rich Embeds, Farbcodierung (Rot/Grün/Gold) und getrennten Webhooks (`#makro-wetter` öffentlich, `#crashradar-signale` intern).
+* [ ] **[Broadcast]** **Discord Webhook Service:** `src/services/DiscordService.js` mit Rich Embeds, Farbcodierung (Rot/Grün/Gold) und getrennten Webhooks (`#makro-wetter` öffentlich, `#crashradar-signale` intern).
   > 🔍 **ZU PRÜFEN / CODE-BEFUND (Service-Nomenklatur):**  
   > In den Dokumenten wird teils `DiscordService.js` und teils `DiscordNotificationService.js` genannt. Bei der Umsetzung festlegen, welcher Klassenname als Standard in `src/services/` gelten soll (analog zu `NtfyService.js` vs. `StrategyNotificationService.js`).
-* [ ] **4-Fälle Template-Engine:** Selbst-selektierende Nachrichtenvorlage (Fall A: Investiert, Fall B: Nicht investiert, Fall C: Sparplan, Fall D: Cash).
-* [ ] **Runner-Refactoring & Snapshot-Export:**
+* [ ] **[Broadcast]** **4-Fälle Template-Engine:** Selbst-selektierende Nachrichtenvorlage (Fall A: Investiert, Fall B: Nicht investiert, Fall C: Sparplan, Fall D: Cash).
+* [ ] **[Engine]** **Runner-Refactoring & Snapshot-Export:**
   * [`PortfolioStrategyRunner.js`](file:///D:/GitHub/CrashRadar/src/runners/PortfolioStrategyRunner.js), [`MacroScorecardRunner.js`](file:///D:/GitHub/CrashRadar/src/runners/MacroScorecardRunner.js), [`IndicatorAnalysisRunner.js`](file:///D:/GitHub/CrashRadar/src/runners/IndicatorAnalysisRunner.js) und [`StandardRunner.js`](file:///D:/GitHub/CrashRadar/src/runners/StandardRunner.js) anbinden.
   * Snapshot-Export des `daily_intelligence.json` Payloads (Makro-Regime, Veto-Status, Allokationen pro Strategie).
-* [ ] **TDD Chaos-Testing:** End-to-End Testläufe mit deterministischen Fixtures und synthetischen Ausfällen.
+* [ ] **[Quality]** **TDD Chaos-Testing:** End-to-End Testläufe mit deterministischen Fixtures und synthetischen Ausfällen.
 
 ##### Sprint 5 (06.12. – 15.12.2026): Generalprobe & Go-Live
-* [ ] **Testbetrieb:** 7 Tage paralleler Probelauf im Test-Discord-Kanal (`DISCORD_ENV=test`).
-* [ ] **Audit & Freigabe:** Letzter Konsistenz-Check aller Signale und Schwellenwerte.
-* [ ] **15. Dezember 2026:** Produktiv-Schaltung für die Community. Das System ist scharf für den Bärenmarkt 2027.
+* [ ] **[Quality]** **Testbetrieb:** 7 Tage paralleler Probelauf im Test-Discord-Kanal (`DISCORD_ENV=test`).
+* [ ] **[Quality]** **Audit & Freigabe:** Letzter Konsistenz-Check aller Signale und Schwellenwerte.
+* [ ] **[Broadcast]** **15. Dezember 2026:** Produktiv-Schaltung für die Community. Das System ist scharf für den Bärenmarkt 2027.
 
 > 🔍 **ZU PRÜFEN / CODEBASE-HYGIENE (Backup-Dateien im Quellcode-Ordner):**  
 > Im Quellcode-Ordner `src/analysis/` liegt aktuell die ungetrackte Backup-Datei [`DailyPortfolioCompass.with_portfolio_backup.js`](file:///D:/GitHub/CrashRadar/src/analysis/DailyPortfolioCompass.with_portfolio_backup.js). Gemäß [`AGENTS.md`](file:///D:/GitHub/CrashRadar/AGENTS.md) (Regel 3: *Spiegel-Disziplin & Tools vs. Trash*) prüfen, ob diese nach `scratch/trash/` verschoben werden soll, um `src/` frei von manuellen Backups zu halten.

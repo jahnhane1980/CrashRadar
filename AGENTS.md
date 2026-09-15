@@ -21,6 +21,22 @@
   * **Spiegelung in `scratch/`:** Experimentier- und Analyse-Code muss im exakt gleichnamigen gespiegelten Unterordner unter `scratch/architecture/<bereich>/` bzw. `scratch/research/<bereich>/` liegen.
   * **Tools vs. Trash:** Operative Prototypen/CLI-Hilfsmittel gehören nach `scratch/tools/`. Temporäre Einmal-Prüfungen oder Wegwerf-Skripte wandern nach `scratch/trash/`.
   * **Index-Pflege:** Jedes neu erstellte oder umbenannte Dokument in `docs/` wird unverzüglich in [`docs/README.md`](file:///D:/GitHub/CrashRadar/docs/README.md) mit kurzer Kurzbeschreibung verlinkt.
+* **Roadmap-Disziplin & Single Source of Truth (ROADMAP.md):**
+  * **Dual-View-Prinzip:** [`ROADMAP.md`](file:///D:/GitHub/CrashRadar/ROADMAP.md) im Projekt-Root ist die alleinige operative Steuerzentrale. Sie trennt strikt zwischen statischer Architektur/Scope-Cuts (Kapitel 1.1–1.3) und dynamischer Zeitachse/Sprints (Kapitel 1.4), gefolgt von V2-Backlog (Kapitel 2) und Done-Archiv (Kapitel 3).
+  * **Verbindliche Task-Tags:** Jede operative Aufgabe in den Sprints erhält zwingend ein einheitliches Präfix-Tag in eckigen Klammern:
+    * `[Adapter]` (Datenbeschaffung & Broker-Schnittstellen wie Polygon, IBKR)
+    * `[Radar]` (Signal-Radare wie BaseStockRadar, GrowthStockRadar, CryptoRegime)
+    * `[Strategie]` (Portfolio-Strategien wie Kamikaze, Satellite, Gold-SPY, MCW, SevenSlot)
+    * `[Engine]` (Kern-Engines & Orchestratoren wie PortfolioStrategyEngine)
+    * `[SensorHub]` (Makro-, Liquiditäts- und Bottom-SensorHubs)
+    * `[Broadcast]` (Discord-Webhooks, NotificationManager, 4-Fälle-Matrix)
+    * `[DB]` (Datenbank-Tabellen, Schemas, Migrationen, z.B. macro_calendar_events)
+    * `[Research]` (Backtests, Studien, Hypothesen-Validierung)
+    * `[Quality]` (Chaos-Tests, CI/CD, Workflows, Fixtures, Code-Hygiene)
+  * **Pflege-Regeln:**
+    * Nach erfolgreichem Abschluss eines Tasks wird die Checkbox auf `[x]` gesetzt.
+    * Werden während der Entwicklung Abweichungen oder Prüfbedarfe im Code entdeckt, werden sie als `🔍 ZU PRÜFEN / CODE-BEFUND` direkt im jeweiligen Sprint der Roadmap verankert.
+    * Neue Ideen oder Scope-Diskussionen wandern entweder in den passenden Sprint oder in das V2-Backlog – keine losen „Schatten-Roadmaps“ im Chat.
 
 ## 4. Formatierung & Integrität
 * **Kommentar-Treue:** Bestehende Kommentare bleiben unverändert an ihrer exakten Position (außer sie sind fachlich nachweisbar veraltet).
