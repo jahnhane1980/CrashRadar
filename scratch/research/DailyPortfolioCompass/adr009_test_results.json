@@ -1,0 +1,173 @@
+{
+  "testDate": "2026-09-15T17:07:26.510Z",
+  "totalTimelineDays": 9789,
+  "startDate": "1999-12-01",
+  "endDate": "2026-09-30",
+  "evaluatedEpisodes": [
+    {
+      "cycleName": "2001 Zyklus",
+      "inversionStartDate": "2000-02-02",
+      "disinversionDate": "2001-01-02",
+      "negativeTradingDays": 329,
+      "totalCalendarDaysSpan": 335,
+      "spreadAtSignal": 0.05,
+      "spyAtSignal": 128.81,
+      "yield10_at_signal": 4.92,
+      "yield2_at_signal": 4.87,
+      "realYield_at_signal": null,
+      "sahmRule_at_signal": 0.13,
+      "initialClaims_at_signal": 353000,
+      "steepenerType": "BULL_STEEPENER (2Y stürzt ab / Fed Cuts)",
+      "forwardWindowTradingDays": 250,
+      "isOngoingCycle": false,
+      "runUpPct": 7.08,
+      "peakSpy": 137.93,
+      "peakDate": "2001-02-01",
+      "daysToPeak": 30,
+      "maxDDPct": -15.6,
+      "maxDdFromPeakPct": -21.18,
+      "troughSpy": 108.72,
+      "troughDate": "2001-09-07",
+      "daysToTrough": 248,
+      "troughFromPeakDate": "2001-09-07",
+      "daysFromPeakToTrough": 218,
+      "ret30": 7.08,
+      "ret60": -4.04,
+      "ret120": -1.55,
+      "ret180": -4.82,
+      "ret250": -15.6,
+      "isSevereCrash": true,
+      "isCorrection": true,
+      "verdict": "CONFIRMED_BULL_TRAP_CRASH (>= -15% DD)"
+    },
+    {
+      "cycleName": "2007 Zyklus",
+      "inversionStartDate": "2006-06-08",
+      "disinversionDate": "2007-03-28",
+      "negativeTradingDays": 269,
+      "totalCalendarDaysSpan": 293,
+      "spreadAtSignal": 0.09,
+      "spyAtSignal": 141.82,
+      "yield10_at_signal": 4.62,
+      "yield2_at_signal": 4.53,
+      "realYield_at_signal": 2.17,
+      "sahmRule_at_signal": 0.03,
+      "initialClaims_at_signal": 303000,
+      "steepenerType": "MIXED_STEEPENER",
+      "forwardWindowTradingDays": 250,
+      "isOngoingCycle": false,
+      "runUpPct": 10.34,
+      "peakSpy": 156.48,
+      "peakDate": "2007-10-09",
+      "daysToPeak": 195,
+      "maxDDPct": -0.61,
+      "maxDdFromPeakPct": -9.92,
+      "troughSpy": 140.95,
+      "troughDate": "2007-11-26",
+      "daysToTrough": 243,
+      "troughFromPeakDate": "2007-11-26",
+      "daysFromPeakToTrough": 48,
+      "ret30": 5.44,
+      "ret60": 6.96,
+      "ret120": 4.37,
+      "ret180": 6.96,
+      "ret250": 4.13,
+      "isSevereCrash": false,
+      "isCorrection": false,
+      "verdict": "SOFT_LANDING"
+    },
+    {
+      "cycleName": "2024 Zyklus",
+      "inversionStartDate": "2022-07-06",
+      "disinversionDate": "2024-09-06",
+      "negativeTradingDays": 785,
+      "totalCalendarDaysSpan": 793,
+      "spreadAtSignal": 0.06,
+      "spyAtSignal": 540.36,
+      "yield10_at_signal": 3.72,
+      "yield2_at_signal": 3.66,
+      "realYield_at_signal": 1.69,
+      "sahmRule_at_signal": 0.5,
+      "initialClaims_at_signal": 227000,
+      "steepenerType": "MIXED_STEEPENER",
+      "forwardWindowTradingDays": 250,
+      "isOngoingCycle": false,
+      "runUpPct": 13.43,
+      "peakSpy": 612.93,
+      "peakDate": "2025-02-19",
+      "daysToPeak": 166,
+      "maxDDPct": -8.12,
+      "maxDdFromPeakPct": -19,
+      "troughSpy": 496.48,
+      "troughDate": "2025-04-08",
+      "daysToTrough": 214,
+      "troughFromPeakDate": "2025-04-08",
+      "daysFromPeakToTrough": 48,
+      "ret30": 6.04,
+      "ret60": 6.73,
+      "ret120": 9.55,
+      "ret180": 7.9,
+      "ret250": 8.74,
+      "isSevereCrash": true,
+      "isCorrection": true,
+      "verdict": "CONFIRMED_BULL_TRAP_CRASH (>= -15% DD)"
+    }
+  ],
+  "summaryCompletedCycles": {
+    "totalCompleted": 3,
+    "severeCrashCount": 2,
+    "severeCrashRate": 66.7,
+    "avgRunUpPct": 10.28,
+    "avgDaysToPeak": 130,
+    "avgMaxDDFromPeakPct": -16.7,
+    "avgDaysToTrough": 235
+  },
+  "sensitivityMatrix": [
+    {
+      "scenario": "Standard (Threshold +0.05%, Min 60d Inversion)",
+      "episodesFound": 3,
+      "dates": [
+        "2001-01-02",
+        "2007-03-28",
+        "2024-09-06"
+      ]
+    },
+    {
+      "scenario": "Konservativ (Threshold +0.10%, Min 90d Inversion)",
+      "episodesFound": 3,
+      "dates": [
+        "2001-01-03",
+        "2007-06-08",
+        "2024-09-19"
+      ]
+    },
+    {
+      "scenario": "Aggressiv (Threshold 0.00%, Min 40d Inversion)",
+      "episodesFound": 3,
+      "dates": [
+        "2000-12-27",
+        "2007-03-21",
+        "2024-08-27"
+      ]
+    },
+    {
+      "scenario": "Chaos-Noise (+/- 5 bps synthetisches Rauschen)",
+      "episodesFound": 3,
+      "dates": [
+        "2001-01-03",
+        "2007-03-26",
+        "2024-09-13"
+      ]
+    },
+    {
+      "scenario": "Extrem-Noise (+/- 10 bps synthetisches Rauschen)",
+      "episodesFound": 3,
+      "dates": [
+        "2000-12-27",
+        "2007-03-13",
+        "2024-08-30"
+      ]
+    }
+  ],
+  "validationStatus": "FALSIFIED_OR_MIXED"
+}

@@ -1,0 +1,99 @@
+{
+  "testDate": "2026-09-15T19:59:24.191Z",
+  "author": "CrashRadar Intelligence Engine (Modus Code-Buddy)",
+  "testedEra": "2004-11-01 bis 2026-09-30 (21,8 Jahre / 7.760 Handelstage)",
+  "comparison": {
+    "baseline": {
+      "finalEUR": 910695.49,
+      "investedEUR": 48400,
+      "totalReturnPct": 1781.6,
+      "cagrPct": 10,
+      "maxDdPct": -31.86,
+      "maxDdDate": "2016-01-16",
+      "calmarRatio": 0.31,
+      "coronaMaxDd2020": -26.57
+    },
+    "challenger": {
+      "finalEUR": 578734.53,
+      "investedEUR": 48400,
+      "totalReturnPct": 1095.73,
+      "cagrPct": 8.39,
+      "maxDdPct": -31.86,
+      "maxDdDate": "2016-01-16",
+      "calmarRatio": 0.26,
+      "coronaMaxDd2020": -26.57
+    },
+    "improvements": {
+      "endCapitalDeltaEUR": -331960.95999999996,
+      "ddReductionPctPoints": 0,
+      "calmarGainPct": -16.1
+    }
+  },
+  "coronaEpisodes": {
+    "baseline": {
+      "episodeNumber": 10,
+      "startDate": "2020-02-27",
+      "startSpyPrice": 297.51,
+      "startGldPrice": 1640,
+      "startDepotUSD": 118613.85322798669,
+      "startDepotEUR": 108961.05544929668,
+      "initialStatus": "EMERGENCY_HEDGE",
+      "statusHistory": [
+        "EMERGENCY_HEDGE"
+      ],
+      "tradingDays": 10,
+      "vetoDaysCount": 0,
+      "endDate": "2020-03-08",
+      "endSpyPrice": 297.46,
+      "endGldPrice": 1670.800048828125,
+      "endDepotUSD": 120481.66857797667,
+      "endDepotEUR": 96385.33486238134,
+      "spyReturnPct": -0.02,
+      "gldReturnPct": 1.88,
+      "depotReturnPct": 1.57,
+      "alphaPct": 1.59
+    },
+    "challenger": {
+      "episodeNumber": 10,
+      "startDate": "2020-02-27",
+      "startSpyPrice": 297.51,
+      "startGldPrice": 1640,
+      "startDepotUSD": 118383.0871941469,
+      "startDepotEUR": 108749.06915996586,
+      "initialStatus": "EMERGENCY_HEDGE",
+      "statusHistory": [
+        "EMERGENCY_HEDGE",
+        "MARGIN_CALL_ACTIVE"
+      ],
+      "tradingDays": 28,
+      "vetoDaysCount": 27,
+      "endDate": "2020-03-26",
+      "endSpyPrice": 261.2,
+      "endGldPrice": 1650.0999755859375,
+      "endDepotUSD": 120448.29497216556,
+      "endDepotEUR": 110608.86726553926,
+      "spyReturnPct": -12.2,
+      "gldReturnPct": 0.62,
+      "depotReturnPct": 1.74,
+      "alphaPct": 13.95
+    }
+  },
+  "chaosEngineering": {
+    "noiseMaxDdDelta": 6.4,
+    "isNoiseRobust": false,
+    "parameterSensitivity": {
+      "ema14": {
+        "finalEUR": 561901.55,
+        "maxDdPct": -31.82
+      },
+      "ema21": {
+        "finalEUR": 578734.53,
+        "maxDdPct": -31.86
+      },
+      "ema30": {
+        "finalEUR": 559910.11,
+        "maxDdPct": -31.79
+      }
+    }
+  }
+}
