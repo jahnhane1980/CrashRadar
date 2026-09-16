@@ -1,10 +1,18 @@
-### Gesamtergebnis
+# 🧹 Indikator-Bereinigung & Audit-Report
 
-Von den **38 Indikatoren** im Ordner [`src/analysis/indicators/`](file:///D:/GitHub/CrashRadar/src/analysis/indicators) werden insgesamt **23 Indikatoren nicht aktiv im operativen Sourcecode verwendet**.
+> **Status:** ✅ **ERFOLGREICH ABGESCHLOSSEN (16. September 2026)**  
+> **Ergebnis:** Alle 23 ungenutzten Indikatoren sowie ihre 23 Testdateien wurden physisch gelöscht. Alle referenzierenden Engines ([`MacroRegimeEngine.js`](file:///D:/GitHub/CrashRadar/src/analysis/MacroRegimeEngine.js), [`PortfolioStrategyEngine.js`](file:///D:/GitHub/CrashRadar/src/strategies/PortfolioStrategyEngine.js)) und Konfigurationen wurden bereinigt.  
+> **Aktueller Stand:** Exakt 15 produktive Indikatoren verbleiben im System. Alle 91 Test-Suites (721 Tests) laufen zu 100 % grün durch.
 
-Diese unterteilen sich in zwei Kategorien:
-1. **15 Indikatoren sind komplett ungenutzt** (0 Referenzen im gesamten `src/`-Ordner außerhalb ihrer eigenen Datei).
-2. **8 Indikatoren sind zwar in `src/` importiert/deklariert, aber zur Laufzeit inaktiv** (entweder in der Pipeline-Konfiguration deaktiviert oder toter Legacy-Code in Engines).
+---
+
+### Gesamtergebnis & Ausgangslage
+
+Von den ursprünglich **38 Indikatoren** im Ordner [`src/analysis/indicators/`](file:///D:/GitHub/CrashRadar/src/analysis/indicators) wurden insgesamt **23 Indikatoren identifiziert und entfernt**, da sie nicht aktiv im operativen Sourcecode verwendet wurden.
+
+Diese unterteilten sich vor der Bereinigung in zwei Kategorien:
+1. **15 Indikatoren waren komplett ungenutzt** (0 Referenzen im gesamten `src/`-Ordner außerhalb ihrer eigenen Datei).
+2. **8 Indikatoren waren zwar in `src/` importiert/deklariert, aber zur Laufzeit inaktiv** (entweder in der Pipeline-Konfiguration deaktiviert oder toter Legacy-Code in Engines).
 
 Nur **15 Indikatoren** werden aktuell produktiv über die [`MacroRegimeEngine`](file:///D:/GitHub/CrashRadar/src/analysis/MacroRegimeEngine.js) ausgeführt.
 
@@ -532,3 +540,20 @@ Diese 15 Indikatoren sind in [`config/Indicator-Pipeline-Config.json`](file:///D
   * [`scratch/research/strategies/DebugMarch2020.js`](file:///D:/GitHub/CrashRadar/scratch/research/strategies/DebugMarch2020.js)
   * [`tests/analysis/indicators/VixSpikeCrushIndicator.test.js`](file:///D:/GitHub/CrashRadar/tests/analysis/indicators/VixSpikeCrushIndicator.test.js)
 * **`.md`:** *Keine*
+
+---
+
+## 🏁 Protokoll der durchgeführten Bereinigung (16. September 2026)
+
+| Schritt | Aktion | Status | Details |
+| :--- | :--- | :---: | :--- |
+| **1. Sourcecode-Bereinigung** | 23 Indikatoren aus `src/analysis/indicators/` gelöscht | ✅ Erledigt | Alle 23 Dateien physisch entfernt |
+| **2. Test-Bereinigung** | 23 Testdateien aus `tests/analysis/indicators/` gelöscht | ✅ Erledigt | Alle 23 Test-Dateien physisch entfernt |
+| **3. Config-Bereinigung** | [`config/Indicator-Pipeline-Config.json`](file:///D:/GitHub/CrashRadar/config/Indicator-Pipeline-Config.json) | ✅ Erledigt | 4 deaktivierte Indikatoren (`katastrophen_matrix`, `smart_dumb_bottom`, `tga_indicator`, `bank_reserves`) entfernt |
+| **4. Engine-Bereinigung** | [`src/analysis/MacroRegimeEngine.js`](file:///D:/GitHub/CrashRadar/src/analysis/MacroRegimeEngine.js) | ✅ Erledigt | 6 verwaiste Imports, Registry-Einträge und Fallback-Instanzen entfernt |
+| **5. Strategie-Bereinigung** | [`src/strategies/PortfolioStrategyEngine.js`](file:///D:/GitHub/CrashRadar/src/strategies/PortfolioStrategyEngine.js) | ✅ Erledigt | 5 verwaiste Imports und ungenutzte Konstruktor-Felder entfernt |
+| **6. Test-Anpassung** | [`tests/analysis/MacroRegimeEngine.test.js`](file:///D:/GitHub/CrashRadar/tests/analysis/MacroRegimeEngine.test.js) | ✅ Erledigt | Obsoleten TGA-Testfall entfernt |
+| **7. Regressionstests** | `npx vitest run` | ✅ Erledigt | 91/91 Testdateien bestanden (721 Tests bestanden, 0 Fehler) |
+| **8. Pipeline-Live-Check** | `node index.js -c` | ✅ Erledigt | Pipeline läuft fehlerfrei und identisch durch |
+| **9. Knowledge Graph** | `graphify update .` | ✅ Erledigt | Knowledge Graph aktualisiert (3.786 Nodes, 5.063 Kanten) |
+

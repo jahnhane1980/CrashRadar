@@ -1,12 +1,7 @@
 import { Logger } from '../core/Logger.js';
 import { PortfolioStrategyInterface } from './PortfolioStrategyInterface.js';
-import { KatastrophenMatrixIndicator } from '../analysis/indicators/KatastrophenMatrixIndicator.js';
-import { GoldSniperIndicator } from '../analysis/indicators/GoldSniperIndicator.js';
 import { TreasuryCapacityRadarIndicator } from '../analysis/indicators/TreasuryCapacityRadarIndicator.js';
 import { PanicCapitulationIndicator } from '../analysis/indicators/PanicCapitulationIndicator.js';
-import { SmartDumbMoneyBottomIndicator } from '../analysis/indicators/SmartDumbMoneyBottomIndicator.js';
-import { DarkPoolAccumulationIndicator } from '../analysis/indicators/DarkPoolAccumulationIndicator.js';
-import { BtcTrailingStopIndicator } from '../analysis/indicators/BtcTrailingStopIndicator.js';
 import { CryptoSensorHub } from '../signals/hubs/CryptoSensorHub.js';
 import { MacroStressSensorHub } from '../signals/hubs/MacroStressSensorHub.js';
 import { LiquiditySensorHub } from '../signals/hubs/LiquiditySensorHub.js';
@@ -20,7 +15,6 @@ import { MarketBottomSensorHub } from '../signals/hubs/MarketBottomSensorHub.js'
  * AUFGABEN:
  * 1. Vorberechnung des standardisierten Makro-Signalkontexts (macroSignalContext):
  *    - Moderne Sensor-Hubs (Composite-Pattern): CryptoHub, MacroStressHub, LiquidityHub, BottomHub
- *    - 3-Säulen-Katastrophen-Matrix & Gold-Sniper (Abwärtskompatibilitäts-Brücke)
  *    - Liquiditäts-Radar & TTC-Zeitprognose
  * 2. Autonome Ausführung der registrierten Strategien (evaluateDaily).
  * 3. Erstellung des aggregierten Tages-Snapshots (daily_intelligence.json) für Cloudflare D1.
@@ -36,17 +30,9 @@ export class PortfolioStrategyEngine {
     this.liquidityHub = dependencies.liquidityHub || new LiquiditySensorHub(config.liquidityHub || {});
     this.bottomHub = dependencies.bottomHub || new MarketBottomSensorHub(config.bottomHub || {});
 
-    // Standard-Sensoren / Legacy-Kompatibilität
-    this.katastrophenMatrix = dependencies.katastrophenMatrix || new KatastrophenMatrixIndicator(config.katastrophenMatrix || {});
+    // Standard-Sensoren
     this.panicCapitulation = dependencies.panicCapitulation || new PanicCapitulationIndicator();
-    this.goldSniper = dependencies.goldSniper || new GoldSniperIndicator(config.goldSniper || {}, {
-      katastrophenMatrix: this.katastrophenMatrix,
-      panicCapitulation: this.panicCapitulation
-    });
     this.treasuryCapacity = dependencies.treasuryCapacity || new TreasuryCapacityRadarIndicator(config.treasuryCapacity || {});
-    this.smartDumbBottom = dependencies.smartDumbBottom || new SmartDumbMoneyBottomIndicator();
-    this.darkPoolAccumulation = dependencies.darkPoolAccumulation || new DarkPoolAccumulationIndicator(config.darkPoolAccumulation || {});
-    this.btcTrailingStop = dependencies.btcTrailingStop || new BtcTrailingStopIndicator(config.btcTrailingStop || {});
   }
 
   /**

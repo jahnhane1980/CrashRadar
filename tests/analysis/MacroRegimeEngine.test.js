@@ -154,33 +154,6 @@ describe('MacroRegimeEngine - Chaos & Edge Case Testing', () => {
             expect(panicState.vetos).toContain('YIELD_CURVE_PANIC');
         });
 
-        it('STEALTH_STIMULUS: Sollte erkennen, wenn das TGA massiv fällt (Yellen pumpt Liquidität)', () => {
-            const data = createHugeChaosData(80);
-            const pumpDate = Object.keys(data)[79];
-            
-            // TGA fällt massiv von Tag 49 zu Tag 79 (30 Tage Fenster)
-            data[Object.keys(data)[49]].macroGroups.NetLiquidity.TGA = 800;
-            data[pumpDate].macroGroups.NetLiquidity.TGA = 400;
-
-            const tgaEngine = new MacroRegimeEngine([
-                {
-                    id: 'tga_indicator',
-                    name: 'Treasury General Account (TGA)',
-                    className: 'TgaIndicator',
-                    enabled: true,
-                    rules: {
-                        onMessageMatch: {
-                            matchText: 'Stealth-Stimulus',
-                            setLiquidityStatus: 'STIMULUS_ACTIVE'
-                        }
-                    }
-                }
-            ]);
-
-            const states = tgaEngine.evaluate(data);
-            expect(states[pumpDate].liquidityStatus).toBe('STIMULUS_ACTIVE');
-        });
-
         it('LATE_CYCLE_EUPHORIA: Sollte Melt-Up erkennen (SKEW > 145, Short < 0.45, PCR < 0.75)', () => {
             const data = createHugeChaosData(80);
             const euphoricDate = Object.keys(data)[79];

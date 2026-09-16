@@ -30,23 +30,6 @@
   ],
   "macroIndicators": [
     {
-      "id": "katastrophen_matrix",
-      "name": "Katastrophen-Matrix (System-Crash Schutzschild)",
-      "className": "KatastrophenMatrixIndicator",
-      "stage": "STAGE_3_ACUTE_PANIC",
-      "reportOrder": 0,
-      "enabled": false,
-      "rules": {
-        "onCritical": {
-          "setRegime": "FLASH_CRASH",
-          "addVetos": ["SYSTEMIC_COLLAPSE_RISK"]
-        },
-        "onWarning": {
-          "addVetos": ["ELEVATED_VOLATILITY_RISK"]
-        }
-      }
-    },
-    {
       "id": "smart_dumb_money_top",
       "name": "Smart vs Dumb Money (The Top)",
       "className": "SmartDumbMoneyTopIndicator",
@@ -57,20 +40,6 @@
         "onCritical": {
           "setRegime": "LATE_CYCLE_EUPHORIA",
           "exceptIfRegime": ["FLASH_CRASH"]
-        }
-      }
-    },
-    {
-      "id": "smart_dumb_money_bottom",
-      "name": "Smart vs Dumb Money (The Bottom)",
-      "className": "SmartDumbMoneyBottomIndicator",
-      "stage": "STAGE_4_BOTTOM_FINDER",
-      "reportOrder": 2,
-      "enabled": false,
-      "rules": {
-        "onCritical": {
-          "addVetos": ["SMART_MONEY_ACCUMULATION"],
-          "setRegime": "FLASH_CRASH"
         }
       }
     },
@@ -119,20 +88,6 @@
       }
     },
     {
-      "id": "tga_indicator",
-      "name": "Treasury General Account (TGA)",
-      "className": "TgaIndicator",
-      "stage": "STAGE_1_EARLY_WARNING",
-      "reportOrder": 6,
-      "enabled": false,
-      "rules": {
-        "onMessageMatch": {
-          "matchText": "Stealth-Stimulus",
-          "setLiquidityStatus": "STIMULUS_ACTIVE"
-        }
-      }
-    },
-    {
       "id": "panic_capitulation",
       "name": "Panik-Kapitulation (VIX + CBOE + RSI)",
       "className": "PanicCapitulationIndicator",
@@ -143,19 +98,6 @@
         "onCritical": {
           "addVetos": ["VIX_SPIKE_PANIC"],
           "setRegime": "FLASH_CRASH"
-        }
-      }
-    },
-    {
-      "id": "bank_reserves",
-      "name": "Bank Reserves",
-      "className": "BankReservesIndicator",
-      "stage": "STAGE_1_EARLY_WARNING",
-      "reportOrder": 8,
-      "enabled": false,
-      "rules": {
-        "onCritical": {
-          "addVetos": ["BANK_RESERVES_CRITICAL"]
         }
       }
     },

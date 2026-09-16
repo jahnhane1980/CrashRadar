@@ -8,13 +8,10 @@ const __dirname = path.dirname(__filename);
 
 import { SmartDumbMoneyTopIndicator } from './indicators/SmartDumbMoneyTopIndicator.js';
 import { FiscalFedLiquidityIndicator } from './indicators/FiscalFedLiquidityIndicator.js';
-import { SmartDumbMoneyBottomIndicator } from './indicators/SmartDumbMoneyBottomIndicator.js';
 import { YieldCurveIndicator } from './indicators/YieldCurveIndicator.js';
 import { RedAlertIndicator } from './indicators/RedAlertIndicator.js';
 import { MarginDebtIndicator } from './indicators/MarginDebtIndicator.js';
-import { TgaIndicator } from './indicators/TgaIndicator.js';
 import { PanicCapitulationIndicator } from './indicators/PanicCapitulationIndicator.js';
-import { BankReservesIndicator } from './indicators/BankReservesIndicator.js';
 import { MaturityWallIndicator } from './indicators/MaturityWallIndicator.js';
 import { NfciIndicator } from './indicators/NfciIndicator.js';
 import { ChallengerIndicator } from './indicators/ChallengerIndicator.js';
@@ -24,22 +21,15 @@ import { InterestRateCycleIndicator } from './indicators/InterestRateCycleIndica
 import { DalioTwoStageRegimeIndicator } from './indicators/DalioTwoStageRegimeIndicator.js';
 import { MlRegimeRadarMacroIndicator } from './indicators/MlRegimeRadarMacroIndicator.js';
 import { TreasuryCapacityRadarIndicator } from './indicators/TreasuryCapacityRadarIndicator.js';
-import { KatastrophenMatrixIndicator } from './indicators/KatastrophenMatrixIndicator.js';
-import { GoldSniperIndicator } from './indicators/GoldSniperIndicator.js';
-import { DarkPoolAccumulationIndicator } from './indicators/DarkPoolAccumulationIndicator.js';
 
 export class MacroRegimeEngine {
     constructor(indicatorConfig = null) {
         const registry = {
             SmartDumbMoneyTopIndicator,
-            SmartDumbMoneyBottomIndicator,
-            DarkPoolAccumulationIndicator,
             YieldCurveIndicator,
             RedAlertIndicator,
             MarginDebtIndicator,
-            TgaIndicator,
             PanicCapitulationIndicator,
-            BankReservesIndicator,
             MaturityWallIndicator,
             NfciIndicator,
             ChallengerIndicator,
@@ -49,9 +39,7 @@ export class MacroRegimeEngine {
             InterestRateCycleIndicator,
             DalioTwoStageRegimeIndicator,
             MlRegimeRadarMacroIndicator,
-            TreasuryCapacityRadarIndicator,
-            KatastrophenMatrixIndicator,
-            GoldSniperIndicator
+            TreasuryCapacityRadarIndicator
         };
 
         let resolvedConfig = indicatorConfig;
@@ -82,13 +70,10 @@ export class MacroRegimeEngine {
             // Fallback: Standard-Instanzen
             this.indicators = [
                 new SmartDumbMoneyTopIndicator(),
-                new SmartDumbMoneyBottomIndicator(),
                 new YieldCurveIndicator(),
                 new RedAlertIndicator(),
                 new MarginDebtIndicator(),
-                new TgaIndicator(),
                 new PanicCapitulationIndicator(),
-                new BankReservesIndicator(),
                 new MaturityWallIndicator(),
                 new NfciIndicator(),
                 new ChallengerIndicator(),
