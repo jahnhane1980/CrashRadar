@@ -1,6 +1,7 @@
 # September 2026 Makro- & Rallye-Checkliste
 
-Checkliste zur Überprüfung des „Goldilocks-Szenarios“ für eine nachhaltige Marktrallye.
+> **Rolle:** Operative Referenz-Checkliste & Musterzyklus für das Goldilocks-Szenario.  
+> **Automation:** Tagesaktuelle Auswertung und Persistenz erfolgen automatisiert über den [`MacroScorecardRunner`](file:///D:/GitHub/CrashRadar/src/runners/MacroScorecardRunner.js) und die MySQL-Tabelle [`macro_calendar_events`](file:///D:/GitHub/CrashRadar/docs/architecture/data/Macro-Calendar-Events.md).
 
 ---
 
@@ -46,4 +47,4 @@ Checkliste zur Überprüfung des „Goldilocks-Szenarios“ für eine nachhaltig
   * **Marktbreite:** Auch Nebenwerte (Russell 2000) und der gleichgewichtete S&P 500 (RSP) steigen mit an (keine reine Big-Tech-Show).
   * **Kreditmarkt:** High-Yield Spreads verharren stabil unter 3,0 %.
 
-> **Hinweis zur System-Automation:** Diese Checkliste wird tagesaktuell und vollautomatisch über die Datenbank-Tabelle [`macro_calendar_events`](file:///D:/GitHub/CrashRadar/docs/architecture/database/Macro-Calendar-Events.md) und den [`MacroScorecardRunner`](file:///D:/GitHub/CrashRadar/src/runners/MacroScorecardRunner.js) gepflegt.
+> **Hinweis zur System-Automation:** Diese Checkliste wird tagesaktuell und vollautomatisch über die Datenbank-Tabelle [`macro_calendar_events`](file:///D:/GitHub/CrashRadar/docs/architecture/data/Macro-Calendar-Events.md) und den [`MacroScorecardRunner`](file:///D:/GitHub/CrashRadar/src/runners/MacroScorecardRunner.js) gepflegt.

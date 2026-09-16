@@ -2,13 +2,13 @@
 
 > **Status:** ✅ ERLEDIGT & VOLLSTÄNDIG UMGESETZT (Live in MySQL `macro_calendar_events`)  
 > **Ziel:** Vollständige Ablösung der statischen `Macro-Scenarios-Config.json` und `Fiscal-Calendar-Config.json` durch eine automatisierte, datenbankgestützte Event-, Kalender- und Scorecard-Engine.  
-> **Umsetzungs-Nachweis:** Siehe DDL & Architektur in [`docs/architecture/database/Macro-Calendar-Events.md`](file:///D:/GitHub/CrashRadar/docs/architecture/database/Macro-Calendar-Events.md) sowie die Adapter [`CalendarFetchAdapter.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/fetch/CalendarFetchAdapter.js) und [`CalendarStorageAdapter.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/storage/CalendarStorageAdapter.js).
+> **Umsetzungs-Nachweis:** Siehe DDL & Architektur in [`docs/architecture/data/Macro-Calendar-Events.md`](file:///D:/GitHub/CrashRadar/docs/architecture/data/Macro-Calendar-Events.md) sowie die Adapter [`CalendarFetchAdapter.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/fetch/CalendarFetchAdapter.js) und [`CalendarStorageAdapter.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/storage/CalendarStorageAdapter.js).
 
 ---
 
 ## 1. Ausgangslage & Problemstellung
 
-Für den September 2026 wurde mit der [`config/Macro-Scenarios-Config.json`](file:///D:/GitHub/CrashRadar/config/Macro-Scenarios-Config.json) ein statisches *Minimum Viable Product (MVP)* geschaffen. 
+Für den September 2026 wurde mit der `config/Macro-Scenarios-Config.json` (MVP-Stand) ein statisches *Minimum Viable Product (MVP)* geschaffen. 
 
 ### Warum die MVP-Konstruktion skaliert werden muss:
 1. **Monatsgekoppelte IDs:** IDs wie `jolts_july` oder `nfp_august` sind starr. Für Folgequartale müssten fortlaufend neue JSON-Einträge manuell angelegt werden.
@@ -87,10 +87,10 @@ Die US-Behörden und die Federal Reserve veröffentlichen ihren Jahresplan weit 
 
 | Event | Herausgeber | Offizielle Quelle | FRED Release-ID / Feed | Standard-Uhrzeit |
 | :--- | :--- | :--- | :--- | :--- |
-| **JOLTS** (Offene Stellen) | **BLS** (Bureau of Labor Statistics) | [BLS Schedule](https://www.bls.gov/schedule/news_release/) | `release_id=119` | 16:00 MESZ (10:00 ET) |
+| **JOLTS** (Offene Stellen) | **BLS** (Bureau of Labor Statistics) | [BLS Schedule](https://www.bls.gov/schedule/news_release/) | `release_id=192` | 16:00 MESZ (10:00 ET) |
 | **NFP** (Employment Situation / Payrolls) | **BLS** | [BLS Schedule](https://www.bls.gov/news.release/empsit.toc.htm) | `release_id=50` | 14:30 MESZ (08:30 ET) |
 | **CPI Core** (Verbraucherpreise) | **BLS** | [BLS Schedule](https://www.bls.gov/cpi/) | `release_id=10` | 14:30 MESZ (08:30 ET) |
-| **PPI** (Erzeugerpreise) | **BLS** | [BLS Schedule](https://www.bls.gov/ppi/) | `release_id=110` | 14:30 MESZ (08:30 ET) |
+| **PPI** (Erzeugerpreise) | **BLS** | [BLS Schedule](https://www.bls.gov/ppi/) | `release_id=46` | 14:30 MESZ (08:30 ET) |
 | **FOMC** (Fed Zinsentscheid) | **Federal Reserve** | [FOMC Calendar](https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm) & [FRB Monetary Feed](https://www.federalreserve.gov/feeds/press_monetary.xml) | 8 Termine / Jahr (H.15 `release_id=115`) | 20:00 MESZ (Live-Statement) / T+1 15:30 MESZ (FRED) |
 | **Core PCE** (Fed-Preismaß) | **BEA** (Bureau of Economic Analysis) | [BEA Schedule](https://www.bea.gov/news/schedule) | `release_id=54` | 14:30 MESZ (08:30 ET) |
 
@@ -143,7 +143,7 @@ sequenceDiagram
 ```
 
 1. **Kein Live-Abruf im Alert-Fenster:** Um Cloudflare-Blockaden (`<title>Rate Limited</title>`) zuverlässig auszuschließen, greift der `MacroScorecardRunner` am Nachmittag niemals live auf ForexFactory zu. Sämtliche Konsens-Schätzungen werden vorab in `macro_calendar_events.consensus_estimate` persistiert.
-2. **Graceful Fallback:** Sollte der Feed während des Seedings temporär nicht erreichbar sein, greift das System automatisch auf das in [`config/Macro-Scenarios-Config.json`](file:///D:/GitHub/CrashRadar/config/Macro-Scenarios-Config.json) hinterlegte Default-Niveau bzw. das 3M-Trend-Modell zurück. Der Runner stürzt niemals ab.
+2. **Graceful Fallback:** Sollte der Feed während des Seedings temporär nicht erreichbar sein, greift das System automatisch auf das in `config/Macro-Scenarios-Config.json` (MVP-Stand) hinterlegte Default-Niveau bzw. das 3M-Trend-Modell zurück. Der Runner stürzt niemals ab.
 
 #### 3.3.2 Die 2-Phasen FOMC-Zinsentscheid-Strategie (Automatisierter Notenbank-Hybrid)
 
@@ -275,7 +275,7 @@ Zur Validierung der Dynamisierung wurde ein Simulations-Skript ([`research/macro
 
 ### 5.1 Simulations-Ergebnisse (Datenbasis: Sommer 2026)
 
-| Event / Metrik | Datenbasis in `econ_fred` | Statischer Wert ([`Macro-Scenarios-Config.json`](file:///D:/GitHub/CrashRadar/config/Macro-Scenarios-Config.json)) | Dynamisch berechnete Rule | Erkenntnis aus der Simulation |
+| Event / Metrik | Datenbasis in `econ_fred` | Statischer Wert (`config/Macro-Scenarios-Config.json`) | Dynamisch berechnete Rule | Erkenntnis aus der Simulation |
 | :--- | :--- | :--- | :--- | :--- |
 | **JOLTS** (`JTSJOL`) | 3M-Schnitt: **7.49M** | `RANGE: [7.00M - 8.20M]` | **`RANGE: [6.99M - 7.99M]`** | Die statische Obergrenze ($8.2\text{M}$) war veraltet. Der dynamische Korridor ($3\text{M} \pm 500\text{k}$) passt sich exakt dem 2026er Niveau an. |
 | **NFP / Sahm** | Sahm: `-0.03`, Payrolls: `-23k` | `PAYEMS >= 100k` & `SAHM < 0.50` | **`MIN: 100k` & `MAX: 0.50`** | $100\text{k}$ bildet den demografischen US-Breakeven, $0.50$ die mathematische Rezessionsgrenze. |

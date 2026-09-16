@@ -4,7 +4,7 @@
 > 📅 **Datum:** September 2026  
 > 📂 **Spiegel-Code & Test-Suite:** [`research/macro-proofs/TestGeopoliticalOilLiquidityStress.js`](file:///D:/GitHub/CrashRadar/research/macro-proofs/TestGeopoliticalOilLiquidityStress.js)  
 > ⚙️ **Master-Komponente:** [`MacroLiquiditySensorHub.js`](file:///D:/GitHub/CrashRadar/src/signals/hubs/MacroLiquiditySensorHub.js)  
-> 🏛️ **Fiskal-Kalender Datenbasis:** [`macro_calendar_events`](file:///D:/GitHub/CrashRadar/docs/architecture/database/Macro-Calendar-Events.md) (Automatisierte MySQL-Tabelle & [`FiscalCalendarService.js`](file:///D:/GitHub/CrashRadar/src/services/FiscalCalendarService.js))  
+> 🏛️ **Fiskal-Kalender Datenbasis:** [`macro_calendar_events`](file:///D:/GitHub/CrashRadar/docs/architecture/data/Macro-Calendar-Events.md) (Automatisierte MySQL-Tabelle & [`FiscalCalendarService.js`](file:///D:/GitHub/CrashRadar/src/services/FiscalCalendarService.js))  
 
 ---
 

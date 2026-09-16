@@ -7,7 +7,7 @@
 > • [`research/turnaround-studies/study_sofi_turnaround_cockpit.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/study_sofi_turnaround_cockpit.js)  
 > • [`research/turnaround-studies/study_sofi_segments_rerating.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/study_sofi_segments_rerating.js)  
 > • [`research/turnaround-studies/study_sofi_valuation_beta.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/study_sofi_valuation_beta.js)  
-> 🏛️ **Einfluss auf Strategie:** [`Kamikaze-Master-Drehbuch.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/Kamikaze-Master-Drehbuch.md) (Tech- & FinTech-Bucket)  
+> 🏛️ **Einfluss auf Strategie:** [`Kamikaze-Growth.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Growth.md) (Tech- & FinTech-Bucket)  
 > 📅 **Stand:** September 2026  
 
 ---

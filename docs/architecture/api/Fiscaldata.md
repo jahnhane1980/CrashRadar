@@ -35,23 +35,24 @@ Im Folgenden sind die für uns relevanten Endpunkte (Datasets) aufgelistet.
 **Beschreibung:** Der Kassenbestand des US-Finanzministeriums (Treasury General Account). Zeigt an, wie viel Liquidität der US-Regierung zur Verfügung steht. Ein sinkender TGA bedeutet oft, dass Liquidität in den Markt fließt.
 **Endpunkt:** `/v1/accounting/dts/operating_cash_balance`
 **URL (mit Sortierung):** `https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/dts/operating_cash_balance?sort=-record_date`
-*(Beispiel-Antwort: [tga.json](../../scripts/response/fiscaldata/tga.json))*
 
 ### 2. Staatsanleihen-Auktionen (Auctions Query)
 **Beschreibung:** Details zu den durchgeführten und geplanten Auktionen von US-Staatsanleihen (Bills, Notes, Bonds).
 **Endpunkt:** `/v1/accounting/od/auctions_query`
 **URL (mit Sortierung):** `https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/auctions_query?sort=-record_date`
-*(Beispiel-Antwort: [auctions.json](../../scripts/response/fiscaldata/auctions.json))*
 
 ### 3. Rückkaufprogramme der US-Regierung (Buybacks Operations)
 **Beschreibung:** Operationen des US-Finanzministeriums zum Rückkauf von Staatsanleihen (Buybacks), die Einfluss auf die Marktliquidität und die Zinskurve haben können.
 **Endpunkt:** `/v1/accounting/od/buybacks_operations`
 **URL (mit Sortierung):** `https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/buybacks_operations?sort=-operation_date`
-*(Beispiel-Antwort: [buybacks.json](../../scripts/response/fiscaldata/buybacks.json))*
 
 ---
 
-## Code Beispiel & Automatischer Abruf
+## Technische Implementierung in CrashRadar
 
-Ein lauffähiges Node.js-Skript, das diese Beispiel-Abfragen automatisiert ausführt und speichert, findest du hier:
-- **Skript:** [fiscaldata_fetch_example.ts](../../scripts/fiscaldata_fetch_example.ts)
+Die Fiskaldaten werden über die modulare Pipeline verarbeitet:
+* **Storage-Adapter:** [`FiscalDataAdapter.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/storage/FiscalDataAdapter.js) in `src/core/adapters/storage/`.
+* **Fiskal-Service:** [`FiscalCalendarService.js`](file:///D:/GitHub/CrashRadar/src/services/FiscalCalendarService.js) zur kontinuierlichen Auswertung von TGA, Headroom und Shutdown-Deadlines.
+* **Task-Konfiguration:** [`config/Database-Fetcher-Config.json`](file:///D:/GitHub/CrashRadar/config/Database-Fetcher-Config.json) (Paginierungs-Strategie `page-number`, Batch-Limit 10.000).
+* **Unit-Tests:** [`FiscalDataAdapter.test.js`](file:///D:/GitHub/CrashRadar/tests/core/adapters/storage/FiscalDataAdapter.test.js) & [`FiscalCalendarService.test.js`](file:///D:/GitHub/CrashRadar/tests/services/FiscalCalendarService.test.js).
+* **MySQL-Zieldaten:** Tabellen `fiscal_tga`, `fiscal_auctions` und relationale Events in `macro_calendar_events`.

@@ -91,35 +91,53 @@ export class AnalysisRepository {
     }
   }
 
-  async getOhlcvForTicker(ticker, startDate = '2015-01-01') {
+  async getOhlcvForTicker(ticker, startDate = '2015-01-01', endDate = null) {
     // BTCUSDT from Binance
     if (ticker === 'BTC') {
-      const [rows] = await this.pool.query(`
+      let btcQuery = `
         SELECT DATE_FORMAT(FROM_UNIXTIME(open_time/1000), '%Y-%m-%d') as date, close, volume, high, low 
         FROM market_data_binance 
         WHERE symbol = 'BTCUSDT' AND interval_type = '1d' AND DATE_FORMAT(FROM_UNIXTIME(open_time/1000), '%Y-%m-%d') >= ?
-        ORDER BY open_time ASC
-      `, [startDate]);
+      `;
+      const btcParams = [startDate];
+      if (endDate) {
+        btcQuery += ` AND DATE_FORMAT(FROM_UNIXTIME(open_time/1000), '%Y-%m-%d') <= ?`;
+        btcParams.push(endDate);
+      }
+      btcQuery += ` ORDER BY open_time ASC`;
+      const [rows] = await this.pool.query(btcQuery, btcParams);
       return rows;
     }
     
     // Equities from Tiingo
-    const [tiingoRows] = await this.pool.query(`
+    let tiingoQuery = `
       SELECT record_date as date, close, volume, high, low
       FROM market_data_tiingo 
       WHERE symbol = ? AND record_date >= ?
-      ORDER BY record_date ASC
-    `, [ticker, startDate]);
+    `;
+    const tiingoParams = [ticker, startDate];
+    if (endDate) {
+      tiingoQuery += ` AND record_date <= ?`;
+      tiingoParams.push(endDate);
+    }
+    tiingoQuery += ` ORDER BY record_date ASC`;
+    const [tiingoRows] = await this.pool.query(tiingoQuery, tiingoParams);
     
     if (tiingoRows.length > 0) return tiingoRows;
 
     // Fallback Yahoo Finance
-    const [yahooRows] = await this.pool.query(`
+    let yahooQuery = `
       SELECT record_date as date, close, volume, high, low
       FROM market_data_yahoo 
       WHERE symbol = ? AND record_date >= ?
-      ORDER BY record_date ASC
-    `, [ticker, startDate]);
+    `;
+    const yahooParams = [ticker, startDate];
+    if (endDate) {
+      yahooQuery += ` AND record_date <= ?`;
+      yahooParams.push(endDate);
+    }
+    yahooQuery += ` ORDER BY record_date ASC`;
+    const [yahooRows] = await this.pool.query(yahooQuery, yahooParams);
 
     return yahooRows;
   }
@@ -137,7 +155,20 @@ export class AnalysisRepository {
   async getFundamentalsForTicker(ticker, startDate = '2015-01-01') {
     try {
       const [rows] = await this.pool.query(`
-        SELECT DATE_FORMAT(date, '%Y-%m-%d') as date, period, shareIssued, freeCashFlow, totalRevenue, netIncome, financingCashFlow, institutional_ownership
+        SELECT 
+          DATE_FORMAT(date, '%Y-%m-%d') as date, 
+          DATE_FORMAT(filing_date, '%Y-%m-%d') as filing_date,
+          period, 
+          shareIssued, 
+          freeCashFlow, 
+          totalRevenue, 
+          netIncome, 
+          gross_profit,
+          operating_cash_flow,
+          eps,
+          yoy_revenue_growth_pct,
+          financingCashFlow, 
+          institutional_ownership
         FROM company_fundamentals 
         WHERE symbol = ? AND date >= ?
         ORDER BY date ASC

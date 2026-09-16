@@ -58,7 +58,10 @@ Ein API-Key (inkl. kryptografischer Signatur) wird erst benötigt für:
 1. Zugriff auf **private Account-Daten** (z. B. Kontostand, Trade-Historie).
 2. **Aktives Handeln** (z. B. das Platzieren oder Stornieren von Orders).
 
-## Code Beispiel
-Ein lauffähiges Skript, das die Kline-Daten für die letzten 2 Wochen (14 Tage) auf Basis von Tageskerzen (`1d`) abruft und als JSON abspeichert, findest du hier:
-- **Skript:** [binance_fetch_example.ts](../../scripts/binance_fetch_example.ts)
-- **Beispiel-Response:** [klines_2weeks.json](../../scripts/response/binance/klines_2weeks.json)
+## Technische Implementierung in CrashRadar
+
+Die automatisierte Abfrage und Persistenz ist im System fest integriert:
+* **Storage-Adapter:** [`BinanceAdapter.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/storage/BinanceAdapter.js) in `src/core/adapters/storage/`.
+* **Task-Konfiguration:** [`config/Database-Fetcher-Config.json`](file:///D:/GitHub/CrashRadar/config/Database-Fetcher-Config.json) (Paginierungs-Strategie `time-cursor`, Batch-Limit 1.000).
+* **Unit-Tests:** [`BinanceAdapter.test.js`](file:///D:/GitHub/CrashRadar/tests/core/adapters/storage/BinanceAdapter.test.js).
+* **MySQL-Zieltabelle:** `market_data_binance` (Primary Key: `symbol`, `interval_type`, `open_time`).

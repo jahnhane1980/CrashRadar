@@ -246,14 +246,14 @@ CrashRadar/
 
 | Datei | Schicht | Rolle / Verantwortung | Primäre Schnittstelle / Methoden |
 | :--- | :--- | :--- | :--- |
-| **[`BasePortfolioStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/BasePortfolioStrategy.js)** | `src/strategies/` | Abstrakte Basisklasse für alle Strategien | `initialize(config)`, `evaluateDaily(date, marketData, macroContext)`, `getPortfolioStatus()`, `generateOrderInstructions()` |
+| **[`PortfolioStrategyInterface.js`](file:///D:/GitHub/CrashRadar/src/strategies/PortfolioStrategyInterface.js)** | `src/strategies/` | Schnittstelle & Basis-Vertrag für alle Strategien | `initialize(config)`, `evaluateDaily(date, marketData, macroContext)`, `getPortfolioStatus()`, `generateOrderInstructions()` |
 | **[`PortfolioStrategyEngine.js`](file:///D:/GitHub/CrashRadar/src/strategies/PortfolioStrategyEngine.js)** | `src/strategies/` | Orchestrator & Registry (analog zu `MacroRegimeEngine.js`) | `registerStrategy(instance)`, `evaluateAll(date, marketData, macroContext)`, `buildDailySnapshot()` |
 | **`*Strategy.js` (5 Klassen)** | `src/strategies/` | Konkrete Strategie-Logiken mit autonomem Bucket-Management | Implementieren die Lifecycle-Methoden; managen Core-, Satellite-, Hedge- und Cash-Buckets |
-| **[`BrokerAdapterInterface.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/broker/BrokerAdapterInterface.js)** | `src/core/adapters/` | Vertrag für Broker-Kopplung (Kamikaze) | `getBalance()`, `getPositions()`, `getOpenOrders()` |
-| **[`InteractiveBrokersAdapter.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/broker/InteractiveBrokersAdapter.js)** | `src/core/adapters/` | Realer Broker-Adapter für Kamikaze-Depot | Liest Kontostand, Cash und Positionen via Broker-API ein |
-| **[`BrokerReconciliationService.js`](file:///D:/GitHub/CrashRadar/src/services/BrokerReconciliationService.js)** | `src/services/` | Reconciliation & Discretionary Override | `reconcile(strategyState, brokerHoldings)`: Übersteuert Modell mit Broker-Realität |
-| **[`SnapshotExporterService.js`](file:///D:/GitHub/CrashRadar/src/services/SnapshotExporterService.js)** | `src/services/` | Pre-Computation Push an Cloudflare D1 | `exportSnapshot(snapshotPayload)` via HTTPS POST Webhook (`CF_SNAPSHOT_WEBHOOK_URL`) |
-| **[`TelegramService.js`](file:///D:/GitHub/CrashRadar/src/services/TelegramService.js)** | `src/services/` | Telegram-Bot Client für Broadcast & Admin | `sendChannelBroadcast(markdownMessage)`, `sendAdminAlert(text)` |
+| **`BrokerAdapterInterface.js` (Plan)** | `src/core/adapters/` | Vertrag für Broker-Kopplung (Kamikaze) | `getBalance()`, `getPositions()`, `getOpenOrders()` |
+| **`InteractiveBrokersAdapter.js` (Plan)** | `src/core/adapters/` | Realer Broker-Adapter für Kamikaze-Depot | Liest Kontostand, Cash und Positionen via Broker-API ein |
+| **`BrokerReconciliationService.js` (Plan)** | `src/services/` | Reconciliation & Discretionary Override | `reconcile(strategyState, brokerHoldings)`: Übersteuert Modell mit Broker-Realität |
+| **`SnapshotExporterService.js` (Plan)** | `src/services/` | Pre-Computation Push an Cloudflare D1 | `exportSnapshot(snapshotPayload)` via HTTPS POST Webhook (`CF_SNAPSHOT_WEBHOOK_URL`) |
+| **`TelegramService.js` (Plan / V2)** | `src/services/` | Telegram-Bot Client für Broadcast & Admin | `sendChannelBroadcast(markdownMessage)`, `sendAdminAlert(text)` |
 | **[`PortfolioStrategyRunner.js`](file:///D:/GitHub/CrashRadar/src/runners/PortfolioStrategyRunner.js)** | `src/runners/` | Täglicher Ausführungs-Runner | `run()`: Data-Load $\rightarrow$ Indikatoren $\rightarrow$ StrategyEngine $\rightarrow$ Exporter $\rightarrow$ Telegram |
 
 ### 3. Der Datenfluss durch die Komponenten (End-to-End Execution Flow)
@@ -411,16 +411,16 @@ Um Code-Duplikate, Widersprüche und uneinheitliches Signalverhalten über versc
 * **Standard-Geltung:** Löst den Schutzschirm am Panik-Tief vorzeitig auf, ohne Wochen auf die NetLiq-Hysterese warten zu müssen.
 * **Sensor 1 ([`PanicCapitulationIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/PanicCapitulationIndicator.js)):**  
   $\text{VIX} \ge 35$, CBOE Put/Call-Options-Spike $\ge 1{,}5\times$, bullische RSI-Divergenz (neues Kurs-Tief bei höherem RSI). Status: `CRITICAL` (Generationen-Kaufsignal).
-* **Sensor 2 ([`SmartDumbMoneyBottomIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/SmartDumbMoneyBottomIndicator.js)):**  
+* **Sensor 2 ([`MarketBottomSensorHub.js`](file:///D:/GitHub/CrashRadar/src/signals/hubs/MarketBottomSensorHub.js)):**  
   $\text{VIX} > 40$, AAII Sentiment $< -25\,\%$ (Retail-Panik) und Dark Pool Index $\text{DIX} > 45\,\%$ (Wal-Akkumulation).
 * **Aktion:** Sofortige Auflösung des Gold/Cash-Schutzschirms und 100 % Reinvestition in das S&P 500 Mutterschiff, um neue Stage-2-Ausbrüche am absoluten Marktboden mit maximaler Liquidität einzusammeln!
 
 #### 3. Standardisierte Krypto-Hebel- & Bitcoin-Sensorik
-* **Bitcoin-Regime (Master-Taktgeber):** BTC 21-Wochen-EMA und [`MlRegimeRadarBtcIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/MlRegimeRadarBtcIndicator.js) bestimmen das Krypto-Gesamtregime.
-* **Hebel-Aktien-Sensoren ([`CryptoPortfolioExitIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/CryptoPortfolioExitIndicator.js)):**  
+* **Bitcoin-Regime (Master-Taktgeber):** BTC 21-Wochen-EMA und [`BtcTrendSensor.js`](file:///D:/GitHub/CrashRadar/src/signals/sensors/BtcTrendSensor.js) im [`CryptoSensorHub.js`](file:///D:/GitHub/CrashRadar/src/signals/hubs/CryptoSensorHub.js) bestimmen das Krypto-Gesamtregime.
+* **Hebel-Aktien-Sensoren ([`MstrLeadSensor.js`](file:///D:/GitHub/CrashRadar/src/signals/sensors/MstrLeadSensor.js)):**  
   Überwacht `MSTR` und `COIN` in der Krypto-Zyklus-Gefahrenzone ($> 970\text{ Tage}$ seit dem letzten Bitcoin-Boden). Ein Durchbruch des SMA 50 unter Volumen $> 1{,}2\times$ triggert sofortigen Krypto-Equity-Exit ins Mutterschiff.
-* **Frühwarn-Divergenzen ([`CryptoCycleDivergenceIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/CryptoCycleDivergenceIndicator.js) & [`BtcTrailingStopIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/BtcTrailingStopIndicator.js)):**  
-  Warnen vor Liquiditäts-Austrocknung, wenn `MSTR` den SMA 200 verliert oder die Hebel-Aktien trotz hohem Bitcoin-Kurs ausbluten.
+* **Frühwarn-Divergenzen:**  
+  Der `CryptoSensorHub` warnt vor Liquiditäts-Austrocknung, wenn `MSTR` den SMA 200 verliert oder die Hebel-Aktien trotz hohem Bitcoin-Kurs ausbluten.
 
 ---
 

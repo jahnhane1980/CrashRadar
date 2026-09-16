@@ -11,16 +11,18 @@ Sämtliche Modell-Architekturen sind in dieser JSON-Datei entkoppelt.
 * **Fallbacks & Overrides:** Es gibt ein universelles `fallback` (z.B. 4 Label-Klassen, RSI, MACD). Möchte man für Einzelaktien eine andere Architektur (z.B. 7 Klassen mit Volumen-Indikatoren), definiert man in der JSON einfach einen Override für diesen Ticker.
 * **Vorteil:** Die Node.js-Skripte beinhalten keinerlei "If Ticker === XYZ" Logik mehr. Alles ist rein konfigurationsgesteuert.
 
-### 2. Feature Building via Strategy-Pattern (ZIEL-ARCHITEKTUR / TODO)
-* **Aktueller Status (Ist-Zustand):** Momentan werden alle Features (RSI, MACD, etc.) monolithisch und zentral in der Datei `src/services/MLRegimeService.js` (Methode `buildFeatures()`) berechnet.
-* **Geplante Architektur (Soll-Zustand `src/ml/features/`):** Die Transformation der rohen OHLCV-Daten in ML-lesbare Features soll künftig ein dynamischer Builder übernehmen.
-* **Die Standard-Strategie:** Existiert für einen Ticker kein eigener Code, greift die Pipeline automatisch auf eine `DefaultFeatureBuilder.js` zurück. Diese baut die grundlegenden Indikatoren.
-* **Spezialisierung:** Benötigt eine bestimmte Aktie (z.B. SOFI) spezielle Berechnungen (z.B. FINRA Short-Volume), erstellt man einfach eine `SofiFeatureBuilder.js`. Die Pipeline erkennt diese zur Laufzeit automatisch und nutzt die Spezial-Strategie anstelle des Defaults.
+### 2. Feature Building via Strategy-Pattern (✅ Vollständig implementiert)
+* **Architektur ([`src/ml/features/`](file:///D:/GitHub/CrashRadar/src/ml/features/)):** Die Transformation der rohen OHLCV-Daten in ML-lesbare Features wird über ein modulares Strategy-Pattern gesteuert.
+* **Die Standard-Strategie:** Existiert für einen Ticker kein eigener Builder, greift die Pipeline automatisch auf [`DefaultFeatureBuilder.js`](file:///D:/GitHub/CrashRadar/src/ml/features/DefaultFeatureBuilder.js) zurück. Diese berechnet die grundlegenden Indikatoren (RSI, MACD, ATR, SMA-Abstände, OBV).
+* **Spezialisierte Builder:** Benötigen bestimmte Wachstums- oder Einzeltitel spezielle Berechnungen (z. B. FINRA Short-Volume, Float-Metriken), greift die Pipeline nahtlos auf spezialisierte Klassen zu:
+  * [`FinraFeatureBuilder.js`](file:///D:/GitHub/CrashRadar/src/ml/features/FinraFeatureBuilder.js): Basis-Builder für FINRA-Short-Volume und Reg-SHO Kennzahlen.
+  * Ticker-Builder: [`SOFIFeatureBuilder.js`](file:///D:/GitHub/CrashRadar/src/ml/features/SOFIFeatureBuilder.js), [`PLTRFeatureBuilder.js`](file:///D:/GitHub/CrashRadar/src/ml/features/PLTRFeatureBuilder.js), [`NVTSFeatureBuilder.js`](file:///D:/GitHub/CrashRadar/src/ml/features/NVTSFeatureBuilder.js), [`SFeatureBuilder.js`](file:///D:/GitHub/CrashRadar/src/ml/features/SFeatureBuilder.js), [`ZETAFeatureBuilder.js`](file:///D:/GitHub/CrashRadar/src/ml/features/ZETAFeatureBuilder.js).
 
-### 3. Universelles Training (`src/ml/ModelTrainer.js` & `TestInference.js`)
+### 3. Universelles Training & Evaluierung ([`src/ml/ModelTrainer.js`](file:///D:/GitHub/CrashRadar/src/ml/ModelTrainer.js) & [`src/ml/ModelEvaluator.js`](file:///D:/GitHub/CrashRadar/src/ml/ModelEvaluator.js))
 * Das TensorFlow-Training ist unabhängig vom Asset. Der Trainer lädt den fertigen CSV-Snapshot.
 * Er berechnet automatisch die `classWeights` zum Ausgleich von Datenungleichgewichten im Training (z.B. seltene Tops vs. häufige Uptrends).
 * Trainiert wird mit Early-Stopping zur Vermeidung von Overfitting.
+* Die Evaluierung erfolgt über [`ModelEvaluator.js`](file:///D:/GitHub/CrashRadar/src/ml/ModelEvaluator.js) mit Confusion Matrix und Genauigkeitsmetriken.
 
 ### 4. CLI-Orchestrator (`ml.js` im Root)
 Ein zentraler Einstiegspunkt für das Terminal (z.B. `node ml.js run --ticker=SOFI --step=all`), der die Pipeline von der Datengewinnung bis zur Modellspeicherung orchestriert.

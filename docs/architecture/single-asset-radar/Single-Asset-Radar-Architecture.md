@@ -51,9 +51,9 @@ flowchart LR
 
 ### A. Schicht 1: Data Ingestion & Inkrementeller Sync
 * **Verantwortung:** Bezug von 5-Minuten-Intraday-Kerzen direkt über die REST-API von Polygon.io und Ablage in MySQL `market_data_m5`.
-* **Detail-Spezifikation:** Vollständig dokumentiert in [`docs/architecture/single-asset-radar/M5Candels.md`](file:///D:/GitHub/CrashRadar/docs/architecture/single-asset-radar/M5Candels.md).
+* **Detail-Spezifikation:** Vollständig dokumentiert in [`docs/architecture/single-asset-radar/M5Candles.md`](file:///D:/GitHub/CrashRadar/docs/architecture/single-asset-radar/M5Candles.md).
 * **Kern-Komponenten:**
-  * Adapter: [`PolygonFetchAdapter.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/fetch/PolygonFetchAdapter.js)
+  * Adapter: `PolygonFetchAdapter.js` (Plan)
   * Konfiguration: [`Database-Fetcher-Config.json`](file:///D:/GitHub/CrashRadar/config/Database-Fetcher-Config.json) (`"frequency": "intraday_m5"`)
   * Profil-Steuerung: `node index.js --profile intraday_m5`
 
@@ -145,10 +145,10 @@ jobs:
 | Ebene | Datei / Pfad | Zweck / Inhalt |
 | :--- | :--- | :--- |
 | **Master-Architektur** | [`docs/architecture/single-asset-radar/Single-Asset-Radar-Architecture.md`](file:///D:/GitHub/CrashRadar/docs/architecture/single-asset-radar/Single-Asset-Radar-Architecture.md) | **Dieses Dokument:** Gesamtsystem, Datenfluss & Orchestrierung. |
-| **Detail: Datenfeed** | [`docs/architecture/single-asset-radar/M5Candels.md`](file:///D:/GitHub/CrashRadar/docs/architecture/single-asset-radar/M5Candels.md) | Spezifikation der Polygon.io Endpunkte, Paginierung, Pacing & Tabellen. |
+| **Detail: Datenfeed** | [`docs/architecture/single-asset-radar/M5Candles.md`](file:///D:/GitHub/CrashRadar/docs/architecture/single-asset-radar/M5Candles.md) | Spezifikation der Polygon.io Endpunkte, Paginierung, Pacing & Tabellen. |
 | **Detail: Trading-Modelle** | [`docs/architecture/single-asset-radar/SingleAssetTrading.md`](file:///D:/GitHub/CrashRadar/docs/architecture/single-asset-radar/SingleAssetTrading.md) | 4-Phasen-Modell, Sektor-MACD, M5-VWAP Heuristik & Backtest-Ergebnisse. |
 | **Makro-Rahmenwerk** | [`docs/architecture/macro/Treasury-Liquidity-Capacity-Architecture.md`](file:///D:/GitHub/CrashRadar/docs/architecture/macro/Treasury-Liquidity-Capacity-Architecture.md) | Makro-Liquiditätszyklen & Kollisionsfenster. |
-| **Fetcher-Adapter** | [`src/core/adapters/fetch/PolygonFetchAdapter.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/fetch/PolygonFetchAdapter.js) | Native Abruf-Klasse für 5-Minuten-Kerzen von Polygon.io. |
+| **Fetcher-Adapter** | `src/core/adapters/fetch/PolygonFetchAdapter.js` (Plan) | Native Abruf-Klasse für 5-Minuten-Kerzen von Polygon.io. |
 | **Factory-Registrierung** | [`src/core/adapters/fetch/FetchAdapterFactory.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/fetch/FetchAdapterFactory.js) | Registriert `'Polygon'` für den `TimeSeriesFetcher`. |
 | **ETL-Konfiguration** | [`config/Database-Fetcher-Config.json`](file:///D:/GitHub/CrashRadar/config/Database-Fetcher-Config.json) | Provider-Definition & Task-Deklaration mit `"frequency": "intraday_m5"`. |
 | **CLI-Einstiegspunkt** | [`index.js`](file:///D:/GitHub/CrashRadar/index.js) | CLI-Steuerung via `--profile` und `--single-asset-radar`. |

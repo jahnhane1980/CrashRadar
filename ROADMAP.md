@@ -36,7 +36,7 @@ Um die Deadline im Dezember garantiert einzuhalten, wird das in [`docs/architect
 
 | Thema / Baustein | Grund für die Verschiebung | V1-Ersatzlösung |
 | :--- | :--- | :--- |
-| **Kamikaze: Autonome Aktiensuche & Post-IPO Growth Engine (PIGE)** | Marktweite Suche ([`01-Post-Ipo-Growth-Engine.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/01-Post-Ipo-Growth-Engine.md)) über tausende US-Aktien (SIC/NAICS-Filter, IPO-Altersfenster, SEC 10-Q XBRL-Parsing) und 2. Reihe sind zu komplex für V1. | **Curated Watchlist Radar:** In V1 überwacht Kamikaze nur deine feste, handverlesene Watchlist (`PLTR`, `SOFI`, `S`, `NVTS`, `AIRO`, `IBRX`, Krypto). |
+| **Kamikaze: Autonome Aktiensuche & Post-IPO Growth Engine (PIGE)** | Marktweite Suche ([`Kamikaze-Growth.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Growth.md)) über tausende US-Aktien (SIC/NAICS-Filter, IPO-Altersfenster, SEC 10-Q XBRL-Parsing) und 2. Reihe sind zu komplex für V1. | **Curated Watchlist Radar:** In V1 überwacht Kamikaze nur deine feste, handverlesene Watchlist (`PLTR`, `SOFI`, `S`, `NVTS`, `AIRO`, `IBRX`, Krypto). |
 | **Cloudflare Worker & D1 Repo** | Zu hoher Infrastruktur- und Test-Aufwand (1:1 Dialoge, individuelle Budgets, Inline-Buttons). | **Direkter Discord-Webhook-Broadcast** aus CrashRadar mit 4-Fälle-Matrix. |
 | **Full-DB Makro-Wirtschaftskalender Phase 2** | Nativer In-Engine Regime-Indikator & Kelly-Kopplung komplex. | **Phase 1 genügt für V1:** DB-Scorecard & `macro_calendar_events` mit `MacroScorecardRunner.js` voll funktionsfähig. |
 | **Einzeltitel-ML & FINRA LSTMs** | Hohes Overfitting-Risiko, unvollständige Tests. | **Bewährte Heuristik:** Weinstein Stage-2 + Makro-SensorHubs. |
@@ -199,7 +199,7 @@ Nach erfolgreichem V1-Go-Live werden die strategischen Großprojekte etappenweis
 * **Funktionen:** Diskrete 1:1 Nutzer-Chats, geführtes Onboarding, individuelles Budget- & Sparplan-Tracking, Ad-hoc `/topup` mit Sofort-Feedback (< 50 ms), interaktive Inline-Buttons (`[✅ Ausgeführt]` / `[⏳ Überspringen]`), 3 Beweisszenarien (Worst Case, Best Case, Neutral) und proaktiver Transparenz-Broadcast bei Strategie-Updates.
 
 ### 2.3 Post-IPO Growth Engine (PIGE) für Kamikaze
-* **Spezifikation:** [`docs/architecture/strategies/kamikaze/01-Post-Ipo-Growth-Engine.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/01-Post-Ipo-Growth-Engine.md).
+* **Spezifikation:** Verankert im Master-Drehbuch [`docs/architecture/strategies/Kamikaze-Growth.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Growth.md).
 * **Ziel:** Ablösung der handverlesenen V1-Watchlist durch marktweites, automatisiertes US-Aktien-Screening (SIC/NAICS-Branchenfilter, IPO-Altersfenster, SEC 10-Q XBRL-Parsing).
 
 ### 2.4 Makro-Kalender Phase 2: In-Engine Regime-Indikator
@@ -211,7 +211,7 @@ Nach erfolgreichem V1-Go-Live werden die strategischen Großprojekte etappenweis
 * **MacroEngine Modernisierung:** Geplante Überarbeitung der historischen `MacroRegimeEngine` auf die moderne SensorHub-Architektur.
 
 ### 2.6 Generational Turnaround Framework ($L_2$-Sniper)
-* **Spezifikation:** [`docs/architecture/strategies/kamikaze/02-Turnaround-Framework.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/02-Turnaround-Framework.md) und Forschungs-Hypothese [`docs/research/turnarounds/Generational-Growth-Hypothesis.md`](file:///D:/GitHub/CrashRadar/docs/research/turnarounds/Generational-Growth-Hypothesis.md).
+* **Spezifikation:** Verankert im Master-Drehbuch [`docs/architecture/strategies/Kamikaze-Growth.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Growth.md) sowie den Forschungs-Studien [`Turnaround-Research-Proof.md`](file:///D:/GitHub/CrashRadar/docs/research/turnarounds/Turnaround-Research-Proof.md) und [`Generational-Growth-Hypothesis.md`](file:///D:/GitHub/CrashRadar/docs/research/turnarounds/Generational-Growth-Hypothesis.md).
 * **Nächster Schritt:** Simulation von $L_2$-Sniper vs. Diamanten-Haltedauer in [`simulations/GrowthLifecycleSimulation.js`](file:///D:/GitHub/CrashRadar/simulations/GrowthLifecycleSimulation.js).
 
 ---
@@ -228,7 +228,7 @@ Nach erfolgreichem V1-Go-Live werden die strategischen Großprojekte etappenweis
 * **Notification-Härtung:** Stille Rückkehr im [`StrategyNotificationService.js`](file:///D:/GitHub/CrashRadar/src/services/StrategyNotificationService.js), Entschärfung Margin-Debt und 180-Tage-Un-Inversions-Gedächtnis für Yield-Curve.
 
 ### ✅ Autarke Datenbank-Scorecard & Makro-Wirtschaftskalender
-* **MySQL-Tabelle `macro_calendar_events`:** Vollständige Ablösung statischer JSONs durch relationale Kalendertabelle ([`docs/architecture/database/Macro-Calendar-Events.md`](file:///D:/GitHub/CrashRadar/docs/architecture/database/Macro-Calendar-Events.md)).
+* **MySQL-Tabelle `macro_calendar_events`:** Vollständige Ablösung statischer JSONs durch relationale Kalendertabelle ([`docs/architecture/data/Macro-Calendar-Events.md`](file:///D:/GitHub/CrashRadar/docs/architecture/data/Macro-Calendar-Events.md)).
 * **Termin- & Konsens-Ingestion:** FRED Release API (`/fred/release/dates`), Treasury DTS Headroom & dynamische X-Date-Projektion, ForexFactory Consensus Enrichment.
 * **DB-First Services:** [`FiscalCalendarService.js`](file:///D:/GitHub/CrashRadar/src/services/FiscalCalendarService.js), [`ScenarioChecklistService.js`](file:///D:/GitHub/CrashRadar/src/services/ScenarioChecklistService.js) und [`MacroScorecardRunner.js`](file:///D:/GitHub/CrashRadar/src/runners/MacroScorecardRunner.js) mit direkter Ist-Wert-Persistenz live verifiziert.
 

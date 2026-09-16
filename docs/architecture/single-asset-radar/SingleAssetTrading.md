@@ -1,6 +1,6 @@
 # Single-Asset Trading Framework (Regelwerk & Heuristik)
 
-> **Master-Architektur:** Dieses Dokument ist die quantitative Regelwerk-Spezifikation innerhalb des übergeordneten Frameworks [`Single-Asset-Radar-Architecture.md`](file:///D:/GitHub/CrashRadar/docs/architecture/single-asset-radar/Single-Asset-Radar-Architecture.md). Für den technischen Datenbezug der Kerzen siehe [`M5Candels.md`](file:///D:/GitHub/CrashRadar/docs/architecture/single-asset-radar/M5Candels.md).
+> **Master-Architektur:** Dieses Dokument ist die quantitative Regelwerk-Spezifikation innerhalb des übergeordneten Frameworks [`Single-Asset-Radar-Architecture.md`](file:///D:/GitHub/CrashRadar/docs/architecture/single-asset-radar/Single-Asset-Radar-Architecture.md). Für den technischen Datenbezug der Kerzen siehe [`M5Candles.md`](file:///D:/GitHub/CrashRadar/docs/architecture/single-asset-radar/M5Candles.md).
 
 Dieses Dokument definiert die quantitativen Handelsregeln, Filter, Indikator-Schwellenwerte und Exit-Bedingungen für liquide Einzelwerte und ETFs. Das Framework unterscheidet strikt zwischen **explosiven Einzelaktien (Katapult-Titeln)** und **breiten Sektor-ETFs**.
 

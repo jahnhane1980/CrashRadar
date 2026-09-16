@@ -100,11 +100,28 @@ describe('AnalysisRepository', () => {
     repo.pool.query = vi.fn().mockResolvedValue([[]]);
     const res1 = await repo.getFundamentalsForTicker('ZETA');
     expect(res1).toEqual([]);
+    expect(repo.pool.query).toHaveBeenCalledWith(expect.stringContaining('filing_date'), ['ZETA', '2015-01-01']);
     
     // DB returns valid data array
-    const mockRows = [{ date: '2023-01-01', period: '3M', shareIssued: 1000 }];
+    const mockRows = [{ date: '2023-01-01', filing_date: '2023-02-15', period: '3M', shareIssued: 1000, yoy_revenue_growth_pct: 25.5 }];
     repo.pool.query = vi.fn().mockResolvedValue([mockRows]);
     const res2 = await repo.getFundamentalsForTicker('SOFI');
     expect(res2).toEqual(mockRows);
+  });
+
+  it('sollte getOhlcvForTicker mit optionalem endDate korrekt filtern', async () => {
+    const repo = new AnalysisRepository('mysql://dummy');
+
+    // Test BTC mit endDate
+    repo.pool.query = vi.fn().mockResolvedValue([[{ date: '2023-01-01', close: 20000 }]]);
+    const btcRes = await repo.getOhlcvForTicker('BTC', '2023-01-01', '2023-12-31');
+    expect(repo.pool.query).toHaveBeenCalledWith(expect.stringContaining('DATE_FORMAT(FROM_UNIXTIME(open_time/1000), \'%Y-%m-%d\') <= ?'), ['2023-01-01', '2023-12-31']);
+    expect(btcRes).toHaveLength(1);
+
+    // Test Equity mit endDate
+    repo.pool.query = vi.fn().mockResolvedValue([[{ date: '2023-01-01', close: 150 }]]);
+    const equityRes = await repo.getOhlcvForTicker('AAPL', '2023-01-01', '2023-12-31');
+    expect(repo.pool.query).toHaveBeenCalledWith(expect.stringContaining('record_date <= ?'), ['AAPL', '2023-01-01', '2023-12-31']);
+    expect(equityRes).toHaveLength(1);
   });
 });

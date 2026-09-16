@@ -6,20 +6,11 @@ Dieses Dokument beschreibt die Architektur, Datenquellen, Endpunkte, Transformat
 
 ---
 
-## 1. Ursprungs-Referenzen im Schwesterprojekt (`datacenter`)
+## 1. Autarkie & System-Rolle
 
-Zur lückenlosen Nachvollziehbarkeit und als Referenz für die bestehende Implementierung sind die Original-Dateien aus `datacenter` verlinkt:
+Das M5-Kerzen-Framework arbeitet in CrashRadar vollständig autark (Zero-Dependency zu externen Schwesterprojekten, siehe auch [`System-Overlap-Datacenter-CrashRadar.md`](file:///D:/GitHub/CrashRadar/docs/architecture/data/System-Overlap-Datacenter-CrashRadar.md)). 
 
-* 🕹️ **M5-Hauptcontroller:** [`D:\GitHub\datacenter\src\controllers\M5Controller.js`](file:///D:/GitHub/datacenter/src/controllers/M5Controller.js)  
-  *Steuert den M5-Sync-Zyklus, prüft Marktöffnungszeiten und triggert den Delta-/Backfill-Abruf.*
-* 🌐 **Polygon.io Service:** [`D:\GitHub\datacenter\src\services\PolygonIoService.js`](file:///D:/GitHub/datacenter/src/services/PolygonIoService.js)  
-  *Führt die REST-Calls aus, handhabt Paginierung (`next_url`) und Rate-Limit Pacing.*
-* 💾 **Candle Repository:** [`D:\GitHub\datacenter\src\repositories\CandleRepository.js`](file:///D:/GitHub/datacenter/src/repositories/CandleRepository.js)  
-  *Verwaltet die Ermittlung des letzten Timestamps und den `upsert` der M5-Kerzen.*
-* 📅 **Date & Range Helper:** [`D:\GitHub\datacenter\src\core\DateHelper.js`](file:///D:/GitHub/datacenter/src/core/DateHelper.js)  
-  *Berechnet Start-/Enddaten (`fromDate`, `toDate`), Backfill-Schwellen ($> 48\text{h}$) und Timestamps.*
-* 🚦 **Job-Router & MarketStatus:** [`D:\GitHub\datacenter\src\core\Router.js`](file:///D:/GitHub/datacenter/src/core/Router.js)  
-  *Routet den Task `m5:sync` und prüft vorab den Polygon-Marktstatus.*
+Es versorgt das Single-Asset Radar mit 5-Minuten-Intraday-Daten für Katapult-Ausbrüche (`BREAKOUT_ACTIVE`), Power-Hour Dumps unter Tages-VWAP (`TOP_CLIMAX_ALERT`) und Sektor-Trendfolgen (`IGV`, `CIBR`).
 
 ---
 
@@ -183,16 +174,16 @@ Um die Datenbeschaffung konsistent und sauber im Projekt zu verankern, wird der 
 | **3. Runner-Pipeline** | [`TimeSeriesFetchRunner.js`](file:///D:/GitHub/CrashRadar/src/runners/TimeSeriesFetchRunner.js), [`StandardRunner.js`](file:///D:/GitHub/CrashRadar/src/runners/StandardRunner.js) | 🟢 **Erledigt** | Profil-Parameter wird transparent an Fetcher durchgereicht. |
 | **4. Profil-Filterung** | [`TimeSeriesFetcher.js`](file:///D:/GitHub/CrashRadar/src/services/TimeSeriesFetcher.js) | 🟢 **Erledigt** | `runAllTasks(profile)` filtert `tasks` nach `frequency || 'daily'`. |
 | **5. Profil-Unit-Tests** | [`TimeSeriesFetcherProfile.test.js`](file:///D:/GitHub/CrashRadar/tests/services/TimeSeriesFetcherProfile.test.js) | 🟢 **Erledigt** | 3/3 Tests bestanden (vollständige Regressionsfreiheit). |
-| **6. Fetch-Adapter** | [`PolygonFetchAdapter.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/fetch/PolygonFetchAdapter.js) | ⏳ **Offen** | Nächster Schritt (Code-Skelett siehe unten). |
+| **6. Fetch-Adapter** | `PolygonFetchAdapter.js` (Plan) | ⏳ **Offen** | Nächster Schritt (Code-Skelett siehe unten). |
 | **7. Factory-Registrierung** | [`FetchAdapterFactory.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/fetch/FetchAdapterFactory.js) | ⏳ **Offen** | Eintrag `'Polygon': new PolygonFetchAdapter()`. |
-| **8. Config-Erweiterung** | [`Database-Fetcher-Config.json`](file:///D:/GitHub/CrashRadar/config/Database-Fetcher-Config.json) | ⏳ **Offen** | `providers.Polygon` & 10 Tasks für `market_data_m5`. |
+| **8. Config-Eintrag** | [`Database-Fetcher-Config.json`](file:///D:/GitHub/CrashRadar/config/Database-Fetcher-Config.json) | ⏳ **Offen** | Task `m5_polygon` registrieren. |
 | **9. Adapter-Unit-Tests** | `tests/core/adapters/fetch/PolygonFetchAdapter.test.js` | ⏳ **Offen** | Unit-Tests für Paginierung, Pacing & MarketStatus. |
 
 ---
 
 ### B. Nomenklatur-Definition
 * **Provider-Name:** `"Polygon"` in [`Database-Fetcher-Config.json`](file:///D:/GitHub/CrashRadar/config/Database-Fetcher-Config.json)
-* **Fetch-Adapter-Klasse:** `PolygonFetchAdapter` in [`src/core/adapters/fetch/PolygonFetchAdapter.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/fetch/PolygonFetchAdapter.js)
+* **Fetch-Adapter-Klasse:** `PolygonFetchAdapter` in `src/core/adapters/fetch/PolygonFetchAdapter.js`
 * **Factory-Registrierung:** `FetchAdapterFactory.get('Polygon')` in [`src/core/adapters/fetch/FetchAdapterFactory.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/fetch/FetchAdapterFactory.js)
 * **Task-ID Konvention:** `polygon_m5_<ticker_lowercase>` (z. B. `polygon_m5_pltr`, `polygon_m5_nvts`, `polygon_m5_igv`)
 * **Ziel-Tabelle:** `market_data_m5`
@@ -232,88 +223,9 @@ Um die Datenbeschaffung konsistent und sauber im Projekt zu verankern, wird der 
       "timespan": "minute",
       "table": "market_data_m5",
       "frequency": "intraday_m5"
-    },
-    {
-      "id": "polygon_m5_nvts",
-      "provider": "Polygon",
-      "ticker": "NVTS",
-      "multiplier": 5,
-      "timespan": "minute",
-      "table": "market_data_m5",
-      "frequency": "intraday_m5"
-    },
-    {
-      "id": "polygon_m5_ibrx",
-      "provider": "Polygon",
-      "ticker": "IBRX",
-      "multiplier": 5,
-      "timespan": "minute",
-      "table": "market_data_m5",
-      "frequency": "intraday_m5"
-    },
-    {
-      "id": "polygon_m5_igv",
-      "provider": "Polygon",
-      "ticker": "IGV",
-      "multiplier": 5,
-      "timespan": "minute",
-      "table": "market_data_m5",
-      "frequency": "intraday_m5"
-    },
-    {
-      "id": "polygon_m5_cibr",
-      "provider": "Polygon",
-      "ticker": "CIBR",
-      "multiplier": 5,
-      "timespan": "minute",
-      "table": "market_data_m5",
-      "frequency": "intraday_m5"
-    },
-    {
-      "id": "polygon_m5_spy",
-      "provider": "Polygon",
-      "ticker": "SPY",
-      "multiplier": 5,
-      "timespan": "minute",
-      "table": "market_data_m5",
-      "frequency": "intraday_m5"
-    },
-    {
-      "id": "polygon_m5_qqq",
-      "provider": "Polygon",
-      "ticker": "QQQ",
-      "multiplier": 5,
-      "timespan": "minute",
-      "table": "market_data_m5",
-      "frequency": "intraday_m5"
-    },
-    {
-      "id": "polygon_m5_soun",
-      "provider": "Polygon",
-      "ticker": "SOUN",
-      "multiplier": 5,
-      "timespan": "minute",
-      "table": "market_data_m5",
-      "frequency": "intraday_m5"
-    },
-    {
-      "id": "polygon_m5_sofi",
-      "provider": "Polygon",
-      "ticker": "SOFI",
-      "multiplier": 5,
-      "timespan": "minute",
-      "table": "market_data_m5",
-      "frequency": "intraday_m5"
-    },
-    {
-      "id": "polygon_m5_s",
-      "provider": "Polygon",
-      "ticker": "S",
-      "multiplier": 5,
-      "timespan": "minute",
-      "table": "market_data_m5",
-      "frequency": "intraday_m5"
     }
+    // Vollständige Deklaration aller 10 Fokus-Tasks (PLTR, NVTS, IBRX, IGV, CIBR, SPY, QQQ, SOUN, SOFI, S)
+    // siehe config/Database-Fetcher-Config.json
   ]
 }
 ```

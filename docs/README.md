@@ -37,7 +37,7 @@ Hier finden Entwickler und System-Architekten alle operativen Spezifikationen, E
 ### A. 🎯 Single-Asset Radar (`docs/architecture/single-asset-radar/`)
 * 📄 **[`Single-Asset-Radar-Architecture.md`](file:///D:/GitHub/CrashRadar/docs/architecture/single-asset-radar/Single-Asset-Radar-Architecture.md):**  
   *Master-Architektur des Single-Asset Radars, 3-Schichten-Modell (Ingestion, Analytics, Delivery), 17:15 & 22:15 Uhr Workflows und Ntfy-Smartphone-Alerting.*
-* 📄 **[`M5Candels.md`](file:///D:/GitHub/CrashRadar/docs/architecture/single-asset-radar/M5Candels.md):**  
+* 📄 **[`M5Candles.md`](file:///D:/GitHub/CrashRadar/docs/architecture/single-asset-radar/M5Candles.md):**  
   *Spezifikation der Polygon.io REST-API, 50.000 Kerzen Paginierung, Pacing, Rate-Limit Schutz und MySQL-Schema `market_data_m5`.*
 * 📄 **[`SingleAssetTrading.md`](file:///D:/GitHub/CrashRadar/docs/architecture/single-asset-radar/SingleAssetTrading.md):**  
   *Quantitatives Regelwerk: 4-Phasen-Katapult-Engine für Growth-Aktien (NVTS, PLTR, IBRX) und duales MACD-Regime für Sektor-ETFs (IGV, CIBR).*
@@ -49,9 +49,7 @@ Hier finden Entwickler und System-Architekten alle operativen Spezifikationen, E
   *Fiskaldominanz vs. Fed-Bilanz, WRESBAL-Schwellenwerte und K-Faktor-Logik.*
 * 📄 **[`Makro-Kalender-Szenarien-Konzept.md`](file:///D:/GitHub/CrashRadar/docs/architecture/macro/Makro-Kalender-Szenarien-Konzept.md):**  
   *Vollständige DB-gestützte Architektur für Termine, Konsens-Schätzungen und 2-Stufen-Regeln (`Option A: Full DB`).*
-* 📄 **[`ScenarioChecklistService-Gap-Analyse.md`](file:///D:/GitHub/CrashRadar/docs/architecture/macro/ScenarioChecklistService-Gap-Analyse.md):**  
-  *Technischer Code-Abgleich und Gap-Analyse zur Migration von statischen JSON-Konfigurationen auf das datenbankgestützte 3-Schichten-Framework.*
-* 📄 **[`Macro-Calendar-Events.md`](file:///D:/GitHub/CrashRadar/docs/architecture/database/Macro-Calendar-Events.md):**  
+* 📄 **[`Macro-Calendar-Events.md`](file:///D:/GitHub/CrashRadar/docs/architecture/data/Macro-Calendar-Events.md):**  
   *Zentrale, kontinuierliche Kalendertabelle `macro_calendar_events`: Automatischer Abgleich von Fiskalfristen, Continuing Resolutions (CR EXTENDED/CONFIRMED), deterministischer QRA-Zyklus und dynamische X-Date-Projektion via US Treasury DTS Table IIIC.*
 * 📄 **[`Checkliste-Goldilocks-Szenarios.md`](file:///D:/GitHub/CrashRadar/docs/architecture/macro/Checkliste-Goldilocks-Szenarios.md):**  
   *Monatliche Event-Checkliste für anstehende Makro-Veröffentlichungen mit tagesaktueller Live-Status-Erfassung.*
@@ -72,33 +70,29 @@ Hier finden Entwickler und System-Architekten alle operativen Spezifikationen, E
   *Spezifikation der 4-Regime-Geldmarkt-Architektur (`EXPANSION`, `BUFFERED_CUSHION`, `DRAIN_WARNING`, `CRITICAL_DRAIN`), Time-to-Collision (TTC), atomarer Leaf-Sensor `LiquidityCollisionSensor` und empirische Detektion der toxischen 93%-Crash-Falle (`dualMacroStress >= 55 && VIX > 25`).*
 * 📄 **[`DailyPortfolioCompass.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signals/DailyPortfolioCompass.md):**  
   *Taktischer Portfolio- & Timing-Lotse: Synthese aus Geldmarkt-, Derivate- und Goldilocks-Hubs mit Trading212-Depotverknüpfung (`TEILGEWINNE PRÜFEN`, `FÜSSE STILLHALTEN`, `NOT-EXIT / ABSICHERN`), Erkennung von Verfallswochen-Ausschütteln vor Hexensabbat (`SHAKEOUT`) und Ntfy-Push-Alarmierung (`NTFY_PORTFOLIO_COMPASS_TOPIC`).*
-* 📄 **[`Makrowetter-Audit-und-Refactoring.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signals/Makrowetter-Audit-und-Refactoring.md):**  
-  *Code-Audit & Bereinigung des Makrowetter-Berichts: Stilllegung veralteter Monolithen (`SmartDumbMoneyBottom`), Entschärfung von Margin-Debt Fehleskalationen (-5% Warning / -10% Critical), 180-Tage Un-Inversions-Gedächtnis für die Renditekurve und Einhängen der Katastrophen-Matrix in die Pipeline.*
 
 ### E. ♟️ Portfoliostrategien & Allokations-Regeln (`docs/architecture/strategies/`)
 
 ```mermaid
 flowchart LR
-    subgraph S1 ["1. FINDEN (Scouting)"]
-        PIGE["📄 kamikaze/01-Post-Ipo-Growth-Engine.md<br>• 4.000 US-Aktien Scan (SEC XBRL)<br>• IPO-Kater 1-5J, Rule of 40<br>• Composite Score >= 65"]
+    subgraph S1 ["1. FINDEN (Scouting / Watchlist)"]
+        Scout["💡 Curated Investor Watchlist<br>(PLTR, S, NVTS, IBRX)<br>+ V2: PIGE SEC-Screener"]
     end
     
     subgraph S2 ["2. PRÜFEN & KAUFEN (Scharfschütze)"]
-        TF["📄 kamikaze/02-Turnaround-Framework.md<br>(Single Source of Truth)<br>• Solvenz-Airbag (Runway, Schulden)<br>• Wyckoff-Boden & Event-Pivot (t0)<br>• Parabolik-Notbremse & 3 Typen"]
+        TF["🔬 Turnaround-Forschung & Timing<br>• Solvenz-Airbag (Runway, Schulden)<br>• Wyckoff-Boden & Event-Pivot (t0)<br>• Parabolik-Notbremse & 3 Typen"]
     end
     
     subgraph S3 ["3. ALLOKATION & EXECUTION (Master)"]
         KMG["📄 Kamikaze-Growth.md<br>• 50/50 Tech & Krypto-Equities<br>• S&P 500 Mutterschiff (35% Funke)<br>• Krypto 21W-EMA & War Chest"]
     end
 
-    PIGE -- "Kandidaten (status = 'OBSERVE')" --> TF
-    UserCurated["💡 Investor Watchlist<br>(PLTR, S, NVTS, IBRX)"] -- "status = 'OBSERVE'" --> TF
+    Scout -- "Kandidaten (status = 'OBSERVE')" --> TF
     TF -- "Kaufsignal (BUY / HOLD & BUY)" --> KMG
 ```
 
 * 📄 **[`7-Slot-Guru-Konsens-System.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/7-Slot-Guru-Konsens-System.md):**  
   *Masterplan Version 3.1.0 (Dual-Engine Governance & KI-Infrastruktur): Arbeitsteilung zwischen Tech-Momentum-Scouts (Altimeter, Coatue, Tiger Global als Alpha-Motor) und Makro-Risiko-Wächtern (Duquesne, PointState, Appaloosa als Governance & Veto-Gatekeeper). Thematische Öffnung auf Tech & KI-Infrastruktur/Power (Einzug von GE Vernova GEV in Slot 7, UBER im Watch-Pool Rang 1), doppelt gesichertes Rebalancing (Verdrängung bei Wächter-Trimmen UND SMA-50-Knick oder SMA-200-Überdehnung > 30 % mit +24,5 % Alpha-Beweis), dauerhafter Halbleiter-Deckel auf max. 2 Slots (TSM, NVDA; LRCX auf Deck mit Skip-Rule), Unterbelegungs-Doktrin ($100\% / N$ bei weniger als 7 Titeln am Boden, QQQ-Fallback bei $N=0$), Geopolitische Whitelist (China VIE-Ausschluss), Vetoed-No-Rebuy am Marktboden (+33,05 %P Alpha), automatisches 13F-Signature Nachfolge-Tracking sowie **Roadmap V3.2: Forschungs-Hypothese zur Drosselung überdehnter Spätzyklus-Positionen und Vorziehen frischer Watch-Pool-Kandidaten (UBER)**.*  
-  * 🗄️ **[`guru-archive/7-Slot-Guru-Konsens-System-v2.1-Archive.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/guru-archive/7-Slot-Guru-Konsens-System-v2.1-Archive.md):** *Historisches Archiv der Vorgänger-Version 2.1 (archiviert am 14.09.2026).*
 * 📄 **[`Gold-GDX.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Gold-GDX.md):**  
   *Quantitative Tranchen-Exit- und Regime-Strategie für Gold & GDX (Selling Climax, Divergenzen, ROC-Erschöpfung und Catastrophe Stop).*
 * 📄 **[`Gold-SPY.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Gold-SPY.md):**  
@@ -106,10 +100,7 @@ flowchart LR
 * 📄 **[`Muzzled-Cathie-Wood.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Muzzled-Cathie-Wood.md):**  
   *Master V3 des Cathie-Wood-Radars: 60/40 Strategische Allokation (60 % Tech / 40 % Krypto), 3-Säulen-ARK-Ingestion (Watchlist `OBSERVE` $\rightarrow$ `BUY` erst nach Chart-Validierung), organischer Tech Sub-Bucket ohne Slot-Limit mit S&P 500 Mutterschiff, autonom gesteuerter Krypto Sub-Bucket (`BTC`, `COIN`, `HOOD`) via 21-Wochen-EMA mit 40/30/30-Pyramide & internem Leihgabe-Verrechnungskonto (`kryptoClaimUSD`), Sektor-Relativität (SMH/IGV), Flag-System (`HOLD & BUY` Verkaufsblockade vs. `HOLD & OBSERVE`) mit 3-Stufen-Abbau (1/3 bei Growth-Knick, 1/3 bei SMA 200, 100 % bei Folge-Knick), konträres Dip-Buying, 100 % Notfall-Evakuierung in 50 % Gold / 50 % Cash mit Dual-Re-Entry-Sniper (+1.286,33 % Nettorendite / 304.991,89 €) inkl. PoC in [`MuzzledCathieWoodSimulation.js`](file:///D:/GitHub/CrashRadar/simulations/MuzzledCathieWoodSimulation.js).*
 * 📄 **[`Kamikaze-Growth.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Kamikaze-Growth.md):**  
-  *Master-Strategie für das private High-Conviction Realdepot (~94.000 $ Basis): 50/50 Tech- & Krypto-Equity-Allokation mit S&P 500 Mutterschiff, 35 % Zündfunken-Allokation, Krypto-21W-EMA Regime, 100 % Notfall-Evakuierung (50 Gold / 50 Cash), Broker-Realität ('Broker ist Gesetz') sowie Zwei-Phasen-Restrukturierungsmodell (Oktober-Liquidierung & War Chest).*
-  * 📁 **Modulare Kamikaze-Architektur ([`docs/architecture/strategies/kamikaze/`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/)):**
-    * 📄 **[`Kamikaze-Master-Drehbuch.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/Kamikaze-Master-Drehbuch.md):** *Das lückenlose, empirisch bewiesene Master-Drehbuch & Protokoll (Single Source of Truth) aus Spürhund für Wall-Street-Irrsinn (Selling Climax, Trockenvolumen, Akkumulation), 3 Asset-Klassen (LASTING_HOLD, CYCLICAL, BINARY), 50/50-Allokation und Panik-Kriegskasse.*
-    * 🗄️ **[`kamikaze-archive/`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze-archive/):** *Historisches Archiv der Vorgänger-Entwürfe (01-PIGE, 02-Turnaround, 03-Interface, v1.1 Master).*
+  *Das lückenlose, empirisch bewiesene Master-Drehbuch & Protokoll (Single Source of Truth) für das private High-Conviction Realdepot (~94.000 $ Basis): Spürhund für Wall-Street-Irrsinn (Selling Climax, Trockenvolumen, Akkumulation), 3 Asset-Klassen (`LASTING_HOLD`, `CYCLICAL`, `BINARY`), 50/50 Tech- & Krypto-Equity-Allokation mit S&P 500 Mutterschiff, 35 % Zündfunken-Allokation, Krypto-21W-EMA Regime, 100 % Notfall-Evakuierung (50 Gold / 50 Cash), Broker-Realität ('Broker ist Gesetz') sowie Zwei-Phasen-Restrukturierungsmodell (Oktober-Liquidierung & War Chest).*
 * 📄 **[`Satelite.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Satelite.md):**  
   *Geopolitisch gehärtetes Core-Satellite-Depot: 80 % SPY (S&P 500 Mutterschiff), 15 % DFNS (VanEck Defense UCITS ETF) und 5 % BTC (Bitcoin). Im Normalbetrieb gilt kompromissloses HODL (keine unterjährigen Verkäufe). Rebalancing erfolgt ausschließlich über den universellen Notfall-Stecker (100 % Notfall-Evakuierung in 50 % Gold / 50 % Cash bei NetLiq < -5 % & Credit Spreads > 4 % sowie Rebalancing-Reset bei Re-Entry am Marktboden) (+83,40 % Rendite / +12,68 %-Pkt. Alpha vs. SPY) inkl. PoC in [`SatelliteCoreSimulation.js`](file:///D:/GitHub/CrashRadar/simulations/SatelliteCoreSimulation.js).*
 
@@ -175,6 +166,10 @@ Hier liegen alle empirischen Auswertungen, historischen Krisen-Härtetests und m
   *Fraktales Trading: Empirischer Beweis zur Vermeidung von Slippage durch Trennung von Tages-Signal und Intraday-Ausführung.*
 * 📄 **[`Architecture-Audit.md`](file:///D:/GitHub/CrashRadar/docs/research/methodology-audits/Architecture-Audit.md):**  
   *Code-vs-Theorie Audit Report.*
+* 📄 **[`Makrowetter-Audit.md`](file:///D:/GitHub/CrashRadar/docs/research/methodology-audits/Makrowetter-Audit.md):**  
+  *Code-Audit & Bereinigungs-Protokoll des Makrowetter-Berichts: Stilllegung veralteter Monolithen (`SmartDumbMoneyBottom`), Entschärfung von Margin-Debt Fehleskalationen (-5% Warning / -10% Critical), 180-Tage Un-Inversions-Gedächtnis für die Renditekurve und Einhängen der Katastrophen-Matrix in die Pipeline.*
+* 📄 **[`ScenarioChecklist-Audit.md`](file:///D:/GitHub/CrashRadar/docs/research/methodology-audits/ScenarioChecklist-Audit.md):**  
+  *Technischer Code-Abgleich und Migrations-Audit zur Umstellung des Szenario- und Kalendersystems auf das datenbankgestützte 3-Schichten-Framework (`macro_calendar_events`).*
 
 ### E. 🚀 High-Beta Growth & Turnaround Forschung (`docs/research/turnarounds/`)
 * 📄 **[`Turnaround-Research-Proof.md`](file:///D:/GitHub/CrashRadar/docs/research/turnarounds/Turnaround-Research-Proof.md):**  
@@ -231,8 +226,6 @@ Hier liegen alle empirischen Auswertungen, historischen Krisen-Härtetests und m
   *ADR-011: Dual-Gatekeeper-Reentry-These (Systematischer Wiedereinstieg nach Liquiditäts-Crashes): Empirisch falsifizierter Härtetest (2004–2026, 7.992 Handelstage). Beweis der Rebound-Lag-Kosten: Zwar verbesserte der Gatekeeper das Corona-Manöver 2020 (+13,95 % vs. +1,59 % Alpha), kostete das Gesamtportfolio über 21,8 Jahre jedoch -331.960 € an Zinseszins-Wachstum (578.734 € vs. 910.695 € Baseline), weshalb permanente Trend-Gatekeeper beim Re-Entry verworfen werden.*
 * 📄 **[`ADR-012-Selling-Climax-Volumen-These.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-012-Selling-Climax-Volumen-These.md):**  
   *ADR-012: Selling-Climax-Volumen-These (Empirischer Test von Volumen-Spikes am S&P 500 / SPY als Re-Entry-Katalysator): Empirisch falsifizierter Härtetest (2004–2026, 7.992 Handelstage). Mathematische Widerlegung naiver Volumen-Multiplikatoren (>= 2,0x): 20-Tage-Erholungsrendite negativ (-0,09 %), Asymmetrie ungünstig (0,90:1) und gravierendes Baseline-Lag-Paradoxon (Boden 2020 bei nur 1,70x wegen explodiertem SMA-50; GFC-Boden 2009 bei 0,97x). Beweis, dass Volumen primär Liquidationsdruck spiegelt und isoliert kein autonomes Kaufsignal darstellt.*
-* 📄 **[`ADR-Thesen-Synthese-Archive.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-Thesen-Synthese-Archive.md):**  
-  *Thesen-Synthese & Harmonisierung: Historische Konzeptionsnotiz zur Auflösung von Widersprüchen (ADR-004 vs. ADR-011 Re-Entry-Dilemma, Post-Election-Dynamisierung ADR-007, OpEx-Veto-Paralyse).*
 
 
 
