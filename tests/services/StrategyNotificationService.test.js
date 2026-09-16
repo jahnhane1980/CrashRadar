@@ -1,19 +1,23 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach, afterAll } from 'vitest';
 import { StrategyNotificationService } from '../../src/services/StrategyNotificationService.js';
 import { Logger } from '../../src/core/Logger.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const TEST_HISTORY_PATH = path.resolve(__dirname, '../../test/strategy_alert_history_test.json');
+const TEST_TMP_DIR = path.resolve(__dirname, '../.tmp');
+const TEST_HISTORY_PATH = path.resolve(TEST_TMP_DIR, 'strategy_alert_history_test.json');
 
 describe('StrategyNotificationService', () => {
   let originalEnvTopic;
 
   beforeEach(() => {
     originalEnvTopic = process.env.NTFY_PORTFOLIO_GOLD_SPY;
+    if (!fs.existsSync(TEST_TMP_DIR)) {
+      fs.mkdirSync(TEST_TMP_DIR, { recursive: true });
+    }
     if (fs.existsSync(TEST_HISTORY_PATH)) {
       try { fs.unlinkSync(TEST_HISTORY_PATH); } catch (e) {}
     }
@@ -27,6 +31,12 @@ describe('StrategyNotificationService', () => {
     }
     if (fs.existsSync(TEST_HISTORY_PATH)) {
       try { fs.unlinkSync(TEST_HISTORY_PATH); } catch (e) {}
+    }
+  });
+
+  afterAll(() => {
+    if (fs.existsSync(TEST_TMP_DIR)) {
+      try { fs.rmSync(TEST_TMP_DIR, { recursive: true, force: true }); } catch (e) {}
     }
   });
 
