@@ -221,3 +221,33 @@ Unter Berücksichtigung der Dual-Engine-Governance, des dauerhaften Halbleiter-S
   * Re-Entry am Bärenmarkt-Boden 2022 erzielte **+455,06 %** (+33,05 %P Alpha über reinem Rebuy).
 * 💻 **Wächter-bestätigtes Rebalancing & KI-Infrastruktur:** [`simulate_guardian_confirmed_rotations.js`](file:///D:/GitHub/CrashRadar/scratch/research/strategies/simulate_guardian_confirmed_rotations.js)  
   * 10,5-Jahre-Gesamtergebnis: **152.940 $ (+1.429,4 %)** vs. Baseline 122.826 $ (+1.128,3 %) $\rightarrow$ **+30.114 $ reines Alpha (+24,5 % Mehrertrag)** durch das Entsperren des Wächter-Rebalancings bei SMA-50-Knick oder SMA-200-Überdehnung (> 30 %) inklusive rechtzeitigem Einzug von **GE Vernova (`GEV`)** am 30.09.2024.
+
+---
+
+## 10. Forschungs-Hypothese & Roadmap (Version 3.2): Das Late-Cycle-Überdehnungs- & Vorzieh-Dilemma
+
+> [!WARNING]
+> **Forschungs-Hypothese (Mögliche Rendite-Bremse im Spätzyklus):**  
+> Bringen wir uns aktuell selbst um Performance und Alpha, wenn wir das System in späten Zyklusphasen unverändert belassen?  
+> Wenn ein Anleger neu in das 7-Slot-System einsteigt (oder nach einer Cash-Phase ein Re-Entry erfolgt) und stur jedem der 7 Titel exakt **14,29 %** zuweist, wird massiv Kapital in Alt-Positionen gebunden, die bereits eine gigantische Rallye hinter sich haben (z. B. `NVDA`, `TSM`, `META` mit hunderten Prozent Kursgewinn und extremer Überdehnung über dem SMA 200).  
+> Gleichzeitig stehen frische, unentdeckte High-Conviction-Kandidaten auf der Ersatzbank und können ihr dynamisches Aufholpotenzial nicht entfalten.
+
+### Die beiden vorgeschlagenen Lösungs-Mechanismen für Version 3.2:
+
+#### A. Diminishing Allocation for Overextended Runners (Drosselung gelaufener Positionen)
+* **Problem:** Stark gelaufene Titel bieten im Spätzyklus ein asymmetrisch schlechteres Chance/Risiko-Verhältnis (hohe Rückschlaggefahr bei Zins- oder Bewertungsschocks).
+* **Regel-Entwurf:** Bei einem Neu-Einstieg oder Rebalancing erhalten Positionen, die extrem überdehnt sind (z. B. Kurs $> +35\,\%$ bis $+50\,\%$ über dem SMA 200 oder Parabolik-Erschöpfung), **gezielt weniger Kapitalraum** (z. B. Drosselung auf **5,0 % bis 7,0 %** statt stur 14,29 %).
+
+#### B. Fast-Track Priority for Fresh Emerging Candidates (Vorzugs-Slots für Nachrücker)
+* **Problem:** Frische Titel mit extremem Aufholpotenzial (z. B. **`UBER`** im Watch-Pool mit $1,08 Mrd. Wächter/Scout-Konviktion, oder frühe L2-Boden-Turnarounds) kommen formal noch nicht zum Zug, weil alle 7 Slots durch Alt-Giganten blockiert sind.
+* **Regel-Entwurf:** Freiwerdender Kapitalraum aus der Drosselung von Alt-Positionen wird genutzt, um **frische, noch nicht gelaufene Top-Kandidaten aus dem Watch-Pool vorzuziehen** („Vorzugs-Slot“). Sie erhalten früheren Einzug und höheres Gewicht, um den dynamischen Zyklusbeginn voll mitzunehmen.
+
+---
+
+### Konkreter Forschungs- & Backtest-Auftrag (Vor Freigabe für V3.2)
+Bevor dieser Mechanismus in das verbindliche Regelwerk übergeht, muss ein empirischer Proof-First-Backtest über die letzten 10,5 Jahre (2016–2026) durchgeführt werden:
+1. **Vergleichs-Simulation:** Starre 14,29 %-Gleichgewichtung vs. dynamische Überdehnungs-Drosselung + Vorzugs-Slots.
+2. **Erfolgs-Kriterien:**
+   * Steigert das Vorziehen frischer Kandidaten die Netto-Gesamtrendite (Alpha)?
+   * Reduziert die Drosselung überdehnter Titel die Drawdowns bei Marktkorrekturen?
+   * Verhindert das System Klumpenrisiken, ohne die „Gewinner laufen lassen“-Doktrin der Scouts zu beschädigen?
