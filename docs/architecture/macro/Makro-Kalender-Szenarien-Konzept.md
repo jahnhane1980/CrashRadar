@@ -446,7 +446,7 @@ sequenceDiagram
 
 ---
 
-## 10. Zukunftsausblick: Integration in MacroEngine & TradingEngine
+## 10. Zukunftsausblick: Integration in MacroEngine & PortfolioStrategyEngine
 
 Ursprünglich als reines Reporting- und Monitoring-Tool gestartet, besitzt das dynamische Szenario-Framework alle mathematischen und strukturellen Eigenschaften eines vollwertigen **Makro-Regime-Indikators**.
 
@@ -461,8 +461,8 @@ flowchart LR
         State["State: GOLDILOCKS_CONFIRMED\nSeverity: LOW / BULLISH\nRegime: DISINFLATIONARY_GROWTH"]
     end
 
-    subgraph Trading["3. TradingEngine (Execution & Veto)"]
-        Radar["MlRegimeRadar / Watchdog\n(docs/architecture/trading-engine/TradingEngine.md)"]
+    subgraph Strategy["3. StrategyEngine (Execution & Veto)"]
+        Radar["MlRegimeRadar / Watchdog\n(PortfolioStrategyEngine)"]
         Kelly["Fractional Kelly: 1.0x (Volle Allokation)\nBei FAILED: scaleDown & Veto"]
     end
 
@@ -487,10 +487,10 @@ flowchart LR
   }
   ```
 
-### 10.2 Rolle in der TradingEngine ([`docs/architecture/trading-engine/TradingEngine.md`](file:///D:/GitHub/CrashRadar/docs/architecture/trading-engine/TradingEngine.md))
+### 10.2 Rolle in der PortfolioStrategyEngine ([`src/strategies/PortfolioStrategyEngine.js`](file:///D:/GitHub/CrashRadar/src/strategies/PortfolioStrategyEngine.js))
 * **Verantwortung:** Fundamental-Veto und dynamische Risikoskalierung (Kelly Multiplikator).
 * **Handlungslogik:**
   * **Score $\ge 80\,\%$ (`CONFIRMED`):** Grünes Licht für Trendfolge- und Momentum-Strategien. Maximales Risiko-Budget.
-  * **Szenario `FAILED` (z. B. Inflations-Schock oder Sahm-Rezessions-Trigger):** Die TradingEngine zieht automatisch den **Fundamental-Watchdog** (`action.scaleDown`), friert neue Long-Käufe ein und zieht Trailing-Stops enger.
+  * **Szenario `FAILED` (z. B. Inflations-Schock oder Sahm-Rezessions-Trigger):** Die Strategy-Engine zieht automatisch den **Fundamental-Watchdog** (`action.scaleDown`), friert neue Long-Käufe ein und zieht Trailing-Stops enger.
 
-> **Roadmap-Einordnung:** In Phase 1 wird das System als autarker Runner & Benachrichtigungsdienst betrieben. In Phase 2 erfolgt die direkte Anbindung des Indikators an die Pipeline der TradingEngine.
+> **Roadmap-Einordnung:** In Phase 1 wird das System als autarker Runner & Benachrichtigungsdienst betrieben. In Phase 2 erfolgt die direkte Anbindung des Indikators an die Pipeline der [`PortfolioStrategyEngine.js`](file:///D:/GitHub/CrashRadar/src/strategies/PortfolioStrategyEngine.js).

@@ -16,7 +16,6 @@ flowchart TD
     
     Arch --> A1["🎯 single-asset-radar/<br>(M5 Ingestion & Radar-Master)"]
     Arch --> A2["🏛️ macro/<br>(Treasury Capacity & Kalender)"]
-    Arch --> A3["⚙️ trading-engine/<br>(Portfolio State Machine)"]
     Arch --> A4["🧠 ml/<br>(Strategy Pipeline Blueprint)"]
     Arch --> A5["♟️ strategies/<br>(Portfoliostrategien & Allokation)"]
     Arch --> A6["🌐 api/ & data/<br>(Provider-Schnittstellen)"]
@@ -60,17 +59,13 @@ Hier finden Entwickler und System-Architekten alle operativen Spezifikationen, E
   *Deterministische Erfassung von monatlichem OpEx, Quadruple Witching (Hexensabbat), VIX-Settlement und 5-Phasen-Derivate-State-Machine für vorausschauende Markt-Entlastung.*
 
 
-### C. ⚙️ Trading & Execution Engine (`docs/architecture/trading-engine/`)
-* 📄 **[`TradingEngine.md`](file:///D:/GitHub/CrashRadar/docs/architecture/trading-engine/TradingEngine.md):**  
-  *Die 5 Portfolio-Zustände (State Machine), 50/50 Krypto- & Growth-Philosophie, Fractional-Kelly-Sizing und Re-Entry-System.*
-
-### D. 🧠 Machine Learning Pipelines (`docs/architecture/ml/`)
+### C. 🧠 Machine Learning Pipelines (`docs/architecture/ml/`)
 * 📄 **[`ML_ARCHITECTURE.md`](file:///D:/GitHub/CrashRadar/docs/architecture/ml/ML_ARCHITECTURE.md):**  
   *Strategy-Pattern Pipeline Blueprint (`src/ml/`), dynamic FeatureBuilder und universelles TensorFlow-Training.*
 * 📄 **[`Makro-ML.md`](file:///D:/GitHub/CrashRadar/docs/architecture/ml/Makro-ML.md):**  
   *Technisches Konzept für das multivariate Makro-ML-Regime-Modell (XGBoost, Purged Walk-Forward CV & JS-Inferenz).*
 
-### E. 📡 Signal- & SensorHub-Architektur (`docs/architecture/signals/`)
+### D. 📡 Signal- & SensorHub-Architektur (`docs/architecture/signals/`)
 * 📄 **[`Composite-SensorHub-Architektur.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signals/Composite-SensorHub-Architektur.md):**  
   *Composite-Pattern für die SignalEngine: Trennung von atomaren Messfühlern (`MstrLeadSensor`, `BtcTrendSensor`, `DarkPoolSensor`, `VixShockSensor`, `SpyTrendSensor`, `CreditStressSensor`) und aggregierenden Sensor-Hubs (`CryptoSensorHub`, `MacroStressSensorHub`, `LiquiditySensorHub`, `MarketBottomSensorHub`) mit rein deskriptiven Markt-Regimes ohne Strategie-Bevormundung.*
 * 📄 **[`LiquiditySensorHub.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signals/LiquiditySensorHub.md):**  
@@ -80,7 +75,7 @@ Hier finden Entwickler und System-Architekten alle operativen Spezifikationen, E
 * 📄 **[`Makrowetter-Audit-und-Refactoring.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signals/Makrowetter-Audit-und-Refactoring.md):**  
   *Code-Audit & Bereinigung des Makrowetter-Berichts: Stilllegung veralteter Monolithen (`SmartDumbMoneyBottom`), Entschärfung von Margin-Debt Fehleskalationen (-5% Warning / -10% Critical), 180-Tage Un-Inversions-Gedächtnis für die Renditekurve und Einhängen der Katastrophen-Matrix in die Pipeline.*
 
-### F. ♟️ Portfoliostrategien & Allokations-Regeln (`docs/architecture/strategies/`)
+### E. ♟️ Portfoliostrategien & Allokations-Regeln (`docs/architecture/strategies/`)
 
 ```mermaid
 flowchart LR
@@ -119,13 +114,13 @@ flowchart LR
   *Geopolitisch gehärtetes Core-Satellite-Depot: 80 % SPY (S&P 500 Mutterschiff), 15 % DFNS (VanEck Defense UCITS ETF) und 5 % BTC (Bitcoin). Im Normalbetrieb gilt kompromissloses HODL (keine unterjährigen Verkäufe). Rebalancing erfolgt ausschließlich über den universellen Notfall-Stecker (100 % Notfall-Evakuierung in 50 % Gold / 50 % Cash bei NetLiq < -5 % & Credit Spreads > 4 % sowie Rebalancing-Reset bei Re-Entry am Marktboden) (+83,40 % Rendite / +12,68 %-Pkt. Alpha vs. SPY) inkl. PoC in [`SatelliteCoreSimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/SatelliteCoreSimulation.js).*
 
 
-### G. 🌐 Externe Schnittstellen & Daten (`docs/architecture/api/` & `docs/architecture/data/`)
+### F. 🌐 Externe Schnittstellen & Daten (`docs/architecture/api/` & `docs/architecture/data/`)
 * 📄 **[`FRED-Api.md`](file:///D:/GitHub/CrashRadar/docs/architecture/api/Stlouisfed.md)** | **[`Fiscaldata.md`](file:///D:/GitHub/CrashRadar/docs/architecture/api/Fiscaldata.md)** | **[`Tiingo.md`](file:///D:/GitHub/CrashRadar/docs/architecture/api/Tiingo.md)** | **[`Binance.md`](file:///D:/GitHub/CrashRadar/docs/architecture/api/Binance.md)** | **[`Yahoo-Finance.md`](file:///D:/GitHub/CrashRadar/docs/architecture/api/Yahoo-Finance.md)**
 * 📄 **[`DataStructure.md`](file:///D:/GitHub/CrashRadar/docs/architecture/data/DataStructure.md)**
 * 📄 **[`System-Overlap-Datacenter-CrashRadar.md`](file:///D:/GitHub/CrashRadar/docs/architecture/data/System-Overlap-Datacenter-CrashRadar.md):**  
   *Systemabgrenzung & funktionale Überlappungs-Analyse zwischen CrashRadar und dem Schwesterprojekt `datacenter` (FinanceOS): 17-Controller-Matrix, Datenbank-Divergenz (MySQL vs. Supabase), Autarkie-Doktrin für V1 (Zero-Dependency) und V2-Rollenverteilung (News-Sentinel & Data Warehouse).*
 
-### H. 📱 Signal- & Benachrichtigungsdienst (`docs/architecture/signal-service/`)
+### G. 📱 Signal- & Benachrichtigungsdienst (`docs/architecture/signal-service/`)
 * 📄 **[`Investment-Signaldienst.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signal-service/Investment-Signaldienst.md):**  
   *Serverlose 0,00-€-End-to-End-Architektur: 2-Ebenen-Signal-Hierarchie mit Trennung von zustandslosen Stock- & Asset-Radaren (`src/radars/`) und Portfolio-Kapitalmanagement (`src/strategies/`), CrashRadar Intelligence Engine (Pre-Computation Push via `PortfolioStrategyEngine` Plugin-Registry, Standard-Makrosignale als Service, autonomes Bucket- & Order-Management, Kamikaze Live-Broker Sync mit Discretionary Override) sowie moderne Chat- und Broadcast-Kanäle (Discord-Webhooks, 4-Fälle-Matrix, Rich Embeds).*
 * 📄 **[`Trading212-Portfolio-Broadcast.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signal-service/Trading212-Portfolio-Broadcast.md):**  

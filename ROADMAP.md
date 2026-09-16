@@ -202,17 +202,13 @@ Nach erfolgreichem V1-Go-Live werden die strategischen Großprojekte etappenweis
 
 ### 2.4 Makro-Kalender Phase 2: In-Engine Regime-Indikator
 * **Konzept:** [`docs/architecture/macro/Makro-Kalender-Szenarien-Konzept.md`](file:///D:/GitHub/CrashRadar/docs/architecture/macro/Makro-Kalender-Szenarien-Konzept.md).
-* **Ziel:** Kapselung der Szenario-Auswertung als vollwertiger Indikator (`MacroScenarioIndicator.js`) in der `MacroEngine`. Anbindung an die Trading Engine als Fundamental-Watchdog und Fractional-Kelly-Risikobremse (`action.scaleDown`).
+* **Ziel:** Kapselung der Szenario-Auswertung als vollwertiger Indikator (`MacroScenarioIndicator.js`) in der `MacroEngine`. Anbindung an die Strategy Engine ([`PortfolioStrategyEngine.js`](file:///D:/GitHub/CrashRadar/src/strategies/PortfolioStrategyEngine.js)) als Fundamental-Watchdog und Risikobremse.
 
 ### 2.5 Architektur-Review: Indikatoren-Pipeline & SensorHub-Refactoring
 * **Öl- & Liquiditäts-Stress:** Vormerkung zur späteren Aufnahme des [`MacroLiquiditySensorHub`](file:///D:/GitHub/CrashRadar/src/signals/hubs/MacroLiquiditySensorHub.js) (Ölpreis-Spikes $> 92\text{–}95\,\$$, Frachtdruck `IYT` vs. `CL=F`, Stagflationsrisiko aus [`Geopolitical-Oil-Liquidity-Stress-Study.md`](file:///D:/GitHub/CrashRadar/docs/research/macro-proofs/Geopolitical-Oil-Liquidity-Stress-Study.md)) in das Makrowetter.
 * **MacroEngine Modernisierung:** Geplante Überarbeitung der historischen `MacroRegimeEngine` auf die moderne SensorHub-Architektur.
 
-### 2.6 Trading & Execution Engine (Portfolio State Machine & ML)
-* **Spezifikation:** [`docs/architecture/trading-engine/TradingEngine.md`](file:///D:/GitHub/CrashRadar/docs/architecture/trading-engine/TradingEngine.md).
-* **Ziel:** 5-Stufen Portfolio State Machine für 50/50 Krypto- & Growth-Portfolio (`MSTR`, `NVTS`, `SOFI`, `ZETA`), Fractional-Kelly-Positionsgrößenanpassung (`action.scaleDown`), Einzeltitel-LSTMs kombiniert mit FINRA Short-Volume und 21-Jahre A/B-Backtest über 10 Großkrisen (2005–2026).
-
-### 2.7 Generational Turnaround Framework ($L_2$-Sniper)
+### 2.6 Generational Turnaround Framework ($L_2$-Sniper)
 * **Spezifikation:** [`docs/architecture/strategies/kamikaze/02-Turnaround-Framework.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/02-Turnaround-Framework.md) und Forschungs-Hypothese [`docs/research/turnarounds/Generational-Growth-Hypothesis.md`](file:///D:/GitHub/CrashRadar/docs/research/turnarounds/Generational-Growth-Hypothesis.md).
 * **Nächster Schritt:** Simulation von $L_2$-Sniper vs. Diamanten-Haltedauer in [`scratch/research/turnarounds/generational_sniper_simulation.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/generational_sniper_simulation.js).
 
