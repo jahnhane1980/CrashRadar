@@ -14,7 +14,7 @@ Dennoch zeigte die Risikokennzahl eine Auffälligkeit:
 Obwohl der Spitzenverlust im Vergleich zum reinen Aktienmarkt um über 7 Prozentpunkte gedämpft wurde, stellte sich die berechtigte Frage:  
 > *„Warum ging es 2020 noch so weit runter (-40,67 %)? Sind wir zu spät raus und/oder zu spät wieder rein?“*
 
-Die empirische Untersuchung der Handelstage im Frühjahr 2020 ([`scratch/research/strategies/InspectCorona2020.js`](file:///D:/GitHub/CrashRadar/scratch/research/strategies/InspectCorona2020.js)) liefert den eindeutigen Befund:  
+Die empirische Untersuchung der Handelstage im Frühjahr 2020 ([`research/strategy-prototypes/InspectCorona2020.js`](file:///D:/GitHub/CrashRadar/research/strategy-prototypes/InspectCorona2020.js)) liefert den eindeutigen Befund:  
 **Wir sind nicht zu spät raus, sondern am 06. März 2020 viel zu früh wieder eingestiegen – mitten in das fallende Messer!**
 
 ---
@@ -92,10 +92,10 @@ Die Re-Entry-Sperre und der State-Machine-Schutz wurden direkt im Code integrier
 
 * **Forschungsbericht (Root-Cause):** [`docs/research/strategies/Corona2020DrawdownRootCauseAnalysis.md`](file:///D:/GitHub/CrashRadar/docs/research/strategies/Corona2020DrawdownRootCauseAnalysis.md)
 * **Live-Analyse Skripte:**
-  * [`scratch/research/strategies/InspectCorona2020.js`](file:///D:/GitHub/CrashRadar/scratch/research/strategies/InspectCorona2020.js)
-  * [`scratch/research/strategies/CheckCoronaDrawdown.js`](file:///D:/GitHub/CrashRadar/scratch/research/strategies/CheckCoronaDrawdown.js)
-  * [`scratch/research/strategies/DebugMarch2020.js`](file:///D:/GitHub/CrashRadar/scratch/research/strategies/DebugMarch2020.js)
-  * [`scratch/research/strategies/GoldSpyDailyStressTest.js`](file:///D:/GitHub/CrashRadar/scratch/research/strategies/GoldSpyDailyStressTest.js)
+  * [`research/strategy-prototypes/InspectCorona2020.js`](file:///D:/GitHub/CrashRadar/research/strategy-prototypes/InspectCorona2020.js)
+  * [`research/strategy-prototypes/CheckCoronaDrawdown.js`](file:///D:/GitHub/CrashRadar/research/strategy-prototypes/CheckCoronaDrawdown.js)
+  * [`research/strategy-prototypes/DebugMarch2020.js`](file:///D:/GitHub/CrashRadar/research/strategy-prototypes/DebugMarch2020.js)
+  * [`simulations/GoldSpyDailyStressTest.js`](file:///D:/GitHub/CrashRadar/simulations/GoldSpyDailyStressTest.js)
 * **Betroffene Indikatoren & Strategien:**
   * [`src/analysis/indicators/GoldSniperIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/GoldSniperIndicator.js)
   * [`src/analysis/indicators/PanicCapitulationIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/PanicCapitulationIndicator.js)

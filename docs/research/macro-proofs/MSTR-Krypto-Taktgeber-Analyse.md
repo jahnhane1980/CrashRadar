@@ -2,7 +2,7 @@
 
 *Empirische Backtest- und Kausalitätsanalyse (2021–2026): MSTR vs. COIN vs. Bitcoin*
 
-> 💻 **Simulations- und Beweiscode:** [`scratch/research/macro-proofs/MSTR-COIN-Krypto-Radar.js`](file:///D:/GitHub/CrashRadar/scratch/research/macro-proofs/MSTR-COIN-Krypto-Radar.js)  
+> 💻 **Simulations- und Beweiscode:** [`research/macro-proofs/MSTR-COIN-Krypto-Radar.js`](file:///D:/GitHub/CrashRadar/research/macro-proofs/MSTR-COIN-Krypto-Radar.js)  
 > ⚙️ **Operativer Indikator:** [`src/analysis/indicators/BtcTrailingStopIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/BtcTrailingStopIndicator.js)
 
 ---

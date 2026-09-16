@@ -60,4 +60,4 @@ flowchart TD
 
 * Leaf-Sensor-Tests: [`tests/signals/sensors/LiquidityCollisionSensor.test.js`](file:///D:/GitHub/CrashRadar/tests/signals/sensors/LiquidityCollisionSensor.test.js) (4 Tests passing).
 * Hub-Tests: [`tests/signals/hubs/LiquiditySensorHub.test.js`](file:///D:/GitHub/CrashRadar/tests/signals/hubs/LiquiditySensorHub.test.js) (5 Tests passing).
-* Gesamt-Stresstest über 79 OpEx-Zyklen: [`scratch/research/macro-proofs/test_derivatives_liquidity_gatekeeper.js`](file:///D:/GitHub/CrashRadar/scratch/research/macro-proofs/test_derivatives_liquidity_gatekeeper.js).
+* Gesamt-Stresstest über 79 OpEx-Zyklen: [`research/macro-proofs/test_derivatives_liquidity_gatekeeper.js`](file:///D:/GitHub/CrashRadar/research/macro-proofs/test_derivatives_liquidity_gatekeeper.js).

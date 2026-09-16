@@ -85,7 +85,7 @@ Aufgrund der harten Deadline für den V1-MVP gilt für CrashRadar die **Autarkie
 2. **Kalender & Fiskaldaten:** Tabelle `macro_calendar_events` ersetzt jegliche externe JSON-Zulieferung.
 
 ### Letzter offener Schritt zur vollständigen Entkopplung:
-* **Sprint 1 Task:** [`PolygonFetchAdapter.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/fetch/PolygonFetchAdapter.js) in CrashRadar registrieren und direkt mit `market_data_m5` verdrahten. Sobald dieser läuft, wird das Brücken-Skript [`scratch/tools/import_m5_supabase.js`](file:///D:/GitHub/CrashRadar/scratch/tools/import_m5_supabase.js) archiviert (`scratch/trash/`).
+* **Sprint 1 Task:** [`PolygonFetchAdapter.js`](file:///D:/GitHub/CrashRadar/src/core/adapters/fetch/PolygonFetchAdapter.js) in CrashRadar registrieren und direkt mit `market_data_m5` verdrahten. Sobald dieser läuft, wird das temporäre Brücken-Skript [`tools/import_m5_supabase.js`](file:///D:/GitHub/CrashRadar/tools/import_m5_supabase.js) entfernt.
 
 ---
 

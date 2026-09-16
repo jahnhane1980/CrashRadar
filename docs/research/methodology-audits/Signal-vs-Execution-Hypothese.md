@@ -20,7 +20,7 @@ Wir wollen historisch simulieren und beweisen, dass die Rendite/der Kapitalerhal
 ## Konkreter Umsetzungsplan (Datenarchitektur)
 1. **Datenquelle:** Die 5-Minuten-Kerzen (`market_data_m5`) wurden vollständig in die lokale MySQL-Datenbank importiert, um latenzfreie Backtests zu ermöglichen.
 2. **Ziel-Asset:** Wir beschränken uns auf den extrem liquiden S&P 500 ETF (SPY, Ticker-ID: 13), da hier Trading-Halts und idiosynkratische Gaps minimiert werden.
-3. **Auswertung:** Das Skript [Backtest-M5-Execution.js](file:///D:/GitHub/CrashRadar/scratch/research/methodology-audits/Backtest-M5-Execution.js) greift auf die Datenbank zu und simuliert den Slippage-Unterschied zwischen einem sofortigen Verkauf zur Eröffnung (Naive) und einem Intraday-VWAP Crossover (Fractal).
+3. **Auswertung:** Das Skript [Backtest-M5-Execution.js](file:///D:/GitHub/CrashRadar/research/noise-and-audits/Backtest-M5-Execution.js) greift auf die Datenbank zu und simuliert den Slippage-Unterschied zwischen einem sofortigen Verkauf zur Eröffnung (Naive) und einem Intraday-VWAP Crossover (Fractal).
 
 ---
 

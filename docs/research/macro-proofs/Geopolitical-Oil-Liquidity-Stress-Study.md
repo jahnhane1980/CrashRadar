@@ -2,7 +2,7 @@
 
 > 🔬 **Forschungsbereich:** Geopolitische Rohstoff-Schocks, Fracht- & Margenkompression, Globale Notenbank-Liquidität (Japan/China/EZB) & US-Fiskal-Runway  
 > 📅 **Datum:** September 2026  
-> 📂 **Spiegel-Code & Test-Suite:** [`scratch/research/macro-proofs/TestGeopoliticalOilLiquidityStress.js`](file:///D:/GitHub/CrashRadar/scratch/research/macro-proofs/TestGeopoliticalOilLiquidityStress.js)  
+> 📂 **Spiegel-Code & Test-Suite:** [`research/macro-proofs/TestGeopoliticalOilLiquidityStress.js`](file:///D:/GitHub/CrashRadar/research/macro-proofs/TestGeopoliticalOilLiquidityStress.js)  
 > ⚙️ **Master-Komponente:** [`MacroLiquiditySensorHub.js`](file:///D:/GitHub/CrashRadar/src/signals/hubs/MacroLiquiditySensorHub.js)  
 > 🏛️ **Fiskal-Kalender Datenbasis:** [`macro_calendar_events`](file:///D:/GitHub/CrashRadar/docs/architecture/database/Macro-Calendar-Events.md) (Automatisierte MySQL-Tabelle & [`FiscalCalendarService.js`](file:///D:/GitHub/CrashRadar/src/services/FiscalCalendarService.js))  
 
@@ -44,7 +44,7 @@ flowchart TD
 
 ## 3. Empirische Ergebnisse: 21 historische Schock-Episoden
 
-Die Auswertung aller Handelstage seit 2004 über [`TestGeopoliticalOilLiquidityStress.js`](file:///D:/GitHub/CrashRadar/scratch/research/macro-proofs/TestGeopoliticalOilLiquidityStress.js) liefert folgende historische Wegmarken:
+Die Auswertung aller Handelstage seit 2004 über [`TestGeopoliticalOilLiquidityStress.js`](file:///D:/GitHub/CrashRadar/research/macro-proofs/TestGeopoliticalOilLiquidityStress.js) liefert folgende historische Wegmarken:
 
 | Episode / Kontext | Startdatum | Öl (Start) | 10Y Yield | S&P 500 Max DD 60d | S&P 500 Return 90d | 10Y Delta 90d | Öl Return 90d |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |

@@ -85,8 +85,9 @@ Diese Werte bestätigen, dass die Kernschmelze läuft und liefern das Kaufsignal
 ## 6. Referenzierte Sandbox-Skripte & Backtest-Logs
 Alle Thesen in diesem Dokument wurden über historische Daten (2006-2026) in unserer lokalen Sandbox mathematisch validiert.
 
-*   **Der Fetcher:** [sandbox-fetcher.js](file:///D:/GitHub/CrashRadar/scratch/tools/sandbox-fetcher.js) (Zieht alle FED/TGA Daten).
-*   **Der State-Machine Simulator:** [backtest-indicator.js](file:///D:/GitHub/CrashRadar/scratch/research/macro-proofs/backtest-indicator.js) (Simuliert die 4 Phasen historisch).
-*   **Detail-Analyse (Die letzten 6 Monate):** [backtest-recent.js](file:///D:/GitHub/CrashRadar/scratch/research/macro-proofs/backtest-recent.js)
+*   **Der Fetcher:** [`tools/backfill_new_fred_series.js`](file:///D:/GitHub/CrashRadar/tools/backfill_new_fred_series.js) (Zieht alle FED/TGA Daten; historischer Prototyp `sandbox-fetcher.js` konsolidiert).
+*   **Der State-Machine Simulator:** [backtest-indicator.js](file:///D:/GitHub/CrashRadar/research/macro-proofs/backtest-indicator.js) (Simuliert die 4 Phasen historisch).
+*   **Detail-Analyse (Die letzten 6 Monate):** [backtest-recent.js](file:///D:/GitHub/CrashRadar/research/macro-proofs/backtest-recent.js)
 *   **Ergebnis-Logs:** 
-    *   [Indicator-Trigger-Report.md](file:///D:/GitHub/CrashRadar/scratch/research/macro-proofs/Indicator-Trigger-Report.md)
+    *   [`Indicator-Trigger-Report.md`](file:///D:/GitHub/CrashRadar/docs/research/macro-proofs/Indicator-Trigger-Report.md)
+    *   [`Indicator-Backtest-Log.md`](file:///D:/GitHub/CrashRadar/docs/research/macro-proofs/Indicator-Backtest-Log.md)

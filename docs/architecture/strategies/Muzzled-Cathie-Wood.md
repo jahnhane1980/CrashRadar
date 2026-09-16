@@ -249,8 +249,8 @@ Sobald die Makro-Ampel auf **ROT** schlägt, greift der Schutzschirm nicht nur f
 
 Die quantitative Überlegenheit der kombinierten Architektur aus **Sektor-Relativität**, **HOLD & BUY / HOLD & OBSERVE Flag-System**, **3-Stufen-Abbau**, **autonomem Krypto-Sub-Bucket** und **50 % Gold / 50 % Cash Notfall-Voll-Evakuierung mit Dual-Re-Entry-Sniper** gegenüber der alten starren V1-Baseline und einfachem Buy-and-Hold wurde in der vollständigen Multi-Asset-Simulation empirisch nachgewiesen:
 
-* 💻 **Vollständige Portfolio-Simulation:** [`scratch/architecture/strategies/MuzzledCathieWoodSimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/MuzzledCathieWoodSimulation.js)
-* 📊 **Fundamentaldaten-Master-Cache (SEC 10-Q):** [`scratch/architecture/strategies/fundamentals_master.json`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/fundamentals_master.json)
+* 💻 **Vollständige Portfolio-Simulation:** [`simulations/MuzzledCathieWoodSimulation.js`](file:///D:/GitHub/CrashRadar/simulations/MuzzledCathieWoodSimulation.js)
+* 📊 **Fundamentaldaten-Master-Cache (SEC 10-Q):** [`data/cache/strategies/fundamentals_master.json`](file:///D:/GitHub/CrashRadar/data/cache/strategies/fundamentals_master.json)
 * 🔬 **Makro-Guard Audit:** [`docs/research/macro-proofs/MCW-Hybrid-Macro-Guard-Proof.md`](file:///D:/GitHub/CrashRadar/docs/research/macro-proofs/MCW-Hybrid-Macro-Guard-Proof.md)
 
 ##### Direkter Vergleich: V1-Baseline vs. V2 vs. Master V3 (60/40, organischer Tech-Bucket & 50/50 Gold/Cash Notfall-Guard mit Re-Entry Sniper)
@@ -302,8 +302,8 @@ Die quantitative Überlegenheit der kombinierten Architektur aus **Sektor-Relati
 
 ### 5. Langzeit-Validierung über 11,5 Jahre (2015–2026: Gesamte ARK-Historie)
 * 🔬 **Ausführlicher Forschungsbericht:** [`docs/research/macro-proofs/MCW-Historical-Backtest-2015-2026.md`](file:///D:/GitHub/CrashRadar/docs/research/macro-proofs/MCW-Historical-Backtest-2015-2026.md)
-* 📁 **SEC-EDGAR-Watchlist-Master:** [`scratch/architecture/strategies/cache/ark_historical_watchlist_2014_2026.json`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/cache/ark_historical_watchlist_2014_2026.json)
-* ⚙️ **Reproduktions-Skript:** `node scratch/architecture/strategies/MuzzledCathieWoodSimulation.js --2015`
+* 📁 **SEC-EDGAR-Watchlist-Master:** [`data/cache/strategies/ark_historical_watchlist_2014_2026.json`](file:///D:/GitHub/CrashRadar/data/cache/strategies/ark_historical_watchlist_2014_2026.json)
+* ⚙️ **Reproduktions-Skript:** `node simulations/MuzzledCathieWoodSimulation.js --2015`
 
 Im 11,5-Jahre-Zyklus (Inception von ARKK am 31.10.2014 bis 06.09.2026) erzielte die Muzzled Cathie Wood Strategie eine Gesamtrendite von **+4.334,16 % (1.374.588,08 €)** bei 31.000 € Einzahlung:
 * **Outperformance vs. ARKK (Cathie Wood unmuzzled +373,68 %):** **+3.960,48 %-Punkte Alpha!**

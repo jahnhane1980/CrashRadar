@@ -48,7 +48,7 @@ Um Fragmentierung und Widersprüche ein für alle Mal auszuschließen, untersche
 Jede Regel in diesem Drehbuch basiert auf harten historischen Datenreihen (2016–2026). Nichts beruht auf bloßem Hörensagen oder theoretischen Annahmen.
 
 ### Protokoll 1: Das Monopol-Maturity-Skript
-* 💻 **Skript:** [`scratch/research/turnarounds/test_strict_monopoly.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/test_strict_monopoly.js)
+* 💻 **Skript:** [`research/turnaround-studies/test_strict_monopoly.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/test_strict_monopoly.js)
 * 🎯 **Fragestellung:** Gibt es ein unbestechliches Muster in den SEC-Fundamentaldaten, das echte Generationen-Monopole von Hype-Blasen und Flops trennt, ohne Earningscalls parsen zu müssen?
 * 📊 **Empirischer Befund:**
   Ein Unternehmen wird als **`CONFIRMED GENERATIONAL MONOPOLY`** eingestuft, wenn es **mindestens 3 aufeinanderfolgende Quartale ($\ge 1\text{ Jahr}$)** folgende 5 harten Kriterien erfüllt:
@@ -64,7 +64,7 @@ Jede Regel in diesem Drehbuch basiert auf harten historischen Datenreihen (2016�
   * **In Reifung (`NEAR-DIAMANT`):** `S` (SentinelOne: Gross Margin 75 %, FCF +22 %, wartet nur noch auf GAAP Net Income $> 0$).
 
 ### Protokoll 2: Das Wall-Street-Irrweg-Skript
-* 💻 **Skript:** [`scratch/research/turnarounds/study_wallstreet_irrwege.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/study_wallstreet_irrwege.js)
+* 💻 **Skript:** [`research/turnaround-studies/study_wallstreet_irrwege.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/study_wallstreet_irrwege.js)
 * 🎯 **Fragestellung:** Haben selbst Weltklasse-Monopole, nachdem sie als Sieger feststanden, brutale Kurseinbrüche erlitten? Und wie sahen die Unternehmensdaten während des Absturzes aus?
 * 📊 **Empirischer Befund:**
   * **Meta (`META`) 2022 (-77,1 % von $ 384 auf $ 88):** Während Wall Street schrie, dass Meta sterbe, erwirtschaftete Meta in genau diesem Crash-Jahr **18,4 Mrd. $ Free Cash Flow**, wuchs der Cashbestand von 14 auf **41 Mrd. $** an, und das Unternehmen war absolut schuldenfrei! Der Kursanstieg danach: **+600 % (7-Bagger auf $ 600+)**.
@@ -74,14 +74,14 @@ Jede Regel in diesem Drehbuch basiert auf harten historischen Datenreihen (2016�
   Solange Bruttomarge $\ge 70\,\%$ und Free Cash Flow positiv bleiben, ist ein massiver Kurseinbruch zu 100 % ein **Irrweg / Bewertungsfehler der Wall Street** (Multiple-Kompression) – **niemals ein Ausstiegsgrund!**
 
 ### Protokoll 3: Das Whipsaw- & Skimming-Fehlschlag-Skript
-* 💻 **Skript:** [`scratch/research/turnarounds/simulate_now_skimming.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/simulate_now_skimming.js) & [`test_now_macro_defense_v2.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/test_now_macro_defense_v2.js)
+* 💻 **Skript:** [`research/turnaround-studies/simulate_now_skimming.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/simulate_now_skimming.js) & [`test_now_macro_defense_v2.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/test_now_macro_defense_v2.js)
 * 🎯 **Fragestellung:** Lohnt es sich, bei extremer Überhitzung (z. B. Distanz SMA200 $\ge 35\,\%$) 40 % zu verkaufen oder im Bärenmarkt bei SMA-200-Bruch auszusteigen, um unten billiger zurückzukaufen?
 * 📊 **Empirischer Befund:**
   * **Die Hypergrowth-Falle:** Verkauft man bei ServiceNow im April 2019 bei $ 54 wegen Überhitzung, läuft die Aktie einfach weiter bis $ 140. Der spätere Bärenmarkt-Boden lag bei $ 84 – **deutlich über dem Verkaufskurs**!
   * **Der Whipsaw-Schaden im Bärenmarkt:** Wer versucht, ein Monopol im Bärenmarkt über gleitende Durchschnitte zu timen, wird durch Bärenmarktrallies zermürbt. Im Backtest 2018–2026 führte das Timing-Modell zu **20,5 % weniger Endvermögen und 78 Aktien weniger** als stures Buy-and-Hold!
 
 ### Protokoll 4: Der Spürhund-Beweis an historischen Tiefs
-* 💻 **Skripte:** [`detect_now_bottom.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/detect_now_bottom.js), [`detect_meta_bottom.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/detect_meta_bottom.js), [`inspect_nflx_crash.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/inspect_nflx_crash.js)
+* 💻 **Skripte:** [`detect_now_bottom.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/detect_now_bottom.js), [`detect_meta_bottom.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/detect_meta_bottom.js), [`inspect_nflx_crash.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/inspect_nflx_crash.js)
 * 🎯 **Fragestellung:** Kann man den Wendepunkt einer Wall-Street-Panik datenbasiert messen, anstatt im Dunkeln zu tappen?
 * 📊 **Empirischer Befund:**  
   An ausnahmslos jedem historischen Boden ereignete sich dasselbe 3-Phasen-Muster:
@@ -90,13 +90,13 @@ Jede Regel in diesem Drehbuch basiert auf harten historischen Datenreihen (2016�
   3. **Der Institutional Re-Entry Pivot:** Sobald der Kurs mit anziehendem Volumen über den Anchored VWAP (AVWAP) des Paniktiefs ausbricht, beginnt die nächste Multi-Bagger-Welle.
 
 ### Protokoll 5: Der Contrarian-Dip-Buy-Beweis
-* 💻 **Skript:** [`scratch/research/turnarounds/test_contrarian_dip_buy.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/test_contrarian_dip_buy.js)
+* 💻 **Skript:** [`research/turnaround-studies/test_contrarian_dip_buy.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/test_contrarian_dip_buy.js)
 * 🎯 **Fragestellung:** Wie schlägt sich die Doktrin: *„Kern niemals verkaufen, sondern Panik-Tiefs mit frischem Cash aus dem Mutterschiff aufkaufen“*?
 * 📊 **Empirischer Befund:**
   Ein Zündfunken-Nachkauf am Paniktief (Drawdown $\ge 40\,\%$ & RSI $\le 28$) bei intaktem Moat steigerte den Endbestand von 379 auf **451 Aktien** und lieferte **+$ 3.134 Mehrwert (+5,2 % Überrendite)** gegenüber reinem Nichtstun – ohne jemals Gefahr zu laufen, aus dem Gewinner herausgeschüttelt zu werden!
 
 ### Protokoll 6: Das Hyperscaler-CapEx- & Hardware/Software-Zyklen-Skript
-* 💻 **Skripte & Forschungs-Doku:** [`study_hardware_software_capex.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/study_hardware_software_capex.js), [`compare_hardware_software_drawdowns.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/compare_hardware_software_drawdowns.js), [`study_canary_hardware_cycles.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/study_canary_hardware_cycles.js) & Monographie [`Hardware-Cycle-Canary-Study.md`](file:///D:/GitHub/CrashRadar/docs/research/turnarounds/Hardware-Cycle-Canary-Study.md).
+* 💻 **Skripte & Forschungs-Doku:** [`study_hardware_software_capex.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/study_hardware_software_capex.js), [`compare_hardware_software_drawdowns.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/compare_hardware_software_drawdowns.js), [`study_canary_hardware_cycles.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/study_canary_hardware_cycles.js) & Monographie [`Hardware-Cycle-Canary-Study.md`](file:///D:/GitHub/CrashRadar/docs/research/turnarounds/Hardware-Cycle-Canary-Study.md).
 * 🎯 **Fragestellung:** Gibt es starre 4-jährige Wechselwellen zwischen Hardware und Software? Haben Hyperscaler (MSFT, GOOGL, META, AMZN) CapEx gekürzt oder stagniert? Was ist der unbestechliche Kanarienvogel im Kohlebergwerk für Halbleiter-Tops?
 * 📊 **Empirischer Befund:**
   1. **Die Börse wartet NIEMALS auf CapEx-Kürzungen (2–4 Quartale Lag):**
@@ -114,7 +114,7 @@ Jede Regel in diesem Drehbuch basiert auf harten historischen Datenreihen (2016�
   4. **Die Re-Entry-Chance:** Nach dem unvermeidlichen Shakeout (-50 % bis -65 %) ist Hardware der stärkste Multi-Bagger-Re-Entry der Börsengeschichte (NVDA 2018 bei $ 3,18 $\to$ +950 % | 2022 bei $ 11,23 $\to$ +1.100 %).
 
 ### Protokoll 7: Das Krypto-Peak-Sequenz-Skript (Sparplan & Equities)
-* 💻 **Skript:** [`scratch/research/turnarounds/study_crypto_peaks.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/study_crypto_peaks.js)
+* 💻 **Skript:** [`research/turnaround-studies/study_crypto_peaks.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/study_crypto_peaks.js)
 * 🎯 **Fragestellung:** Peaken SOL und ETH vor Bitcoin (BTC)? Wie steuert der Krypto-Sparplan seine Teilausstiege?
 * 📊 **Empirischer Befund:**
   * Im Zyklus 2024–2026 erreichte **SOL am 18.01.2025** sein Allzeithoch ($ 261,87), **ETH am 22.08.2025** ($ 4.831), während **BTC erst am 06.10.2025** bei $ 124.752 seinen finalen Zyklus-Peak markierte.
@@ -178,7 +178,7 @@ Das Radar scannt nicht jeden Wert nach demselben Schema, sondern teilt alle Tick
   * SoFi passt in keine starre Standard-Schublade: CEO Anthony Noto baut eine skalierbare Tech-Plattform (*Galileo & Technisys* — „das AWS des Bankings“) und kapitalleichte Kreditvermittlung (*Loan Platform Business*), aber aktuell stammen noch 64 % des operativen Gewinns aus klassischen Zinsmargen und unbesicherten Ratenkrediten (*Lending*).
   * Die Wall Street straft die Aktie bei Zins- und Makrosorgen reflexartig als Regionalbank ab, während das Management die Transformation zum SaaS- und Marktplatz-Modell vorantreibt.
 * **Einstiegs-Doktrin im Sturm (Kaufzone 8,00 $ bis 12,00 $):**
-  * Im Falle einer durch NVIDIA/Hardware induzierten Index-Kaskade (-15 % bis -25 % im SPY) schlägt SoFis 1-Jahres-Beta von **2,76x** voll durch ([`study_sofi_valuation_beta.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/study_sofi_valuation_beta.js)).
+  * Im Falle einer durch NVIDIA/Hardware induzierten Index-Kaskade (-15 % bis -25 % im SPY) schlägt SoFis 1-Jahres-Beta von **2,76x** voll durch ([`study_sofi_valuation_beta.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/study_sofi_valuation_beta.js)).
   * Der Einstieg erfolgt gestaffelt in 3 Tranchen:
     * *Tranche 1 @ 12,00 $:* Erste Position bei regulärer Hardware-Korrektur (SPY -10 % bis -12 %).
     * *Tranche 2 @ 10,00 $:* Haupttranche bei Ausweitung auf den gesamten Hardware-Komplex (SPY -15 % bis -18 %).

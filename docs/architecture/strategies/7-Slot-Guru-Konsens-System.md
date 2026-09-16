@@ -4,7 +4,7 @@
 > 📁 **Bereich:** `docs/architecture/strategies/`  
 > 🗄️ **Historisches Archiv:** [`7-Slot-Guru-Konsens-System-v2.1-Archive.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/guru-archive/7-Slot-Guru-Konsens-System-v2.1-Archive.md) *(Version 2.1 archiviert am 14.09.2026)*  
 > 🔬 **Empirische Beweisführung:** [`Dual-Engine-Guru-Governance-Studie.md`](file:///D:/GitHub/CrashRadar/docs/research/strategies/Dual-Engine-Guru-Governance-Studie.md) & [`Guru-12M-Portfolio-Evolution.md`](file:///D:/GitHub/CrashRadar/docs/research/strategies/Guru-12M-Portfolio-Evolution.md)  
-> 💻 **Simulations-Code:** [`compare_old_vs_new_10y_performance.js`](file:///D:/GitHub/CrashRadar/scratch/research/strategies/compare_old_vs_new_10y_performance.js), [`simulate_vetoed_no_rebuy.js`](file:///D:/GitHub/CrashRadar/scratch/research/strategies/simulate_vetoed_no_rebuy.js) & [`simulate_guardian_confirmed_rotations.js`](file:///D:/GitHub/CrashRadar/scratch/research/strategies/simulate_guardian_confirmed_rotations.js)  
+> 💻 **Simulations-Code:** [`compare_old_vs_new_10y_performance.js`](file:///D:/GitHub/CrashRadar/research/strategy-prototypes/compare_old_vs_new_10y_performance.js), [`simulate_vetoed_no_rebuy.js`](file:///D:/GitHub/CrashRadar/research/strategy-prototypes/simulate_vetoed_no_rebuy.js) & [`simulate_guardian_confirmed_rotations.js`](file:///D:/GitHub/CrashRadar/research/strategy-prototypes/simulate_guardian_confirmed_rotations.js)  
 > 📅 **Version:** 3.1.0 (Gültig ab September 2026 – Inkl. Wächter-bestätigtem Rebalancing & KI-Infrastruktur)  
 
 ---
@@ -215,11 +215,11 @@ Unter Berücksichtigung der Dual-Engine-Governance, des dauerhaften Halbleiter-S
 
 ## 9. 10,5-Jahre-Empirie & Historischer Leistungsnachweis (2016–2026)
 
-* 💻 **10,5-Jahre Portfolio-Simulation (42 Quartale):** [`compare_old_vs_new_10y_performance.js`](file:///D:/GitHub/CrashRadar/scratch/research/strategies/compare_old_vs_new_10y_performance.js)  
+* 💻 **10,5-Jahre Portfolio-Simulation (42 Quartale):** [`compare_old_vs_new_10y_performance.js`](file:///D:/GitHub/CrashRadar/research/strategy-prototypes/compare_old_vs_new_10y_performance.js)  
   * Startkapital: 10.000 $ $\rightarrow$ **Endwert: 112.182 $ (+1.021,82 %)** vs. QQQ: 72.460 $ (+624,60 %) und SPY: 42.879 $ (+328,79 %).
-* 💻 **Vetoed-No-Rebuy Boden-Simulation:** [`simulate_vetoed_no_rebuy.js`](file:///D:/GitHub/CrashRadar/scratch/research/strategies/simulate_vetoed_no_rebuy.js)  
+* 💻 **Vetoed-No-Rebuy Boden-Simulation:** [`simulate_vetoed_no_rebuy.js`](file:///D:/GitHub/CrashRadar/research/strategy-prototypes/simulate_vetoed_no_rebuy.js)  
   * Re-Entry am Bärenmarkt-Boden 2022 erzielte **+455,06 %** (+33,05 %P Alpha über reinem Rebuy).
-* 💻 **Wächter-bestätigtes Rebalancing & KI-Infrastruktur:** [`simulate_guardian_confirmed_rotations.js`](file:///D:/GitHub/CrashRadar/scratch/research/strategies/simulate_guardian_confirmed_rotations.js)  
+* 💻 **Wächter-bestätigtes Rebalancing & KI-Infrastruktur:** [`simulate_guardian_confirmed_rotations.js`](file:///D:/GitHub/CrashRadar/research/strategy-prototypes/simulate_guardian_confirmed_rotations.js)  
   * 10,5-Jahre-Gesamtergebnis: **152.940 $ (+1.429,4 %)** vs. Baseline 122.826 $ (+1.128,3 %) $\rightarrow$ **+30.114 $ reines Alpha (+24,5 % Mehrertrag)** durch das Entsperren des Wächter-Rebalancings bei SMA-50-Knick oder SMA-200-Überdehnung (> 30 %) inklusive rechtzeitigem Einzug von **GE Vernova (`GEV`)** am 30.09.2024.
 
 ---

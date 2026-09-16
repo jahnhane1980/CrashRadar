@@ -2,7 +2,7 @@
 *Lückenloser Tages-Härtetest der echten SignalEngine (PortfolioStrategyEngine + GoldSpyDcaStrategy) über 7.760 Tage*
 
 > 🔬 **Forschungs-Kategorie:** Empirische Strategie-Validierung & Risiko-Härtetest  
-> 💻 **Simulations-Skript:** [`scratch/research/strategies/GoldSpyDailyStressTest.js`](file:///D:/GitHub/CrashRadar/scratch/research/strategies/GoldSpyDailyStressTest.js)  
+> 💻 **Simulations-Skript:** [`simulations/GoldSpyDailyStressTest.js`](file:///D:/GitHub/CrashRadar/simulations/GoldSpyDailyStressTest.js)  
 > ⚙️ **Operatives Manifest:** [`config/strategies/gold-spy.json`](file:///D:/GitHub/CrashRadar/config/strategies/gold-spy.json) (Version 2.2.0)  
 > 🏛️ **Architektur-Spezifikation:** [`docs/architecture/strategies/Gold-SPY.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Gold-SPY.md)  
 > 📅 **Datenbasis:** November 2004 – September 2026 (7.760 Handelstage / 21,8 Jahre)  

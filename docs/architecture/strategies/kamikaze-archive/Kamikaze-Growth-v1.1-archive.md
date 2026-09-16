@@ -274,8 +274,8 @@ Das Kamikaze-Growth-System ist keine theoretische Modellauswertung, sondern steu
 
 Die quantitative Leistungsfähigkeit der **Kamikaze-Growth-Architektur** (50/50 Allokation Tech & Krypto-Equities, $ 30.000 Startkapital geparkt im S&P 500 Mutterschiff, $ 10.000 Cash-Pot-Reserve, $ 200/Monat dynamischer BTC-Sparplan, kein Blind-Kauf ohne 10-Q Fundamentaldaten, Sektor-Dip-Buying, 3-Stufen-Abbau und 100 % Notfall-Evakuierung in 50 % Gold / 50 % Cash) wurde über den Zeitraum vom **01.11.2020 (3 Monate vor PLTR-Peak/Crash) bis 04.09.2026** simuliert:
 
-* 💻 **Vollständige Portfolio-Simulation:** [`scratch/architecture/strategies/KamikazeGrowthSimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/KamikazeGrowthSimulation.js)
-* 📊 **Fundamentaldaten-Master-Cache (SEC EDGAR):** [`scratch/architecture/strategies/fundamentals_master.json`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/fundamentals_master.json)
+* 💻 **Vollständige Portfolio-Simulation:** [`simulations/KamikazeGrowthSimulation.js`](file:///D:/GitHub/CrashRadar/simulations/KamikazeGrowthSimulation.js)
+* 📊 **Fundamentaldaten-Master-Cache (SEC EDGAR):** [`data/cache/strategies/fundamentals_master.json`](file:///D:/GitHub/CrashRadar/data/cache/strategies/fundamentals_master.json)
 * ⚙️ **Realer Portfolio-Zustand & Live-Konfiguration:** [`config/strategies/kamikaze-growth.json`](file:///D:/GitHub/CrashRadar/config/strategies/kamikaze-growth.json)
 
 ### A. Performance- und Benchmark-Vergleich (Backtest 01.11.2020 – 04.09.2026):
@@ -351,8 +351,8 @@ Im Backtest wurden vier vom Investor manuell ausgewählte Tech-Aktien zu konkret
 
 ## 4. Technische Spezifikation & Verwandte Werkzeuge
 
-* **PoC-Simulation:** [`scratch/architecture/strategies/KamikazeGrowthSimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/KamikazeGrowthSimulation.js)
-* **Single-Asset Katapult-Engine (NVTS, IBRX, PLTR):** [`scratch/tools/GrowthStockTradingEngine.js`](file:///D:/GitHub/CrashRadar/scratch/tools/GrowthStockTradingEngine.js)
+* **PoC-Simulation:** [`simulations/KamikazeGrowthSimulation.js`](file:///D:/GitHub/CrashRadar/simulations/KamikazeGrowthSimulation.js)
+* **Single-Asset Katapult-Engine (NVTS, IBRX, PLTR):** [`tools/GrowthStockTradingEngine.js`](file:///D:/GitHub/CrashRadar/tools/GrowthStockTradingEngine.js)
 * **Single-Asset Trading Framework:** [`docs/architecture/single-asset-radar/SingleAssetTrading.md`](file:///D:/GitHub/CrashRadar/docs/architecture/single-asset-radar/SingleAssetTrading.md)
 * **Stock Radar & Bewertungs-Framework (Turnaround-Entwurf):** [`docs/architecture/strategies/kamikaze/02-Turnaround-Framework.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/02-Turnaround-Framework.md)
 * **Wissensgraph & Architektur:** Verlinkt in [`docs/README.md`](file:///D:/GitHub/CrashRadar/docs/README.md).
@@ -376,7 +376,7 @@ Im Backtest wurden vier vom Investor manuell ausgewählte Tech-Aktien zu konkret
 ### Konkrete Entwicklungs-Aufgaben für die nächste Evolutionsstufe:
 
 1. **Einführung des parabolischen Climax-Top Exits (`TOP_CLIMAX_ALERT`):**
-   * Verknüpfung der erprobten Katapult-Logik aus [`GrowthStockTradingEngine.js`](file:///D:/GitHub/CrashRadar/scratch/tools/GrowthStockTradingEngine.js) mit dem Portfolio-Manager:
+   * Verknüpfung der erprobten Katapult-Logik aus [`GrowthStockTradingEngine.js`](file:///D:/GitHub/CrashRadar/tools/GrowthStockTradingEngine.js) mit dem Portfolio-Manager:
      * **Trigger:** Distanz zum 20er EMA $\ge +35\,\%$ bis $+45\,\%$ **ODER** RSI(14) $\ge 80 - 85$ nach starkem Kursanstieg ($> +100\,\%$).
      * **Aktion:** Sofortige Gewinnmitnahme (50 % Skimming oder 100 % Voll-Liquidierung bei Bruch des EMA 20).
      * **Sicherung:** Erlöse fließen sofort als gesicherter Profit in das **S&P 500 Mutterschiff**.
@@ -390,7 +390,7 @@ Im Backtest wurden vier vom Investor manuell ausgewählte Tech-Aktien zu konkret
 4. **Frühzeitiger Stage-2-Einstieg für Core-Watchlist (Abbau der MCW-Altlast bei S):**
    * Erlaubnis einer ersten 50 %-Starttranche bereits bei Trendlinien-Durchbruch über den SMA 50 und positivem RS-Momentum, ohne zwingend auf ein monatelang verzögertes Golden Cross über dem SMA 200 warten zu müssen.
 5. **Simulation Update:**
-   * Nach Feinabstimmung dieser Schwellenwerte wird [`KamikazeGrowthSimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/KamikazeGrowthSimulation.js) um diese 4 Module erweitert und im Backtest evaluiert.
+   * Nach Feinabstimmung dieser Schwellenwerte wird [`KamikazeGrowthSimulation.js`](file:///D:/GitHub/CrashRadar/simulations/KamikazeGrowthSimulation.js) um diese 4 Module erweitert und im Backtest evaluiert.
 
 ---
 

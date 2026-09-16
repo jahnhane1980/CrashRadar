@@ -130,7 +130,7 @@ Die Kerzen werden in unserer MySQL-/TiDB-Datenbank in der Tabelle **`market_data
 * **Tabelle:** `market_data_m5`
 * **Primärschlüssel / Unique Constraint:** `(symbol, record_time)`
 * **Bisheriger Datenbezug:**  
-  Bisher wurden die Daten über [`scratch/tools/import_m5_supabase.js`](file:///D:/GitHub/CrashRadar/scratch/tools/import_m5_supabase.js) inkrementell aus der Supabase-Tabelle `market_m5_candles` synchronisiert.
+  Bisher wurden die Daten über [`tools/import_m5_supabase.js`](file:///D:/GitHub/CrashRadar/tools/import_m5_supabase.js) inkrementell aus der Supabase-Tabelle `market_m5_candles` synchronisiert.
 
 ---
 

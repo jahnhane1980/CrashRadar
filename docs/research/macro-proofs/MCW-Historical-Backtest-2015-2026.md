@@ -23,15 +23,15 @@ Im Rahmen der Weiterentwicklung der **Muzzled Cathie Wood (MCW)** Strategie wurd
 ## 2. Datenquellen & Methodik
 
 ### A. SEC EDGAR Ingestion (100 % Primärquellen)
-Über das Tool [`scratch/tools/fetch_ark_historical_13f.js`](file:///D:/GitHub/CrashRadar/scratch/tools/fetch_ark_historical_13f.js) wurden sämtliche Berichte von ARK Invest seit Gründung automatisiert heruntergeladen und geparst:
+Über das Tool [`tools/fetch_ark_historical_13f.js`](file:///D:/GitHub/CrashRadar/tools/fetch_ark_historical_13f.js) wurden sämtliche Berichte von ARK Invest seit Gründung automatisiert heruntergeladen und geparst:
 1. **2014-10-31 bis 2016-11-30:** 10 quartalsweise Fondsberichte (**Form N-Q und Form N-CSR**) des *ARK ETF Trust* (`CIK: 0001579982`).
 2. **2016-12-31 bis 2026-06-30:** 40 quartalsweise institutionelle Holdings-Meldungen (**Form 13F-HR**) von *ARK Investment Management LLC* (`CIK: 0001697748`).
-3. **Master-Watchlist:** Alle 50 Berichte wurden in [`scratch/architecture/strategies/cache/ark_historical_watchlist_2014_2026.json`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/cache/ark_historical_watchlist_2014_2026.json) konsolidiert (1.016 Einzelpositionen, 140 identifizierte Kernaktien mit genauem `firstSeenDate`).
+3. **Master-Watchlist:** Alle 50 Berichte wurden in [`data/cache/strategies/ark_historical_watchlist_2014_2026.json`](file:///D:/GitHub/CrashRadar/data/cache/strategies/ark_historical_watchlist_2014_2026.json) konsolidiert (1.016 Einzelpositionen, 140 identifizierte Kernaktien mit genauem `firstSeenDate`).
 
 ### B. Kurs- und Makro-Datenbasis
 * **Tageskurse (Yahoo Finance):** 3.000 tägliche Kursbalken (OHLCV) für alle 24 Kern-Assets, Sektoren (`SMH`, `IGV`, `XLY`), Hedges (`GLD`, `EURUSD=X`) und Benchmarks (`ARKK`, `QQQ`, `SPY`) von Oktober 2014 bis September 2026.
 * **Makro-Liquidität & Zinsen (FRED / TiDB Cloud):** Lückenlose Historie ab 2002/2014 für Fed-Bilanzsumme (`WALCL`), TGA (`WTREGEN`), Reverse Repo (`RRPONTSYD`) und 10Y Real Yields (`DFII10`).
-* **SEC 10-Q Fundamentaldaten:** Quartalsberichte aus der SEC Company Facts API für Umsatzwachstum (YoY) und Net Income ab 2009 in [`scratch/architecture/strategies/fundamentals_master.json`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/fundamentals_master.json).
+* **SEC 10-Q Fundamentaldaten:** Quartalsberichte aus der SEC Company Facts API für Umsatzwachstum (YoY) und Net Income ab 2009 in [`data/cache/strategies/fundamentals_master.json`](file:///D:/GitHub/CrashRadar/data/cache/strategies/fundamentals_master.json).
 
 ---
 
@@ -118,4 +118,4 @@ ALPHA vs. SPY (S&P 500):            +5.344,39 %-Punkte Outperformance!
 
 1. **Vollständige empirische Validierung:** Die Bereinigung des SEC-Parsers und die Durchsetzung von "Kein Kauf ohne Fundamentaldaten" steigert den Endwert von **€ 1,37 Mio. auf fast € 1,80 Mio.** (+5.698 % Nettogewinn).
 2. **Eliminierung von Whipsaws & Zombie-Fallen:** Durch die verlässliche 3-Monats-Dauer-Filterung werden Wachstums-Re-Accelerationen (wie bei Netflix 2024) fehlerfrei gehandelt und vorzeitige Fehl-Exits (wie bei Nvidia 2024) verhindert.
-3. **Produktionsreife:** Sämtliche Ingestion-Tools ([`fetch_ark_historical_13f.js`](file:///D:/GitHub/CrashRadar/scratch/tools/fetch_ark_historical_13f.js), [`fetch_sec_fundamentals_all.js`](file:///D:/GitHub/CrashRadar/scratch/tools/fetch_sec_fundamentals_all.js)) und Simulationsmodule ([`MuzzledCathieWoodSimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/MuzzledCathieWoodSimulation.js)) sind stabil und synchron im Repository verankert.
+3. **Produktionsreife:** Sämtliche Ingestion-Tools ([`fetch_ark_historical_13f.js`](file:///D:/GitHub/CrashRadar/tools/fetch_ark_historical_13f.js), [`fetch_sec_fundamentals_all.js`](file:///D:/GitHub/CrashRadar/tools/fetch_sec_fundamentals_all.js)) und Simulationsmodule ([`MuzzledCathieWoodSimulation.js`](file:///D:/GitHub/CrashRadar/simulations/MuzzledCathieWoodSimulation.js)) sind stabil und synchron im Repository verankert.

@@ -63,7 +63,7 @@ flowchart LR
 * **Kern-Modelle:**
   1. **Explosive Growth & Katapult-Aktien:** 4-Phasen-Modell (`BASE_BUILDING` $\to$ `BREAKOUT_ACTIVE` $\to$ `RIDE_TREND` $\to$ `TOP_CLIMAX_ALERT`).
   2. **Sektor- & Themen-ETFs:** Zweistufiges MACD-Regime (Wochen-Trend + Tages-Trigger) mit Relative Stärke vs. SPY (`RS_SPY`) und Trend-Runner Exit.
-* **Werkzeuge:** [`GrowthStockTradingEngine.js`](file:///D:/GitHub/CrashRadar/scratch/tools/GrowthStockTradingEngine.js) & [`BlueChipAndEtfTrader.js`](file:///D:/GitHub/CrashRadar/scratch/tools/BlueChipAndEtfTrader.js).
+* **Werkzeuge:** [`GrowthStockTradingEngine.js`](file:///D:/GitHub/CrashRadar/tools/GrowthStockTradingEngine.js) & [`BlueChipAndEtfTrader.js`](file:///D:/GitHub/CrashRadar/tools/BlueChipAndEtfTrader.js).
 
 ### C. Schicht 3: Alerting, Sichtbarkeit & UI
 * **Verantwortung:** Proaktive Zustellung von Handlungsanweisungen, damit keine manuelle Überwachung nötig ist.
@@ -153,4 +153,4 @@ jobs:
 | **ETL-Konfiguration** | [`config/Database-Fetcher-Config.json`](file:///D:/GitHub/CrashRadar/config/Database-Fetcher-Config.json) | Provider-Definition & Task-Deklaration mit `"frequency": "intraday_m5"`. |
 | **CLI-Einstiegspunkt** | [`index.js`](file:///D:/GitHub/CrashRadar/index.js) | CLI-Steuerung via `--profile` und `--single-asset-radar`. |
 | **Push-Dienst** | [`src/services/NtfyService.js`](file:///D:/GitHub/CrashRadar/src/services/NtfyService.js) | Zustellung strukturierter Alerts aufs Smartphone. |
-| **Live-Engines (Prototypen)** | [`GrowthStockTradingEngine.js`](file:///D:/GitHub/CrashRadar/scratch/tools/GrowthStockTradingEngine.js) & [`BlueChipAndEtfTrader.js`](file:///D:/GitHub/CrashRadar/scratch/tools/BlueChipAndEtfTrader.js) | Berechnung der Trade-Historie und des Live-Dashboards. |
+| **Live-Engines** | [`GrowthStockTradingEngine.js`](file:///D:/GitHub/CrashRadar/tools/GrowthStockTradingEngine.js) & [`BlueChipAndEtfTrader.js`](file:///D:/GitHub/CrashRadar/tools/BlueChipAndEtfTrader.js) | Berechnung der Trade-Historie und des Live-Dashboards. |

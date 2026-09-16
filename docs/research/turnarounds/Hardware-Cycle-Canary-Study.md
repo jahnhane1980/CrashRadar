@@ -4,9 +4,9 @@
 > 📜 **Dokumenten-Typ:** Empirische Forschungsarbeit (Research Proof — Single Source of Truth)  
 > 🔬 **Bereich:** `docs/research/turnarounds/`  
 > 💻 **Gespiegelter Analyse-Code:**  
-> • [`scratch/research/turnarounds/study_canary_hardware_cycles.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/study_canary_hardware_cycles.js)  
-> • [`scratch/research/turnarounds/study_hardware_software_capex.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/study_hardware_software_capex.js)  
-> • [`scratch/research/turnarounds/compare_hardware_software_drawdowns.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/compare_hardware_software_drawdowns.js)  
+> • [`research/turnaround-studies/study_canary_hardware_cycles.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/study_canary_hardware_cycles.js)  
+> • [`research/turnaround-studies/study_hardware_software_capex.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/study_hardware_software_capex.js)  
+> • [`research/turnaround-studies/compare_hardware_software_drawdowns.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/compare_hardware_software_drawdowns.js)  
 > 🏛️ **Einfluss auf Strategie:** [`Kamikaze-Master-Drehbuch.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/Kamikaze-Master-Drehbuch.md) & [`kamikaze-growth.json`](file:///D:/GitHub/CrashRadar/config/strategies/kamikaze-growth.json)  
 > 📅 **Stand:** September 2026  
 
@@ -111,7 +111,7 @@ Halbleiter-Bewertungen basieren auf extremer Wachstumsfantasie.
 
 ## 4. Die Status-Quo-Scorecard: NVIDIA im September 2026
 
-Analyse der tatsächlichen SEC-EDGAR-Daten von NVIDIA ([`study_canary_hardware_cycles.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/study_canary_hardware_cycles.js)):
+Analyse der tatsächlichen SEC-EDGAR-Daten von NVIDIA ([`study_canary_hardware_cycles.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/study_canary_hardware_cycles.js)):
 
 | Quartalsende | Rev ($B) | Rev QoQ% | Gross Mgn% | Inventar ($B) | Inv QoQ% | DSI (Tage) | Kurs ($) | Phase |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
@@ -197,11 +197,11 @@ flowchart TD
 | **Mega-Cap Hardware-Anker** (`AAPL`) | 6,8 % | 8,5 % | -25 % | -1,70 % | -2,13 % |
 | **GESAMT-KOMPLEX** | **28,7 %** | **40,2 %** | **—** | **-11,90 %** | **-16,80 %** |
 
-*(Berechnungsgrundlage: [`study_hardware_complex_weights.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/study_hardware_complex_weights.js))*
+*(Berechnungsgrundlage: [`study_hardware_complex_weights.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/study_hardware_complex_weights.js))*
 
 ### Fazit für den Gesamtmarkt & High-Beta-Werte (z.B. SoFi):
 1. **Der direkte mechanische Schock:** Bricht der Halbleiter- und Hardware-Komplex in eine zyklische Bereinigung ein, verliert der S&P 500 **alleine durch diese Aktien bereits -11,9 %** und der Nasdaq 100 **-16,8 %**.
-2. **Die reale Kaskade (Bärenmarkt-Niveau):** Historische Daten aus 2000-2002, 2018 und 2021-2022 ([`study_semiconductor_complex_drawdown.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/study_semiconductor_complex_drawdown.js)) zeigen, dass systematische Trendfolger (CTAs), Risk-Parity-Fonds und Margin-Calls diesen Direkt-Schock um das **1,8- bis 2,2-Fache** verstärken:
+2. **Die reale Kaskade (Bärenmarkt-Niveau):** Historische Daten aus 2000-2002, 2018 und 2021-2022 ([`study_semiconductor_complex_drawdown.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/study_semiconductor_complex_drawdown.js)) zeigen, dass systematische Trendfolger (CTAs), Risk-Parity-Fonds und Margin-Calls diesen Direkt-Schock um das **1,8- bis 2,2-Fache** verstärken:
    * **Realer SPY-Drawdown:** **-20,0 % bis -27,5 %**
    * **Realer QQQ-Drawdown:** **-30,0 % bis -38,0 %**
 3. **Konsequenz für High-Beta (SOFI Beta 2,76x):**

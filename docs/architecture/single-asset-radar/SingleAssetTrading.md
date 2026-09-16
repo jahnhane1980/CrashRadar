@@ -62,10 +62,10 @@ Die Engine zerlegt den Handelstag in spezifische Zeitfenster (Regular Trading Ho
 
 ### E. Zugehöriges Growth-Werkzeug
 
-* 📡 **Growth Stock Engine:** [`scratch/tools/GrowthStockTradingEngine.js`](file:///D:/GitHub/CrashRadar/scratch/tools/GrowthStockTradingEngine.js)  
+* 📡 **Growth Stock Engine:** [`tools/GrowthStockTradingEngine.js`](file:///D:/GitHub/CrashRadar/tools/GrowthStockTradingEngine.js)  
   *Berechnet die Trade-Historie und das tagesaktuelle Dashboard für alle Wachstumsaktien.*
   ```bash
-  node scratch/tools/GrowthStockTradingEngine.js
+  node tools/GrowthStockTradingEngine.js
   ```
 
 ---
@@ -112,8 +112,8 @@ flowchart LR
 
 ### D. Zugehöriges ETF-Werkzeug
 
-* 📡 **Blue-Chip & ETF Trader:** [`scratch/tools/BlueChipAndEtfTrader.js`](file:///D:/GitHub/CrashRadar/scratch/tools/BlueChipAndEtfTrader.js)  
+* 📡 **Blue-Chip & ETF Trader:** [`tools/BlueChipAndEtfTrader.js`](file:///D:/GitHub/CrashRadar/tools/BlueChipAndEtfTrader.js)  
   *Führt den Backtest und das Live-Dashboard für alle Sektor-ETFs aus.*
   ```bash
-  node scratch/tools/BlueChipAndEtfTrader.js
+  node tools/BlueChipAndEtfTrader.js
   ```

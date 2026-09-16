@@ -2,7 +2,7 @@
 *Geopolitisch gehärtetes Core-Satellite-Depot mit S&P 500 Mutterschiff, VanEck Defense ETF, Bitcoin-HODL & universellem Notfall-Stecker (50/50 Gold & Cash)*
 
 > ⚙️ **Operative Strategie-Konfiguration:** [`config/strategies/satellite.json`](file:///D:/GitHub/CrashRadar/config/strategies/satellite.json)  
-> 💻 **Empirische Proof-of-Concept-Simulation:** [`scratch/architecture/strategies/SatelliteCoreSimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/SatelliteCoreSimulation.js)
+> 💻 **Empirische Proof-of-Concept-Simulation:** [`simulations/SatelliteCoreSimulation.js`](file:///D:/GitHub/CrashRadar/simulations/SatelliteCoreSimulation.js)
 
 ---
 
@@ -124,7 +124,7 @@ Das Gesamtdepot wird durch dieselben bewährten, standardisierten Signale der **
 
 Die quantitative Leistungsfähigkeit der Strategie wurde in einer lückenlosen Backtest-Simulation über den Zeitraum **01.04.2023 (nach Handelsaufnahme von DFNS) bis heute (08.09.2026)** verifiziert:
 
-* 💻 **Simulations-Skript:** [`scratch/architecture/strategies/SatelliteCoreSimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/SatelliteCoreSimulation.js)
+* 💻 **Simulations-Skript:** [`simulations/SatelliteCoreSimulation.js`](file:///D:/GitHub/CrashRadar/simulations/SatelliteCoreSimulation.js)
 
 ### Ergebnisse der Basis-Simulation (01.04.2023 – 08.09.2026):
 * **Startkapital:** 10.000 $ USD

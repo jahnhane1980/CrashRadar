@@ -2,8 +2,8 @@
 
 > 🔬 **Forschungsbereich:** High-Beta Turnarounds, IPO-Lebenszyklen & Parabolische Trend-Exits  
 > 📅 **Datum:** September 2026  
-> 📂 **Spiegel-Code:** [`scratch/research/turnarounds/run_refined_growth_test.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/run_refined_growth_test.js)  
-> 📊 **Daten-Caches:** [`scratch/research/turnarounds/data_cache/`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/data_cache/)  
+> 📂 **Spiegel-Code:** [`research/turnaround-studies/run_refined_growth_test.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/run_refined_growth_test.js)  
+> 📊 **Daten-Caches:** [`data/cache/turnarounds/`](file:///D:/GitHub/CrashRadar/data/cache/turnarounds/)  
 
 ---
 
@@ -101,7 +101,7 @@ Getestet wurde über einen 10-Jahres-Horizont (2016–2026) mit täglichen Kursk
 
 ## 6. Multi-Timeframe-Analyse & M5-Session-Sensorik (Erprobung am Fall PLTR)
 
-> 🔬 **Empirische Datenbasis:** 106.979 M5-Kerzen für Palantir (`PLTR`) aus `market_data_m5` (Juni 2024 bis August 2026), aggregiert auf US-Regular-Trading-Hours (RTH 09:30–16:00 ET) in [`scratch/research/turnarounds/analyze_pltr_multitimeframe.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/analyze_pltr_multitimeframe.js).
+> 🔬 **Empirische Datenbasis:** 106.979 M5-Kerzen für Palantir (`PLTR`) aus `market_data_m5` (Juni 2024 bis August 2026), aggregiert auf US-Regular-Trading-Hours (RTH 09:30–16:00 ET) in [`research/turnaround-studies/analyze_pltr_multitimeframe.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/analyze_pltr_multitimeframe.js).
 
 ### 6.1 Die Rolle der beiden 1,5-Stunden-Fenster (M5-Ebene)
 Die Zerlegung der Handelstage in Intraday-Segmente zeigt, dass der Handelstag keineswegs homogen verläuft:
@@ -141,7 +141,7 @@ Ja! Der ideale Multi-Timeframe-Stack für High-Beta Growth besteht aus **4 klar 
 
 ## 7. Der Multi-Ticker Härtetest: V1 (Flat Positionierung) vs. V2 (Progressive Livermore-Pyramidisierung)
 
-> 🔬 **Empirischer Spiegel-Code:** [`scratch/architecture/strategies/kamikaze/run_multi_ticker_v1_vs_v2.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/kamikaze/run_multi_ticker_v1_vs_v2.js)  
+> 🔬 **Empirischer Spiegel-Code:** [`research/strategy-prototypes/run_multi_ticker_v1_vs_v2.js`](file:///D:/GitHub/CrashRadar/research/strategy-prototypes/run_multi_ticker_v1_vs_v2.js)  
 > 📈 **Test-Umfang:** 60 reale Trades über 10 Jahre (2016–2026) an 8 Wachstumsaktien (`PLTR`, `NVTS`, `SOFI`, `S`, `APP`, `HIMS`, `NET`, `IBRX`), Budget 10.000 $ pro Trade-Setup.
 
 Um auszuschließen, dass die Vorteile der Livermore-Pyramidisierung (35 % → 70 % → 100 %) ein `PLTR`-spezifisches Phänomen (Curve-Fitting) sind, wurde die V1-Baseline (100 % All-In bei Breakout) systematisch gegen V2 (progressive Pyramidisierung mit 50/50 AVWAP-Retest Split und Satelliten-Trailing-Stop) getestet:

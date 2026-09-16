@@ -129,6 +129,8 @@ gantt
 * [ ] **[Quality]** **Intraday-Workflow:** GitHub Action `intraday-m5-fetch.yml` (17:15 & 22:15 Uhr) für automatische Synchronisation anlegen.
 * [ ] **[Radar]** **Climax-Überwachung:** `TOP_CLIMAX_ALERT`-Überwachung für High-Beta-Positionen (`NVTS`, `S`, `AIRO`, `IBRX`) bei $\text{Distanz zum EMA 20} \ge 35\text{–}45\,\%$ scharfstellen.
 * [ ] **[Strategie]** **Blow-Off Top:** Begleitung des vermuteten Tops bis Ende September.
+  > 🔍 **ZU PRÜFEN / CODE-BEFUND (Fehlender FRED-Fetch-Adapter):**  
+  > In `src/core/adapters/fetch/` existiert aktuell kein `FredFetchAdapter.js` und in `config/Database-Fetcher-Config.json` ist kein Task für die Federal Reserve konfiguriert (obwohl `FredAdapter.js` im Storage existiert). Aktuell müssen Zins- und Devisenreihen manuell über [`tools/backfill_new_fred_series.js`](file:///D:/GitHub/CrashRadar/tools/backfill_new_fred_series.js) nachgeladen werden. In Sprint 1 zwingend `FredFetchAdapter.js` anbinden und in den täglichen `TimeSeriesFetcher` integrieren.
 
 ##### Sprint 2 (01.10. – 25.10.2026): Liquidierung & Strategie-Klassen (Teil 1)
 * [ ] **[Strategie]** **Liquidierung:** Geordnete Portfolio-Liquidierung zur Cash-Sicherung begleiten (Mitte/Ende Oktober).
@@ -178,7 +180,7 @@ gantt
 * [ ] **[Broadcast]** **15. Dezember 2026:** Produktiv-Schaltung für die Community. Das System ist scharf für den Bärenmarkt 2027.
 
 > 🔍 **ZU PRÜFEN / CODEBASE-HYGIENE (Backup-Dateien im Quellcode-Ordner):**  
-> Im Quellcode-Ordner `src/analysis/` liegt aktuell die ungetrackte Backup-Datei [`DailyPortfolioCompass.with_portfolio_backup.js`](file:///D:/GitHub/CrashRadar/src/analysis/DailyPortfolioCompass.with_portfolio_backup.js). Gemäß [`AGENTS.md`](file:///D:/GitHub/CrashRadar/AGENTS.md) (Regel 3: *Spiegel-Disziplin & Tools vs. Trash*) prüfen, ob diese nach `scratch/trash/` verschoben werden soll, um `src/` frei von manuellen Backups zu halten.
+> Im Quellcode-Ordner `src/analysis/` liegt aktuell die ungetrackte Backup-Datei [`DailyPortfolioCompass.with_portfolio_backup.js`](file:///D:/GitHub/CrashRadar/src/analysis/DailyPortfolioCompass.with_portfolio_backup.js). Prüfen, ob diese gelöscht werden kann, um `src/` frei von manuellen Backups zu halten.
 
 ---
 
@@ -210,7 +212,7 @@ Nach erfolgreichem V1-Go-Live werden die strategischen Großprojekte etappenweis
 
 ### 2.6 Generational Turnaround Framework ($L_2$-Sniper)
 * **Spezifikation:** [`docs/architecture/strategies/kamikaze/02-Turnaround-Framework.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/02-Turnaround-Framework.md) und Forschungs-Hypothese [`docs/research/turnarounds/Generational-Growth-Hypothesis.md`](file:///D:/GitHub/CrashRadar/docs/research/turnarounds/Generational-Growth-Hypothesis.md).
-* **Nächster Schritt:** Simulation von $L_2$-Sniper vs. Diamanten-Haltedauer in [`scratch/research/turnarounds/generational_sniper_simulation.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/generational_sniper_simulation.js).
+* **Nächster Schritt:** Simulation von $L_2$-Sniper vs. Diamanten-Haltedauer in [`simulations/GrowthLifecycleSimulation.js`](file:///D:/GitHub/CrashRadar/simulations/GrowthLifecycleSimulation.js).
 
 ---
 
@@ -231,7 +233,7 @@ Nach erfolgreichem V1-Go-Live werden die strategischen Großprojekte etappenweis
 * **DB-First Services:** [`FiscalCalendarService.js`](file:///D:/GitHub/CrashRadar/src/services/FiscalCalendarService.js), [`ScenarioChecklistService.js`](file:///D:/GitHub/CrashRadar/src/services/ScenarioChecklistService.js) und [`MacroScorecardRunner.js`](file:///D:/GitHub/CrashRadar/src/runners/MacroScorecardRunner.js) mit direkter Ist-Wert-Persistenz live verifiziert.
 
 ### ✅ Multivariates Makro-ML-Regime-Modell
-* **Stationarisierte XGBoost-Pipeline:** Python-Trainingspipeline mit Purged Walk-Forward CV ([`scratch/architecture/ml/train_macro_regime.py`](file:///D:/GitHub/CrashRadar/scratch/architecture/ml/train_macro_regime.py)).
+* **Stationarisierte XGBoost-Pipeline:** Python-Trainingspipeline mit Purged Walk-Forward CV ([`research/ml-lab/train_macro_regime.py`](file:///D:/GitHub/CrashRadar/research/ml-lab/train_macro_regime.py)).
 * **Latenzfreie JS-Inferenz:** [`MacroMlService.js`](file:///D:/GitHub/CrashRadar/src/services/MacroMlService.js) und [`MlRegimeRadarMacroIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/MlRegimeRadarMacroIndicator.js) in [`MacroRegimeEngine.js`](file:///D:/GitHub/CrashRadar/src/analysis/MacroRegimeEngine.js) integriert.
 * **Dokumentation:** Vollständig hinterlegt in [`docs/architecture/ml/Makro-ML.md`](file:///D:/GitHub/CrashRadar/docs/architecture/ml/Makro-ML.md).
 

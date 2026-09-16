@@ -193,5 +193,5 @@ Alle 7 Slots sind aktuell belegt und durch mindestens zwei Manager bestätigt:
 
 ## 8. Empirischer Proof of Concept (PoC) & Simulations-Code
 
-* 💻 **Basis-Simulation (2023 bis heute):** [`SevenSlotGuruSimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/SevenSlotGuruSimulation.js)  
-* 💻 **Multi-Krisen Stresstest (2018–2026):** [`MultiCrisisStressTest.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/MultiCrisisStressTest.js)  
+* 💻 **Basis-Simulation (2023 bis heute):** [`SevenSlotGuruSimulation.js`](file:///D:/GitHub/CrashRadar/simulations/SevenSlotGuruSimulation.js)  
+* 💻 **Multi-Krisen Stresstest (2018–2026):** [`MultiCrisisStressTest.js`](file:///D:/GitHub/CrashRadar/simulations/MultiCrisisStressTest.js)  

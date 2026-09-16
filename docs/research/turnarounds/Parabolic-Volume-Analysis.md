@@ -2,8 +2,8 @@
 
 > 🔬 **Forschungsbereich:** High-Beta Wachstumsaktien, Intraday M5-Session-Fenster & Korrektur-Volumen  
 > 📅 **Datum:** September 2026  
-> 📂 **Spiegel-Code:** [`scratch/research/turnarounds/analyze_parabolic_volumes.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/analyze_parabolic_volumes.js)  
-> 📊 **Daten-Caches:** [`scratch/research/turnarounds/data_cache/`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/data_cache/)  
+> 📂 **Spiegel-Code:** [`research/turnaround-studies/analyze_parabolic_volumes.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/analyze_parabolic_volumes.js)  
+> 📊 **Daten-Caches:** [`data/cache/turnarounds/`](file:///D:/GitHub/CrashRadar/data/cache/turnarounds/)  
 > 🗄️ **Datenbank:** `market_data_m5` (106.979 M5-Kerzen PLTR, 86.403 NVTS, 73.247 IBRX, 106.552 SOFI, 68.077 S)  
 
 ---

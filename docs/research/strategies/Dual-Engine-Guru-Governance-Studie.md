@@ -3,7 +3,7 @@
 
 > 📜 **Dokumenten-Typ:** Empirische Konzeptstudie & Forschungspapier (Research Study)  
 > 🔬 **Bereich:** `docs/research/strategies/`  
-> 💻 **Gespiegelter Analyse-Code:** [`scratch/research/strategies/study_historical_dual_engine_10y.js`](file:///D:/GitHub/CrashRadar/scratch/research/strategies/study_historical_dual_engine_10y.js) & [`scratch/research/strategies/simulate_conviction_filters.js`](file:///D:/GitHub/CrashRadar/scratch/research/strategies/simulate_conviction_filters.js) *(Cache-Ingest: [`scratch/tools/fetch_historical_13f_cache.js`](file:///D:/GitHub/CrashRadar/scratch/tools/fetch_historical_13f_cache.js))*  
+> 💻 **Gespiegelter Analyse-Code:** [`research/strategy-prototypes/study_historical_dual_engine_10y.js`](file:///D:/GitHub/CrashRadar/research/strategy-prototypes/study_historical_dual_engine_10y.js) & [`research/strategy-prototypes/simulate_conviction_filters.js`](file:///D:/GitHub/CrashRadar/research/strategy-prototypes/simulate_conviction_filters.js) *(Cache-Ingest: [`tools/fetch_historical_13f_cache.js`](file:///D:/GitHub/CrashRadar/tools/fetch_historical_13f_cache.js))*  
 > 🏛️ **Referenz-Architektur:** [`7-Slot-Guru-Konsens-System.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/7-Slot-Guru-Konsens-System.md) *(Bleibt operativ unverändert bei Version 2.1)*  
 > 📅 **Stand:** September 2026  
 
@@ -122,7 +122,7 @@ Um dieses Governance-Modell über echte Krisen hinweg empirisch zu belegen, wurd
 
 ## 6. Empirischer 10,5-Jahre-Härtetest: Scouts vs. Makro-Wächter (2016–2026)
 
-Mithilfe des Analyse-Skripts [`scratch/research/strategies/study_historical_dual_engine_10y.js`](file:///D:/GitHub/CrashRadar/scratch/research/strategies/study_historical_dual_engine_10y.js) wurden die Verhaltensweisen der beiden Kammern über ein volles Jahrzehnt quantitativ seziert.
+Mithilfe des Analyse-Skripts [`research/strategy-prototypes/study_historical_dual_engine_10y.js`](file:///D:/GitHub/CrashRadar/research/strategy-prototypes/study_historical_dual_engine_10y.js) wurden die Verhaltensweisen der beiden Kammern über ein volles Jahrzehnt quantitativ seziert.
 
 ### 6.1 Test 1: Der Bärenmarkt 2022 – Wer zog den Stecker & wer lief in den Untergang?
 

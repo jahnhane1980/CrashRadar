@@ -4,9 +4,9 @@
 > 📜 **Dokumenten-Typ:** Empirische Forschungsarbeit & KPI-Cockpit (Research Proof — Single Source of Truth)  
 > 🔬 **Bereich:** `docs/research/turnarounds/`  
 > 💻 **Gespiegelter Analyse-Code:**  
-> • [`scratch/research/turnarounds/study_sofi_turnaround_cockpit.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/study_sofi_turnaround_cockpit.js)  
-> • [`scratch/research/turnarounds/study_sofi_segments_rerating.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/study_sofi_segments_rerating.js)  
-> • [`scratch/research/turnarounds/study_sofi_valuation_beta.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/study_sofi_valuation_beta.js)  
+> • [`research/turnaround-studies/study_sofi_turnaround_cockpit.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/study_sofi_turnaround_cockpit.js)  
+> • [`research/turnaround-studies/study_sofi_segments_rerating.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/study_sofi_segments_rerating.js)  
+> • [`research/turnaround-studies/study_sofi_valuation_beta.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/study_sofi_valuation_beta.js)  
 > 🏛️ **Einfluss auf Strategie:** [`Kamikaze-Master-Drehbuch.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/kamikaze/Kamikaze-Master-Drehbuch.md) (Tech- & FinTech-Bucket)  
 > 📅 **Stand:** September 2026  
 
@@ -56,7 +56,7 @@ flowchart TD
 
 ## 3. Historische KPI-Matrix (10 Quartale: Q1 2024 – Q2 2026)
 
-Auswertung der SEC Form 10-K, 10-Q und 8-K Earnings Releases ([`study_sofi_turnaround_cockpit.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/study_sofi_turnaround_cockpit.js)):
+Auswertung der SEC Form 10-K, 10-Q und 8-K Earnings Releases ([`study_sofi_turnaround_cockpit.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/study_sofi_turnaround_cockpit.js)):
 
 | Quartal | Mitglieder | Prod. / Mitglied | Tech Rev. ($M) | Tech Marge | Galileo Accounts | LPB Vol. ($B) | NCO Rate | Kurs ($) | Operativer Status |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
@@ -90,11 +90,11 @@ Auswertung der SEC Form 10-K, 10-Q und 8-K Earnings Releases ([`study_sofi_turna
 Eine transparente Prüfung des aktuellen Datenbestands im CrashRadar-Repository:
 
 1. **Vollständig vorhanden & lokal gecached:**
-   * ✅ **Tageskurse & Markt-Historie (2021–2026):** [`SOFI_daily.json`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/data_cache/SOFI_daily.json) und SPY/QQQ-Vergleiche.
-   * ✅ **Offizielle SEC US-GAAP Bilanzen:** [`SOFI_sec_facts.json`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/data_cache/SOFI_sec_facts.json) (Umsatz Net of Interest, Net Income, Einlagen, Eigenkapital).
-   * ✅ **Vollständiger Form 10-Q (Q2 2026):** [`sofi_10q_20260630.htm`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/data_cache/sofi_10q_20260630.htm) mit Note 17 Segment Reporting.
-   * ✅ **Vollständiger Form 8-K Earnings Release (Q2 2026):** [`sofi_q2_2026_earnings_release.htm`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/data_cache/sofi_q2_2026_earnings_release.htm) mit Galileo Accounts, LPB-Volumen, NCOs und Products per Member.
-   * ✅ **Automatisierter KPI-Extraktor:** [`study_sofi_turnaround_cockpit.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/study_sofi_turnaround_cockpit.js).
+   * ✅ **Tageskurse & Markt-Historie (2021–2026):** [`SOFI_daily.json`](file:///D:/GitHub/CrashRadar/data/cache/turnarounds/SOFI_daily.json) und SPY/QQQ-Vergleiche.
+   * ✅ **Offizielle SEC US-GAAP Bilanzen:** [`SOFI_sec_facts.json`](file:///D:/GitHub/CrashRadar/data/cache/turnarounds/SOFI_sec_facts.json) (Umsatz Net of Interest, Net Income, Einlagen, Eigenkapital).
+   * ✅ **Vollständiger Form 10-Q (Q2 2026):** [`sofi_10q_20260630.htm`](file:///D:/GitHub/CrashRadar/data/cache/turnarounds/sofi_10q_20260630.htm) mit Note 17 Segment Reporting.
+   * ✅ **Vollständiger Form 8-K Earnings Release (Q2 2026):** [`sofi_q2_2026_earnings_release.htm`](file:///D:/GitHub/CrashRadar/data/cache/turnarounds/sofi_q2_2026_earnings_release.htm) mit Galileo Accounts, LPB-Volumen, NCOs und Products per Member.
+   * ✅ **Automatisierter KPI-Extraktor:** [`study_sofi_turnaround_cockpit.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/study_sofi_turnaround_cockpit.js).
 
 2. **Quartalsweise Routine (Der permanente Turnaround-Audit):**
    * Bei jedem neuen Quartalsbericht (Form 8-K Item 2.02 / 10-Q) liest der Ingestion-Worker automatisch die 4 Säulen ein.

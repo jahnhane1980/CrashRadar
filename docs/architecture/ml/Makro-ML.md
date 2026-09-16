@@ -150,7 +150,7 @@ Zur Verhinderung von Data Leakage und Lookahead-Bias:
 ## 6. Runtime & Integrations-Architektur
 
 1. **Training & Forschung (Python-Pipeline):**  
-   * Skript unter [`scratch/architecture/ml/train_macro_regime.py`](file:///D:/GitHub/CrashRadar/scratch/architecture/ml/train_macro_regime.py) unter Nutzung von `xgboost`, `scikit-learn` und `shap`.
+   * Skript unter [`research/ml-lab/train_macro_regime.py`](file:///D:/GitHub/CrashRadar/research/ml-lab/train_macro_regime.py) unter Nutzung von `xgboost`, `scikit-learn` und `shap`.
    * Export des trainierten Modells als `macro_regime_model.json` oder ONNX-Binärformat.
 2. **Ausführung in CrashRadar (Node.js Engine):**  
    * Service [`src/services/MacroMlService.js`](file:///D:/GitHub/CrashRadar/src/services/MacroMlService.js) lädt das JSON-Tree-Modell oder verwendet `onnxruntime-node`.
@@ -195,7 +195,7 @@ Um das gesamte Modell und die Evaluierung jederzeit von Grund auf neu zu erzeuge
 
 ### Schritt 1: Rohdaten-Audit aus der MySQL-Datenbank erzeugen
 ```bash
-node scratch/research/macro-proofs/Historical-Event-Raw-Audit.js
+node research/macro-proofs/Historical-Event-Raw-Audit.js
 ```
 * **Output:** Generiert [`data/historical_events_raw_indicators.csv`](file:///D:/GitHub/CrashRadar/data/historical_events_raw_indicators.csv) mit 3.278 Zeilen und 87 Spalten über die 8 historischen Crash-Epochen.
 
@@ -206,7 +206,7 @@ pip install pandas scikit-learn xgboost shap
 
 ### Schritt 3: XGBoost-Modell trainieren & exportieren
 ```bash
-python scratch/architecture/ml/train_macro_regime.py
+python research/ml-lab/train_macro_regime.py
 ```
 * **Output:**  
   * `data/ml/models/macro_regime/macro_regime_model.json` (150 Bäume, 32 Features)
@@ -214,7 +214,7 @@ python scratch/architecture/ml/train_macro_regime.py
 
 ### Schritt 4: Inferenz & Backtest in Node.js ausführen
 ```bash
-node scratch/architecture/ml/evaluate_macro_model.js
+node research/ml-lab/evaluate_macro_model.js
 ```
 * **Output:** Validiert alle 3.277 Handelstage in der JavaScript-Runtime und berechnet den Live-Score.
 
@@ -222,7 +222,7 @@ node scratch/architecture/ml/evaluate_macro_model.js
 
 ## 9. Backtest-Ergebnisse über alle 8 historischen Crash-Epochen
 
-Die Auswertung in Node.js ([`scratch/architecture/ml/evaluate_macro_model.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/ml/evaluate_macro_model.js)) liefert folgende Kennzahlen:
+Die Auswertung in Node.js ([`research/ml-lab/evaluate_macro_model.js`](file:///D:/GitHub/CrashRadar/research/ml-lab/evaluate_macro_model.js)) liefert folgende Kennzahlen:
 
 | Historisches Event | Untersuchte Tage | Max. Crash-Risiko | Min. Risiko (Normal) | Risiko an Peak-Zone | Risiko an Bodenbildung | Akute Risikotage (> 65 %) |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |

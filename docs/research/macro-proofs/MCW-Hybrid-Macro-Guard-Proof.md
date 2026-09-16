@@ -2,7 +2,7 @@
 
 Dieses Forschungsdokument untersucht empirisch, wie sich bestehende Indikatoren aus dem CrashRadar-Arsenal – namentlich [`FiscalFedLiquidityIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/FiscalFedLiquidityIndicator.js) und [`PanicCapitulationIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/PanicCapitulationIndicator.js) – auf die Gesamt-Performance der **Muzzled Cathie Wood (MCW) Strategie** auswirken.
 
-* 💻 **Zugehöriges Test-Skript:** [`scratch/research/macro-proofs/test_mcw_hybrid_macro_guard.js`](file:///D:/GitHub/CrashRadar/scratch/research/macro-proofs/test_mcw_hybrid_macro_guard.js)
+* 💻 **Zugehöriges Test-Skript:** [`research/macro-proofs/test_mcw_hybrid_macro_guard.js`](file:///D:/GitHub/CrashRadar/research/macro-proofs/test_mcw_hybrid_macro_guard.js)
 * ♟️ **Strategie-Referenz:** [`Muzzled-Cathie-Wood.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/Muzzled-Cathie-Wood.md)
 * 📊 **Datenbasis:** 1.678 Handelstage (2020-01-01 bis 2026-09-04) aus TiDB Cloud & SEC 10-Q Cache.
 

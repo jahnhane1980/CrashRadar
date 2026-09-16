@@ -251,7 +251,7 @@ export class MLRegimeService {
   }
 
   async retrain(candles) {
-    Logger.info(`[MLRegimeService] Retraining über Service (V2) ist deaktiviert. Bitte scratch/train_btc_model_v2.js nutzen!`);
+    Logger.info(`[MLRegimeService] Retraining über Service (V2) ist deaktiviert. Bitte research/ml-lab/train_macro_regime.py nutzen!`);
     // Die Retrain-Funktion im Service wird bei V2 aktuell nicht genutzt, da wir das externe Skript mit Class Weights haben.
     // Wir könnten es implementieren, aber um Fehler zu vermeiden, belassen wir das Training beim dedizierten Skript.
   }

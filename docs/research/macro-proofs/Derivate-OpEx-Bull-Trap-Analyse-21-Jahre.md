@@ -2,7 +2,7 @@
 
 > **Empirischer Forschungsbericht & Krisen-Beweis**  
 > **Autor:** CrashRadar Intelligence Engine (Modus Code-Buddy)  
-> **Status:** Abgeschlossen & Verifiziert via [`backtest_20y_derivatives_bulltraps.js`](file:///D:/GitHub/CrashRadar/scratch/research/macro-proofs/backtest_20y_derivatives_bulltraps.js)  
+> **Status:** Abgeschlossen & Verifiziert via [`backtest_20y_derivatives_bulltraps.js`](file:///D:/GitHub/CrashRadar/research/macro-proofs/backtest_20y_derivatives_bulltraps.js)  
 > **Referenz-Architektur:** [`docs/architecture/macro/Derivate-OpEx-Kalender-Konzept.md`](file:///D:/GitHub/CrashRadar/docs/architecture/macro/Derivate-OpEx-Kalender-Konzept.md)
 
 ---
@@ -188,8 +188,8 @@ Wie ist die aktuelle Lage im Hinblick auf den Hexensabbat am **18.09.2026** zu b
 ---
 
 ## 8. Verlinkte System-Artefakte
-* 📄 **LCD-Backtest (Lückenlos 2020/2023–2026):** [`scratch/research/macro-proofs/backtest_lcd_derivatives_bulltraps.js`](file:///D:/GitHub/CrashRadar/scratch/research/macro-proofs/backtest_lcd_derivatives_bulltraps.js)
-* 📄 **22-Jahre-Backtest (2004–2026):** [`scratch/research/macro-proofs/backtest_20y_derivatives_bulltraps.js`](file:///D:/GitHub/CrashRadar/scratch/research/macro-proofs/backtest_20y_derivatives_bulltraps.js)
+* 📄 **LCD-Backtest (Lückenlos 2020/2023–2026):** [`research/macro-proofs/backtest_lcd_derivatives_bulltraps.js`](file:///D:/GitHub/CrashRadar/research/macro-proofs/backtest_lcd_derivatives_bulltraps.js)
+* 📄 **22-Jahre-Backtest (2004–2026):** [`research/macro-proofs/backtest_20y_derivatives_bulltraps.js`](file:///D:/GitHub/CrashRadar/research/macro-proofs/backtest_20y_derivatives_bulltraps.js)
 * 📄 **SensorHub-Architektur:** [`docs/architecture/macro/Derivate-OpEx-Kalender-Konzept.md`](file:///D:/GitHub/CrashRadar/docs/architecture/macro/Derivate-OpEx-Kalender-Konzept.md)
 * 📄 **Master-Composite:** [`src/signals/hubs/DerivativesSensorHub.js`](file:///D:/GitHub/CrashRadar/src/signals/hubs/DerivativesSensorHub.js)
-* 📄 **Projektions-CLI:** [`scratch/tools/macro_shakeout_projector.js`](file:///D:/GitHub/CrashRadar/scratch/tools/macro_shakeout_projector.js)
+* 📄 **Projektions-CLI:** [`tools/macro_shakeout_projector.js`](file:///D:/GitHub/CrashRadar/tools/macro_shakeout_projector.js)

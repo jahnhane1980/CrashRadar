@@ -4,8 +4,8 @@
 * **Datum:** 2026-09-15  
 * **Autor:** CrashRadar Intelligence Engine (Modus Code-Buddy)  
 * **Bereich:** [`docs/research/DailyPortfolioCompass/`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/)  
-* **Ausgeführtes Test-Skript:** [`scratch/research/DailyPortfolioCompass/test_adr010_credit_spread_divergence.js`](file:///D:/GitHub/CrashRadar/scratch/research/DailyPortfolioCompass/test_adr010_credit_spread_divergence.js)  
-* **Ergebnis-Datensatz:** [`scratch/research/DailyPortfolioCompass/adr010_test_results.json`](file:///D:/GitHub/CrashRadar/scratch/research/DailyPortfolioCompass/adr010_test_results.json)  
+* **Ausgeführtes Test-Skript:** [`research/adr-assertions/test_adr010_credit_spread_divergence.js`](file:///D:/GitHub/CrashRadar/research/adr-assertions/test_adr010_credit_spread_divergence.js)  
+* **Ergebnis-Datensatz:** [`data/cache/portfolio_compass/adr010_test_results.json`](file:///D:/GitHub/CrashRadar/data/cache/portfolio_compass/adr010_test_results.json)  
 * **Referenz-Komponenten:** [`DailyPortfolioCompass.js`](file:///D:/GitHub/CrashRadar/src/analysis/DailyPortfolioCompass.js), [`FinanceExpert.js`](file:///D:/GitHub/CrashRadar/src/services/FinanceExpert.js)
 
 ---
@@ -64,7 +64,7 @@ Das Scheitern von High-Yield-Bonds an Aktien-Hochpunkten ist einer der zuverläs
 
 ## 4. Empirische Testergebnisse (7.101 Handelstage)
 
-Die quantitative Auswertung via [`test_adr010_credit_spread_divergence.js`](file:///D:/GitHub/CrashRadar/scratch/research/DailyPortfolioCompass/test_adr010_credit_spread_divergence.js) liefert ein eindeutiges mathematisches Urteil:
+Die quantitative Auswertung via [`test_adr010_credit_spread_divergence.js`](file:///D:/GitHub/CrashRadar/research/adr-assertions/test_adr010_credit_spread_divergence.js) liefert ein eindeutiges mathematisches Urteil:
 
 ### A. Kohorten-Vergleich der 60-Tage Forward-Performance
 

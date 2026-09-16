@@ -2,9 +2,9 @@
 *S&P 500 Vermögensaufbau mit der 3-Säulen-Katastrophen-Matrix, 75/25 Gold-Cash Sweet Spot, Margin-Call-Airbag & 21,8 Jahre Krisen-Beweis*
 
 > ⚙️ **Operative Strategie-Konfiguration:** [`config/strategies/gold-spy.json`](file:///D:/GitHub/CrashRadar/config/strategies/gold-spy.json) (Version 2.3.0)  
-> 💻 **Katastrophen-Matrix & Hysterese-Test:** [`scratch/architecture/strategies/test_katastrophen_matrix.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/test_katastrophen_matrix.js)  
-> 💻 **75/25 Sweet-Spot & Stresstest:** [`scratch/architecture/strategies/test_75_25_gold_spy.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/test_75_25_gold_spy.js)  
-> 💻 **Empirischer 21,8-Jahre Tranchen-Vergleich:** [`scratch/research/strategies/CompareTranches21Years.js`](file:///D:/GitHub/CrashRadar/scratch/research/strategies/CompareTranches21Years.js)
+> 💻 **Katastrophen-Matrix & Hysterese-Test:** [`research/strategy-prototypes/test_katastrophen_matrix.js`](file:///D:/GitHub/CrashRadar/research/strategy-prototypes/test_katastrophen_matrix.js)  
+> 💻 **75/25 Sweet-Spot & Stresstest:** [`research/strategy-prototypes/test_75_25_gold_spy.js`](file:///D:/GitHub/CrashRadar/research/strategy-prototypes/test_75_25_gold_spy.js)  
+> 💻 **Empirischer 21,8-Jahre Tranchen-Vergleich:** [`simulations/CompareTranches21Years.js`](file:///D:/GitHub/CrashRadar/simulations/CompareTranches21Years.js)
 
 ---
 
@@ -91,7 +91,7 @@ Wenn institutionelle Fonds von Brokern Margin Calls erhalten, müssen sie innerh
 
 ## 4. Empirischer Proof: 21,8 Jahre Backtest (2004 – 2026)
 
-Ausgeführt über [`CompareTranches21Years.js`](file:///D:/GitHub/CrashRadar/scratch/research/strategies/CompareTranches21Years.js) bei 10.000 € Startkapital und 150 € monatlicher Sparrate (48.400 € Gesamteinzahlung über 7.760 Handelstage):
+Ausgeführt über [`CompareTranches21Years.js`](file:///D:/GitHub/CrashRadar/simulations/CompareTranches21Years.js) bei 10.000 € Startkapital und 150 € monatlicher Sparrate (48.400 € Gesamteinzahlung über 7.760 Handelstage):
 
 | Strategie / Setup | Depot-Endwert (€) | Reingewinn (€) | Rendite (%) | Maximaler Drawdown | Alpha vs. SPY |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -112,9 +112,9 @@ Ausgeführt über [`CompareTranches21Years.js`](file:///D:/GitHub/CrashRadar/scr
 ## 5. Technische Implementierung & Code-Referenzen
 
 * ⚙️ **Konfigurations-Manifest:** [`config/strategies/gold-spy.json`](file:///D:/GitHub/CrashRadar/config/strategies/gold-spy.json)
-* 💻 **Katastrophen-Matrix & Hysterese-Test:** [`scratch/architecture/strategies/test_katastrophen_matrix.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/test_katastrophen_matrix.js)
-* 💻 **75/25 Stresstest & Validierung:** [`scratch/architecture/strategies/test_75_25_gold_spy.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/test_75_25_gold_spy.js)
-* 💻 **22-Jahre-Simulationsskript:** [`scratch/architecture/strategies/GoldSpyFullHistorySimulation.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/GoldSpyFullHistorySimulation.js)
+* 💻 **Katastrophen-Matrix & Hysterese-Test:** [`research/strategy-prototypes/test_katastrophen_matrix.js`](file:///D:/GitHub/CrashRadar/research/strategy-prototypes/test_katastrophen_matrix.js)
+* 💻 **75/25 Stresstest & Validierung:** [`research/strategy-prototypes/test_75_25_gold_spy.js`](file:///D:/GitHub/CrashRadar/research/strategy-prototypes/test_75_25_gold_spy.js)
+* 💻 **22-Jahre-Simulationsskript:** [`simulations/GoldSpyFullHistorySimulation.js`](file:///D:/GitHub/CrashRadar/simulations/GoldSpyFullHistorySimulation.js)
 * 📊 **Margin-Debt & Deleveraging Sensor:** [`src/analysis/indicators/MarginDebtIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/MarginDebtIndicator.js)
 * 📄 **Signaldienst Master-Architektur:** [`docs/architecture/signal-service/Investment-Signaldienst.md`](file:///D:/GitHub/CrashRadar/docs/architecture/signal-service/Investment-Signaldienst.md)
 * 📄 **Wissensgraph-Index:** [`docs/README.md`](file:///D:/GitHub/CrashRadar/docs/README.md)

@@ -100,5 +100,5 @@ function isQuadrupleWitching(monthIndex) {
 ## 5. Integration im CrashRadar
 
 1. **Service:** [`src/services/DerivativesCycleService.js`](file:///D:/GitHub/CrashRadar/src/services/DerivativesCycleService.js) berechnet tagesaktuell Status, Resttage und Phase.
-2. **Projektor:** [`scratch/tools/macro_shakeout_projector.js`](file:///D:/GitHub/CrashRadar/scratch/tools/macro_shakeout_projector.js) gibt den aktuellen Derivate-Statusblock im Terminal aus.
-3. **Stresstest:** [`scratch/architecture/macro/test_derivatives_cycle_stress.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/macro/test_derivatives_cycle_stress.js) validiert historisch die Rebound- und Volatilitätsraten vor und nach dem Verfall.
+2. **Projektor:** [`tools/macro_shakeout_projector.js`](file:///D:/GitHub/CrashRadar/tools/macro_shakeout_projector.js) gibt den aktuellen Derivate-Statusblock im Terminal aus.
+3. **Stresstest:** [`research/macro-proofs/test_derivatives_cycle_stress.js`](file:///D:/GitHub/CrashRadar/research/macro-proofs/test_derivatives_cycle_stress.js) validiert historisch die Rebound- und Volatilitätsraten vor und nach dem Verfall.

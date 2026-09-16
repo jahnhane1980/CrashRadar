@@ -4,8 +4,8 @@
 * **Datum:** 2026-09-15  
 * **Autor:** CrashRadar Intelligence Engine (Modus Code-Buddy)  
 * **Bereich:** [`docs/research/DailyPortfolioCompass/`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/)  
-* **Test-Skript:** [`scratch/research/DailyPortfolioCompass/test_adr007_fiscal_shield.js`](file:///D:/GitHub/CrashRadar/scratch/research/DailyPortfolioCompass/test_adr007_fiscal_shield.js)  
-* **Ergebnis-Datensatz:** [`scratch/research/DailyPortfolioCompass/adr007_test_results.json`](file:///D:/GitHub/CrashRadar/scratch/research/DailyPortfolioCompass/adr007_test_results.json)  
+* **Test-Skript:** [`research/adr-assertions/test_adr007_fiscal_shield.js`](file:///D:/GitHub/CrashRadar/research/adr-assertions/test_adr007_fiscal_shield.js)  
+* **Ergebnis-Datensatz:** [`data/cache/portfolio_compass/adr007_test_results.json`](file:///D:/GitHub/CrashRadar/data/cache/portfolio_compass/adr007_test_results.json)  
 * **Referenz-Komponenten:** [`DailyPortfolioCompass.js`](file:///D:/GitHub/CrashRadar/src/analysis/DailyPortfolioCompass.js), [`LiquiditySensorHub.js`](file:///D:/GitHub/CrashRadar/src/signals/hubs/LiquiditySensorHub.js), [`GoldilocksSensorHub.js`](file:///D:/GitHub/CrashRadar/src/signals/hubs/GoldilocksSensorHub.js)
 
 ---

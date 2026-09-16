@@ -4,8 +4,8 @@
 * **Datum:** 2026-09-15  
 * **Autor:** CrashRadar Intelligence Engine (Modus Code-Buddy)  
 * **Bereich:** [`docs/research/DailyPortfolioCompass/`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/)  
-* **Test-Skript:** [`scratch/research/DailyPortfolioCompass/test_adr009_bull_steepener_trap.js`](file:///D:/GitHub/CrashRadar/scratch/research/DailyPortfolioCompass/test_adr009_bull_steepener_trap.js)  
-* **Ergebnis-Datensatz:** [`scratch/research/DailyPortfolioCompass/adr009_test_results.json`](file:///D:/GitHub/CrashRadar/scratch/research/DailyPortfolioCompass/adr009_test_results.json)  
+* **Test-Skript:** [`research/adr-assertions/test_adr009_bull_steepener_trap.js`](file:///D:/GitHub/CrashRadar/research/adr-assertions/test_adr009_bull_steepener_trap.js)  
+* **Ergebnis-Datensatz:** [`data/cache/portfolio_compass/adr009_test_results.json`](file:///D:/GitHub/CrashRadar/data/cache/portfolio_compass/adr009_test_results.json)  
 * **Referenz-Komponenten:** [`DailyPortfolioCompass.js`](file:///D:/GitHub/CrashRadar/src/analysis/DailyPortfolioCompass.js), [`YieldCurveIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/YieldCurveIndicator.js), [`FinanceExpert.js`](file:///D:/GitHub/CrashRadar/src/services/FinanceExpert.js)
 
 ---
@@ -56,7 +56,7 @@ Jede historische Entinversion seit 1990/2000 markiert mit einem Time-Lag von 3 b
 
 ## 4. Empirische Ergebnisse des 27-Jahre-Härtetests
 
-Der Härtetest wurde über [`test_adr009_bull_steepener_trap.js`](file:///D:/GitHub/CrashRadar/scratch/research/DailyPortfolioCompass/test_adr009_bull_steepener_trap.js) über alle 9.789 Handelstage ausgeführt.
+Der Härtetest wurde über [`test_adr009_bull_steepener_trap.js`](file:///D:/GitHub/CrashRadar/research/adr-assertions/test_adr009_bull_steepener_trap.js) über alle 9.789 Handelstage ausgeführt.
 
 ### A. Chronologie der identifizierten Makro-Entinversionen
 

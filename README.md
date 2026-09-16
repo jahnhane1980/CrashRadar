@@ -66,10 +66,12 @@ Die wichtigsten Einstiegspunkte des Systems via [`index.js`](file:///D:/GitHub/C
 ```text
 CrashRadar/
 ├── config/              # JSON-Konfigurationen für Indikatoren, Fetcher, Kalender und Strategien
+├── data/                # Lokale Caches (data/cache/) und Archiv-Daten
 ├── docs/                # 📚 Vollständige Wissens- und Spezifikations-Architektur (2-Säulen-Prinzip)
 │   ├── architecture/    # Technische Spezifikationen, Verträge, APIs und State Machines
 │   └── research/        # Empirische 21-Jahre-Backtests, Hypothesen und Studien (ADRs)
-├── scratch/             # Spiegelordner für Experimente, Prototypen und Tool-Skripte
+├── research/            # Empirische Forschung, Thesen-Beweise, ADR-Invarianten & Chaos-Audits
+├── simulations/         # Reproduzierbare Portfolio-Master-Engines (21-Jahre-Backtests)
 ├── src/
 │   ├── analysis/        # Makro-Regime-Engines, Indikatoren und Labeler
 │   ├── core/            # Datenbank- & Fetch-Adapter (MySQL, TiDB, FRED, Yahoo, Polygon)
@@ -78,6 +80,7 @@ CrashRadar/
 │   ├── services/        # Externe Dienste (Discord-Webhooks, Notifier, ML-Inferenz)
 │   ├── signals/         # Composite Sensor-Hubs, Leaf-Sensoren und Verträge
 │   └── strategies/      # Modulare Portfoliostrategien & PortfolioStrategyEngine
+├── tools/               # Operative Entwickler- & Wartungs-Tools
 └── tests/               # Unit- und Integrationstests (Vitest) mit deterministischem Chaos
 ```
 

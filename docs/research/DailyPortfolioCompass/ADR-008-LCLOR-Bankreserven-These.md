@@ -4,8 +4,8 @@
 * **Datum:** 2026-09-15  
 * **Autor:** CrashRadar Intelligence Engine (Modus Code-Buddy)  
 * **Bereich:** [`docs/research/DailyPortfolioCompass/`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/)  
-* **Ausgeführtes Test-Skript:** [`scratch/research/DailyPortfolioCompass/test_adr008_lclor_bank_reserves.js`](file:///D:/GitHub/CrashRadar/scratch/research/DailyPortfolioCompass/test_adr008_lclor_bank_reserves.js)  
-* **Ergebnis-Datensatz:** [`scratch/research/DailyPortfolioCompass/adr008_test_results.json`](file:///D:/GitHub/CrashRadar/scratch/research/DailyPortfolioCompass/adr008_test_results.json)  
+* **Ausgeführtes Test-Skript:** [`research/adr-assertions/test_adr008_lclor_bank_reserves.js`](file:///D:/GitHub/CrashRadar/research/adr-assertions/test_adr008_lclor_bank_reserves.js)  
+* **Ergebnis-Datensatz:** [`data/cache/portfolio_compass/adr008_test_results.json`](file:///D:/GitHub/CrashRadar/data/cache/portfolio_compass/adr008_test_results.json)  
 * **Referenz-Komponenten:** [`DailyPortfolioCompass.js`](file:///D:/GitHub/CrashRadar/src/analysis/DailyPortfolioCompass.js), [`LiquiditySensorHub.js`](file:///D:/GitHub/CrashRadar/src/signals/hubs/LiquiditySensorHub.js), [`BankReservesIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/BankReservesIndicator.js), [`FinanceExpert.js`](file:///D:/GitHub/CrashRadar/src/services/FinanceExpert.js)
 
 ---
@@ -61,7 +61,7 @@ Das Zusammentreffen von `WRESBAL < 10.5% BIP` und `RRP < 50B` verdoppelt das Sch
 
 ## 4. Empirische Testergebnisse (6.470 Handelstage)
 
-Die quantitative Auswertung via [`test_adr008_lclor_bank_reserves.js`](file:///D:/GitHub/CrashRadar/scratch/research/DailyPortfolioCompass/test_adr008_lclor_bank_reserves.js) liefert folgende empirische Verteilung:
+Die quantitative Auswertung via [`test_adr008_lclor_bank_reserves.js`](file:///D:/GitHub/CrashRadar/research/adr-assertions/test_adr008_lclor_bank_reserves.js) liefert folgende empirische Verteilung:
 
 ### A. Kohorten-Vergleich der 60-Tage Forward-Performance
 

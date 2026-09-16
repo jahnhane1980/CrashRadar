@@ -4,8 +4,8 @@
 * **Datum:** 2026-09-15  
 * **Autor:** CrashRadar Intelligence Engine (Modus Code-Buddy)  
 * **Bereich:** [`docs/research/DailyPortfolioCompass/`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/)  
-* **Ausgeführtes Test-Skript:** [`scratch/research/DailyPortfolioCompass/test_adr012_selling_climax_volume.js`](file:///D:/GitHub/CrashRadar/scratch/research/DailyPortfolioCompass/test_adr012_selling_climax_volume.js)  
-* **Ergebnis-Datensatz:** [`scratch/research/DailyPortfolioCompass/adr012_test_results.json`](file:///D:/GitHub/CrashRadar/scratch/research/DailyPortfolioCompass/adr012_test_results.json)  
+* **Ausgeführtes Test-Skript:** [`research/adr-assertions/test_adr012_selling_climax_volume.js`](file:///D:/GitHub/CrashRadar/research/adr-assertions/test_adr012_selling_climax_volume.js)  
+* **Ergebnis-Datensatz:** [`data/cache/portfolio_compass/adr012_test_results.json`](file:///D:/GitHub/CrashRadar/data/cache/portfolio_compass/adr012_test_results.json)  
 * **Referenz-Komponenten:** [`DailyPortfolioCompass.js`](file:///D:/GitHub/CrashRadar/src/analysis/DailyPortfolioCompass.js), [`FinanceExpert.js`](file:///D:/GitHub/CrashRadar/src/services/FinanceExpert.js), [`ADR-011`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-011-Dual-Gatekeeper-Reentry-These.md)
 
 ---
@@ -60,7 +60,7 @@ Tage mit $SPY\_Volume \ge 2.0x\text{ SMA50}$ in Korrekturen erzielen eine signif
 
 ## 4. Empirische Testergebnisse (7.992 Handelstage)
 
-Die quantitative Auswertung via [`test_adr012_selling_climax_volume.js`](file:///D:/GitHub/CrashRadar/scratch/research/DailyPortfolioCompass/test_adr012_selling_climax_volume.js) liefert ein eindeutiges mathematisches Urteil:
+Die quantitative Auswertung via [`test_adr012_selling_climax_volume.js`](file:///D:/GitHub/CrashRadar/research/adr-assertions/test_adr012_selling_climax_volume.js) liefert ein eindeutiges mathematisches Urteil:
 
 ### A. Statistische Perzentil-Verteilung des SPY-Volumens (2004–2026)
 

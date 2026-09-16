@@ -2,8 +2,8 @@
 
 > 🔬 **Forschungsbereich:** Multi-Timeframe-Architektur, 3D-Swing-Rolling & Zeitvorteil-Analyse  
 > 📅 **Datum:** September 2026  
-> 📂 **Spiegel-Code:** [`scratch/research/turnarounds/test_mtf_pyramid_all.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/test_mtf_pyramid_all.js)  
-> 📊 **Daten-Caches:** [`scratch/research/turnarounds/data_cache/`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/data_cache/)  
+> 📂 **Spiegel-Code:** [`research/turnaround-studies/test_mtf_pyramid_all.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/test_mtf_pyramid_all.js)  
+> 📊 **Daten-Caches:** [`data/cache/turnarounds/`](file:///D:/GitHub/CrashRadar/data/cache/turnarounds/)  
 > 🗄️ **Untersuchte Ticker:** `PLTR`, `NVTS`, `IBRX`, `SOFI`, `S`, `NET`  
 
 ---

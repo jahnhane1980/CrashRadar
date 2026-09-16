@@ -2,7 +2,7 @@
 
 > 🔬 **Forschungsbereich:** Makro-Liquiditäts-Plumbing, Terminmarkt-Hedging, VIX-Drawdown-Regression & High-Beta Stop-Fishing  
 > 📅 **Datum:** September 2026  
-> 📂 **Spiegel-Code & CLI-Tool:** [`scratch/tools/macro_shakeout_projector.js`](file:///D:/GitHub/CrashRadar/scratch/tools/macro_shakeout_projector.js)  
+> 📂 **Spiegel-Code & CLI-Tool:** [`tools/macro_shakeout_projector.js`](file:///D:/GitHub/CrashRadar/tools/macro_shakeout_projector.js)  
 > ⚙️ **Konfigurations-Schema:** [`config/Shakeout-Projector-Config.json`](file:///D:/GitHub/CrashRadar/config/Shakeout-Projector-Config.json)  
 
 ---
@@ -130,7 +130,7 @@ Das Framework ist vollständig automatisiert und kann jederzeit interaktiv ausge
 
 ```bash
 # Ausführung des ganzheitlichen Makro- & VIX-Shakeout Projectors
-node scratch/tools/macro_shakeout_projector.js
+node tools/macro_shakeout_projector.js
 ```
 
 Konfigurations-Anpassungen (neue Ticker, geänderte Limits, Cash-Zahlen) werden direkt in [`config/Shakeout-Projector-Config.json`](file:///D:/GitHub/CrashRadar/config/Shakeout-Projector-Config.json) hinterlegt.

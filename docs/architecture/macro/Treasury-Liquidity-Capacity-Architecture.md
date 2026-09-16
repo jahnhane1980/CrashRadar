@@ -161,7 +161,7 @@ Um die Auswirkung auf **Korrekturen (5–15 %)** und **Crashes (> 20 %)** unabh�
 
 ## 5. Empirische Analyse-Ergebnisse & Erkenntnis zur Zinsdynamik
 
-Die empirische Untersuchung über 3.183 Handelstage (2014 bis heute) wurde mit dem Skript [`scratch/architecture/macro/analyze_treasury_capacity_model.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/macro/analyze_treasury_capacity_model.js) durchgeführt und in [`scratch/architecture/macro/capacity_model_results.json`](file:///D:/GitHub/CrashRadar/scratch/architecture/macro/capacity_model_results.json) persistiert.
+Die empirische Untersuchung über 3.183 Handelstage (2014 bis heute) wurde mit dem Skript [`research/macro-proofs/analyze_treasury_capacity_model.js`](file:///D:/GitHub/CrashRadar/research/macro-proofs/analyze_treasury_capacity_model.js) durchgeführt und in [`data/cache/macro/capacity_model_results.json`](file:///D:/GitHub/CrashRadar/data/cache/macro/capacity_model_results.json) persistiert.
 
 ### 5.1 Quintil-Ergebnisse (Composite Capacity Stress Index)
 * **Q1 (Niedriger Stress):** SPY Fwd 60d: +1,30 %, Max Drawdown: -5,68 %

@@ -331,8 +331,8 @@ Um Fehlausstiege bei echten Generations-Monopolen zu verhindern, differenziert d
   * M5-Volumen- & Schlussauktions-Analyse: [`docs/research/turnarounds/Parabolic-Volume-Analysis.md`](file:///D:/GitHub/CrashRadar/docs/research/turnarounds/Parabolic-Volume-Analysis.md)
   * 5-Ebenen-Pyramide & 3D-Vorlauf-Nachweis: [`docs/research/turnarounds/Multi-Timeframe-Pyramide-Analysis.md`](file:///D:/GitHub/CrashRadar/docs/research/turnarounds/Multi-Timeframe-Pyramide-Analysis.md)
 * 🧪 **Ausführbare Test-Skripte & Backtest-Engines:**
-  * Multi-Ticker Vergleich V1 vs. V2 (+112 % Mehrertrag, PF 6,54): [`scratch/architecture/strategies/kamikaze/run_multi_ticker_v1_vs_v2.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/kamikaze/run_multi_ticker_v1_vs_v2.js)
-  * Palantir End-to-End V2 Pyramidisierungs-Engine: [`scratch/architecture/strategies/kamikaze/evaluate_pltr_pipeline_v2.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/strategies/kamikaze/evaluate_pltr_pipeline_v2.js)
-  * Validierter 2-Stufen-Exit Prototyp: [`scratch/research/turnarounds/adaptive_growth_prototype.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/adaptive_growth_prototype.js)
-  * Multi-Timeframe M5 Aggregator: [`scratch/research/turnarounds/aggregate_all_growth_m5.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/aggregate_all_growth_m5.js)
-  * 10-Jahres-Gesamtsimulation: [`scratch/research/turnarounds/run_refined_growth_test.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/run_refined_growth_test.js)
+  * Multi-Ticker Vergleich V1 vs. V2 (+112 % Mehrertrag, PF 6,54): [`research/strategy-prototypes/run_multi_ticker_v1_vs_v2.js`](file:///D:/GitHub/CrashRadar/research/strategy-prototypes/run_multi_ticker_v1_vs_v2.js)
+  * Palantir End-to-End V2 Pyramidisierungs-Engine: [`research/strategy-prototypes/evaluate_pltr_pipeline_v2.js`](file:///D:/GitHub/CrashRadar/research/strategy-prototypes/evaluate_pltr_pipeline_v2.js)
+  * Validierter 2-Stufen-Exit Prototyp: [`research/turnaround-studies/adaptive_growth_prototype.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/adaptive_growth_prototype.js)
+  * Multi-Timeframe M5 Aggregator: [`research/turnaround-studies/aggregate_all_growth_m5.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/aggregate_all_growth_m5.js)
+  * 10-Jahres-Gesamtsimulation: [`research/turnaround-studies/run_refined_growth_test.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/run_refined_growth_test.js)

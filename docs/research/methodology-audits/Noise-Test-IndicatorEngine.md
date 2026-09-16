@@ -17,4 +17,4 @@ Um zu beweisen, dass die CrashRadar-Engine echte makroökonomische Kausalität (
 * **Totaler Kollaps (Overfitting):** Wenn die Crash-Signale plötzlich gar nicht mehr oder monatelang falsch feuern, ist das System kaputt/überoptimiert.
 * **Proportionale Degradation (Robustheit):** Wenn das System den Crash immer noch zuverlässig im gleichen Zeitfenster (vielleicht ein paar Tage früher/später) erkennt, haben wir den mathematischen Beweis erbracht, dass unser Edge real und robust ist.
 
-*(Siehe Umsetzung in [`scratch/research/methodology-audits/Noise-Test-IndicatorEngine.js`](file:///D:/GitHub/CrashRadar/scratch/research/methodology-audits/Noise-Test-IndicatorEngine.js))*
+*(Siehe Umsetzung in [`research/noise-and-audits/Noise-Test-IndicatorEngine.js`](file:///D:/GitHub/CrashRadar/research/noise-and-audits/Noise-Test-IndicatorEngine.js))*

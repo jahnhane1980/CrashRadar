@@ -96,7 +96,7 @@ Die US-Behörden und die Federal Reserve veröffentlichen ihren Jahresplan weit 
 
 ### 3.2 Live-Evaluierung & Marktübersicht aller Datenquellen
 
-Im Rahmen der Konzeption wurden alle relevanten Marktdaten-Provider auf ihre Eignung und Datenverfügbarkeit im Free-Tier untersucht und live getestet (Skripte: [`scratch/trash/test_sources.js`](file:///D:/GitHub/CrashRadar/scratch/trash/test_sources.js), [`scratch/trash/test_modern_fmp.js`](file:///D:/GitHub/CrashRadar/scratch/trash/test_modern_fmp.js), [`scratch/architecture/macro/test_forexfactory.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/macro/test_forexfactory.js) und [`scratch/architecture/macro/parse_cleveland.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/macro/parse_cleveland.js)):
+Im Rahmen der Konzeption wurden alle relevanten Marktdaten-Provider auf ihre Eignung und Datenverfügbarkeit im Free-Tier untersucht und live getestet (Skripte: [`research/macro-proofs/test_sources.js`](file:///D:/GitHub/CrashRadar/research/macro-proofs/test_sources.js), [`research/macro-proofs/test_modern_fmp.js`](file:///D:/GitHub/CrashRadar/research/macro-proofs/test_modern_fmp.js), [`research/macro-proofs/test_forexfactory.js`](file:///D:/GitHub/CrashRadar/research/macro-proofs/test_forexfactory.js) und [`research/macro-proofs/parse_cleveland.js`](file:///D:/GitHub/CrashRadar/research/macro-proofs/parse_cleveland.js)):
 
 | Provider | Makro-Wirtschaftskalender | Konsens-Schätzungen (Macro) | Free-Tier Eignung & Testergebnis |
 | :--- | :--- | :--- | :--- |
@@ -271,7 +271,7 @@ In `econ_fred` liegen rohe Zeitreihen vor. Der `MacroScorecardRunner` bzw. `Scen
 
 ## 5. Empirische Simulation & Grenzen reiner Trend-Modelle
 
-Zur Validierung der Dynamisierung wurde ein Simulations-Skript ([`scratch/architecture/macro/simulate_dynamic_rules.js`](file:///D:/GitHub/CrashRadar/scratch/architecture/macro/simulate_dynamic_rules.js)) entwickelt, das die realen historischen FRED-Zeitreihen aus `econ_fred` lädt, die gleitenden 3-Monats-Durchschnitte (3M MA) berechnet und den statischen JSON-Werten gegenüberstellt:
+Zur Validierung der Dynamisierung wurde ein Simulations-Skript ([`research/macro-proofs/simulate_dynamic_rules.js`](file:///D:/GitHub/CrashRadar/research/macro-proofs/simulate_dynamic_rules.js)) entwickelt, das die realen historischen FRED-Zeitreihen aus `econ_fred` lädt, die gleitenden 3-Monats-Durchschnitte (3M MA) berechnet und den statischen JSON-Werten gegenüberstellt:
 
 ### 5.1 Simulations-Ergebnisse (Datenbasis: Sommer 2026)
 

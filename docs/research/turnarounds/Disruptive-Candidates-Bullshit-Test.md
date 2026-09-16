@@ -2,7 +2,7 @@
 
 ## 1. Executive Summary & Forschungs-Fragestellung
 
-* 💻 **Audits & Daten-Basis:** [`audit_disruptive_candidates.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/audit_disruptive_candidates.js) & [`bullshit_test_disruptors.json`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/data_cache/bullshit_test_disruptors.json).
+* 💻 **Audits & Daten-Basis:** [`audit_disruptive_candidates.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/audit_disruptive_candidates.js) & [`bullshit_test_disruptors.json`](file:///D:/GitHub/CrashRadar/data/cache/turnarounds/bullshit_test_disruptors.json).
 * 🎯 **Zielsetzung:**  
   Evaluation potenzieller High-Conviction-Kandidaten für das Kamikaze-Portfolio abseits der bekannten Megacaps und der bereits extrem heiß gelaufenen Gewinner (wie Palantir `PLTR`).
   Gnadenlose empirische Prüfung von sechs Technologiewerten auf Herz und Nieren:

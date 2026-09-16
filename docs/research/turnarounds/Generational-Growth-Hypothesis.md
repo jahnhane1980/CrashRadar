@@ -70,7 +70,7 @@ Ein Diamant darf nicht wie ein kurzfristiger Zock behandelt werden. Das System m
 Nach der Pause wird dieses Konzept in einer separaten Testreihe empirisch nachgewiesen:
 
 1. **Erstellung des Test-Skripts:**  
-   [`scratch/research/turnarounds/generational_sniper_simulation.js`](file:///D:/GitHub/CrashRadar/scratch/research/turnarounds/generational_sniper_simulation.js)
+   [`simulations/GrowthLifecycleSimulation.js`](file:///D:/GitHub/CrashRadar/simulations/GrowthLifecycleSimulation.js)
 2. **Zwei mathematische Hebel zur Validierung:**
    * **Der $L_2$-Sniper-Einstieg:** Einstieg direkt bei der ersten Boden-Verteidigung ($L_2 \ge L_1$) nach massivem Volumensprung ($\text{RVOL} \ge 3{,}0\times$), um `IBRX` um 1,80–2,00 $ und `NVTS` um 1,80 $ einzusammeln.
    * **Der Diamanten-Modus (Phase B):** Deaktivierung der frühen Climax-Exits für High-Conviction Werte, um die vollen Multi-Bagger-Wellen stoisch mitzunehmen.
