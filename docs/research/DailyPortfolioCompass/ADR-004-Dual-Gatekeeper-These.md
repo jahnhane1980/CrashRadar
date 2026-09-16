@@ -1,12 +1,17 @@
 # ADR-004: Dual-Gatekeeper-These (Geldmarkt-Airbag + Goldilocks-Veto)
 
-* **Status:** Bestätigt & Verifiziert (Empirischer Härtetest 2020–2026)  
+* **Status:** Bestätigt & Verifiziert (Geltungsbereich: Nur Dip-Buying / Qualifiziert durch ADR-013)  
 * **Datum:** 2026-09-15  
 * **Autor:** CrashRadar Intelligence Engine (Modus Code-Buddy)  
 * **Bereich:** [`docs/research/DailyPortfolioCompass/`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/)  
 * **Test-Skript:** [`scratch/research/DailyPortfolioCompass/test_adr004_dual_gatekeeper.js`](file:///D:/GitHub/CrashRadar/scratch/research/DailyPortfolioCompass/test_adr004_dual_gatekeeper.js)  
 * **Ergebnis-Datensatz:** [`scratch/research/DailyPortfolioCompass/adr004_test_results.json`](file:///D:/GitHub/CrashRadar/scratch/research/DailyPortfolioCompass/adr004_test_results.json)  
 * **Referenz-Komponenten:** [`DailyPortfolioCompass.js`](file:///D:/GitHub/CrashRadar/src/analysis/DailyPortfolioCompass.js), [`LiquiditySensorHub.js`](file:///D:/GitHub/CrashRadar/src/signals/hubs/LiquiditySensorHub.js), [`GoldilocksSensorHub.js`](file:///D:/GitHub/CrashRadar/src/signals/hubs/GoldilocksSensorHub.js)
+
+> [!IMPORTANT]
+> **Geltungsbereich-Einschränkung & Abgrenzung zu ADR-011 / ADR-013:**  
+> Die in dieser ADR bewiesene Dual-Gatekeeper-Regel gilt **ausschließlich für prozyklisches und antizyklisches Dip-Buying in laufenden Aufwärtstrends oder geordneten Korrekturen** (Schutz vor Multiple-Compression-Fallen wie 2022).  
+> Sie darf **ausdrücklich NICHT als Re-Entry-Filter nach tiefen Liquiditäts- oder Systemcrashs** verwendet werden! (In [ADR-011](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-011-Dual-Gatekeeper-Reentry-These.md) wurde empirisch nachgewiesen, dass ein starrer Trend-/Makrofilter beim Wiedereinstieg über 21 Jahre mehr als -330.000 € an Rebound-Ertrag vernichtet. Die saubere Synthese und event-gesteuerte Re-Entry-Entkopplung erfolgt in [**ADR-013**](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-013-Makro-Asymmetrie-Reentry-These.md)).
 
 ---
 
@@ -121,3 +126,14 @@ Erst wenn **beide Gefahrenquellen ausgeschlossen** sind, entfaltet das Dip-Buyin
    * Die Freigabe für aggressives Dip-Buying (`DIP-BUYING ERLAUBT` / Status `SUNSHINE`) darf **nicht allein durch den [`LiquiditySensorHub`](file:///D:/GitHub/CrashRadar/src/signals/hubs/LiquiditySensorHub.js)** erfolgen.
    * Wenn der VIX panisch $\ge 25.0$ notiert, die Liquidität `OK` ist, aber der [`GoldilocksSensorHub`](file:///D:/GitHub/CrashRadar/src/signals/hubs/GoldilocksSensorHub.js) auf `WARNING` steht und der Trend gebrochen ist ($SPY < SMA200$), muss der Kompass zwingend in den Status **`CAUTION_DRIFT`** schalten und die Leitlinie ausgeben:  
      👉 **„Multiple-Compression-Gefahr! Trotz Liquiditäts-Puffer kein unbedachtes Dip-Buying. Füße stillhalten oder nur halbe Positionsgröße mit engem Trailing-Stop.“**
+
+---
+
+## 7. Addendum: Geltungsbereich-Abgrenzung zu ADR-011 & ADR-013 (Kein Re-Entry-Transfer)
+
+* **Scharfe funktionale Trennung:**  
+  Die vorliegende ADR-004 regelt **ausschließlich das Betreten des Marktes bei kurzfristigen Volatilitäts-Rücksetzern (Dip-Buying)** während geordneter Marktphasen.
+* **Die Falsifikation des naiven Re-Entry-Transfers ([ADR-011](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-011-Dual-Gatekeeper-Reentry-These.md)):**  
+  Der Versuch, diese Dual-Gatekeeper-Logik als dauerhaften Wiedereinstiegs-Filter nach tiefen Liquiditäts-Crashes zu verwenden, wurde in ADR-011 eindeutig falsifiziert (Rebound-Lag vernichtete -331.960 € über 21,8 Jahre).
+* **Die methodische Lösung ([ADR-013](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-013-Makro-Asymmetrie-Reentry-These.md)):**  
+  Die Synthese beider Phänomene (Asymmetrie zwischen Dip-Buying-Schutz und Re-Entry-Entkopplung an Zyklustiefs) ist vollständig in **ADR-013** formalisiert.
