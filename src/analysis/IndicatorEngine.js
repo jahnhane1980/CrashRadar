@@ -8,7 +8,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 import { MacroRegimeEngine } from './MacroRegimeEngine.js';
-import { TradeSetupEngine } from './TradeSetupEngine.js';
 import { NotificationManager } from '../services/NotificationManager.js';
 
 export class IndicatorEngine {
@@ -34,14 +33,12 @@ export class IndicatorEngine {
     this.indicatorPipelineConfig = pipelineConfig;
 
     this.macroRegimeEngine = new MacroRegimeEngine(this.indicatorPipelineConfig?.macroIndicators || this.indicatorPipelineConfig);
-    this.tradeSetupEngine = new TradeSetupEngine(() => this.cycleConfig, this.indicatorPipelineConfig?.tradeSetupIndicators || this.indicatorPipelineConfig);
     this.notificationManager = new NotificationManager(this.notificationConfig, this.indicatorPipelineConfig);
   }
 
   _evaluateState(groupedData) {
     if (!groupedData || Object.keys(groupedData).length === 0) return null;
     const macroStates = this.macroRegimeEngine.evaluate(groupedData);
-    const actionsByDate = this.tradeSetupEngine.evaluate(groupedData, macroStates);
     
     let lastDate;
     let currentDayData;
@@ -57,7 +54,6 @@ export class IndicatorEngine {
     
     return {
       macroState: macroStates[lastDate] || { regime: 'NORMAL', vetos: [], liquidityStatus: 'NORMAL' },
-      tradeActions: actionsByDate[lastDate] || [],
       dateStr: lastDate,
       currentDayData: currentDayData
     };
@@ -66,7 +62,7 @@ export class IndicatorEngine {
   generateReport(groupedData, cleanText = false) {
     const state = this._evaluateState(groupedData);
     if (!state) throw new Error('Keine Daten für die Analyse vorhanden.');
-    return this.notificationManager.generateReport(state.macroState, state.tradeActions, state.dateStr, cleanText);
+    return this.notificationManager.generateReport(state.macroState, state.dateStr, cleanText);
   }
 
   run(groupedData) {
@@ -78,12 +74,12 @@ export class IndicatorEngine {
   getAlerts(groupedData, alertHistory = {}, debounceDays = 14) {
     const state = this._evaluateState(groupedData);
     if (!state) return null;
-    return this.notificationManager.getAlerts(state.macroState, state.tradeActions, alertHistory, debounceDays);
+    return this.notificationManager.getAlerts(state.macroState, alertHistory, debounceDays);
   }
 
   getDailyStatusReport(groupedData) {
     const state = this._evaluateState(groupedData);
     if (!state) return null;
-    return this.notificationManager.getDailyStatusReport(state.macroState, state.tradeActions, state.currentDayData);
+    return this.notificationManager.getDailyStatusReport(state.macroState, state.currentDayData);
   }
 }

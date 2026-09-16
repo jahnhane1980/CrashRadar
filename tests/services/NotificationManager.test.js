@@ -38,20 +38,22 @@ describe('NotificationManager (New Architecture)', () => {
     });
 
     it('sollte einen sauberen Report generieren (cleanText = true)', () => {
-        const macroState = createMockMacroState({ regime: 'LATE_CYCLE_EUPHORIA', vetos: ['VETO_1'] });
-        const tradeActions = [
-            createMockTradeAction({ status: 'CRITICAL', blocked: true, blockReason: 'MACRO_BLOCK' }),
-            createMockTradeAction({ indicator: 'Another Indicator', status: 'WARNING', scaleDown: true })
-        ];
+        const macroState = createMockMacroState({
+            regime: 'LATE_CYCLE_EUPHORIA',
+            vetos: ['VETO_1'],
+            indicatorDetails: [
+                { name: 'Margin Debt (Gier & Hebel)', status: 'CRITICAL', message: 'Hebelabbau aktiv' }
+            ]
+        });
 
-        const report = manager.generateReport(macroState, tradeActions, '2026-07-09', true);
+        const report = manager.generateReport(macroState, '2026-07-09', true);
         
         expect(report).toContain('MAKRO-FINANZ ANALYSE');
         expect(report).toContain('[LATE_CYCLE_EUPHORIA]');
         expect(report).toContain('VETO_1');
+        expect(report).toContain('Margin Debt');
         expect(report).toContain('[CRITICAL]');
-        expect(report).toContain('BLOCKIERT: MACRO_BLOCK');
-        expect(report).toContain('SCALE DOWN');
+        expect(report).toContain('Hebelabbau aktiv');
     });
 
     it('sollte getAlerts() erfolgreich ausführen und history updaten', () => {

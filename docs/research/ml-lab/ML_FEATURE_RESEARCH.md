@@ -76,9 +76,9 @@ Dieses Dokument sammelt theoretische Konzepte und Feature-Ideen, die in zukünft
   Wir füttern das neuronale Netz nun explizit mit Bilanzen (`Institutional Ownership`, `Dilution Risk`, etc.) und dem **FINRA Short-Volume**. Erste Evaluierungen (Juli 2026) zeigen, dass dies massiv hilft (z.B. bei SOFI).
   
   **Das Concept-Drift Problem:** Wenn sich the Bilanzen plötzlich extrem ändern (ZETA verliert Inst. Ownership, NVTS stoppt Verwässerung), reicht das ML-Modell allein als Absicherung oft nicht aus.
-  **Die Architektur-Brücke:** Um das zu verhindern, nutzen wir die Fundamentaldaten zusätzlich als harten Guard in der `TradeSetupEngine`.
+  **Die Architektur-Brücke:** Um das zu verhindern, nutzen wir die Fundamentaldaten zusätzlich als harten Guard im jeweiligen StockRadar / Signal-Filter.
   1. **Das ML-Modell** wertet Preis-Action, FINRA und Fundamentals aus und liefert ein Regimesignal.
-  2. **Die TradeSetupEngine** agiert als Security-Guard. Sie feuert einen Fetcher, der quartalsweise `Institutional_Ownership` (aus 13F) und `Dilution_Risk` (aus 10-Q) prüft. 
-  3. Sagt das LSTM "ZETA Squeeze", aber die TradeSetupEngine sieht in der DB, dass die Inst. Quote von 80% auf 30% gefallen ist, wirft sie ein **VETO** und blockiert den Trade. 
+  2. **Das Radar / der Signal-Filter** agiert als Security-Guard. Es feuert einen Fetcher, der quartalsweise `Institutional_Ownership` (aus 13F) und `Dilution_Risk` (aus 10-Q) prüft. 
+  3. Sagt das LSTM "ZETA Squeeze", aber der Guard sieht in der DB, dass die Inst. Quote von 80% auf 30% gefallen ist, wirft er ein **VETO** und blockiert den Trade. 
   
   So kombinieren wir ein blitzschnelles, fittes ML-Modell mit absoluter fundamentaler Sicherheit gegen Bilanz-Strukturbrüche.

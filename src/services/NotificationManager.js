@@ -7,7 +7,14 @@ export class NotificationManager {
         this.indicatorPipelineConfig = indicatorPipelineConfig;
     }
 
-    generateReport(macroState, tradeActions, dateStr, cleanText = false) {
+    generateReport(macroState, arg2, arg3, arg4 = false) {
+        let dateStr = arg2;
+        let cleanText = arg3 || false;
+        if (Array.isArray(arg2)) {
+            dateStr = arg3;
+            cleanText = arg4 || false;
+        }
+
         let report = '';
         const addLine = (str) => report += str + '\n';
     
@@ -56,28 +63,24 @@ export class NotificationManager {
             });
             addLine('');
         }
-
-        // 2. Trade Actions
-        addLine(`${c_bold}📈 TRADE ACTIONS (Execution Planer)${c_rst}`);
-        addLine(`------------------------------------------------------`);
         
-        if (!tradeActions || tradeActions.length === 0) {
-            addLine(`  Keine Signale am heutigen Tag.`);
-        } else {
-            tradeActions.forEach(action => {
-                let statusStr = action.status === 'CRITICAL' ? `${c_red}[CRITICAL]${c_rst}` : `${c_yel}[WARNING]${c_rst}`;
-                let blockStr = action.blocked ? ` 🚫 ${c_red}(BLOCKIERT: ${action.blockReason})${c_rst}` : ` ✅ ${c_grn}(ERLAUBT)${c_rst}`;
-                let scaleStr = action.scaleDown ? ` 📉 ${c_yel}(SCALE DOWN)${c_rst}` : '';
-                
-                addLine(`  ${statusStr} ${action.indicator}: ${action.message}${blockStr}${scaleStr}`);
-            });
-        }
-        
-        addLine('');
         return report;
     }
 
-    getAlerts(macroState, tradeActions, alertHistory = {}, debounceDays = 14) {
+    getAlerts(macroState, arg2, arg3 = {}, arg4 = 14) {
+        let tradeActions = [];
+        let alertHistory = {};
+        let debounceDays = 14;
+
+        if (Array.isArray(arg2)) {
+            tradeActions = arg2;
+            alertHistory = (typeof arg3 === 'object' && arg3 !== null && !Array.isArray(arg3)) ? arg3 : {};
+            debounceDays = typeof arg4 === 'number' ? arg4 : 14;
+        } else if (typeof arg2 === 'object' && arg2 !== null && !Array.isArray(arg2)) {
+            alertHistory = arg2;
+            debounceDays = typeof arg3 === 'number' ? arg3 : 14;
+        }
+
         if (!tradeActions || tradeActions.length === 0) return { notifications: null, updatedHistory: alertHistory };
         
         const now = Date.now();
@@ -148,8 +151,9 @@ export class NotificationManager {
         };
     }
 
-    getDailyStatusReport(macroState, tradeActions, currentDayData) {
+    getDailyStatusReport(macroState, arg2, arg3) {
         if (!macroState) return null;
+        const currentDayData = arg3 !== undefined ? arg3 : arg2;
 
         const getIcon = (status) => {
             if (status === 'CRITICAL') return '🔴';

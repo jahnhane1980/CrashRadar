@@ -18,7 +18,7 @@ Der Einstieg ist **dynamisch** und hängt vom identifizierten Makro-Regime (Art 
 * **Logik:** Ein strukturelles Deleveraging am Aktienmarkt drückt die Minen (GDX) weiter nach unten. Physisches Gold hingegen wird langsam als Krisenschutz akkumuliert. **Gold bildet hier den Boden deutlich vor GDX.** Wir fokussieren uns zuerst auf den Einstieg in physisches Gold. GDX-Kaufsignale werden ignoriert, bis Gold den Aufwärtstrend unbestritten etabliert hat.
 
 ## Taktisches Swing-Trading (Der Gummiband-Effekt)
-Unabhängig vom langfristigen Makro-Regime nutzt die *TradeSetupEngine* extreme kurzfristige Übertreibungen für taktische Swing-Trades (Gewinnmitnahmen), um Schwankungen abzufedern.
+Unabhängig vom langfristigen Makro-Regime nutzen die taktischen Gold-Sensoren extreme kurzfristige Übertreibungen für taktische Swing-Trades (Gewinnmitnahmen), um Schwankungen abzufedern.
 * **Die Schallmauer:** Gold hat eine harte physische Schallmauer bei **+10 % über dem SMA 50**.
 * **Aktion:** Sobald Gold sich mehr als 10 % von seinem 50-Tage-Schnitt nach oben entfernt, kippt die Zukunftsrendite historisch in den negativen Bereich. Die Engine kann hier einen Teil der Position taktisch verkaufen (als "Alpha-Trade", **unabhängig** von den regulären Exits) und auf den Rücksetzer (Snapback) auf den SMA 50 warten, um dort wieder günstiger nachzukaufen.
 

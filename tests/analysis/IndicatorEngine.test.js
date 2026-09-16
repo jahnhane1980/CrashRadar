@@ -43,7 +43,6 @@ describe('IndicatorEngine V2 (New Architecture)', () => {
     loggerSpy.mockRestore();
     expect(output).toContain('MAKRO-FINANZ ANALYSE');
     expect(output).toContain('MAKRO-REGIME');
-    expect(output).toContain('TRADE ACTIONS');
   });
 
   it('sollte einen Fehler werfen, wenn run() leere Daten erhält', () => {
@@ -91,14 +90,12 @@ describe('IndicatorEngine V2 (New Architecture)', () => {
           reportOrder: 2,
           enabled: false
         }
-      ],
-      tradeSetupIndicators: []
+      ]
     };
 
     const customEngine = new IndicatorEngine(undefined, undefined, customConfig);
     expect(customEngine.macroRegimeEngine.indicators.length).toBe(1);
     expect(customEngine.macroRegimeEngine.indicators[0].name).toBe('Yield Curve (T10Y2Y)');
-    expect(customEngine.tradeSetupEngine.indicators.length).toBe(0);
 
     const data = createFakeData();
     const status = customEngine.getDailyStatusReport(data);

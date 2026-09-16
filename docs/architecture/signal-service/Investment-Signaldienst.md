@@ -229,8 +229,7 @@ CrashRadar/
 │   │
 │   └── analysis/                                 <-- BESTEHEND: Bereitstellung der Standard-Signale
 │       ├── MacroRegimeEngine.js                  <-- Makro-Ampel, NetLiq, Treasury Capacity, NFCI
-│       ├── TradeSetupEngine.js                   <-- Bottom-Finder (PanicCapitulation, DIX), Climax-Exits
-│       └── indicators/                           <-- Alle 35 atomaren Indikatoren
+│       └── indicators/                           <-- Atomare Makro- & Setup-Indikatoren
 │
 └── tests/
     └── strategies/                               <-- TDD & Unit-Tests für alle Strategien & die Engine

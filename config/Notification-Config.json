@@ -43,15 +43,6 @@
     "Private Credit Stress (BIZD)": "MACRO",
     "Floating Rate Stress (BKLN)": "MACRO",
     "[MACRO] Central Bank Policy Error (DFF vs T10YIE vs DXY)": "MACRO",
-    "[INVEST] Gold Volume Climax (Panik/FOMO)": "GOLD",
-    "[INVEST] GDX Selling Climax (Boden-Suche)": "GOLD",
-    "[INVEST] GDX Buying Climax (Top-Gefahr)": "GOLD",
-    "[INVEST] GDX vs Gold Divergenz": "GOLD",
-    "[INVEST] Gold Capitulation & Healing (2-Step)": "GOLD",
-    "Tech-Zyklus Radar (SMH vs IGV)": "TECH",
-    "ML Regime Radar (Makro)": "MACRO",
-    "ML Regime Radar (Krypto)": "CRYPTO",
-    "Krypto Portfolio-Exit (MSTR/COIN)": "CRYPTO",
-    "BTC Trailing Stop Warnung (Makro-Radar)": "CRYPTO"
+    "ML Regime Radar (Makro)": "MACRO"
   }
 }

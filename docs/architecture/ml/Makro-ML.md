@@ -117,7 +117,7 @@ flowchart LR
         Price[OHLCV / RSI / MACD / SMA200] -->|BULL / BEAR / CORRECTION| ChartRegime[Asset Trend]
     end
 
-    subgraph Ensemble ["Ensemble-Synthese (TradeSetupEngine)"]
+    subgraph Ensemble ["Ensemble-Synthese (Signal-Matrix)"]
         MacroRisk --> Synth[Signal-Matrix]
         ChartRegime --> Synth
         Synth --> Action[Handlungsanweisung & Kelly-Sizing]
@@ -243,8 +243,8 @@ Die Auswertung in Node.js ([`scratch/architecture/ml/evaluate_macro_model.js`](f
 
 ## 10. Nächste Schritte & Integration in die Engine
 
-1. **TradeSetupEngine-Integration ([`src/analysis/TradeSetupEngine.js`](file:///D:/GitHub/CrashRadar/src/analysis/TradeSetupEngine.js)):**  
-   * Einbindung des `MacroMlService` als dynamischer Veto- und Positions-Sizing-Filter.
-   * `MacroMlRisk > 70 %` $\rightarrow$ Automatisches Skalieren der Long-Positionen via Fractional Kelly (`action.scaleDown = true`).
+1. **Engine-Integration ([`src/analysis/MacroRegimeEngine.js`](file:///D:/GitHub/CrashRadar/src/analysis/MacroRegimeEngine.js)):**  
+   * Einbindung des `MacroMlService` via `MlRegimeRadarMacroIndicator` als nativer Makro-Regime- und Veto-Filter.
+   * `MacroMlRisk > 70 %` $\rightarrow$ Automatisches Auslösen von Makro-Warnstufen und Risikofiltern.
 2. **Indikator-Wrapper ([`src/analysis/indicators/MlRegimeRadarMacroIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/)):**  
    * Ausgabe des täglichen ML-Makro-Scores in die Timeline und das tägliche Reporting.
