@@ -124,3 +124,4 @@ data/cache/historical_prices/
 tests/.tmp/
 sandbox/*
 !sandbox/.gitkeep
+.aider*

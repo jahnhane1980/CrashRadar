@@ -239,3 +239,13 @@ Nach erfolgreichem V1-Go-Live werden die strategischen Großprojekte etappenweis
 
 ### ✅ Profiling-Infrastruktur für Daten-Fetcher
 * **Filter-Flag `--profile`:** Trennung von regulären täglichen Tasks (`--profile daily`) und hochfrequenten Intraday-Tasks (`--profile intraday_m5`) in [`TimeSeriesFetcher.js`](file:///D:/GitHub/CrashRadar/src/services/TimeSeriesFetcher.js) und [`index.js`](file:///D:/GitHub/CrashRadar/index.js) vollständig implementiert und mit Unit-Tests abgesichert.
+
+### ✅ Vollständige TiDB MySQL Migration & Cache-Bereinigung
+* **[DB] 100 % relationale Persistenz:** Vollständige Überführung aller flüchtigen Rohdaten-Caches in TiDB Cloud MySQL:
+  * 13F Institutional & Trust Filings in `fund_13f_holdings` (23.709 Zeilen) und `fund_trust_holdings` (1.321 Zeilen).
+  * 1.301 konsolidierte Unternehmens-Quartale über 41 Ticker in `company_fundamentals` inkl. erweiterter Spalten (`filing_date`, `yoy_revenue_growth_pct`, `gross_profit`, `operating_cash_flow`, `eps`).
+  * 101 Symbole mit 283.969 Tageskerzen (2014–2026) in `market_data_yahoo` mit 100 % vollem OHLCV.
+  * 72 Makro- und Zyklen-Serien mit 168.114 Zeilen in `econ_fred` (S&P 500 bis 1970, Rezessionen bis 1854, Ray-Dalio-Schuldenzyklen).
+* **[Engine] Simulationen & Tools DB-First:** Sämtliche Simulationen ([`SatelliteCoreSimulation.js`](file:///D:/GitHub/CrashRadar/simulations/SatelliteCoreSimulation.js), [`SevenSlotGuruSimulation.js`](file:///D:/GitHub/CrashRadar/simulations/SevenSlotGuruSimulation.js), [`MuzzledCathieWoodSimulation.js`](file:///D:/GitHub/CrashRadar/simulations/MuzzledCathieWoodSimulation.js), [`KamikazeGrowthSimulation.js`](file:///D:/GitHub/CrashRadar/simulations/KamikazeGrowthSimulation.js), [`TurnaroundSimulation.js`](file:///D:/GitHub/CrashRadar/simulations/TurnaroundSimulation.js), [`GrowthLifecycleSimulation.js`](file:///D:/GitHub/CrashRadar/simulations/GrowthLifecycleSimulation.js), [`RunStrategyStressTests.js`](file:///D:/GitHub/CrashRadar/simulations/RunStrategyStressTests.js)) und Tools ([`build_ark_historical_watchlist.js`](file:///D:/GitHub/CrashRadar/tools/build_ark_historical_watchlist.js)) vollständig auf SQL-Zugriff umgestellt.
+* **[Quality] Cache-Sanierung & Zero-Disk-Leakage:** Physische Löschung von **599 redundanten Roh-Cache-Dateien (~98,87 MB)**. Exakt 35 legitime Berechnungs- und Studien-Artefakte verbleiben geschützt im lokalen Cache gemäß [`AGENTS.md`](file:///D:/GitHub/CrashRadar/AGENTS.md). 91/91 Test-Suites (722/722 Tests) 100 % grün.
+

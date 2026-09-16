@@ -3,7 +3,7 @@
 
 > 📜 **Dokumenten-Typ:** Empirische Konzeptstudie & Forschungspapier (Research Study)  
 > 🔬 **Bereich:** `docs/research/strategies/`  
-> 💻 **Gespiegelter Analyse-Code:** [`research/strategy-prototypes/study_historical_dual_engine_10y.js`](file:///D:/GitHub/CrashRadar/research/strategy-prototypes/study_historical_dual_engine_10y.js) & [`research/strategy-prototypes/simulate_conviction_filters.js`](file:///D:/GitHub/CrashRadar/research/strategy-prototypes/simulate_conviction_filters.js) *(Cache-Ingest: [`tools/fetch_historical_13f_cache.js`](file:///D:/GitHub/CrashRadar/tools/fetch_historical_13f_cache.js))*  
+> 💻 **Gespiegelter Analyse-Code:** [`research/strategy-prototypes/study_historical_dual_engine_10y.js`](file:///D:/GitHub/CrashRadar/research/strategy-prototypes/study_historical_dual_engine_10y.js) & [`research/strategy-prototypes/simulate_conviction_filters.js`](file:///D:/GitHub/CrashRadar/research/strategy-prototypes/simulate_conviction_filters.js) *(Cache-Ingest: [`tools/import_historical_13f_to_db.js`](file:///D:/GitHub/CrashRadar/tools/import_historical_13f_to_db.js))*  
 > 🏛️ **Referenz-Architektur:** [`7-Slot-Guru-Konsens-System.md`](file:///D:/GitHub/CrashRadar/docs/architecture/strategies/7-Slot-Guru-Konsens-System.md) *(Bleibt operativ unverändert bei Version 2.1)*  
 > 📅 **Stand:** September 2026  
 

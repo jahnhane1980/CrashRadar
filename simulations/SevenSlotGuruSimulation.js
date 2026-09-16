@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
+import YahooFinance from 'yahoo-finance2';
 import { FinanceExpert } from '../src/services/FinanceExpert.js';
 import { PanicCapitulationIndicator } from '../src/analysis/indicators/PanicCapitulationIndicator.js';
 

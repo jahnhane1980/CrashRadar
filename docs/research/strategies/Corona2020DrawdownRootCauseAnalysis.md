@@ -48,7 +48,7 @@ Die empirische Untersuchung der Handelstage im Frühjahr 2020 ([`research/strate
   * CBOE-Optionsvolumen zeigte einen Spike.
   * Der 14-Tage-RSI war am 06.03. minimal höher als am ersten Panik-Tag (28.02.).
   * Der Indikator wertete dies als angebliche „Bullish Divergence / Generationen-Kaufsignal“.
-* Im [`GoldSniperIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/GoldSniperIndicator.js#L166-L170):
+* In der Signal-Logik von [`GoldSpyDcaStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/GoldSpyDcaStrategy.js):
   ```javascript
   // Prüfung auf Bottom Sniper V-Umkehr (auch vor -18% möglich)
   if (isBottomCrit) {
@@ -56,12 +56,12 @@ Die empirische Untersuchung der Handelstage im Frühjahr 2020 ([`research/strate
     signal = 'DEPLOY_CASH';
   }
   ```
-* In [`GoldSpyDcaStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/GoldSpyDcaStrategy.js#L60-L65) hat `DEPLOY_CASH` die **höchste Priorität** (Priorität 1, über dem Schutzschild).
+* In [`GoldSpyDcaStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/GoldSpyDcaStrategy.js) hat `DEPLOY_CASH` die **höchste Priorität** (Priorität 1, über dem Schutzschild).
 * **Konsequenz:** Am 06. März 2020 wurde die Notfall-Phase beendet und 100 % des Depots bei **SPY = $ 297,50** zurückgekauft!
 * **Das Desaster danach:** Vom 06. März ($ 297,50) bis zum 23. März ($ 222,90) fiel der S&P 500 um weitere **-25 %**! Da das Depot bereits wieder voll in Aktien investiert war, wurde dieser finale Ausverkauf voll absorbiert.
 
 ### Ursache 3: Der State-Machine Lock-In Effekt
-* Im [`GoldSniperIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/GoldSniperIndicator.js#L193-L196) gab es keine Rückfall-Logik aus `RE_ENTRY`:
+* In der früheren Logik der [`GoldSpyDcaStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/GoldSpyDcaStrategy.js) gab es keine Rückfall-Logik aus `RE_ENTRY`:
   Einmal ausgelöst, feuerte der Indikator kontinuierlich jeden Tag weiter `DEPLOY_CASH`, solange `isShieldActive` anstand.
 * Selbst als der Markt nach dem 06. März neue dramatische Tiefs markierte und Margin Debt kollabierte, konnte das System nicht mehr zurück in `HEDGE_ACTIVE` oder `PRE_MARGIN_LOCK` wechseln.
 
@@ -71,7 +71,7 @@ Die empirische Untersuchung der Handelstage im Frühjahr 2020 ([`research/strate
 
 Die Re-Entry-Sperre und der State-Machine-Schutz wurden direkt im Code integriert:
 1. **Drawdown-Guard (`bottomDrawdownMin = -18.0%`)**:
-   In [`GoldSniperIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/GoldSniperIndicator.js) darf ein `RE_ENTRY` / `DEPLOY_CASH` nur noch feuern, wenn der SPY-Drawdown mindestens $-18\,\%$ beträgt (`spyDdAtI <= this.bottomDrawdownMin`).
+   In [`GoldSpyDcaStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/GoldSpyDcaStrategy.js) darf ein `RE_ENTRY` / `DEPLOY_CASH` nur noch feuern, wenn der SPY-Drawdown mindestens $-18\,\%$ beträgt (`spyDdAtI <= this.bottomDrawdownMin`).
 2. **Prioritäts-Harmonisierung**:
    In [`GoldSpyDcaStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/GoldSpyDcaStrategy.js) wurde die Bedingung `gs.signal === 'DEPLOY_CASH' || bs.isCritical` auf `gs.signal === 'DEPLOY_CASH'` geschärft, sodass ungefilterte Roh-Boden-Signale vor $-18\,\%$ den Schutzschild nicht mehr unberechtigt aushebeln.
 3. **State-Machine Reset-Regel (Fail-Safe)**:
@@ -97,6 +97,6 @@ Die Re-Entry-Sperre und der State-Machine-Schutz wurden direkt im Code integrier
   * [`research/strategy-prototypes/DebugMarch2020.js`](file:///D:/GitHub/CrashRadar/research/strategy-prototypes/DebugMarch2020.js)
   * [`simulations/GoldSpyDailyStressTest.js`](file:///D:/GitHub/CrashRadar/simulations/GoldSpyDailyStressTest.js)
 * **Betroffene Indikatoren & Strategien:**
-  * [`src/analysis/indicators/GoldSniperIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/GoldSniperIndicator.js)
+  * [`src/signals/hubs/MarketBottomSensorHub.js`](file:///D:/GitHub/CrashRadar/src/signals/hubs/MarketBottomSensorHub.js)
   * [`src/analysis/indicators/PanicCapitulationIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/PanicCapitulationIndicator.js)
   * [`src/strategies/GoldSpyDcaStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/GoldSpyDcaStrategy.js)

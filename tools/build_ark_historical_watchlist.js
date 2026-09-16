@@ -1,9 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
+import mysql from 'mysql2/promise';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const CACHE_DIR = path.resolve(__dirname, '../data/cache/strategies/ark_filings');
 const OUT_FILE = path.resolve(__dirname, '../data/cache/strategies/ark_historical_watchlist_2014_2026.json');
@@ -185,45 +188,111 @@ function resolveTicker(name) {
     return null;
 }
 
-function buildHistoricalWatchlist() {
+async function buildHistoricalWatchlist() {
     console.log("================================================================================");
     console.log("   AUFBAU DER HISTORISCHEN ARK-WATCHLIST (2014-2026)");
     console.log("================================================================================\n");
 
-    const files = fs.readdirSync(CACHE_DIR).filter(f => f.endsWith('.json'));
-    console.log(`Lese ${files.length} gecachte Berichte aus ${CACHE_DIR}...`);
+    let allFilings = [];
 
-    const allFilings = [];
-    for (const file of files) {
-        const fullPath = path.join(CACHE_DIR, file);
-        const data = JSON.parse(fs.readFileSync(fullPath, 'utf8'));
-        allFilings.push(data);
+    if (process.env.DATABASE_URL) {
+        const pool = mysql.createPool(process.env.DATABASE_URL);
+        try {
+            console.log("Lade ARK-Holdings direkt aus relationaler MySQL (fund_trust_holdings & fund_13f_holdings)...");
+
+            // 1. Trust Holdings (2014-2017)
+            const [trustRows] = await pool.query(`
+                SELECT DATE_FORMAT(report_date, '%Y-%m-%d') as reportDate, source, 
+                       issuer_name as name, shares, value_usd as clean_value_usd
+                FROM fund_trust_holdings
+                ORDER BY report_date ASC
+            `);
+
+            // 2. 13F Holdings (ab 2017)
+            const [thirteenFRows] = await pool.query(`
+                SELECT DATE_FORMAT(report_date, '%Y-%m-%d') as reportDate, '13F-HR' as source,
+                       cusip, issuer_name as name, shares, value as clean_value_usd
+                FROM fund_13f_holdings
+                WHERE cik = '0001697748'
+                ORDER BY report_date ASC
+            `);
+
+            const filingsMap = new Map();
+
+            for (const r of trustRows) {
+                if (!filingsMap.has(r.reportDate)) {
+                    filingsMap.set(r.reportDate, {
+                        reportDate: r.reportDate,
+                        source: 'ARK-ETF-TRUST',
+                        holdings: []
+                    });
+                }
+                filingsMap.get(r.reportDate).holdings.push({
+                    name: r.name,
+                    shares: r.shares,
+                    clean_value_usd: parseFloat(r.clean_value_usd || 0)
+                });
+            }
+
+            for (const r of thirteenFRows) {
+                if (!filingsMap.has(r.reportDate)) {
+                    filingsMap.set(r.reportDate, {
+                        reportDate: r.reportDate,
+                        source: '13F-HR',
+                        holdings: []
+                    });
+                }
+                filingsMap.get(r.reportDate).holdings.push({
+                    name: r.name,
+                    cusip: r.cusip,
+                    shares: r.shares,
+                    clean_value_usd: parseFloat(r.clean_value_usd || 0)
+                });
+            }
+
+            allFilings = Array.from(filingsMap.values());
+            console.log(`✓ ${allFilings.length} Quartalsberichte via SQL geladen (${trustRows.length} Trust- & ${thirteenFRows.length} 13F-Positionen).`);
+        } finally {
+            await pool.end();
+        }
+    }
+
+    // Fallback auf Dateicache falls DB offline
+    if (allFilings.length === 0 && fs.existsSync(CACHE_DIR)) {
+        const files = fs.readdirSync(CACHE_DIR).filter(f => f.endsWith('.json'));
+        console.log(`Fallback: Lese ${files.length} gecachte Berichte aus ${CACHE_DIR}...`);
+
+        for (const file of files) {
+            const fullPath = path.join(CACHE_DIR, file);
+            const data = JSON.parse(fs.readFileSync(fullPath, 'utf8'));
+            allFilings.push(data);
+        }
+
+        // Fix 13F values (pre-2023 were $k, post-2022 were $1)
+        for (const f of allFilings) {
+            if (f.source === '13F-HR') {
+                const isPre2023 = f.reportDate < '2022-12-31';
+                for (const h of f.holdings) {
+                    if (isPre2023) {
+                        h.clean_value_usd = h.value_k * 1000;
+                    } else {
+                        h.clean_value_usd = h.value_k; // in 2023+ it's already in $
+                    }
+                }
+            } else {
+                for (const h of f.holdings) {
+                    h.clean_value_usd = h.value_usd || 0;
+                }
+            }
+        }
     }
 
     // Sort chronologically by reportDate
     allFilings.sort((a, b) => a.reportDate.localeCompare(b.reportDate));
 
-    // Fix 13F values (pre-2023 were $k, post-2022 were $1)
+    // Recalculate total value and weights
     for (const f of allFilings) {
-        if (f.source === '13F-HR') {
-            const isPre2023 = f.reportDate < '2022-12-31';
-            for (const h of f.holdings) {
-                if (isPre2023) {
-                    h.clean_value_usd = h.value_k * 1000;
-                } else {
-                    h.clean_value_usd = h.value_k; // in 2023+ it's already in $
-                }
-            }
-        } else {
-            for (const h of f.holdings) {
-                h.clean_value_usd = h.value_usd || 0;
-            }
-        }
-
-        // Recalculate total value
         f.clean_total_value_usd = f.holdings.reduce((sum, h) => sum + (h.clean_value_usd || 0), 0);
-
-        // Calculate portfolio weights
         for (const h of f.holdings) {
             h.weight_pct = f.clean_total_value_usd > 0
                 ? parseFloat(((h.clean_value_usd / f.clean_total_value_usd) * 100).toFixed(3))
@@ -325,4 +394,4 @@ function buildHistoricalWatchlist() {
     console.log(`  -> ${OUT_FILE}`);
 }
 
-buildHistoricalWatchlist();
+buildHistoricalWatchlist().catch(console.error);

@@ -13,38 +13,45 @@ dotenv.config({ path: path.resolve(__dirname, '../.env') });
 const yf = new YahooFinance({ suppressNotices: ['ripHistorical'] });
 
 async function getHistoricalPrices(symbols, startDate, endDate) {
-    const cacheDir = path.resolve(__dirname, '../data/cache/historical_prices');
-    if (!fs.existsSync(cacheDir)) {
-        fs.mkdirSync(cacheDir, { recursive: true });
-    }
-
+    const pool = mysql.createPool(process.env.DATABASE_URL);
     const prices = {};
 
-    for (const sym of symbols) {
-        const cacheFile = path.join(cacheDir, `${sym.replace(/[^a-zA-Z0-9]/g, '_')}_${startDate}_${endDate}.json`);
-        if (fs.existsSync(cacheFile)) {
-            prices[sym] = JSON.parse(fs.readFileSync(cacheFile, 'utf8'));
-            continue;
-        }
+    try {
+        for (const sym of symbols) {
+            const [rows] = await pool.query(`
+                SELECT record_date as date, close 
+                FROM market_data_yahoo 
+                WHERE symbol = ? AND record_date >= ? AND record_date <= ?
+                ORDER BY record_date ASC
+            `, [sym, startDate, endDate]);
 
-        console.log(`Hole Kursdaten für ${sym}...`);
-        try {
-            const chart = await yf.chart(sym, {
-                period1: startDate,
-                period2: endDate,
-                interval: '1d'
-            });
-            const quotes = chart.quotes
-                .filter(q => q.close !== null && q.close !== undefined)
-                .map(q => ({
-                    date: q.date.toISOString().split('T')[0],
-                    close: q.adjclose || q.close
+            if (rows.length > 0) {
+                prices[sym] = rows.map(r => ({
+                    date: String(r.date).substring(0, 10),
+                    close: parseFloat(r.close)
                 }));
-            prices[sym] = quotes;
-            fs.writeFileSync(cacheFile, JSON.stringify(quotes));
-        } catch (e) {
-            console.error(`Fehler bei ${sym}:`, e.message);
+            } else {
+                console.log(`Hole Kursdaten für ${sym} via Yahoo Finance API...`);
+                try {
+                    const chart = await yf.chart(sym, {
+                        period1: startDate,
+                        period2: endDate,
+                        interval: '1d'
+                    });
+                    const quotes = chart.quotes
+                        .filter(q => q.close !== null && q.close !== undefined)
+                        .map(q => ({
+                            date: q.date.toISOString().split('T')[0],
+                            close: q.adjclose || q.close
+                        }));
+                    prices[sym] = quotes;
+                } catch (e) {
+                    console.error(`Fehler bei ${sym}:`, e.message);
+                }
+            }
         }
+    } finally {
+        await pool.end();
     }
 
     return prices;

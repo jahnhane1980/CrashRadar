@@ -3,7 +3,7 @@
 *Empirische Backtest- und Kausalitätsanalyse (2021–2026): MSTR vs. COIN vs. Bitcoin*
 
 > 💻 **Simulations- und Beweiscode:** [`research/macro-proofs/MSTR-COIN-Krypto-Radar.js`](file:///D:/GitHub/CrashRadar/research/macro-proofs/MSTR-COIN-Krypto-Radar.js)  
-> ⚙️ **Operativer Indikator:** [`src/analysis/indicators/BtcTrailingStopIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/BtcTrailingStopIndicator.js)
+> ⚙️ **Operativer Sensor & Hub:** [`MstrLeadSensor.js`](file:///D:/GitHub/CrashRadar/src/signals/sensors/MstrLeadSensor.js) / [`CryptoSensorHub.js`](file:///D:/GitHub/CrashRadar/src/signals/hubs/CryptoSensorHub.js)
 
 ---
 
@@ -54,16 +54,14 @@
 
 ---
 
-## 4. Übersicht der CrashRadar Krypto-Indikatoren
+## 4. Übersicht der CrashRadar Krypto-Sensoren & Signal-Hubs
 
-| Indikator-Datei | Kategorie | Taktgeber / Trigger | Funktion im Gesamtsystem |
+| Sensor / Hub / Service | Kategorie | Taktgeber / Trigger | Funktion im Gesamtsystem |
 | :--- | :--- | :--- | :--- |
-| [`BtcTrailingStopIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/BtcTrailingStopIndicator.js) | `ACUTE_PANIC` | **MSTR SMA-200 Verlust** | Primärer Makro-Taktgeber für Krypto-Zyklus-Tops. |
-| [`CryptoCycleDivergenceIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/CryptoCycleDivergenceIndicator.js) | `EARLY_WARNING` | MSTR/COIN DD $\ge 15\,\%$ vs. BTC DD $\ge -2\,\%$ | Erkennt Liquiditätsentzug, wenn Aktien bluten, BTC aber noch hoch steht. |
-| [`CryptoPortfolioExitIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/CryptoPortfolioExitIndicator.js) | `ACUTE_PANIC` | Zyklus-Tage $> 970$ + SMA-50 Bruch | Zykluszeit-Filter nach 4-Jahres-Halving-Schema. |
-| [`BitcoinSellingClimaxIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/BitcoinSellingClimaxIndicator.js) | `BOTTOM_FINDER` | BTC Tagesverlust $\le -5\,\%$ bei $\ge 4\times$ Volumen | Panik-Kapitulation und Flush-Out am Markttief. |
-| [`BitcoinDivergenceIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/BitcoinDivergenceIndicator.js) | `EARLY_WARNING` | SPY stabil, aber BTC bricht ein | Erkennt TGA-Liquiditätssog vor dem Aktienmarkt. |
-| [`MlRegimeRadarBtcIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/MlRegimeRadarBtcIndicator.js) | `EARLY_WARNING` | LSTM 6/7-Klassen Modell | Prognostiziert Krypto-Regimes (`MACRO_TOP`, `BEAR_MARKET`, `CYCLE_BOTTOM`). |
+| [`MstrLeadSensor.js`](file:///D:/GitHub/CrashRadar/src/signals/sensors/MstrLeadSensor.js) | `EARLY_WARNING` | **MSTR SMA-200 / Trendbruch** | Primärer Makro-Taktgeber & Vorläufer für Krypto-Zyklus-Tops. |
+| [`BtcTrendSensor.js`](file:///D:/GitHub/CrashRadar/src/signals/sensors/BtcTrendSensor.js) | `ACUTE_PANIC` | BTC Trailing-Stop & SMA-200 | Erkennt Trendbrüche & schützt Krypto-Depots vor Bärenmärkten. |
+| [`CryptoSensorHub.js`](file:///D:/GitHub/CrashRadar/src/signals/hubs/CryptoSensorHub.js) | `SIGNAL_HUB` | Composite Regime & Divergenzen | Aggregiert Krypto-Divergenzen, MSTR-Lead & Bottom-Signale. |
+| [`MLRegimeService.js`](file:///D:/GitHub/CrashRadar/src/services/MLRegimeService.js) | `EARLY_WARNING` | LSTM 6/7-Klassen Modell | Prognostiziert Krypto-Regimes (`MACRO_TOP`, `BEAR_MARKET`, `CYCLE_BOTTOM`). |
 
 ---
 
@@ -71,4 +69,4 @@
 
 > [!TIP]
 > **Klare Empfehlung:**  
-> Der Indikator [`BtcTrailingStopIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/BtcTrailingStopIndicator.js) (MSTR SMA-200 Bruch) ist der empirisch stärkste Krypto-Taktgeber im System. Mit nur 9 Umschichtungen in 5 Jahren und +150,3 % Rendite (vs. +20,1 % Buy & Hold) erfüllt er perfekt das Kriterium: **Absolute Ruhe im Bullenmarkt, aber rechtzeitiges Drücken des Notfall-Knopfs alle 1–2 Jahre bei echten Zyklen-Wendepunkten.**
+> Der Sensor [`MstrLeadSensor.js`](file:///D:/GitHub/CrashRadar/src/signals/sensors/MstrLeadSensor.js) (MSTR SMA-200 Bruch) in Verbindung mit dem [`CryptoSensorHub.js`](file:///D:/GitHub/CrashRadar/src/signals/hubs/CryptoSensorHub.js) ist der empirisch stärkste Krypto-Taktgeber im System. Mit nur 9 Umschichtungen in 5 Jahren und +150,3 % Rendite (vs. +20,1 % Buy & Hold) erfüllt er perfekt das Kriterium: **Absolute Ruhe im Bullenmarkt, aber rechtzeitiges Drücken des Notfall-Knopfs alle 1–2 Jahre bei echten Zyklen-Wendepunkten.**

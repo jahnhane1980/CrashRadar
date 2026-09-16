@@ -84,8 +84,8 @@ flowchart TD
 
 ## 4. Redundanz-Prüfung: Welche Indikatoren sind Sub-Komponenten?
 
-* **Historische Vorläufer:** [`TgaIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/TgaIndicator.js) und [`BankReservesIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/BankReservesIndicator.js) waren einfache 1-Parameter-Modelle.
-* **Architektonischer Status:** Ihre Kernlogik ist heute vollständig und dynamisch in der **Dual-Engine des `TreasuryCapacityRadarIndicator` (inkl. LCLOR, TGA-Cushion und Buybacks)** integriert. Sie können zur historischen Vollständigkeit beibehalten werden, stellen jedoch funktionale Sub-Komponenten dar.
+* **Historische Vorläufer:** `TgaIndicator.js` und `BankReservesIndicator.js` waren einfache 1-Parameter-Modelle.
+* **Architektonischer Status:** Ihre Kernlogik ist heute vollständig und dynamisch in der **Dual-Engine des [`TreasuryCapacityRadarIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/TreasuryCapacityRadarIndicator.js) (inkl. LCLOR, TGA-Cushion und Buybacks)** und des [`FiscalFedLiquidityIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/FiscalFedLiquidityIndicator.js) integriert. Sie können zur historischen Vollständigkeit beibehalten werden, stellen jedoch funktionale Sub-Komponenten dar.
 * **Alle übrigen 16 Indikatoren sind nicht-redundant** und erfüllen unersetzliche Aufgaben im Multi-Layer-Schutzschirm.
 
 ---

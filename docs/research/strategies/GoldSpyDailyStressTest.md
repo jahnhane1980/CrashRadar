@@ -13,7 +13,7 @@
 
 Dieser Stresstest validiert die **Gold-SPY Dynamic DCA Strategie** nicht über vereinfachte Formeln, sondern füttert **Tag für Tag** die vollwertige CrashRadar SignalEngine:
 1. **Tägliche Evaluierung:** An jedem einzelnen Handelstag $t$ wird die Historie bis Tag $t$ in `PortfolioStrategyEngine.evaluateAll()` eingespeist.
-2. **Sensoren-Kopplung:** Die 3-Säulen-Katastrophen-Matrix ([`KatastrophenMatrixIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/KatastrophenMatrixIndicator.js)), der Gold-Sniper ([`GoldSniperIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/GoldSniperIndicator.js)) und der Panic-Capitulation-Sniper entscheiden autonom über:
+2. **Sensoren-Kopplung:** Die 3-Säulen-Katastrophen-Matrix ([`RedAlertIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/RedAlertIndicator.js)), die Gold-SPY Dynamik ([`GoldSpyDcaStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/GoldSpyDcaStrategy.js)) und der Panic-Capitulation-Sniper entscheiden autonom über:
    * `NORMAL_DCA` (100 % SPY / 0 % Gold / 0 % Cash)
    * `EMERGENCY_HEDGE` (75 % Gold / 25 % Cash Sweet Spot)
    * `PRE_MARGIN_CASH_LOCK` (100 % Cash bei SPY DD $\le -18\,\%$ bis $-19\,\%$)

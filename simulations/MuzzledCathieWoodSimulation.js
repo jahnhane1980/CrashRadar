@@ -13,43 +13,55 @@ dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const yf = new YahooFinance({ suppressNotices: ['ripHistorical', 'yahooSurvey'] });
 
-// Caching helper for Yahoo Finance quotes
+// Database-first loader for Yahoo Finance quotes with API fallback
 async function getHistoricalPrices(symbols, startDate, endDate) {
-    const cacheDir = fs.existsSync(path.resolve(__dirname, '../data/cache/historical_prices'))
-        ? path.resolve(__dirname, '../data/cache/historical_prices')
-        : path.resolve(__dirname, 'cache');
-    if (!fs.existsSync(cacheDir)) {
-        fs.mkdirSync(cacheDir, { recursive: true });
-    }
-
+    const pool = mysql.createPool(process.env.DATABASE_URL);
     const prices = {};
 
-    for (const sym of symbols) {
-        const cacheFile = path.join(cacheDir, `${sym}_${startDate}_${endDate}.json`);
-        if (fs.existsSync(cacheFile)) {
-            prices[sym] = JSON.parse(fs.readFileSync(cacheFile, 'utf8'));
-            continue;
-        }
+    try {
+        for (const sym of symbols) {
+            const [rows] = await pool.query(`
+                SELECT record_date as date, open, high, low, close, volume 
+                FROM market_data_yahoo 
+                WHERE symbol = ? AND record_date >= ? AND record_date <= ?
+                ORDER BY record_date ASC
+            `, [sym, startDate, endDate]);
 
-        console.log(`Hole Kursdaten für ${sym}...`);
-        try {
-            const chart = await yf.chart(sym, {
-                period1: startDate,
-                period2: endDate,
-                interval: '1d'
-            });
-            const quotes = chart.quotes
-                .filter(q => q.close !== null && q.close !== undefined)
-                .map(q => ({
-                    date: q.date.toISOString().split('T')[0],
-                    close: q.adjclose || q.close,
-                    volume: q.volume || 0
+            if (rows.length > 0) {
+                prices[sym] = rows.map(r => ({
+                    date: String(r.date).substring(0, 10),
+                    open: r.open !== null ? parseFloat(r.open) : parseFloat(r.close),
+                    high: r.high !== null ? parseFloat(r.high) : parseFloat(r.close),
+                    low: r.low !== null ? parseFloat(r.low) : parseFloat(r.close),
+                    close: parseFloat(r.close),
+                    volume: parseFloat(r.volume || 0)
                 }));
-            prices[sym] = quotes;
-            fs.writeFileSync(cacheFile, JSON.stringify(quotes));
-        } catch (e) {
-            console.error(`Fehler bei ${sym}:`, e.message);
+            } else {
+                console.log(`Hole Kursdaten für ${sym} via Yahoo Finance API...`);
+                try {
+                    const chart = await yf.chart(sym, {
+                        period1: startDate,
+                        period2: endDate,
+                        interval: '1d'
+                    });
+                    const quotes = chart.quotes
+                        .filter(q => q.close !== null && q.close !== undefined)
+                        .map(q => ({
+                            date: q.date.toISOString().split('T')[0],
+                            open: q.open || q.close,
+                            high: q.high || q.close,
+                            low: q.low || q.close,
+                            close: q.adjclose || q.close,
+                            volume: q.volume || 0
+                        }));
+                    prices[sym] = quotes;
+                } catch (e) {
+                    console.error(`Fehler bei ${sym}:`, e.message);
+                }
+            }
         }
+    } finally {
+        await pool.end();
     }
 
     return prices;
@@ -223,11 +235,39 @@ async function runMuzzledCathieWoodSimulation(options = {}) {
     const prices = await getHistoricalPrices(allSymbols, priceStartDate, endDate);
     const macro = await getMacroData(priceStartDate);
 
-    // Fundamental Data Master Cache
-    const fundamentalsPath = path.resolve(__dirname, '../data/cache/strategies/fundamentals_master.json');
+    // Fundamental Data from MySQL (company_fundamentals)
     let fundamentalsMaster = {};
-    if (fs.existsSync(fundamentalsPath)) {
-        fundamentalsMaster = JSON.parse(fs.readFileSync(fundamentalsPath, 'utf8'));
+    if (process.env.DATABASE_URL) {
+        const fundPool = mysql.createPool(process.env.DATABASE_URL);
+        try {
+            const [rows] = await fundPool.query(`
+                SELECT symbol, filing_date, date as period_end_date, totalRevenue as revenue, netIncome as net_income, yoy_revenue_growth_pct
+                FROM company_fundamentals
+                WHERE filing_date IS NOT NULL
+                ORDER BY filing_date ASC
+            `);
+            for (const r of rows) {
+                const sym = r.symbol.toUpperCase();
+                if (!fundamentalsMaster[sym]) fundamentalsMaster[sym] = [];
+                fundamentalsMaster[sym].push({
+                    filing_date: String(r.filing_date).substring(0, 10),
+                    period_end_date: String(r.period_end_date).substring(0, 10),
+                    revenue: r.revenue !== null ? parseFloat(r.revenue) : null,
+                    net_income: r.net_income !== null ? parseFloat(r.net_income) : null,
+                    yoy_revenue_growth_pct: r.yoy_revenue_growth_pct !== null ? parseFloat(r.yoy_revenue_growth_pct) : null
+                });
+            }
+        } finally {
+            await fundPool.end();
+        }
+    }
+
+    // Fallback auf Dateicache falls DB leer oder offline
+    if (Object.keys(fundamentalsMaster).length === 0) {
+        const fundamentalsPath = path.resolve(__dirname, '../data/cache/strategies/fundamentals_master.json');
+        if (fs.existsSync(fundamentalsPath)) {
+            fundamentalsMaster = JSON.parse(fs.readFileSync(fundamentalsPath, 'utf8'));
+        }
     }
 
     // ARK Historical Watchlist Cache (OBSERVE Status)

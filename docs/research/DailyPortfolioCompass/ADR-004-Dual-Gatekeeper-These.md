@@ -11,7 +11,7 @@
 > [!IMPORTANT]
 > **Geltungsbereich-Einschränkung & Abgrenzung zu ADR-011 / ADR-013:**  
 > Die in dieser ADR bewiesene Dual-Gatekeeper-Regel gilt **ausschließlich für prozyklisches und antizyklisches Dip-Buying in laufenden Aufwärtstrends oder geordneten Korrekturen** (Schutz vor Multiple-Compression-Fallen wie 2022).  
-> Sie darf **ausdrücklich NICHT als Re-Entry-Filter nach tiefen Liquiditäts- oder Systemcrashs** verwendet werden! (In [ADR-011](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-011-Dual-Gatekeeper-Reentry-These.md) wurde empirisch nachgewiesen, dass ein starrer Trend-/Makrofilter beim Wiedereinstieg über 21 Jahre mehr als -330.000 € an Rebound-Ertrag vernichtet. Die saubere Synthese und event-gesteuerte Re-Entry-Entkopplung erfolgt in [**ADR-013**](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-013-Makro-Asymmetrie-Reentry-These.md)).
+> Sie darf **ausdrücklich NICHT als Re-Entry-Filter nach tiefen Liquiditäts- oder Systemcrashs** verwendet werden! (In [ADR-011](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-011-Dual-Gatekeeper-Reentry-These.md) wurde empirisch nachgewiesen, dass ein starrer Trend-/Makrofilter beim Wiedereinstieg über 21 Jahre mehr als -330.000 € an Rebound-Ertrag vernichtet. Die saubere Synthese und event-gesteuerte Re-Entry-Entkopplung erfolgt in **ADR-013 (Makro-Asymmetrie-Reentry-These)**).
 
 ---
 
@@ -135,5 +135,5 @@ Erst wenn **beide Gefahrenquellen ausgeschlossen** sind, entfaltet das Dip-Buyin
   Die vorliegende ADR-004 regelt **ausschließlich das Betreten des Marktes bei kurzfristigen Volatilitäts-Rücksetzern (Dip-Buying)** während geordneter Marktphasen.
 * **Die Falsifikation des naiven Re-Entry-Transfers ([ADR-011](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-011-Dual-Gatekeeper-Reentry-These.md)):**  
   Der Versuch, diese Dual-Gatekeeper-Logik als dauerhaften Wiedereinstiegs-Filter nach tiefen Liquiditäts-Crashes zu verwenden, wurde in ADR-011 eindeutig falsifiziert (Rebound-Lag vernichtete -331.960 € über 21,8 Jahre).
-* **Die methodische Lösung ([ADR-013](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-013-Makro-Asymmetrie-Reentry-These.md)):**  
+* **Die methodische Lösung (ADR-013):**  
   Die Synthese beider Phänomene (Asymmetrie zwischen Dip-Buying-Schutz und Re-Entry-Entkopplung an Zyklustiefs) ist vollständig in **ADR-013** formalisiert.

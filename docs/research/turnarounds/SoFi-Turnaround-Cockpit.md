@@ -91,9 +91,8 @@ Eine transparente Prüfung des aktuellen Datenbestands im CrashRadar-Repository:
 
 1. **Vollständig vorhanden & lokal gecached:**
    * ✅ **Tageskurse & Markt-Historie (2021–2026):** [`SOFI_daily.json`](file:///D:/GitHub/CrashRadar/data/cache/turnarounds/SOFI_daily.json) und SPY/QQQ-Vergleiche.
-   * ✅ **Offizielle SEC US-GAAP Bilanzen:** [`SOFI_sec_facts.json`](file:///D:/GitHub/CrashRadar/data/cache/turnarounds/SOFI_sec_facts.json) (Umsatz Net of Interest, Net Income, Einlagen, Eigenkapital).
-   * ✅ **Vollständiger Form 10-Q (Q2 2026):** [`sofi_10q_20260630.htm`](file:///D:/GitHub/CrashRadar/data/cache/turnarounds/sofi_10q_20260630.htm) mit Note 17 Segment Reporting.
-   * ✅ **Vollständiger Form 8-K Earnings Release (Q2 2026):** [`sofi_q2_2026_earnings_release.htm`](file:///D:/GitHub/CrashRadar/data/cache/turnarounds/sofi_q2_2026_earnings_release.htm) mit Galileo Accounts, LPB-Volumen, NCOs und Products per Member.
+   * ✅ **Offizielle SEC US-GAAP Bilanzen & Fundamentaldaten:** [`parsed_fundamentals_master.json`](file:///D:/GitHub/CrashRadar/data/cache/turnarounds/parsed_fundamentals_master.json) (Umsatz Net of Interest, Net Income, Einlagen, Eigenkapital).
+   * ✅ **M5 Intraday-Aggregation:** [`sofi_m5_rth_aggregated.json`](file:///D:/GitHub/CrashRadar/data/cache/turnarounds/sofi_m5_rth_aggregated.json).
    * ✅ **Automatisierter KPI-Extraktor:** [`study_sofi_turnaround_cockpit.js`](file:///D:/GitHub/CrashRadar/research/turnaround-studies/study_sofi_turnaround_cockpit.js).
 
 2. **Quartalsweise Routine (Der permanente Turnaround-Audit):**

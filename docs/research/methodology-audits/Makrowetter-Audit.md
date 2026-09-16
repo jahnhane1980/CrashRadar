@@ -47,10 +47,10 @@ flowchart TD
   * Ab `-5.0%`: `WARNING` $\rightarrow$ Setzt Veto `DELEVERAGING_ONGOING`, kippt aber nicht das globale Regime.
   * Ab `-10.0%`: `CRITICAL` (Echte Liquidierungswelle) $\rightarrow$ `BEAR_MARKET`.
 
-### 2. `SmartDumbMoneyBottomIndicator.js` (Stillgelegt)
-* **Dateien:** [`src/analysis/indicators/SmartDumbMoneyBottomIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/SmartDumbMoneyBottomIndicator.js) & [`config/Indicator-Pipeline-Config.json`](file:///D:/GitHub/CrashRadar/config/Indicator-Pipeline-Config.json)
-* **Problem:** Monolithische Kopplung von wöchentlichen AAII-Lag-Umfragen mit starrem VIX > 40. Bereits im Header als `@deprecated` markiert, war aber in der Pipeline-Config noch aktiv.
-* **Lösung:** In `config/Indicator-Pipeline-Config.json` auf `"enabled": false` gesetzt. Atomare Nachfolger (`DarkPoolSensor`, `VixShockSensor`) übernehmen die Erkennung.
+### 2. `SmartDumbMoneyBottomIndicator` (Stillgelegt)
+* **Dateien:** `src/analysis/indicators/SmartDumbMoneyBottomIndicator.js` & [`config/Indicator-Pipeline-Config.json`](file:///D:/GitHub/CrashRadar/config/Indicator-Pipeline-Config.json)
+* **Problem:** Monolithische Kopplung von wöchentlichen AAII-Lag-Umfragen mit starrem VIX > 40. Bereits als `@deprecated` markiert, war aber in der Pipeline-Config noch aktiv.
+* **Lösung:** In `config/Indicator-Pipeline-Config.json` auf `"enabled": false` gesetzt. Atomare Nachfolger (`DarkPoolSensor`, `VolCrushSensor`) sowie [`SmartDumbMoneyTopIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/SmartDumbMoneyTopIndicator.js) übernehmen die Erkennung.
 
 ### 3. `YieldCurveIndicator.js` (180-Tage Rezessions-Gefahrenzone)
 * **Datei:** [`src/analysis/indicators/YieldCurveIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/YieldCurveIndicator.js)
@@ -70,8 +70,8 @@ flowchart TD
 * **Indikatoren:**
   * [`src/analysis/indicators/MarginDebtIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/MarginDebtIndicator.js)
   * [`src/analysis/indicators/YieldCurveIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/YieldCurveIndicator.js)
-  * [`src/analysis/indicators/KatastrophenMatrixIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/KatastrophenMatrixIndicator.js)
-  * [`src/analysis/indicators/SmartDumbMoneyBottomIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/SmartDumbMoneyBottomIndicator.js)
+  * [`src/analysis/indicators/RedAlertIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/RedAlertIndicator.js)
+  * [`src/analysis/indicators/SmartDumbMoneyTopIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/SmartDumbMoneyTopIndicator.js)
 * **Engines:**
   * [`src/analysis/IndicatorEngine.js`](file:///D:/GitHub/CrashRadar/src/analysis/IndicatorEngine.js)
   * [`src/analysis/MacroRegimeEngine.js`](file:///D:/GitHub/CrashRadar/src/analysis/MacroRegimeEngine.js)

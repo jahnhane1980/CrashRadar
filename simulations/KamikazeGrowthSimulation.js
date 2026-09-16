@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
+import mysql from 'mysql2/promise';
 import { FinanceExpert } from '../src/services/FinanceExpert.js';
 import { PanicCapitulationIndicator } from '../src/analysis/indicators/PanicCapitulationIndicator.js';
 
@@ -83,17 +84,46 @@ export async function runKamikazeSimulation(options = {}) {
         S: '2025-10-27'
     };
 
-    const cacheDir = path.resolve(__dirname, '../data/cache/strategies/prices');
     const allSymbols = [...new Set([...techUniverse, ...kryptoUniverse, ...benchmarkSymbols, ...hedgeSymbols, ...sectorSymbols])];
 
     const prices = {};
+    if (process.env.DATABASE_URL) {
+        const pricePool = mysql.createPool(process.env.DATABASE_URL);
+        try {
+            for (const sym of allSymbols) {
+                const [rows] = await pricePool.query(`
+                    SELECT record_date as date, open, high, low, close, volume 
+                    FROM market_data_yahoo 
+                    WHERE symbol = ? AND record_date >= '2014-10-01' AND record_date <= ?
+                    ORDER BY record_date ASC
+                `, [sym, endDate]);
+
+                if (rows.length > 0) {
+                    prices[sym] = rows.map(r => ({
+                        date: String(r.date).substring(0, 10),
+                        open: r.open !== null ? parseFloat(r.open) : parseFloat(r.close),
+                        high: r.high !== null ? parseFloat(r.high) : parseFloat(r.close),
+                        low: r.low !== null ? parseFloat(r.low) : parseFloat(r.close),
+                        close: parseFloat(r.close),
+                        volume: parseFloat(r.volume || 0)
+                    }));
+                }
+            }
+        } finally {
+            await pricePool.end();
+        }
+    }
+
+    // Fallback auf Dateicache falls Ticker in DB fehlen
+    const cacheDir = path.resolve(__dirname, '../data/cache/strategies/prices');
     for (const sym of allSymbols) {
-        const cacheFile = path.join(cacheDir, `${sym}_2014-10-01_2026-09-06.json`);
-        if (fs.existsSync(cacheFile)) {
-            prices[sym] = JSON.parse(fs.readFileSync(cacheFile, 'utf8'));
-        } else {
-            console.warn(`Keine Cache-Datei für ${sym}`);
-            prices[sym] = [];
+        if (!prices[sym] || prices[sym].length === 0) {
+            const cacheFile = path.join(cacheDir, `${sym}_2014-10-01_2026-09-06.json`);
+            if (fs.existsSync(cacheFile)) {
+                prices[sym] = JSON.parse(fs.readFileSync(cacheFile, 'utf8'));
+            } else {
+                prices[sym] = [];
+            }
         }
     }
 
@@ -105,10 +135,39 @@ export async function runKamikazeSimulation(options = {}) {
         }
     }
 
-    const fundamentalsPath = path.resolve(__dirname, '../data/cache/strategies/fundamentals_master.json');
+    // Fundamental Data from MySQL (company_fundamentals)
     let fundamentalsMaster = {};
-    if (fs.existsSync(fundamentalsPath)) {
-        fundamentalsMaster = JSON.parse(fs.readFileSync(fundamentalsPath, 'utf8'));
+    if (process.env.DATABASE_URL) {
+        const fundPool = mysql.createPool(process.env.DATABASE_URL);
+        try {
+            const [rows] = await fundPool.query(`
+                SELECT symbol, filing_date, date as period_end_date, totalRevenue as revenue, netIncome as net_income, yoy_revenue_growth_pct
+                FROM company_fundamentals
+                WHERE filing_date IS NOT NULL
+                ORDER BY filing_date ASC
+            `);
+            for (const r of rows) {
+                const sym = r.symbol.toUpperCase();
+                if (!fundamentalsMaster[sym]) fundamentalsMaster[sym] = [];
+                fundamentalsMaster[sym].push({
+                    filing_date: String(r.filing_date).substring(0, 10),
+                    period_end_date: String(r.period_end_date).substring(0, 10),
+                    revenue: r.revenue !== null ? parseFloat(r.revenue) : null,
+                    net_income: r.net_income !== null ? parseFloat(r.net_income) : null,
+                    yoy_revenue_growth_pct: r.yoy_revenue_growth_pct !== null ? parseFloat(r.yoy_revenue_growth_pct) : null
+                });
+            }
+        } finally {
+            await fundPool.end();
+        }
+    }
+
+    // Fallback auf Dateicache falls DB offline oder leer
+    if (Object.keys(fundamentalsMaster).length === 0) {
+        const fundamentalsPath = path.resolve(__dirname, '../data/cache/strategies/fundamentals_master.json');
+        if (fs.existsSync(fundamentalsPath)) {
+            fundamentalsMaster = JSON.parse(fs.readFileSync(fundamentalsPath, 'utf8'));
+        }
     }
 
     function getLatestFundamentals(symbol, date) {

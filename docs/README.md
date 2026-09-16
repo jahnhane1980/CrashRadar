@@ -150,8 +150,8 @@ Hier liegen alle empirischen Auswertungen, historischen Krisen-Härtetests und m
 
 
 ### B. 📜 Ray Dalio Schuldenkrisen-Zyklen (`docs/research/dalio-cycles/`)
-* 📄 **[`These.md`](file:///D:/GitHub/CrashRadar/docs/research/dalio-cycles/These.md)** | **[`Daten_zur_These.md`](file:///D:/GitHub/CrashRadar/docs/research/dalio-cycles/Daten_zur_These.md)**
-* 📄 **[`Backtest_3_von_4_Regel.md`](file:///D:/GitHub/CrashRadar/docs/research/dalio-cycles/Backtest_3_von_4_Regel.md)** | **[`Empirische_Auswertung_Dalio_These.md`](file:///D:/GitHub/CrashRadar/docs/research/dalio-cycles/Empirische_Auswertung_Dalio_These.md)**
+* 📄 **[`Ray-Dalio-Schuldenkrisen-Studie.md`](file:///D:/GitHub/CrashRadar/docs/research/dalio-cycles/Ray-Dalio-Schuldenkrisen-Studie.md):**  
+  *Empirische Validierung der Dalio Schuldenzyklen (1970–2026): Synthese aus Dalio-Modell, Kurz- vs. Langzeit-Zyklen (Stage 5), 56-Jahre Backtest der "3 von 4 ROT"-Regel, Lag-Analysen & Net-Liquidity-Synthese.*
 
 ### C. 🧪 ML-Labor & Feature-Forschung (`docs/research/ml-lab/`)
 * 📄 **[`ML_EVALUATIONS.md`](file:///D:/GitHub/CrashRadar/docs/research/ml-lab/ML_EVALUATIONS.md):**  

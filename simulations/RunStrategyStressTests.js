@@ -11,8 +11,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
-const cacheDir = path.resolve(__dirname, '../data/cache/historical_prices');
-
 async function runStrategyStressTests() {
   console.log('================================================================');
   console.log('   HISTORISCHER STRESS-TEST: BEIDE STRATEGIEN AUF REINEN HUBS');

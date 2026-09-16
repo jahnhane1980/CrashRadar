@@ -6,7 +6,7 @@
 * **Bereich:** [`docs/research/DailyPortfolioCompass/`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/)  
 * **Ausgeführtes Test-Skript:** [`research/adr-assertions/test_adr008_lclor_bank_reserves.js`](file:///D:/GitHub/CrashRadar/research/adr-assertions/test_adr008_lclor_bank_reserves.js)  
 * **Ergebnis-Datensatz:** [`data/cache/portfolio_compass/adr008_test_results.json`](file:///D:/GitHub/CrashRadar/data/cache/portfolio_compass/adr008_test_results.json)  
-* **Referenz-Komponenten:** [`DailyPortfolioCompass.js`](file:///D:/GitHub/CrashRadar/src/analysis/DailyPortfolioCompass.js), [`LiquiditySensorHub.js`](file:///D:/GitHub/CrashRadar/src/signals/hubs/LiquiditySensorHub.js), [`BankReservesIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/BankReservesIndicator.js), [`FinanceExpert.js`](file:///D:/GitHub/CrashRadar/src/services/FinanceExpert.js)
+* **Referenz-Komponenten:** [`DailyPortfolioCompass.js`](file:///D:/GitHub/CrashRadar/src/analysis/DailyPortfolioCompass.js), [`LiquiditySensorHub.js`](file:///D:/GitHub/CrashRadar/src/signals/hubs/LiquiditySensorHub.js), [`TreasuryCapacityRadarIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/TreasuryCapacityRadarIndicator.js), [`FinanceExpert.js`](file:///D:/GitHub/CrashRadar/src/services/FinanceExpert.js)
 
 ---
 

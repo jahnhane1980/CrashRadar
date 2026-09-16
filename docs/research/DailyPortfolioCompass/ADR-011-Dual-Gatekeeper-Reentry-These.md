@@ -11,7 +11,7 @@
 > [!CAUTION]
 > **Falsifiziertes Negativ-Ergebnis & Weiterleitung zu ADR-013:**  
 > Diese Untersuchung beweist mathematisch, dass ein starres Trendfolge- oder Makro-Veto (`SPY > EMA21` oder `Liquidity != CRITICAL`) für den Wiedereinstieg ungeeignet ist, weil es die ersten Tage steiler V-Erholungen verpasst und den Zinseszins zerstört (-331.960 € Verlust über 21,8 Jahre).  
-> **Wichtig:** Dieses negative Ergebnis führt **nicht** dazu, dass wir ungeschützt in fallende Messer greifen müssen! Die methodisch saubere Synthese (Event-Driven Re-Entry statt träger Trendfolge) wird in [**ADR-013 (Makro-Asymmetrie-Reentry-These)**](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-013-Makro-Asymmetrie-Reentry-Besprechung.md) bzw. [**ADR-013**](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-013-Makro-Asymmetrie-Reentry-These.md) formuliert und gelöst.
+> **Wichtig:** Dieses negative Ergebnis führt **nicht** dazu, dass wir ungeschützt in fallende Messer greifen müssen! Die methodisch saubere Synthese (Event-Driven Re-Entry statt träger Trendfolge) wird in **ADR-013 (Makro-Asymmetrie-Reentry-These)** formuliert und gelöst.
 
 ---
 
@@ -108,5 +108,5 @@ Obwohl der Gatekeeper im isolierten Corona-Crash 2020 perfekt funktionierte (Ein
    Um die Corona-Anomalie (Fehlkauf am 06.03.2020) zu lösen, darf die Re-Entry-Bremse **nur** in echten Liquidations-Kaskaden aktiv werden:
    * Re-Entry bleibt unverzögert aktiv, **außer** wenn `macroStressHub.regime === 'LIQUIDATION_CASCADE'` (wie am 12.–18. März 2020, als SPY unter -20 % brach).
 3. **Fazit:** Die Nullhypothese $H_0$ ist wissenschaftlich bestätigt. Die Baseline-Strategie mit schnellem Re-Entry bleibt der ungeschlagene Champion.
-4. **Überleitung & methodische Lösung in [ADR-013](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-013-Makro-Asymmetrie-Reentry-These.md):**  
+4. **Überleitung & methodische Lösung in ADR-013:**  
    Die Auflösung des Rebound-Lag-Problems ohne Inkaufnahme des vorzeitigen Corona-Messers (Event-Driven Re-Entry via Volatilitäts-Kapitulation & Fed-Intervention statt träger Trendfolge) ist Gegenstand der Synthese-Forschung in **ADR-013**.

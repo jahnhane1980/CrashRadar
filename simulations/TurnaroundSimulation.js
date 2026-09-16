@@ -1,9 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
+import mysql from 'mysql2/promise';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const CACHE_DIR = path.resolve(__dirname, '../data/cache/turnarounds');
 const MASTER_DATA_PATH = path.join(CACHE_DIR, 'parsed_fundamentals_master.json');
@@ -68,7 +71,7 @@ function getKnownFundamentalsAtDate(financials, date) {
 }
 
 function simulateUniverse(masterData, macroMatrix, options = {}) {
-    const { useMacroKatastrophenMatrix = false, enforceGrossMargin = true } = options;
+    const { useMacroKatastrophenMatrix = false, enforceGrossMargin = true, quotesMap = {} } = options;
     const tickers = Object.keys(masterData);
     const allTrades = [];
     let macroBlockedEntries = 0;
@@ -77,9 +80,8 @@ function simulateUniverse(masterData, macroMatrix, options = {}) {
     for (const ticker of tickers) {
         const info = masterData[ticker];
         const pricesFile = path.join(CACHE_DIR, `${ticker}_daily.json`);
-        if (!fs.existsSync(pricesFile)) continue;
-        const quotes = JSON.parse(fs.readFileSync(pricesFile, 'utf8'));
-        if (quotes.length < 150) continue;
+        const quotes = (quotesMap && quotesMap[ticker]) || (fs.existsSync(pricesFile) ? JSON.parse(fs.readFileSync(pricesFile, 'utf8')) : []);
+        if (!quotes || quotes.length < 150) continue;
 
         const closes = quotes.map(q => q.close);
         const volumes = quotes.map(q => q.volume);
@@ -334,17 +336,101 @@ async function runComparativeAnalysis() {
     console.log("   Universum: 19 Ticker (5 Mega-Caps, 7 Growth/Biotech/Fintech, 6 Failed/Crashed Hyped Stocks)");
     console.log("================================================================================\n");
 
-    const masterData = JSON.parse(fs.readFileSync(MASTER_DATA_PATH, 'utf8'));
+    let masterData = {};
+    if (fs.existsSync(MASTER_DATA_PATH)) {
+        masterData = JSON.parse(fs.readFileSync(MASTER_DATA_PATH, 'utf8'));
+    }
     const macroMatrix = fs.existsSync(MACRO_MATRIX_PATH) ? JSON.parse(fs.readFileSync(MACRO_MATRIX_PATH, 'utf8')) : {};
+
+    const defaultTickers = [
+        'NOW', 'META', 'NFLX', 'AMZN', 'GOOGL', 'HIMS', 'S', 'IBRX', 'NVTS',
+        'SOFI', 'PLTR', 'APP', 'HOOD', 'PTON', 'TDOC', 'BYND', 'SPCE', 'UPST', 'FSLY', 'NET'
+    ];
+    const tickers = Object.keys(masterData).length > 0 ? Object.keys(masterData) : defaultTickers;
+
+    let quotesMap = {};
+    if (process.env.DATABASE_URL) {
+        const pool = mysql.createPool(process.env.DATABASE_URL);
+        try {
+            for (const sym of tickers) {
+                const [rows] = await pool.query(`
+                    SELECT record_date as date, open, high, low, close, volume 
+                    FROM market_data_yahoo 
+                    WHERE symbol = ? 
+                    ORDER BY record_date ASC
+                `, [sym]);
+                if (rows.length > 0) {
+                    quotesMap[sym] = rows.map(r => ({
+                        date: String(r.date).substring(0, 10),
+                        open: r.open !== null ? parseFloat(r.open) : parseFloat(r.close),
+                        high: r.high !== null ? parseFloat(r.high) : parseFloat(r.close),
+                        low: r.low !== null ? parseFloat(r.low) : parseFloat(r.close),
+                        close: parseFloat(r.close),
+                        volume: parseFloat(r.volume || 0)
+                    }));
+                }
+            }
+
+            if (Object.keys(masterData).length === 0) {
+                const [fundRows] = await pool.query(`
+                    SELECT symbol, filing_date, date as period_end, totalRevenue as revenue, 
+                           netIncome as net_income, gross_profit, operating_cash_flow, 
+                           freeCashFlow as fcf, shareIssued as diluted_shares, yoy_revenue_growth_pct as yoy_rev_growth_pct
+                    FROM company_fundamentals
+                    WHERE symbol IN (?) AND filing_date IS NOT NULL
+                    ORDER BY filing_date ASC
+                `, [tickers]);
+
+                const defaultCategories = {
+                    NOW: 'MEGA_CAP', META: 'MEGA_CAP', NFLX: 'MEGA_CAP', AMZN: 'MEGA_CAP', GOOGL: 'MEGA_CAP',
+                    HIMS: 'HIGH_GROWTH', S: 'HIGH_GROWTH', IBRX: 'HIGH_GROWTH', NVTS: 'HIGH_GROWTH',
+                    SOFI: 'HIGH_GROWTH', PLTR: 'HIGH_GROWTH', APP: 'HIGH_GROWTH', HOOD: 'HIGH_GROWTH', NET: 'HIGH_GROWTH',
+                    PTON: 'FAILED_GROWTH', TDOC: 'FAILED_GROWTH', BYND: 'FAILED_GROWTH', SPCE: 'FAILED_GROWTH',
+                    UPST: 'FAILED_GROWTH', FSLY: 'FAILED_GROWTH'
+                };
+
+                const fundMap = {};
+                for (const r of fundRows) {
+                    const sym = r.symbol.toUpperCase();
+                    if (!fundMap[sym]) fundMap[sym] = [];
+                    const rev = r.revenue !== null ? parseFloat(r.revenue) : null;
+                    const gp = r.gross_profit !== null ? parseFloat(r.gross_profit) : null;
+                    const gross_margin_pct = (rev && gp) ? (gp / rev) * 100 : null;
+                    fundMap[sym].push({
+                        ticker: sym,
+                        period_end: String(r.period_end).substring(0, 10),
+                        filing_date: String(r.filing_date).substring(0, 10),
+                        revenue: rev,
+                        gross_profit: gp,
+                        gross_margin_pct: gross_margin_pct,
+                        net_income: r.net_income !== null ? parseFloat(r.net_income) : null,
+                        operating_cash_flow: r.operating_cash_flow !== null ? parseFloat(r.operating_cash_flow) : null,
+                        fcf: r.fcf !== null ? parseFloat(r.fcf) : null,
+                        diluted_shares: r.diluted_shares !== null ? parseFloat(r.diluted_shares) : null,
+                        yoy_rev_growth_pct: r.yoy_rev_growth_pct !== null ? parseFloat(r.yoy_rev_growth_pct) : null
+                    });
+                }
+
+                for (const t of tickers) {
+                    masterData[t] = {
+                        profile: { ticker: t, category: defaultCategories[t] || 'HIGH_GROWTH' },
+                        financials: fundMap[t] || []
+                    };
+                }
+            }
+        } finally {
+            await pool.end();
+        }
+    }
 
     // PASS 1: Baseline (Ohne Makro-Filter)
     console.log("[RUN 1] Berechne Baseline (OHNE Makro-Sperre)...");
-    const res1 = simulateUniverse(masterData, macroMatrix, { useMacroKatastrophenMatrix: false });
+    const res1 = simulateUniverse(masterData, macroMatrix, { useMacroKatastrophenMatrix: false, quotesMap });
     const stats1 = calculateStats(res1.allTrades);
 
     // PASS 2: Mit 3-Säulen-Katastrophen-Matrix
     console.log("[RUN 2] Berechne mit 3-Säulen-Katastrophen-Matrix Makro-Sperre...");
-    const res2 = simulateUniverse(masterData, macroMatrix, { useMacroKatastrophenMatrix: true });
+    const res2 = simulateUniverse(masterData, macroMatrix, { useMacroKatastrophenMatrix: true, quotesMap });
     const stats2 = calculateStats(res2.allTrades);
 
     console.log("\n================================================================================");
