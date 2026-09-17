@@ -412,6 +412,27 @@
       "options": {}
     },
     {
+      "id": "yahoo_zq",
+      "provider": "YahooFinance",
+      "ticker": "ZQ=F",
+      "method": "chart",
+      "options": {}
+    },
+    {
+      "id": "yahoo_nq",
+      "provider": "YahooFinance",
+      "ticker": "NQ=F",
+      "method": "chart",
+      "options": {}
+    },
+    {
+      "id": "yahoo_es",
+      "provider": "YahooFinance",
+      "ticker": "ES=F",
+      "method": "chart",
+      "options": {}
+    },
+    {
       "id": "yahoo_hyg",
       "provider": "YahooFinance",
       "ticker": "HYG",
@@ -1138,6 +1159,15 @@
       "endpoint": "/fred/series/observations",
       "params": {
         "series_id": "DGS2",
+        "file_type": "json"
+      }
+    },
+    {
+      "id": "fred_dgs3mo",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "DGS3MO",
         "file_type": "json"
       }
     },
