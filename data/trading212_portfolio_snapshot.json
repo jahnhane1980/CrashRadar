@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-09-28T17:51:48.570Z",
-  "cashPct": 9.02,
-  "freeCashPct": 2.44,
+  "timestamp": "2026-09-29T00:01:56.135Z",
+  "cashPct": 9.09,
+  "freeCashPct": 2.45,
   "blockedCashPct": 0,
-  "ib01CashPct": 6.59,
-  "investedPct": 90.98,
-  "allTimeReturnPct": 193.27,
-  "openReturnPct": 5.48,
+  "ib01CashPct": 6.64,
+  "investedPct": 90.91,
+  "allTimeReturnPct": 191.4,
+  "openReturnPct": 4.68,
   "positionsCount": 8,
   "positions": [
     {
@@ -14,27 +14,27 @@
       "rawTicker": "AIRO_US_EQ",
       "quantity": 2600,
       "averagePrice": 6.38407692,
-      "currentPrice": 7.04,
-      "weightPct": 17.91,
-      "pnlPct": 10.27
+      "currentPrice": 6.97,
+      "weightPct": 17.88,
+      "pnlPct": 9.18
     },
     {
       "ticker": "IBRX",
       "rawTicker": "NK_US_EQ",
       "quantity": 1875,
       "averagePrice": 7.312464,
-      "currentPrice": 8.85,
-      "weightPct": 16.24,
-      "pnlPct": 21.03
+      "currentPrice": 8.55,
+      "weightPct": 15.82,
+      "pnlPct": 16.92
     },
     {
       "ticker": "LUMN",
       "rawTicker": "CTL_US_EQ",
       "quantity": 2500,
       "averagePrice": 6.121672,
-      "currentPrice": 5.71,
-      "weightPct": 13.97,
-      "pnlPct": -6.72
+      "currentPrice": 5.56,
+      "weightPct": 13.72,
+      "pnlPct": -9.18
     },
     {
       "ticker": "SEMI",
@@ -42,7 +42,7 @@
       "quantity": 650,
       "averagePrice": 19.32527692,
       "currentPrice": 20.83,
-      "weightPct": 13.25,
+      "weightPct": 13.36,
       "pnlPct": 7.79
     },
     {
@@ -51,7 +51,7 @@
       "quantity": 7.5,
       "averagePrice": 1654.04,
       "currentPrice": 1736.4,
-      "weightPct": 12.75,
+      "weightPct": 12.85,
       "pnlPct": 4.98
     },
     {
@@ -59,27 +59,27 @@
       "rawTicker": "EJFA_US_EQ",
       "quantity": 552.7,
       "averagePrice": 20.49779265,
-      "currentPrice": 16.99,
+      "currentPrice": 16.85,
       "weightPct": 9.19,
-      "pnlPct": -17.11
+      "pnlPct": -17.8
     },
     {
       "ticker": "S",
       "rawTicker": "S_US_EQ",
       "quantity": 187.5,
       "averagePrice": 19.68736,
-      "currentPrice": 22.84,
-      "weightPct": 4.19,
-      "pnlPct": 16.01
+      "currentPrice": 22.6,
+      "weightPct": 4.18,
+      "pnlPct": 14.79
     },
     {
       "ticker": "NVTS",
       "rawTicker": "LOKB_US_EQ",
       "quantity": 300,
       "averagePrice": 9.91333333,
-      "currentPrice": 11.82,
-      "weightPct": 3.47,
-      "pnlPct": 19.23
+      "currentPrice": 13.19,
+      "weightPct": 3.9,
+      "pnlPct": 33.05
     }
   ],
   "pendingOrdersCount": 0,
