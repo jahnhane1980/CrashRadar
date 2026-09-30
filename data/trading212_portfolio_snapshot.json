@@ -1,40 +1,31 @@
 {
-  "timestamp": "2026-09-30T16:09:02.621Z",
-  "cashPct": 9.33,
-  "freeCashPct": 2.91,
+  "timestamp": "2026-09-30T23:18:53.476Z",
+  "cashPct": 26.21,
+  "freeCashPct": 19.69,
   "blockedCashPct": 0,
-  "ib01CashPct": 6.42,
-  "investedPct": 90.67,
-  "allTimeReturnPct": 198.53,
-  "openReturnPct": 8.07,
-  "positionsCount": 8,
+  "ib01CashPct": 6.53,
+  "investedPct": 73.79,
+  "allTimeReturnPct": 204.08,
+  "openReturnPct": 2.78,
+  "positionsCount": 7,
   "positions": [
-    {
-      "ticker": "IBRX",
-      "rawTicker": "NK_US_EQ",
-      "quantity": 1875,
-      "averagePrice": 7.312464,
-      "currentPrice": 9.95,
-      "weightPct": 17.8,
-      "pnlPct": 36.07
-    },
     {
       "ticker": "AIRO",
       "rawTicker": "AIRO_US_EQ",
       "quantity": 2600,
       "averagePrice": 6.38407692,
-      "currentPrice": 6.86,
-      "weightPct": 17.02,
-      "pnlPct": 7.45
+      "currentPrice": 6.71,
+      "weightPct": 16.92,
+      "pnlPct": 5.11
     },
     {
       "ticker": "LUMN",
       "rawTicker": "CTL_US_EQ",
       "quantity": 2500,
       "averagePrice": 6.121672,
-      "currentPrice": 5.56,
-      "weightPct": 13.26,
-      "pnlPct": -9.18
+      "currentPrice": 5.62,
+      "weightPct": 13.63,
+      "pnlPct": -8.2
     },
     {
       "ticker": "SEMI",
@@ -42,7 +33,7 @@
       "quantity": 650,
       "averagePrice": 19.32527692,
       "currentPrice": 21.355,
-      "weightPct": 13.24,
+      "weightPct": 13.47,
       "pnlPct": 10.5
     },
     {
@@ -51,7 +42,7 @@
       "quantity": 7.5,
       "averagePrice": 1654.04,
       "currentPrice": 1758,
-      "weightPct": 12.58,
+      "weightPct": 12.79,
       "pnlPct": 6.29
     },
     {
@@ -59,29 +50,42 @@
       "rawTicker": "EJFA_US_EQ",
       "quantity": 552.7,
       "averagePrice": 20.49779265,
-      "currentPrice": 17.42,
-      "weightPct": 9.19,
-      "pnlPct": -15.02
+      "currentPrice": 17.26,
+      "weightPct": 9.25,
+      "pnlPct": -15.8
     },
     {
       "ticker": "S",
       "rawTicker": "S_US_EQ",
       "quantity": 187.5,
       "averagePrice": 19.68736,
-      "currentPrice": 23.91,
-      "weightPct": 4.28,
-      "pnlPct": 21.45
+      "currentPrice": 23.9,
+      "weightPct": 4.35,
+      "pnlPct": 21.4
     },
     {
       "ticker": "NVTS",
       "rawTicker": "LOKB_US_EQ",
       "quantity": 300,
       "averagePrice": 9.91333333,
-      "currentPrice": 11.58,
-      "weightPct": 3.31,
-      "pnlPct": 16.81
+      "currentPrice": 11.6,
+      "weightPct": 3.38,
+      "pnlPct": 17.01
     }
   ],
-  "pendingOrdersCount": 0,
-  "pendingOrders": []
+  "pendingOrdersCount": 1,
+  "pendingOrders": [
+    {
+      "id": 58161117078,
+      "ticker": "LUMN",
+      "rawTicker": "CTL_US_EQ",
+      "side": "SELL",
+      "type": "LIMIT",
+      "quantity": -2500,
+      "limitPrice": 6.9,
+      "currency": "USD",
+      "status": "NEW",
+      "targetWeightPct": 0
+    }
+  ]
 }
