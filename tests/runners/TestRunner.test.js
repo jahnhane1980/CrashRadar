@@ -7,7 +7,7 @@ describe('TestRunner', () => {
   let runner;
 
   beforeEach(() => {
-    runner = new TestRunner({ config: {}, storage: {}, fetcher: { runAllTasks: vi.fn() }, maturityWallBuilder: { build: vi.fn(), close: vi.fn() } });
+    runner = new TestRunner({ config: {}, storage: {}, fetcher: { runAllTasks: vi.fn() } });
     vi.spyOn(Logger, 'info').mockImplementation(() => {});
     vi.spyOn(Logger, 'warn').mockImplementation(() => {});
   });

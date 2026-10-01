@@ -7,7 +7,6 @@ import { Logger } from '../../src/core/Logger.js';
 describe('TimeSeriesFetchRunner', () => {
   let mockStorage;
   let mockFetcher;
-  let mockMwBuilder;
   let mockErrorRegistry;
   let mockRunner;
 
@@ -18,7 +17,6 @@ describe('TimeSeriesFetchRunner', () => {
 
     mockStorage = { close: vi.fn().mockResolvedValue() };
     mockFetcher = { runAllTasks: vi.fn().mockResolvedValue() };
-    mockMwBuilder = { build: vi.fn().mockResolvedValue(), close: vi.fn().mockResolvedValue() };
     mockErrorRegistry = { hasErrors: vi.fn().mockReturnValue(false) };
     mockRunner = { run: vi.fn().mockResolvedValue(), cleanup: vi.fn().mockResolvedValue() };
   });
@@ -35,7 +33,6 @@ describe('TimeSeriesFetchRunner', () => {
         config: { globalStartDate: '2020-01-01' },
         storage: mockStorage,
         fetcher: mockFetcher,
-        maturityWallBuilder: mockMwBuilder,
         errorRegistry: mockErrorRegistry,
         runner: mockRunner
       }
@@ -57,7 +54,6 @@ describe('TimeSeriesFetchRunner', () => {
         config: mockConfig,
         storage: mockStorage,
         fetcher: mockFetcher,
-        maturityWallBuilder: mockMwBuilder,
         errorRegistry: mockErrorRegistry,
         runner: mockRunner
       }

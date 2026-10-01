@@ -4,7 +4,6 @@ import { fileURLToPath } from 'url';
 import { Storage } from '../core/Storage.js';
 import { RequestManager } from '../core/RequestManager.js';
 import { TimeSeriesFetcher } from '../services/TimeSeriesFetcher.js';
-import { MaturityWallBuilder } from '../services/MaturityWallBuilder.js';
 import { ErrorRegistry } from '../core/ErrorRegistry.js';
 import { NtfyService } from '../services/NtfyService.js';
 import { StandardRunner } from './StandardRunner.js';
@@ -50,9 +49,8 @@ export class TimeSeriesFetchRunner {
       ? this.dependencies.ntfyService 
       : (ntfyTopic ? new NtfyService(ntfyTopic) : null);
     const fetcher = this.dependencies.fetcher || new TimeSeriesFetcher(config, storage, requestManager, errorRegistry);
-    const maturityWallBuilder = this.dependencies.maturityWallBuilder || new MaturityWallBuilder(dbUrl);
 
-    const runnerArgs = { config, storage, fetcher, maturityWallBuilder, errorRegistry, ntfyService, options: this.options };
+    const runnerArgs = { config, storage, fetcher, errorRegistry, ntfyService, options: this.options };
     
     if (this.dependencies.runner) {
       this.activeRunner = this.dependencies.runner;

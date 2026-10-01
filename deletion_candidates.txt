@@ -1,5 +1,4 @@
 [SAFE_DELETE_FILES]
-D:\GitHub\CrashRadar\index.js
 D:\GitHub\CrashRadar\ml.js
 D:\GitHub\CrashRadar\config\alert_history.json
 D:\GitHub\CrashRadar\config\Cycle-Base-Config.json
@@ -91,7 +90,6 @@ D:\GitHub\CrashRadar\src\strategies\PortfolioStrategyInterface.js
 D:\GitHub\CrashRadar\src\strategies\SatelliteStrategy.js
 D:\GitHub\CrashRadar\src\utils\MathUtils.js
 D:\GitHub\CrashRadar\tests\cli.test.js
-D:\GitHub\CrashRadar\tests\index.test.js
 D:\GitHub\CrashRadar\tests\analysis\append_tests.js
 D:\GitHub\CrashRadar\tests\analysis\GoldenMaster.test.js
 D:\GitHub\CrashRadar\tests\analysis\IndicatorEngine.test.js
@@ -241,6 +239,7 @@ D:\GitHub\CrashRadar\src\services\MaturityWallBuilder.js
 D:\GitHub\CrashRadar\src\services\NtfyService.js
 D:\GitHub\CrashRadar\src\services\PaginationStrategies.js
 D:\GitHub\CrashRadar\src\services\TimeSeriesFetcher.js
+D:\GitHub\CrashRadar\index.js
 D:\GitHub\CrashRadar\.github\workflows\daily-fetch.yml
 D:\GitHub\CrashRadar\tests\core\ErrorRegistry.test.js
 D:\GitHub\CrashRadar\tests\core\Logger.test.js
@@ -279,3 +278,4 @@ D:\GitHub\CrashRadar\tests\services\MaturityWallBuilder.test.js
 D:\GitHub\CrashRadar\tests\services\NtfyService.test.js
 D:\GitHub\CrashRadar\tests\services\PaginationStrategies.test.js
 D:\GitHub\CrashRadar\tests\services\TimeSeriesFetcherProfile.test.js
+D:\GitHub\CrashRadar\tests\index.test.js

@@ -5,7 +5,6 @@ import { Logger } from '../../src/core/Logger.js';
 describe('StandardRunner', () => {
   let mockStorage;
   let mockFetcher;
-  let mockMwBuilder;
   let mockErrorRegistry;
   let mockNtfyService;
   let runner;
@@ -13,7 +12,6 @@ describe('StandardRunner', () => {
   beforeEach(() => {
     mockStorage = { close: vi.fn() };
     mockFetcher = { runAllTasks: vi.fn().mockResolvedValue() };
-    mockMwBuilder = { build: vi.fn().mockResolvedValue(), close: vi.fn().mockResolvedValue() };
     mockErrorRegistry = { hasErrors: vi.fn().mockReturnValue(false), getSummary: vi.fn().mockReturnValue('Summary') };
     mockNtfyService = { send: vi.fn().mockResolvedValue() };
     
@@ -21,7 +19,6 @@ describe('StandardRunner', () => {
       config: { globalStartDate: '2020-01-01' },
       storage: mockStorage,
       fetcher: mockFetcher,
-      maturityWallBuilder: mockMwBuilder,
       errorRegistry: mockErrorRegistry,
       ntfyService: mockNtfyService
     });
@@ -37,12 +34,10 @@ describe('StandardRunner', () => {
   });
 
   describe('run', () => {
-    it('should run successfully, update maturity wall, and cleanup', async () => {
+    it('should run successfully and cleanup', async () => {
       await runner.run();
 
       expect(mockFetcher.runAllTasks).toHaveBeenCalled();
-      expect(mockMwBuilder.build).toHaveBeenCalledWith('2020-01-01');
-      expect(mockMwBuilder.close).toHaveBeenCalled();
       expect(mockNtfyService.send).not.toHaveBeenCalled(); // No errors
       expect(mockStorage.close).toHaveBeenCalled();
     });
@@ -51,12 +46,6 @@ describe('StandardRunner', () => {
       mockErrorRegistry.hasErrors.mockReturnValue(true);
       await runner.run();
       expect(mockNtfyService.send).toHaveBeenCalledWith('CrashRadar ETL Fehler', 'Summary', 'high', 'warning');
-    });
-
-    it('should fallback to 2015-01-01 if globalStartDate is missing', async () => {
-      runner.config = {};
-      await runner.run();
-      expect(mockMwBuilder.build).toHaveBeenCalledWith('2015-01-01');
     });
 
     it('should catch error, log it, exit, and cleanup', async () => {

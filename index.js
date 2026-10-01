@@ -2,11 +2,7 @@ import 'dotenv/config';
 import { fileURLToPath } from 'url';
 import { Command } from 'commander';
 import { Logger } from './src/core/Logger.js';
-import { IndicatorAnalysisRunner } from './src/runners/IndicatorAnalysisRunner.js';
-import { MacroScorecardRunner } from './src/runners/MacroScorecardRunner.js';
-import { TimeSeriesFetchRunner } from './src/runners/TimeSeriesFetchRunner.js';
-import { Trading212Runner } from './src/runners/Trading212Runner.js';
-import { PortfolioStrategyRunner } from './src/runners/PortfolioStrategyRunner.js';
+import { DataFetchRunner, TimeSeriesFetchRunner } from './src/runners/TimeSeriesFetchRunner.js';
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -14,13 +10,17 @@ let activeRunner = null;
 
 process.on('SIGINT', () => {
   Logger.info('[Process] Caught interrupt signal (SIGINT). Exiting gracefully...');
-  if (activeRunner) activeRunner.cleanup();
+  if (activeRunner && typeof activeRunner.cleanup === 'function') {
+    activeRunner.cleanup();
+  }
   process.exit(0);
 });
 
 process.on('SIGTERM', () => {
   Logger.info('[Process] Caught termination signal (SIGTERM). Exiting gracefully...');
-  if (activeRunner) activeRunner.cleanup();
+  if (activeRunner && typeof activeRunner.cleanup === 'function') {
+    activeRunner.cleanup();
+  }
   process.exit(0);
 });
 
@@ -33,32 +33,22 @@ export async function runCLI(argv) {
 
   program
     .option('-t, --test', 'Run the fetcher in test mode')
-    .option('-c, --check-indikator', 'Run the macro financial indicator analysis')
-    .option('-s, --check-scenario', 'Run targeted macro scenario fetch, evaluation and alerting')
     .option('-p, --profile <profile>', 'Filter data fetching tasks by profile / frequency (e.g. daily, intraday_m5, all)', 'daily')
-    .option('--t212-sync', 'Run Trading 212 portfolio sync and delta analysis')
-    .option('--mode <mode>', 'Trading 212 run mode: "weekly" (default) or "trades"', 'weekly')
-    .option('--send-ntfy', 'Broadcast portfolio update to Ntfy topic')
-    .option('-g, --signals', 'Run portfolio strategy engine and signal analysis');
+    .option('-c, --check-indikator', 'Legacy indicator flag (deprecated / no-op in ingestion-only mode)')
+    .option('-s, --check-scenario', 'Legacy scenario flag (deprecated / no-op in ingestion-only mode)');
 
   program.action(async (options) => {
     try {
-      if (options.signals) {
-        activeRunner = new PortfolioStrategyRunner(options);
-      } else if (options.t212Sync) {
-        activeRunner = new Trading212Runner(options);
-      } else if (options.checkIndikator) {
-        activeRunner = new IndicatorAnalysisRunner(options);
-      } else if (options.checkScenario) {
-        activeRunner = new MacroScorecardRunner(options);
-      } else {
-        activeRunner = new TimeSeriesFetchRunner(options);
+      if (options.checkIndikator || options.checkScenario) {
+        Logger.warn('[CLI] Indicator and scenario checks have been retired in ingestion mode.');
+        return;
       }
 
+      activeRunner = new DataFetchRunner(options);
       await activeRunner.run();
     } catch (error) {
       Logger.error('[CLI Error]', error.message || error);
-      throw error; // Statt process.exit(1) werfen wir den Fehler weiter
+      throw error;
     }
   });
 
@@ -69,8 +59,7 @@ export async function runCLI(argv) {
 if (process.argv[1] === __filename) {
   runCLI(process.argv).then(() => {
     process.exitCode = 0;
-  }).catch((err) => {
+  }).catch(() => {
     process.exitCode = 1;
   });
 }
-
