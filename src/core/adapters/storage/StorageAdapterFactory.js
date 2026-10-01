@@ -11,6 +11,7 @@ import { SecEdgar13FAdapter } from './SecEdgar13FAdapter.js';
 import { AaiiAdapter } from './AaiiAdapter.js';
 import { NaaimAdapter } from './NaaimAdapter.js';
 import { CalendarStorageAdapter } from './CalendarStorageAdapter.js';
+import { M5StorageAdapter } from './M5StorageAdapter.js';
 
 const adapters = {
   'Binance': new BinanceAdapter(),
@@ -26,6 +27,7 @@ const adapters = {
   'AAII': new AaiiAdapter(),
   'NAAIM': new NaaimAdapter(),
   'Calendar': new CalendarStorageAdapter(),
+  'PolygonM5': new M5StorageAdapter(),
 };
 
 export class StorageAdapterFactory {

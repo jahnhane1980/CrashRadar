@@ -13,6 +13,7 @@ describe('StorageAdapterFactory', () => {
     expect(StorageAdapterFactory.getAdapter('SecEdgar')).toBeDefined();
     expect(StorageAdapterFactory.getAdapter('Cboe')).toBeDefined();
     expect(StorageAdapterFactory.getAdapter('Finra')).toBeDefined();
+    expect(StorageAdapterFactory.getAdapter('PolygonM5')).toBeDefined();
   });
 
   it('should throw error for unknown provider (edge case)', () => {

@@ -4,6 +4,7 @@ import { YahooFinanceFetchAdapter } from '../../../../src/core/adapters/fetch/Ya
 import { CboeFetchAdapter } from '../../../../src/core/adapters/fetch/CboeFetchAdapter.js';
 import { FinraFetchAdapter } from '../../../../src/core/adapters/fetch/FinraFetchAdapter.js';
 import { SecEdgar13FFetchAdapter } from '../../../../src/core/adapters/fetch/SecEdgar13FFetchAdapter.js';
+import { PolygonM5FetchAdapter } from '../../../../src/core/adapters/fetch/PolygonM5FetchAdapter.js';
 
 describe('FetchAdapterFactory', () => {
   it('sollte den passenden Adapter für bekannte Provider zurückgeben', () => {
@@ -11,6 +12,7 @@ describe('FetchAdapterFactory', () => {
     expect(FetchAdapterFactory.get('Cboe')).toBeInstanceOf(CboeFetchAdapter);
     expect(FetchAdapterFactory.get('Finra')).toBeInstanceOf(FinraFetchAdapter);
     expect(FetchAdapterFactory.get('SecEdgar13F')).toBeInstanceOf(SecEdgar13FFetchAdapter);
+    expect(FetchAdapterFactory.get('PolygonM5')).toBeInstanceOf(PolygonM5FetchAdapter);
   });
 
   it('sollte einen Fehler werfen bei unbekanntem Provider', () => {

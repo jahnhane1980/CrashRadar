@@ -7,6 +7,7 @@ import { AaiiFetchAdapter } from './AaiiFetchAdapter.js';
 import { NaaimFetchAdapter } from './NaaimFetchAdapter.js';
 import { CalendarFetchAdapter } from './CalendarFetchAdapter.js';
 import { SecEdgar13FFetchAdapter } from './SecEdgar13FFetchAdapter.js';
+import { PolygonM5FetchAdapter } from './PolygonM5FetchAdapter.js';
 
 const adapters = {
   'YahooFinance': new YahooFinanceFetchAdapter(),
@@ -18,6 +19,7 @@ const adapters = {
   'NAAIM': new NaaimFetchAdapter(),
   'Calendar': new CalendarFetchAdapter(),
   'SecEdgar13F': new SecEdgar13FFetchAdapter(),
+  'PolygonM5': new PolygonM5FetchAdapter(),
 };
 
 export class FetchAdapterFactory {

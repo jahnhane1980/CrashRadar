@@ -152,6 +152,11 @@
         "dateExtractPath": "report_date",
         "dateFormat": "YYYY-MM-DD"
       }
+    },
+    "PolygonM5": {
+      "type": "package",
+      "baseUrl": "https://api.polygon.io/v2",
+      "overrideStartDate": "2024-01-01"
     }
   },
   "tasks": [
@@ -1226,6 +1231,86 @@
       "id": "sec_13f_holdings",
       "provider": "SecEdgar13F",
       "frequency": "daily"
+    },
+    {
+      "id": "m5_cibr",
+      "group": "intraday_m5",
+      "provider": "PolygonM5",
+      "ticker": "CIBR",
+      "multiplier": 5,
+      "timespan": "minute"
+    },
+    {
+      "id": "m5_ibrx",
+      "group": "intraday_m5",
+      "provider": "PolygonM5",
+      "ticker": "IBRX",
+      "multiplier": 5,
+      "timespan": "minute"
+    },
+    {
+      "id": "m5_igv",
+      "group": "intraday_m5",
+      "provider": "PolygonM5",
+      "ticker": "IGV",
+      "multiplier": 5,
+      "timespan": "minute"
+    },
+    {
+      "id": "m5_nvts",
+      "group": "intraday_m5",
+      "provider": "PolygonM5",
+      "ticker": "NVTS",
+      "multiplier": 5,
+      "timespan": "minute"
+    },
+    {
+      "id": "m5_pltr",
+      "group": "intraday_m5",
+      "provider": "PolygonM5",
+      "ticker": "PLTR",
+      "multiplier": 5,
+      "timespan": "minute"
+    },
+    {
+      "id": "m5_qqq",
+      "group": "intraday_m5",
+      "provider": "PolygonM5",
+      "ticker": "QQQ",
+      "multiplier": 5,
+      "timespan": "minute"
+    },
+    {
+      "id": "m5_s",
+      "group": "intraday_m5",
+      "provider": "PolygonM5",
+      "ticker": "S",
+      "multiplier": 5,
+      "timespan": "minute"
+    },
+    {
+      "id": "m5_sofi",
+      "group": "intraday_m5",
+      "provider": "PolygonM5",
+      "ticker": "SOFI",
+      "multiplier": 5,
+      "timespan": "minute"
+    },
+    {
+      "id": "m5_soun",
+      "group": "intraday_m5",
+      "provider": "PolygonM5",
+      "ticker": "SOUN",
+      "multiplier": 5,
+      "timespan": "minute"
+    },
+    {
+      "id": "m5_spy",
+      "group": "intraday_m5",
+      "provider": "PolygonM5",
+      "ticker": "SPY",
+      "multiplier": 5,
+      "timespan": "minute"
     }
   ]
 }
