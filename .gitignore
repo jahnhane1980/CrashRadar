@@ -125,3 +125,4 @@ tests/.tmp/
 sandbox/*
 !sandbox/.gitkeep
 .aider*
+.backup
