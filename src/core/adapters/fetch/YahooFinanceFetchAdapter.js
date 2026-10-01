@@ -88,7 +88,10 @@ export class YahooFinanceFetchAdapter {
       }
       
       const startDate = new Date(dateToCheck);
-      if (!isNaN(startDate.getTime()) && startDate > new Date()) {
+      const now = new Date(Date.now());
+      const currentDateUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 23, 59, 59, 999));
+
+      if (!isNaN(startDate.getTime()) && startDate > currentDateUTC) {
         Logger.info(`[YahooFinanceFetchAdapter] Skipping ${task.ticker} as startValue (${startValue}) is in the future.`);
         return [];
       }

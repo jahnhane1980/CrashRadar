@@ -47,7 +47,7 @@ export class TimeSeriesFetchRunner {
     const ntfyTopic = process.env.NTFY_TOPIC || this.dependencies.ntfyTopic;
     const ntfyService = this.dependencies.ntfyService !== undefined 
       ? this.dependencies.ntfyService 
-      : (ntfyTopic ? new NtfyService(ntfyTopic) : null);
+      : new NtfyService(ntfyTopic);
     const fetcher = this.dependencies.fetcher || new TimeSeriesFetcher(config, storage, requestManager, errorRegistry);
 
     const runnerArgs = { config, storage, fetcher, errorRegistry, ntfyService, options: this.options };
