@@ -60,7 +60,8 @@
     "Tiingo": {
       "type": "http",
       "baseUrl": "https://api.tiingo.com",
-      "concurrency": 2,
+      "concurrency": 1,
+      "requestsPerSecond": 0.8,
       "auth": {
         "type": "header",
         "key": "Authorization",
@@ -156,7 +157,8 @@
     "PolygonM5": {
       "type": "package",
       "baseUrl": "https://api.polygon.io/v2",
-      "overrideStartDate": "2024-01-01"
+      "overrideStartDate": "2024-01-01",
+      "concurrency": 1
     }
   },
   "tasks": [

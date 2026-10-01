@@ -58,17 +58,54 @@ export const PaginationStrategies = {
       searchParams.set(pagination.incrementalFilterParam, filterStr);
     }
 
+    const pageSize = pagination.pageSize ?? pagination.maxLimit;
     let currentPage = pagination.startPage || 1;
     let lastDataHash = null;
     while (true) {
       searchParams.set(pagination.pageParam, currentPage);
-      searchParams.set(pagination.limitParam, pagination.maxLimit);
+      if (pagination.limitParam && pageSize !== undefined) {
+        searchParams.set(pagination.limitParam, pageSize);
+      }
       
-      const response = await fetcher.requestManager.fetch(url, task.provider, { searchParams, headers });
+      let response;
+      try {
+        response = await fetcher.requestManager.fetch(url, task.provider, { searchParams, headers });
+      } catch (err) {
+        let errorDetails = err?.message || '';
+        if (err?.response) {
+          try {
+            const resClone = typeof err.response.clone === 'function' ? err.response.clone() : err.response;
+            if (typeof resClone.text === 'function') {
+              const bodyText = await resClone.text();
+              errorDetails += ' ' + bodyText;
+            }
+          } catch (_) {}
+        }
+        if (err?.data) {
+          errorDetails += ' ' + (typeof err.data === 'string' ? err.data : JSON.stringify(err.data));
+        }
+
+        const is400 = err?.status === 400 || err?.statusCode === 400 || err?.response?.status === 400 || /400/.test(err?.message || '');
+        const isOutOfRange = /page number must be between/i.test(errorDetails) || /out[- ]of[- ]range/i.test(errorDetails) || /page.*between/i.test(errorDetails);
+
+        if ((is400 && isOutOfRange) || /page number must be between/i.test(errorDetails)) {
+          Logger.info(`[Pagination] Task ${task.id}: Out-of-range page number detected (${err.message}). Ending pagination cleanly.`);
+          break;
+        }
+
+        Logger.error(`[API Error] Task ${task.id}: ${err.message}`);
+        if (fetcher.errorRegistry) fetcher.errorRegistry.addError(task.id, err);
+        throw err;
+      }
+
       let actualData;
       try {
         actualData = fetcher.extractData(response, provider);
       } catch(e) {
+        if (/page number must be between/i.test(e.message) || /out[- ]of[- ]range/i.test(e.message)) {
+          Logger.info(`[Pagination] Task ${task.id}: Out-of-range page number detected (${e.message}). Ending pagination cleanly.`);
+          break;
+        }
         Logger.error(`[API Error] Task ${task.id}: ${e.message}`);
         if (fetcher.errorRegistry) fetcher.errorRegistry.addError(task.id, e);
         throw e;
@@ -92,7 +129,26 @@ export const PaginationStrategies = {
         throw e;
       }
 
-      if (actualData.length < pagination.maxLimit) break;
+      if (pageSize !== undefined && actualData.length < pageSize) break;
+
+      if (response && typeof response === 'object') {
+        const meta = response.meta;
+        const totalPages = meta?.['total-pages'] ?? meta?.totalPages ?? response.totalPages ?? response['total-pages'];
+        if (totalPages !== undefined && totalPages !== null) {
+          const totalPagesNum = Number(totalPages);
+          if (!isNaN(totalPagesNum) && currentPage >= totalPagesNum) {
+            break;
+          }
+        }
+
+        const links = response.links !== undefined ? response.links : meta?.links;
+        if (links !== undefined) {
+          if (!links || !links.next) {
+            break;
+          }
+        }
+      }
+
       currentPage++;
     }
   },

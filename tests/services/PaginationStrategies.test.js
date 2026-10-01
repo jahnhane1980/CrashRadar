@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { PaginationStrategies, SPECIAL_EXTRACT_PATHS } from '../../src/services/PaginationStrategies.js';
+import { Logger } from '../../src/core/Logger.js';
 
 describe('PaginationStrategies', () => {
   let mockFetcher;
@@ -161,6 +162,140 @@ describe('PaginationStrategies', () => {
       mockFetcher.storage.insertDataAndState.mockRejectedValue(err);
       await expect(PaginationStrategies['page-number'](context)).rejects.toThrow('Storage Page Fail');
       expect(mockFetcher.errorRegistry.addError).toHaveBeenCalledWith('test-task', err);
+    });
+
+    it('sollte abbrechen wenn currentPage >= totalPages erreicht ist (meta["total-pages"])', async () => {
+      const page1 = Array(10).fill({ id: 1 });
+      mockFetcher.requestManager.fetch.mockResolvedValue({
+        meta: { 'total-pages': 1 },
+        data: page1
+      });
+      mockFetcher.extractData.mockReturnValue(page1);
+
+      await PaginationStrategies['page-number'](context);
+
+      expect(mockFetcher.requestManager.fetch).toHaveBeenCalledTimes(1);
+      expect(mockFetcher.storage.insertDataAndState).toHaveBeenCalledTimes(1);
+    });
+
+    it('sollte abbrechen wenn currentPage >= totalPages erreicht ist (meta.totalPages)', async () => {
+      const page1 = Array(10).fill({ id: 1 });
+      mockFetcher.requestManager.fetch.mockResolvedValue({
+        meta: { totalPages: 1 },
+        data: page1
+      });
+      mockFetcher.extractData.mockReturnValue(page1);
+
+      await PaginationStrategies['page-number'](context);
+
+      expect(mockFetcher.requestManager.fetch).toHaveBeenCalledTimes(1);
+      expect(mockFetcher.storage.insertDataAndState).toHaveBeenCalledTimes(1);
+    });
+
+    it('sollte abbrechen wenn links.next null ist', async () => {
+      const page1 = Array(10).fill({ id: 1 });
+      mockFetcher.requestManager.fetch.mockResolvedValue({
+        links: { next: null },
+        data: page1
+      });
+      mockFetcher.extractData.mockReturnValue(page1);
+
+      await PaginationStrategies['page-number'](context);
+
+      expect(mockFetcher.requestManager.fetch).toHaveBeenCalledTimes(1);
+      expect(mockFetcher.storage.insertDataAndState).toHaveBeenCalledTimes(1);
+    });
+
+    it('sollte abbrechen wenn links.next fehlt (falsy/missing)', async () => {
+      const page1 = Array(10).fill({ id: 1 });
+      mockFetcher.requestManager.fetch.mockResolvedValue({
+        links: { self: '/api?page=1' },
+        data: page1
+      });
+      mockFetcher.extractData.mockReturnValue(page1);
+
+      await PaginationStrategies['page-number'](context);
+
+      expect(mockFetcher.requestManager.fetch).toHaveBeenCalledTimes(1);
+      expect(mockFetcher.storage.insertDataAndState).toHaveBeenCalledTimes(1);
+    });
+
+    it('sollte abbrechen wenn Datenarray weniger Elemente als pageSize enthält', async () => {
+      const page1 = Array(5).fill({ id: 1 }); // maxLimit is 10
+      mockFetcher.extractData.mockReturnValue(page1);
+
+      await PaginationStrategies['page-number'](context);
+
+      expect(mockFetcher.requestManager.fetch).toHaveBeenCalledTimes(1);
+      expect(mockFetcher.storage.insertDataAndState).toHaveBeenCalledTimes(1);
+    });
+
+    it('sollte bei HTTP 400 mit "page number must be between" sauber abbrechen und Logger.info rufen', async () => {
+      const page1 = Array(10).fill({ id: 1 });
+      const err400 = new Error('HTTP 400: The page number must be between 1 and 1.');
+      err400.status = 400;
+
+      mockFetcher.requestManager.fetch
+        .mockResolvedValueOnce({ data: page1 })
+        .mockRejectedValueOnce(err400);
+
+      mockFetcher.extractData.mockReturnValue(page1);
+
+      const loggerInfoSpy = vi.spyOn(Logger, 'info').mockImplementation(() => {});
+
+      await expect(PaginationStrategies['page-number'](context)).resolves.not.toThrow();
+
+      expect(mockFetcher.requestManager.fetch).toHaveBeenCalledTimes(2);
+      expect(mockFetcher.storage.insertDataAndState).toHaveBeenCalledTimes(1);
+      expect(mockFetcher.errorRegistry.addError).not.toHaveBeenCalled();
+      expect(loggerInfoSpy).toHaveBeenCalledWith(expect.stringContaining('Out-of-range page'));
+    });
+
+    it('sollte bei ky-ähnlichem HTTP 400 mit Response-Body "page number must be between" sauber abbrechen', async () => {
+      const page1 = Array(10).fill({ id: 1 });
+      const errKy = new Error('Request failed with status code 400 Bad Request');
+      errKy.response = {
+        status: 400,
+        clone: () => ({
+          text: async () => JSON.stringify({ message: 'The page number must be between 1 and 2.' })
+        })
+      };
+
+      mockFetcher.requestManager.fetch
+        .mockResolvedValueOnce({ data: page1 })
+        .mockRejectedValueOnce(errKy);
+
+      mockFetcher.extractData.mockReturnValue(page1);
+
+      const loggerInfoSpy = vi.spyOn(Logger, 'info').mockImplementation(() => {});
+
+      await expect(PaginationStrategies['page-number'](context)).resolves.not.toThrow();
+
+      expect(mockFetcher.requestManager.fetch).toHaveBeenCalledTimes(2);
+      expect(mockFetcher.storage.insertDataAndState).toHaveBeenCalledTimes(1);
+      expect(mockFetcher.errorRegistry.addError).not.toHaveBeenCalled();
+      expect(loggerInfoSpy).toHaveBeenCalledWith(expect.stringContaining('Out-of-range page'));
+    });
+
+    it('sollte bei anderem HTTP 400 Fehler weiterhin werfen und errorRegistry benachrichtigen', async () => {
+      const err400 = new Error('HTTP 400: Invalid filter parameter');
+      err400.status = 400;
+
+      mockFetcher.requestManager.fetch.mockRejectedValue(err400);
+
+      await expect(PaginationStrategies['page-number'](context)).rejects.toThrow('Invalid filter parameter');
+      expect(mockFetcher.errorRegistry.addError).toHaveBeenCalledWith('test-task', err400);
+    });
+  });
+
+  describe('Tiingo Provider Configuration', () => {
+    it('sollte concurrency=1 und requestsPerSecond=0.8 für Tiingo definiert haben', async () => {
+      const { default: fs } = await import('fs');
+      const { default: path } = await import('path');
+      const raw = fs.readFileSync(path.resolve('config/Database-Fetcher-Config.json'), 'utf8');
+      const cfg = JSON.parse(raw);
+      expect(cfg.providers.Tiingo.concurrency).toBe(1);
+      expect(cfg.providers.Tiingo.requestsPerSecond).toBe(0.8);
     });
   });
 
