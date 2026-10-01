@@ -1,0 +1,12 @@
+ ### Fahrplan (4 Renames + globale Link-Updates)
+
+   # | Rename                                   | Betroffene Dateien (Links)
+  ---|------------------------------------------|-----------------------------------------------------------------------------------------------------------
+   1 | DailyPortfolioCompass/ → adr-assertions/ | docs/README.md, 12 ADR-Dateien intern, ADR-004, ADR-005, ADR-008, ADR-010, ADR-011, ADR-012 Querverweise,
+     |                                          | research/README.md
+   2 | methodology-audits/ → noise-and-audits/  | docs/README.md, Architecture-Audit.md intern, Analyse.md in macro-proofs
+   3 | turnarounds/ → turnaround-studies/       | docs/README.md, ROADMAP.md, Kamikaze-Growth.md, kamikaze-growth.json, Dual-Engine-Guru-Governance-
+     |                                          | Studie.md, SoFi-Turnaround-Cockpit.md, Hardware-Cycle-Canary-Study.md, Turnaround-Research-Proof.md
+     |                                          | (inkl. asset-Links)
+   4 | strategies/ → strategy-prototypes/       | docs/README.md, 7-Slot-Guru-Konsens-System.md, ADR-011, Corona2020DrawdownRootCauseAnalysis.md, Dual-
+     |                                          | Engine-Guru-Governance-Studie.md, analyze_12m_guru_evolution.js

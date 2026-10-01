@@ -3,7 +3,7 @@
 * **Status:** Empirisch verifiziert (Bestätigt durch Fed-Plumbing-Paradox & Notfall-Interventionen)  
 * **Datum:** 2026-09-15  
 * **Autor:** CrashRadar Intelligence Engine (Modus Code-Buddy)  
-* **Bereich:** [`docs/research/DailyPortfolioCompass/`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/)  
+* **Bereich:** [`docs/research/adr-assertions/`](file:///D:/GitHub/CrashRadar/docs/research/adr-assertions/)  
 * **Ausgeführtes Test-Skript:** [`research/adr-assertions/test_adr008_lclor_bank_reserves.js`](file:///D:/GitHub/CrashRadar/research/adr-assertions/test_adr008_lclor_bank_reserves.js)  
 * **Ergebnis-Datensatz:** [`data/cache/portfolio_compass/adr008_test_results.json`](file:///D:/GitHub/CrashRadar/data/cache/portfolio_compass/adr008_test_results.json)  
 * **Referenz-Komponenten:** [`DailyPortfolioCompass.js`](file:///D:/GitHub/CrashRadar/src/analysis/DailyPortfolioCompass.js), [`LiquiditySensorHub.js`](file:///D:/GitHub/CrashRadar/src/signals/hubs/LiquiditySensorHub.js), [`TreasuryCapacityRadarIndicator.js`](file:///D:/GitHub/CrashRadar/src/analysis/indicators/TreasuryCapacityRadarIndicator.js), [`FinanceExpert.js`](file:///D:/GitHub/CrashRadar/src/services/FinanceExpert.js)
@@ -12,7 +12,7 @@
 
 ## 1. Kontext & Ausgangsbeobachtung
 
-In [ADR-007](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-007-Fiskal-Schutzschild-These.md) wurde empirisch nachgewiesen, dass ein fiskalisches Vorwahl-Schutzschild vor US-Wahlen Markteinbrüche unterdrückt, nach der Wahl jedoch bei leerem RRP-Puffer ($< \$50\text{ Mrd.}$) ein gefährliches Liquiditäts-Vakuum hinterlässt.
+In [ADR-007](file:///D:/GitHub/CrashRadar/docs/research/adr-assertions/ADR-007-Fiskal-Schutzschild-These.md) wurde empirisch nachgewiesen, dass ein fiskalisches Vorwahl-Schutzschild vor US-Wahlen Markteinbrüche unterdrückt, nach der Wahl jedoch bei leerem RRP-Puffer ($< \$50\text{ Mrd.}$) ein gefährliches Liquiditäts-Vakuum hinterlässt.
 
 Die aktuelle Bestandsaufnahme unserer Datenbank (Stand September 2026) zeigt eine hochbrisante Zuspitzung im Notenbank-Plumbing:
 1. **RRP-Fazilität:** Notiert bei nur noch **$1.42 Mrd. bis $5.25 Mrd.** (Faktisch entleert).

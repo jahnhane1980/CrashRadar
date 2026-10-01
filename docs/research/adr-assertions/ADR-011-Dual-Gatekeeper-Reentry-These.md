@@ -3,7 +3,7 @@
 * **Status:** Empirisch falsifiziert (Beweis der Rebound-Lag-Kosten / Ersetzt & gelöst in ADR-013)  
 * **Datum:** 2026-09-15  
 * **Autor:** CrashRadar Intelligence Engine (Modus Code-Buddy)  
-* **Bereich:** [`docs/research/DailyPortfolioCompass/`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/)  
+* **Bereich:** [`docs/research/adr-assertions/`](file:///D:/GitHub/CrashRadar/docs/research/adr-assertions/)  
 * **Ausgeführtes Test-Skript:** [`research/adr-assertions/test_adr011_dual_gatekeeper_reentry.js`](file:///D:/GitHub/CrashRadar/research/adr-assertions/test_adr011_dual_gatekeeper_reentry.js)  
 * **Ergebnis-Datensatz:** [`data/cache/portfolio_compass/adr011_test_results.json`](file:///D:/GitHub/CrashRadar/data/cache/portfolio_compass/adr011_test_results.json)  
 * **Referenz-Komponenten:** [`DailyPortfolioCompass.js`](file:///D:/GitHub/CrashRadar/src/analysis/DailyPortfolioCompass.js), [`PortfolioStrategyEngine.js`](file:///D:/GitHub/CrashRadar/src/strategies/PortfolioStrategyEngine.js), [`GoldSpyDcaStrategy.js`](file:///D:/GitHub/CrashRadar/src/strategies/GoldSpyDcaStrategy.js), [`Corona2020DrawdownRootCauseAnalysis.md`](file:///D:/GitHub/CrashRadar/docs/research/strategies/Corona2020DrawdownRootCauseAnalysis.md)

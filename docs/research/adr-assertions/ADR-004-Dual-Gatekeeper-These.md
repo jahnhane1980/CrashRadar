@@ -3,7 +3,7 @@
 * **Status:** Bestätigt & Verifiziert (Geltungsbereich: Nur Dip-Buying / Qualifiziert durch ADR-013)  
 * **Datum:** 2026-09-15  
 * **Autor:** CrashRadar Intelligence Engine (Modus Code-Buddy)  
-* **Bereich:** [`docs/research/DailyPortfolioCompass/`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/)  
+* **Bereich:** [`docs/research/adr-assertions/`](file:///D:/GitHub/CrashRadar/docs/research/adr-assertions/)  
 * **Test-Skript:** [`research/adr-assertions/test_adr004_dual_gatekeeper.js`](file:///D:/GitHub/CrashRadar/research/adr-assertions/test_adr004_dual_gatekeeper.js)  
 * **Ergebnis-Datensatz:** [`data/cache/portfolio_compass/adr004_test_results.json`](file:///D:/GitHub/CrashRadar/data/cache/portfolio_compass/adr004_test_results.json)  
 * **Referenz-Komponenten:** [`DailyPortfolioCompass.js`](file:///D:/GitHub/CrashRadar/src/analysis/DailyPortfolioCompass.js), [`LiquiditySensorHub.js`](file:///D:/GitHub/CrashRadar/src/signals/hubs/LiquiditySensorHub.js), [`GoldilocksSensorHub.js`](file:///D:/GitHub/CrashRadar/src/signals/hubs/GoldilocksSensorHub.js)
@@ -11,13 +11,13 @@
 > [!IMPORTANT]
 > **Geltungsbereich-Einschränkung & Abgrenzung zu ADR-011 / ADR-013:**  
 > Die in dieser ADR bewiesene Dual-Gatekeeper-Regel gilt **ausschließlich für prozyklisches und antizyklisches Dip-Buying in laufenden Aufwärtstrends oder geordneten Korrekturen** (Schutz vor Multiple-Compression-Fallen wie 2022).  
-> Sie darf **ausdrücklich NICHT als Re-Entry-Filter nach tiefen Liquiditäts- oder Systemcrashs** verwendet werden! (In [ADR-011](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-011-Dual-Gatekeeper-Reentry-These.md) wurde empirisch nachgewiesen, dass ein starrer Trend-/Makrofilter beim Wiedereinstieg über 21 Jahre mehr als -330.000 € an Rebound-Ertrag vernichtet. Die saubere Synthese und event-gesteuerte Re-Entry-Entkopplung erfolgt in **ADR-013 (Makro-Asymmetrie-Reentry-These)**).
+> Sie darf **ausdrücklich NICHT als Re-Entry-Filter nach tiefen Liquiditäts- oder Systemcrashs** verwendet werden! (In [ADR-011](file:///D:/GitHub/CrashRadar/docs/research/adr-assertions/ADR-011-Dual-Gatekeeper-Reentry-These.md) wurde empirisch nachgewiesen, dass ein starrer Trend-/Makrofilter beim Wiedereinstieg über 21 Jahre mehr als -330.000 € an Rebound-Ertrag vernichtet. Die saubere Synthese und event-gesteuerte Re-Entry-Entkopplung erfolgt in **ADR-013 (Makro-Asymmetrie-Reentry-These)**).
 
 ---
 
 ## 1. Kontext & Ausgangsbeobachtung (Die Bruchstelle aus ADR-001)
 
-In [**`ADR-001`**](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-001-Geldmarkt-Airbag-These.md) wurde empirisch nachgewiesen, dass ein $VIX \ge 25.0$ bei intakter Geldmarkt-Liquidität (`LiquiditySensorHub.status === 'OK'`) zu **100 % vor säkularen Crashs ($DD > -15\%$) schützt** und eine $74.9\%$ige 60-Tage-Win-Rate liefert.
+In [**`ADR-001`**](file:///D:/GitHub/CrashRadar/docs/research/adr-assertions/ADR-001-Geldmarkt-Airbag-These.md) wurde empirisch nachgewiesen, dass ein $VIX \ge 25.0$ bei intakter Geldmarkt-Liquidität (`LiquiditySensorHub.status === 'OK'`) zu **100 % vor säkularen Crashs ($DD > -15\%$) schützt** und eine $74.9\%$ige 60-Tage-Win-Rate liefert.
 
 **Das gravierende Restrisiko aus ADR-001 (Abschnitt 5):**  
 Im Zins- und Inflationsbärenmarkt 2022 erlitt der isolierte Geldmarkt-Airbag **4 schmerzhafte Fehlschläge**:
@@ -133,7 +133,7 @@ Erst wenn **beide Gefahrenquellen ausgeschlossen** sind, entfaltet das Dip-Buyin
 
 * **Scharfe funktionale Trennung:**  
   Die vorliegende ADR-004 regelt **ausschließlich das Betreten des Marktes bei kurzfristigen Volatilitäts-Rücksetzern (Dip-Buying)** während geordneter Marktphasen.
-* **Die Falsifikation des naiven Re-Entry-Transfers ([ADR-011](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-011-Dual-Gatekeeper-Reentry-These.md)):**  
+* **Die Falsifikation des naiven Re-Entry-Transfers ([ADR-011](file:///D:/GitHub/CrashRadar/docs/research/adr-assertions/ADR-011-Dual-Gatekeeper-Reentry-These.md)):**  
   Der Versuch, diese Dual-Gatekeeper-Logik als dauerhaften Wiedereinstiegs-Filter nach tiefen Liquiditäts-Crashes zu verwenden, wurde in ADR-011 eindeutig falsifiziert (Rebound-Lag vernichtete -331.960 € über 21,8 Jahre).
 * **Die methodische Lösung (ADR-013):**  
   Die Synthese beider Phänomene (Asymmetrie zwischen Dip-Buying-Schutz und Re-Entry-Entkopplung an Zyklustiefs) ist vollständig in **ADR-013** formalisiert.

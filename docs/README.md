@@ -24,7 +24,7 @@ flowchart TD
     Res --> R1["📊 macro-proofs/<br>(21-Jahre-Test & Korrelationen)"]
     Res --> R2["📜 dalio-cycles/<br>(Schuldenkrisen & 3-von-4-Regel)"]
     Res --> R3["🧪 ml-lab/<br>(Trainings-Logs & Fat Tails)"]
-    Res --> R4["🔬 methodology-audits/<br>(Noise-Tests & Slippage)"]
+    Res --> R4["🔬 noise-and-audits/<br>(Noise-Tests & Slippage)"]
     Res --> R5["🧭 DailyPortfolioCompass/<br>(ADR-Thesen & Backtests)"]
 ```
 
@@ -159,16 +159,16 @@ Hier liegen alle empirischen Auswertungen, historischen Krisen-Härtetests und m
 * 📄 **[`ML_FEATURE_RESEARCH.md`](file:///D:/GitHub/CrashRadar/docs/research/ml-lab/ML_FEATURE_RESEARCH.md):**  
   *Theoretische Forschung zu Fat Tails, Robust Scaling vs. Z-Score Verzerrung und Schwerkraft-Ankern (SMA200).*
 
-### D. 🔬 Validierungs-Methodik & Audits (`docs/research/methodology-audits/`)
-* 📄 **[`Noise-Test-IndicatorEngine.md`](file:///D:/GitHub/CrashRadar/docs/research/methodology-audits/Noise-Test-IndicatorEngine.md):**  
+### D. 🔬 Validierungs-Methodik & Audits (`docs/research/noise-and-audits/`)
+* 📄 **[`Noise-Test-IndicatorEngine.md`](file:///D:/GitHub/CrashRadar/docs/research/noise-and-audits/Noise-Test-IndicatorEngine.md):**  
   *Monte-Carlo White-Noise Test zur mathematischen Verifikation der Überanpassungs-Freiheit (Anti-Overfitting).*
-* 📄 **[`Signal-vs-Execution-Hypothese.md`](file:///D:/GitHub/CrashRadar/docs/research/methodology-audits/Signal-vs-Execution-Hypothese.md):**  
+* 📄 **[`Signal-vs-Execution-Hypothese.md`](file:///D:/GitHub/CrashRadar/docs/research/noise-and-audits/Signal-vs-Execution-Hypothese.md):**  
   *Fraktales Trading: Empirischer Beweis zur Vermeidung von Slippage durch Trennung von Tages-Signal und Intraday-Ausführung.*
-* 📄 **[`Architecture-Audit.md`](file:///D:/GitHub/CrashRadar/docs/research/methodology-audits/Architecture-Audit.md):**  
+* 📄 **[`Architecture-Audit.md`](file:///D:/GitHub/CrashRadar/docs/research/noise-and-audits/Architecture-Audit.md):**  
   *Code-vs-Theorie Audit Report.*
-* 📄 **[`Makrowetter-Audit.md`](file:///D:/GitHub/CrashRadar/docs/research/methodology-audits/Makrowetter-Audit.md):**  
+* 📄 **[`Makrowetter-Audit.md`](file:///D:/GitHub/CrashRadar/docs/research/noise-and-audits/Makrowetter-Audit.md):**  
   *Code-Audit & Bereinigungs-Protokoll des Makrowetter-Berichts: Stilllegung veralteter Monolithen (`SmartDumbMoneyBottom`), Entschärfung von Margin-Debt Fehleskalationen (-5% Warning / -10% Critical), 180-Tage Un-Inversions-Gedächtnis für die Renditekurve und Einhängen der Katastrophen-Matrix in die Pipeline.*
-* 📄 **[`ScenarioChecklist-Audit.md`](file:///D:/GitHub/CrashRadar/docs/research/methodology-audits/ScenarioChecklist-Audit.md):**  
+* 📄 **[`ScenarioChecklist-Audit.md`](file:///D:/GitHub/CrashRadar/docs/research/noise-and-audits/ScenarioChecklist-Audit.md):**  
   *Technischer Code-Abgleich und Migrations-Audit zur Umstellung des Szenario- und Kalendersystems auf das datenbankgestützte 3-Schichten-Framework (`macro_calendar_events`).*
 
 ### E. 🚀 High-Beta Growth & Turnaround Forschung (`docs/research/turnarounds/`)
@@ -199,32 +199,32 @@ Hier liegen alle empirischen Auswertungen, historischen Krisen-Härtetests und m
 * 📄 **[`GoldSpyDailyStressTest.md`](file:///D:/GitHub/CrashRadar/docs/research/strategies/GoldSpyDailyStressTest.md):**  
   *Empirischer 21,8-Jahre Daily-Stresstest der CrashRadar SignalEngine (2004–2026, 7.760 Handelstage): Lückenloser Tages-Härtetest der echten Engine-Klassen (`PortfolioStrategyEngine` & `GoldSpyDcaStrategy`) mit 10.000 € Start + 150 €/Monat Sparplan. Beweis des Zinseszins-Schutzes (+41.425,84 € Mehrertrag / +85,59 % Alpha vs. stures SPY DCA) durch Notfall-Evakuierung in Gold/Cash (nur 19 Manöver in 21,8 Jahren, +72 % Alpha in 2008 Lehman, +11,5 % Alpha im Bärenmarkt 2022 und Dämpfung des Max Drawdown von -47,90 % auf -40,67 %) inkl. Skript in [`GoldSpyDailyStressTest.js`](file:///D:/GitHub/CrashRadar/simulations/GoldSpyDailyStressTest.js).*
 
-### G. 🧭 DailyPortfolioCompass Research & ADR-Thesen (`docs/research/DailyPortfolioCompass/`)
-* 📄 **[`README.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/README.md):**  
+### G. 🧭 DailyPortfolioCompass Research & ADR-Thesen (`docs/research/adr-assertions/`)
+* 📄 **[`README.md`](file:///D:/GitHub/CrashRadar/docs/research/adr-assertions/README.md):**  
   *Übersicht und Master-Index aller ADRs (Analysis & Research Decision Records) für den DailyPortfolioCompass.*
-* 📄 **[`ADR-001-Geldmarkt-Airbag-These.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-001-Geldmarkt-Airbag-These.md):**  
+* 📄 **[`ADR-001-Geldmarkt-Airbag-These.md`](file:///D:/GitHub/CrashRadar/docs/research/adr-assertions/ADR-001-Geldmarkt-Airbag-These.md):**  
   *ADR-001: Geldmarkt-Airbag-These (VIX-Panik vs. Echter Liquiditäts-Crash): Empirisch verifizierter Härtetest (2020–2026, 478 Paniktage, 44 Episoden). Beweis, dass VIX-Peaks bei intakter Liquidität (`OK`) zu 100 % vor einem säkularen Crash (> -15 % Drawdown: exakt 0,0 % Quote) schützen und Dip-Buying begünstigen, während Fehlschläge 2022 den Goldilocks-Sensor als unverzichtbaren Zinswächter beweisen.*
-* 📄 **[`ADR-002-Stagflations-Deckel-These.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-002-Stagflations-Deckel-These.md):**  
+* 📄 **[`ADR-002-Stagflations-Deckel-These.md`](file:///D:/GitHub/CrashRadar/docs/research/adr-assertions/ADR-002-Stagflations-Deckel-These.md):**  
   *ADR-002: Stagflations-Deckel-These (Warum Allzeithoch-Ausbrüche scheitern): Empirisch verifizierter Härtetest (2020–2026, 1.130 Allzeithoch-Tage). Beweis, dass Stagflations- & Realzinsdruck Fehlausbrüche von 36,9 % auf fast 60 % verdoppelt und das diskrete Regime `STAGFLATION_PRESSURE` (Öl > $95 & Realzins > 2,4 %) als chirurgischer Not-Deckel an Hochpunkten fungiert.*
-* 📄 **[`ADR-003-Squeeze-Coil-Katapult-These.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-003-Squeeze-Coil-Katapult-These.md):**  
+* 📄 **[`ADR-003-Squeeze-Coil-Katapult-These.md`](file:///D:/GitHub/CrashRadar/docs/research/adr-assertions/ADR-003-Squeeze-Coil-Katapult-These.md):**  
   *ADR-003: Squeeze-Coil-Katapult-These (Derivate-Kontra-Rebound vor OpEx): Empirischer Härtetest (2020–2026, 81 OpEx-Events). Falsifikation des naiven Squeeze-Kaufs (nur 50,0 % Win-Rate, -0,39 % D+20 vs. 76,6 % Win-Rate bei normalem OpEx) und unbestechlicher mathematischer Beweis der `SHAKEOUT`-Stillhalte-Doktrin („Füße stillhalten vor Verfallstag, kein Dip-Buying in fallende Kurse“).*
-* 📄 **[`ADR-004-Dual-Gatekeeper-These.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-004-Dual-Gatekeeper-These.md):**  
+* 📄 **[`ADR-004-Dual-Gatekeeper-These.md`](file:///D:/GitHub/CrashRadar/docs/research/adr-assertions/ADR-004-Dual-Gatekeeper-These.md):**  
   *ADR-004: Dual-Gatekeeper-These (Geldmarkt-Airbag + Goldilocks-Veto): Empirischer Härtetest (2020–2026, 478 Paniktage, 44 Episoden). Mathematischer Beweis der 2-Säulen-Konfluenz: Vollständige Beseitigung aller 4 Fehlschläge aus dem Zinsbärenmarkt 2022 (0,0 % Fehlschlag-Quote), Steigerung der 60-Tage-Win-Rate auf bis zu 97,6 % (+8,86 % Alpha) und Etablierung des Goldilocks-Vetos gegen Multiple-Compression-Fallen.*
-* 📄 **[`ADR-005-Post-OpEx-Relief-These.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-005-Post-OpEx-Relief-These.md):**  
+* 📄 **[`ADR-005-Post-OpEx-Relief-These.md`](file:///D:/GitHub/CrashRadar/docs/research/adr-assertions/ADR-005-Post-OpEx-Relief-These.md):**  
   *ADR-005: Post-OpEx-Relief-These (Bestätigtes Entlastungs-Katapult nach Verfall): Empirischer Härtetest (2020–2026, 81 OpEx-Events). Falsifikation der naiven Post-OpEx Erholungs-These: Auch nach Verfallstagen verharrt die Win-Rate bei nur 45,5–47,6 % (0 von 10 Bull Traps gelöst), womit extremes Pre-OpEx Shorting als echtes institutionelles Verkaufssignal und persistentes 5-Tage-Kaufverbot (Post-OpEx-Schonfrist) bewiesen ist.*
-* 📄 **[`ADR-006-Oel-Zins-Zangen-These.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-006-Oel-Zins-Zangen-These.md):**  
+* 📄 **[`ADR-006-Oel-Zins-Zangen-These.md`](file:///D:/GitHub/CrashRadar/docs/research/adr-assertions/ADR-006-Oel-Zins-Zangen-These.md):**  
   *ADR-006: Öl-Zins-Zangen-These (Angebots-Spike vs. Reale Bewertungs-Kompression): Empirischer Härtetest (2020–2026, 469 Hoch-Öl-Tage, 19 Episoden). Mathematischer Beweis der Realzins-Kopplung: Hohes Öl ist nur bei Realzinsen > 2,20 % schädlich (Zähe Stagnation am Allzeithoch mit nur 40,7 % Win-Rate), fungiert jedoch nach vorangegangenen Marktkorrekturen als makroökonomischer Kapitulations-Climax (100,0 % 60-Tage-Win-Rate mit +9,72 % Alpha).*
-* 📄 **[`ADR-007-Fiskal-Schutzschild-These.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-007-Fiskal-Schutzschild-These.md):**  
+* 📄 **[`ADR-007-Fiskal-Schutzschild-These.md`](file:///D:/GitHub/CrashRadar/docs/research/adr-assertions/ADR-007-Fiskal-Schutzschild-These.md):**  
   *ADR-007: Fiskal-Schutzschild-These (Vorwahl-Kompensation vs. Post-Election-Vakuum): Empirischer 22-Jahre-Härtetest (2004–2026 über 11 US-Wahlzyklen). Mathematischer Beweis, dass ein aktives fiskalisches Schutzschild (TGA >= $750 Mrd., T-Bills >= 55 %, Buybacks) vor Midterm-Crashes schützt (Drawdown <= -1,7 % im Vorfeld), bei geleertem RRP-Puffer (< $50 Mrd., aktuell $5,3 Mrd.) jedoch wie im Dezember 2018 ein brutales Post-Election-Vakuum (-12,5 % bis -15 % Korrektur) entfesselt.*
-* 📄 **[`ADR-008-LCLOR-Bankreserven-These.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-008-LCLOR-Bankreserven-These.md):**  
+* 📄 **[`ADR-008-LCLOR-Bankreserven-These.md`](file:///D:/GitHub/CrashRadar/docs/research/adr-assertions/ADR-008-LCLOR-Bankreserven-These.md):**  
   *ADR-008: LCLOR-Bankreserven-These (Notenbank-Liquiditäts-Kipppunkt bei entleertem RRP-Puffer): Empirisch verifizierter Härtetest (2009–2026, 6.470 Handelstage, 4 Episoden). Mathematischer Beweis des Plumbing-Paradoxons: 2,83x erhöhtes System-Schock-Risiko (55,5 % vs. 19,6 % in Regime 1, p < 0,0001), 100 % Trefferquote historischer Krisen (Repo 2019, SVB 2023, Status Quo 2026) und Beweis der Notenbank-Interventions-Kopplung (79 % Notfallkredit-Quote).*
-* 📄 **[`ADR-009-Bull-Steepener-Falle-These.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-009-Bull-Steepener-Falle-These.md):**  
+* 📄 **[`ADR-009-Bull-Steepener-Falle-These.md`](file:///D:/GitHub/CrashRadar/docs/research/adr-assertions/ADR-009-Bull-Steepener-Falle-These.md):**  
    *ADR-009: Bull-Steepener-Falle-These (Zinskurven-Entinversion 10Y-2Y vs. Rezessions-Lag): Empirisch verifizierter 27-Jahre-Härtetest (1999–2026, 9.789 Handelstage). Mathematischer Beweis der zweistufigen Zinsdynamik: Zu 100 % Bestätigung der vorübergehenden Erleichterungs-Rallye (+10,28 % Run-Up, Peak nach Ø 130 Handelstagen / 6 Monaten) gefolgt von einem schweren zyklischen Bärenmarkt-Drawdown (Ø -16,70 % Max DD, Tiefststand nach Ø 235 Handelstagen / 11 Monaten). Legitimierung des 180-Tage-Warnfensters im YieldCurveIndicator.*
-* 📄 **[`ADR-010-Credit-Spread-Divergenz-These.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-010-Credit-Spread-Divergenz-These.md):**  
+* 📄 **[`ADR-010-Credit-Spread-Divergenz-These.md`](file:///D:/GitHub/CrashRadar/docs/research/adr-assertions/ADR-010-Credit-Spread-Divergenz-These.md):**  
   *ADR-010: Credit-Spread-Divergenz-These (High-Yield HYG vs. SPY-Allzeithoch): Empirisch falsifizierter Härtetest (2007–2026, 7.101 Handelstage, 18 Episoden). Mathematische Entlarvung des Duration-Trugschlusses: Nur 16,3 % Korrektur-Quote (Risk Ratio 0,90x vs. Normalzustand), Verpassen der echten Tops 2018/2022 und Beweis, dass ETF-Kursschwächen bei HYG zinsinduziert (Duration) und kein valider Indikator für Bonitätskrisen sind.*
-* 📄 **[`ADR-011-Dual-Gatekeeper-Reentry-These.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-011-Dual-Gatekeeper-Reentry-These.md):**  
+* 📄 **[`ADR-011-Dual-Gatekeeper-Reentry-These.md`](file:///D:/GitHub/CrashRadar/docs/research/adr-assertions/ADR-011-Dual-Gatekeeper-Reentry-These.md):**  
   *ADR-011: Dual-Gatekeeper-Reentry-These (Systematischer Wiedereinstieg nach Liquiditäts-Crashes): Empirisch falsifizierter Härtetest (2004–2026, 7.992 Handelstage). Beweis der Rebound-Lag-Kosten: Zwar verbesserte der Gatekeeper das Corona-Manöver 2020 (+13,95 % vs. +1,59 % Alpha), kostete das Gesamtportfolio über 21,8 Jahre jedoch -331.960 € an Zinseszins-Wachstum (578.734 € vs. 910.695 € Baseline), weshalb permanente Trend-Gatekeeper beim Re-Entry verworfen werden.*
-* 📄 **[`ADR-012-Selling-Climax-Volumen-These.md`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-012-Selling-Climax-Volumen-These.md):**  
+* 📄 **[`ADR-012-Selling-Climax-Volumen-These.md`](file:///D:/GitHub/CrashRadar/docs/research/adr-assertions/ADR-012-Selling-Climax-Volumen-These.md):**  
   *ADR-012: Selling-Climax-Volumen-These (Empirischer Test von Volumen-Spikes am S&P 500 / SPY als Re-Entry-Katalysator): Empirisch falsifizierter Härtetest (2004–2026, 7.992 Handelstage). Mathematische Widerlegung naiver Volumen-Multiplikatoren (>= 2,0x): 20-Tage-Erholungsrendite negativ (-0,09 %), Asymmetrie ungünstig (0,90:1) und gravierendes Baseline-Lag-Paradoxon (Boden 2020 bei nur 1,70x wegen explodiertem SMA-50; GFC-Boden 2009 bei 0,97x). Beweis, dass Volumen primär Liquidationsdruck spiegelt und isoliert kein autonomes Kaufsignal darstellt.*
 
 

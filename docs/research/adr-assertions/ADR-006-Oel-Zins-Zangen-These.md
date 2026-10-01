@@ -3,7 +3,7 @@
 * **Status:** Bestätigt & Verifiziert (Empirischer Härtetest 2020–2026)  
 * **Datum:** 2026-09-15  
 * **Autor:** CrashRadar Intelligence Engine (Modus Code-Buddy)  
-* **Bereich:** [`docs/research/DailyPortfolioCompass/`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/)  
+* **Bereich:** [`docs/research/adr-assertions/`](file:///D:/GitHub/CrashRadar/docs/research/adr-assertions/)  
 * **Test-Skript:** [`research/adr-assertions/test_adr006_oil_yield_clamp.js`](file:///D:/GitHub/CrashRadar/research/adr-assertions/test_adr006_oil_yield_clamp.js)  
 * **Ergebnis-Datensatz:** [`data/cache/portfolio_compass/adr006_test_results.json`](file:///D:/GitHub/CrashRadar/data/cache/portfolio_compass/adr006_test_results.json)  
 * **Referenz-Komponenten:** [`DailyPortfolioCompass.js`](file:///D:/GitHub/CrashRadar/src/analysis/DailyPortfolioCompass.js), [`GoldilocksSensorHub.js`](file:///D:/GitHub/CrashRadar/src/signals/hubs/GoldilocksSensorHub.js), [`LiquiditySensorHub.js`](file:///D:/GitHub/CrashRadar/src/signals/hubs/LiquiditySensorHub.js)

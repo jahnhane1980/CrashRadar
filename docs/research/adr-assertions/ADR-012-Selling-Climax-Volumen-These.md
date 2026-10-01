@@ -3,10 +3,10 @@
 * **Status:** Empirisch falsifiziert (Entlarvung des naiven 2x-Volumen-Mythos / $H_0$ bestätigt)  
 * **Datum:** 2026-09-15  
 * **Autor:** CrashRadar Intelligence Engine (Modus Code-Buddy)  
-* **Bereich:** [`docs/research/DailyPortfolioCompass/`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/)  
+* **Bereich:** [`docs/research/adr-assertions/`](file:///D:/GitHub/CrashRadar/docs/research/adr-assertions/)  
 * **Ausgeführtes Test-Skript:** [`research/adr-assertions/test_adr012_selling_climax_volume.js`](file:///D:/GitHub/CrashRadar/research/adr-assertions/test_adr012_selling_climax_volume.js)  
 * **Ergebnis-Datensatz:** [`data/cache/portfolio_compass/adr012_test_results.json`](file:///D:/GitHub/CrashRadar/data/cache/portfolio_compass/adr012_test_results.json)  
-* **Referenz-Komponenten:** [`DailyPortfolioCompass.js`](file:///D:/GitHub/CrashRadar/src/analysis/DailyPortfolioCompass.js), [`FinanceExpert.js`](file:///D:/GitHub/CrashRadar/src/services/FinanceExpert.js), [`ADR-011`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-011-Dual-Gatekeeper-Reentry-These.md)
+* **Referenz-Komponenten:** [`DailyPortfolioCompass.js`](file:///D:/GitHub/CrashRadar/src/analysis/DailyPortfolioCompass.js), [`FinanceExpert.js`](file:///D:/GitHub/CrashRadar/src/services/FinanceExpert.js), [`ADR-011`](file:///D:/GitHub/CrashRadar/docs/research/adr-assertions/ADR-011-Dual-Gatekeeper-Reentry-These.md)
 
 ---
 
@@ -17,7 +17,7 @@ In der klassischen Markttechnik (u. a. Richard Wyckoff, William O’Neil, Stan W
 * Sobald dieses Rekordangebot von institutionellem „Smart Money“ absorbiert wird, sei der Verkaufsdruck physisch erschöpft und der Markt drehe unmittelbar in eine nachhaltige Aufwärtsbewegung.
 
 **Die Forschungsfrage für CrashRadar:**  
-Kann ein extremes Handelsvolumen am S&P 500 (`SPY_Volume >= 2.0x SMA50`) als eigenständiger, automatischer Re-Entry-Katalysator fungieren, um nach einem Crash den optimalen Einstiegspunkt zu treffen und das Rebound-Lag-Problem aus [ADR-011](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-011-Dual-Gatekeeper-Reentry-These.md) zu lösen?
+Kann ein extremes Handelsvolumen am S&P 500 (`SPY_Volume >= 2.0x SMA50`) als eigenständiger, automatischer Re-Entry-Katalysator fungieren, um nach einem Crash den optimalen Einstiegspunkt zu treffen und das Rebound-Lag-Problem aus [ADR-011](file:///D:/GitHub/CrashRadar/docs/research/adr-assertions/ADR-011-Dual-Gatekeeper-Reentry-These.md) zu lösen?
 
 ---
 

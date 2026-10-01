@@ -217,6 +217,24 @@
       }
     },
     {
+      "id": "fred_dfedtaru",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "DFEDTARU",
+        "file_type": "json"
+      }
+    },
+    {
+      "id": "fred_dfedtar",
+      "provider": "FRED",
+      "endpoint": "/fred/series/observations",
+      "params": {
+        "series_id": "DFEDTAR",
+        "file_type": "json"
+      }
+    },
+    {
       "id": "fred_rrpontsyd",
       "provider": "FRED",
       "endpoint": "/fred/series/observations",

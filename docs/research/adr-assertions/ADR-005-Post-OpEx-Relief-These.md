@@ -3,7 +3,7 @@
 * **Status:** Falsifiziert als Rebound-Kaufsignal / Bestätigt als persistentes Veto-Signal  
 * **Datum:** 2026-09-15  
 * **Autor:** CrashRadar Intelligence Engine (Modus Code-Buddy)  
-* **Bereich:** [`docs/research/DailyPortfolioCompass/`](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/)  
+* **Bereich:** [`docs/research/adr-assertions/`](file:///D:/GitHub/CrashRadar/docs/research/adr-assertions/)  
 * **Test-Skript:** [`research/adr-assertions/test_adr005_post_opex_relief.js`](file:///D:/GitHub/CrashRadar/research/adr-assertions/test_adr005_post_opex_relief.js)  
 * **Ergebnis-Datensatz:** [`data/cache/portfolio_compass/adr005_test_results.json`](file:///D:/GitHub/CrashRadar/data/cache/portfolio_compass/adr005_test_results.json)  
 * **Referenz-Komponenten:** [`DailyPortfolioCompass.js`](file:///D:/GitHub/CrashRadar/src/analysis/DailyPortfolioCompass.js), [`DerivativesSensorHub.js`](file:///D:/GitHub/CrashRadar/src/signals/hubs/DerivativesSensorHub.js), [`OpexCalendarSensor.js`](file:///D:/GitHub/CrashRadar/src/signals/sensors/OpexCalendarSensor.js), [`VolCrushSensor.js`](file:///D:/GitHub/CrashRadar/src/signals/sensors/VolCrushSensor.js)
@@ -12,7 +12,7 @@
 
 ## 1. Kontext & Ausgangsbeobachtung (Die offene Frage aus ADR-003)
 
-In [**`ADR-003`**](file:///D:/GitHub/CrashRadar/docs/research/DailyPortfolioCompass/ADR-003-Squeeze-Coil-Katapult-These.md) wurde nachgewiesen, dass ein Kauf *vor* dem Verfallstag unter dem Regime `EXTREME_SQUEEZE_COIL` ($PCR \ge 1.30$, $ShortVolume \ge 60\%$) ein **50/50-Verlustgeschäft** ist (Win-Rate exakt $50.0\%$, Durchschnittsertrag $-0.39\%$). In der Hälfte aller Fälle fielen die Kurse nach dem Verfallstag drastisch weiter (11 Bull Traps mit bis zu $-8.1\%$ Verlust).
+In [**`ADR-003`**](file:///D:/GitHub/CrashRadar/docs/research/adr-assertions/ADR-003-Squeeze-Coil-Katapult-These.md) wurde nachgewiesen, dass ein Kauf *vor* dem Verfallstag unter dem Regime `EXTREME_SQUEEZE_COIL` ($PCR \ge 1.30$, $ShortVolume \ge 60\%$) ein **50/50-Verlustgeschäft** ist (Win-Rate exakt $50.0\%$, Durchschnittsertrag $-0.39\%$). In der Hälfte aller Fälle fielen die Kurse nach dem Verfallstag drastisch weiter (11 Bull Traps mit bis zu $-8.1\%$ Verlust).
 
 **Die optimistische Folge-Hypothese aus ADR-003 (Abschnitt 6, Punkt 3):**  
 > *„Liegt das Scheitern von ADR-003 nur am voreiligen Timing? Wenn wir nicht vor dem Verfallstag ins fallende Messer greifen, sondern das Ende der Verfallswoche abwarten und erst bei bestätigtem Volatilitäts-Kollaps (`VOL_CRUSH_REBOUND` bzw. `POST_OPEX_EXPANSION` an den Tagen D+1 bis D+5) einsteigen – verwandeln sich die Fehlschläge dann in ein hochprofitables Rebound-Katapult?“*
