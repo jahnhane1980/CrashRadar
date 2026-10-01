@@ -450,25 +450,28 @@
       "options": {}
     },
     {
-      "id": "yahoo_hyg",
-      "provider": "YahooFinance",
-      "ticker": "HYG",
-      "method": "chart",
-      "options": {}
+      "id": "tiingo_hyg_daily",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/HYG/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "HYG"
     },
     {
-      "id": "yahoo_bizd",
-      "provider": "YahooFinance",
-      "ticker": "BIZD",
-      "method": "chart",
-      "options": {}
+      "id": "tiingo_bizd_daily",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/BIZD/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "BIZD"
     },
     {
-      "id": "yahoo_bkln",
-      "provider": "YahooFinance",
-      "ticker": "BKLN",
-      "method": "chart",
-      "options": {}
+      "id": "tiingo_bkln_daily",
+      "provider": "Tiingo",
+      "endpoint": "/tiingo/daily/BKLN/prices",
+      "params": {},
+      "resolution": "daily",
+      "ticker": "BKLN"
     },
     {
       "id": "fred_ecbassetsw",

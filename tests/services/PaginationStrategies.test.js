@@ -297,6 +297,50 @@ describe('PaginationStrategies', () => {
       expect(cfg.providers.Tiingo.concurrency).toBe(1);
       expect(cfg.providers.Tiingo.requestsPerSecond).toBe(0.8);
     });
+
+    it('sollte ETF-Tasks HYG, BIZD und BKLN unter Tiingo konfiguriert haben', async () => {
+      const { default: fs } = await import('fs');
+      const { default: path } = await import('path');
+      const raw = fs.readFileSync(path.resolve('config/Database-Fetcher-Config.json'), 'utf8');
+      const cfg = JSON.parse(raw);
+
+      const expectedTasks = [
+        {
+          id: 'tiingo_hyg_daily',
+          provider: 'Tiingo',
+          endpoint: '/tiingo/daily/HYG/prices',
+          params: {},
+          resolution: 'daily',
+          ticker: 'HYG'
+        },
+        {
+          id: 'tiingo_bizd_daily',
+          provider: 'Tiingo',
+          endpoint: '/tiingo/daily/BIZD/prices',
+          params: {},
+          resolution: 'daily',
+          ticker: 'BIZD'
+        },
+        {
+          id: 'tiingo_bkln_daily',
+          provider: 'Tiingo',
+          endpoint: '/tiingo/daily/BKLN/prices',
+          params: {},
+          resolution: 'daily',
+          ticker: 'BKLN'
+        }
+      ];
+
+      for (const expected of expectedTasks) {
+        const found = cfg.tasks.find(t => t.id === expected.id);
+        expect(found).toEqual(expected);
+      }
+
+      const obsoleteIds = ['yahoo_hyg', 'yahoo_bizd', 'yahoo_bkln'];
+      for (const id of obsoleteIds) {
+        expect(cfg.tasks.find(t => t.id === id)).toBeUndefined();
+      }
+    });
   });
 
   // --- date-range ---
