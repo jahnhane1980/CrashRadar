@@ -34,6 +34,7 @@ export async function runCLI(argv) {
   program
     .option('-t, --test', 'Run the fetcher in test mode')
     .option('-p, --profile <profile>', 'Filter data fetching tasks by profile / frequency (e.g. daily, intraday_m5, all)', 'daily')
+    .option('-g, --group <name>', 'Filter data fetching tasks by group (e.g. intraday_m5)')
     .option('-c, --check-indikator', 'Legacy indicator flag (deprecated / no-op in ingestion-only mode)')
     .option('-s, --check-scenario', 'Legacy scenario flag (deprecated / no-op in ingestion-only mode)');
 

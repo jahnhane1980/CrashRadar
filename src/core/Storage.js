@@ -68,6 +68,22 @@ export class Storage {
     }
   }
 
+  async acquireLock(lockKey, ttlSeconds = 600) {
+    const query = `
+      INSERT INTO sync_locks (lock_key, expires_at)
+      VALUES (?, DATE_ADD(NOW(), INTERVAL ? SECOND))
+      ON DUPLICATE KEY UPDATE
+        expires_at = IF(expires_at < NOW(), VALUES(expires_at), expires_at);
+    `;
+    const [result] = await this.pool.query(query, [lockKey, ttlSeconds]);
+    return Boolean(result && result.affectedRows > 0);
+  }
+
+  async releaseLock(lockKey) {
+    if (!this.pool) return;
+    await this.pool.query('DELETE FROM sync_locks WHERE lock_key = ?;', [lockKey]);
+  }
+
   async close() {
     if (this.pool) {
       await this.pool.end();

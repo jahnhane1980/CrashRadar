@@ -1,0 +1,37 @@
+name: Intraday M5 Data Fetcher
+
+on:
+  schedule:
+    - cron: '*/30 13-21 * * 1-5'
+  workflow_dispatch:
+
+concurrency:
+  group: m5-ingestion
+  cancel-in-progress: false
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  fetch-m5:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup Node.js (22.x)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: npm ci
+
+      - name: 🚀 Run Data Fetcher (Intraday M5)
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          POLYGONIO_API_KEY: ${{ secrets.POLYGONIO_API_KEY }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: node index.js --group intraday_m5

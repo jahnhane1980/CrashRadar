@@ -280,4 +280,37 @@ describe('Storage Class (MySQL)', () => {
 
     expect(rows).toEqual([]);
   });
+
+  describe('MySQL Mutex Locking', () => {
+    it('sollte acquireLock() ausführen und true zurückgeben wenn affectedRows > 0', async () => {
+      mockPool.query.mockResolvedValueOnce([{ affectedRows: 1 }]);
+      const storage = new Storage({});
+      const acquired = await storage.acquireLock('m5_sync_lock', 600);
+
+      expect(mockPool.query).toHaveBeenCalledWith(
+        expect.stringContaining('INSERT INTO sync_locks (lock_key, expires_at)'),
+        ['m5_sync_lock', 600]
+      );
+      expect(acquired).toBe(true);
+    });
+
+    it('sollte acquireLock() false zurückgeben wenn Lock bereits aktiv ist (affectedRows === 0)', async () => {
+      mockPool.query.mockResolvedValueOnce([{ affectedRows: 0 }]);
+      const storage = new Storage({});
+      const acquired = await storage.acquireLock('m5_sync_lock', 600);
+
+      expect(acquired).toBe(false);
+    });
+
+    it('sollte releaseLock() ausführen und den Lock löschen', async () => {
+      mockPool.query.mockResolvedValueOnce([{ affectedRows: 1 }]);
+      const storage = new Storage({});
+      await storage.releaseLock('m5_sync_lock');
+
+      expect(mockPool.query).toHaveBeenCalledWith(
+        'DELETE FROM sync_locks WHERE lock_key = ?;',
+        ['m5_sync_lock']
+      );
+    });
+  });
 });

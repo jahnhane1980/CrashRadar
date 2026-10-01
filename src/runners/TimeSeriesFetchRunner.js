@@ -6,6 +6,7 @@ import { RequestManager } from '../core/RequestManager.js';
 import { TimeSeriesFetcher } from '../services/TimeSeriesFetcher.js';
 import { ErrorRegistry } from '../core/ErrorRegistry.js';
 import { NtfyService } from '../services/NtfyService.js';
+import { Logger } from '../core/Logger.js';
 import { StandardRunner } from './StandardRunner.js';
 import { TestRunner } from './TestRunner.js';
 
@@ -41,6 +42,15 @@ export class TimeSeriesFetchRunner {
       TestRunner.applyTestConfigOverrides(config);
     }
 
+    if (config.tasks && Array.isArray(config.tasks)) {
+      if (this.options.group) {
+        config.tasks = config.tasks.filter(task => task.group === this.options.group);
+        this.options.profile = 'all';
+      } else {
+        config.tasks = config.tasks.filter(task => task.group !== 'intraday_m5');
+      }
+    }
+
     const storage = this.dependencies.storage || new Storage({ databaseUrl: dbUrl });
     const requestManager = this.dependencies.requestManager || new RequestManager(config);
     const errorRegistry = this.dependencies.errorRegistry || new ErrorRegistry();
@@ -58,7 +68,39 @@ export class TimeSeriesFetchRunner {
       this.activeRunner = isTest ? new TestRunner(runnerArgs) : new StandardRunner(runnerArgs);
     }
 
-    await this.activeRunner.run();
+    const isM5Group = this.options.group === 'intraday_m5';
+    if (isM5Group) {
+      const lockAcquired = await storage.acquireLock('m5_sync_lock', 600);
+      if (!lockAcquired) {
+        Logger.warn('m5_sync_lock is active - skipping execution');
+        if (storage && typeof storage.close === 'function') {
+          await storage.close();
+        }
+        return;
+      }
+    }
+
+    const originalClose = storage && typeof storage.close === 'function' ? storage.close.bind(storage) : null;
+    if (isM5Group && originalClose) {
+      storage.close = async () => {};
+    }
+
+    try {
+      await this.activeRunner.run();
+    } finally {
+      if (isM5Group) {
+        try {
+          if (storage && typeof storage.releaseLock === 'function') {
+            await storage.releaseLock('m5_sync_lock');
+          }
+        } finally {
+          if (originalClose) {
+            storage.close = originalClose;
+            await originalClose();
+          }
+        }
+      }
+    }
   }
 
   async cleanup() {

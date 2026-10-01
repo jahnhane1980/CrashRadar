@@ -38,6 +38,19 @@ describe('CLI Entrypoint (index.js)', () => {
     expect(runSpy).toHaveBeenCalled();
   });
 
+  it('übergibt das Group-Argument korrekt (--group)', async () => {
+    let capturedOptions;
+    const runSpy = vi.spyOn(TimeSeriesFetchRunner.prototype, 'run').mockImplementation(function() {
+      capturedOptions = this.options;
+      return Promise.resolve();
+    });
+
+    await runCLI(['node', 'index.js', '--group', 'intraday_m5']);
+
+    expect(runSpy).toHaveBeenCalled();
+    expect(capturedOptions.group).toBe('intraday_m5');
+  });
+
   it('behandelt Legacy-Flags (--check-indikator, --check-scenario) fehlerfrei', async () => {
     const runSpy = vi.spyOn(TimeSeriesFetchRunner.prototype, 'run').mockResolvedValue();
     const warnSpy = vi.spyOn(Logger, 'warn');

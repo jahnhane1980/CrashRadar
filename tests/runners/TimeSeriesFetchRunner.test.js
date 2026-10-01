@@ -96,4 +96,135 @@ describe('TimeSeriesFetchRunner', () => {
   it('unterstützt den Alias DataFetchRunner', () => {
     expect(DataFetchRunner).toBe(TimeSeriesFetchRunner);
   });
+
+  it('filtert Tasks strikt nach task.group wenn options.group übergeben wird', async () => {
+    const mockConfig = {
+      globalStartDate: '2020-01-01',
+      tasks: [
+        { id: 'task1', group: 'intraday_m5' },
+        { id: 'task2', group: 'daily_eod' },
+        { id: 'task3', group: 'intraday_m5' }
+      ]
+    };
+    mockStorage.acquireLock = vi.fn().mockResolvedValue(true);
+    mockStorage.releaseLock = vi.fn().mockResolvedValue();
+
+    const runner = new TimeSeriesFetchRunner(
+      { group: 'intraday_m5' },
+      {
+        dbUrl: 'mysql://test:test@localhost/crashradar',
+        config: mockConfig,
+        storage: mockStorage,
+        fetcher: mockFetcher,
+        errorRegistry: mockErrorRegistry,
+        runner: mockRunner
+      }
+    );
+
+    await runner.run();
+
+    expect(mockConfig.tasks).toHaveLength(2);
+    expect(mockConfig.tasks.every(t => t.group === 'intraday_m5')).toBe(true);
+  });
+
+  it('schließt Tasks mit group: "intraday_m5" aus wenn options.group NICHT übergeben wird', async () => {
+    const mockConfig = {
+      globalStartDate: '2020-01-01',
+      tasks: [
+        { id: 'task1', group: 'intraday_m5' },
+        { id: 'task2', group: 'daily_eod' },
+        { id: 'task3' }
+      ]
+    };
+
+    const runner = new TimeSeriesFetchRunner(
+      {},
+      {
+        dbUrl: 'mysql://test:test@localhost/crashradar',
+        config: mockConfig,
+        storage: mockStorage,
+        fetcher: mockFetcher,
+        errorRegistry: mockErrorRegistry,
+        runner: mockRunner
+      }
+    );
+
+    await runner.run();
+
+    expect(mockConfig.tasks).toHaveLength(2);
+    expect(mockConfig.tasks.find(t => t.id === 'task1')).toBeUndefined();
+    expect(mockConfig.tasks.find(t => t.id === 'task2')).toBeDefined();
+    expect(mockConfig.tasks.find(t => t.id === 'task3')).toBeDefined();
+  });
+
+  it('holt Mutex-Lock für intraday_m5, bricht ab wenn Lock aktiv ist (ohne Exception)', async () => {
+    mockStorage.acquireLock = vi.fn().mockResolvedValue(false);
+    mockStorage.releaseLock = vi.fn().mockResolvedValue();
+    const warnSpy = vi.spyOn(Logger, 'warn');
+
+    const runner = new TimeSeriesFetchRunner(
+      { group: 'intraday_m5' },
+      {
+        dbUrl: 'mysql://test:test@localhost/crashradar',
+        config: { globalStartDate: '2020-01-01', tasks: [] },
+        storage: mockStorage,
+        fetcher: mockFetcher,
+        errorRegistry: mockErrorRegistry,
+        runner: mockRunner
+      }
+    );
+
+    await runner.run();
+
+    expect(mockStorage.acquireLock).toHaveBeenCalledWith('m5_sync_lock', 600);
+    expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining('m5_sync_lock is active - skipping execution'));
+    expect(mockRunner.run).not.toHaveBeenCalled();
+    expect(mockStorage.releaseLock).not.toHaveBeenCalled();
+  });
+
+  it('holt Mutex-Lock für intraday_m5 und gibt Lock im finally-Block frei', async () => {
+    mockStorage.acquireLock = vi.fn().mockResolvedValue(true);
+    mockStorage.releaseLock = vi.fn().mockResolvedValue();
+
+    const runner = new TimeSeriesFetchRunner(
+      { group: 'intraday_m5' },
+      {
+        dbUrl: 'mysql://test:test@localhost/crashradar',
+        config: { globalStartDate: '2020-01-01', tasks: [] },
+        storage: mockStorage,
+        fetcher: mockFetcher,
+        errorRegistry: mockErrorRegistry,
+        runner: mockRunner
+      }
+    );
+
+    await runner.run();
+
+    expect(mockStorage.acquireLock).toHaveBeenCalledWith('m5_sync_lock', 600);
+    expect(mockRunner.run).toHaveBeenCalled();
+    expect(mockStorage.releaseLock).toHaveBeenCalledWith('m5_sync_lock');
+  });
+
+  it('gibt Lock für intraday_m5 auch dann frei wenn Runner fehlschlägt', async () => {
+    mockStorage.acquireLock = vi.fn().mockResolvedValue(true);
+    mockStorage.releaseLock = vi.fn().mockResolvedValue();
+    mockRunner.run.mockRejectedValue(new Error('Runner Error'));
+
+    const runner = new TimeSeriesFetchRunner(
+      { group: 'intraday_m5' },
+      {
+        dbUrl: 'mysql://test:test@localhost/crashradar',
+        config: { globalStartDate: '2020-01-01', tasks: [] },
+        storage: mockStorage,
+        fetcher: mockFetcher,
+        errorRegistry: mockErrorRegistry,
+        runner: mockRunner
+      }
+    );
+
+    await expect(runner.run()).rejects.toThrow('Runner Error');
+
+    expect(mockStorage.acquireLock).toHaveBeenCalledWith('m5_sync_lock', 600);
+    expect(mockStorage.releaseLock).toHaveBeenCalledWith('m5_sync_lock');
+  });
 });
