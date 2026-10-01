@@ -45,8 +45,6 @@ export class SecEdgar13FFetchAdapter {
             }
         }
 
-        const pool = storage?.pool || null;
-
         // 3. Alle angefragten Fonds durchgehen
         for (const [cik, fundInfo] of Object.entries(ciksToProcess)) {
             if (!fundInfo) continue;
@@ -90,12 +88,9 @@ export class SecEdgar13FFetchAdapter {
 
                 // 3.2 Fail-Safe DB-Guard: Bereits in DB vorhandene Filings ermitteln
                 const existingFilings = new Set();
-                if (pool) {
+                if (storage && typeof storage.getExistingFilings === 'function') {
                     try {
-                        const [rows] = await pool.query(
-                            'SELECT DISTINCT report_date, filing_date FROM fund_13f_holdings WHERE cik = ?',
-                            [cik]
-                        );
+                        const rows = await storage.getExistingFilings(cik);
                         for (const r of rows) {
                             const rDateStr = r.report_date instanceof Date 
                                 ? r.report_date.toISOString().split('T')[0] 

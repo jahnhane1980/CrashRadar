@@ -35,7 +35,7 @@ describe('Storage Class (MySQL)', () => {
   });
 
   afterEach(() => {
-    vi.clearAllMocks();
+    vi.restoreAllMocks();
   });
 
   it('sollte Fehler werfen wenn keine DATABASE_URL vorhanden ist', () => {
@@ -243,5 +243,41 @@ describe('Storage Class (MySQL)', () => {
     expect(mockConnection.query).toHaveBeenCalledTimes(1);
     expect(mockConnection.query.mock.calls[0][0]).toContain('INSERT INTO sync_states');
     expect(mockConnection.commit).toHaveBeenCalled();
+  });
+
+  it('sollte ein natives Date-Objekt an sync_states übergeben (Timestamp Sanitization)', async () => {
+    const storage = new Storage({});
+    const task = { id: 'binance_btc', provider: 'Binance', params: { symbol: 'BTCUSDT', interval: '1d' } };
+    const mockData = [ [1600000000, 10, 12, 9, 11, 100, 1600086400, 1100, 50, 40, 440, 0] ];
+
+    await storage.insertDataAndState(task, mockData, mockData[0]);
+
+    const stateQueryArgs = mockConnection.query.mock.calls[1][1];
+    expect(stateQueryArgs[3]).toBeInstanceOf(Date);
+  });
+
+  it('sollte getExistingFilings über Pool abfragen', async () => {
+    mockPool.query.mockResolvedValueOnce([
+      [{ report_date: '2026-06-30', filing_date: '2026-08-14' }]
+    ]);
+
+    const storage = new Storage({});
+    const rows = await storage.getExistingFilings('0001423053');
+
+    expect(mockPool.query).toHaveBeenCalledWith(
+      expect.stringContaining('SELECT DISTINCT report_date, filing_date FROM fund_13f_holdings WHERE cik = ?'),
+      ['0001423053']
+    );
+    expect(rows).toHaveLength(1);
+    expect(rows[0].report_date).toBe('2026-06-30');
+  });
+
+  it('sollte leeres Array zurückgeben wenn getExistingFilings fehlschlägt', async () => {
+    mockPool.query.mockRejectedValueOnce(new Error('DB Error'));
+
+    const storage = new Storage({});
+    const rows = await storage.getExistingFilings('0001423053');
+
+    expect(rows).toEqual([]);
   });
 });

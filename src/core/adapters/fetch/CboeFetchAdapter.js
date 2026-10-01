@@ -106,16 +106,6 @@ export class CboeFetchAdapter {
             return [];
         }
 
-        // CSV lokal archivieren (Ansatz A - Audit-Trail)
-        const archiveDir = path.resolve(process.cwd(), 'data/archive/cboe');
-        if (!fs.existsSync(archiveDir)) {
-            fs.mkdirSync(archiveDir, { recursive: true });
-        }
-        
-        const fileName = `${task.ticker}_${fromDateStr}_to_${toDateStr}.csv`;
-        fs.writeFileSync(path.join(archiveDir, fileName), responseText, 'utf8');
-        Logger.info(`[CBOE] CSV gesichert unter: ${path.join('data/archive/cboe', fileName)}`);
-
         const records = parse(responseText, {
             columns: true,
             skip_empty_lines: true,

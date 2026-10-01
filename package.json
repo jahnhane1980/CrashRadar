@@ -7,10 +7,6 @@
     "doc": "docs"
   },
   "scripts": {
-    "ml:train": "node ml.js",
-    "ml:retrain": "node ml.js --ticker BTC && node ml.js --ticker SPY && node ml.js --ticker QQQ && node ml.js --ticker SOFI && node ml.js --ticker PLTR && node ml.js --ticker ZETA && node ml.js --ticker NVTS",
-    "signals": "node index.js --signals",
-    "compass": "node src/runners/DailyPortfolioCompassRunner.js",
     "watchdog:sandbox": "node tools/sandbox_watchdog.js",
     "pretest": "node tools/sandbox_watchdog.js",
     "test": "vitest run -c ./config/vitest.config.js",

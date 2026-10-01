@@ -1,7 +1,5 @@
 import ky from 'ky';
 import * as xlsx from 'xlsx';
-import fs from 'fs';
-import path from 'path';
 import { Logger } from '../../Logger.js';
 
 export class FinraFetchAdapter {
@@ -132,20 +130,7 @@ export class FinraFetchAdapter {
                 }
             }
 
-            // 5. Lokales Backup als CSV schreiben (für's Archiv)
-            if (parsedRecords.length > 0) {
-                const csvHeader = 'record_date,margin_debt,free_credit_cash,free_credit_margin\n';
-                const csvBody = parsedRecords.map(r => `${r.record_date},${r.margin_debt},${r.free_credit_cash},${r.free_credit_margin}`).join('\n');
-                
-                const dir = path.join(process.cwd(), 'data', 'archive', 'finra');
-                if (!fs.existsSync(dir)) {
-                    fs.mkdirSync(dir, { recursive: true });
-                }
-                const currentDateStr = new Date().toISOString().split('T')[0];
-                const fileName = `MarginDebt_${startDate}_to_${currentDateStr}.csv`;
-                fs.writeFileSync(path.join(dir, fileName), csvHeader + csvBody);
-                Logger.info(`[FINRA] CSV gesichert unter: ${path.join(dir, fileName)}`);
-            } else {
+            if (parsedRecords.length === 0) {
                 Logger.info(`[FINRA] Keine neuen Daten für den Zeitraum seit ${startDate} gefunden.`);
             }
 

@@ -6,7 +6,6 @@ import { YahooFinanceAdapter } from './YahooFinanceAdapter.js';
 import { SecEdgarAdapter } from './SecEdgarAdapter.js';
 import { CboeAdapter } from './CboeAdapter.js';
 import { FinraAdapter } from './FinraAdapter.js';
-import { InvestingComAdapter } from './InvestingComAdapter.js';
 import { SqueezeMetricsAdapter } from './SqueezeMetricsAdapter.js';
 import { SecEdgar13FAdapter } from './SecEdgar13FAdapter.js';
 import { AaiiAdapter } from './AaiiAdapter.js';
@@ -22,7 +21,6 @@ const adapters = {
   'SecEdgar': new SecEdgarAdapter(),
   'Cboe': new CboeAdapter(),
   'Finra': new FinraAdapter(),
-  'InvestingCom': new InvestingComAdapter(),
   'SqueezeMetrics': new SqueezeMetricsAdapter(),
   'SecEdgar13F': new SecEdgar13FAdapter(),
   'AAII': new AaiiAdapter(),

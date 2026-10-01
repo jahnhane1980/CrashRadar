@@ -376,13 +376,11 @@ describe('SecEdgar13FFetchAdapter', () => {
             }
         });
 
-        // Mock Storage mit Pool
+        // Mock Storage mit getExistingFilings
         const mockStorage = {
-            pool: {
-                query: vi.fn().mockResolvedValue([
-                    [{ report_date: '2026-06-30', filing_date: '2026-08-14' }]
-                ])
-            }
+            getExistingFilings: vi.fn().mockResolvedValue([
+                { report_date: '2026-06-30', filing_date: '2026-08-14' }
+            ])
         };
 
         const task = {
@@ -396,10 +394,7 @@ describe('SecEdgar13FFetchAdapter', () => {
         expect(result.length).toBe(0);
         // Submissions wurde abgefragt
         expect(mockRequestManager.fetch).toHaveBeenCalledTimes(1);
-        // DB wurde abgefragt
-        expect(mockStorage.pool.query).toHaveBeenCalledWith(
-            expect.stringContaining('SELECT DISTINCT report_date, filing_date'),
-            ['0001423053']
-        );
+        // DB wurde über Storage-Methode abgefragt
+        expect(mockStorage.getExistingFilings).toHaveBeenCalledWith('0001423053');
     });
 });

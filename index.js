@@ -2,7 +2,7 @@ import 'dotenv/config';
 import { fileURLToPath } from 'url';
 import { Command } from 'commander';
 import { Logger } from './src/core/Logger.js';
-import { DataFetchRunner, TimeSeriesFetchRunner } from './src/runners/TimeSeriesFetchRunner.js';
+import { TimeSeriesFetchRunner } from './src/runners/TimeSeriesFetchRunner.js';
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -44,7 +44,7 @@ export async function runCLI(argv) {
         return;
       }
 
-      activeRunner = new DataFetchRunner(options);
+      activeRunner = new TimeSeriesFetchRunner(options);
       await activeRunner.run();
     } catch (error) {
       Logger.error('[CLI Error]', error.message || error);

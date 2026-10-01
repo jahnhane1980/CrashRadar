@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { DataFetchRunner } from '../../src/runners/DataFetchRunner.js';
+import { DataFetchRunner } from '../../src/runners/TimeSeriesFetchRunner.js';
 import { StandardRunner } from '../../src/runners/StandardRunner.js';
 import { TestRunner } from '../../src/runners/TestRunner.js';
 import { Logger } from '../../src/core/Logger.js';

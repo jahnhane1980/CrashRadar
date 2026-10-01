@@ -43,8 +43,7 @@ describe('CboeFetchAdapter', () => {
             volume: 994008
         });
 
-        expect(fs.writeFileSync).toHaveBeenCalled();
-        expect(fs.writeFileSync.mock.calls[0][1]).toBe(csvContent);
+        expect(fs.writeFileSync).not.toHaveBeenCalled();
     });
 
     it('sollte leere Arrays zurückgeben, wenn keine Daten gefunden werden (Grenzfall)', async () => {

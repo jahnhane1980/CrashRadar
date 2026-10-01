@@ -57,8 +57,7 @@ describe('FinraFetchAdapter', () => {
         expect(result[1].record_date).toBe('2025-10-01');
         expect(result[1].margin_debt).toBe(1183654);
 
-        // Verify fs.writeFileSync was called to archive
-        expect(fs.writeFileSync).toHaveBeenCalled();
+        expect(fs.writeFileSync).not.toHaveBeenCalled();
     });
 
     it('should throw error if excel is empty or invalid', async () => {

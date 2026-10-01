@@ -19,6 +19,20 @@ export class Storage {
     return rows.length > 0 ? { cursor_data: rows[0].cursor_data } : undefined;
   }
 
+  async getExistingFilings(cik) {
+    if (!this.pool) return [];
+    try {
+      const [rows] = await this.pool.query(
+        'SELECT DISTINCT report_date, filing_date FROM fund_13f_holdings WHERE cik = ?',
+        [cik]
+      );
+      return rows;
+    } catch (err) {
+      Logger.warn(`[Storage] getExistingFilings failed: ${err.message}`);
+      return [];
+    }
+  }
+
   async insertDataAndState(task, data, newLastRecord) {
     if (!data || data.length === 0) return;
 
@@ -42,7 +56,7 @@ export class Storage {
           cursor_data = VALUES(cursor_data),
           updated_at = VALUES(updated_at)
       `;
-      await connection.query(stateQuery, [task.id, task.provider, JSON.stringify(newLastRecord), new Date().toISOString()]);
+      await connection.query(stateQuery, [task.id, task.provider, JSON.stringify(newLastRecord), new Date()]);
 
       await connection.commit();
       Logger.info(`[Storage] Inserted/Updated ${data.length} items and state for task '${task.id}'`);

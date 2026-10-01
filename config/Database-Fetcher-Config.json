@@ -111,14 +111,6 @@
         "dateFormat": "YYYY-MM-DD"
       }
     },
-    "InvestingCom": {
-      "type": "package",
-      "pagination": {
-        "strategy": "custom",
-        "dateExtractPath": "record_date",
-        "dateFormat": "YYYY-MM-DD"
-      }
-    },
     "SqueezeMetrics": {
       "type": "package",
       "overrideStartDate": "2011-05-02",
