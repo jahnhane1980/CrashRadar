@@ -292,6 +292,9 @@ export class TimeSeriesFetcher {
           let cursorToSave = {};
           if (typeof lastItem === 'object' && lastItem !== null) {
               const keysToKeep = ['date', 'record_date', 'observation_date', 'id', 'symbol', 'ticker', 'open_time'];
+              if (task.dateExtractPath && !keysToKeep.includes(task.dateExtractPath)) {
+                  keysToKeep.push(task.dateExtractPath);
+              }
               for (const k of keysToKeep) {
                   if (lastItem[k] !== undefined) cursorToSave[k] = lastItem[k];
               }

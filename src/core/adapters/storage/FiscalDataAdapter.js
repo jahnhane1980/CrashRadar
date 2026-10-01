@@ -1,5 +1,6 @@
 export class FiscalDataAdapter {
   getInsertQueryAndValues(task, data) {
+    if (!data || data.length === 0) return { query: null, values: [] };
     const parseVal = (val) => (val === 'null' || val === undefined) ? null : val;
 
     if (task.id === 'fiscaldata_tga') {
@@ -24,6 +25,7 @@ export class FiscalDataAdapter {
       const query = `
         INSERT INTO fiscal_buybacks (operation_date, settlement_date, operation_type, security_type, maturity_bucket, total_offered, total_accepted)
         VALUES ?
+        ON DUPLICATE KEY UPDATE settlement_date = VALUES(settlement_date), operation_type = VALUES(operation_type), security_type = VALUES(security_type), maturity_bucket = VALUES(maturity_bucket), total_offered = VALUES(total_offered), total_accepted = VALUES(total_accepted)
       `;
       const values = data.map(item => [
         item.operation_date,

@@ -14,7 +14,8 @@ describe('PaginationStrategies', () => {
       requestManager: { fetch: vi.fn().mockResolvedValue({}) },
       extractData: vi.fn(),
       getLatestRecord: vi.fn((t, p, arr) => arr && arr.length > 0 ? arr[arr.length - 1] : null),
-      storage: { insertDataAndState: vi.fn().mockResolvedValue() }
+      storage: { insertDataAndState: vi.fn().mockResolvedValue() },
+      errorRegistry: { addError: vi.fn() }
     };
     context = {
       fetcher: mockFetcher,
@@ -81,18 +82,20 @@ describe('PaginationStrategies', () => {
       expect(consoleWarnSpy).toHaveBeenCalledWith(expect.stringContaining('Infinite loop detected'));
     });
 
-    it('sollte abbrechen wenn extractData einen Fehler wirft', async () => {
-      mockFetcher.extractData.mockImplementation(() => { throw new Error('Extract Failed'); });
-      await PaginationStrategies['time-cursor'](context);
-      expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining('Extract Failed'));
+    it('sollte Fehler an errorRegistry melden und rethrowen wenn extractData einen Fehler wirft', async () => {
+      const err = new Error('Extract Failed');
+      mockFetcher.extractData.mockImplementation(() => { throw err; });
+      await expect(PaginationStrategies['time-cursor'](context)).rejects.toThrow('Extract Failed');
+      expect(mockFetcher.errorRegistry.addError).toHaveBeenCalledWith('test-task', err);
       expect(mockFetcher.storage.insertDataAndState).not.toHaveBeenCalled();
     });
 
-    it('sollte abbrechen wenn storage.insertDataAndState einen Fehler wirft', async () => {
+    it('sollte Fehler an errorRegistry melden und rethrowen wenn storage.insertDataAndState einen Fehler wirft', async () => {
+      const err = new Error('Storage Failed');
       mockFetcher.extractData.mockReturnValue([[1]]);
-      mockFetcher.storage.insertDataAndState.mockRejectedValue(new Error('Storage Failed'));
-      await PaginationStrategies['time-cursor'](context);
-      expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining('Storage Failed'));
+      mockFetcher.storage.insertDataAndState.mockRejectedValue(err);
+      await expect(PaginationStrategies['time-cursor'](context)).rejects.toThrow('Storage Failed');
+      expect(mockFetcher.errorRegistry.addError).toHaveBeenCalledWith('test-task', err);
     });
 
     it('sollte abbrechen wenn leeres Array zurückkommt', async () => {
@@ -145,17 +148,19 @@ describe('PaginationStrategies', () => {
       expect(consoleWarnSpy).toHaveBeenCalledWith(expect.stringContaining('identical page returned'));
     });
 
-    it('sollte Exception bei extractData fangen', async () => {
-      mockFetcher.extractData.mockImplementation(() => { throw new Error('Page Extract Fail'); });
-      await PaginationStrategies['page-number'](context);
-      expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining('Page Extract Fail'));
+    it('sollte Fehler an errorRegistry melden und rethrowen bei extractData Exception', async () => {
+      const err = new Error('Page Extract Fail');
+      mockFetcher.extractData.mockImplementation(() => { throw err; });
+      await expect(PaginationStrategies['page-number'](context)).rejects.toThrow('Page Extract Fail');
+      expect(mockFetcher.errorRegistry.addError).toHaveBeenCalledWith('test-task', err);
     });
 
-    it('sollte Exception bei Storage fangen', async () => {
+    it('sollte Fehler an errorRegistry melden und rethrowen bei Storage Exception', async () => {
+      const err = new Error('Storage Page Fail');
       mockFetcher.extractData.mockReturnValue([{id:1}]);
-      mockFetcher.storage.insertDataAndState.mockRejectedValue(new Error('Storage Page Fail'));
-      await PaginationStrategies['page-number'](context);
-      expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining('Storage Page Fail'));
+      mockFetcher.storage.insertDataAndState.mockRejectedValue(err);
+      await expect(PaginationStrategies['page-number'](context)).rejects.toThrow('Storage Page Fail');
+      expect(mockFetcher.errorRegistry.addError).toHaveBeenCalledWith('test-task', err);
     });
   });
 
@@ -175,17 +180,19 @@ describe('PaginationStrategies', () => {
       expect(searchParams.get('limit')).toBeNull();
     });
 
-    it('sollte Exception bei extractData fangen', async () => {
-      mockFetcher.extractData.mockImplementation(() => { throw new Error('Date Extract Fail'); });
-      await PaginationStrategies['date-range'](context);
-      expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining('Date Extract Fail'));
+    it('sollte Fehler an errorRegistry melden und rethrowen bei extractData Exception', async () => {
+      const err = new Error('Date Extract Fail');
+      mockFetcher.extractData.mockImplementation(() => { throw err; });
+      await expect(PaginationStrategies['date-range'](context)).rejects.toThrow('Date Extract Fail');
+      expect(mockFetcher.errorRegistry.addError).toHaveBeenCalledWith('test-task', err);
     });
 
-    it('sollte Exception bei Storage fangen', async () => {
+    it('sollte Fehler an errorRegistry melden und rethrowen bei Storage Exception', async () => {
+      const err = new Error('Storage Date Fail');
       mockFetcher.extractData.mockReturnValue([{date: '2023-01-01'}]);
-      mockFetcher.storage.insertDataAndState.mockRejectedValue(new Error('Storage Date Fail'));
-      await PaginationStrategies['date-range'](context);
-      expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining('Storage Date Fail'));
+      mockFetcher.storage.insertDataAndState.mockRejectedValue(err);
+      await expect(PaginationStrategies['date-range'](context)).rejects.toThrow('Storage Date Fail');
+      expect(mockFetcher.errorRegistry.addError).toHaveBeenCalledWith('test-task', err);
     });
 
     it('sollte nicht speichern bei leeren Daten', async () => {

@@ -21,7 +21,8 @@ export const PaginationStrategies = {
         data = fetcher.extractData(response, provider);
       } catch(e) {
         Logger.error(`[API Error] Task ${task.id}: ${e.message}`);
-        break;
+        if (fetcher.errorRegistry) fetcher.errorRegistry.addError(task.id, e);
+        throw e;
       }
       
       if (!Array.isArray(data) || data.length === 0) break;
@@ -31,7 +32,8 @@ export const PaginationStrategies = {
         await fetcher.storage.insertDataAndState(task, data, newLastRecord);
       } catch(e) {
         Logger.error(`[Storage] Error inserting data for task ${task.id}: ${e.message}`);
-        break;
+        if (fetcher.errorRegistry) fetcher.errorRegistry.addError(task.id, e);
+        throw e;
       }
       
       if (data.length < pagination.maxLimit) break;
@@ -68,7 +70,8 @@ export const PaginationStrategies = {
         actualData = fetcher.extractData(response, provider);
       } catch(e) {
         Logger.error(`[API Error] Task ${task.id}: ${e.message}`);
-        break;
+        if (fetcher.errorRegistry) fetcher.errorRegistry.addError(task.id, e);
+        throw e;
       }
       
       if (!Array.isArray(actualData) || actualData.length === 0) break;
@@ -85,7 +88,8 @@ export const PaginationStrategies = {
         await fetcher.storage.insertDataAndState(task, actualData, newLastRecord);
       } catch(e) {
         Logger.error(`[Storage] Error inserting data for task ${task.id}: ${e.message}`);
-        break;
+        if (fetcher.errorRegistry) fetcher.errorRegistry.addError(task.id, e);
+        throw e;
       }
 
       if (actualData.length < pagination.maxLimit) break;
@@ -104,7 +108,8 @@ export const PaginationStrategies = {
       finalData = fetcher.extractData(response, provider);
     } catch(e) {
       Logger.error(`[API Error] Task ${task.id}: ${e.message}`);
-      return;
+      if (fetcher.errorRegistry) fetcher.errorRegistry.addError(task.id, e);
+      throw e;
     }
     
     if (finalData.length > 0) {
@@ -113,6 +118,8 @@ export const PaginationStrategies = {
         await fetcher.storage.insertDataAndState(task, finalData, newLastRecord);
       } catch(e) {
         Logger.error(`[Storage] Error inserting data for task ${task.id}: ${e.message}`);
+        if (fetcher.errorRegistry) fetcher.errorRegistry.addError(task.id, e);
+        throw e;
       }
     }
   }

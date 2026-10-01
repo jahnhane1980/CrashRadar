@@ -62,4 +62,24 @@ describe('TimeSeriesFetcher Profile Filtering', () => {
 
     expect(executedTaskIds).toEqual(['task_daily_1', 'task_daily_2', 'task_m5_1', 'task_m5_2']);
   });
+
+  it('dynamically preserves task.dateExtractPath in cursorToSave during HTTP non-paginated fetch', async () => {
+    const fetcher = new TimeSeriesFetcher(mockConfig, mockStorage, mockRequestManager, mockErrorRegistry);
+    const customTask = {
+      id: 'custom_task',
+      provider: 'Simple',
+      endpoint: '/custom',
+      dateExtractPath: 'operation_date'
+    };
+    const mockApiResponse = [
+      { operation_date: '2026-08-25', val: 123 }
+    ];
+    mockRequestManager.fetch.mockResolvedValue(mockApiResponse);
+
+    await fetcher.fetchViaHttp(customTask, mockConfig.providers['Simple']);
+
+    expect(mockStorage.insertDataAndState).toHaveBeenCalledTimes(1);
+    const savedCursor = mockStorage.insertDataAndState.mock.calls[0][2];
+    expect(savedCursor.operation_date).toBe('2026-08-25');
+  });
 });

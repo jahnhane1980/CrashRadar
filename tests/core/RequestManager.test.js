@@ -243,4 +243,30 @@ describe('RequestManager Class', () => {
     // kyExtendMock.get sollte nur 2x gerufen worden sein (für req1 und req2)
     expect(kyExtendMock.get).toHaveBeenCalledTimes(2);
   });
+
+  it('sollte abgewiesene Promises bei Fehlern aus dem Cache entfernen, damit Folgeanfragen nicht dauerhaft fehlschlagen', async () => {
+    const manager = new RequestManager(config);
+    const kyExtendMock = ky.extend();
+    kyExtendMock.get.mockReset();
+    
+    // Erste Anfrage schlägt fehl
+    kyExtendMock.get.mockReturnValueOnce({
+      json: vi.fn().mockRejectedValue(new Error('Temporary Network Outage'))
+    });
+    // Zweite Anfrage hat Erfolg
+    kyExtendMock.get.mockReturnValueOnce({
+      json: vi.fn().mockResolvedValue({ recovered: true })
+    });
+
+    const url = 'http://transient-fail.com';
+    await expect(manager.fetch(url, 'FastProv')).rejects.toThrow('Temporary Network Outage');
+
+    // Der Cache-Eintrag für url darf nicht mehr existieren
+    expect(manager.cache.has(url)).toBe(false);
+
+    // Die zweite Anfrage an dieselbe URL muss einen neuen Netzwerkaufruf ausführen und erfolgreich sein
+    const res = await manager.fetch(url, 'FastProv');
+    expect(res).toEqual({ recovered: true });
+    expect(kyExtendMock.get).toHaveBeenCalledTimes(2);
+  });
 });

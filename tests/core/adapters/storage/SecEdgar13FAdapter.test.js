@@ -8,18 +8,18 @@ describe('SecEdgar13FAdapter (Storage)', () => {
         adapter = new SecEdgar13FAdapter();
     });
 
-    it('sollte null zurückgeben, wenn die Daten leer sind', () => {
+    it('sollte { query: null, values: [] } zurückgeben, wenn die Daten leer sind', () => {
         const task = { id: 'sec_13f_0001067983' };
         
-        expect(adapter.getInsertQueryAndValues(task, null)).toBeNull();
-        expect(adapter.getInsertQueryAndValues(task, [])).toBeNull();
+        expect(adapter.getInsertQueryAndValues(task, null)).toEqual({ query: null, values: [] });
+        expect(adapter.getInsertQueryAndValues(task, [])).toEqual({ query: null, values: [] });
     });
 
-    it('sollte null zurückgeben, wenn die Task ID nicht zu 13F passt', () => {
+    it('sollte { query: null, values: [] } zurückgeben, wenn die Task ID nicht zu 13F passt', () => {
         const task = { id: 'some_other_task' };
         const data = [{ cik: '123' }];
         
-        expect(adapter.getInsertQueryAndValues(task, data)).toBeNull();
+        expect(adapter.getInsertQueryAndValues(task, data)).toEqual({ query: null, values: [] });
     });
 
     it('sollte ein korrektes Query und Values-Array für neue chunked 13F Tasks zurückgeben', () => {

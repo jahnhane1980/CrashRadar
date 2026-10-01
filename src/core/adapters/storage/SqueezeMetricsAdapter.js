@@ -1,6 +1,6 @@
 export class SqueezeMetricsAdapter {
   getInsertQueryAndValues(task, data) {
-    if (!data || data.length === 0) return null;
+    if (!data || data.length === 0) return { query: null, values: [] };
 
     if (task.id === 'squeezemetrics_dix') {
       const query = `
@@ -20,6 +20,6 @@ export class SqueezeMetricsAdapter {
       return { query, values };
     }
 
-    return null;
+    return { query: null, values: [] };
   }
 }

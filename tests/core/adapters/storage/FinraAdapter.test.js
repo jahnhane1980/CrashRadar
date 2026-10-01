@@ -26,11 +26,13 @@ describe('FinraAdapter', () => {
     expect(result.values[1]).toEqual(['2025-11-01', 1214321, null, null]);
   });
 
-  it('should return null if data is empty', () => {
+  it('should return { query: null, values: [] } if data is empty or task is unmatched', () => {
     const result = adapter.getInsertQueryAndValues({ id: 'finra' }, []);
-    expect(result).toBeNull();
+    expect(result).toEqual({ query: null, values: [] });
     const result2 = adapter.getInsertQueryAndValues({ id: 'finra' }, null);
-    expect(result2).toBeNull();
+    expect(result2).toEqual({ query: null, values: [] });
+    const result3 = adapter.getInsertQueryAndValues({ id: 'unmatched_finra', dataset: 'other' }, [{ record_date: '2025-01-01' }]);
+    expect(result3).toEqual({ query: null, values: [] });
   });
 
   it('should generate correct SQL query and values for short_volume data', () => {

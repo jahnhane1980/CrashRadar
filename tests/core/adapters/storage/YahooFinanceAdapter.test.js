@@ -50,4 +50,47 @@ describe('YahooFinanceAdapter', () => {
     expect(result.query).toContain('INSERT INTO company_fundamentals');
     expect(result.values[0]).toEqual(['ZETA', '2024-01-01', '3M', 210000000, 50000, 100000, 20000, -10000, 0.81]);
   });
+
+  it('sollte options chain Daten in market_data_options_wall einfügen und nicht in market_data_yahoo', () => {
+    const task = { ticker: 'SPY', method: 'options' };
+    const data = [{
+      date: '2026-07-04',
+      ticker: 'SPY',
+      call_wall_strike: 550,
+      call_wall_oi: 25000,
+      put_wall_strike: 530,
+      put_wall_oi: 30000
+    }];
+
+    const result = adapter.getInsertQueryAndValues(task, data);
+    expect(result.query).toContain('INSERT INTO market_data_options_wall');
+    expect(result.query).not.toContain('market_data_yahoo');
+    expect(result.query).toContain('ON DUPLICATE KEY UPDATE');
+    expect(result.query).toContain('call_wall_strike = VALUES(call_wall_strike)');
+    expect(result.query).toContain('call_wall_oi = VALUES(call_wall_oi)');
+    expect(result.query).toContain('put_wall_strike = VALUES(put_wall_strike)');
+    expect(result.query).toContain('put_wall_oi = VALUES(put_wall_oi)');
+    expect(result.values).toHaveLength(1);
+    expect(result.values[0]).toEqual(['SPY', '2026-07-04', 550, 25000, 530, 30000]);
+  });
+
+  it('sollte { query: null, values: [] } zurückgeben wenn targetTable bei options falsy konfiguriert ist', () => {
+    const task = { ticker: 'SPY', method: 'options', targetTable: null };
+    const data = [{
+      date: '2026-07-04',
+      ticker: 'SPY',
+      call_wall_strike: 550,
+      call_wall_oi: 25000,
+      put_wall_strike: 530,
+      put_wall_oi: 30000
+    }];
+
+    const result = adapter.getInsertQueryAndValues(task, data);
+    expect(result).toEqual({ query: null, values: [] });
+  });
+
+  it('sollte { query: null, values: [] } zurückgeben wenn data leer ist', () => {
+    expect(adapter.getInsertQueryAndValues({ ticker: 'SPY' }, [])).toEqual({ query: null, values: [] });
+    expect(adapter.getInsertQueryAndValues({ ticker: 'SPY' }, null)).toEqual({ query: null, values: [] });
+  });
 });

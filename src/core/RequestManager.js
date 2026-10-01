@@ -127,6 +127,8 @@ export class RequestManager {
       });
     });
 
+    promise.catch(() => this.cache.delete(cacheKey));
+
     this.cache.set(cacheKey, promise);
     return promise;
   }

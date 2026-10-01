@@ -1,6 +1,6 @@
 export class CboeAdapter {
   getInsertQueryAndValues(task, data) {
-    if (!data || data.length === 0) return null;
+    if (!data || data.length === 0) return { query: null, values: [] };
 
     if (task.dataset === 'pcr') {
       const query = `

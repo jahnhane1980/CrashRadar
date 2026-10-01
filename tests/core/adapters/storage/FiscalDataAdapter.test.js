@@ -44,6 +44,13 @@ describe('FiscalDataAdapter', () => {
 
     const result = adapter.getInsertQueryAndValues(task, data);
     expect(result.query).toContain('INSERT INTO fiscal_buybacks');
+    expect(result.query).toContain('ON DUPLICATE KEY UPDATE');
+    expect(result.query).toContain('settlement_date = VALUES(settlement_date)');
+    expect(result.query).toContain('operation_type = VALUES(operation_type)');
+    expect(result.query).toContain('security_type = VALUES(security_type)');
+    expect(result.query).toContain('maturity_bucket = VALUES(maturity_bucket)');
+    expect(result.query).toContain('total_offered = VALUES(total_offered)');
+    expect(result.query).toContain('total_accepted = VALUES(total_accepted)');
     expect(result.values[0]).toEqual([
       '2026-08-25',
       '2026-08-26',

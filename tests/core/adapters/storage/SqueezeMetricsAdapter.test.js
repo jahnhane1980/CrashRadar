@@ -21,21 +21,21 @@ describe('SqueezeMetricsAdapter', () => {
         expect(result.values[1]).toEqual(['2024-01-02', 4750.1, 46.1, 2.5]);
     });
 
-    it('sollte null zurückgeben, wenn data leer, null oder undefined ist', () => {
+    it('sollte { query: null, values: [] } zurückgeben, wenn data leer, null oder undefined ist', () => {
         const adapter = new SqueezeMetricsAdapter();
         const task = { id: 'squeezemetrics_dix' };
 
-        expect(adapter.getInsertQueryAndValues(task, null)).toBeNull();
-        expect(adapter.getInsertQueryAndValues(task, undefined)).toBeNull();
-        expect(adapter.getInsertQueryAndValues(task, [])).toBeNull();
+        expect(adapter.getInsertQueryAndValues(task, null)).toEqual({ query: null, values: [] });
+        expect(adapter.getInsertQueryAndValues(task, undefined)).toEqual({ query: null, values: [] });
+        expect(adapter.getInsertQueryAndValues(task, [])).toEqual({ query: null, values: [] });
     });
 
-    it('sollte null zurückgeben, wenn die task.id falsch ist', () => {
+    it('sollte { query: null, values: [] } zurückgeben, wenn die task.id falsch ist', () => {
         const adapter = new SqueezeMetricsAdapter();
         const task = { id: 'falsche_id' };
         const data = [{ record_date: '2024-01-01' }];
 
-        expect(adapter.getInsertQueryAndValues(task, data)).toBeNull();
+        expect(adapter.getInsertQueryAndValues(task, data)).toEqual({ query: null, values: [] });
     });
 
     // --- HARTE EDGE CASES ---

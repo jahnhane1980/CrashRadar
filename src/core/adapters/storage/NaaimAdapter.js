@@ -1,6 +1,6 @@
 export class NaaimAdapter {
     getInsertQueryAndValues(task, data) {
-        if (!data || data.length === 0) return null;
+        if (!data || data.length === 0) return { query: null, values: [] };
 
         if (task.id === 'naaim_exposure') {
             const query = `
@@ -16,6 +16,6 @@ export class NaaimAdapter {
             return { query, values };
         }
 
-        return null;
+        return { query: null, values: [] };
     }
 }

@@ -1,6 +1,6 @@
 export class FinraAdapter {
   getInsertQueryAndValues(task, data) {
-    if (!data || data.length === 0) return null;
+    if (!data || data.length === 0) return { query: null, values: [] };
 
     if (task.dataset === 'short_volume') {
       const query = `
@@ -21,22 +21,26 @@ export class FinraAdapter {
       return { query, values };
     }
 
-    const query = `
-        INSERT INTO macro_margin_debt (record_date, margin_debt, free_credit_cash, free_credit_margin)
-        VALUES ?
-        ON DUPLICATE KEY UPDATE 
-            margin_debt = VALUES(margin_debt),
-            free_credit_cash = VALUES(free_credit_cash),
-            free_credit_margin = VALUES(free_credit_margin)
-    `;
+    if (task.id === 'finra_margin_debt' || task.dataset === 'margin_debt' || (!task.dataset && task.id && task.id.startsWith('finra'))) {
+      const query = `
+          INSERT INTO macro_margin_debt (record_date, margin_debt, free_credit_cash, free_credit_margin)
+          VALUES ?
+          ON DUPLICATE KEY UPDATE 
+              margin_debt = VALUES(margin_debt),
+              free_credit_cash = VALUES(free_credit_cash),
+              free_credit_margin = VALUES(free_credit_margin)
+      `;
 
-    const values = data.map(item => [
-        item.record_date,
-        item.margin_debt,
-        item.free_credit_cash,
-        item.free_credit_margin
-    ]);
+      const values = data.map(item => [
+          item.record_date,
+          item.margin_debt,
+          item.free_credit_cash,
+          item.free_credit_margin
+      ]);
 
-    return { query, values };
+      return { query, values };
+    }
+
+    return { query: null, values: [] };
   }
 }

@@ -227,4 +227,21 @@ describe('Storage Class (MySQL)', () => {
     expect(mockConnection.rollback).toHaveBeenCalled();
     expect(mockConnection.release).toHaveBeenCalled();
   });
+
+  it('sollte defensive destructuring fallback nutzen wenn getInsertQueryAndValues null zurückgibt', async () => {
+    const storage = new Storage({});
+    const task = { id: 'dummy_task', provider: 'FiscalData' };
+    const mockData = [{ record_date: '2021-01-01' }];
+
+    const { StorageAdapterFactory } = await import('../../src/core/adapters/storage/StorageAdapterFactory.js');
+    const mockAdapter = { getInsertQueryAndValues: vi.fn().mockReturnValue(null) };
+    vi.spyOn(StorageAdapterFactory, 'getAdapter').mockReturnValue(mockAdapter);
+
+    await storage.insertDataAndState(task, mockData, mockData[0]);
+
+    // Data query should NOT be run, only sync_states
+    expect(mockConnection.query).toHaveBeenCalledTimes(1);
+    expect(mockConnection.query.mock.calls[0][0]).toContain('INSERT INTO sync_states');
+    expect(mockConnection.commit).toHaveBeenCalled();
+  });
 });

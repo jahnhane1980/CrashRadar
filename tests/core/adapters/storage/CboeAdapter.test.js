@@ -41,7 +41,7 @@ describe('CboeAdapter', () => {
     expect(result.values[0]).toEqual(['2026-06-01', 1.0, 0.8, 1.2]);
   });
   
-  it('sollte null zurückgeben wenn daten leer sind', () => {
-    expect(adapter.getInsertQueryAndValues({}, [])).toBeNull();
+  it('sollte { query: null, values: [] } zurückgeben wenn daten leer sind', () => {
+    expect(adapter.getInsertQueryAndValues({}, [])).toEqual({ query: null, values: [] });
   });
 });

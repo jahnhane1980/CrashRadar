@@ -1,6 +1,45 @@
 export class YahooFinanceAdapter {
   getInsertQueryAndValues(task, data) {
+    if (!data || data.length === 0) return { query: null, values: [] };
+
     const symbol = task.ticker;
+
+    if (task.method === 'options') {
+      const targetTable = task.targetTable !== undefined ? task.targetTable : 'market_data_options_wall';
+      if (!targetTable) {
+        return { query: null, values: [] };
+      }
+      const query = `
+        INSERT INTO ${targetTable} (symbol, record_date, call_wall_strike, call_wall_oi, put_wall_strike, put_wall_oi)
+        VALUES ?
+        ON DUPLICATE KEY UPDATE
+          call_wall_strike = VALUES(call_wall_strike),
+          call_wall_oi = VALUES(call_wall_oi),
+          put_wall_strike = VALUES(put_wall_strike),
+          put_wall_oi = VALUES(put_wall_oi)
+      `;
+      const values = data.map(item => {
+        let dateStr;
+        const dVal = item.date || item.record_date;
+        if (!dVal) throw new Error(`Missing date in YahooFinance options data for ${symbol}`);
+        if (typeof dVal === 'string') {
+          dateStr = dVal.substring(0, 10);
+        } else {
+          const d = dVal instanceof Date ? dVal : new Date(dVal);
+          if (isNaN(d.getTime())) throw new Error(`Invalid date in YahooFinance options data for ${symbol}: ${dVal}`);
+          dateStr = d.toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+        }
+        return [
+          item.ticker || symbol,
+          dateStr,
+          item.call_wall_strike,
+          item.call_wall_oi,
+          item.put_wall_strike,
+          item.put_wall_oi
+        ];
+      });
+      return { query, values };
+    }
     
     if (task.method === 'fundamentals') {
       const query = `

@@ -1,6 +1,6 @@
 export class AaiiAdapter {
     getInsertQueryAndValues(task, data) {
-        if (!data || data.length === 0) return null;
+        if (!data || data.length === 0) return { query: null, values: [] };
 
         if (task.id === 'aaii_sentiment') {
             const query = `
@@ -22,6 +22,6 @@ export class AaiiAdapter {
             return { query, values };
         }
 
-        return null;
+        return { query: null, values: [] };
     }
 }

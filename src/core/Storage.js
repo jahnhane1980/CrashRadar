@@ -28,7 +28,7 @@ export class Storage {
     try {
       // 1. Insert Data via Adapter
       const adapter = StorageAdapterFactory.getAdapter(task.provider);
-      const { query, values } = adapter.getInsertQueryAndValues(task, data);
+      const { query, values } = adapter.getInsertQueryAndValues(task, data) || { query: null, values: [] };
       
       if (query && values && values.length > 0) {
         await connection.query(query, [values]);
