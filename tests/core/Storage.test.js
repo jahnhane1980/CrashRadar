@@ -282,14 +282,14 @@ describe('Storage Class (MySQL)', () => {
   });
 
   describe('MySQL Mutex Locking', () => {
-    it('sollte acquireLock() ausführen und true zurückgeben wenn affectedRows > 0', async () => {
+    it('sollte acquireLock() atomar ausführen und true zurückgeben wenn affectedRows === 1', async () => {
       mockPool.query.mockResolvedValueOnce([{ affectedRows: 1 }]);
       const storage = new Storage({});
       const acquired = await storage.acquireLock('m5_sync_lock', 600);
 
       expect(mockPool.query).toHaveBeenCalledWith(
-        expect.stringContaining('INSERT INTO sync_locks (lock_key, expires_at)'),
-        ['m5_sync_lock', 600]
+        expect.stringContaining('INSERT INTO sync_locks (lock_key, acquired_at, expires_at)'),
+        ['m5_sync_lock', 600, 'm5_sync_lock']
       );
       expect(acquired).toBe(true);
     });
@@ -300,6 +300,34 @@ describe('Storage Class (MySQL)', () => {
       const acquired = await storage.acquireLock('m5_sync_lock', 600);
 
       expect(acquired).toBe(false);
+    });
+
+    it('sollte acquireLock() false zurückgeben wenn affectedRows !== 1 (z.B. affectedRows === 2)', async () => {
+      mockPool.query.mockResolvedValueOnce([{ affectedRows: 2 }]);
+      const storage = new Storage({});
+      const acquired = await storage.acquireLock('m5_sync_lock', 600);
+
+      expect(acquired).toBe(false);
+    });
+
+    it('sollte renewLock() ausführen und true zurückgeben wenn Lock aktiv ist (affectedRows > 0)', async () => {
+      mockPool.query.mockResolvedValueOnce([{ affectedRows: 1 }]);
+      const storage = new Storage({});
+      const renewed = await storage.renewLock('m5_sync_lock', 600);
+
+      expect(mockPool.query).toHaveBeenCalledWith(
+        expect.stringMatching(/UPDATE\s+sync_locks\s+SET\s+expires_at\s*=\s*DATE_ADD\(NOW\(\),\s*INTERVAL\s*\?\s*SECOND\)\s+WHERE\s+lock_key\s*=\s*\?\s+AND\s+expires_at\s*>\s*NOW\(\)/i),
+        [600, 'm5_sync_lock']
+      );
+      expect(renewed).toBe(true);
+    });
+
+    it('sollte renewLock() false zurückgeben wenn Lock bereits abgelaufen ist (affectedRows === 0)', async () => {
+      mockPool.query.mockResolvedValueOnce([{ affectedRows: 0 }]);
+      const storage = new Storage({});
+      const renewed = await storage.renewLock('m5_sync_lock', 600);
+
+      expect(renewed).toBe(false);
     });
 
     it('sollte releaseLock() ausführen und den Lock löschen', async () => {

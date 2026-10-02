@@ -69,13 +69,28 @@ export class Storage {
   }
 
   async acquireLock(lockKey, ttlSeconds = 600) {
+    if (!this.pool) return false;
     const query = `
-      INSERT INTO sync_locks (lock_key, expires_at)
-      VALUES (?, DATE_ADD(NOW(), INTERVAL ? SECOND))
-      ON DUPLICATE KEY UPDATE
-        expires_at = IF(expires_at < NOW(), VALUES(expires_at), expires_at);
+      INSERT INTO sync_locks (lock_key, acquired_at, expires_at)
+      SELECT ?, NOW(), DATE_ADD(NOW(), INTERVAL ? SECOND)
+      FROM DUAL
+      WHERE NOT EXISTS (
+        SELECT 1 FROM sync_locks
+        WHERE lock_key = ? AND expires_at > NOW()
+      );
     `;
-    const [result] = await this.pool.query(query, [lockKey, ttlSeconds]);
+    const [result] = await this.pool.query(query, [lockKey, ttlSeconds, lockKey]);
+    return Boolean(result && result.affectedRows === 1);
+  }
+
+  async renewLock(lockKey, ttlSeconds = 600) {
+    if (!this.pool) return false;
+    const query = `
+      UPDATE sync_locks
+      SET expires_at = DATE_ADD(NOW(), INTERVAL ? SECOND)
+      WHERE lock_key = ? AND expires_at > NOW();
+    `;
+    const [result] = await this.pool.query(query, [ttlSeconds, lockKey]);
     return Boolean(result && result.affectedRows > 0);
   }
 
