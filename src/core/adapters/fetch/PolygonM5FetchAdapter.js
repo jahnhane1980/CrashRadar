@@ -1,25 +1,25 @@
 import { Logger } from '../../Logger.js';
 
 export class PolygonM5FetchAdapter {
-  constructor(options = {}) {
-    this.minDelay = options.minDelay ?? 12500;
-    this.rateLimitRetryDelay = options.rateLimitRetryDelay ?? 65000;
-    this.max429Retries = options.max429Retries ?? 3;
-    this.lastRequestTime = 0;
+  constructor(requestManagerOrOptions = null, options = {}) {
+    if (requestManagerOrOptions && typeof requestManagerOrOptions.fetch === 'function') {
+      this.requestManager = requestManagerOrOptions;
+      this.options = options || {};
+    } else if (requestManagerOrOptions && typeof requestManagerOrOptions === 'object') {
+      this.options = requestManagerOrOptions;
+      this.requestManager = requestManagerOrOptions.requestManager || null;
+    } else {
+      this.options = options || {};
+      this.requestManager = null;
+    }
+  }
+
+  setRequestManager(requestManager) {
+    this.requestManager = requestManager;
   }
 
   async wait(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
-  async _throttle() {
-    if (this.lastRequestTime > 0) {
-      const elapsed = Date.now() - this.lastRequestTime;
-      if (elapsed < this.minDelay) {
-        await this.wait(this.minDelay - elapsed);
-      }
-    }
-    this.lastRequestTime = Date.now();
   }
 
   _calculateFromMs(startValue, provider, task) {
@@ -53,52 +53,50 @@ export class PolygonM5FetchAdapter {
     return fromMs;
   }
 
-  async _fetchWithRetry(url) {
-    let attempts = 0;
-    const maxRetries = this.max429Retries;
+  _buildHeaders(provider) {
+    const headers = { ...(provider?.headers || {}) };
 
-    while (true) {
-      await this._throttle();
-
-      const headers = {
-        Authorization: `Bearer ${process.env.POLYGONIO_API_KEY}`
-      };
-
-      const response = await fetch(url, { headers });
-      this.lastRequestTime = Date.now();
-
-      if (response.status === 429) {
-        if (attempts < maxRetries) {
-          attempts++;
-          Logger.warn(`[PolygonM5FetchAdapter] HTTP 429 rate limit exceeded. Sleeping ${this.rateLimitRetryDelay}ms before retry ${attempts}/${maxRetries}...`);
-          await this.wait(this.rateLimitRetryDelay);
-          this.lastRequestTime = 0;
-          continue;
+    if (provider?.auth) {
+      const envVar = provider.auth.envVar;
+      const authVal = envVar ? process.env[envVar] : null;
+      if (!authVal) {
+        Logger.warn(`[PolygonM5FetchAdapter] Missing environment variable ${envVar}`);
+      } else {
+        const type = provider.auth.type || 'header';
+        if (type === 'header') {
+          const key = provider.auth.key || 'Authorization';
+          const prefix = provider.auth.prefix ?? 'Bearer ';
+          headers[key] = `${prefix}${authVal}`;
         }
-        throw new Error(`HTTP 429: Rate limit exceeded after ${maxRetries} retries`);
       }
-
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-      }
-
-      return await response.json();
+    } else if (process.env.POLYGONIO_API_KEY) {
+      headers.Authorization = `Bearer ${process.env.POLYGONIO_API_KEY}`;
     }
+
+    return headers;
   }
 
   async fetch(task, provider, startValue, requestManager) {
+    const rm = requestManager || this.requestManager;
+    if (!rm || typeof rm.fetch !== 'function') {
+      throw new Error('[PolygonM5FetchAdapter] RequestManager is required');
+    }
+
     const fromMs = this._calculateFromMs(startValue, provider, task);
 
     if (fromMs >= Date.now()) {
       return [];
     }
 
+    const providerId = task?.provider || (typeof provider === 'string' ? provider : provider?.id || provider?.name) || 'PolygonM5';
     const baseUrl = provider?.baseUrl || 'https://api.polygon.io/v2';
+    const headers = this._buildHeaders(provider);
+
     let currentUrl = `${baseUrl}/aggs/ticker/${task.ticker}/range/5/minute/${fromMs}/${Date.now()}?adjusted=true&sort=asc&limit=50000`;
     const results = [];
 
     while (currentUrl) {
-      const data = await this._fetchWithRetry(currentUrl);
+      const data = await rm.fetch(currentUrl, providerId, { headers });
 
       if (data && Array.isArray(data.results)) {
         for (const item of data.results) {

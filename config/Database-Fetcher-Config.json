@@ -158,7 +158,15 @@
       "type": "package",
       "baseUrl": "https://api.polygon.io/v2",
       "overrideStartDate": "2024-01-01",
-      "concurrency": 1
+      "concurrency": 1,
+      "requestsPerSecond": 0.08,
+      "maxRetries": 3,
+      "auth": {
+        "type": "header",
+        "key": "Authorization",
+        "prefix": "Bearer ",
+        "envVar": "POLYGONIO_API_KEY"
+      }
     }
   },
   "tasks": [
