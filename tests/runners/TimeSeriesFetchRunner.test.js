@@ -3,6 +3,7 @@ import { TimeSeriesFetchRunner, DataFetchRunner } from '../../src/runners/TimeSe
 import { StandardRunner } from '../../src/runners/StandardRunner.js';
 import { TestRunner } from '../../src/runners/TestRunner.js';
 import { Logger } from '../../src/core/Logger.js';
+import { ErrorRegistry } from '../../src/core/ErrorRegistry.js';
 
 describe('TimeSeriesFetchRunner', () => {
   let mockStorage;
@@ -17,7 +18,13 @@ describe('TimeSeriesFetchRunner', () => {
 
     mockStorage = { close: vi.fn().mockResolvedValue() };
     mockFetcher = { runAllTasks: vi.fn().mockResolvedValue() };
-    mockErrorRegistry = { hasErrors: vi.fn().mockReturnValue(false) };
+    mockErrorRegistry = {
+      hasErrors: vi.fn().mockReturnValue(false),
+      hasWarnings: vi.fn().mockReturnValue(false),
+      addError: vi.fn(),
+      addWarning: vi.fn(),
+      getSummary: vi.fn().mockReturnValue('')
+    };
     mockRunner = { run: vi.fn().mockResolvedValue(), cleanup: vi.fn().mockResolvedValue() };
   });
 
@@ -341,5 +348,62 @@ describe('TimeSeriesFetchRunner', () => {
     await runner.run();
 
     expect(runner.storage).toBe(mockStorage);
+  });
+
+  it('injiziert die ErrorRegistry in den Logger und sammelt Logger.error() konsistent', async () => {
+    vi.restoreAllMocks(); // Spies aufheben, damit Logger und ErrorRegistry real interagieren
+    const realErrorRegistry = new ErrorRegistry();
+    let runnerCapturedRegistry = null;
+
+    const runner = new TimeSeriesFetchRunner(
+      { test: false },
+      {
+        dbUrl: 'mysql://test:test@localhost/crashradar',
+        config: { globalStartDate: '2020-01-01' },
+        storage: mockStorage,
+        fetcher: mockFetcher,
+        errorRegistry: realErrorRegistry,
+        runner: {
+          run: vi.fn().mockImplementation(async () => {
+            runnerCapturedRegistry = Logger.registry;
+            Logger.error('[Storage] Connection dropped during task');
+          })
+        }
+      }
+    );
+
+    await runner.run();
+
+    expect(runnerCapturedRegistry).toBe(realErrorRegistry);
+    expect(realErrorRegistry.hasErrors()).toBe(true);
+    expect(realErrorRegistry.getSummary()).toContain('- [Storage] Connection dropped during task');
+  });
+
+  it('erstellt eine ErrorRegistry und injiziert sie in den Logger wenn keine dependency übergeben wird', async () => {
+    vi.restoreAllMocks();
+    let runnerCapturedRegistry = null;
+
+    const runner = new TimeSeriesFetchRunner(
+      { test: false },
+      {
+        dbUrl: 'mysql://test:test@localhost/crashradar',
+        config: { globalStartDate: '2020-01-01' },
+        storage: mockStorage,
+        fetcher: mockFetcher,
+        runner: {
+          run: vi.fn().mockImplementation(async () => {
+            runnerCapturedRegistry = Logger.registry;
+            Logger.error('[Fetch] API rate limit exceeded');
+          })
+        }
+      }
+    );
+
+    await runner.run();
+
+    expect(runnerCapturedRegistry).toBeDefined();
+    expect(runner.errorRegistry).toBe(runnerCapturedRegistry);
+    expect(runnerCapturedRegistry.hasErrors()).toBe(true);
+    expect(runnerCapturedRegistry.getSummary()).toContain('- [Fetch] API rate limit exceeded');
   });
 });

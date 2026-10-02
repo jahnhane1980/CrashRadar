@@ -1,5 +1,3 @@
-import { ErrorRegistry } from './ErrorRegistry.js';
-
 export const LOG_LEVELS = {
   DEBUG: 0,
   INFO: 1,
@@ -12,7 +10,15 @@ class LoggerClass {
   constructor() {
     // Standardmäßig auf INFO, in Prod (oder via .env) kann man es auf WARN stellen
     this.level = this._parseLogLevel(process.env.LOG_LEVEL) || LOG_LEVELS.INFO;
-    this.registry = new ErrorRegistry();
+    this.registry = null;
+  }
+
+  setRegistry(registry) {
+    this.registry = registry;
+  }
+
+  getRegistry() {
+    return this.registry;
   }
 
   _parseLogLevel(levelStr) {
@@ -69,21 +75,27 @@ class LoggerClass {
     if (this.level <= LOG_LEVELS.WARN) {
       console.warn(`\x1b[33m${this._formatMessage('WARN', message)}\x1b[0m`, ...optionalParams);
     }
-    const { context, fullMsg } = this._parseContext(message, optionalParams);
-    this.registry.addWarning(context, fullMsg);
+    if (this.registry && typeof this.registry.addWarning === 'function') {
+      const { context, fullMsg } = this._parseContext(message, optionalParams);
+      this.registry.addWarning(context, fullMsg);
+    }
   }
 
   error(message, ...optionalParams) {
     if (this.level <= LOG_LEVELS.ERROR) {
       console.error(`\x1b[31m${this._formatMessage('ERROR', message)}\x1b[0m`, ...optionalParams);
     }
-    const { context, fullMsg } = this._parseContext(message, optionalParams);
-    this.registry.addError(context, fullMsg);
+    if (this.registry && typeof this.registry.addError === 'function') {
+      const { context, fullMsg } = this._parseContext(message, optionalParams);
+      this.registry.addError(context, fullMsg);
+    }
   }
 
   fatal(message, ...optionalParams) {
-    const { context, fullMsg } = this._parseContext(message, optionalParams);
-    this.registry.addError(context, fullMsg);
+    if (this.registry && typeof this.registry.addError === 'function') {
+      const { context, fullMsg } = this._parseContext(message, optionalParams);
+      this.registry.addError(context, fullMsg);
+    }
     if (this.level <= LOG_LEVELS.FATAL) {
       console.error(`\x1b[41m\x1b[37m${this._formatMessage('FATAL', message)}\x1b[0m`, ...optionalParams);
       // Hard crash as requested
@@ -92,23 +104,23 @@ class LoggerClass {
   }
 
   hasIssues() {
-    return this.registry.hasErrors() || this.registry.hasWarnings();
+    return Boolean(this.registry?.hasErrors?.() || this.registry?.hasWarnings?.());
   }
 
   hasErrors() {
-    return this.registry.hasErrors();
+    return Boolean(this.registry?.hasErrors?.());
   }
 
   hasWarnings() {
-    return this.registry.hasWarnings();
+    return Boolean(this.registry?.hasWarnings?.());
   }
 
   getSummary() {
-    return this.registry.getSummary();
+    return this.registry?.getSummary?.() || '';
   }
 
   reset() {
-    this.registry = new ErrorRegistry();
+    this.registry = null;
   }
 }
 

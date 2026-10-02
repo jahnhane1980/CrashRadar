@@ -20,6 +20,7 @@ export class TimeSeriesFetchRunner {
     this.dependencies = dependencies;
     this.activeRunner = null;
     this.storage = dependencies.storage || null;
+    this.errorRegistry = dependencies.errorRegistry || null;
     this.heartbeatInterval = null;
   }
 
@@ -56,7 +57,9 @@ export class TimeSeriesFetchRunner {
     const storage = this.dependencies.storage || new Storage({ databaseUrl: dbUrl });
     this.storage = storage;
     const requestManager = this.dependencies.requestManager || new RequestManager(config);
-    const errorRegistry = this.dependencies.errorRegistry || new ErrorRegistry();
+    const errorRegistry = this.dependencies.errorRegistry || this.errorRegistry || new ErrorRegistry();
+    this.errorRegistry = errorRegistry;
+    Logger.setRegistry(errorRegistry);
     const ntfyTopic = process.env.NTFY_TOPIC || this.dependencies.ntfyTopic;
     const ntfyService = this.dependencies.ntfyService !== undefined 
       ? this.dependencies.ntfyService 

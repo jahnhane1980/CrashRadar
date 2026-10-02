@@ -6,5 +6,5 @@
 - [x] Task 4: PolygonM5FetchAdapter Refactoring (src/core/adapters/fetch/)
 - [x] Task 5: SecEdgar13F In-Memory Parsing (src/core/adapters/fetch/)
 - [x] Task 6: RequestManager Cache Eviction & Failure Handling (src/core/RequestManager.js)
-- [ ] Task 7: Logger & ErrorRegistry Entkopplung (src/core/Logger.js, src/runners/)
+- [x] Task 7: Logger & ErrorRegistry Entkopplung (src/core/Logger.js, src/runners/)
 - [ ] Task 8: Config Template Expansion Engine (src/runners/, config/)

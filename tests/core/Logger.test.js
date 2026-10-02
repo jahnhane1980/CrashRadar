@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { Logger, LOG_LEVELS } from '../../src/core/Logger.js';
+import { ErrorRegistry } from '../../src/core/ErrorRegistry.js';
 
 describe('Logger', () => {
     let consoleLogSpy;
@@ -113,8 +114,32 @@ describe('Logger', () => {
         expect(processExitSpy).toHaveBeenCalledWith(1);
     });
 
-    it('should record warnings and errors into internal ErrorRegistry and generate summary', () => {
+    it('should not have an ErrorRegistry instantiated internally by default', () => {
         Logger.reset();
+        expect(Logger.registry).toBeNull();
+        expect(Logger.hasIssues()).toBe(false);
+    });
+
+    it('should format and output warnings and errors without throwing when registry is null', () => {
+        Logger.reset();
+        Logger.setLevel('DEBUG');
+
+        expect(() => {
+            Logger.warn('[NoRegistry] Warning test');
+            Logger.error('[NoRegistry] Error test');
+        }).not.toThrow();
+
+        expect(consoleWarnSpy).toHaveBeenCalledTimes(1);
+        expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
+        expect(Logger.hasIssues()).toBe(false);
+    });
+
+    it('should allow injecting an external ErrorRegistry via setRegistry() and record errors into it', () => {
+        Logger.reset();
+        const registry = new ErrorRegistry();
+        Logger.setRegistry(registry);
+
+        expect(Logger.registry).toBe(registry);
         expect(Logger.hasIssues()).toBe(false);
 
         Logger.warn('[ML-Regime] Missing model file');
@@ -130,6 +155,7 @@ describe('Logger', () => {
         expect(summary).toContain('⚠️ WARNUNGEN:\n- [ML-Regime] Missing model file');
 
         Logger.reset();
+        expect(Logger.registry).toBeNull();
         expect(Logger.hasIssues()).toBe(false);
     });
 });
