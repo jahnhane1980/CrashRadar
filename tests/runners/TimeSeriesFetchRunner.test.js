@@ -406,4 +406,203 @@ describe('TimeSeriesFetchRunner', () => {
     expect(runnerCapturedRegistry.hasErrors()).toBe(true);
     expect(runnerCapturedRegistry.getSummary()).toContain('- [Fetch] API rate limit exceeded');
   });
+
+  describe('expandTemplates', () => {
+    it('löst $template-Referenzen gegen ein templates-Wurzelobjekt auf und merged tasks-Spezifika ein', () => {
+      const config = {
+        templates: {
+          fred_series: {
+            provider: 'FRED',
+            endpoint: '/fred/series/observations',
+            params: {
+              file_type: 'json'
+            }
+          }
+        },
+        tasks: [
+          {
+            $template: 'fred_series',
+            id: 'fred_walcl',
+            series_id: 'WALCL'
+          },
+          {
+            id: 'custom_task',
+            provider: 'Binance',
+            endpoint: '/api/v3/klines'
+          }
+        ]
+      };
+
+      const result = TimeSeriesFetchRunner.expandTemplates(config);
+
+      expect(result.tasks).toHaveLength(2);
+      expect(result.tasks[0]).toEqual({
+        provider: 'FRED',
+        endpoint: '/fred/series/observations',
+        params: {
+          file_type: 'json',
+          series_id: 'WALCL'
+        },
+        id: 'fred_walcl',
+        series_id: 'WALCL'
+      });
+      expect(result.tasks[1]).toEqual({
+        id: 'custom_task',
+        provider: 'Binance',
+        endpoint: '/api/v3/klines'
+      });
+    });
+
+    it('unterstützt explizite params-Verschachtelung und Template-Overrides', () => {
+      const config = {
+        templates: {
+          fred_series: {
+            provider: 'FRED',
+            endpoint: '/fred/series/observations',
+            params: {
+              file_type: 'json',
+              frequency: 'm'
+            }
+          }
+        },
+        tasks: [
+          {
+            $template: 'fred_series',
+            id: 'fred_custom',
+            params: {
+              series_id: 'CPI',
+              frequency: 'd'
+            }
+          }
+        ]
+      };
+
+      const result = TimeSeriesFetchRunner.expandTemplates(config);
+
+      expect(result.tasks[0].params).toEqual({
+        file_type: 'json',
+        frequency: 'd',
+        series_id: 'CPI'
+      });
+      expect(result.tasks[0].series_id).toBe('CPI');
+    });
+
+    it('interpoliert Platzhalter im Endpoint wie {ticker}', () => {
+      const config = {
+        templates: {
+          tiingo_daily: {
+            provider: 'Tiingo',
+            endpoint: '/tiingo/daily/{ticker}/prices',
+            params: {},
+            resolution: 'daily'
+          }
+        },
+        tasks: [
+          {
+            $template: 'tiingo_daily',
+            id: 'tiingo_spy_daily',
+            ticker: 'SPY'
+          }
+        ]
+      };
+
+      const result = TimeSeriesFetchRunner.expandTemplates(config);
+
+      expect(result.tasks[0].endpoint).toBe('/tiingo/daily/SPY/prices');
+      expect(result.tasks[0].ticker).toBe('SPY');
+      expect(result.tasks[0].provider).toBe('Tiingo');
+    });
+
+    it('wirft einen Fehler wenn ein referenziertes Template nicht existiert', () => {
+      const config = {
+        templates: {},
+        tasks: [
+          {
+            $template: 'non_existent',
+            id: 'task_missing'
+          }
+        ]
+      };
+
+      expect(() => TimeSeriesFetchRunner.expandTemplates(config)).toThrow(
+        /Template 'non_existent' referenced in task 'task_missing' not found/
+      );
+    });
+
+    it('expandiert Templates im run()-Zyklus vor der Task-Filterung und Runner-Ausführung', async () => {
+      let passedConfig = null;
+      const mockRunner = {
+        run: vi.fn().mockImplementation(async () => {}),
+        cleanup: vi.fn()
+      };
+
+      const rawConfig = {
+        globalStartDate: '2020-01-01',
+        templates: {
+          fred_series: {
+            provider: 'FRED',
+            endpoint: '/fred/series/observations',
+            params: { file_type: 'json' }
+          }
+        },
+        tasks: [
+          {
+            $template: 'fred_series',
+            id: 'fred_walcl',
+            series_id: 'WALCL'
+          }
+        ]
+      };
+
+      const runner = new TimeSeriesFetchRunner(
+        { test: false },
+        {
+          dbUrl: 'mysql://test:test@localhost/crashradar',
+          config: rawConfig,
+          storage: mockStorage,
+          fetcher: mockFetcher,
+          runner: {
+            run: vi.fn().mockImplementation(function() {
+              passedConfig = runner.activeRunner ? null : null;
+            })
+          }
+        }
+      );
+
+      // We spy on runner.expandTemplates
+      const expandSpy = vi.spyOn(runner, 'expandTemplates');
+      await runner.run();
+
+      expect(expandSpy).toHaveBeenCalled();
+      expect(rawConfig.tasks[0].provider).toBe('FRED');
+      expect(rawConfig.tasks[0].params.series_id).toBe('WALCL');
+    });
+
+    it('lädt Database-Fetcher-Config.json und expandiert alle konsolidierten FRED-Tasks erfolgreich', async () => {
+      const fs = await import('fs');
+      const path = await import('path');
+      const raw = fs.readFileSync(path.resolve('config/Database-Fetcher-Config.json'), 'utf8');
+      const cfg = JSON.parse(raw);
+
+      expect(cfg.templates).toBeDefined();
+      expect(cfg.templates.fred_series).toBeDefined();
+
+      const fredRawTasks = cfg.tasks.filter(t => t.$template === 'fred_series');
+      expect(fredRawTasks.length).toBeGreaterThanOrEqual(60);
+
+      const expanded = TimeSeriesFetchRunner.expandTemplates(cfg);
+      const expandedFredTasks = expanded.tasks.filter(t => t.id && t.id.startsWith('fred_'));
+      expect(expandedFredTasks.length).toBeGreaterThanOrEqual(60);
+
+      for (const t of expandedFredTasks) {
+        expect(t.provider).toBe('FRED');
+        expect(t.endpoint).toBe('/fred/series/observations');
+        expect(t.params).toBeDefined();
+        expect(t.params.file_type).toBe('json');
+        expect(typeof t.params.series_id).toBe('string');
+        expect(t.params.series_id.length).toBeGreaterThan(0);
+        expect(t.series_id).toBe(t.params.series_id);
+      }
+    });
+  });
 });

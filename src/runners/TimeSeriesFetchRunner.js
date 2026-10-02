@@ -41,6 +41,8 @@ export class TimeSeriesFetchRunner {
       config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
     }
 
+    config = this.expandTemplates(config);
+
     if (isTest) {
       TestRunner.applyTestConfigOverrides(config);
     }
@@ -127,6 +129,62 @@ export class TimeSeriesFetchRunner {
         }
       }
     }
+  }
+
+  expandTemplates(config) {
+    return TimeSeriesFetchRunner.expandTemplates(config);
+  }
+
+  static expandTemplates(config) {
+    if (!config || !Array.isArray(config.tasks)) {
+      return config;
+    }
+    const templates = config.templates || {};
+
+    config.tasks = config.tasks.map(task => {
+      if (!task || typeof task !== 'object' || !task.$template) {
+        return task;
+      }
+
+      const templateName = task.$template;
+      const template = templates[templateName];
+      if (!template) {
+        throw new Error(`Template '${templateName}' referenced in task '${task.id || 'unknown'}' not found in config.templates.`);
+      }
+
+      const { $template, ...taskSpecifics } = task;
+      const merged = JSON.parse(JSON.stringify(template));
+
+      for (const [key, value] of Object.entries(taskSpecifics)) {
+        if (key === 'params' && typeof value === 'object' && value !== null && !Array.isArray(value)) {
+          merged.params = {
+            ...(merged.params || {}),
+            ...value
+          };
+        } else {
+          merged[key] = value;
+        }
+      }
+
+      if (task.series_id) {
+        merged.params = merged.params || {};
+        merged.params.series_id = task.series_id;
+      } else if (merged.params && merged.params.series_id && !merged.series_id) {
+        merged.series_id = merged.params.series_id;
+      }
+
+      if (typeof merged.endpoint === 'string') {
+        merged.endpoint = merged.endpoint.replace(/\{(\w+)\}/g, (match, paramKey) => {
+          if (merged[paramKey] !== undefined) return merged[paramKey];
+          if (merged.params && merged.params[paramKey] !== undefined) return merged.params[paramKey];
+          return match;
+        });
+      }
+
+      return merged;
+    });
+
+    return config;
   }
 
   async cleanup() {

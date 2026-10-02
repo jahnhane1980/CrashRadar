@@ -7,4 +7,4 @@
 - [x] Task 5: SecEdgar13F In-Memory Parsing (src/core/adapters/fetch/)
 - [x] Task 6: RequestManager Cache Eviction & Failure Handling (src/core/RequestManager.js)
 - [x] Task 7: Logger & ErrorRegistry Entkopplung (src/core/Logger.js, src/runners/)
-- [ ] Task 8: Config Template Expansion Engine (src/runners/, config/)
+- [x] Task 8: Config Template Expansion Engine (src/runners/, config/)
