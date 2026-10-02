@@ -221,7 +221,7 @@ export class TimeSeriesFetcher {
       const lastRecord = syncState && syncState.cursor_data ? JSON.parse(syncState.cursor_data) : null;
       
       const startValue = this.getStartDate(task, provider, lastRecord);
-      const adapter = FetchAdapterFactory.get(task.provider);
+      const adapter = FetchAdapterFactory.getAdapter(task.provider);
       
       Logger.info(`[PackageFetcher] Fetching ${task.method || 'default'} for ${task.ticker || task.id}`);
       try {

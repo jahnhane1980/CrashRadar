@@ -13,4 +13,4 @@
 - [x] Task 11: Task-Level Lock-Guard & TOCTOU-Fix (src/services/TimeSeriesFetcher.js)
 - [x] Task 12: Fail-Fast in SqueezeMetrics & Aaii Adaptern (src/core/adapters/fetch/)
 - [x] Task 13: In-Memory CSV Stream Parsing in SqueezeMetrics (src/core/adapters/fetch/SqueezeMetricsFetchAdapter.js)
-- [ ] Task 14: Dynamische Registry für Adapter-Factories (src/core/adapters/)
+- [x] Task 14: Dynamische Registry für Adapter-Factories (src/core/adapters/)

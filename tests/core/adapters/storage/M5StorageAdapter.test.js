@@ -1,8 +1,11 @@
 import { describe, it, expect } from 'vitest';
 import { M5StorageAdapter } from '../../../../src/core/adapters/storage/M5StorageAdapter.js';
 import { StorageAdapterFactory } from '../../../../src/core/adapters/storage/StorageAdapterFactory.js';
+import { bootstrapAdapters } from '../../../../src/core/adapters/bootstrap.js';
 
 describe('M5StorageAdapter', () => {
+  bootstrapAdapters();
+
   const adapter = new M5StorageAdapter();
 
   it('should return { query: null, values: [] } when data is empty, null or undefined', () => {

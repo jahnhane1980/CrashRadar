@@ -3,6 +3,9 @@ import { fileURLToPath } from 'url';
 import { Command } from 'commander';
 import { Logger } from './src/core/Logger.js';
 import { TimeSeriesFetchRunner } from './src/runners/TimeSeriesFetchRunner.js';
+import { bootstrapAdapters } from './src/core/adapters/bootstrap.js';
+
+bootstrapAdapters();
 
 const __filename = fileURLToPath(import.meta.url);
 

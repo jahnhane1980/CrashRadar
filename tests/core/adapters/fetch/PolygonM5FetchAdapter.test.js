@@ -3,8 +3,11 @@ import { PolygonM5FetchAdapter } from '../../../../src/core/adapters/fetch/Polyg
 import { FetchAdapterFactory } from '../../../../src/core/adapters/fetch/FetchAdapterFactory.js';
 import { RequestManager } from '../../../../src/core/RequestManager.js';
 import { Logger } from '../../../../src/core/Logger.js';
+import { bootstrapAdapters } from '../../../../src/core/adapters/bootstrap.js';
 
 describe('PolygonM5FetchAdapter', () => {
+  bootstrapAdapters();
+
   let adapter;
   let mockRequestManager;
   const originalApiKey = process.env.POLYGONIO_API_KEY;
@@ -254,7 +257,7 @@ describe('PolygonM5FetchAdapter', () => {
   });
 
   it('should be registered in FetchAdapterFactory under key "PolygonM5"', () => {
-    const factoryAdapter = FetchAdapterFactory.get('PolygonM5');
+    const factoryAdapter = FetchAdapterFactory.getAdapter('PolygonM5');
     expect(factoryAdapter).toBeInstanceOf(PolygonM5FetchAdapter);
   });
 });

@@ -2,8 +2,11 @@ import { describe, it, expect } from 'vitest';
 import { StorageAdapterFactory } from '../../../../src/core/adapters/storage/StorageAdapterFactory.js';
 import { BinanceAdapter } from '../../../../src/core/adapters/storage/BinanceAdapter.js';
 import { TiingoAdapter } from '../../../../src/core/adapters/storage/TiingoAdapter.js';
+import { bootstrapAdapters } from '../../../../src/core/adapters/bootstrap.js';
 
 describe('StorageAdapterFactory', () => {
+  bootstrapAdapters();
+
   it('should return correct adapter for existing providers', () => {
     expect(StorageAdapterFactory.getAdapter('Binance')).toBeInstanceOf(BinanceAdapter);
     expect(StorageAdapterFactory.getAdapter('Tiingo')).toBeInstanceOf(TiingoAdapter);

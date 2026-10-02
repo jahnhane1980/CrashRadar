@@ -1,8 +1,11 @@
 import { describe, it, expect } from 'vitest';
 import { CalendarStorageAdapter } from '../../../../src/core/adapters/storage/CalendarStorageAdapter.js';
 import { StorageAdapterFactory } from '../../../../src/core/adapters/storage/StorageAdapterFactory.js';
+import { bootstrapAdapters } from '../../../../src/core/adapters/bootstrap.js';
 
 describe('CalendarStorageAdapter', () => {
+  bootstrapAdapters();
+
   const adapter = new CalendarStorageAdapter();
 
   it('should be registered in StorageAdapterFactory', () => {

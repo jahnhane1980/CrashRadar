@@ -10,8 +10,11 @@ vi.mock('mysql2/promise', () => {
 
 import mysql from 'mysql2/promise';
 import { Storage } from '../../src/core/Storage.js';
+import { bootstrapAdapters } from '../../src/core/adapters/bootstrap.js';
 
 describe('Storage Class (MySQL)', () => {
+  bootstrapAdapters();
+
   let mockConnection;
   let mockPool;
 

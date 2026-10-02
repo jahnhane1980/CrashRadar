@@ -1,10 +1,13 @@
 import { describe, it, expect, vi } from 'vitest';
 import { CalendarFetchAdapter } from '../../../../src/core/adapters/fetch/CalendarFetchAdapter.js';
 import { FetchAdapterFactory } from '../../../../src/core/adapters/fetch/FetchAdapterFactory.js';
+import { bootstrapAdapters } from '../../../../src/core/adapters/bootstrap.js';
 
 describe('CalendarFetchAdapter', () => {
+  bootstrapAdapters();
+
   it('should be registered in FetchAdapterFactory', () => {
-    const adapter = FetchAdapterFactory.get('Calendar');
+    const adapter = FetchAdapterFactory.getAdapter('Calendar');
     expect(adapter).toBeInstanceOf(CalendarFetchAdapter);
   });
 

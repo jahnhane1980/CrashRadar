@@ -1,45 +1,17 @@
-import { BinanceAdapter } from './BinanceAdapter.js';
-import { TiingoAdapter } from './TiingoAdapter.js';
-import { FredAdapter } from './FredAdapter.js';
-import { FiscalDataAdapter } from './FiscalDataAdapter.js';
-import { YahooFinanceAdapter } from './YahooFinanceAdapter.js';
-import { SecEdgarAdapter } from './SecEdgarAdapter.js';
-import { CboeAdapter } from './CboeAdapter.js';
-import { FinraAdapter } from './FinraAdapter.js';
-import { SqueezeMetricsAdapter } from './SqueezeMetricsAdapter.js';
-import { SecEdgar13FAdapter } from './SecEdgar13FAdapter.js';
-import { AaiiAdapter } from './AaiiAdapter.js';
-import { NaaimAdapter } from './NaaimAdapter.js';
-import { CalendarStorageAdapter } from './CalendarStorageAdapter.js';
-import { M5StorageAdapter } from './M5StorageAdapter.js';
-
-const adapters = {
-  'Binance': new BinanceAdapter(),
-  'Tiingo': new TiingoAdapter(),
-  'FRED': new FredAdapter(),
-  'FiscalData': new FiscalDataAdapter(),
-  'YahooFinance': new YahooFinanceAdapter(),
-  'SecEdgar': new SecEdgarAdapter(),
-  'Cboe': new CboeAdapter(),
-  'Finra': new FinraAdapter(),
-  'SqueezeMetrics': new SqueezeMetricsAdapter(),
-  'SecEdgar13F': new SecEdgar13FAdapter(),
-  'AAII': new AaiiAdapter(),
-  'NAAIM': new NaaimAdapter(),
-  'Calendar': new CalendarStorageAdapter(),
-  'PolygonM5': new M5StorageAdapter(),
-};
-
 export class StorageAdapterFactory {
+  static #adapters = new Map();
+
+  static register(type, adapterInstance) {
+    this.#adapters.set(type, adapterInstance);
+  }
+
   /**
    * Liefert den passenden Datenbank-Adapter für den gegebenen Provider.
-   * Keine if/else Kette, reines Objekt-Mapping O(1).
    */
   static getAdapter(providerName) {
-    const adapter = adapters[providerName];
-    if (!adapter) {
+    if (!this.#adapters.has(providerName)) {
       throw new Error(`No storage adapter found for provider: ${providerName}`);
     }
-    return adapter;
+    return this.#adapters.get(providerName);
   }
 }
