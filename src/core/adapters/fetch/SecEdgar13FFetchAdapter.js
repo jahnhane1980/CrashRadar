@@ -1,12 +1,31 @@
 import fs from 'fs';
 import path from 'path';
-import os from 'os';
+import { fileURLToPath } from 'url';
+import { Readable } from 'stream';
 import { Logger } from '../../Logger.js';
 import { Sec13FXmlParser } from '../../parsers/Sec13FXmlParser.js';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const DEFAULT_CONFIG_PATH = path.resolve(__dirname, '../../../../config/Smart-Money-Config.json');
+
 export class SecEdgar13FFetchAdapter {
-    constructor() {
+    constructor(config = null, configPath = DEFAULT_CONFIG_PATH) {
         this.parser = new Sec13FXmlParser();
+        this.configPath = configPath;
+        this.config = config !== null ? config : this.loadConfig();
+    }
+
+    loadConfig() {
+        if (!fs.existsSync(this.configPath)) {
+            throw new Error(`Config-Datei nicht gefunden: ${this.configPath}`);
+        }
+        return JSON.parse(fs.readFileSync(this.configPath, 'utf8'));
+    }
+
+    reloadConfig() {
+        this.config = this.loadConfig();
+        return this.config;
     }
 
     // Hilfsfunktion: Wartet x Millisekunden (wichtig für SEC Rate Limit 10/sec)
@@ -17,13 +36,8 @@ export class SecEdgar13FFetchAdapter {
     async fetch(task, provider, startDate, requestManager, storage = null) {
         Logger.info(`[SecEdgar13F] Hole 13F Holdings (Zeitraum ab: ${startDate || 'Beginn'})`);
         
-        // 1. Config laden
-        const configPath = path.join(process.cwd(), 'config', 'Smart-Money-Config.json');
-        if (!fs.existsSync(configPath)) {
-            throw new Error(`Config-Datei nicht gefunden: ${configPath}`);
-        }
-        
-        const smartMoneyConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+        // 1. Config laden / verwenden
+        const smartMoneyConfig = this.config || this.loadConfig();
         const allRecords = [];
 
         // 2. Ziel-Fonds filtern: nach CIK, nach Strategie oder alle aktiven
@@ -149,23 +163,14 @@ export class SecEdgar13FFetchAdapter {
                     });
                     await this.wait(200);
 
-                    // 4. XML auf Festplatte schreiben und speicherschonend via Sec13FXmlParser streamen
-                    const tempFilePath = path.join(os.tmpdir(), `13f_${cik}_${filing.reportDate}_${Date.now()}.xml`);
-                    fs.writeFileSync(tempFilePath, xmlText);
-                    
-                    try {
-                        const parsedHoldings = await this.parser.parseStream(tempFilePath, {
-                            cik: cik,
-                            reportDate: filing.reportDate,
-                            filingDate: filing.filingDate
-                        });
-                        allRecords.push(...parsedHoldings);
-                        Logger.info(`[SecEdgar13F] 🐋 ${fundInfo.name} [${filing.reportDate}]: ${parsedHoldings.length} Positionen geparst.`);
-                    } finally {
-                        if (fs.existsSync(tempFilePath)) {
-                            fs.unlinkSync(tempFilePath);
-                        }
-                    }
+                    // 4. XML speicherschonend direkt in-memory via Readable Stream und Sec13FXmlParser parsen
+                    const parsedHoldings = await this.parser.parseStream(Readable.from(xmlText), {
+                        cik: cik,
+                        reportDate: filing.reportDate,
+                        filingDate: filing.filingDate
+                    });
+                    allRecords.push(...parsedHoldings);
+                    Logger.info(`[SecEdgar13F] 🐋 ${fundInfo.name} [${filing.reportDate}]: ${parsedHoldings.length} Positionen geparst.`);
                 }
 
             } catch (err) {
@@ -178,7 +183,7 @@ export class SecEdgar13FFetchAdapter {
     }
 
     // Abwärtskompatibilitäts-Wrapper für Tests und Direktaufrufer
-    async parseXmlStream(filePath, reportDate, filingDate, cik) {
-        return this.parser.parseStream(filePath, reportDate, filingDate, cik);
+    async parseXmlStream(filePathOrStream, reportDate, filingDate, cik) {
+        return this.parser.parseStream(filePathOrStream, reportDate, filingDate, cik);
     }
 }

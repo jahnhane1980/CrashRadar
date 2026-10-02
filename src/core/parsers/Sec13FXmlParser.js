@@ -1,5 +1,6 @@
 import fs from 'fs';
 import readline from 'readline';
+import { Readable } from 'stream';
 
 /**
  * Sec13FXmlParser
@@ -10,14 +11,15 @@ import readline from 'readline';
 export class Sec13FXmlParser {
   /**
    * Parst ein 13F-XML speicherschonend zeilenweise als Stream.
+   * Unterstützt Dateipfade, Readable Streams, Buffers oder Strings direkt im Arbeitsspeicher.
    * 
-   * @param {string} filePath - Absoluter Pfad zur temporären XML-Datei
+   * @param {string|Readable|Buffer} input - Absoluter Pfad, Readable Stream, Buffer oder XML-String
    * @param {object|string} metaOrReportDate - Metadaten { cik, reportDate, filingDate } oder reportDate als String
    * @param {string} [filingDate] - Optional wenn metaOrReportDate String ist
    * @param {string} [cik] - Optional wenn metaOrReportDate String ist
    * @returns {Promise<Array<object>>} Array von Holdings-Objekten
    */
-  async parseStream(filePath, metaOrReportDate, filingDate, cik) {
+  async parseStream(input, metaOrReportDate, filingDate, cik) {
     let targetReportDate;
     let targetFilingDate;
     let targetCik;
@@ -33,12 +35,25 @@ export class Sec13FXmlParser {
     }
 
     const holdings = [];
-    if (!fs.existsSync(filePath)) {
+
+    let inputStream;
+    if (typeof input === 'string') {
+      if (input.includes('<')) {
+        inputStream = Readable.from(input);
+      } else if (fs.existsSync(input)) {
+        inputStream = fs.createReadStream(input);
+      } else {
+        return holdings;
+      }
+    } else if (Buffer.isBuffer(input)) {
+      inputStream = Readable.from(input.toString('utf8'));
+    } else if (input && (typeof input.pipe === 'function' || typeof input[Symbol.asyncIterator] === 'function')) {
+      inputStream = input;
+    } else {
       return holdings;
     }
 
-    const fileStream = fs.createReadStream(filePath);
-    const rl = readline.createInterface({ input: fileStream, crlfDelay: Infinity });
+    const rl = readline.createInterface({ input: inputStream, crlfDelay: Infinity });
 
     let inInfoTable = false;
     let block = '';

@@ -9,15 +9,6 @@ describe('SecEdgar13FFetchAdapter', () => {
     let originalReadFileSync;
 
     beforeEach(() => {
-        adapter = new SecEdgar13FFetchAdapter();
-        // Speed up the wait() method in tests to avoid slow tests
-        vi.spyOn(adapter, 'wait').mockResolvedValue();
-
-        task = {
-            id: 'sec_13f_smart_money',
-            provider: 'SecEdgar13F'
-        };
-
         // Mock Config File to only process 1 fund (Citadel) instead of 20
         originalReadFileSync = fs.readFileSync;
         vi.spyOn(fs, 'readFileSync').mockImplementation((filePath, options) => {
@@ -28,6 +19,15 @@ describe('SecEdgar13FFetchAdapter', () => {
             }
             return originalReadFileSync(filePath, options);
         });
+
+        adapter = new SecEdgar13FFetchAdapter();
+        // Speed up the wait() method in tests to avoid slow tests
+        vi.spyOn(adapter, 'wait').mockResolvedValue();
+
+        task = {
+            id: 'sec_13f_smart_money',
+            provider: 'SecEdgar13F'
+        };
 
         mockRequestManager = {
             fetch: vi.fn()
@@ -280,6 +280,8 @@ describe('SecEdgar13FFetchAdapter', () => {
             }
             return originalReadFileSync(filePath, options);
         });
+        adapter = new SecEdgar13FFetchAdapter();
+        vi.spyOn(adapter, 'wait').mockResolvedValue();
 
         mockRequestManager.fetch.mockImplementation(async (url) => {
             if (url.includes('submissions')) return JSON.stringify({ filings: { recent: { form: ['13F-HR'], accessionNumber: ['123'], filingDate: ['2026'], reportDate: ['2026'] } } });
@@ -325,6 +327,8 @@ describe('SecEdgar13FFetchAdapter', () => {
             }
             return originalReadFileSync(filePath, options);
         });
+        adapter = new SecEdgar13FFetchAdapter();
+        vi.spyOn(adapter, 'wait').mockResolvedValue();
 
         mockRequestManager.fetch.mockImplementation(async (url) => {
             if (url.includes('submissions')) return JSON.stringify({ filings: { recent: { form: ['13F-HR'], accessionNumber: ['123'], filingDate: ['2026-08-14'], reportDate: ['2026-06-30'] } } });
@@ -358,6 +362,8 @@ describe('SecEdgar13FFetchAdapter', () => {
             }
             return originalReadFileSync(filePath, options);
         });
+        adapter = new SecEdgar13FFetchAdapter();
+        vi.spyOn(adapter, 'wait').mockResolvedValue();
 
         mockRequestManager.fetch.mockImplementation(async (url) => {
             if (url.includes('submissions')) return JSON.stringify({
@@ -397,4 +403,63 @@ describe('SecEdgar13FFetchAdapter', () => {
         // DB wurde über Storage-Methode abgefragt
         expect(mockStorage.getExistingFilings).toHaveBeenCalledWith('0001423053');
     });
+
+    it('sollte XML vollständig in-memory parsen ohne fs.writeFileSync oder os.tmpdir', async () => {
+        const writeFileSyncSpy = vi.spyOn(fs, 'writeFileSync');
+
+        mockRequestManager.fetch.mockImplementation(async (url) => {
+            if (url.includes('submissions')) {
+                return JSON.stringify({
+                    filings: {
+                        recent: {
+                            form: ['13F-HR'],
+                            accessionNumber: ['0001423053-26-000001'],
+                            filingDate: ['2026-05-15'],
+                            reportDate: ['2026-03-31']
+                        }
+                    }
+                });
+            }
+            if (url.includes('index.json')) {
+                return JSON.stringify({
+                    directory: {
+                        item: [{ name: 'holdings_in_memory.xml' }]
+                    }
+                });
+            }
+            if (url.includes('holdings_in_memory.xml')) {
+                return `<informationTable>
+                    <infoTable>
+                        <nameOfIssuer>IN MEMORY CORP</nameOfIssuer>
+                        <cusip>999888777</cusip>
+                        <value>777000</value>
+                        <shrsOrPrnAmt><sshPrnamt>3000</sshPrnamt></shrsOrPrnAmt>
+                    </infoTable>
+                </informationTable>`;
+            }
+        });
+
+        const result = await adapter.fetch(task, 'SecEdgar13F', null, mockRequestManager);
+
+        expect(writeFileSyncSpy).not.toHaveBeenCalled();
+        expect(result.length).toBe(1);
+        expect(result[0].issuer_name).toBe('IN MEMORY CORP');
+        expect(result[0].cusip).toBe('999888777');
+    });
+
+    it('sollte Smart-Money-Config im Konstruktor laden und unabhängig von process.cwd() sein', () => {
+        const instance = new SecEdgar13FFetchAdapter();
+        expect(instance.config).toBeDefined();
+        expect(typeof instance.config).toBe('object');
+        expect(instance.config['0001423053']).toBeDefined();
+    });
+
+    it('sollte injizierte Config oder benutzerdefinierten configPath im Konstruktor akzeptieren', () => {
+        const customConfig = {
+            "0009999999": { name: "Custom Fund", active: true }
+        };
+        const diAdapter = new SecEdgar13FFetchAdapter(customConfig);
+        expect(diAdapter.config).toEqual(customConfig);
+    });
 });
+

@@ -138,4 +138,28 @@ describe('Sec13FXmlParser', () => {
       if (fs.existsSync(tmpFile)) fs.unlinkSync(tmpFile);
     }
   });
+
+  it('sollte Readable.from() und Strings direkt im Speicher ohne temporäre Dateien parsen', async () => {
+    const { Readable } = await import('stream');
+    const xmlContent = `<infoTable>
+        <nameOfIssuer>STREAMED CORP</nameOfIssuer>
+        <cusip>123456780</cusip>
+        <value>50000</value>
+        <shrsOrPrnAmt><sshPrnamt>1000</sshPrnamt></shrsOrPrnAmt>
+        <putCall>PUT</putCall>
+    </infoTable>`;
+
+    // Test mit Readable Stream
+    const stream = Readable.from(xmlContent);
+    const resultsFromStream = await parser.parseStream(stream, { cik: '999', reportDate: '2026-06-30' });
+    expect(resultsFromStream.length).toBe(1);
+    expect(resultsFromStream[0].issuer_name).toBe('STREAMED CORP');
+    expect(resultsFromStream[0].put_call).toBe('PUT');
+
+    // Test mit direktem String
+    const resultsFromString = await parser.parseStream(xmlContent, { cik: '999', reportDate: '2026-06-30' });
+    expect(resultsFromString.length).toBe(1);
+    expect(resultsFromString[0].issuer_name).toBe('STREAMED CORP');
+  });
 });
+
