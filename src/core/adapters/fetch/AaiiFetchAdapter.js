@@ -81,7 +81,7 @@ export class AaiiFetchAdapter {
 
         } catch (e) {
             Logger.error(`[AaiiFetchAdapter] Fehler beim Abruf von AAII Sentiment: ${e.message}`);
-            return [];
+            throw e;
         }
     }
 }

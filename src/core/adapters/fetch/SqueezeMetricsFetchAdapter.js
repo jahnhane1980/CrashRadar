@@ -89,7 +89,7 @@ export class SqueezeMetricsFetchAdapter {
 
         } catch (error) {
             Logger.error(`[SqueezeMetricsFetchAdapter] Fehler beim Abruf von DIX: ${error.message}`);
-            return [];
+            throw error;
         } finally {
             // 5. Aufräumen: Temporäre Datei löschen (egal ob Fehler oder Erfolg)
             if (fs.existsSync(tempFilePath)) {

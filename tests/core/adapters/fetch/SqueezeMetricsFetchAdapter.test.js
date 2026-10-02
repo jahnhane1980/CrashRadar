@@ -38,12 +38,11 @@ describe('SqueezeMetricsFetchAdapter', () => {
         });
     });
 
-    it('sollte bei einem Download-Fehler ein leeres Array zurückgeben', async () => {
+    it('sollte bei einem Download-Fehler den Fehler weiterwerfen (Fail-Fast)', async () => {
         mockRequestManager.fetch.mockRejectedValue(new Error('Network Timeout'));
 
-        const result = await adapter.fetch(task, 'SqueezeMetrics', null, mockRequestManager);
-
-        expect(result).toEqual([]);
+        await expect(adapter.fetch(task, 'SqueezeMetrics', null, mockRequestManager))
+            .rejects.toThrow('Network Timeout');
     });
 
     it('sollte unvollständige oder kaputte Zeilen herausfiltern (Chaos-Test)', async () => {
@@ -112,14 +111,11 @@ describe('SqueezeMetricsFetchAdapter', () => {
 </html>`;
         mockRequestManager.fetch.mockResolvedValue(htmlPage);
 
-        const result = await adapter.fetch(task, 'SqueezeMetrics', null, mockRequestManager);
-        
-        // Der catch-Block des Adapters gibt bei jedem Fehler [] zurück, 
-        // ABER wir sollten sehen können, dass ein Fehler intern geworfen wurde.
-        expect(result).toEqual([]);
+        await expect(adapter.fetch(task, 'SqueezeMetrics', null, mockRequestManager))
+            .rejects.toThrow();
     });
 
-    it('sollte einen Silent Fail Error werfen (und [] zurückgeben), wenn sich das Datumsformat drastisch ändert', async () => {
+    it('sollte einen Silent Fail Error werfen, wenn sich das Datumsformat drastisch ändert', async () => {
         // Betreiber ändert Datumsformat auf MM/DD/YYYY
         const changedFormatCsv = `date,price,dix,gex
 07/01/2026,7500.50,0.45,8000000.5
@@ -127,8 +123,7 @@ describe('SqueezeMetricsFetchAdapter', () => {
 `;
         mockRequestManager.fetch.mockResolvedValue(changedFormatCsv);
 
-        const result = await adapter.fetch(task, 'SqueezeMetrics', null, mockRequestManager);
-
-        expect(result).toEqual([]);
+        await expect(adapter.fetch(task, 'SqueezeMetrics', null, mockRequestManager))
+            .rejects.toThrow(/Silent Fail/);
     });
 });

@@ -101,10 +101,10 @@ describe('AaiiFetchAdapter', () => {
         expect(result[0].record_date).toBe('2024-01-01');
     });
 
-    it('sollte bei Netzwerk/Fetch Fehler ein leeres Array zurückgeben und nicht crashen', async () => {
+    it('sollte bei Netzwerk/Fetch Fehler den Fehler weiterwerfen (Fail-Fast)', async () => {
         mockRequestManager.fetch.mockRejectedValue(new Error('Network Down'));
-        const result = await adapter.fetch({}, 'aaii', null, mockRequestManager);
-        expect(result).toEqual([]);
+        await expect(adapter.fetch({}, 'aaii', null, mockRequestManager))
+            .rejects.toThrow('Network Down');
     });
 
     it('sollte chronologisch sortieren', async () => {
