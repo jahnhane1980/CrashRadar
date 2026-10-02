@@ -1,6 +1,5 @@
 import ky from 'ky';
 import fs from 'fs';
-import path from 'path';
 import { parse } from 'csv-parse/sync';
 import { Logger } from '../../Logger.js';
 
@@ -17,10 +16,10 @@ export class CboeFetchAdapter {
             
             const results = [];
 
-            // 1. Lokales Archiv lesen (Backtesting Historie)
-            const archivePath = path.resolve(process.cwd(), 'data/archive/cboe/pcr.csv');
-            if (fs.existsSync(archivePath)) {
-                Logger.info(`[CBOE] Lese historische PCR-Daten aus lokalem Archiv: ${archivePath}`);
+            // 1. Optionales Archiv lesen, falls über task.params.archivePath konfiguriert
+            const archivePath = task?.params?.archivePath;
+            if (archivePath && fs.existsSync(archivePath)) {
+                Logger.info(`[CBOE] Lese historische PCR-Daten aus Archiv: ${archivePath}`);
                 const text = fs.readFileSync(archivePath, 'utf8');
                 const recordsObj = parse(text, {
                     columns: true,

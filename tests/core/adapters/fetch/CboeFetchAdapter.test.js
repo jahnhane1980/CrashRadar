@@ -63,8 +63,9 @@ describe('CboeFetchAdapter', () => {
     });
 
     describe('dataset === pcr (Melt-Up Filter)', () => {
-        it('sollte das lokale Archiv lesen und YahooFinance für neue Daten aufrufen (Happy Path)', async () => {
-            fs.existsSync.mockImplementation((pathStr) => pathStr.includes('pcr.csv'));
+        it('sollte das Archiv lesen, wenn task.params.archivePath übergeben wird, und YahooFinance für neue Daten aufrufen (Happy Path)', async () => {
+            const customPath = '/custom/path/pcr.csv';
+            fs.existsSync.mockImplementation((pathStr) => pathStr === customPath);
             fs.readFileSync.mockReturnValue(`record_date,total_pcr\n2024-01-01,0.95`);
             
             yahooFinance.options.mockResolvedValue({
@@ -75,23 +76,42 @@ describe('CboeFetchAdapter', () => {
                 }]
             });
 
-            const result = await adapter.fetch({ dataset: 'pcr' }, {}, '2024-01-01', mockRequestManager);
+            const task = { dataset: 'pcr', params: { archivePath: customPath } };
+            const result = await adapter.fetch(task, {}, '2024-01-01', mockRequestManager);
             
-            // Should contain 1 from CSV and 1 from Yahoo (1500/2000 = 0.75)
+            expect(fs.existsSync).toHaveBeenCalledWith(customPath);
             expect(result).toHaveLength(2);
             expect(result[0].record_date).toBe('2024-01-01');
             expect(result[0].total_pcr).toBe(0.95);
-            
-            expect(result[1].total_pcr).toBe(0.75); // 1500/2000
+            expect(result[1].total_pcr).toBe(0.75);
         });
 
-        it('sollte fehlende YahooFinance Daten sicher abfangen (Fehlerbehandlung)', async () => {
-            fs.existsSync.mockImplementation((pathStr) => pathStr.includes('pcr.csv'));
+        it('sollte kein Dateisystem ansprechen und nur Live-Daten abrufen, wenn kein archivePath definiert ist', async () => {
+            yahooFinance.options.mockResolvedValue({
+                options: [{
+                    expirationDate: '2024-01-02',
+                    puts: [{ volume: 1500 }],
+                    calls: [{ volume: 2000 }]
+                }]
+            });
+
+            const result = await adapter.fetch({ dataset: 'pcr' }, {}, '2024-01-01', mockRequestManager);
+            
+            expect(fs.existsSync).not.toHaveBeenCalled();
+            expect(fs.readFileSync).not.toHaveBeenCalled();
+            expect(result).toHaveLength(1);
+            expect(result[0].total_pcr).toBe(0.75);
+        });
+
+        it('sollte fehlende YahooFinance Daten sicher abfangen, wenn archivePath vorhanden ist (Fehlerbehandlung)', async () => {
+            const customPath = '/custom/path/pcr.csv';
+            fs.existsSync.mockImplementation((pathStr) => pathStr === customPath);
             fs.readFileSync.mockReturnValue(`record_date,total_pcr\n2024-01-01,0.95`);
             
             yahooFinance.options.mockRejectedValue(new Error('Yahoo down'));
 
-            const result = await adapter.fetch({ dataset: 'pcr' }, {}, '2024-01-01', mockRequestManager);
+            const task = { dataset: 'pcr', params: { archivePath: customPath } };
+            const result = await adapter.fetch(task, {}, '2024-01-01', mockRequestManager);
             
             expect(result).toHaveLength(1);
             expect(result[0].record_date).toBe('2024-01-01');

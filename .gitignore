@@ -113,14 +113,12 @@ Thumbs.db
 
 temp_*.sqlite
 coverage
-data/db
 
 graphify-out
 run_graphify_*.ps1
 run_graphify_*.py
 run_final.ps1
 run_step5_9.py
-data/cache/historical_prices/
 tests/.tmp/
 sandbox/*
 !sandbox/.gitkeep
