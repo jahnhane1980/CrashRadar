@@ -1,6 +1,4 @@
-import fs from 'fs';
-import path from 'path';
-import os from 'os';
+import { Readable } from 'stream';
 import { parse } from 'csv-parse';
 import { Logger } from '../../Logger.js';
 
@@ -12,12 +10,9 @@ export class SqueezeMetricsFetchAdapter {
         Logger.info(`[SqueezeMetrics] Hole Daten für Task: ${task.id} (Zeitraum ab: ${startDate || 'Beginn'})`);
         const records = [];
         const url = 'https://squeezemetrics.com/monitor/static/DIX.csv';
-        
-        // 1. Temporären Dateipfad definieren (im OS Temp-Verzeichnis)
-        const tempFilePath = path.join(os.tmpdir(), `dix_${Date.now()}_${Math.random().toString(36).substring(7)}.csv`);
 
         try {
-            // 2. CSV als Text herunterladen
+            // 1. CSV als Text herunterladen
             const text = await requestManager.fetch(url, task.provider, {
                 responseType: 'text',
                 headers: {
@@ -26,14 +21,16 @@ export class SqueezeMetricsFetchAdapter {
                 }
             });
 
-            // 3. Temporär auf die Festplatte schreiben
-            fs.writeFileSync(tempFilePath, text);
-            Logger.info(`[SqueezeMetrics] Datei temporär gespeichert unter: ${tempFilePath}`);
-
-            // 4. Datei als Stream parsen (Ressourcenschonend, falls Dateien wachsen)
-            const parser = fs.createReadStream(tempFilePath).pipe(
+            // 2. CSV direkt in-memory als Stream parsen
+            const parser = Readable.from([text]).pipe(
                 parse({
-                    columns: header => header.map(column => column.trim().toLowerCase()), // Header normalisieren (Case-Insensitive)
+                    columns: header => {
+                        const normalized = header.map(column => column.trim().toLowerCase());
+                        if (normalized.some(col => col.includes('<html') || col.includes('<!doctype') || col.includes('cloudflare'))) {
+                            throw new Error("Fehler: API liefert HTML anstelle von CSV. Möglicherweise Cloudflare/WAF Blockade.");
+                        }
+                        return normalized;
+                    },
                     skip_empty_lines: true,
                     trim: true
                 })
@@ -43,14 +40,19 @@ export class SqueezeMetricsFetchAdapter {
 
             for await (const row of parser) {
                 totalParsedRows++;
-                
-                // HTML Error Page Protection: Wenn der Parser HTML-Tags statt CSV-Daten findet
-                if (row.date && row.date.includes('<html') || row.date && row.date.includes('<!doctype')) {
+
+                // HTML Error Page / Cloudflare WAF Protection auf Zeilenebene
+                const isHtmlOrWaf = 
+                    (row.date && (row.date.toLowerCase().includes('<html') || row.date.toLowerCase().includes('<!doctype') || row.date.toLowerCase().includes('cloudflare'))) ||
+                    Object.values(row).some(val => typeof val === 'string' && (val.toLowerCase().includes('<html') || val.toLowerCase().includes('<!doctype') || val.toLowerCase().includes('cloudflare') || val.toLowerCase().includes('<body') || val.toLowerCase().includes('<head'))) ||
+                    Object.keys(row).some(k => typeof k === 'string' && (k.toLowerCase().includes('<html') || k.toLowerCase().includes('<!doctype') || k.toLowerCase().includes('cloudflare')));
+
+                if (isHtmlOrWaf) {
                     throw new Error("Fehler: API liefert HTML anstelle von CSV. Möglicherweise Cloudflare/WAF Blockade.");
                 }
 
                 const recordDate = row.date;
-                
+
                 // Chaos-Test: Fehlendes oder ungültiges Datum überspringen
                 if (!recordDate || typeof recordDate !== 'string' || !recordDate.match(/^\d{4}-\d{2}-\d{2}$/)) {
                     continue;
@@ -77,29 +79,19 @@ export class SqueezeMetricsFetchAdapter {
                 }
             }
 
-            // Silent Fail Protection: Wenn Zeilen geparst wurden, aber 100% davon verworfen wurden (z.B. falsches Date-Format)
-            if (totalParsedRows > 0 && records.length === 0) {
+            // Silent Fail Protection: Wenn 0 gültige Datensätze extrahiert wurden
+            if (records.length === 0) {
                 throw new Error(`Silent Fail: ${totalParsedRows} Zeilen geparst, aber 0 gültige Datensätze extrahiert. Datumsformat oder CSV-Struktur wurde möglicherweise vom Betreiber geändert!`);
             }
 
             Logger.info(`[SqueezeMetrics] ${records.length} gültige Datensätze ab ${startDate || 'Anfang'} extrahiert.`);
-            
+
             // Aufsteigend nach Datum sortieren
             return records.sort((a, b) => a.record_date.localeCompare(b.record_date));
 
         } catch (error) {
             Logger.error(`[SqueezeMetricsFetchAdapter] Fehler beim Abruf von DIX: ${error.message}`);
             throw error;
-        } finally {
-            // 5. Aufräumen: Temporäre Datei löschen (egal ob Fehler oder Erfolg)
-            if (fs.existsSync(tempFilePath)) {
-                try {
-                    fs.unlinkSync(tempFilePath);
-                    Logger.info(`[SqueezeMetrics] Temporäre Datei erfolgreich gelöscht: ${tempFilePath}`);
-                } catch (cleanupError) {
-                    Logger.error(`[SqueezeMetricsFetchAdapter] Fehler beim Löschen der temporären Datei: ${cleanupError.message}`);
-                }
-            }
         }
     }
 }

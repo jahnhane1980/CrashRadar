@@ -72,21 +72,30 @@ describe('SqueezeMetricsFetchAdapter', () => {
         expect(result[1].gex).toBe(0);
     });
 
-    it('sollte immer die temporäre Datei aufräumen, auch bei einem Fehler im Stream', async () => {
-        // Mock fs.unlinkSync to verify it's called
+    it('sollte CSV direkt in-memory parsen ohne fs-Operationen (kein writeFileSync, createReadStream, unlinkSync)', async () => {
+        const writeSpy = vi.spyOn(fs, 'writeFileSync');
+        const readStreamSpy = vi.spyOn(fs, 'createReadStream');
         const unlinkSpy = vi.spyOn(fs, 'unlinkSync');
-        
+
         mockRequestManager.fetch.mockResolvedValue("date,price,dix,gex\n2026-07-01,100,0.5,100");
-        
-        await adapter.fetch(task, 'SqueezeMetrics', null, mockRequestManager);
-        
-        expect(unlinkSpy).toHaveBeenCalled();
-        
-        // Da die Dateien generierte Namen haben, überprüfen wir nur, dass unlinkSync aufgerufen wurde.
-        const lastCall = unlinkSpy.mock.calls[unlinkSpy.mock.calls.length - 1][0];
-        expect(lastCall).toMatch(/dix_.*\.csv/);
-        
+
+        const result = await adapter.fetch(task, 'SqueezeMetrics', null, mockRequestManager);
+
+        expect(result.length).toBe(1);
+        expect(writeSpy).not.toHaveBeenCalled();
+        expect(readStreamSpy).not.toHaveBeenCalled();
+        expect(unlinkSpy).not.toHaveBeenCalled();
+
+        writeSpy.mockRestore();
+        readStreamSpy.mockRestore();
         unlinkSpy.mockRestore();
+    });
+
+    it('sollte einen Error werfen, wenn 0 Datenzeilen extrahiert werden (leere CSV oder nur Header)', async () => {
+        mockRequestManager.fetch.mockResolvedValue("date,price,dix,gex\n");
+
+        await expect(adapter.fetch(task, 'SqueezeMetrics', null, mockRequestManager))
+            .rejects.toThrow(/0 gültige Datensätze|Keine Datenzeilen/);
     });
 
     it('sollte Case-Insensitive Headers korrekt verarbeiten', async () => {
@@ -112,7 +121,7 @@ describe('SqueezeMetricsFetchAdapter', () => {
         mockRequestManager.fetch.mockResolvedValue(htmlPage);
 
         await expect(adapter.fetch(task, 'SqueezeMetrics', null, mockRequestManager))
-            .rejects.toThrow();
+            .rejects.toThrow('Fehler: API liefert HTML anstelle von CSV. Möglicherweise Cloudflare/WAF Blockade.');
     });
 
     it('sollte einen Silent Fail Error werfen, wenn sich das Datumsformat drastisch ändert', async () => {
