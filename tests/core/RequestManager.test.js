@@ -269,4 +269,114 @@ describe('RequestManager Class', () => {
     expect(res).toEqual({ recovered: true });
     expect(kyExtendMock.get).toHaveBeenCalledTimes(2);
   });
+
+  it('sollte fehlgeschlagene Requests unmittelbar vor Benachrichtigung abhängiger Consumer aus dem Cache löschen', async () => {
+    const manager = new RequestManager(config);
+    const kyExtendMock = ky.extend();
+    kyExtendMock.get.mockReset();
+
+    kyExtendMock.get.mockReturnValueOnce({
+      json: vi.fn().mockRejectedValue(new Error('Immediate Failure'))
+    });
+    kyExtendMock.get.mockReturnValueOnce({
+      json: vi.fn().mockResolvedValue({ retrySuccess: true })
+    });
+
+    const url = 'http://immediate-fail.com';
+    let retriedResult;
+    try {
+      await manager.fetch(url, 'FastProv');
+    } catch {
+      retriedResult = await manager.fetch(url, 'FastProv');
+    }
+
+    expect(retriedResult).toEqual({ retrySuccess: true });
+    expect(kyExtendMock.get).toHaveBeenCalledTimes(2);
+  });
+
+  it('sollte das LRU-Verhalten mit maximaler Obergrenze einhalten und älteste Einträge verwerfen', async () => {
+    const manager = new RequestManager(config);
+    manager.maxCacheEntries = 3;
+    const kyExtendMock = ky.extend();
+    kyExtendMock.get.mockImplementation((url) => ({
+      json: vi.fn().mockResolvedValue({ url })
+    }));
+
+    await manager.fetch('http://test.com/1', 'FastProv');
+    await manager.fetch('http://test.com/2', 'FastProv');
+    await manager.fetch('http://test.com/3', 'FastProv');
+
+    expect(manager.cache.size).toBe(3);
+    expect(manager.cache.has('http://test.com/1')).toBe(true);
+
+    // Zugriff auf 1, um es als MRU (most recently used) zu markieren
+    await manager.fetch('http://test.com/1', 'FastProv');
+
+    // 4. Eintrag hinzufügen -> ältestes Element (test.com/2) muss verdrängt werden
+    await manager.fetch('http://test.com/4', 'FastProv');
+
+    expect(manager.cache.size).toBe(3);
+    expect(manager.cache.has('http://test.com/2')).toBe(false);
+    expect(manager.cache.has('http://test.com/1')).toBe(true);
+    expect(manager.cache.has('http://test.com/3')).toBe(true);
+    expect(manager.cache.has('http://test.com/4')).toBe(true);
+  });
+
+  it('sollte standardmäßig maximal 500 Einträge im Cache halten', async () => {
+    const manager = new RequestManager(config);
+    expect(manager.maxCacheEntries).toBe(500);
+
+    const kyExtendMock = ky.extend();
+    kyExtendMock.get.mockImplementation((url) => ({
+      json: vi.fn().mockResolvedValue({ url })
+    }));
+
+    for (let i = 0; i < 505; i++) {
+      await manager.fetch(`http://test.com/${i}`, 'FastProv');
+    }
+
+    expect(manager.cache.size).toBe(500);
+    // Die ersten 5 müssen verdrängt worden sein
+    for (let i = 0; i < 5; i++) {
+      expect(manager.cache.has(`http://test.com/${i}`)).toBe(false);
+    }
+    // Die letzten 500 müssen existieren
+    for (let i = 5; i < 505; i++) {
+      expect(manager.cache.has(`http://test.com/${i}`)).toBe(true);
+    }
+  });
+
+  it('sollte abgelaufene Einträge anhand der TTL invalidieren', async () => {
+    vi.useFakeTimers();
+    try {
+      const manager = new RequestManager(config);
+      const kyExtendMock = ky.extend();
+      kyExtendMock.get.mockReturnValueOnce({
+        json: vi.fn().mockResolvedValue({ data: 'initial' })
+      });
+      kyExtendMock.get.mockReturnValueOnce({
+        json: vi.fn().mockResolvedValue({ data: 'refreshed' })
+      });
+
+      const url = 'http://ttl-test.com';
+      const first = await manager.fetch(url, 'FastProv', { ttl: 60000 });
+      expect(first).toEqual({ data: 'initial' });
+      expect(kyExtendMock.get).toHaveBeenCalledTimes(1);
+
+      // Noch innerhalb der TTL: Cache Hit
+      const cached = await manager.fetch(url, 'FastProv', { ttl: 60000 });
+      expect(cached).toEqual({ data: 'initial' });
+      expect(kyExtendMock.get).toHaveBeenCalledTimes(1);
+
+      // Zeit um 61 Sekunden vorstellen: TTL abgelaufen
+      vi.advanceTimersByTime(61000);
+
+      const refreshed = await manager.fetch(url, 'FastProv', { ttl: 60000 });
+      expect(refreshed).toEqual({ data: 'refreshed' });
+      expect(kyExtendMock.get).toHaveBeenCalledTimes(2);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
 });
+

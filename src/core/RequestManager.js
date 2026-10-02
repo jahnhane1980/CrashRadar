@@ -2,6 +2,8 @@ import ky from 'ky';
 import { Logger } from './Logger.js';
 
 const STAGED_BACKOFF_DELAYS = [5000, 15000, 30000];
+const MAX_CACHE_ENTRIES = 500;
+const DEFAULT_CACHE_TTL = 300000;
 
 export function parseRetryAfter(headerValue) {
   if (!headerValue) return null;
@@ -20,6 +22,18 @@ export class RequestManager {
   constructor(config) {
     this.config = config;
     this.queues = {};
+    this.cache = new Map();
+    this.cacheExpiry = new Map();
+    this.maxCacheEntries = this.config?.maxCacheEntries ?? MAX_CACHE_ENTRIES;
+  }
+
+  _deleteFromCache(cacheKey) {
+    if (this.cache) {
+      this.cache.delete(cacheKey);
+    }
+    if (this.cacheExpiry) {
+      this.cacheExpiry.delete(cacheKey);
+    }
   }
 
   async fetch(url, providerId, options = {}) {
@@ -102,11 +116,21 @@ export class RequestManager {
     }
     const cacheKey = `${url}${paramsString ? '?' + paramsString : ''}`;
 
-    // Die eigentliche Ausführung in die Queue einhängen
     if (!this.cache) this.cache = new Map();
+    if (!this.cacheExpiry) this.cacheExpiry = new Map();
+
     if (this.cache.has(cacheKey)) {
-      Logger.debug(`[RequestManager] Cache hit for ${cacheKey}`);
-      return this.cache.get(cacheKey);
+      const expiresAt = this.cacheExpiry.get(cacheKey);
+      if (expiresAt && Date.now() > expiresAt) {
+        this._deleteFromCache(cacheKey);
+      } else {
+        const cachedPromise = this.cache.get(cacheKey);
+        // LRU: Neu einhängen, damit es als Most Recently Used gilt
+        this.cache.delete(cacheKey);
+        this.cache.set(cacheKey, cachedPromise);
+        Logger.debug(`[RequestManager] Cache hit for ${cacheKey}`);
+        return cachedPromise;
+      }
     }
 
     const promise = new Promise((resolve, reject) => {
@@ -115,6 +139,8 @@ export class RequestManager {
           const result = await execute();
           resolve(result);
         } catch (e) {
+          // Unmittelbar im globalen Promise-Catch löschen, bevor abhängige Consumer dieselbe Instanz abgreifen
+          this._deleteFromCache(cacheKey);
           reject(e);
         }
         
@@ -123,11 +149,31 @@ export class RequestManager {
           await new Promise(r => setTimeout(r, delayMs));
         }
       }).catch(e => {
+        this._deleteFromCache(cacheKey);
         Logger.error(`[RequestManager Queue Error] ${e.message}`);
       });
     });
 
-    promise.catch(() => this.cache.delete(cacheKey));
+    promise.catch(() => this._deleteFromCache(cacheKey));
+
+    // LRU-Obergrenze: Älteste Einträge verdrängen, wenn Limit erreicht ist
+    const maxEntries = (typeof this.maxCacheEntries === 'number' && this.maxCacheEntries > 0)
+      ? this.maxCacheEntries
+      : MAX_CACHE_ENTRIES;
+
+    while (this.cache.size >= maxEntries) {
+      const oldestKey = this.cache.keys().next().value;
+      if (oldestKey === undefined) break;
+      this._deleteFromCache(oldestKey);
+    }
+
+    const ttl = options.ttl !== undefined
+      ? options.ttl
+      : (providerConfig.cacheTtl ?? this.config?.cacheTtl ?? DEFAULT_CACHE_TTL);
+
+    if (typeof ttl === 'number' && ttl > 0) {
+      this.cacheExpiry.set(cacheKey, Date.now() + ttl);
+    }
 
     this.cache.set(cacheKey, promise);
     return promise;
