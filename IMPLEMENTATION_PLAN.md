@@ -10,3 +10,7 @@
 - [x] Task 8: Config Template Expansion Engine (src/runners/, config/)
 - [x] Task 9: Konsolidierung Smart-Money-Config in Database-Fetcher-Config.json (Single Source of Truth) & Adapter-Entkopplung (config/, src/core/adapters/)
 - [x] Task 10: Persistenz-Bereinigung & Entkopplung CboeFetchAdapter vom lokalen Dateisystem (.github/workflows/, src/core/adapters/fetch/, .gitignore)
+- [x] Task 11: Task-Level Lock-Guard & TOCTOU-Fix (src/services/TimeSeriesFetcher.js)
+- [ ] Task 12: Fail-Fast in SqueezeMetrics & Aaii Adaptern (src/core/adapters/fetch/)
+- [ ] Task 13: In-Memory CSV Stream Parsing in SqueezeMetrics (src/core/adapters/fetch/SqueezeMetricsFetchAdapter.js)
+- [ ] Task 14: Dynamische Registry für Adapter-Factories (src/core/adapters/)

@@ -120,14 +120,27 @@ export class TimeSeriesFetcher {
 
   async runTask(task) {
     Logger.info(`\n--- Starting task: ${task.id} ---`);
-    const provider = this.config.providers[task.provider];
     
-    if (!provider) throw new Error(`Provider '${task.provider}' not found in config`);
+    const lockKey = `sync_lock_${task.id}`;
+    const lockAcquired = await this.storage.acquireLock(lockKey, 300);
     
-    if (provider.type === PROVIDER_TYPES.PACKAGE) {
-      await this.fetchViaPackage(task, provider);
-    } else if (provider.type === PROVIDER_TYPES.HTTP) {
-      await this.fetchViaHttp(task, provider);
+    if (!lockAcquired) {
+      Logger.warn(`[Warning] Task ${task.id} is already running (failed to acquire lock). Skipping.`);
+      return;
+    }
+
+    try {
+      const provider = this.config.providers[task.provider];
+      
+      if (!provider) throw new Error(`Provider '${task.provider}' not found in config`);
+      
+      if (provider.type === PROVIDER_TYPES.PACKAGE) {
+        await this.fetchViaPackage(task, provider);
+      } else if (provider.type === PROVIDER_TYPES.HTTP) {
+        await this.fetchViaHttp(task, provider);
+      }
+    } finally {
+      await this.storage.releaseLock(lockKey);
     }
   }
 
