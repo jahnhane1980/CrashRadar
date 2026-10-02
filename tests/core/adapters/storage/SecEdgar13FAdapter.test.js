@@ -54,4 +54,24 @@ describe('SecEdgar13FAdapter (Storage)', () => {
             50000
         ]);
     });
+
+    it('sollte ein korrektes Query und Values-Array für sec_edgar_13f zurückgeben', () => {
+        const task = { id: 'sec_edgar_13f' };
+        const data = [{
+            cik: '0001423053',
+            report_date: '2026-03-31',
+            filing_date: '2026-05-15',
+            cusip: '037833100',
+            put_call: 'PUT',
+            issuer_name: 'APPLE INC',
+            shares: 1000,
+            value: 50000
+        }];
+
+        const result = adapter.getInsertQueryAndValues(task, data);
+
+        expect(result.query).toContain('INSERT INTO fund_13f_holdings');
+        expect(result.values).toHaveLength(1);
+        expect(result.values[0][0]).toBe('0001423053');
+    });
 });

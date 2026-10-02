@@ -9,24 +9,18 @@ describe('SecEdgar13FFetchAdapter', () => {
     let originalReadFileSync;
 
     beforeEach(() => {
-        // Mock Config File to only process 1 fund (Citadel) instead of 20
-        originalReadFileSync = fs.readFileSync;
-        vi.spyOn(fs, 'readFileSync').mockImplementation((filePath, options) => {
-            if (filePath.includes('Smart-Money-Config.json')) {
-                return JSON.stringify({
-                    "0001423053": { "name": "Citadel Advisors", "strategy": "Market Maker" }
-                });
-            }
-            return originalReadFileSync(filePath, options);
-        });
-
         adapter = new SecEdgar13FFetchAdapter();
         // Speed up the wait() method in tests to avoid slow tests
         vi.spyOn(adapter, 'wait').mockResolvedValue();
 
         task = {
-            id: 'sec_13f_smart_money',
-            provider: 'SecEdgar13F'
+            id: 'sec_edgar_13f',
+            provider: 'SecEdgar13F',
+            params: {
+                smartMoney: {
+                    "0001423053": { "name": "Citadel Advisors", "strategy": "Market Maker", "active": true }
+                }
+            }
         };
 
         mockRequestManager = {
@@ -269,17 +263,6 @@ describe('SecEdgar13FFetchAdapter', () => {
     });
 
     it('sollte nur den in task.params.cik übergebenen Fonds verarbeiten (Chunking-Logik)', async () => {
-        // Wir überschreiben den beforeEach Mock für fs.readFileSync speziell für diesen Test,
-        // um ZWEI Fonds in der Config zu simulieren.
-        vi.spyOn(fs, 'readFileSync').mockImplementation((filePath, options) => {
-            if (filePath.includes('Smart-Money-Config.json')) {
-                return JSON.stringify({
-                    "0001423053": { "name": "Citadel Advisors", "strategy": "Market Maker" },
-                    "0001067983": { "name": "Berkshire Hathaway", "strategy": "Value Investing" }
-                });
-            }
-            return originalReadFileSync(filePath, options);
-        });
         adapter = new SecEdgar13FFetchAdapter();
         vi.spyOn(adapter, 'wait').mockResolvedValue();
 
@@ -296,11 +279,17 @@ describe('SecEdgar13FFetchAdapter', () => {
             `;
         });
 
-        // Task explizit mit params.cik
+        // Task explizit mit params.cik und smartMoney Config
         const chunkTask = {
             id: 'sec_13f_0001423053',
             provider: 'SecEdgar13F',
-            params: { cik: '0001423053' }
+            params: {
+                cik: '0001423053',
+                smartMoney: {
+                    "0001423053": { "name": "Citadel Advisors", "strategy": "Market Maker", "active": true },
+                    "0001067983": { "name": "Berkshire Hathaway", "strategy": "Value Investing", "active": true }
+                }
+            }
         };
 
         const result = await adapter.fetch(chunkTask, 'SecEdgar13F', null, mockRequestManager);
@@ -317,16 +306,6 @@ describe('SecEdgar13FFetchAdapter', () => {
     });
 
     it('sollte nur Fonds verarbeiten, die der angegebenen Strategie zugeordnet sind (task.params.strategy)', async () => {
-        vi.spyOn(fs, 'readFileSync').mockImplementation((filePath, options) => {
-            if (filePath.includes('Smart-Money-Config.json')) {
-                return JSON.stringify({
-                    "0001536411": { "name": "Duquesne", "strategies": ["SEVEN_SLOT_GURU"], "active": true },
-                    "0001697748": { "name": "ARK", "strategies": ["MUZZLED_CATHIE_WOOD"], "active": true },
-                    "0001067983": { "name": "Berkshire", "strategies": ["SMART_MONEY"], "active": true }
-                });
-            }
-            return originalReadFileSync(filePath, options);
-        });
         adapter = new SecEdgar13FFetchAdapter();
         vi.spyOn(adapter, 'wait').mockResolvedValue();
 
@@ -339,7 +318,14 @@ describe('SecEdgar13FFetchAdapter', () => {
         const stratTask = {
             id: 'sec_13f_seven_slot_guru',
             provider: 'SecEdgar13F',
-            params: { strategy: 'SEVEN_SLOT_GURU' }
+            params: {
+                strategy: 'SEVEN_SLOT_GURU',
+                smartMoney: {
+                    "0001536411": { "name": "Duquesne", "strategies": ["SEVEN_SLOT_GURU"], "active": true },
+                    "0001697748": { "name": "ARK", "strategies": ["MUZZLED_CATHIE_WOOD"], "active": true },
+                    "0001067983": { "name": "Berkshire", "strategies": ["SMART_MONEY"], "active": true }
+                }
+            }
         };
 
         const result = await adapter.fetch(stratTask, 'SecEdgar13F', null, mockRequestManager);
@@ -354,14 +340,6 @@ describe('SecEdgar13FFetchAdapter', () => {
     });
 
     it('sollte den Download überspringen, wenn das Filing laut DB bereits vorhanden ist (Fail-Safe DB-Guard)', async () => {
-        vi.spyOn(fs, 'readFileSync').mockImplementation((filePath, options) => {
-            if (filePath.includes('Smart-Money-Config.json')) {
-                return JSON.stringify({
-                    "0001423053": { "name": "Citadel Advisors", "active": true }
-                });
-            }
-            return originalReadFileSync(filePath, options);
-        });
         adapter = new SecEdgar13FFetchAdapter();
         vi.spyOn(adapter, 'wait').mockResolvedValue();
 
@@ -389,12 +367,17 @@ describe('SecEdgar13FFetchAdapter', () => {
             ])
         };
 
-        const task = {
+        const dbTask = {
             id: 'sec_13f_test',
-            provider: 'SecEdgar13F'
+            provider: 'SecEdgar13F',
+            params: {
+                smartMoney: {
+                    "0001423053": { "name": "Citadel Advisors", "active": true }
+                }
+            }
         };
 
-        const result = await adapter.fetch(task, 'SecEdgar13F', null, mockRequestManager, mockStorage);
+        const result = await adapter.fetch(dbTask, 'SecEdgar13F', null, mockRequestManager, mockStorage);
 
         // Keine neuen Datensätze heruntergeladen
         expect(result.length).toBe(0);
@@ -447,19 +430,86 @@ describe('SecEdgar13FFetchAdapter', () => {
         expect(result[0].cusip).toBe('999888777');
     });
 
-    it('sollte Smart-Money-Config im Konstruktor laden und unabhängig von process.cwd() sein', () => {
+    it('sollte ohne fs.readFileSync und unabhängig von process.cwd() rein über task.params.smartMoney funktionieren', async () => {
+        const readFileSyncSpy = vi.spyOn(fs, 'readFileSync');
         const instance = new SecEdgar13FFetchAdapter();
-        expect(instance.config).toBeDefined();
-        expect(typeof instance.config).toBe('object');
-        expect(instance.config['0001423053']).toBeDefined();
+        vi.spyOn(instance, 'wait').mockResolvedValue();
+
+        const taskWithoutFs = {
+            id: 'sec_edgar_13f',
+            provider: 'SecEdgar13F',
+            params: {
+                smartMoney: {
+                    "0001423053": { name: "Citadel Advisors", active: true }
+                }
+            }
+        };
+
+        mockRequestManager.fetch.mockResolvedValue(JSON.stringify({
+            filings: { recent: { form: [], accessionNumber: [], filingDate: [], reportDate: [] } }
+        }));
+
+        await instance.fetch(taskWithoutFs, 'SecEdgar13F', null, mockRequestManager);
+
+        expect(readFileSyncSpy).not.toHaveBeenCalled();
     });
 
-    it('sollte injizierte Config oder benutzerdefinierten configPath im Konstruktor akzeptieren', () => {
+    it('sollte injizierte Config im Konstruktor als Fallback akzeptieren, wenn task.params.smartMoney fehlt', async () => {
         const customConfig = {
             "0009999999": { name: "Custom Fund", active: true }
         };
         const diAdapter = new SecEdgar13FFetchAdapter(customConfig);
+        vi.spyOn(diAdapter, 'wait').mockResolvedValue();
         expect(diAdapter.config).toEqual(customConfig);
+
+        const taskWithoutSmartMoney = {
+            id: 'sec_edgar_13f',
+            provider: 'SecEdgar13F'
+        };
+
+        mockRequestManager.fetch.mockResolvedValue(JSON.stringify({
+            filings: { recent: { form: [], accessionNumber: [], filingDate: [], reportDate: [] } }
+        }));
+
+        await diAdapter.fetch(taskWithoutSmartMoney, 'SecEdgar13F', null, mockRequestManager);
+
+        const calledUrls = mockRequestManager.fetch.mock.calls.map(call => call[0]);
+        expect(calledUrls.some(u => u.includes('0009999999'))).toBe(true);
+    });
+
+    it('sollte robust ein leeres Array zurückgeben, wenn weder task.params noch Konstruktor-Config definiert sind', async () => {
+        const emptyAdapter = new SecEdgar13FFetchAdapter();
+        const result = await emptyAdapter.fetch({ id: 'sec_edgar_13f', provider: 'SecEdgar13F' }, 'SecEdgar13F', null, mockRequestManager);
+        expect(result).toEqual([]);
+    });
+
+    it('sollte CIKs direkt aus task.params.smartMoney auslesen und gegenüber Konstruktor-Config bevorzugen', async () => {
+        const customAdapter = new SecEdgar13FFetchAdapter({
+            "0000000001": { name: "Constructor Fund", active: true }
+        });
+        vi.spyOn(customAdapter, 'wait').mockResolvedValue();
+
+        const taskWithSmartMoney = {
+            id: 'sec_edgar_13f',
+            provider: 'SecEdgar13F',
+            params: {
+                smartMoney: {
+                    "0001423053": { name: "Task Smart Money Fund", active: true }
+                }
+            }
+        };
+
+        mockRequestManager.fetch.mockResolvedValue(JSON.stringify({
+            filings: { recent: { form: [], accessionNumber: [], filingDate: [], reportDate: [] } }
+        }));
+
+        await customAdapter.fetch(taskWithSmartMoney, 'SecEdgar13F', null, mockRequestManager);
+
+        const calledUrls = mockRequestManager.fetch.mock.calls.map(call => call[0]);
+        // Erwartet: URL für CIK 0001423053 aus task.params.smartMoney wurde aufgerufen
+        expect(calledUrls.some(u => u.includes('0001423053'))).toBe(true);
+        // Konstruktor-Fund (0000000001) darf NICHT aufgerufen werden
+        expect(calledUrls.some(u => u.includes('0000000001'))).toBe(false);
     });
 });
 

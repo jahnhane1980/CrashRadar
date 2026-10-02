@@ -8,3 +8,4 @@
 - [x] Task 6: RequestManager Cache Eviction & Failure Handling (src/core/RequestManager.js)
 - [x] Task 7: Logger & ErrorRegistry Entkopplung (src/core/Logger.js, src/runners/)
 - [x] Task 8: Config Template Expansion Engine (src/runners/, config/)
+- [x] Task 9: Konsolidierung Smart-Money-Config in Database-Fetcher-Config.json (Single Source of Truth) & Adapter-Entkopplung (config/, src/core/adapters/)

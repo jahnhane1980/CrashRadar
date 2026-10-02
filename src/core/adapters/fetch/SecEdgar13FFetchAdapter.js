@@ -1,31 +1,11 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import { Readable } from 'stream';
 import { Logger } from '../../Logger.js';
 import { Sec13FXmlParser } from '../../parsers/Sec13FXmlParser.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const DEFAULT_CONFIG_PATH = path.resolve(__dirname, '../../../../config/Smart-Money-Config.json');
-
 export class SecEdgar13FFetchAdapter {
-    constructor(config = null, configPath = DEFAULT_CONFIG_PATH) {
+    constructor(config = null) {
         this.parser = new Sec13FXmlParser();
-        this.configPath = configPath;
-        this.config = config !== null ? config : this.loadConfig();
-    }
-
-    loadConfig() {
-        if (!fs.existsSync(this.configPath)) {
-            throw new Error(`Config-Datei nicht gefunden: ${this.configPath}`);
-        }
-        return JSON.parse(fs.readFileSync(this.configPath, 'utf8'));
-    }
-
-    reloadConfig() {
-        this.config = this.loadConfig();
-        return this.config;
+        this.config = config;
     }
 
     // Hilfsfunktion: Wartet x Millisekunden (wichtig für SEC Rate Limit 10/sec)
@@ -36,8 +16,8 @@ export class SecEdgar13FFetchAdapter {
     async fetch(task, provider, startDate, requestManager, storage = null) {
         Logger.info(`[SecEdgar13F] Hole 13F Holdings (Zeitraum ab: ${startDate || 'Beginn'})`);
         
-        // 1. Config laden / verwenden
-        const smartMoneyConfig = this.config || this.loadConfig();
+        // 1. Config laden / verwenden: direkt aus task.params.smartMoney (Fallback: Konstruktor-Config)
+        const smartMoneyConfig = task?.params?.smartMoney || this.config || {};
         const allRecords = [];
 
         // 2. Ziel-Fonds filtern: nach CIK, nach Strategie oder alle aktiven

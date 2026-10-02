@@ -2,7 +2,7 @@ export class SecEdgar13FAdapter {
   getInsertQueryAndValues(task, data) {
     if (!data || data.length === 0) return { query: null, values: [] };
 
-    if (task.id && task.id.startsWith('sec_13f_')) {
+    if (task.id && (task.id.startsWith('sec_13f_') || task.id.startsWith('sec_edgar_13f'))) {
       const query = `
         INSERT INTO fund_13f_holdings (cik, report_date, filing_date, cusip, put_call, issuer_name, shares, value)
         VALUES ?

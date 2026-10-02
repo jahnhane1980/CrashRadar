@@ -1016,9 +1016,269 @@
       "frequency": "daily"
     },
     {
-      "id": "sec_13f_holdings",
+      "id": "sec_edgar_13f",
       "provider": "SecEdgar13F",
-      "frequency": "daily"
+      "frequency": "daily",
+      "params": {
+        "smartMoney": {
+          "0001536411": {
+            "name": "Duquesne Family Office (Stanley Druckenmiller)",
+            "manager": "Stanley Druckenmiller",
+            "entity": "Duquesne Family Office LLC",
+            "strategies": [
+              "SEVEN_SLOT_GURU",
+              "SMART_MONEY"
+            ],
+            "role": "CORE_COMMITTEE",
+            "active": true
+          },
+          "0001135730": {
+            "name": "Coatue Management (Philippe Laffont)",
+            "manager": "Philippe Laffont",
+            "entity": "COATUE MANAGEMENT LLC",
+            "strategies": [
+              "SEVEN_SLOT_GURU",
+              "SMART_MONEY"
+            ],
+            "role": "CORE_COMMITTEE",
+            "active": true
+          },
+          "0001167483": {
+            "name": "Tiger Global Management (Chase Coleman)",
+            "manager": "Chase Coleman",
+            "entity": "TIGER GLOBAL MANAGEMENT LLC",
+            "strategies": [
+              "SEVEN_SLOT_GURU",
+              "SMART_MONEY"
+            ],
+            "role": "CORE_COMMITTEE",
+            "active": true
+          },
+          "0001656456": {
+            "name": "Appaloosa LP (David Tepper)",
+            "manager": "David Tepper",
+            "entity": "Appaloosa LP",
+            "strategies": [
+              "SEVEN_SLOT_GURU",
+              "SMART_MONEY"
+            ],
+            "role": "CORE_COMMITTEE",
+            "active": true
+          },
+          "0001541617": {
+            "name": "Altimeter Capital Management (Brad Gerstner)",
+            "manager": "Brad Gerstner",
+            "entity": "Altimeter Capital Management, LP",
+            "strategies": [
+              "SEVEN_SLOT_GURU",
+              "SMART_MONEY"
+            ],
+            "role": "CORE_COMMITTEE",
+            "active": true
+          },
+          "0001509842": {
+            "name": "PointState Capital (Zach Schreiber)",
+            "manager": "Zach Schreiber",
+            "entity": "PointState Capital LP",
+            "strategies": [
+              "SEVEN_SLOT_GURU",
+              "SMART_MONEY"
+            ],
+            "role": "CORE_COMMITTEE",
+            "active": true
+          },
+          "0001777813": {
+            "name": "Atreides Management (Gavin Baker)",
+            "manager": "Gavin Baker",
+            "entity": "Atreides Management, LP",
+            "strategies": [
+              "SEVEN_SLOT_GURU"
+            ],
+            "role": "SUCCESSION_1",
+            "active": true
+          },
+          "0001387322": {
+            "name": "Whale Rock Capital Management (Alex Sacerdote)",
+            "manager": "Alex Sacerdote",
+            "entity": "Whale Rock Capital Management LLC",
+            "strategies": [
+              "SEVEN_SLOT_GURU"
+            ],
+            "role": "SUCCESSION_2",
+            "active": true
+          },
+          "0001647251": {
+            "name": "TCI Fund Management (Christopher Hohn)",
+            "manager": "Christopher Hohn",
+            "entity": "TCI Fund Management Ltd",
+            "strategies": [
+              "SEVEN_SLOT_GURU"
+            ],
+            "role": "SUCCESSION_3",
+            "active": true
+          },
+          "0001697748": {
+            "name": "ARK Investment Management (Cathie Wood)",
+            "manager": "Cathie Wood",
+            "entity": "ARK Investment Management LLC",
+            "strategies": [
+              "MUZZLED_CATHIE_WOOD"
+            ],
+            "role": "PRIMARY",
+            "active": true
+          },
+          "0001067983": {
+            "name": "Berkshire Hathaway",
+            "manager": "Warren Buffett",
+            "entity": "BERKSHIRE HATHAWAY INC",
+            "strategies": [
+              "SMART_MONEY"
+            ],
+            "role": "MACRO_OBSERVE",
+            "active": false
+          },
+          "0001037389": {
+            "name": "Renaissance Technologies",
+            "manager": "Jim Simons / Peter Brown",
+            "entity": "RENAISSANCE TECHNOLOGIES LLC",
+            "strategies": [
+              "SMART_MONEY"
+            ],
+            "role": "MACRO_OBSERVE",
+            "active": false
+          },
+          "0001423053": {
+            "name": "Citadel Advisors",
+            "manager": "Ken Griffin",
+            "entity": "CITADEL ADVISORS LLC",
+            "strategies": [
+              "SMART_MONEY"
+            ],
+            "role": "MACRO_OBSERVE",
+            "active": false
+          },
+          "0001350694": {
+            "name": "Bridgewater Associates",
+            "manager": "Ray Dalio / Bob Prince",
+            "entity": "BRIDGEWATER ASSOCIATES, LP",
+            "strategies": [
+              "SMART_MONEY"
+            ],
+            "role": "MACRO_OBSERVE",
+            "active": false
+          },
+          "0000902219": {
+            "name": "Elliott Investment Management",
+            "manager": "Paul Singer",
+            "entity": "ELLIOTT INVESTMENT MANAGEMENT L.P.",
+            "strategies": [
+              "SMART_MONEY"
+            ],
+            "role": "MACRO_OBSERVE",
+            "active": false
+          },
+          "0001179288": {
+            "name": "Two Sigma Investments",
+            "manager": "John Overdeck / David Siegel",
+            "entity": "TWO SIGMA INVESTMENTS, LP",
+            "strategies": [
+              "SMART_MONEY"
+            ],
+            "role": "MACRO_OBSERVE",
+            "active": false
+          },
+          "0001009207": {
+            "name": "D.E. Shaw & Co.",
+            "manager": "David E. Shaw",
+            "entity": "D. E. SHAW & CO., L.P.",
+            "strategies": [
+              "SMART_MONEY"
+            ],
+            "role": "MACRO_OBSERVE",
+            "active": false
+          },
+          "0001273087": {
+            "name": "Millennium Management",
+            "manager": "Israel Englander",
+            "entity": "MILLENNIUM MANAGEMENT LLC",
+            "strategies": [
+              "SMART_MONEY"
+            ],
+            "role": "MACRO_OBSERVE",
+            "active": false
+          },
+          "0001603466": {
+            "name": "Point72 Asset Management",
+            "manager": "Steve Cohen",
+            "entity": "POINT72 ASSET MANAGEMENT, L.P.",
+            "strategies": [
+              "SMART_MONEY"
+            ],
+            "role": "MACRO_OBSERVE",
+            "active": false
+          },
+          "0001061768": {
+            "name": "Baupost Group",
+            "manager": "Seth Klarman",
+            "entity": "BAUPOST GROUP LLC/MA",
+            "strategies": [
+              "SMART_MONEY"
+            ],
+            "role": "MACRO_OBSERVE",
+            "active": false
+          },
+          "0001167557": {
+            "name": "AQR Capital Management",
+            "manager": "Cliff Asness",
+            "entity": "AQR CAPITAL MANAGEMENT LLC",
+            "strategies": [
+              "SMART_MONEY"
+            ],
+            "role": "MACRO_OBSERVE",
+            "active": false
+          },
+          "0001040273": {
+            "name": "Third Point LLC",
+            "manager": "Daniel Loeb",
+            "entity": "THIRD POINT LLC",
+            "strategies": [
+              "SMART_MONEY"
+            ],
+            "role": "MACRO_OBSERVE",
+            "active": false
+          },
+          "0000855654": {
+            "name": "Tudor Investment Corp",
+            "manager": "Paul Tudor Jones",
+            "entity": "TUDOR INVESTMENT CORP",
+            "strategies": [
+              "SMART_MONEY"
+            ],
+            "role": "MACRO_OBSERVE",
+            "active": false
+          },
+          "0001336528": {
+            "name": "Pershing Square",
+            "manager": "Bill Ackman",
+            "entity": "PERSHING SQUARE CAPITAL MANAGEMENT, L.P.",
+            "strategies": [
+              "SMART_MONEY"
+            ],
+            "role": "MACRO_OBSERVE",
+            "active": false
+          },
+          "0001029160": {
+            "name": "Soros Fund Management",
+            "manager": "George Soros",
+            "entity": "SOROS FUND MANAGEMENT LLC",
+            "strategies": [
+              "SMART_MONEY"
+            ],
+            "role": "MACRO_OBSERVE",
+            "active": false
+          }
+        }
+      }
     },
     {
       "id": "m5_cibr",
