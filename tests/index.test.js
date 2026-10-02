@@ -69,4 +69,88 @@ describe('CLI Entrypoint (index.js)', () => {
 
     await expect(runCLI(['node', 'index.js'])).rejects.toThrow('Runner Failure');
   });
+
+  it('gibt bei SIGINT Lock explizit frei und ruft cleanup() vor process.exit(0) auf', async () => {
+    const exitSpy = vi.spyOn(process, 'exit').mockImplementation(() => {});
+    const mockStorage = { releaseLock: vi.fn().mockResolvedValue() };
+    const mockCleanup = vi.fn().mockResolvedValue();
+
+    vi.spyOn(TimeSeriesFetchRunner.prototype, 'run').mockImplementation(function() {
+      this.storage = mockStorage;
+      this.cleanup = mockCleanup;
+      return Promise.resolve();
+    });
+
+    await runCLI(['node', 'index.js']);
+
+    const sigintListeners = process.listeners('SIGINT');
+    const listener = sigintListeners[sigintListeners.length - 1];
+
+    await listener();
+
+    expect(mockStorage.releaseLock).toHaveBeenCalledWith('m5_sync_lock');
+    expect(mockCleanup).toHaveBeenCalled();
+    expect(exitSpy).toHaveBeenCalledWith(0);
+  });
+
+  it('gibt bei SIGTERM Lock explizit frei und ruft cleanup() vor process.exit(0) auf', async () => {
+    const exitSpy = vi.spyOn(process, 'exit').mockImplementation(() => {});
+    const mockStorage = { releaseLock: vi.fn().mockResolvedValue() };
+    const mockCleanup = vi.fn().mockResolvedValue();
+
+    vi.spyOn(TimeSeriesFetchRunner.prototype, 'run').mockImplementation(function() {
+      this.storage = mockStorage;
+      this.cleanup = mockCleanup;
+      return Promise.resolve();
+    });
+
+    await runCLI(['node', 'index.js']);
+
+    const sigtermListeners = process.listeners('SIGTERM');
+    const listener = sigtermListeners[sigtermListeners.length - 1];
+
+    await listener();
+
+    expect(mockStorage.releaseLock).toHaveBeenCalledWith('m5_sync_lock');
+    expect(mockCleanup).toHaveBeenCalled();
+    expect(exitSpy).toHaveBeenCalledWith(0);
+  });
+
+  it('fängt Fehler bei releaseLock während SIGINT sicher ab und beendet den Prozess mit exit(0)', async () => {
+    const exitSpy = vi.spyOn(process, 'exit').mockImplementation(() => {});
+    const mockStorage = { releaseLock: vi.fn().mockRejectedValue(new Error('DB disconnect')) };
+    const mockCleanup = vi.fn().mockResolvedValue();
+
+    vi.spyOn(TimeSeriesFetchRunner.prototype, 'run').mockImplementation(function() {
+      this.storage = mockStorage;
+      this.cleanup = mockCleanup;
+      return Promise.resolve();
+    });
+
+    await runCLI(['node', 'index.js']);
+
+    const sigintListeners = process.listeners('SIGINT');
+    const listener = sigintListeners[sigintListeners.length - 1];
+
+    await listener();
+
+    expect(mockStorage.releaseLock).toHaveBeenCalledWith('m5_sync_lock');
+    expect(mockCleanup).toHaveBeenCalled();
+    expect(exitSpy).toHaveBeenCalledWith(0);
+  });
+
+  it('behandelt SIGINT gracefully wenn kein activeRunner oder storage aktiv ist', async () => {
+    const exitSpy = vi.spyOn(process, 'exit').mockImplementation(() => {});
+    const sigintListeners = process.listeners('SIGINT');
+    const listener = sigintListeners[sigintListeners.length - 1];
+
+    // Reset runner and storage
+    const { setActiveRunner, setActiveStorage } = await import('../index.js');
+    setActiveRunner(null);
+    setActiveStorage(null);
+
+    await listener();
+
+    expect(exitSpy).toHaveBeenCalledWith(0);
+  });
 });

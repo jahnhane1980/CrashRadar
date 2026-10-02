@@ -227,4 +227,119 @@ describe('TimeSeriesFetchRunner', () => {
     expect(mockStorage.acquireLock).toHaveBeenCalledWith('m5_sync_lock', 600);
     expect(mockStorage.releaseLock).toHaveBeenCalledWith('m5_sync_lock');
   });
+
+  it('startet nach erfolgreichem acquireLock einen Heartbeat (Intervall: 120s), der renewLock aufruft und im finally-Block bereinigt wird', async () => {
+    vi.useFakeTimers();
+    try {
+      mockStorage.acquireLock = vi.fn().mockResolvedValue(true);
+      mockStorage.renewLock = vi.fn().mockResolvedValue(true);
+      mockStorage.releaseLock = vi.fn().mockResolvedValue();
+
+      let resolveRunner;
+      const runnerPromise = new Promise(resolve => {
+        resolveRunner = resolve;
+      });
+      mockRunner.run = vi.fn().mockReturnValue(runnerPromise);
+
+      const runner = new TimeSeriesFetchRunner(
+        { group: 'intraday_m5' },
+        {
+          dbUrl: 'mysql://test:test@localhost/crashradar',
+          config: { globalStartDate: '2020-01-01', tasks: [] },
+          storage: mockStorage,
+          fetcher: mockFetcher,
+          errorRegistry: mockErrorRegistry,
+          runner: mockRunner
+        }
+      );
+
+      const runPromise = runner.run();
+      await vi.advanceTimersByTimeAsync(0);
+
+      expect(mockStorage.acquireLock).toHaveBeenCalledWith('m5_sync_lock', 600);
+      expect(mockStorage.renewLock).not.toHaveBeenCalled();
+
+      // Vorlauf 120s
+      await vi.advanceTimersByTimeAsync(120000);
+      expect(mockStorage.renewLock).toHaveBeenCalledTimes(1);
+      expect(mockStorage.renewLock).toHaveBeenCalledWith('m5_sync_lock', 600);
+
+      // Vorlauf weitere 120s (240s gesamt)
+      await vi.advanceTimersByTimeAsync(120000);
+      expect(mockStorage.renewLock).toHaveBeenCalledTimes(2);
+
+      // Beende Runner
+      resolveRunner();
+      await runPromise;
+
+      expect(mockStorage.releaseLock).toHaveBeenCalledWith('m5_sync_lock');
+
+      // Nach Beendigung darf renewLock nicht mehr aufgerufen werden (Intervall bereinigt)
+      mockStorage.renewLock.mockClear();
+      await vi.advanceTimersByTimeAsync(240000);
+      expect(mockStorage.renewLock).not.toHaveBeenCalled();
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('bereinigt das Heartbeat-Interval im finally-Block auch bei Fehlern', async () => {
+    vi.useFakeTimers();
+    try {
+      mockStorage.acquireLock = vi.fn().mockResolvedValue(true);
+      mockStorage.renewLock = vi.fn().mockResolvedValue(true);
+      mockStorage.releaseLock = vi.fn().mockResolvedValue();
+
+      let rejectRunner;
+      const runnerPromise = new Promise((_, reject) => {
+        rejectRunner = reject;
+      });
+      mockRunner.run = vi.fn().mockReturnValue(runnerPromise);
+
+      const runner = new TimeSeriesFetchRunner(
+        { group: 'intraday_m5' },
+        {
+          dbUrl: 'mysql://test:test@localhost/crashradar',
+          config: { globalStartDate: '2020-01-01', tasks: [] },
+          storage: mockStorage,
+          fetcher: mockFetcher,
+          errorRegistry: mockErrorRegistry,
+          runner: mockRunner
+        }
+      );
+
+      const runPromise = runner.run();
+      await vi.advanceTimersByTimeAsync(120000);
+      expect(mockStorage.renewLock).toHaveBeenCalledTimes(1);
+
+      rejectRunner(new Error('Runner Error'));
+      await expect(runPromise).rejects.toThrow('Runner Error');
+
+      expect(mockStorage.releaseLock).toHaveBeenCalledWith('m5_sync_lock');
+
+      mockStorage.renewLock.mockClear();
+      await vi.advanceTimersByTimeAsync(240000);
+      expect(mockStorage.renewLock).not.toHaveBeenCalled();
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('speichert die Storage-Instanz auf this.storage', async () => {
+    const runner = new TimeSeriesFetchRunner(
+      { test: false },
+      {
+        dbUrl: 'mysql://test:test@localhost/crashradar',
+        config: { globalStartDate: '2020-01-01' },
+        storage: mockStorage,
+        fetcher: mockFetcher,
+        errorRegistry: mockErrorRegistry,
+        runner: mockRunner
+      }
+    );
+
+    await runner.run();
+
+    expect(runner.storage).toBe(mockStorage);
+  });
 });

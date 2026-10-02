@@ -7,22 +7,50 @@ import { TimeSeriesFetchRunner } from './src/runners/TimeSeriesFetchRunner.js';
 const __filename = fileURLToPath(import.meta.url);
 
 let activeRunner = null;
+let activeStorage = null;
 
-process.on('SIGINT', () => {
+export const sigintHandler = async () => {
   Logger.info('[Process] Caught interrupt signal (SIGINT). Exiting gracefully...');
-  if (activeRunner && typeof activeRunner.cleanup === 'function') {
-    activeRunner.cleanup();
+  try {
+    const storage = activeStorage || activeRunner?.storage;
+    if (storage && typeof storage.releaseLock === 'function') {
+      try {
+        await storage.releaseLock('m5_sync_lock');
+      } catch (err) {
+        Logger.error('[Process] Error during SIGINT lock release:', err.message || err);
+      }
+    }
+    if (activeRunner && typeof activeRunner.cleanup === 'function') {
+      await activeRunner.cleanup();
+    }
+  } catch (err) {
+    Logger.error('[Process] Error during SIGINT cleanup:', err.message || err);
   }
   process.exit(0);
-});
+};
 
-process.on('SIGTERM', () => {
+export const sigtermHandler = async () => {
   Logger.info('[Process] Caught termination signal (SIGTERM). Exiting gracefully...');
-  if (activeRunner && typeof activeRunner.cleanup === 'function') {
-    activeRunner.cleanup();
+  try {
+    const storage = activeStorage || activeRunner?.storage;
+    if (storage && typeof storage.releaseLock === 'function') {
+      try {
+        await storage.releaseLock('m5_sync_lock');
+      } catch (err) {
+        Logger.error('[Process] Error during SIGTERM lock release:', err.message || err);
+      }
+    }
+    if (activeRunner && typeof activeRunner.cleanup === 'function') {
+      await activeRunner.cleanup();
+    }
+  } catch (err) {
+    Logger.error('[Process] Error during SIGTERM cleanup:', err.message || err);
   }
   process.exit(0);
-});
+};
+
+process.on('SIGINT', sigintHandler);
+process.on('SIGTERM', sigtermHandler);
 
 export async function runCLI(argv) {
   const program = new Command();
@@ -46,6 +74,7 @@ export async function runCLI(argv) {
       }
 
       activeRunner = new TimeSeriesFetchRunner(options);
+      activeStorage = activeRunner.storage;
       await activeRunner.run();
     } catch (error) {
       Logger.error('[CLI Error]', error.message || error);
@@ -54,6 +83,22 @@ export async function runCLI(argv) {
   });
 
   await program.parseAsync(argv);
+}
+
+export function getActiveRunner() {
+  return activeRunner;
+}
+
+export function setActiveRunner(runner) {
+  activeRunner = runner;
+}
+
+export function getActiveStorage() {
+  return activeStorage;
+}
+
+export function setActiveStorage(storage) {
+  activeStorage = storage;
 }
 
 // Nur ausführen, wenn die Datei direkt per "node index.js" gestartet wird

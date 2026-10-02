@@ -19,6 +19,8 @@ export class TimeSeriesFetchRunner {
     this.isTest = Boolean(options.test);
     this.dependencies = dependencies;
     this.activeRunner = null;
+    this.storage = dependencies.storage || null;
+    this.heartbeatInterval = null;
   }
 
   async run() {
@@ -52,6 +54,7 @@ export class TimeSeriesFetchRunner {
     }
 
     const storage = this.dependencies.storage || new Storage({ databaseUrl: dbUrl });
+    this.storage = storage;
     const requestManager = this.dependencies.requestManager || new RequestManager(config);
     const errorRegistry = this.dependencies.errorRegistry || new ErrorRegistry();
     const ntfyTopic = process.env.NTFY_TOPIC || this.dependencies.ntfyTopic;
@@ -69,6 +72,8 @@ export class TimeSeriesFetchRunner {
     }
 
     const isM5Group = this.options.group === 'intraday_m5';
+    let heartbeatInterval = null;
+
     if (isM5Group) {
       const lockAcquired = await storage.acquireLock('m5_sync_lock', 600);
       if (!lockAcquired) {
@@ -78,6 +83,20 @@ export class TimeSeriesFetchRunner {
         }
         return;
       }
+
+      heartbeatInterval = setInterval(async () => {
+        try {
+          if (storage && typeof storage.renewLock === 'function') {
+            await storage.renewLock('m5_sync_lock', 600);
+          }
+        } catch (err) {
+          Logger.warn(`[LockHeartbeat] Failed to renew lock: ${err.message}`);
+        }
+      }, 120000);
+      if (typeof heartbeatInterval.unref === 'function') {
+        heartbeatInterval.unref();
+      }
+      this.heartbeatInterval = heartbeatInterval;
     }
 
     const originalClose = storage && typeof storage.close === 'function' ? storage.close.bind(storage) : null;
@@ -88,6 +107,10 @@ export class TimeSeriesFetchRunner {
     try {
       await this.activeRunner.run();
     } finally {
+      if (heartbeatInterval) {
+        clearInterval(heartbeatInterval);
+        this.heartbeatInterval = null;
+      }
       if (isM5Group) {
         try {
           if (storage && typeof storage.releaseLock === 'function') {
@@ -104,6 +127,10 @@ export class TimeSeriesFetchRunner {
   }
 
   async cleanup() {
+    if (this.heartbeatInterval) {
+      clearInterval(this.heartbeatInterval);
+      this.heartbeatInterval = null;
+    }
     if (this.activeRunner && typeof this.activeRunner.cleanup === 'function') {
       await this.activeRunner.cleanup();
       this.activeRunner = null;
