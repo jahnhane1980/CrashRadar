@@ -291,7 +291,7 @@ describe('Storage Class (MySQL)', () => {
       const acquired = await storage.acquireLock('m5_sync_lock', 600);
 
       expect(mockPool.query).toHaveBeenCalledWith(
-        expect.stringContaining('INSERT INTO sync_locks (lock_key, acquired_at, expires_at)'),
+        expect.stringContaining('INSERT INTO sync_locks (lock_key, expires_at)'),
         ['m5_sync_lock', 600, 'm5_sync_lock']
       );
       expect(acquired).toBe(true);

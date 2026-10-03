@@ -71,8 +71,8 @@ export class Storage {
   async acquireLock(lockKey, ttlSeconds = 600) {
     if (!this.pool) return false;
     const query = `
-      INSERT INTO sync_locks (lock_key, acquired_at, expires_at)
-      SELECT ?, NOW(), DATE_ADD(NOW(), INTERVAL ? SECOND)
+      INSERT INTO sync_locks (lock_key, expires_at)
+      SELECT ?, DATE_ADD(NOW(), INTERVAL ? SECOND)
       FROM DUAL
       WHERE NOT EXISTS (
         SELECT 1 FROM sync_locks
