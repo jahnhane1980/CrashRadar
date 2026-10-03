@@ -76,13 +76,25 @@ export class PolygonM5FetchAdapter {
     return headers;
   }
 
-  async fetch(task, provider, startValue, requestManager) {
+  async fetch(task, provider, startValue, requestManager, storage) {
     const rm = requestManager || this.requestManager;
     if (!rm || typeof rm.fetch !== 'function') {
       throw new Error('[PolygonM5FetchAdapter] RequestManager is required');
     }
 
-    const fromMs = this._calculateFromMs(startValue, provider, task);
+    let actualStartValue = startValue;
+    if (storage && typeof storage.getSyncState === 'function') {
+      try {
+        const syncState = await storage.getSyncState(task.id);
+        if (syncState && syncState.cursor_data) {
+          actualStartValue = JSON.parse(syncState.cursor_data);
+        }
+      } catch (err) {
+        Logger.warn(`[PolygonM5FetchAdapter] Failed to get sync state for ${task.id}: ${err.message}`);
+      }
+    }
+
+    const fromMs = this._calculateFromMs(actualStartValue, provider, task);
 
     if (fromMs >= Date.now()) {
       return [];
