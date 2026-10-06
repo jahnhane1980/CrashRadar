@@ -292,7 +292,7 @@ describe('Storage Class (MySQL)', () => {
 
       expect(mockPool.query).toHaveBeenCalledWith(
         expect.stringContaining('INSERT INTO sync_locks (lock_key, expires_at)'),
-        ['m5_sync_lock', 600, 'm5_sync_lock']
+        ['m5_sync_lock', 600]
       );
       expect(acquired).toBe(true);
     });
@@ -305,12 +305,12 @@ describe('Storage Class (MySQL)', () => {
       expect(acquired).toBe(false);
     });
 
-    it('sollte acquireLock() false zurückgeben wenn affectedRows !== 1 (z.B. affectedRows === 2)', async () => {
+    it('sollte acquireLock() true zurückgeben wenn abgelaufener Lock überschrieben wird (affectedRows === 2)', async () => {
       mockPool.query.mockResolvedValueOnce([{ affectedRows: 2 }]);
       const storage = new Storage({});
       const acquired = await storage.acquireLock('m5_sync_lock', 600);
 
-      expect(acquired).toBe(false);
+      expect(acquired).toBe(true);
     });
 
     it('sollte renewLock() ausführen und true zurückgeben wenn Lock aktiv ist (affectedRows > 0)', async () => {

@@ -72,15 +72,12 @@ export class Storage {
     if (!this.pool) return false;
     const query = `
       INSERT INTO sync_locks (lock_key, expires_at)
-      SELECT ?, DATE_ADD(NOW(), INTERVAL ? SECOND)
-      FROM DUAL
-      WHERE NOT EXISTS (
-        SELECT 1 FROM sync_locks
-        WHERE lock_key = ? AND expires_at > NOW()
-      );
+      VALUES (?, DATE_ADD(NOW(), INTERVAL ? SECOND))
+      ON DUPLICATE KEY UPDATE
+        expires_at = IF(expires_at <= NOW(), VALUES(expires_at), expires_at)
     `;
-    const [result] = await this.pool.query(query, [lockKey, ttlSeconds, lockKey]);
-    return Boolean(result && result.affectedRows === 1);
+    const [result] = await this.pool.query(query, [lockKey, ttlSeconds]);
+    return Boolean(result && (result.affectedRows === 1 || result.affectedRows === 2));
   }
 
   async renewLock(lockKey, ttlSeconds = 600) {
