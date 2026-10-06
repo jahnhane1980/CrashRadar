@@ -42,10 +42,11 @@ describe('StandardRunner', () => {
       expect(mockStorage.close).toHaveBeenCalled();
     });
 
-    it('should send Ntfy alert if ErrorRegistry has errors', async () => {
+    it('should send Ntfy alert and set exitCode if ErrorRegistry has errors', async () => {
       mockErrorRegistry.hasErrors.mockReturnValue(true);
       await runner.run();
       expect(mockNtfyService.send).toHaveBeenCalledWith('CrashRadar ETL Fehler', 'Summary', 'high', 'warning');
+      expect(process.exitCode).toBe(1);
     });
 
     it('should catch error, log it, exit, and cleanup', async () => {
@@ -56,7 +57,7 @@ describe('StandardRunner', () => {
 
       expect(Logger.error).toHaveBeenCalledWith('[Fatal Error] Execution failed:', 'Test Error');
       expect(mockNtfyService.send).toHaveBeenCalledWith('CrashRadar FATAL ERROR', 'Test Error', 'urgent', 'skull');
-      expect(process.exit).toHaveBeenCalledWith(1);
+      expect(process.exitCode).toBe(1);
       expect(mockStorage.close).toHaveBeenCalled();
     });
   });

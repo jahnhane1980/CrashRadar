@@ -18,16 +18,19 @@ export class StandardRunner {
 
       Logger.info('All jobs completed.');
       
-      if (this.errorRegistry && this.ntfyService && this.errorRegistry.hasErrors()) {
+      if (this.errorRegistry && this.errorRegistry.hasErrors()) {
         const summary = this.errorRegistry.getSummary();
-        await this.ntfyService.send('CrashRadar ETL Fehler', summary, 'high', 'warning');
+        if (this.ntfyService) {
+          await this.ntfyService.send('CrashRadar ETL Fehler', summary, 'high', 'warning');
+        }
+        process.exitCode = 1;
       }
     } catch (error) {
       Logger.error('[Fatal Error] Execution failed:', error.message);
       if (this.ntfyService) {
         await this.ntfyService.send('CrashRadar FATAL ERROR', error.message, 'urgent', 'skull');
       }
-      process.exit(1);
+      process.exitCode = 1;
     } finally {
       await this.cleanup();
     }
