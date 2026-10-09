@@ -458,6 +458,13 @@
       "options": {}
     },
     {
+      "id": "yahoo_ib01",
+      "provider": "YahooFinance",
+      "ticker": "IB01.L",
+      "method": "chart",
+      "options": {}
+    },
+    {
       "$template": "fred_series",
       "id": "fred_permit",
       "series_id": "PERMIT"
@@ -1009,6 +1016,21 @@
       "$template": "fred_series",
       "id": "fred_myagm2cnm189n",
       "series_id": "MYAGM2CNM189N"
+    },
+    {
+      "$template": "fred_series",
+      "id": "fred_bamlh0a0hym2",
+      "series_id": "BAMLH0A0HYM2"
+    },
+    {
+      "$template": "fred_series",
+      "id": "fred_wtregen",
+      "series_id": "WTREGEN"
+    },
+    {
+      "$template": "fred_series",
+      "id": "fred_sofr99",
+      "series_id": "SOFR99"
     },
     {
       "id": "macro_calendar_events",
