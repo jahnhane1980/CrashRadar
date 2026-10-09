@@ -1381,6 +1381,25 @@
       "ticker": "SPY",
       "multiplier": 5,
       "timespan": "minute"
+    },
+    {
+      "id": "yahoo_vvix",
+      "provider": "YahooFinance",
+      "ticker": "^VVIX",
+      "method": "chart",
+      "options": {}
+    },
+    {
+      "id": "yahoo_fundamentals_msft",
+      "provider": "YahooFinance",
+      "ticker": "MSFT",
+      "method": "fundamentals"
+    },
+    {
+      "id": "yahoo_fundamentals_nvda",
+      "provider": "YahooFinance",
+      "ticker": "NVDA",
+      "method": "fundamentals"
     }
   ]
 }
