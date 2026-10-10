@@ -97,9 +97,12 @@ export class YahooFinanceFetchAdapter {
         };
       });
 
-      rawQuotes.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+      // Rumpfdaten ohne Umsatz herausfiltern (verhindert Zombie-Zeilen und zerschlagene YoY-Berechnungen)
+      const validQuotes = rawQuotes.filter(q => q.totalRevenue !== null && q.totalRevenue !== undefined && Number.isFinite(q.totalRevenue));
+
+      validQuotes.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
       
-      const quarterlyQuotes = rawQuotes.filter(q => q.period === '3M');
+      const quarterlyQuotes = validQuotes.filter(q => q.period === '3M');
       const oneDayMs = 24 * 60 * 60 * 1000;
       
       for (let i = 0; i < quarterlyQuotes.length; i++) {
@@ -127,7 +130,7 @@ export class YahooFinanceFetchAdapter {
         }
       }
 
-      const annualQuotes = rawQuotes.filter(q => q.period === '12M');
+      const annualQuotes = validQuotes.filter(q => q.period === '12M');
       const quotes = [...quarterlyQuotes, ...annualQuotes].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
       return { quotes };
