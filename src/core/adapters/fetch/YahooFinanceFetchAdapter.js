@@ -52,36 +52,84 @@ export class YahooFinanceFetchAdapter {
         Logger.error(`[YahooFinanceFetchAdapter] Failed to fetch quoteSummary for ${task.ticker}: ${err.message}`);
       }
       
-      const quotes = timeSeries.map(item => {
-        let dateStr;
-        if (item.date) {
-            const d = new Date(item.date);
-            dateStr = d.toISOString().split('T')[0];
-        } else {
-            dateStr = new Date().toISOString().split('T')[0];
+      const rawQuotes = timeSeries.map(item => {
+        let dateStr = item.date ? new Date(item.date).toISOString().split('T')[0] : new Date().toISOString().split('T')[0];
+        
+        const isAnnual = item.periodType === '12M' || item.periodType === '1Y' || String(item.periodType).toUpperCase() === 'ANNUAL';
+        const p = isAnnual ? '12M' : '3M';
+
+        const opIncome = item.operatingIncome ?? item.ebit ?? null;
+        const depAmort = item.depreciationAndAmortization ?? 
+                         item.reconciledDepreciation ?? 
+                         item.depreciationAmortizationDepletion ?? 
+                         item.depreciation ?? 
+                         null;
+
+        let calculatedEbitda = null;
+        if (opIncome !== null && depAmort !== null && !isNaN(opIncome) && !isNaN(depAmort)) {
+          calculatedEbitda = Math.round(Number(opIncome) + Math.abs(Number(depAmort)));
         }
+
+        const rawEbitda = (item.ebitda === 0 || item.ebitda == null || isNaN(item.ebitda)) ? null : item.ebitda;
 
         return {
           ticker: task.ticker,
           date: dateStr,
-          period: item.periodType || '3M',
-          shareIssued: item.shareIssued || item.ordinarySharesNumber || 0,
-          freeCashFlow: item.freeCashFlow || 0,
-          totalRevenue: item.totalRevenue || item.operatingRevenue || 0,
-          netIncome: item.netIncome || item.netIncomeCommonStockholders || item.netIncomeFromContinuingOperations || 0,
-          financingCashFlow: item.financingCashFlow || 0,
-          inventory: item.inventory || 0,
-          cogs: item.costOfRevenue || 0,
-          cash_and_cash_equivalents: item.cashAndCashEquivalents || 0,
-          total_debt: item.totalDebt || 0,
-          short_term_debt: item.currentDebt || 0,
-          ebitda: item.ebitda || 0,
-          interest_expense: item.interestExpense || 0,
-          stock_based_compensation: item.stockBasedCompensation || 0,
-          institutional_ownership: instOwn
+          period: p,
+          shareIssued: item.shareIssued || item.ordinarySharesNumber || null,
+          freeCashFlow: item.freeCashFlow || null,
+          totalRevenue: item.totalRevenue || item.operatingRevenue || null,
+          netIncome: item.netIncome || item.netIncomeCommonStockholders || item.netIncomeFromContinuingOperations || null,
+          financingCashFlow: item.financingCashFlow || null,
+          inventory: item.inventory || null,
+          cogs: item.costOfRevenue || null,
+          cash_and_cash_equivalents: item.cashAndCashEquivalents || null,
+          total_debt: item.totalDebt || null,
+          short_term_debt: item.currentDebt || null,
+          ebitda: rawEbitda ?? calculatedEbitda,
+          interest_expense: item.interestExpense || null,
+          stock_based_compensation: item.stockBasedCompensation || null,
+          institutional_ownership: instOwn || null,
+          operating_cash_flow: item.operatingCashFlow ?? null,
+          gross_profit: item.grossProfit ?? null,
+          eps: item.dilutedEPS ?? item.basicEPS ?? null,
+          yoy_revenue_growth_pct: null
         };
       });
+
+      rawQuotes.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
       
+      const quarterlyQuotes = rawQuotes.filter(q => q.period === '3M');
+      const oneDayMs = 24 * 60 * 60 * 1000;
+      
+      for (let i = 0; i < quarterlyQuotes.length; i++) {
+        const current = quarterlyQuotes[i];
+        const currentDateMs = new Date(current.date).getTime();
+        
+        let past = null;
+        for (let j = i - 1; j >= 0; j--) {
+          const candidate = quarterlyQuotes[j];
+          const candidateDateMs = new Date(candidate.date).getTime();
+          const diffDays = (currentDateMs - candidateDateMs) / oneDayMs;
+          
+          if (diffDays >= 320 && diffDays <= 410) {
+            past = candidate;
+            break;
+          }
+          if (diffDays > 410) {
+            break;
+          }
+        }
+        
+        if (past && current.totalRevenue !== null && past.totalRevenue !== null && past.totalRevenue !== 0) {
+          const growth = ((current.totalRevenue - past.totalRevenue) / Math.abs(past.totalRevenue)) * 100;
+          current.yoy_revenue_growth_pct = Number(growth.toFixed(4));
+        }
+      }
+
+      const annualQuotes = rawQuotes.filter(q => q.period === '12M');
+      const quotes = [...quarterlyQuotes, ...annualQuotes].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
       return { quotes };
     }
 

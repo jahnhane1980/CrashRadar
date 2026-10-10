@@ -42,45 +42,40 @@ export class YahooFinanceAdapter {
     }
     
     if (task.method === 'fundamentals') {
-      const query = `
-        INSERT INTO company_fundamentals (symbol, date, period, shareIssued, freeCashFlow, totalRevenue, netIncome, financingCashFlow, inventory, cogs, cash_and_cash_equivalents, total_debt, short_term_debt, ebitda, interest_expense, stock_based_compensation, institutional_ownership)
-        VALUES ?
-        ON DUPLICATE KEY UPDATE
-          shareIssued = VALUES(shareIssued),
-          freeCashFlow = VALUES(freeCashFlow),
-          totalRevenue = VALUES(totalRevenue),
-          netIncome = VALUES(netIncome),
-          financingCashFlow = VALUES(financingCashFlow),
-          inventory = VALUES(inventory),
-          cogs = VALUES(cogs),
-          cash_and_cash_equivalents = VALUES(cash_and_cash_equivalents),
-          total_debt = VALUES(total_debt),
-          short_term_debt = VALUES(short_term_debt),
-          ebitda = VALUES(ebitda),
-          interest_expense = VALUES(interest_expense),
-          stock_based_compensation = VALUES(stock_based_compensation),
-          institutional_ownership = VALUES(institutional_ownership)
-      `;
-      const values = data.map(item => [
-        item.ticker, 
-        item.date,
-        item.period,
-        item.shareIssued, 
-        item.freeCashFlow, 
-        item.totalRevenue, 
-        item.netIncome, 
-        item.financingCashFlow, 
-        item.inventory,
-        item.cogs,
-        item.cash_and_cash_equivalents,
-        item.total_debt,
-        item.short_term_debt,
-        item.ebitda,
-        item.interest_expense,
-        item.stock_based_compensation,
-        item.institutional_ownership
-      ]);
-      return { query, values };
+      try {
+        if (!data || !Array.isArray(data) || data.length === 0) {
+          return { query: null, values: [] };
+        }
+
+        const keys = Object.keys(data[0]);
+        const columns = keys.map(k => (k === 'ticker' ? 'symbol' : k));
+
+        const updateClauses = columns
+          .filter(col => !['symbol', 'date', 'period'].includes(col))
+          .map(col => `${col} = COALESCE(VALUES(${col}), ${col})`)
+          .join(',\n            ');
+
+        const query = `
+          INSERT INTO company_fundamentals (${columns.join(', ')})
+          VALUES ?
+          ON DUPLICATE KEY UPDATE
+            ${updateClauses}
+        `;
+
+        const values = data.map(item =>
+          keys.map(k => {
+            const val = item[k];
+            if (k === 'ebitda' && (val === 0 || val == null || Number.isNaN(val))) return null;
+            if (val === undefined) return null;
+            return val;
+          })
+        );
+
+        return { query, values };
+      } catch (error) {
+        console.error(`[YahooFinanceAdapter] Mapping-Fehler bei ${task.ticker}: ${error.message}`);
+        return { query: null, values: [] };
+      }
     }
 
     const query = `
