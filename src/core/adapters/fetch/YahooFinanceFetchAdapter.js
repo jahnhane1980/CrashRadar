@@ -70,6 +70,14 @@ export class YahooFinanceFetchAdapter {
           totalRevenue: item.totalRevenue || item.operatingRevenue || 0,
           netIncome: item.netIncome || item.netIncomeCommonStockholders || item.netIncomeFromContinuingOperations || 0,
           financingCashFlow: item.financingCashFlow || 0,
+          inventory: item.inventory || 0,
+          cogs: item.costOfRevenue || 0,
+          cash_and_cash_equivalents: item.cashAndCashEquivalents || 0,
+          total_debt: item.totalDebt || 0,
+          short_term_debt: item.currentDebt || 0,
+          ebitda: item.ebitda || 0,
+          interest_expense: item.interestExpense || 0,
+          stock_based_compensation: item.stockBasedCompensation || 0,
           institutional_ownership: instOwn
         };
       });

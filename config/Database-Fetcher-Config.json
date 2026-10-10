@@ -1400,6 +1400,24 @@
       "provider": "YahooFinance",
       "ticker": "NVDA",
       "method": "fundamentals"
+    },
+    {
+      "id": "yahoo_fundamentals_amd",
+      "provider": "YahooFinance",
+      "ticker": "AMD",
+      "method": "fundamentals"
+    },
+    {
+      "id": "yahoo_fundamentals_asml",
+      "provider": "YahooFinance",
+      "ticker": "ASML",
+      "method": "fundamentals"
+    },
+    {
+      "id": "yahoo_fundamentals_smci",
+      "provider": "YahooFinance",
+      "ticker": "SMCI",
+      "method": "fundamentals"
     }
   ]
 }
